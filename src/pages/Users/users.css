@@ -1,0 +1,10 @@
+.users {
+  padding: 40px 30%;
+  padding: 66px 30%;
+}
+
+.users-list-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
