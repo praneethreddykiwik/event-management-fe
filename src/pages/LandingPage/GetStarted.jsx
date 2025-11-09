@@ -18,7 +18,8 @@ const GetStarted = () => {
 
   return (
     <div onClick={onClickGetStarted} className="GetStarted">
-      <h1>GetStarted</h1>
+      <h1>GetStarted Page</h1>
+      {/* My code changes */}
 
       <p>Count {count}</p>
       <button onClick={onClickIncrement}>Increment</button>
