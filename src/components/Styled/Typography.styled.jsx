@@ -14,7 +14,7 @@ export const StyledHeadingBig = styled.p`
   line-height: 52px;
   letter-spacing: -0.144px;
   margin: 20px 0;
-  text-align: ${textAlign};
+  text-align: ${({left,right})=> textAlign({left,right})};
 `;
 
 export const StyledHeading = styled.p`

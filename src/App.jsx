@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
   const theme = useTheme();
@@ -18,7 +19,7 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path={"/"} element={<Home />} />
+          <Route path={"/"} element={<LandingPage />} />
           <Route path={"/login"} element={<Login />} />
         </Routes>
 
