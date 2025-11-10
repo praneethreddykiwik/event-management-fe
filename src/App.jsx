@@ -19,7 +19,7 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
         </Routes>
 

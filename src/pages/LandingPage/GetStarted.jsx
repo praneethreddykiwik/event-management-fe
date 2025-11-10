@@ -1,16 +1,19 @@
 import styled from "styled-components";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
+import {
+  StyledBaseButton,
+  StyledTransparentButton,
+} from "../../components/Styled/Buttons.styled";
 import forward_arrow from "../../assets/landingPage/arrow_forward.png";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
 import { StyledHeadingBig } from "../../components/Styled/Typography.styled";
+// import {  SectionContainer } from "../../components/Styled/Common.styled";
 const GetStarted = () => {
   return (
     <>
-      <GetStarted_Main_Div>
+      <SectionContainer>
         <GetStarted_Main_Div_Child1>
           <GetStarted_Main_Div_Child1_content>
-            <StyledHeadingBig     
-           left >
+            <StyledHeadingBig left>
               Book Your Perfect Event, Anytime, Anywhere!
             </StyledHeadingBig>
             <GetStarted_Main_Div_Child1_p>
@@ -21,10 +24,10 @@ const GetStarted = () => {
             </GetStarted_Main_Div_Child1_p>
             <GetStarted_Main_Div_Child1_btn>
               <StyledBaseButton>Get started</StyledBaseButton>
-              <GetStarted_Main_Div_Child1_button>
+              <StyledTransparentButton>
                 Explore
                 <GetStarted_Main_Div_Child1_btn_img src={forward_arrow} />
-              </GetStarted_Main_Div_Child1_button>
+              </StyledTransparentButton>
             </GetStarted_Main_Div_Child1_btn>
           </GetStarted_Main_Div_Child1_content>
         </GetStarted_Main_Div_Child1>
@@ -34,28 +37,28 @@ const GetStarted = () => {
             <GetStarted_Main_Div_child2_img src={getStarted_img} alt="image" />
           </GetStarted_Main_Div_Child2_content>
         </GetStarted_Main_Div_child2>
-      </GetStarted_Main_Div>
+      </SectionContainer>
     </>
   );
 };
 
 export default GetStarted;
 
-const GetStarted_Main_Div = styled.div`
-  background-color: #F1FAFF;
-  height: 70vh;
+
+const SectionContainer = styled.div`
+  background-color: #f1faff;
+  height: 80vh;
   display: flex;
 `;
-
 const GetStarted_Main_Div_Child1 = styled.div`
   width: 50vw;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const GetStarted_Main_Div_Child1_content = styled.div`
   width: 30vw;
-  margin-top: 20px;
 `;
 
 const GetStarted_Main_Div_Child1_p = styled.p`
@@ -72,17 +75,6 @@ const GetStarted_Main_Div_Child1_btn = styled.div`
   margin-top: 20px;
 `;
 
-const GetStarted_Main_Div_Child1_button = styled.button`
-  border: none;
-  height: 40px;
-  border-radius: 30px;
-  padding: 6px 20px;
-  color: #26c867;
-  min-width: 100px;
-  background-color: #d5e2eaff;
-  cursor: pointer;
-  align-items: center;
-`;
 const GetStarted_Main_Div_Child1_btn_img = styled.img`
   margin-left: 5px;
   width: 10px;
@@ -90,6 +82,7 @@ const GetStarted_Main_Div_Child1_btn_img = styled.img`
 
 const GetStarted_Main_Div_child2 = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const GetStarted_Main_Div_Child2_content = styled.div`
@@ -97,7 +90,4 @@ const GetStarted_Main_Div_Child2_content = styled.div`
 `;
 const GetStarted_Main_Div_child2_img = styled.img`
   width: 100%;
-  margin-top: 50px;
 `;
-
-// const GetStarted_h1 = styled.div{}

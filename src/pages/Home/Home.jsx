@@ -1,5 +1,11 @@
+import LandingPage from "../LandingPage/LandingPage";
+
 const Home = () => {
-  return <div style={{ height: "100vh", background: "#fff" }}>Home</div>;
+  return (
+    <>
+    <LandingPage/>
+    </>
+  )
 };
 
 export default Home;

@@ -33,3 +33,28 @@ export const StyledSecButton = styled.button`
   border: 1px solid #eeeeee;
   cursor: pointer;
 `;
+
+// need to change this to links after the review 
+export const StyledTransparentButton = styled.button`
+  border: none;
+  height: 40px;
+  border-radius: 30px;
+  padding: 6px 20px;
+  color: #26c867;
+  min-width: 100px;
+  background-color:  #f1faff;
+  cursor: pointer;
+  align-items: center;
+`;
+
+export const StyledTransparentButtonWhite = styled.button`
+  border: none;
+  height: 40px;
+  border-radius: 30px;
+  padding: 6px 20px;
+  color: #26c867;
+  min-width: 100px;
+  background-color: #ffffff;
+  cursor: pointer;
+  align-items: center;
+`;
