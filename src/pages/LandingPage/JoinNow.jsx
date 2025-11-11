@@ -3,11 +3,12 @@ import styled from "styled-components";
 import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
+import { Button } from "../../components/Buttons/Button";
 import {
   StyledParagraph,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
+
 
 const JoinNow = () => {
   return (
@@ -23,7 +24,7 @@ const JoinNow = () => {
           it is to plan your events with us
         </StyledParagraph>
         <StyledSemiHeading>There is a venue for every event</StyledSemiHeading>
-        <StyledBaseButton>Join now</StyledBaseButton>
+        <Button type="base">Join now</Button>
       </JoinNowContainerTwo>
     </SectionContainerTwo>
   );

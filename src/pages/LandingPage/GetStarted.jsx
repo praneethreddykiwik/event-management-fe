@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import {
-  StyledBaseButton,
-  StyledTransparentButton,
-} from "../../components/Styled/Buttons.styled";
 import forward_arrow from "../../assets/landingPage/arrow_forward.png";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
 import { StyledHeadingBig } from "../../components/Styled/Typography.styled";
+import { Button } from "../../components/Buttons/Button";
 // import {  SectionContainer } from "../../components/Styled/Common.styled";
 const GetStarted = () => {
   return (
@@ -23,11 +20,11 @@ const GetStarted = () => {
               find your dream venue and let us handle the rest.
             </GetStarted_Main_Div_Child1_p>
             <GetStarted_Main_Div_Child1_btn>
-              <StyledBaseButton>Get started</StyledBaseButton>
-              <StyledTransparentButton>
+              <Button type="base">Get started</Button>
+              <Button type="transparent">
                 Explore
                 <GetStarted_Main_Div_Child1_btn_img src={forward_arrow} />
-              </StyledTransparentButton>
+              </Button>
             </GetStarted_Main_Div_Child1_btn>
           </GetStarted_Main_Div_Child1_content>
         </GetStarted_Main_Div_Child1>
@@ -43,7 +40,6 @@ const GetStarted = () => {
 };
 
 export default GetStarted;
-
 
 const SectionContainer = styled.div`
   background-color: #f1faff;

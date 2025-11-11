@@ -8,7 +8,7 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
-import LandingPage from "./pages/LandingPage/LandingPage";
+// import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
   const theme = useTheme();
