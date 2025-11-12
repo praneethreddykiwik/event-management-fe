@@ -42,19 +42,8 @@ export const StyledTransparentButton = styled.button`
   padding: 6px 20px;
   color: #26c867;
   min-width: 100px;
-  background-color:  #f1faff;
+  background-color:  transparent;
   cursor: pointer;
   align-items: center;
 `;
 
-export const StyledTransparentButtonWhite = styled.button`
-  border: none;
-  height: 40px;
-  border-radius: 30px;
-  padding: 6px 20px;
-  color: #26c867;
-  min-width: 100px;
-  background-color: #ffffff;
-  cursor: pointer;
-  align-items: center;
-`;

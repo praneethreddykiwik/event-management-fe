@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { SectionContainerTwo } from "../../components/Styled/Common.styled";
+import { SectionContainer } from "../../components/Styled/Common.styled";
 import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
@@ -12,35 +12,28 @@ import {
 
 const JoinNow = () => {
   return (
-    <SectionContainerTwo>
-      <JoinNowContainerOne>
-        <JoinNowContainerOneImgOne src={joinNowOne} />
-        <JoinNowContainerOneImgTwo src={joinNowTwo} />
-        <JoinNowContainerOneImgThree src={joinNowThree} />
-      </JoinNowContainerOne>
-      <JoinNowContainerTwo>
+    <SectionContainer sx= {{ flexDireaction: " column " , height:"90vh" }}>
+      <ContainerOne>
+        <ContainerOneImg src={joinNowOne} />
+        <ContainerOneImg src={joinNowTwo} />
+        <ContainerOneImg src={joinNowThree} />
+      </ContainerOne>
+      <ContainerTwo>
         <StyledParagraph>
           Experience the convenience on our wedsite today and discover how easy
           it is to plan your events with us
         </StyledParagraph>
         <StyledSemiHeading>There is a venue for every event</StyledSemiHeading>
         <Button type="base">Join now</Button>
-      </JoinNowContainerTwo>
-    </SectionContainerTwo>
+      </ContainerTwo>
+    </SectionContainer>
   );
 };
 
 export default JoinNow;
 
- const SectionContainerTwo = styled.div`
-  background-color: #ffffffff;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-`;
 
-const JoinNowContainerOne = styled.div`
+const ContainerOne = styled.div`
   height: 50vh;
   width: 100%;
   display: flex;
@@ -49,16 +42,10 @@ const JoinNowContainerOne = styled.div`
   margin-top:60px;
 `;
 
-const JoinNowContainerOneImgOne = styled.img`
-  width: 250px;
-`;
-const JoinNowContainerOneImgTwo = styled.img`
-  width: 250px;
-`;
-const JoinNowContainerOneImgThree = styled.img`
-  width: 250px;
+const ContainerOneImg = styled.img`
+  width: 270px;
 `;
 
-const JoinNowContainerTwo = styled.div`                                                 
+const ContainerTwo = styled.div`                                                 
   margin-top:30px;
 `;
