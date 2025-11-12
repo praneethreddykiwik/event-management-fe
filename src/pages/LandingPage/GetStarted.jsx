@@ -2,59 +2,62 @@ import styled from "styled-components";
 import forward_arrow from "../../assets/landingPage/arrow_forward.png";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
 import { StyledHeadingBig } from "../../components/Styled/Typography.styled";
-import {SectionContainer} from "../../components/Styled/Common.styled";
+import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
-// import {  SectionContainer } from "../../components/Styled/Common.styled";
+
 const GetStarted = () => {
   return (
     <>
-      <SectionContainer sx ={{background:" #f1faff; "}}>
-        <ChildContainer sx={{ width: "50vw", color: "blue" }}>
-          <Content>
+      <StyledSectionContainer sx={{ background: " #f1faff; " }}>
+        <StyledChildContainer sx={{ width: "50vw", color: "blue" }}>
+          <StyledContent>
             <StyledHeadingBig left>
               Book Your Perfect Event, Anytime, Anywhere!
             </StyledHeadingBig>
-            <ContentParagraph>
+            <StyledContentParagraph>
               Looking for perfect place to host your next event? got you
               covered. Browse, compare, and book thousands of venues across the
               country in minutes. No hassle, no hidden fees, no stress. Just
               find your dream venue and let us handle the rest.
-            </ContentParagraph>
-            <ContentBtn>
+            </StyledContentParagraph>
+            <StyledContentBtn>
               <Button type="base">Get started</Button>
               <Button type="transparent">
                 Explore
-                <BtnIcon src={forward_arrow} />
+                <StyledBtnIcon src={forward_arrow} />
               </Button>
-            </ContentBtn>
-          </Content>
-        </ChildContainer>
+            </StyledContentBtn>
+          </StyledContent>
+        </StyledChildContainer>
 
-        <ChildContainer sx={{ width: "50vw" }}>
-          <RightChildContainer>
-            <ChildContainerImg src={getStarted_img} alt="image" />
-          </RightChildContainer>
-        </ChildContainer>
-      </SectionContainer>
+        <StyledChildContainer sx={{ width: "50vw" }}>
+          <StyledRightChildContainer>
+            <StyledChildContainerImg src={getStarted_img} alt="image" />
+          </StyledRightChildContainer>
+        </StyledChildContainer>
+      </StyledSectionContainer>
     </>
   );
 };
 
 export default GetStarted;
 
-
-const ChildContainer = styled.div`
+const StyledChildContainer = styled.div`
   width: ${({ sx }) => sx?.width || "inherit"};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Content = styled.div`
+// const StyledButtonLoc = styled(Button)`
+//   margin-bottom: 10px;
+// `;
+
+const StyledContent = styled.div`
   width: 30vw;
 `;
 
-const ContentParagraph = styled.p`
+const StyledContentParagraph = styled.p`
   width: 30vw;
   text-wrap: wrap;
   font-size: 12px;
@@ -62,20 +65,20 @@ const ContentParagraph = styled.p`
   color: #88898bff;
 `;
 
-const ContentBtn = styled.div`
+const StyledContentBtn = styled.div`
   display: flex;
   gap: 30px;
   margin-top: 20px;
 `;
 
-const BtnIcon = styled.img`
+const StyledBtnIcon = styled.img`
   margin-left: 5px;
   width: 10px;
 `;
 
-const RightChildContainer = styled.div`
+const StyledRightChildContainer = styled.div`
   width: 40vw;
 `;
-const ChildContainerImg = styled.img`
+const StyledChildContainerImg = styled.img`
   width: 100%;
 `;

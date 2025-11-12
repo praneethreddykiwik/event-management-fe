@@ -14,9 +14,9 @@ export const StyledHeader = styled.header`
 `;
 
 // landing page common compontent
-export const SectionContainer = styled.div`
+export const StyledSectionContainer = styled.div`
   background-color: ${({ sx }) => sx?.background || " #ffffffff;"};
-  height: ${({sx})=> sx?.height || "80vh"};
+  height: ${({ sx }) => sx?.height || "80vh"};
   display: flex;
   flex-direction: ${({ sx }) => sx?.flexDireaction || "row"};
   align-items: center;

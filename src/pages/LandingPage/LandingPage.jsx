@@ -9,7 +9,7 @@ const LandingPage = () => {
       <GetStarted />
       <FindInspiration />
       <TrustedBy />
-      <JoinNow/>
+      <JoinNow />
     </div>
   );
 };

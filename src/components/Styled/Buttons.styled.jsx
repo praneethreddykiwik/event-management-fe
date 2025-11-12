@@ -34,7 +34,7 @@ export const StyledSecButton = styled.button`
   cursor: pointer;
 `;
 
-// need to change this to links after the review 
+// need to change this to links after the review
 export const StyledTransparentButton = styled.button`
   border: none;
   height: 40px;
@@ -42,8 +42,7 @@ export const StyledTransparentButton = styled.button`
   padding: 6px 20px;
   color: #26c867;
   min-width: 100px;
-  background-color:  transparent;
+  background-color: transparent;
   cursor: pointer;
   align-items: center;
 `;
-
