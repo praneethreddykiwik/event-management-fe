@@ -1,23 +1,27 @@
+/** @format */
+
 import {
   StyledBaseButton,
   StyledOutlinedButton,
   StyledSecButton,
-} from "../Styled/Buttons.styled";
+} from '../Styled/Buttons.styled';
 
-export const Button = ({ type, children, onClick }) => {
+export const Button = ({ type, children, onClick, sx }) => {
   const generateButton = () => {
     switch (type) {
-      case "base":
+      case 'base':
         return (
-          <StyledBaseButton onClick={onClick}>{children}</StyledBaseButton>
+          <StyledBaseButton sx={sx} onClick={onClick}>
+            {children}
+          </StyledBaseButton>
         );
-      case "outlined":
+      case 'outlined':
         return (
-          <StyledOutlinedButton onClick={onClick}>
+          <StyledOutlinedButton sx={sx} onClick={onClick}>
             {children}
           </StyledOutlinedButton>
         );
-      case "secondary":
+      case 'secondary':
         return <StyledSecButton onClick={onClick}>{children}</StyledSecButton>;
 
       default:

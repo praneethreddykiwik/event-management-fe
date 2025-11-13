@@ -1,7 +1,9 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 const textAlign = ({ left, right }) =>
-  left ? "left" : right ? "right" : "center";
+  left ? 'left' : right ? 'right' : 'center';
 
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
@@ -131,7 +133,7 @@ export const StyledGrayLink = styled.span`
 export const StyledAnchorSmall = styled.p`
   color: ${({ theme }) => theme.commonAnchorColor};
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 400;         
   line-height: 18.2px;
   text-align: ${textAlign};
   cursor: pointer;

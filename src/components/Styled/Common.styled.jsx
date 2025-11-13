@@ -1,4 +1,6 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   width: 100%;
@@ -12,4 +14,10 @@ export const StyledHeader = styled.header`
   padding: 0 40px;
   box-sizing: border-box;
   justify-content: space-between;
+`;
+
+export const StyledFlexContainer = styled.div`
+  display : flex;
+  align-items: center;
+  justify-content: center;
 `;
