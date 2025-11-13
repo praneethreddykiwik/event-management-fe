@@ -1,0 +1,92 @@
+import styled from "styled-components";
+import { StyledSecButton ,StyledBaseButton} from "../../components/Styled/Buttons.styled";
+import Gateway from "../../assets/gateway-image/img.jpg";
+const GatewayPage = () => {
+  return (
+    <Container_parent>
+      <Container_child1>
+          <LogoText>eventz</LogoText>
+          <Title>Your Gateway to <br /> Memorable Experiences</Title>
+          <Description>
+            no need to rummage through irrelevant halls <br /> anymore, we got You
+            covered. we send you <br /> relevant delas based off of your interest
+          </Description>
+          <Button_section>
+            <StyledSecButton>Skip</StyledSecButton>
+          <StyledBaseButton>Next</StyledBaseButton>
+          </Button_section>
+      </Container_child1>
+      <Container_child2> 
+      <ContainerImg src={Gateway} />
+      </Container_child2>
+    </Container_parent>
+  );                                                                    
+};
+export default GatewayPage;
+
+const ContainerImg = styled.img`
+height:100%;
+width:100%;
+
+`;
+const Container_parent = styled.div`
+  display: flex;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+`;
+
+const Container_child1 = styled.div`
+  width: 50vw;
+  background: #f5fbff;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Container_child2 = styled.div`
+  width: 50vw;
+  background-size: cover;
+  background-position: center;
+`;
+
+const LogoRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 10px;
+`;
+
+const LogoIcon = styled.img`
+  width: 40px;
+`;
+
+const LogoText = styled.span`
+  font-size: 28px;
+  font-weight: 600;
+  color: #0c0c0cff;
+`;
+
+const Title = styled.h1`
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom:0px;
+`;
+
+const Description = styled.p`
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 45px;
+
+`;
+
+const Button_section = styled.div`
+  display: flex;
+  gap: 200px;
+  align-items: center;
+  justify-content: center;
+  margin-top:100px;
+  
+`;
