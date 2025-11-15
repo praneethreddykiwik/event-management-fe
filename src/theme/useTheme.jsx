@@ -8,7 +8,6 @@ const useTheme = () => {
   const createTheme = useMemo(() => {
     return theme[selectedTheme];
   }, [selectedTheme]);
-
   return createTheme;
 };
 

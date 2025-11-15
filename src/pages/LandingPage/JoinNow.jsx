@@ -11,7 +11,7 @@ import {
 
 const JoinNow = () => {
   return (
-    <StyledSectionContainer sx={{ flexDireaction: " column ", height: "90vh" }}>
+    <StyledSectionContainer sx={{ flexDireaction: " column " }}>
       <StyledContainerOne>
         <StyledContainerOneImg src={joinNowOne} />
         <StyledContainerOneImg src={joinNowTwo} />
@@ -32,7 +32,6 @@ const JoinNow = () => {
 export default JoinNow;
 
 const StyledContainerOne = styled.div`
-  height: 50vh;
   width: 100%;
   display: flex;
   justify-content: center;

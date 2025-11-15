@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import forward_arrow from "../../assets/landingPage/arrow_forward.png";
+import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
-import { StyledHeadingBig } from "../../components/Styled/Typography.styled";
+import {
+  StyledHeadingBig,
+  StyledParagraphGray,
+} from "../../components/Styled/Typography.styled";
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
 
 const GetStarted = () => {
   return (
     <>
-      <StyledSectionContainer sx={{ background: " #f1faff; " }}>
-        <StyledChildContainer sx={{ width: "50vw", color: "blue" }}>
+      <StyledContainer>
+        <StyledChildContainer>
           <StyledContent>
             <StyledHeadingBig left>
               Book Your Perfect Event, Anytime, Anywhere!
@@ -23,43 +26,46 @@ const GetStarted = () => {
             <StyledContentBtn>
               <Button type="base">Get started</Button>
               <Button type="transparent">
-                Explore
+                <span class="material-symbols-outlined">Explore</span>
                 <StyledBtnIcon src={forward_arrow} />
               </Button>
             </StyledContentBtn>
           </StyledContent>
         </StyledChildContainer>
 
-        <StyledChildContainer sx={{ width: "50vw" }}>
-          <StyledRightChildContainer>
-            <StyledChildContainerImg src={getStarted_img} alt="image" />
-          </StyledRightChildContainer>
-        </StyledChildContainer>
-      </StyledSectionContainer>
+        <StyledRightChildContainer>
+          <StyledChildContainerImg src={getStarted_img} alt="image" />
+        </StyledRightChildContainer>
+      </StyledContainer>
     </>
   );
 };
 
 export default GetStarted;
+const StyledContainer = styled(StyledSectionContainer)`
+  display: flex;
+  justify-content: center;
+  background: #f1faff;
+`;
 
 const StyledChildContainer = styled.div`
-  width: ${({ sx }) => sx?.width || "inherit"};
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
-// const StyledButtonLoc = styled(Button)`
-//   margin-bottom: 10px;
-// `;
-
+const StyledRightChildContainer = styled.div`
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const StyledContent = styled.div`
-  width: 30vw;
+  width: 450px;
+  word-wrap: break-word;
 `;
 
-const StyledContentParagraph = styled.p`
-  width: 30vw;
-  text-wrap: wrap;
+const StyledContentParagraph = styled(StyledParagraphGray)`
   font-size: 12px;
   text-align: left;
   color: #88898bff;
@@ -76,9 +82,7 @@ const StyledBtnIcon = styled.img`
   width: 10px;
 `;
 
-const StyledRightChildContainer = styled.div`
-  width: 40vw;
-`;
 const StyledChildContainerImg = styled.img`
-  width: 100%;
+  width: 500px;
+  height: 300px;
 `;

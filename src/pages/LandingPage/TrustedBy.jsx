@@ -8,9 +8,7 @@ import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 const TrustedBy = () => {
   return (
     <StyledSectionContainer sx={StylesContainer}>
-      <StyledTextContainer>
-        <StyledSemiHeading>Trusted By </StyledSemiHeading>
-      </StyledTextContainer>
+      <StyledSemiHeading>Trusted By </StyledSemiHeading>
       <StyledContainerImg>
         <StyledIconContainer>
           <StyledIconOnes
@@ -29,17 +27,13 @@ const TrustedBy = () => {
 export default TrustedBy;
 
 const StylesContainer = {
-  height: "45vh",
   flexDireaction: " column",
   background: " #f1faff;",
 };
-const StyledTextContainer = styled.div`
-  margin-top: 30px;
-`;
 
 const StyledContainerImg = styled.div`
-  height: 20vh;
-  width: 55vw;
+  height: 20%;
+  width: 50%;
   display: flex;
   margin-top: 20px;
   justify-content: space-between;
@@ -60,6 +54,5 @@ const StyledIconOnes = styled.img`
   height: none;
   border-radius: none;
   background-color: white;
-  // borderRadius: "50%";
   ${({ sx }) => ({ ...sx })}
 `;

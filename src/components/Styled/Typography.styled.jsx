@@ -14,7 +14,7 @@ export const StyledHeadingBig = styled.p`
   line-height: 52px;
   letter-spacing: -0.144px;
   margin: 20px 0;
-  text-align: ${({left,right})=> textAlign({left,right})};
+  text-align: ${({ left, right }) => textAlign({ left, right })};
 `;
 
 export const StyledHeading = styled.p`
@@ -70,6 +70,7 @@ export const StyledParagraphGray = styled.p`
 `;
 
 export const StyledParagraphSmallGray = styled.p`
+  ${({ theme }) => console.log("abdul theme", theme)};
   color: ${({ theme }) => theme.commonGrayColor};
   font-size: 14px;
   font-weight: 400;

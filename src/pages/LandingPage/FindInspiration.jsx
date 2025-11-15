@@ -1,8 +1,11 @@
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import styled from "styled-components";
 import venue_hall from "../../assets/landingPage/venue.jpg";
-import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
-import forward_arrow from "../../assets/landingPage/arrow_forward.png";
+import {
+  StyledSemiHeading,
+  StyledParagraphSmallGray,
+} from "../../components/Styled/Typography.styled";
+import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import { Button } from "../../components/Buttons/Button";
 
 const FindInspiration = () => {
@@ -33,23 +36,25 @@ const FindInspiration = () => {
 };
 
 const StyledImageContainer = styled.div`
-  background-color: #838383ff;
-  width: 55vw;
+  width: 100%;
   display: flex;
+  justify-content: center;
   margin-top: 30px;
+  height: 300px;
+`;
+
+const StyledImage = styled.img`
+  width: 50%;
+  height: 100%;
 `;
 
 const StyledContainerTwo = styled.div`
-  width: 55vw;
+  width: 50%;
+  word-wrap: break-word;
 `;
 
-const StyledContent = styled.p`
+const StyledContent = styled(StyledParagraphSmallGray)`
   text-align: left;
-  font-size: 13px;
-`;
-const StyledImage = styled.img`
-  width: 55vw;
-  height: 45vh;
 `;
 
 const StyledIcon = styled.img`
