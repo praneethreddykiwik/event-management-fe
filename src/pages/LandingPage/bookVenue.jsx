@@ -27,8 +27,10 @@ const BookVenue = () => {
         <Button>Get more information</Button>
       </StyledInputContainer>
       <StyledPolicy>
-        *Please refer to our <StyledAnchor>Privancy Policy</StyledAnchor> for
-        more details.
+        <StyledPolicyTxt>
+          *Please refer to our <StyledAnchor>Privancy Policy</StyledAnchor> for
+          more details.
+        </StyledPolicyTxt>
       </StyledPolicy>
     </StyledMainContainer>
   );
@@ -36,12 +38,20 @@ const BookVenue = () => {
 
 export default BookVenue;
 
-const StyledPolicy = styled(StyledParagraphGray)`
-  margin-top: 40px;
+const StyledPolicy = styled.div`
+  width: 50%;
+  margin-top: 20px;
+`;
+
+const StyledPolicyTxt = styled(StyledParagraphGray)`
+  text-align: left;
+   font-size: 14px;
 `;
 
 const StyledAnchor = styled(StyledGrayLink)`
   color: #26c867;
+  font-size: 14px;
+  text-decoration: none;
 `;
 
 const StyledMainContainer = styled(StyledSectionContainer)`
