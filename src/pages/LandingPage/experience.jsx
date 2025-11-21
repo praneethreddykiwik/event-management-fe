@@ -61,6 +61,9 @@ export default Experience;
 const StyledContainer = styled(StyledSectionContainer)`
   background-color: #f1faff;
   justify-content: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledBodyContainer = styled.div`

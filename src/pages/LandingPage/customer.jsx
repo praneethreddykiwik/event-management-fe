@@ -18,7 +18,7 @@ const Customer = () => {
   return (
     <StyledContainerBody>
       <StyledSubContainerOne>
-        <StyledHead>What our customers are saying</StyledHead>
+        <StyledHead left>What our customers are saying</StyledHead>
         <StyledParagraphContainer>
           "I recently used the online event and venue booking service, and it
           exceeded my expectations. The entire booking process was incredibly
@@ -39,14 +39,14 @@ const Customer = () => {
       </StyledSubContainerOne>
       <StyledSubContainerTwo>
         <StyledImageOne>
-          <StyledImgOne sx={{ height: "40%" }} src={customer2} />
-          <StyledImgOne sx={{ height: "40%" }} src={customer3} />
-          <StyledImgOne sx={{ height: "20%" }} src={customer1} />
+          <StyledImgOne src={customer2} />
+          <StyledImgOne src={customer3} />
+          <StyledImgOne src={customer1} />
         </StyledImageOne>
         <StyledImageTwo>
-          <StyledImgOne sx={{ height: "20%" }} src={customer6} />
-          <StyledImgOne sx={{ height: "60%" }} src={customer5} />
-          <StyledImgOne sx={{ height: "30%" }} src={customer4} />
+          <StyledImgOne src={customer6} />
+          <StyledImgOne src={customer5} />
+          <StyledImgOne src={customer4} />
         </StyledImageTwo>
       </StyledSubContainerTwo>
     </StyledContainerBody>
@@ -56,34 +56,57 @@ const Customer = () => {
 export default Customer;
 
 const StyledContainerBody = styled(StyledSectionContainer)`
-  display: flex;
   padding: 0px;
   align-items: center;
   background-color: #000000;
   align-content: center;
   justify-content: center;
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+`;
+
+const StyledSubContainerOne = styled.div`
+  width: 40%;
+  height: 400px;
+  overflow: hidden;
+  @media (max-width: 767px) {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+  }
 `;
 
 const StyledSubContainerTwo = styled.div`
-  width: 50%;
-  height: 500px;
+  width: 40%;
   display: flex;
   gap: 15px;
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-top: 80px;
+  }
 `;
 
 const StyledImgOne = styled.img`
-  width: 250px;
-  ${({ sx }) => ({ ...sx })}
+  height: 120px;
 `;
 const StyledImageOne = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
+  overflow: hidden;
 `;
 const StyledImageTwo = styled.div`
   display: flex;
+  overflow: hidden;
+  width: 100%;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  height: 100%;
 `;
 
 const StyledProfileHead = styled(StyledParagraphBold)`
@@ -104,19 +127,23 @@ const StyledParagraphContainer = styled(StyledParagraph)`
   text-align: left;
   color: #ffffff;
   width: 67%;
-  margin: auto;
   margin-top: 30px;
-`;
-const StyledSubContainerOne = styled.div`
-  width: 50%;
-  height: 400px;
+  @media (max-width: 767px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const StyledProfile = styled.div`
   display: flex;
   width: 250px;
   margin-top: 30px;
-  margin-left: 17%;
+  justify-content: center;
+  text-align: left;
+  @media (max-width: 767px) {
+    text-align: center;
+    justify-content: center;
+  }
 `;
 const StyledProfileName = styled.div`
   height: 50px;
@@ -130,12 +157,17 @@ const StyledProfileImg = styled.img`
 const StyledIcon = styled.div`
   width: 160px;
   margin-top: 50px;
-  margin-left: 11%;
+  @media (max-width: 767px) {
+    width: 250px;
+  }
 `;
 const StyledForwardIcon = styled.img`
   margin-left: 60px;
   width: 15px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    margin-left: 120px;
+  }
 `;
 const StyledBackIcon = styled.img`
   width: 15px;
@@ -144,4 +176,7 @@ const StyledBackIcon = styled.img`
 
 const StyledHead = styled(StyledHeading)`
   color: #26c867;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;

@@ -7,29 +7,29 @@ import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 const TrustedBy = () => {
   return (
-    <StyledSectionContainer sx={StylesContainer}>
+    <StylesContainer>
       <StyledSemiHeading>Trusted By </StyledSemiHeading>
       <StyledContainerImg>
         <StyledIconContainer>
-          <StyledIconOnes
-            sx={{ width: "60px", height: "80px" }}
-            src={standard}
-          />
+          <StyledIconFirst src={standard} />
         </StyledIconContainer>
         <StyledIconOnes sx={{ "border-radius": "50%" }} src={saleForce} />
         <StyledIconOnes sx={{ borderRadius: "50%" }} src={canon} />
         <StyledIconOnes sx={{ borderRadius: "50%" }} src={qatar} />
       </StyledContainerImg>
-    </StyledSectionContainer>
+    </StylesContainer>
   );
 };
 
 export default TrustedBy;
 
-const StylesContainer = {
-  flexDireaction: " column",
-  background: " #f1faff;",
-};
+const StylesContainer = styled(StyledSectionContainer)`
+  flex-direction: column;
+  background-color: #f1faff;
+  @media (max-width: 768px) {
+    background-color: #ffffff;
+  }
+`;
 
 const StyledContainerImg = styled.div`
   height: 20%;
@@ -37,12 +37,25 @@ const StyledContainerImg = styled.div`
   display: flex;
   margin-top: 20px;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 // Icons
 
+const StyledIconFirst = styled.img`
+  width: 60px;
+  height: 80px;
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 60px;
+  }
+`;
 const StyledIconContainer = styled.div`
   width: 120px;
-  background-color: white;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,5 +67,8 @@ const StyledIconOnes = styled.img`
   height: none;
   border-radius: none;
   background-color: white;
+  @media (max-width: 768px) {
+    width: 80px;
+  }
   ${({ sx }) => ({ ...sx })}
 `;

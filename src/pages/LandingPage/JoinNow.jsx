@@ -37,12 +37,22 @@ const StyledContainerOne = styled.div`
   justify-content: center;
   gap: 30px;
   margin-top: 60px;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 0px;
+  }
 `;
 
 const StyledContainerOneImg = styled.img`
   width: 270px;
+  @media (max-width: 768px) {
+    width: 25%;
+  }
 `;
 
 const StyledContainerTwo = styled.div`
   margin-top: 30px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;

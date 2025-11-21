@@ -60,6 +60,10 @@ const StyledMainContainer = styled(StyledSectionContainer)`
 `;
 const StyledContainer = styled.div`
   width: 50%;
+   @media (max-width: 767px) {
+    width: 90%;
+    margin-top: 80px;
+  }
 `;
 const StyledHead = styled(StyledHeading)`
   text-align: left;
@@ -74,6 +78,9 @@ const StyledInputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
+   @media (max-width: 767px) {
+    width: 90%;
+  }
 `;
 const StyledInput = styled.input`
   padding: 10px;

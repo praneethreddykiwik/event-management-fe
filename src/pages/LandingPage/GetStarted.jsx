@@ -45,13 +45,14 @@ const GetStarted = () => {
 export default GetStarted;
 const StyledContainer = styled(StyledSectionContainer)`
   justify-content: center;
-  background: #f1faff;
+  background-color: #f1faff;
   gap: 20px;
   @media (max-width: 768px) {
     justify-content: center;
-    background-color: red;
+    background-color: #ffffff;
     background-image: url(${getStarted_imgMi});
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
   }
 `;
@@ -107,4 +108,11 @@ const StyledBtnIcon = styled.img`
 
 const StyledChildContainerImg = styled.img`
   width: 100%;
+  @media (max-width: 768px) {
+    justify-content: center;
+    background-color: red;
+    background-image: url(${getStarted_imgMi});
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 `;
