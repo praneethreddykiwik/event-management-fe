@@ -60,6 +60,9 @@ const StyledIconContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  @media (max-width: 768px) {
+    width: 70px;
+  }
 `;
 
 const StyledIconOnes = styled.img`

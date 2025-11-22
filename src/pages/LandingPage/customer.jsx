@@ -77,6 +77,7 @@ const StyledSubContainerOne = styled.div`
     flex-direction: column;
     align-items: center;
     height: 350px;
+    padding-bottom: 50px;
   }
 `;
 

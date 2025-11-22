@@ -41,11 +41,17 @@ export default BookVenue;
 const StyledPolicy = styled.div`
   width: 50%;
   margin-top: 20px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const StyledPolicyTxt = styled(StyledParagraphGray)`
   text-align: left;
-   font-size: 14px;
+  font-size: 14px;
+  @media (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 const StyledAnchor = styled(StyledGrayLink)`
@@ -60,16 +66,22 @@ const StyledMainContainer = styled(StyledSectionContainer)`
 `;
 const StyledContainer = styled.div`
   width: 50%;
-   @media (max-width: 767px) {
+  @media (max-width: 767px) {
     width: 90%;
     margin-top: 80px;
   }
 `;
 const StyledHead = styled(StyledHeading)`
   text-align: left;
+  @media (max-width: 767px) {
+    text-align: center;
+  }
 `;
 const StyledPara = styled(StyledParagraphSmallGray)`
   text-align: left;
+  @media (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 const StyledInputContainer = styled.div`
@@ -78,8 +90,9 @@ const StyledInputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-   @media (max-width: 767px) {
+  @media (max-width: 767px) {
     width: 90%;
+    flex-direction: column;
   }
 `;
 const StyledInput = styled.input`
@@ -88,4 +101,7 @@ const StyledInput = styled.input`
   height: 28px;
   border-radius: 30px;
   border: 1px black solid;
+  @media (max-width: 767px) {
+    width: 90%;
+  }
 `;
