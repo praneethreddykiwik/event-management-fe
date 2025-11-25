@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import Profile from "./pages/Profile/Profile.jsx";
+import DropdownComponent from "./pages/Profile/DropdownComponent.jsx";
 
 function App() {
   const theme = useTheme();
@@ -20,6 +22,8 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
+          <Route path={"/profile"} element={<Profile/>}  />
+         <Route path={"/dropdown"} element={< DropdownComponent/>} />
         </Routes>
 
         {/* <Footer /> */}
