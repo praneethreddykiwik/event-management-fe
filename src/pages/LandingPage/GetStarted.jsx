@@ -8,6 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
+import { mainHeading, mainParagraph,startBtn ,outLineBtn  } from "../../enum/landingPage.common";
 
 const GetStarted = () => {
   return (
@@ -15,19 +16,12 @@ const GetStarted = () => {
       <StyledContainer>
         <StyledChildContainer>
           <StyledContent>
-            <StyledHeadingBig left>
-              Book Your Perfect Event, Anytime, Anywhere!
-            </StyledHeadingBig>
-            <StyledContentParagraph>
-              Looking for perfect place to host your next event? got you
-              covered. Browse, compare, and book thousands of venues across the
-              country in minutes. No hassle, no hidden fees, no stress. Just
-              find your dream venue and let us handle the rest.
-            </StyledContentParagraph>
+            <StyledHeadingBig left>{mainHeading}</StyledHeadingBig>
+            <StyledContentParagraph>{mainParagraph}</StyledContentParagraph>
             <StyledContentBtn>
-              <Button type="base">Get started</Button>
+              <Button type="base">{startBtn}</Button>
               <Button type="transparent">
-                <span class="material-symbols-outlined">Explore</span>
+                {outLineBtn}
                 <StyledBtnIcon src={forward_arrow} />
               </Button>
             </StyledContentBtn>

@@ -8,6 +8,11 @@ import {
   StyledParagraph,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
+import {
+  joinParagraph,
+  joinHeading,
+  joinBtn,
+} from "../../enum/landingPage.common";
 
 const JoinNow = () => {
   return (
@@ -18,12 +23,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledParagraph>
-          Experience the convenience on our wedsite today and discover how easy
-          it is to plan your events with us
-        </StyledParagraph>
-        <StyledSemiHeading>There is a venue for every event</StyledSemiHeading>
-        <Button type="base">Join now</Button>
+        <StyledParagraph>{joinParagraph}</StyledParagraph>
+        <StyledSemiHeading>{joinHeading}</StyledSemiHeading>
+        <Button type="base">{joinBtn}</Button>
       </StyledContainerTwo>
     </StyledSectionContainer>
   );
@@ -37,6 +39,7 @@ const StyledContainerOne = styled.div`
   justify-content: center;
   gap: 30px;
   margin-top: 60px;
+
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 0px;
@@ -45,6 +48,7 @@ const StyledContainerOne = styled.div`
 
 const StyledContainerOneImg = styled.img`
   width: 270px;
+
   @media (max-width: 768px) {
     width: 25%;
   }
@@ -52,6 +56,7 @@ const StyledContainerOneImg = styled.img`
 
 const StyledContainerTwo = styled.div`
   margin-top: 30px;
+
   @media (max-width: 768px) {
     width: 80%;
   }

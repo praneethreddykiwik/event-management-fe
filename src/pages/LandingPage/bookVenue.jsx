@@ -8,29 +8,26 @@ import {
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
 import styled from "styled-components";
+import {
+  bookHeading,
+  bookPara,
+  bookPolicy,
+  bookBtn,
+} from "../../enum/landingPage.common";
 
 const BookVenue = () => {
   return (
     <StyledMainContainer>
       <StyledContainer>
-        <StyledHead>
-          Get updated when your favorite venue is open for booking.
-        </StyledHead>
-        <StyledPara>
-          Join our email list to resceive updates on events near you, booking
-          and appointment availabilty tips on great event planning, management
-          and more.
-        </StyledPara>
+        <StyledHead>{bookHeading}</StyledHead>
+        <StyledPara>{bookPara}</StyledPara>
       </StyledContainer>
       <StyledInputContainer>
         <StyledInput type="email" placeholder="email address" />
-        <Button>Get more information</Button>
+        <Button>{bookBtn}</Button>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>
-          *Please refer to our <StyledAnchor>Privancy Policy</StyledAnchor> for
-          more details.
-        </StyledPolicyTxt>
+        <StyledPolicyTxt>{bookPolicy}</StyledPolicyTxt>
       </StyledPolicy>
     </StyledMainContainer>
   );
@@ -41,6 +38,7 @@ export default BookVenue;
 const StyledPolicy = styled.div`
   width: 50%;
   margin-top: 20px;
+
   @media (max-width: 767px) {
     width: 100%;
   }
@@ -49,15 +47,10 @@ const StyledPolicy = styled.div`
 const StyledPolicyTxt = styled(StyledParagraphGray)`
   text-align: left;
   font-size: 14px;
+
   @media (max-width: 767px) {
     text-align: center;
   }
-`;
-
-const StyledAnchor = styled(StyledGrayLink)`
-  color: #26c867;
-  font-size: 14px;
-  text-decoration: none;
 `;
 
 const StyledMainContainer = styled(StyledSectionContainer)`
@@ -66,6 +59,7 @@ const StyledMainContainer = styled(StyledSectionContainer)`
 `;
 const StyledContainer = styled.div`
   width: 50%;
+
   @media (max-width: 767px) {
     width: 90%;
     margin-top: 80px;
@@ -73,12 +67,14 @@ const StyledContainer = styled.div`
 `;
 const StyledHead = styled(StyledHeading)`
   text-align: left;
+
   @media (max-width: 767px) {
     text-align: center;
   }
 `;
 const StyledPara = styled(StyledParagraphSmallGray)`
   text-align: left;
+
   @media (max-width: 767px) {
     text-align: center;
   }
@@ -90,6 +86,7 @@ const StyledInputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
+
   @media (max-width: 767px) {
     width: 90%;
     flex-direction: column;
@@ -101,6 +98,7 @@ const StyledInput = styled.input`
   height: 28px;
   border-radius: 30px;
   border: 1px black solid;
+
   @media (max-width: 767px) {
     width: 90%;
   }

@@ -14,22 +14,21 @@ import {
   StyledParagraphBold,
   StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
+import {customerHeading,customerPara,profileName,profileLink,customerheadingM} from "../../enum/landingPage.common";
+
 const Customer = () => {
   return (
     <StyledContainerBody>
       <StyledSubContainerOne>
-        <StyledHead left>What our customers are saying</StyledHead>
+        <StyledHead left>{customerHeading}</StyledHead>
         <StyledParagraphContainer>
-          "I recently used the online event and venue booking service, and it
-          exceeded my expectations. The entire booking process was incredibly
-          smooth, and I was able to find the perfect venue for my event without
-          any hassle."
+         {customerPara}
         </StyledParagraphContainer>
         <StyledProfile>
           <StyledProfileImg src={customer2} />
           <StyledProfileName>
-            <StyledProfileHead>Cameron Wiliamson</StyledProfileHead>
-            <StyledAnchors>Pictoplasma Conference</StyledAnchors>
+            <StyledProfileHead>{profileName }</StyledProfileHead>
+            <StyledAnchors>{profileLink}</StyledAnchors>
           </StyledProfileName>
         </StyledProfile>
         <StyledIcon>
@@ -38,15 +37,20 @@ const Customer = () => {
         </StyledIcon>
       </StyledSubContainerOne>
       <StyledSubContainerTwo>
+        <StyledHeadM>{customerheadingM}</StyledHeadM>
         <StyledImageOne>
-          <StyledImgOne src={customer2} />
-          <StyledImgOne src={customer3} />
+          <StyledImgOne src={customer6} />
           <StyledImgOne src={customer1} />
+          <StyledImgOne src={customer5} />
+          <StyledImgOne src={customer3} />
+          <StyledImgOne src={customer2} />
         </StyledImageOne>
         <StyledImageTwo>
-          <StyledImgOne src={customer6} />
-          <StyledImgOne src={customer5} />
+          <StyledImgOne src={customer3} />
           <StyledImgOne src={customer4} />
+          <StyledImgOne src={customer5} />
+          <StyledImgOne src={customer1} />
+          <StyledImgOne src={customer6} />
         </StyledImageTwo>
       </StyledSubContainerTwo>
     </StyledContainerBody>
@@ -61,46 +65,61 @@ const StyledContainerBody = styled(StyledSectionContainer)`
   background-color: #000000;
   align-content: center;
   justify-content: center;
+  height: 400px;
+  overflow: hidden;
+
   @media (max-width: 767px) {
     flex-direction: column-reverse;
     justify-content: center;
+    height: fit-content;
   }
 `;
 
 const StyledSubContainerOne = styled.div`
   width: 40%;
-  height: 400px;
   overflow: hidden;
+
   @media (max-width: 767px) {
     width: 65%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 350px;
     padding-bottom: 50px;
   }
 `;
 
+const StyledImgOne = styled.div`
+  width: 150px;
+  height: 150px;
+  background-image: ${(params) => "url(" + params.src + ")"};
+  background-position: center;
+  background-size: cover;
+`;
+
 const StyledSubContainerTwo = styled.div`
-  width: 40%;
   display: flex;
   gap: 15px;
+
   @media (max-width: 767px) {
     width: 100%;
-    margin-top: 80px;
+    flex-direction: column;
   }
 `;
 
-const StyledImgOne = styled.img`
-  height: 120px;
-`;
 const StyledImageOne = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
   overflow: hidden;
+
+  @media (max-width: 767px) {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
 `;
+
 const StyledImageTwo = styled.div`
   display: flex;
   overflow: hidden;
@@ -108,6 +127,12 @@ const StyledImageTwo = styled.div`
   flex-direction: column;
   gap: 15px;
   height: 100%;
+  margin-top: 75px;
+
+  @media (max-width: 767px) {
+    flex-direction: row;
+    margin-top: 0%;
+  }
 `;
 
 const StyledProfileHead = styled(StyledParagraphBold)`
@@ -129,6 +154,7 @@ const StyledParagraphContainer = styled(StyledParagraph)`
   color: #ffffff;
   width: 67%;
   margin-top: 30px;
+
   @media (max-width: 767px) {
     width: 100%;
     text-align: center;
@@ -141,6 +167,7 @@ const StyledProfile = styled.div`
   margin-top: 30px;
   justify-content: center;
   text-align: left;
+
   @media (max-width: 767px) {
     text-align: center;
     justify-content: center;
@@ -155,21 +182,26 @@ const StyledProfileImg = styled.img`
   width: 55px;
   border-radius: 50%;
 `;
+
 const StyledIcon = styled.div`
   width: 160px;
   margin-top: 50px;
+
   @media (max-width: 767px) {
     width: 250px;
   }
 `;
+
 const StyledForwardIcon = styled.img`
   margin-left: 60px;
   width: 15px;
   cursor: pointer;
+
   @media (max-width: 767px) {
     margin-left: 120px;
   }
 `;
+
 const StyledBackIcon = styled.img`
   width: 15px;
   cursor: pointer;
@@ -177,7 +209,19 @@ const StyledBackIcon = styled.img`
 
 const StyledHead = styled(StyledHeading)`
   color: #26c867;
+
   @media (max-width: 767px) {
     display: none;
+  }
+`;
+const StyledHeadM = styled(StyledHeading)`
+  color: #26c867;
+  display: none;
+
+  @media (max-width: 767px) {
+    display: flex;
+    color: #555d58;
+    justify-content: center;
+    padding: 20px;
   }
 `;

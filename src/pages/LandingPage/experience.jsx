@@ -8,6 +8,16 @@ import {
   StyledParagraphSmall,
   StyledParagraphBold,
 } from "../../components/Styled/Typography.styled";
+import {
+  experienceHeading1,
+  experienceHeading2,
+  experienceHeading3,
+  experienceHeading4,
+  experiencePara1,
+  experiencePara2,
+  experiencePara3,
+} from "../../enum/landingPage.common";
+
 const Experience = () => {
   return (
     <StyledContainer>
@@ -16,21 +26,15 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>Unforgettable Experiences</Heading>
-            <StyledParagraph>
-              We strive to create memorable experiences by offering a diverse
-              selection of venues and services to cater to every event need.
-            </StyledParagraph>
+            <Heading>{experienceHeading1}</Heading>
+            <StyledParagraph>{experiencePara1}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>Seamless Connection </Heading>
-            <StyledParagraph>
-              We strive to ensure a smooth and hassle-free booking process,
-              connecting users with a wide range of event venues and services.
-            </StyledParagraph>
+            <Heading>{experienceHeading2} </Heading>
+            <StyledParagraph>{experiencePara2}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
@@ -38,16 +42,11 @@ const Experience = () => {
         {/* main sub two */}
         <StyledSubContainerTwo>
           <StyledBigHeading>
-            Features that make us best <br />
-            in the business
+            {experienceHeading3}
           </StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>Anytime, Anywhere </Heading>
-            <StyledParagraph>
-              You have flexibility to browse and book venues at your
-              convenience, from anywhere, at any time, using your mobile
-              devices.
-            </StyledParagraph>
+            <Heading>{experienceHeading4} </Heading>
+            <StyledParagraph>{experiencePara3}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
@@ -61,6 +60,7 @@ export default Experience;
 const StyledContainer = styled(StyledSectionContainer)`
   background-color: #f1faff;
   justify-content: center;
+
   @media (max-width: 768px) {
     display: none;
   }
