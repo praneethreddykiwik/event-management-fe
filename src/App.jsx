@@ -8,6 +8,10 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
+import Navbar from "./pages/Navbar/Navbar";
+import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
+import Controlpage from "./pages/Controlpage/Controlpage";
 
 function App() {
   const theme = useTheme();
@@ -20,6 +24,10 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
+          <Route path={"/PaymentSuccess"} element= {<PaymentSuccess />} />
+          <Route path={"/Navbar"} element= {<Navbar />} />
+          <Route path={"/AccountSetting"} element= {<AccountSettingsPage />} />
+          <Route path={"/Controlpage"} element= {<Controlpage />} />
         </Routes>
 
         {/* <Footer /> */}
