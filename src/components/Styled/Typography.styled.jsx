@@ -25,7 +25,7 @@ export const StyledHeading = styled.p`
   margin: 20px 0;
   text-align: ${textAlign};
 `;
-export const StyledSemiHeading = styled.p`
+export const StyledSemiHeading = styled.p`   
   color: #000;
   font-size: 24px;
   font-weight: 600;

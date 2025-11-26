@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 
 function App() {
   const theme = useTheme();
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
+          <Route path ={"/Getintouch"} element={<GetInTouch />} />
         </Routes>
 
         {/* <Footer /> */}
