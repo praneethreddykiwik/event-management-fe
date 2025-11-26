@@ -6,18 +6,16 @@ import {
   StyledSecButton,
 } from '../Styled/Buttons.styled';
 
-export const Button = ({ type, children, onClick, sx }) => {
+export const Button = ({ type, children, onClick }) => {
   const generateButton = () => {
     switch (type) {
       case 'base':
         return (
-          <StyledBaseButton sx={sx} onClick={onClick}>
-            {children}
-          </StyledBaseButton>
+          <StyledBaseButton onClick={onClick}>{children}</StyledBaseButton>
         );
       case 'outlined':
         return (
-          <StyledOutlinedButton sx={sx} onClick={onClick}>
+          <StyledOutlinedButton onClick={onClick}>
             {children}
           </StyledOutlinedButton>
         );

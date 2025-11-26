@@ -17,7 +17,8 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledFlexContainer = styled.div`
-  display : flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 `;

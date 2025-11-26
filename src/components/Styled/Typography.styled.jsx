@@ -133,7 +133,7 @@ export const StyledGrayLink = styled.span`
 export const StyledAnchorSmall = styled.p`
   color: ${({ theme }) => theme.commonAnchorColor};
   font-size: 14px;
-  font-weight: 400;         
+  font-weight: 400;
   line-height: 18.2px;
   text-align: ${textAlign};
   cursor: pointer;

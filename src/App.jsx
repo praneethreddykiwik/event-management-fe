@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+// import SampleInput from "./pages/sample/SampleInput";
 
 function App() {
   const theme = useTheme();
@@ -15,11 +16,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="main-container">
-        <Header />
+        {/* <Header /> */}
 
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
+          {/* <Route path={"/sampleinput"} element={<SampleInput />} /> */}
+
         </Routes>
 
         {/* <Footer /> */}
