@@ -275,6 +275,7 @@ export const EventLocationRow = styled.div`
 
 export const LocationText = styled.span`
   font-size: 14px;
+  cursor: pointer;
 `;
 
 export const AboutHeaderRow = styled.div`

@@ -13,7 +13,6 @@ export const EVENT_TEXT = {
 
   NEXT_EVENT_TITLE: "Next Event",
   NEXT_EVENT_NAME: "The Creative Economy and The Rise of Content Creators",
-  NEXT_EVENT_LOCATION: "Show Location",
   NEXT_EVENT_DATE: "Friday, 30 June 2023 at 15:00",
 
   PARTICIPANTS: "Participants",
