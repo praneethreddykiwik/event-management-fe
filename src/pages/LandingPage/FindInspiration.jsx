@@ -8,9 +8,7 @@ import {
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import { Button } from "../../components/Buttons/Button";
 import {
-  findHeading,
-  findParagraph,
-  findOutlineBtn,
+ findInspirationTxt
 } from "../../enum/landingPage.common";
 
 const FindInspiration = () => {
@@ -20,11 +18,11 @@ const FindInspiration = () => {
         <StyledImage src={venue_hall} />
       </StyledImageContainer>
       <StyledContainerTwo>
-        <StyledSemiHeading left>{findHeading}</StyledSemiHeading>
-        <StyledContent>{findParagraph}</StyledContent>
+        <StyledSemiHeading left>{findInspirationTxt.findHeading}</StyledSemiHeading>
+        <StyledContent>{findInspirationTxt.findParagraph}</StyledContent>
         <StyledBtnContainer>
           <Button type="transparent">
-            {findOutlineBtn} <StyledIcon src={forward_arrow} />
+            {findInspirationTxt.findOutlineBtn} <StyledIcon src={forward_arrow} />
           </Button>
         </StyledBtnContainer>
       </StyledContainerTwo>
@@ -57,8 +55,8 @@ const StyledImageContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 50%;
-  height: 100%;
+    width: 50%;
+    height: 100%;
 
   @media (max-width: 768px) {
     width: 90%;

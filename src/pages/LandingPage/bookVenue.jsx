@@ -9,25 +9,22 @@ import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
 import styled from "styled-components";
 import {
-  bookHeading,
-  bookPara,
-  bookPolicy,
-  bookBtn,
+  bookComponentTxt
 } from "../../enum/landingPage.common";
 
 const BookVenue = () => {
   return (
     <StyledMainContainer>
       <StyledContainer>
-        <StyledHead>{bookHeading}</StyledHead>
-        <StyledPara>{bookPara}</StyledPara>
+        <StyledHead>{bookComponentTxt.bookHeading}</StyledHead>
+        <StyledPara>{bookComponentTxt.bookPara}</StyledPara>
       </StyledContainer>
       <StyledInputContainer>
         <StyledInput type="email" placeholder="email address" />
-        <Button>{bookBtn}</Button>
+        <Button>{bookComponentTxt.bookBtn}</Button>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>{bookPolicy}</StyledPolicyTxt>
+        <StyledPolicyTxt>{bookComponentTxt.bookPolicy}</StyledPolicyTxt>
       </StyledPolicy>
     </StyledMainContainer>
   );

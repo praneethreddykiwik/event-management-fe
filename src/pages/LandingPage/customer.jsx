@@ -14,21 +14,19 @@ import {
   StyledParagraphBold,
   StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
-import {customerHeading,customerPara,profileName,profileLink,customerheadingM} from "../../enum/landingPage.common";
+import { customerComponetTxt } from "../../enum/landingPage.common";
 
 const Customer = () => {
   return (
     <StyledContainerBody>
       <StyledSubContainerOne>
-        <StyledHead left>{customerHeading}</StyledHead>
-        <StyledParagraphContainer>
-         {customerPara}
-        </StyledParagraphContainer>
+        <StyledHead left>{customerComponetTxt.customerHeading}</StyledHead>
+        <StyledParagraphContainer>{customerComponetTxt.customerPara}</StyledParagraphContainer>
         <StyledProfile>
           <StyledProfileImg src={customer2} />
           <StyledProfileName>
-            <StyledProfileHead>{profileName }</StyledProfileHead>
-            <StyledAnchors>{profileLink}</StyledAnchors>
+            <StyledProfileHead>{customerComponetTxt.profileName}</StyledProfileHead>
+            <StyledAnchors>{customerComponetTxt.profileLink}</StyledAnchors>
           </StyledProfileName>
         </StyledProfile>
         <StyledIcon>
@@ -37,7 +35,7 @@ const Customer = () => {
         </StyledIcon>
       </StyledSubContainerOne>
       <StyledSubContainerTwo>
-        <StyledHeadM>{customerheadingM}</StyledHeadM>
+        <StyledHeadM>{customerComponetTxt.customerheadingM}</StyledHeadM>
         <StyledImageOne>
           <StyledImgOne src={customer6} />
           <StyledImgOne src={customer1} />

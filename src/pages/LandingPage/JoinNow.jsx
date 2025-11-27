@@ -8,11 +8,7 @@ import {
   StyledParagraph,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-import {
-  joinParagraph,
-  joinHeading,
-  joinBtn,
-} from "../../enum/landingPage.common";
+import { joinComponentTxt } from "../../enum/landingPage.common";
 
 const JoinNow = () => {
   return (
@@ -23,9 +19,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledParagraph>{joinParagraph}</StyledParagraph>
-        <StyledSemiHeading>{joinHeading}</StyledSemiHeading>
-        <Button type="base">{joinBtn}</Button>
+        <StyledParagraph>{joinComponentTxt.joinParagraph}</StyledParagraph>
+        <StyledSemiHeading>{joinComponentTxt.joinHeading}</StyledSemiHeading>
+        <Button type="base">{joinComponentTxt.joinBtn}</Button>
       </StyledContainerTwo>
     </StyledSectionContainer>
   );

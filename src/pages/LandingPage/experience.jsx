@@ -9,13 +9,7 @@ import {
   StyledParagraphBold,
 } from "../../components/Styled/Typography.styled";
 import {
-  experienceHeading1,
-  experienceHeading2,
-  experienceHeading3,
-  experienceHeading4,
-  experiencePara1,
-  experiencePara2,
-  experiencePara3,
+ experienceComponetTxt
 } from "../../enum/landingPage.common";
 
 const Experience = () => {
@@ -26,15 +20,15 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{experienceHeading1}</Heading>
-            <StyledParagraph>{experiencePara1}</StyledParagraph>
+            <Heading>{experienceComponetTxt.experienceHeading1}</Heading>
+            <StyledParagraph>{experienceComponetTxt.experiencePara1}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{experienceHeading2} </Heading>
-            <StyledParagraph>{experiencePara2}</StyledParagraph>
+            <Heading>{experienceComponetTxt.experienceHeading2} </Heading>
+            <StyledParagraph>{experienceComponetTxt.experiencePara2}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
@@ -42,11 +36,11 @@ const Experience = () => {
         {/* main sub two */}
         <StyledSubContainerTwo>
           <StyledBigHeading>
-            {experienceHeading3}
+            {experienceComponetTxt.experienceHeading3}
           </StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{experienceHeading4} </Heading>
-            <StyledParagraph>{experiencePara3}</StyledParagraph>
+            <Heading>{experienceComponetTxt.experienceHeading4} </Heading>
+            <StyledParagraph>{experienceComponetTxt.experiencePara3}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
@@ -143,6 +137,7 @@ const StyledAnyWhere = styled.div`
 const StyledBigHeading = styled(StyledHeading)`
   text-align: left;
   margin-bottom: 50px;
+  width: 75%;
 `;
 const Heading = styled(StyledParagraphBold)`
   margin-top: 10px;

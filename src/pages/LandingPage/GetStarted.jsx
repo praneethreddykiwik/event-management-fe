@@ -8,7 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
-import { mainHeading, mainParagraph,startBtn ,outLineBtn  } from "../../enum/landingPage.common";
+import { getStartedTxt } from "../../enum/landingPage.common";
 
 const GetStarted = () => {
   return (
@@ -16,12 +16,16 @@ const GetStarted = () => {
       <StyledContainer>
         <StyledChildContainer>
           <StyledContent>
-            <StyledHeadingBig left>{mainHeading}</StyledHeadingBig>
-            <StyledContentParagraph>{mainParagraph}</StyledContentParagraph>
+            <StyledHeadingBig left>
+              {getStartedTxt.mainHeading}
+            </StyledHeadingBig>
+            <StyledContentParagraph>
+              {getStartedTxt.mainParagraph}
+            </StyledContentParagraph>
             <StyledContentBtn>
-              <Button type="base">{startBtn}</Button>
+              <Button type="base">{getStartedTxt.startBtn}</Button>
               <Button type="transparent">
-                {outLineBtn}
+                {getStartedTxt.outLineBtn}
                 <StyledBtnIcon src={forward_arrow} />
               </Button>
             </StyledContentBtn>
@@ -101,7 +105,7 @@ const StyledBtnIcon = styled.img`
 `;
 
 const StyledChildContainerImg = styled.img`
-  width: 100%;
+width: 100%;
   @media (max-width: 768px) {
     justify-content: center;
     background-color: red;
