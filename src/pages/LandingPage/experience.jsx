@@ -1,16 +1,22 @@
-import styled from "styled-components";
-import { StyledSectionContainer } from "../../components/Styled/Common.styled";
 import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
 import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
 import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
+import { experienceComponetTxt } from "../../enum/landingPage.common";
+
 import {
-  StyledHeading,
-  StyledParagraphSmall,
-  StyledParagraphBold,
-} from "../../components/Styled/Typography.styled";
-import {
- experienceComponetTxt
-} from "../../enum/landingPage.common";
+  StyledImageOne,
+  StyledHr,
+  StyledParagraph,
+  Heading,
+  StyledBigHeading,
+  StyledAnyWhere,
+  StyledConnection,
+  StyledExperience,
+  StyledSubContainerTwo,
+  StyledSubContainerOne,
+  StyledBodyContainer,
+  StyledContainer,
+} from "../LandingPage/landingPageStyling/experienceStyling";
 
 const Experience = () => {
   return (
@@ -20,15 +26,19 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{experienceComponetTxt.experienceHeading1}</Heading>
-            <StyledParagraph>{experienceComponetTxt.experiencePara1}</StyledParagraph>
+            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING1}</Heading>
+            <StyledParagraph>
+              {experienceComponetTxt.EXPERIENCE_PARA1}
+            </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{experienceComponetTxt.experienceHeading2} </Heading>
-            <StyledParagraph>{experienceComponetTxt.experiencePara2}</StyledParagraph>
+            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING2} </Heading>
+            <StyledParagraph>
+              {experienceComponetTxt.EXPERIENCE_PARA2}
+            </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
@@ -36,11 +46,13 @@ const Experience = () => {
         {/* main sub two */}
         <StyledSubContainerTwo>
           <StyledBigHeading>
-            {experienceComponetTxt.experienceHeading3}
+            {experienceComponetTxt.EXPERIENCE_HEADING3}
           </StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{experienceComponetTxt.experienceHeading4} </Heading>
-            <StyledParagraph>{experienceComponetTxt.experiencePara3}</StyledParagraph>
+            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING4} </Heading>
+            <StyledParagraph>
+              {experienceComponetTxt.EXPERIENCE_PARA3}
+            </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
@@ -51,111 +63,3 @@ const Experience = () => {
 };
 
 export default Experience;
-const StyledContainer = styled(StyledSectionContainer)`
-  background-color: #f1faff;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const StyledBodyContainer = styled.div`
-  display: flex;
-  width: 90%;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-`;
-
-//Sub containers
-const StyledSubContainerOne = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 130px;
-  align-items: center;
-`;
-
-const StyledSubContainerTwo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-`;
-
-// cards
-const StyledExperience = styled.div`
-  background-color: #ffffff;
-  width: 350px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  position: relative;
-  left: 10%;
-`;
-
-const StyledConnection = styled.div`
-  background-color: #ffffff;
-  width: 350px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  position: relative;
-  top: 130px;
-  right: 10%;
-`;
-
-const StyledAnyWhere = styled.div`
-  background-color: #ffffff;
-  width: 400px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-`;
-
-// typo stylings
-const StyledBigHeading = styled(StyledHeading)`
-  text-align: left;
-  margin-bottom: 50px;
-  width: 75%;
-`;
-const Heading = styled(StyledParagraphBold)`
-  margin-top: 10px;
-  text-align: left;
-`;
-const StyledParagraph = styled(StyledParagraphSmall)`
-  text-align: left;
-  margin-top: -10px;
-  word-wrap: break-word;
-`;
-
-const StyledHr = styled.hr`
-  width: 100%;
-  margin-top: -5px;
-`;
-//image stylings
-const StyledImageOne = styled.img`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-`;

@@ -1,64 +1,65 @@
 // get started texts
 export const getStartedTxt = {
-  mainHeading: "Book Your Perfect Event, Anytime, Anywhere!",
+  MAIN_HEADING: "Book Your Perfect Event, Anytime, Anywhere!",
 
-  mainParagraph:
+  MAIN_PARAGRAPH:
     "Looking for perfect place to host your next event? got you covered. Browse, compare, and book thousands of venues across the country in minutes. No hassle, no hidden fees, no stress. Just find your dream venue and let us handle the rest.",
 
   //buttons text
-  startBtn: "Get started",
-  outLineBtn: "Get started",
+  START_BTN: "Get started",
+  OUTLINE_BTN: "Get started",
 };
 
 // find inspiration texts
 export const findInspirationTxt = {
-  findHeading: "Seamless Events, Unforgettable Venue",
+  FIND_HEADING: "Seamless Events, Unforgettable Venue",
 
-  findParagraph:
+  FIND_PARAGRAPH:
     " Experience the convenience on our wedsite. Effortlessly explore a wide range of events that match your interests, while also having the ability to create and manage your own events seamlessly. Find inspiration, connect with others, and make every event a success, all in one place.",
 
   //buttons text
-  findOutlineBtn: "Find inspiration",
+  FINDOUTLINE_BTN: "Find inspiration",
 };
 
 // join now component text
 export const joinComponentTxt = {
-  joinParagraph:
+  JOIN_PARAGRAPH:
     "Experience the convenience on our wedsite today and discover how easy it is to plan your events with us",
 
-  joinHeading: "There is a venue for every event",
+  JOIN_HEADING: "There is a venue for every event",
 
   //buttons text
-  joinBtn: "Join now",
+  JOIN_BTN: "Join now",
 };
 
 // experience component text
 export const experienceComponetTxt = {
-  experienceHeading1: "Unforgettable Experiences",
-  experienceHeading2: "Seamless Connection",
-  experienceHeading3: "Features that make us best in the business",
-  experienceHeading4: "Anytime, Anywhere ",
-  experiencePara1:
+  EXPERIENCE_HEADING1: "Unforgettable Experiences",
+  EXPERIENCE_HEADING2: "Seamless Connection",
+  EXPERIENCE_HEADING3: "Features that make us best in the business",
+  EXPERIENCE_HEADING4: "Anytime, Anywhere ",
+  EXPERIENCE_PARA1:
     "  We strive to create memorable experiences by offering a diverse selection of venues and services to cater to every event need.",
-  experiencePara2:
+  EXPERIENCE_PARA2:
     "  We strive to ensure a smooth and hassle-free booking process, connecting users with a wide range of event venues and services.",
-  experiencePara3:
+  EXPERIENCE_PARA3:
     " You have flexibility to browse and book venues at your convenience, from anywhere, at any time, using your mobile devices.",
 };
 
 // customer component text
 
 export const customerComponetTxt = {
-  customerHeading: "What our customers are saying",
+  CUSTOMER_HEADING: "What our customers are saying",
 
-  customerPara:
+  CUSTOMER_PARA:
     "I recently used the online event and venue booking service, and it exceeded my expectations. The entire booking process was incredibly smooth, and I was able to find the perfect venue for my event without any hassle.",
 
-  profileName: "Cameron Wiliamson",
+  PROFILE_NAME: "Cameron Wiliamson",
 
-  profileLink: "Pictoplasma Conference",
+  PROFILE_LINK: "Pictoplasma Conference",
 
-  customerheadingM: "What our customers are saying",
+  // FOR MOBILE HEADING
+  CUSTOMER_HEADINGM: "What our customers are saying",
 };
 
 // book venue component text
@@ -71,11 +72,15 @@ const StyledAnchor = styled(StyledGrayLink)`
 `;
 
 export const bookComponentTxt = {
-  bookHeading: "Get updated when your favorite venue is open for booking.",
-  bookPara:
+  BOOK_HEADING: "Get updated when your favorite venue is open for booking.",
+
+  BOOK_PARA:
     " Join our email list to resceive updates on events near you, booking and appointment availabilty tips on great event planning, management and more.",
-  bookBtn: "Get more information",
-  bookPolicy: (
+
+  //buttons text
+  BOOK_BTN: "Get more information",
+
+  BOOK_POLICY: (
     <>
       *Please refer to our <StyledAnchor>Privancy Policy</StyledAnchor> for more
       details.
@@ -83,4 +88,6 @@ export const bookComponentTxt = {
   ),
 };
 
-//buttons text
+export const TrustedComponentTxt = {
+  JOIN_HEADING: "Trusted By",
+};
