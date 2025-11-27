@@ -27,11 +27,11 @@ const StyledContainer = styled.div`
 `;
 const StyledBox2 = styled.div`
   display: flex;
-  flexdirection: column;
+  flex-direction: column;
   width: 400px;
   margin: auto;
   gap: 20px;
-  margintop: 40px;
+  margin-top: 40px;
 `;
 
 export default Login;
