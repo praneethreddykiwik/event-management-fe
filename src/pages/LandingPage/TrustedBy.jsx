@@ -10,11 +10,11 @@ import {
   StyledIconContainer,
   StyledIconOnes,
 } from "../LandingPage/landingPageStyling/trustedStyling.jsx";
-import { TrustedComponentTxt } from "../../enum/landingPage.common.jsx";
+import { TRUSTEDCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
 const TrustedBy = () => {
   return (
     <StylesContainer>
-      <StyledSemiHeading>{TrustedComponentTxt.JOIN_HEADING}</StyledSemiHeading>
+      <StyledSemiHeading>{TRUSTEDCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
       <StyledContainerImg>
         <StyledIconContainer>
           <StyledIconFirst src={standard} />

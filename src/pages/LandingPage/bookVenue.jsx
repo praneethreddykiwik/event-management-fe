@@ -1,6 +1,6 @@
 import { Button } from "../../components/Buttons/Button";
 
-import { bookComponentTxt } from "../../enum/landingPage.common";
+import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common";
 
 import {
   StyledPolicy,
@@ -17,15 +17,15 @@ const BookVenue = () => {
   return (
     <StyledMainContainer>
       <StyledContainer>
-        <StyledHead>{bookComponentTxt.BOOK_HEADING}</StyledHead>
-        <StyledPara>{bookComponentTxt.BOOK_PARA}</StyledPara>
+        <StyledHead>{BOOKCOMPONENT_TXT.BOOK_HEADING}</StyledHead>
+        <StyledPara>{BOOKCOMPONENT_TXT.BOOK_PARA}</StyledPara>
       </StyledContainer>
       <StyledInputContainer>
         <StyledInput type="email" placeholder="email address" />
-        <Button>{bookComponentTxt.BOOK_BTN}</Button>
+        <Button>{BOOKCOMPONENT_TXT.BOOK_BTN}</Button>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>{bookComponentTxt.BOOK_POLICY}</StyledPolicyTxt>
+        <StyledPolicyTxt>{BOOKCOMPONENT_TXT.BOOK_POLICY}</StyledPolicyTxt>
       </StyledPolicy>
     </StyledMainContainer>
   );

@@ -1,7 +1,7 @@
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
 import { Button } from "../../components/Buttons/Button";
-import { getStartedTxt } from "../../enum/landingPage.common";
+import { GETSTARTED_TXT } from "../../enum/landingPage.common";
 import {StyledHeadingBig} from "../../components/Styled/Typography.styled.jsx";
 import {
   StyledContainer,
@@ -21,15 +21,15 @@ const GetStarted = () => {
         <StyledChildContainer>
           <StyledContent>
             <StyledHeadingBig left>
-              {getStartedTxt.MAIN_HEADING}
+              {GETSTARTED_TXT.MAIN_HEADING}
             </StyledHeadingBig>
             <StyledContentParagraph>
-              {getStartedTxt.MAIN_PARAGRAPH}
+              {GETSTARTED_TXT.MAIN_PARAGRAPH}
             </StyledContentParagraph>
             <StyledContentBtn>
-              <Button type="base">{getStartedTxt.START_BTN}</Button>
+              <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
               <Button type="transparent">
-                {getStartedTxt.OUTLINE_BTN}
+                {GETSTARTED_TXT.OUTLINE_BTN}
                 <StyledBtnIcon src={forward_arrow} />
               </Button>
             </StyledContentBtn>

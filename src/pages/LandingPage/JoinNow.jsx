@@ -2,7 +2,7 @@ import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
 import { Button } from "../../components/Buttons/Button";
-import { joinComponentTxt } from "../../enum/landingPage.common";
+import { JOINCOMPONENT_TXT } from "../../enum/landingPage.common";
 import { StyledSectionContainer } from "../../components/Styled/Common.styled.jsx";
 import {
   StyledParagraph,
@@ -23,9 +23,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledParagraph>{joinComponentTxt.JOIN_PARAGRAPH}</StyledParagraph>
-        <StyledSemiHeading>{joinComponentTxt.JOIN_HEADING}</StyledSemiHeading>
-        <Button type="base">{joinComponentTxt.JOIN_BTN}</Button>
+        <StyledParagraph>{JOINCOMPONENT_TXT.JOIN_PARAGRAPH}</StyledParagraph>
+        <StyledSemiHeading>{JOINCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
+        <Button type="base">{JOINCOMPONENT_TXT.JOIN_BTN}</Button>
       </StyledContainerTwo>
     </StyledSectionContainer>
   );

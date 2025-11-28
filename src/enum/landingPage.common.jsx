@@ -1,5 +1,6 @@
 // get started texts
-export const getStartedTxt = {
+
+export const GETSTARTED_TXT = {
   MAIN_HEADING: "Book Your Perfect Event, Anytime, Anywhere!",
 
   MAIN_PARAGRAPH:
@@ -11,7 +12,8 @@ export const getStartedTxt = {
 };
 
 // find inspiration texts
-export const findInspirationTxt = {
+
+export const FINDINSIPRATION_TXT = {
   FIND_HEADING: "Seamless Events, Unforgettable Venue",
 
   FIND_PARAGRAPH:
@@ -22,7 +24,8 @@ export const findInspirationTxt = {
 };
 
 // join now component text
-export const joinComponentTxt = {
+
+export const JOINCOMPONENT_TXT = {
   JOIN_PARAGRAPH:
     "Experience the convenience on our wedsite today and discover how easy it is to plan your events with us",
 
@@ -33,7 +36,8 @@ export const joinComponentTxt = {
 };
 
 // experience component text
-export const experienceComponetTxt = {
+
+export const EXPERIENCECOMPONET_TXT = {
   EXPERIENCE_HEADING1: "Unforgettable Experiences",
   EXPERIENCE_HEADING2: "Seamless Connection",
   EXPERIENCE_HEADING3: "Features that make us best in the business",
@@ -48,7 +52,7 @@ export const experienceComponetTxt = {
 
 // customer component text
 
-export const customerComponetTxt = {
+export const CUSTOMERCOMPONET_TXT = {
   CUSTOMER_HEADING: "What our customers are saying",
 
   CUSTOMER_PARA:
@@ -71,7 +75,7 @@ const StyledAnchor = styled(StyledGrayLink)`
   text-decoration: none;
 `;
 
-export const bookComponentTxt = {
+export const BOOKCOMPONENT_TXT = {
   BOOK_HEADING: "Get updated when your favorite venue is open for booking.",
 
   BOOK_PARA:
@@ -88,6 +92,6 @@ export const bookComponentTxt = {
   ),
 };
 
-export const TrustedComponentTxt = {
+export const TRUSTEDCOMPONENT_TXT = {
   JOIN_HEADING: "Trusted By",
 };

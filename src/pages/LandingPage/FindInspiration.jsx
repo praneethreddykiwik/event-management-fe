@@ -1,7 +1,7 @@
 import venue_hall from "../../assets/landingPage/venue.jpg";
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import { Button } from "../../components/Buttons/Button";
-import { findInspirationTxt } from "../../enum/landingPage.common";
+import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common";
 import {StyledSemiHeading} from "../../components/Styled/Typography.styled.jsx";
 
 import {
@@ -22,12 +22,12 @@ const FindInspiration = () => {
       </StyledImageContainer>
       <StyledContainerTwo>
         <StyledSemiHeading left>
-          {findInspirationTxt.FIND_HEADING}
+          {FINDINSIPRATION_TXT.FIND_HEADING}
         </StyledSemiHeading>
-        <StyledContent>{findInspirationTxt.FIND_PARAGRAPH}</StyledContent>
+        <StyledContent>{FINDINSIPRATION_TXT.FIND_PARAGRAPH}</StyledContent>
         <StyledBtnContainer>
           <Button type="transparent">
-            {findInspirationTxt.FINDOUTLINE_BTN}{" "}
+            {FINDINSIPRATION_TXT.FINDOUTLINE_BTN}{" "}
             <StyledIcon src={forward_arrow} />
           </Button>
         </StyledBtnContainer>

@@ -1,7 +1,7 @@
 import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
 import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
 import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
-import { experienceComponetTxt } from "../../enum/landingPage.common";
+import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common";
 
 import {
   StyledImageOne,
@@ -26,18 +26,18 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING1}</Heading>
+            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING1}</Heading>
             <StyledParagraph>
-              {experienceComponetTxt.EXPERIENCE_PARA1}
+              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA1}
             </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING2} </Heading>
+            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING2} </Heading>
             <StyledParagraph>
-              {experienceComponetTxt.EXPERIENCE_PARA2}
+              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA2}
             </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
@@ -46,12 +46,12 @@ const Experience = () => {
         {/* main sub two */}
         <StyledSubContainerTwo>
           <StyledBigHeading>
-            {experienceComponetTxt.EXPERIENCE_HEADING3}
+            {EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING3}
           </StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{experienceComponetTxt.EXPERIENCE_HEADING4} </Heading>
+            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING4} </Heading>
             <StyledParagraph>
-              {experienceComponetTxt.EXPERIENCE_PARA3}
+              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA3}
             </StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
