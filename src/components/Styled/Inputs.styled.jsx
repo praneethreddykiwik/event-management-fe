@@ -7,7 +7,7 @@ const baseStyles = `
   border-radius: 30px;
   opacity: 1;
   box-sizing: border-box;
-  height: 45px;
+  height: 40px;
   padding: 10px;
   outline: none;
   font-size: 16px;

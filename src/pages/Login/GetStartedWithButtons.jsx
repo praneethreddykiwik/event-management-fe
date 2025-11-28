@@ -1,7 +1,7 @@
 /** @format */
 
-import apple from '../../assets/Logo/apple.png';
-import google from '../../assets/Logo/google.png';
+import apple from '../../assets/Logo/Apple.svg.png';
+import google from '../../assets/Logo/Google.svg.webp';
 import { StyledFlexContainer } from '../../components/Styled/Common.styled';
 import {
   Apple,

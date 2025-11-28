@@ -48,7 +48,7 @@ const Column1 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 80px;
+  top: -10px;
   gap: 10px;
 `;
 const Column2 = styled.div`

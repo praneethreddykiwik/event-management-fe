@@ -12,6 +12,8 @@ export const SignUpLine = 'Or Sign Up with';
 export const Terms = 'By using our app you agree to the';
 export const Conditions = 'Terms of Use';
 export const Policy = 'Privacy Policy';
+export const TermsConditions =
+  'By using our app you agree to the Terms of Use Privacy Policy';
 export const Continue = 'Continue';
 export const Account = 'Already have an account?';
 export const SignIn = 'Sign in';

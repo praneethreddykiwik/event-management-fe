@@ -21,4 +21,5 @@ export const StyledFlexContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 15px;
+  gap: 10px;
 `;

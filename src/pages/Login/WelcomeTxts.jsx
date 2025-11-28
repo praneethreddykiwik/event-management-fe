@@ -8,21 +8,21 @@ import {
   EventzTxt,
   WelcomeTxt,
   SignUpTxt,
+  WelcomeTextBig,
 } from './Login.Styled';
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (
-    <div>
+    <>
       <LogoEventz>
         <Logo src={logo} alt="eventz logo" />
         <EventzTxt>{EVENTZ}</EventzTxt>
       </LogoEventz>
-
       <WelcomeTxt>
-        <StyledHeading>{WelcomeText}</StyledHeading>
+        <WelcomeTextBig>{WelcomeText}</WelcomeTextBig>
         <SignUpTxt>{SignUpText}</SignUpTxt>
       </WelcomeTxt>
-    </div>
+    </>
   );
 };
 

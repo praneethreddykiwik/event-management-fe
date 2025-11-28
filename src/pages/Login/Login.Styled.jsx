@@ -6,6 +6,7 @@ import {
   StyledParagraphSmallGray,
   StyledParagraph,
   StyledAnchorSmall,
+  StyledHeading,
 } from '../../components/Styled/Typography.styled';
 import {
   StyledBaseButton,
@@ -35,6 +36,7 @@ export const StyledContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 25px;
   }
 `;
 
@@ -65,7 +67,8 @@ export const Logo = styled.img`
   height: 60px;
 `;
 export const EventzTxt = styled(StyledHeadingBig)`
-  font-weight: 350;
+  font-weight: 400;
+  font-size: 35px;
   margin: 0;
 `;
 export const WelcomeTxt = styled.div`
@@ -76,6 +79,9 @@ export const WelcomeTxt = styled.div`
     display: none;
   }
 `;
+export const WelcomeTextBig = styled(StyledHeading)`
+  margin: 0;
+`;
 export const SignUpTxt = styled(StyledParagraphSmallGray)`
   font-size: 13px;
   @media (max-width: 768px) {
@@ -85,8 +91,8 @@ export const SignUpTxt = styled(StyledParagraphSmallGray)`
 export const SignInTxtM = styled(StyledParagraph)`
   @media (min-width: 60px) and (max-width: 768px) {
     margin-top: 35px;
-    font-size: 25px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 350;
   }
   @media screen and (min-width: 768px) {
     display: none;
@@ -115,6 +121,7 @@ export const ContinueSignIn = styled.div`
 `;
 export const Button = styled(StyledOutlinedButton)`
   width: 100%;
+  height: 45px;
 `;
 export const AppleLogo = styled.img`
   width: 17px;
@@ -176,11 +183,13 @@ export const SignUpWith = styled.p`
 export const InputWrapper = styled.div`
   position: relative;
 `;
-export const Input = styled(InputDefault)``;
+export const Input = styled(InputDefault)`
+  height: 45px;
+`;
 export const ShowHideIcon = styled.span`
   position: absolute;
-  right: 12px;
-  top: 8px;
+  right: 15px;
+  top: 11px;
   cursor: pointer;
   font-size: 18px;
 `;
@@ -198,6 +207,8 @@ export const InputBox = styled.div`
   flex-direction: column;
 `;
 export const ForgotPassword = styled(StyledParagraphSmallGray)`
+  margin-top: 3px;
+  margin-bottom: 15px;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -212,7 +223,6 @@ export const Reset = styled(StyledAnchor)`
   }
 `;
 export const NewUser = styled(StyledParagraphSmallGray)`
-  align-self: center;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -237,10 +247,18 @@ export const CheckboxRow = styled.div`
   }
 `;
 export const AnchorParah = styled(StyledParagraphSmallGray)`
-  /* line-height: 18.2px;
-  text-align: justify; */
+  line-height: 18.2px;
+  text-align: justify;
 `;
 export const ContinueButton = styled(StyledBaseButton)`
   color: white;
+  height: 45px;
   width: 100%;
+`;
+export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
+  width: 75%;
+  margin: 0;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;

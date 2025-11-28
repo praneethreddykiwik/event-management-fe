@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from 'react';
-import ClosePassWord from '../../assets/Logo/lock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg';
-import SeePassWord from '../../assets/Logo/lock_open_right_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg';
+import ClosePassWord from '../../assets/Logo/ClosePassword.svg';
+import SeePassWord from '../../assets/Logo/SeePassword.svg';
 import {
   AnchorParah,
   CheckboxRow,
@@ -19,6 +19,7 @@ import {
   NewUser,
   RegisterAnchor,
   Reset,
+  TermsConditionsTxt,
 } from './Login.Styled';
 import {
   Conditions,
@@ -27,6 +28,7 @@ import {
   Continue,
   Account,
   SignIn,
+  TermsConditions,
 } from '../../enum/Login.Common';
 
 const Forms = () => {
@@ -74,6 +76,7 @@ const Forms = () => {
       <AccountSignIn>
         {Account} <SignInAnchor>{SignIn}</SignInAnchor>
       </AccountSignIn>
+      <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
     </Form>
   );
 };
