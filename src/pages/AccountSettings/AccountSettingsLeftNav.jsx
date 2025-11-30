@@ -30,38 +30,36 @@ const AccountSettingsLeftNav = () => {
   ];
 
   return (
-    <>
-      <StyledLeftNav>
-        <AccountProfileSection />
-        <StyledSemiHeadingAccount>
-          {HEADINGS.MY_ACCOUNT}
-        </StyledSemiHeadingAccount>
-        <Nav>
-          <List>
-            {menuItems.map((item) => (
-              <Item
-                key={item.label}
-                active={active === item.label}
-                onClick={() => setActive(item.label)}
-              >
-                <span className="material-symbols-outlined">{item.icon}</span>
-                {item.label}
-              </Item>
-            ))}
-          </List>
-        </Nav>
-        <SidebarModal show={showModal}>
-          <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
-          {/* ❌ */}
-          <ModalImage src={modalImg} alt="Modal" />
-          <ModalText>Invite your friends to share the wonderful experience.
-          </ModalText>
-          <StyledAccButton onClick={() => setShowModal(false)}>
-            Invite Friends
-          </StyledAccButton>
-        </SidebarModal>
-      </StyledLeftNav>
-    </>
+    <StyledLeftNav>
+      <AccountProfileSection />
+      <StyledSemiHeadingAccount>
+        {HEADINGS.MY_ACCOUNT}
+      </StyledSemiHeadingAccount>
+      <Nav>
+        <List>
+          {menuItems.map((item) => (
+            <Item
+              key={item.label}
+              active={active === item.label}
+              onClick={() => setActive(item.label)}
+            >
+              <span className="material-symbols-outlined">{item.icon}</span>
+              {item.label}
+            </Item>
+          ))}
+        </List>
+      </Nav>
+      <SidebarModal show={showModal}>
+        <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
+        {/* ❌ */}
+        <ModalImage src={modalImg} alt="Modal" />
+        <ModalText>Invite your friends to share the wonderful experience.
+        </ModalText>
+        <StyledAccButton onClick={() => setShowModal(false)}>
+          Invite Friends
+        </StyledAccButton>
+      </SidebarModal>
+    </StyledLeftNav>
   );
 };
 

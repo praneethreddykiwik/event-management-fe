@@ -5,14 +5,12 @@ import AccountSettingsRightContent from './AccountSettingsRightContent'
 
 const AccountSettings = () => {
   return (
-    <>
-        <StyledContainer>
-            <StyledContent>
-                <AccountSettingsLeftNav />
-                <AccountSettingsRightContent />
-            </StyledContent>
-        </StyledContainer>
-    </>
+    <StyledContainer>
+        <StyledContent>
+            <AccountSettingsLeftNav />
+            <AccountSettingsRightContent />
+        </StyledContent>
+    </StyledContainer>
   )
 }
 
