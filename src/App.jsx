@@ -9,6 +9,7 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
+import { paths } from "./constants/paths";
 
 function App() {
   const theme = useTheme();
@@ -19,9 +20,9 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/accountsettings"} element={<AccountSettings />} />
+          <Route path={paths.home} element={<Home />} />
+          <Route path={paths.login} element={<Login />} />
+          <Route path={paths.accountSettings} element={<AccountSettings />} />
         </Routes>
 
         {/* <Footer /> */}

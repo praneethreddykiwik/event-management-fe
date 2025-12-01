@@ -51,7 +51,6 @@ const AccountSettingsLeftNav = () => {
       </Nav>
       <SidebarModal show={showModal}>
         <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
-        {/* ❌ */}
         <ModalImage src={modalImg} alt="Modal" />
         <ModalText>Invite your friends to share the wonderful experience.
         </ModalText>
