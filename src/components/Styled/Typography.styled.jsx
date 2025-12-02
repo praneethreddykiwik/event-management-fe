@@ -70,7 +70,6 @@ export const StyledParagraphGray = styled.p`
 `;
 
 export const StyledParagraphSmallGray = styled.p`
-  ${({ theme }) => console.log("abdul theme", theme)};
   color: ${({ theme }) => theme.commonGrayColor};
   font-size: 14px;
   font-weight: 400;

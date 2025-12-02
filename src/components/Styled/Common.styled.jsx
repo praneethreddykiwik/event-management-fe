@@ -7,17 +7,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   height: 60px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  // margin-bottom: 4px;  //commited this line based on figma, need review
   padding: 0 40px;
   box-sizing: border-box;
   justify-content: space-between;
-`;
-
-// landing page common compontent
-export const StyledSectionContainer = styled.div`
-  background-color: ${({ sx }) => sx?.background || " #ffffffff;"};
-  display: flex;
-  padding: 40px 10px;
-  flex-direction: ${({ sx }) => sx?.flexDireaction || "row"};
-  align-items: center;
 `;
