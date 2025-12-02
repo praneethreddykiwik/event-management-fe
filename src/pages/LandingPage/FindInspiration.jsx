@@ -12,7 +12,7 @@ import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.js
 
 const FindInspiration = () => {
   return (
-    <StyledFindInspirationLayout>
+    <StyledFindInspirationLayout flexDirection="column">
       <StyledImageContainer>
         <StyledImage src={venue_hall} />
       </StyledImageContainer>
@@ -33,8 +33,6 @@ const FindInspiration = () => {
 };
 
 const StyledFindInspirationLayout = styled(LandingPageLayout)`
-  flex-direction: column;
-
   @media (max-width: 768px) {
     background-color: #f1faff;
   }

@@ -9,31 +9,29 @@ import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 const GetStarted = () => {
   return (
-    <>
-      <StyledGetStartedLayout>
-        <StyledChildContainer>
-          <StyledContent>
-            <StyledHeadingBig left>
-              {GETSTARTED_TXT.MAIN_HEADING}
-            </StyledHeadingBig>
-            <StyledContentParagraph>
-              {GETSTARTED_TXT.MAIN_PARAGRAPH}
-            </StyledContentParagraph>
-            <StyledContentBtn>
-              <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
-              <Button type="transparent">
-                {GETSTARTED_TXT.OUTLINE_BTN}
-                <StyledBtnIcon src={forward_arrow} />
-              </Button>
-            </StyledContentBtn>
-          </StyledContent>
-        </StyledChildContainer>
+    <StyledGetStartedLayout>
+      <StyledChildContainer>
+        <StyledContent>
+          <StyledHeadingBig left>
+            {GETSTARTED_TXT.MAIN_HEADING}
+          </StyledHeadingBig>
+          <StyledContentParagraph>
+            {GETSTARTED_TXT.MAIN_PARAGRAPH}
+          </StyledContentParagraph>
+          <StyledContentBtn>
+            <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
+            <Button type="transparent">
+              {GETSTARTED_TXT.OUTLINE_BTN}
+              <StyledBtnIcon src={forward_arrow} />
+            </Button>
+          </StyledContentBtn>
+        </StyledContent>
+      </StyledChildContainer>
 
-        <StyledRightChildContainer>
-          <StyledChildContainerImg src={getStarted_img} alt="image" />
-        </StyledRightChildContainer>
-      </StyledGetStartedLayout>
-    </>
+      <StyledRightChildContainer>
+        <StyledChildContainerImg src={getStarted_img} alt="image" />
+      </StyledRightChildContainer>
+    </StyledGetStartedLayout>
   );
 };
 
@@ -42,7 +40,6 @@ const StyledGetStartedLayout = styled(LandingPageLayout)`
   gap: 20px;
 
   @media (max-width: 768px) {
-    justify-content: center;
     background-color: #ffffff;
     background-image: url(${getStarted_imgMi});
     background-size: cover;
@@ -61,7 +58,6 @@ const StyledChildContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 80%;
-    justify-content: center;
   }
 `;
 const StyledRightChildContainer = styled.div`

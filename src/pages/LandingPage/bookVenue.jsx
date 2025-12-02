@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 const BookVenue = () => {
   return (
-    <StyledBookVenueLayout>
+    <LandingPageLayout flexDirection="column">
       <StyledContainer>
         <StyledHead>{BOOKCOMPONENT_TXT.BOOK_HEADING}</StyledHead>
         <StyledPara>{BOOKCOMPONENT_TXT.BOOK_PARA}</StyledPara>
@@ -26,14 +26,10 @@ const BookVenue = () => {
       <StyledPolicy>
         <StyledPolicyTxt>{BOOKCOMPONENT_TXT.BOOK_POLICY}</StyledPolicyTxt>
       </StyledPolicy>
-    </StyledBookVenueLayout>
+    </LandingPageLayout>
   );
 };
 
-const StyledBookVenueLayout = styled(LandingPageLayout)`
-  justify-content: center;
-  flex-direction: column;
-`;
 
 const StyledPolicy = styled.div`
   width: 50%;

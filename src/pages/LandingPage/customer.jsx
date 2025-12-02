@@ -66,17 +66,12 @@ const Customer = () => {
 };
 
 const StyledCustomerLayout = styled(LandingPageLayout)`
-  padding: 0px;
-  align-items: center;
   background-color: #000000;
-  align-content: center;
-  justify-content: center;
   height: 400px;
   overflow: hidden;
 
   @media (max-width: 767px) {
     flex-direction: column-reverse;
-    justify-content: center;
     height: fit-content;
   }
 `;

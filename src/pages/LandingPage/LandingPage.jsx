@@ -8,7 +8,7 @@ import TrustedBy from "./TrustedBy";
 
 const LandingPage = () => {
   return (
-    <div className="landing-page">
+    <>
       <GetStarted />
       <FindInspiration />
       <TrustedBy />
@@ -16,7 +16,7 @@ const LandingPage = () => {
       <Experience />
       <Customer />
       <BookVenue />
-    </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.js
 
 const TrustedBy = () => {
   return (
-    <StylesTrustedLayout>
+    <StylesTrustedLayout flexDirection="column">
       <StyledSemiHeading>{TRUSTEDCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
       <StyledContainerImg>
         <StyledIconContainer>
@@ -24,7 +24,6 @@ const TrustedBy = () => {
 };
 
 const StylesTrustedLayout = styled(LandingPageLayout)`
-  flex-direction: column;
   background-color: #f1faff;
 
   @media (max-width: 768px) {
@@ -41,8 +40,6 @@ const StyledContainerImg = styled.div`
 
   @media (max-width: 768px) {
     width: 90%;
-    display: flex;
-    justify-content: space-between;
   }
 `;
 

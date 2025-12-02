@@ -57,7 +57,6 @@ const Experience = () => {
 
 const StyledExperienceLayout = styled(LandingPageLayout)`
   background-color: #f1faff;
-  justify-content: center;
 
   @media (max-width: 768px) {
     display: none;
