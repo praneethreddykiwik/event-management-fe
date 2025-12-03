@@ -21,6 +21,7 @@ import {
   VenueAddress, VenueCard, VenueTitle
 } from "./PaymentSuccess.s.Styles.jsx";
 import { PAYMENT_PAGE } from "../../enum/common.jsx";
+import { rows } from "./Payment.helper.jsx";
 
 
 const PaymentSuccess = () => {
@@ -29,7 +30,7 @@ const PaymentSuccess = () => {
       <Container>
         <LeftCard>
           <BadgeIcon>
-            <Stylespan className="material-icons" style={{ fontSize: "18px", color: "#0d0d0dff" }}> {PAYMENT_PAGE.TICK_ICON}</Stylespan>
+            <Stylespan className="material-icons" style={{ fontSize: "18px", color: "#0d0d0dff" }}> check_circle</Stylespan>
           </BadgeIcon>
           <StyledHeading>{PAYMENT_PAGE.SATISFACTION_TITLE}</StyledHeading>
           <StyledPara>{PAYMENT_PAGE.SATISFACTION_PARA}</StyledPara>
@@ -46,23 +47,18 @@ const PaymentSuccess = () => {
             <InsuranceRow>
               <Stylespan>{PAYMENT_PAGE.INSURANCE_TEXT}</Stylespan>
               <InfoButton>
-                <Stylespan className="material-icons" style={{ fontSize: "18px" }}>{PAYMENT_PAGE.INFO_ICON}</Stylespan>
+                <Stylespan className="material-icons" style={{ fontSize: "18px" }}>info</Stylespan>
               </InfoButton>
               <ToggleSwitch />
             </InsuranceRow>
 
-            <StRow>
-              <Stylespan>{PAYMENT_PAGE.SUBTOTAL}</Stylespan>
-              <Stylespan>{PAYMENT_PAGE.SUBTOTAL_VALUE}</Stylespan>
-            </StRow>
-            <StRow>
-              <Stylespan>{PAYMENT_PAGE.ADDED_FEES}</Stylespan>
-              <Stylespan>{PAYMENT_PAGE.FEES_VALUE}</Stylespan>
-            </StRow>
-            <StRow>
-              <Stylespan>{PAYMENT_PAGE.VAT}</Stylespan>
-              <Stylespan>{PAYMENT_PAGE.VAT_VALUE}</Stylespan>
-            </StRow>
+            {rows.map((item, index) => (
+              <StRow key={index}>
+                <Stylespan>{item.label}</Stylespan>
+                <Stylespan>{item.value}</Stylespan>
+              </StRow>
+            ))}
+
             <Divider />
 
             <TotalRow>
@@ -100,7 +96,7 @@ const PaymentSuccess = () => {
             </VenueAddress>
             <SuccessBadge>
               <BadgeIcon>
-                <Stylespan className="material-icons" style={{ fontSize: "18px", color: "#16a34a" }}> {PAYMENT_PAGE.TICK_ICON} </Stylespan>
+                <Stylespan className="material-icons" style={{ fontSize: "18px", color: "#16a34a" }}> check_circle </Stylespan>
               </BadgeIcon>
               <Stylespan>{PAYMENT_PAGE.PAYMENT_SUCESS}</Stylespan>
             </SuccessBadge>
@@ -141,14 +137,14 @@ const PaymentSuccess = () => {
           <ButtonGroup>
             <DownloadCard>
               <DownloadBtn>
-                <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "6px" }}> {PAYMENT_PAGE.DOWNLOAD_ICON}</Stylespan>
+                <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "6px" }}> download</Stylespan>
                 <Stylespan>{PAYMENT_PAGE.DOWNLOAD_TEXT}</Stylespan>
               </DownloadBtn>
             </DownloadCard>
 
             <ShareLink>
               <ShareBtn>
-                <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "4px" }}>{PAYMENT_PAGE.SHARE_I}</Stylespan>
+                <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "4px" }}> share</Stylespan>
                 <Stylespan>{PAYMENT_PAGE.SHARE_TEXT}</Stylespan>
               </ShareBtn>
             </ShareLink>

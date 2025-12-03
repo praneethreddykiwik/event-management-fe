@@ -14,7 +14,7 @@ export const Stylespan2 = styled.span`
 export const StyledPage = styled.div`
   font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial;
-  background: #eef8fc;
+  background: #ebf5faff;
   min-height: 100vh;
   color: #222;
   padding: 36px 16px;

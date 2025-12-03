@@ -1,143 +1,142 @@
 import React from "react";
-import styled from "styled-components";
+import {
+  Page, BodySection, LeftContent, HeaderRow, ControlIcon, StyleHeader,
+  TopRow, VenueCard, VenueImg, UserBar, UserPhoto, UserDetails, Name,
+  IconGroup, SideImages, SmallPic, UsageBox, BoxHeader, InfoIcon,
+  StyleHeader2, Chartimg, InfoRow, InfoCard, Label, Value, QRCode,
+  DeviceRow, DeviceCard, Toggle, RightSidebar, Time, ThermoTitle,
+  ThermoCircle, CenterTemp, UnitText, ModeRow, ModeBtn,
+  LastUsersBox, UserActivity
+} from "./Controlpage.style.jsx";
+
+import conference_image from "../../assets/ControlPage_img/conference_image.jpg";
+import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
+import control_img from "../../assets/ControlPage_img/control_img.jpeg";
+import control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
+
+import { HALLS_DASHBOARD } from "../../enum/control_common.jsx";
+
+import { FiPhoneCall } from "react-icons/fi";
+import { HiOutlineVideoCamera } from "react-icons/hi";
+import { MdInfoOutline } from "react-icons/md";
+import { BsThreeDots } from "react-icons/bs";
 
 
 const HallsDashboard = () => {
   return (
-    <Page>
-      <BodySection>
+    <Page> 
+      <BodySection> 
         <LeftContent>
-          
           <HeaderRow>
-            <StyleHeader>Control</StyleHeader>
+            <ControlIcon className="material-icons">bar_chart</ControlIcon>
+            <StyleHeader>{HALLS_DASHBOARD.CONTROL}</StyleHeader>
           </HeaderRow>
 
-          
           <TopRow>
             <VenueCard>
-              <VenueImg src={""} alt=""/>
+              <VenueImg src={conference_image} />
               <UserBar>
-                <UserPhoto src="https://i.pravatar.cc/60" />
+                <UserPhoto src={control_avtar} />
+
                 <UserDetails>
-                  <Name>Henry, Arthur</Name>
+                  <Name>{HALLS_DASHBOARD.USER_NAME}</Name>
                 </UserDetails>
+
                 <IconGroup>
-                  <FiPhoneCall size={20} />
                   <HiOutlineVideoCamera size={22} />
+                  <FiPhoneCall size={20} />
                 </IconGroup>
               </UserBar>
             </VenueCard>
-
+            
             <SideImages>
-              <SmallPic src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" />
-              <SmallPic src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac" />
-              <SmallPic src="https://images.unsplash.com/photo-1543248939-ff40856f65d4" />
+              {HALLS_DASHBOARD.SIDE_IMAGES.map((img, i) => (
+                <SmallPic key={i} src={img} />
+              ))}
             </SideImages>
 
-           
+            
             <UsageBox>
               <BoxHeader>
-                <StyleHeader2>Usage History</StyleHeader2> <BsThreeDots />
+                <StyleHeader2>{HALLS_DASHBOARD.USAGE_HISTORY}</StyleHeader2>
+                <InfoIcon><MdInfoOutline size={18} /></InfoIcon>
               </BoxHeader>
-              <Chart>
-                <Chartimg
-                  src="https://quickchart.io/chart?c={type:'bar',data:{labels:['2020','2021','2022','2023'],datasets:[{data:[20,40,60,30]}]}}"
-                  alt="chart"
-                />
-              </Chart>
+
+              <Chartimg src={HALLS_DASHBOARD.CHART_URL} alt="chart" />
             </UsageBox>
+
           </TopRow>
 
+         
           <InfoRow>
+
             <InfoCard>
-              <Label>Current Consumption</Label>
-              <Value>1kWh</Value>
+              <Label>{HALLS_DASHBOARD.CURRENT_CONSUMPTION}</Label>
+              <Value>{HALLS_DASHBOARD.CURRENT_VALUE}</Value>
             </InfoCard>
 
             <InfoCard>
-              <Label>Temperature</Label>
-              <Value>65° F</Value>
+              <Label>{HALLS_DASHBOARD.TEMPERATURE}</Label>
+              <Value>{HALLS_DASHBOARD.TEMP_VALUE}</Value>
             </InfoCard>
 
             <InfoCard>
-              <Label>Scan to activate device</Label>
-              <QRCode src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=device" />
+              <Label>{HALLS_DASHBOARD.SCAN_TEXT}</Label>
+              <QRCode src={HALLS_DASHBOARD.SCAN_QR} />
             </InfoCard>
+
           </InfoRow>
 
+          
           <DeviceRow>
-            <DeviceCard active>
-              <StyleHeader2>Door Lock</StyleHeader2>
-              <Stspan>Locked</Stspan>
-              <Toggle />
-            </DeviceCard>
-
-            <DeviceCard>
-              <StyleHeader2>Projector</StyleHeader2>
-              <Stspan>Inactive</Stspan>
-              <Toggle />
-            </DeviceCard>
-
-            <DeviceCard active>
-              <StyleHeader2>Camera</StyleHeader2>
-              <Stspan>Active</Stspan>
-              <Toggle />
-            </DeviceCard>
-
-            <DeviceCard>
-              <StyleHeader2>AC</StyleHeader2>
-              <Stspan>Power Saving</Stspan>
-              <Toggle />
-            </DeviceCard>
+            {HALLS_DASHBOARD.DEVICES.map((dev, i) => (
+              <DeviceCard key={i} active={dev.active}>
+                <Stspan className="dev-status">{dev.status}</Stspan>
+                <StyledHead>{dev.title}</StyledHead>
+                <Toggle active={dev.active} />
+              </DeviceCard>
+            ))}
           </DeviceRow>
         </LeftContent>
 
         
         <RightSidebar>
-          <Time>05:06 AM</Time>
 
-          <ThermoTitle>Thermostat</ThermoTitle>
+          <Time>{HALLS_DASHBOARD.TIME}</Time>
+          <ThermoTitle>{HALLS_DASHBOARD.THERMOSTAT}</ThermoTitle>
 
+         
           <ThermoCircle>
             <CenterTemp>60°</CenterTemp>
-            <Small>Fahrenheit</Small>
+            <UnitText>Fahrenheit</UnitText>
           </ThermoCircle>
 
          
           <ModeRow>
-            <ModeBtn>Hot</ModeBtn>
-            <ModeBtn>Eco</ModeBtn>
-            <ModeBtn>Fan</ModeBtn>
-            <ModeBtn>Cold</ModeBtn>
+            {HALLS_DASHBOARD.MODES.map((mode, i) => (
+              <ModeBtn key={i}>{mode}</ModeBtn>
+            ))}
           </ModeRow>
 
-          
+    
           <LastUsersBox>
-            <StyleHeader2>Last Users</StyleHeader2>
+            <StyleHeader2>{HALLS_DASHBOARD.LAST_USERS}</StyleHeader2>
+
             <UserActivity>
-              <img src="https://i.pravatar.cc/80" />
+              <img src={HALLS_DASHBOARD.LAST_USER_IMG} />
               <div>
-                <p>Halls</p>
-                <Stspan>Back Door was Closed</Stspan>
-                <small>02:00 AM</small>
+                <Styledpara>{HALLS_DASHBOARD.ACTIVITY_USER}</Styledpara>
+                <Stspan>{HALLS_DASHBOARD.ACTIVITY_TEXT}</Stspan>
+                <Stsmall>{HALLS_DASHBOARD.ACTIVITY_TIME}</Stsmall>
               </div>
             </UserActivity>
           </LastUsersBox>
+
         </RightSidebar>
+
       </BodySection>
 
-      
-      <Footer>
-        <Tab>Crosteck Center</Tab>
-        <Tab active>Halls</Tab>
-        <Tab>Device</Tab>
-        <Tab>Analytics</Tab>
-
-        <Manager>
-          <UserPhoto src="https://i.pravatar.cc/60" />
-          <Stspan>Henry, Arthur</Stspan>
-        </Manager>
-      </Footer>
+     
     </Page>
   );
 };
@@ -145,312 +144,92 @@ const HallsDashboard = () => {
 export default HallsDashboard;
 
 
-const Stspan = styled.span``;
-
-const StyleHeader2 = styled.h4``;
-
-const StyleHeader = styled.h3``;
-
- const Page = styled.div`
-  width: 100%;
-  background: #eef7fb;
-  min-height: 100vh;
-`;
 
 
- const TopNav = styled.div`
-  height: 65px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-`;
 
- const Logo = styled.div`
-  font-size: 26px;
-  font-weight: 700;
-  color: #0aa76c;
-`;
+// import React from "react";
+// import {
+//   Page,
+//   HeaderRow,
+//   ControlIcon,
+//   ControlTitle,
+//   TopRow,
+//   VenueCard,
+//   VenueImg,
+//   UserBar,
+//   UserPhoto,
+//   UserDetails,
+//   UserName,
+//   IconGroup,
+//   SmallImagesBox,
+//   SmallImg,
+//   UsageCard,
+//   UsageHeader,
+//   ChartImg
+// } from "./Controlpage.style.jsx";
 
- const NavLinks = styled.div`
-  display: flex;
-  gap: 25px;
+// import { FiPhoneCall } from "react-icons/fi";
+// import { MdChatBubbleOutline, MdInfoOutline } from "react-icons/md";
 
-  a {
-    font-size: 15px;
-    cursor: pointer;
-  }
-`;
- const RightIcons = styled.div`
-  display: flex;
-  gap: 22px;
-  align-items: center;
-`;
+// import conference_image from "../../assets/ControlPage_img/conference_image.jpg";
+// import control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
+// import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
+// import control_img from "../../assets/ControlPage_img/control_img.jpeg";
 
- const UserImg = styled.img`
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-`;
+// // import * as d3 from "d3";
+// // import {select, selectAll} from "d3";
+// // import {mean, median} from "d3-array";
 
 
- const BodySection = styled.div`
-  display: flex;
-  padding: 30px 40px;
-  gap: 25px;
-`;
+// const ControlPage = () => {
+//   return (
+//     <Page>
 
- const LeftContent = styled.div`
-  width: 70%;
-`;
+      
+//       <HeaderRow>
+//         <ControlIcon className="material-icons">bar_chart</ControlIcon>
+//         <ControlTitle>Control</ControlTitle>
+//       </HeaderRow>
 
- const HeaderRow = styled.div`
-  margin-bottom: 18px;
+      
+//       <TopRow>
 
-  h3 {
-    font-size: 20px;
-  }
-`;
+//         <VenueCard>
+//           <VenueImg src= {conference_image}/>
 
+//           <UserBar>
+//             <UserPhoto src={control_avtar} />
+//             <UserDetails>
+//               <UserName>Henry, Arthur</UserName>
+//             </UserDetails>
 
- const TopRow = styled.div`
-  display: flex;
-  gap: 20px;
-`;
+//             <IconGroup>
+//               <MdChatBubbleOutline size={22} color="#16a34a" />
+//               <FiPhoneCall size={22} color="#16a34a" />
+//             </IconGroup>
+//           </UserBar>
+//         </VenueCard>
 
- const VenueCard = styled.div`
-  width: 48%;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-`;
+       
+//         <SmallImagesBox>
+//           <SmallImg src= {control_img2} />
+//           <SmallImg src={control_img} />
+//         </SmallImagesBox>
 
- const VenueImg = styled.img`
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-`;
+       
+//         <UsageCard>
+//           <UsageHeader>
+//             <h4>Usage History</h4>
+//             <MdInfoOutline size={20} color="#777" />
+//           </UsageHeader>
 
- const UserBar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 15px;
-`;
+//           <ChartImg src="https://quickchart.io/chart?c={type:'bar',data:{labels:['2020','2021','2022','2023'],datasets:[{data:[20,40,60,30]}]}}" />
+//         </UsageCard>
 
- const UserPhoto = styled.img`
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-`;
+//       </TopRow>
+//     </Page>
+//   );
+// };
 
- const UserDetails = styled.div`
-  flex: 1;
-  margin-left: 10px;
-`;
+// export default ControlPage;
 
-const Name = styled.h4`
-  margin: 0;
-  font-weight: 600;
-`;
-
- const IconGroup = styled.div`
-  display: flex;
-  gap: 15px;
-  font-size: 20px;
-`;
-
-
- const SideImages = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 15%;
-`;
-
- const SmallPic = styled.img`
-  width: 100%;
-  height: 58px;
-  border-radius: 8px;
-  object-fit: cover;
-`;
-
- const UsageBox = styled.div`
-  width: 30%;
-  background: #fff;
-  border-radius: 12px;
-  padding: 15px;
-`;
-
- const BoxHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-`;
-
- const Chart = styled.div`
-  img {
-    width: 100%;
-  }
-`;
-
- const InfoRow = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 25px;
-`;
-
- const InfoCard = styled.div`
-  background: #fff;
-  width: 32%;
-  padding: 20px;
-  border-radius: 12px;
-`;
-
- const Label = styled.p`
-  margin: 0;
-  opacity: 0.7;
-`;
-
- const Value = styled.h3`
-  margin-top: 10px;
-`;
-
- const QRCode = styled.img`
-  width: 70px;
-  margin-top: 10px;
-`;
-
-
- const DeviceRow = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 22px;
-`;
-
- const DeviceCard = styled.div`
-  background: ${(p) => (p.active ? "#d9f5d9" : "#fff")};
-  padding: 20px;
-  width: 24%;
-  height: 120px;
-  border-radius: 12px;
-
-  StyledHeader2 {
-    margin: 0;
-  }
-`;
-
- const Toggle = styled.div`
-  width: 45px;
-  height: 22px;
-  background: #cfcfcf;
-  border-radius: 20px;
-  margin-top: 20px;
-`;
-
- const RightSidebar = styled.div`
-  width: 30%;
-  background: #1d1b30;
-  border-radius: 18px;
-  padding: 25px;
-  color: white;
-`;
-
- const Time = styled.h2`
-  font-size: 28px;
-`;
-
- const ThermoTitle = styled.p`
-  margin-top: 5px;
-  opacity: 0.8;
-`;
-
- const ThermoCircle = styled.div`
-  margin-top: 15px;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 8px solid #757575;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
- const CenterTemp = styled.h1`
-  margin: 0;
-  font-size: 45px;
-`;
-
- const Small = styled.p`
-  margin: 0;
-  opacity: 0.6;
-`;
-
- const ModeRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-`;
-
- const ModeBtn = styled.button`
-  background: #fff;
-  color: #333;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 10px;
-`;
-
-
- const LastUsersBox = styled.div`
-  margin-top: 30px;
-  background: #2a273f;
-  padding: 15px;
-  border-radius: 12px;
-
-  h4 {
-    margin-top: 0;
-  }
-`;
-
- const UserActivity = styled.div`
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-
-  img {
-    width: 55px;
-    border-radius: 8px;
-  }
-
-  p {
-    margin: 0;
-    font-weight: 600;
-  }
-`;
-
- const Footer = styled.div`
-  background: #fff;
-  padding: 15px 40px;
-  margin-top: 20px;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-`;
-
- const Tab = styled.div`
-  font-weight: ${(p) => (p.active ? "700" : "400")};
-  border-bottom: ${(p) => (p.active ? "2px solid #0aa76c" : "none")};
-  padding-bottom: 6px;
-  cursor: pointer;
-`;
-
- const Manager = styled.div`
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
