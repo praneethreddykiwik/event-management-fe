@@ -30,7 +30,7 @@ export const StyleMainContainer = styled.div`
 
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 600px) { 
     padding: 40px 15px;
     gap: 15px;
     background-image: none;       

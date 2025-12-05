@@ -1,5 +1,7 @@
 export const PROFILE_DATA = {
   PROFILE: "Profile",
+  FIRSTNAME:"Wade Warren",
+  LASTNAME:"Event planner",
   EVENTS_PROFILE: "Manage your Events profile",
   EMAIL: "Email",
   EMAIL_LOG: "Used to log in to your account",

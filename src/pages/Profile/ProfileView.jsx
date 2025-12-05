@@ -1,7 +1,6 @@
 import React from "react";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { Button } from "../../components/Buttons/Button";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import { StyledMediumHeading } from "../../components/Styled/Typography.styled";
 import { getActivityData } from "./profile.helper";
 import { PROFILE_DATA } from "../../enum/ProfileText";
@@ -35,9 +34,9 @@ const activityData = getActivityData();
         </StyleEditIconCircle>
       </StyleProfileImageContainer>
 
-      {/* Static for now */}
-      <StyleUserName>Wade Warren</StyleUserName>
-      <StyleUserRole>Event planner</StyleUserRole>
+   
+      <StyleUserName>{PROFILE_DATA.FIRSTNAME}</StyleUserName>
+      <StyleUserRole>{PROFILE_DATA.LASTNAME}</StyleUserRole>
 
       <StyleUserLocation>
         <StyleSpan className="material-icons">location_on</StyleSpan>
