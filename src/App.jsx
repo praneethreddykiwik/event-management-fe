@@ -9,6 +9,8 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import NewEvent from "./pages/NewEvent/NewEvent";
+import { paths } from "./constants/paths";
+
 
 function App() {
   const theme = useTheme();
@@ -21,7 +23,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
-          <Route path={"/news-feed"} element={<NewEvent />} />
+          <Route path={paths.newsFeed} element={<NewEvent />} />
 
         </Routes>
 

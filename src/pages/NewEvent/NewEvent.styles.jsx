@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import video_image from "../../assets/video_image.jpg";
 import {
-  StyledHeading,
-  StyledParagraphSmallGray,
-  StyledParagraphSmallVisible,
   StyledParagraphGray,
   StyledHeadingBig,
   StyledMediumHeading,
-  StyledParagraphBold,StyledSemiHeading
+  StyledParagraphBold,
+  StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
-
 
 export const PageWrapper = styled.div`
   background-color: #e8f4ff;
@@ -23,133 +19,6 @@ export const PageWrapper = styled.div`
     padding: 16px;
     padding-bottom: 40px;
   }
-`;
-
-export const FirstContainer  = styled.div`
-  background-color: #d5f0e1;
-  display: flex;
-  padding: 20px;
-  gap: 60px;
-  height: 220px;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-    align-items: flex-start;
-  }
-`;
-
-export const LeftSection = styled.div`
-  height: 100%;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-  }
-`;
-
-export const RightSection = styled.div`
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    height: auto;
-    justify-content: flex-start;
-  }
-`;
-
-export const ShareIconSpan = styled.span`
-color: #062e70;
-`;
-
-export const EventImage = styled.img`
-  height: 100%;
-  width: 260px;
-  object-fit: cover;
-  border-radius: 5px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-  }
-`;
-
-export const NewEventRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  @media (max-width: 768px) {
-    gap: 12px;
-  }
-`;
-
-export const LeftSide = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-export const RightSide = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 40px;
-`;
-
-export const HeadingTight = styled(StyledHeading)`
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-
-export const DateText = styled(StyledParagraphSmallVisible)`
-  color: #a9abaa;
-  font-size: 15px;
-`;
-
-export const NewEventTxt = styled(StyledParagraphSmallGray)`
-  color: #062e70;
-  font-weight: 600;
-`;
-
-export const ButtonsRow = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 5px;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-`;
-
-export const Button = styled(StyledBaseButton)`
-color: #ffffff;
-`;
-
-export const AttendText = styled.span`
-  color: #33b133ff;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-`;
-
-export const ArrowButton = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #b4e2c7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 `;
 
 export const SecondContainer = styled.div`
@@ -196,85 +65,8 @@ export const NextEventRight = styled.div`
   }
 `;
 
-export const ArrowCircle = styled.div`
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #eaf5ee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-`;
-
-export const NextEventCard = styled.div`
-  width: 100%;
-  border-radius: 12px;
-  background-color: #cba50c;
-  padding: 20px;
-  box-sizing: border-box;
-  color: white;
-  text-align: left;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
-`;
-
-
 export const HelpIcon = styled.span`
   color: #062e70;
-  cursor: pointer;
-`;
-
-export const EventDateRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px;
-  margin-top: 4px;
-`;
-
-export const NotificationIcon = styled.span`
-  color: black;
-  cursor: pointer;
-`;
-
-export const PodcastIcon = styled.span`
-  color: black;
-  margin-left: auto;
-  cursor: pointer;
-`;
-
-export const CardContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const SmallHeading = styled.p`
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: black;
-`;
-
-export const EventTitle = styled.h3`
-  margin: 0;
-  font-weight: 700;
-  color: white;
-`;
-
-export const EventLocationRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 4px;
-`;
-
-export const LocationText = styled.span`
-  font-size: 14px;
   cursor: pointer;
 `;
 
@@ -282,7 +74,6 @@ export const AboutHeaderRow = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
 
 export const ShowLocationText = styled.span`
   font-size: 14px;
@@ -303,8 +94,6 @@ export const AboutParagraph = styled(StyledParagraphGray)`
   font-weight: 400;
   text-align: left;
 `;
-
-/* ----------------- Participants Card ----------------- */
 
 export const ParticipantsCard = styled.div`
   width: 300px;
@@ -355,7 +144,7 @@ export const CountBadge = styled.div`
 `;
 
 export const MoreIcon = styled.span`
-cursor: pointer;
+  cursor: pointer;
 `;
 
 export const ParticipantsBody = styled.div`
@@ -398,7 +187,7 @@ export const ParticipantActions = styled.div`
 `;
 
 export const SeeAll = styled.p`
-padding: 12px 12px;
+  padding: 12px 12px;
   font-size: 14px;
   font-weight: 500;
   color: #1a0468ff;
@@ -477,7 +266,6 @@ export const ControlsContainer = styled.div`
   }
 `;
 
-
 export const ControlIcon = styled.span`
   color: #333;
   cursor: pointer;
@@ -540,7 +328,6 @@ export const TimelineRow = styled.div`
   }
 `;
 
-
 export const TimelineWrapper = styled.div`
   flex: 1;
   height: 6px;
@@ -574,6 +361,7 @@ export const VolumeWrapper = styled.div`
 export const VolumeIcon = styled.span`
   cursor: pointer;
 `;
+
 export const VolumeBar = styled.div`
   width: 80px;
   height: 6px;
@@ -591,7 +379,6 @@ export const VolumeBar = styled.div`
   }
 `;
 
-
 export const CardsRow = styled.div`
   display: flex;
   gap: 30px;
@@ -603,21 +390,20 @@ export const CardsRow = styled.div`
   }
 `;
 
-
 export const StyledMediumHeadingWhite = styled(StyledMediumHeading)`
-    color: #7aeaf4e6;
+  color: #7aeaf4e6;
 `;
 
 export const StyledHeadingBigWhite = styled(StyledHeadingBig)`
-    color: white;
-    font-size: 35px;
-    margin-bottom: 0px;
+  color: white;
+  font-size: 35px;
+  margin-bottom: 0px;
 `;
 
 export const StyledParagraphBoldWhite = styled(StyledParagraphBold)`
-    color: white;
-    margin-top: 6px;
-    font-weight: 500;
+  color: white;
+  margin-top: 6px;
+  font-weight: 500;
 `;
 
 export const ShareIconWhite = styled.span`

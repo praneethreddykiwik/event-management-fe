@@ -9,27 +9,30 @@ import {
   LocationRow,
   LocationIcon,
   ShowLocationText,
-  AboutParagraph,
-  NextEventRight,
-  ArrowCircle,
-  NextEventCard,
-  CardContent,
-  SmallHeading,
-  EventTitle,
-  EventLocationRow,
-  LocationText,
-  EventDateRow,
-  NotificationIcon,
-  PodcastIcon,
+  AboutParagraph
 } from "../NewEvent.styles";
 
 import { EVENT_TEXT } from "../../../Enum/EventText";
+import EventCarousel from "../../../components/Carousel/EventCarousel";
 
-import ArrowLeftIcon from "@mui/icons-material/ChevronLeft";
-import ArrowRightIcon from "@mui/icons-material/ChevronRight";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const AboutAndNextEventSection = () => {
+  const eventList = [
+    {
+      title: EVENT_TEXT.NEXT_EVENT_TITLE,
+      name: EVENT_TEXT.NEXT_EVENT_NAME,
+      location: EVENT_TEXT.SHOW_LOCATION,
+      date: EVENT_TEXT.NEXT_EVENT_DATE,
+      bgColor: "#cba50c"
+    },
+    {
+      title: "Another Event",
+      name: EVENT_TEXT.NEXT_EVENT_NAME, 
+      location: EVENT_TEXT.SHOW_LOCATION,
+      date: "Mon, 10 Mar 2025 at 11:00",
+      bgColor: "#8b5cf6"
+    }
+  ];
   return (
     <SecondContainer>
       <AboutLeft>
@@ -50,31 +53,8 @@ const AboutAndNextEventSection = () => {
         </AboutParagraph>
       </AboutLeft>
 
-      <NextEventRight>
-        <ArrowCircle><ArrowLeftIcon /></ArrowCircle>
-
-        <NextEventCard>
-          <CardContent>
-            <SmallHeading>{EVENT_TEXT.NEXT_EVENT_TITLE}</SmallHeading>
-
-            <EventTitle>{EVENT_TEXT.NEXT_EVENT_NAME}</EventTitle>
-
-            <EventLocationRow>
-              <LocationOnIcon />
-              <LocationText>{EVENT_TEXT.SHOW_LOCATION}</LocationText>
-            </EventLocationRow>
-
-            <EventDateRow>
-              <NotificationIcon className="material-symbols-outlined">notifications</NotificationIcon>
-              {EVENT_TEXT.NEXT_EVENT_DATE}
-              <PodcastIcon className="material-symbols-outlined">podcasts</PodcastIcon>
-            </EventDateRow>
-          </CardContent>
-        </NextEventCard>
-
-        <ArrowCircle><ArrowRightIcon /></ArrowCircle>
-      </NextEventRight>
-
+      <EventCarousel events={eventList} />
+      
     </SecondContainer>
   );
 };
