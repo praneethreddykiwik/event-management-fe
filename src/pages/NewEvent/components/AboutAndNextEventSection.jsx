@@ -27,7 +27,7 @@ const AboutAndNextEventSection = () => {
     },
     {
       title: "Another Event",
-      name: EVENT_TEXT.NEXT_EVENT_NAME, 
+      name: "Content Creators and the Future of the Global Economy", 
       location: EVENT_TEXT.SHOW_LOCATION,
       date: "Mon, 10 Mar 2025 at 11:00",
       bgColor: "#8b5cf6"
