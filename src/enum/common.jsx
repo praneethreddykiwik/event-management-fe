@@ -16,3 +16,15 @@ export const SETTINGS_LABELS = {
     NO_SEARCH_INDEX: "Don’t allow search engines to index my profile",
     AUTO_UPDATE: "Allow auto update of contents",
 }
+
+export const FOOTER_CONTENT = {
+    DESCRIPTION_TEXT: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+    CONTACT_US: "Contact Us",
+    CONTACT_PHONE: "(+91) 98765 01234",
+    EMAIL_ID: "events@email.com",
+    LOCATION: (<>2118 Thornridge Cir.
+Syracuse,<br /> Connecticut<br /> 35624</>),
+    ALL_RIGHTS_RESERVED: "2025 Events - All rights reserved",
+    PRIVACY_POLICY: "Privacy Policy",
+    TERMS_CONDITIONS: "Terms and Conditions"
+}

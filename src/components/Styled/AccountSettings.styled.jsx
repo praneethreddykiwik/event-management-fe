@@ -58,13 +58,19 @@ export const StyledButtonContainer = styled.div`
 `;
 
 export const StyledContainer = styled.div`
-  min-height: 90vh;
   background-color: #f1faff;
   padding: 0 120px;
   display: flex;
 
+  @media (max-width: 1024px) {
+    padding: 0 50px;
+  }
+
   @media (max-width: 768px) {
     padding: 0 40px;
+  }
+  @media (max-width: 430px) {
+    padding: 0;
   }
 `;
 export const StyledContent = styled.div`
@@ -155,7 +161,7 @@ export const SidebarModal = styled.div`
   position: relative;
   margin: 10px;
   bottom: 0;
-  left: 0; /* shows to the right of the sidenav */
+  left: 0;
   background: #e2f3e8;
   border: 1px solid #8dcfa6;
   border-radius: 8px;

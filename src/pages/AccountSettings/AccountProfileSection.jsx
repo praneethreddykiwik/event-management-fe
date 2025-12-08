@@ -15,7 +15,7 @@ export default function AccountProfileSection() {
     <StyledProfileCard>
       <StyledProfileHeader>
         <StyledProfileTitle>Wade’s Profile</StyledProfileTitle>
-        <span class="material-symbols-outlined icon">keyboard_arrow_down</span>
+        <span className="material-symbols-outlined icon">keyboard_arrow_down</span>
       </StyledProfileHeader>
       <StyledProfileSubtitle>1 friend</StyledProfileSubtitle>
 
