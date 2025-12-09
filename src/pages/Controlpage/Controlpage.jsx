@@ -1,235 +1,223 @@
 import React from "react";
 import {
-  Page, BodySection, LeftContent, HeaderRow, ControlIcon, StyleHeader,
-  TopRow, VenueCard, VenueImg, UserBar, UserPhoto, UserDetails, Name,
-  IconGroup, SideImages, SmallPic, UsageBox, BoxHeader, InfoIcon,
-  StyleHeader2, Chartimg, InfoRow, InfoCard, Label, Value, QRCode,
-  DeviceRow, DeviceCard, Toggle, RightSidebar, Time, ThermoTitle,
-  ThermoCircle, CenterTemp, UnitText, ModeRow, ModeBtn,
-  LastUsersBox, UserActivity
+  Page, Wrapper, BodySection, LeftContent, HeaderRow, ControlIcon,
+  StyleHeader, Topcard, StyleRHeader2, Stylespan, TopRow, VenueCard,
+  VenueImg, UserBar, UserPhoto, UserDetails, Name, IconGroup,
+  SideImages, SmallPic, UsageBox, BoxHeader, StyleHeader2, InfoIcon,
+  Chartimg, InfoRow, InfoCard, Label, Value, Label1, Label2, InfoCardInner,
+  QRCode, TempToggle, TempPercent, TempSwitch, DeviceRow, DeviceCard,
+  Stspan2, Toggle, Stspan, StyledHead, RightSidebar, Time, Divider,
+  ThermoHeader, ThermoTitle, ThermoToggle, ThermoWrapper, ThermoProgress,
+  CenterTemp, UnitText, ModeRow, ModeBtn, Stspan3, Span,
+  LastUsersBox, LastHeader, AvatarGroup, Avtimg, UserActivity, LastImg,
+  LastInfo, Header4, Paragraph, SmallPara, HeaderContainer, LeftSection,
+  Lstspan, Header3, NavSection, NavItem, RightSection, ProfileBox, ProfileImg,
+  ProfileInfo, Ltspan, ArrowIcon, Stdiv, Value1, Stdiv2, SSspan, St2div,
 } from "./Controlpage.style.jsx";
 
 import conference_image from "../../assets/ControlPage_img/conference_image.jpg";
-import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
-import control_img from "../../assets/ControlPage_img/control_img.jpeg";
 import control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
-
-import { HALLS_DASHBOARD } from "../../enum/control_common.jsx";
+import Avt1 from "../../assets/ControlPage_img/Avt1.jpeg";
+import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
+import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
+import doorimg from "../../assets/ControlPage_img/doorimg.jpeg";
 
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineVideoCamera } from "react-icons/hi";
 import { MdInfoOutline } from "react-icons/md";
-import { BsThreeDots } from "react-icons/bs";
 
+import { HALLS_DASHBOARD } from "../../enum/control_common.jsx";
 
-const HallsDashboard = () => {
+export const ControlDashboard = () => {
   return (
-    <Page> 
-      <BodySection> 
-        <LeftContent>
+    <Page>
+      <Wrapper>
+        <Topcard>
           <HeaderRow>
-            <ControlIcon className="material-icons">bar_chart</ControlIcon>
-            <StyleHeader>{HALLS_DASHBOARD.CONTROL}</StyleHeader>
+            <Stdiv style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <ControlIcon className="material-icons">bar_chart</ControlIcon>
+              <StyleHeader>{HALLS_DASHBOARD.CONTROLHEADER}</StyleHeader>
+            </Stdiv>
+
+            <StyleRHeader2>
+              {HALLS_DASHBOARD.CONTROLHEADER2}
+              <Stylespan className="material-icons">expand_more</Stylespan>
+            </StyleRHeader2>
           </HeaderRow>
+        </Topcard>
 
-          <TopRow>
-            <VenueCard>
-              <VenueImg src={conference_image} />
-              <UserBar>
-                <UserPhoto src={control_avtar} />
+        <BodySection>
 
-                <UserDetails>
-                  <Name>{HALLS_DASHBOARD.USER_NAME}</Name>
-                </UserDetails>
+          <LeftContent>
 
-                <IconGroup>
-                  <HiOutlineVideoCamera size={22} />
-                  <FiPhoneCall size={20} />
-                </IconGroup>
-              </UserBar>
-            </VenueCard>
-            
-            <SideImages>
-              {HALLS_DASHBOARD.SIDE_IMAGES.map((img, i) => (
-                <SmallPic key={i} src={img} />
+            <TopRow>
+
+              <VenueCard>
+                <VenueImg src={conference_image} />
+
+                <UserBar>
+                  <UserPhoto src={control_avtar} />
+                  <UserDetails>
+                    <Name>{HALLS_DASHBOARD.USER_NAME}</Name>
+                  </UserDetails>
+                  <IconGroup>
+                    <HiOutlineVideoCamera size={22} />
+                    <FiPhoneCall size={20} />
+                  </IconGroup>
+                </UserBar>
+              </VenueCard>
+
+
+              <SideImages>
+                {HALLS_DASHBOARD.SIDE_IMAGES.map((img, i) => (
+                  <SmallPic key={i} src={img} />
+                ))}
+              </SideImages>
+
+
+              <UsageBox>
+                <BoxHeader>
+                  <StyleHeader2>{HALLS_DASHBOARD.HISTORY_HEADER}</StyleHeader2>
+                  <InfoIcon>
+                    <MdInfoOutline size={18} />
+                  </InfoIcon>
+                </BoxHeader>
+                <Chartimg src={HALLS_DASHBOARD.CHART_URL} alt="chart" />
+              </UsageBox>
+            </TopRow>
+
+
+            <InfoRow>
+
+              <InfoCard>
+                <Label>{HALLS_DASHBOARD.CURRENT}</Label>
+                <Value1>{HALLS_DASHBOARD.VALUE1}</Value1>
+              </InfoCard>
+
+
+              <InfoCard>
+                <InfoCardInner>
+                  <Stdiv2>
+                    <Label1>{HALLS_DASHBOARD.TEMPERATURE}</Label1>
+                    <Value>{HALLS_DASHBOARD.DEGREE}</Value>
+                  </Stdiv2>
+
+                  <TempToggle>
+                    <TempPercent>{HALLS_DASHBOARD.DEGREE}</TempPercent>
+                    <TempSwitch>
+                      <SSspan className="thumb" />
+                    </TempSwitch>
+                  </TempToggle>
+                </InfoCardInner>
+              </InfoCard>
+
+
+              <InfoCard>
+                <InfoCardInner>
+                  <Label2>{HALLS_DASHBOARD.SCAN}</Label2>
+                  <QRCode src="https://quickchart.io/qr?text=device&size=150" />
+                </InfoCardInner>
+              </InfoCard>
+            </InfoRow>
+
+
+            <DeviceRow>
+              {HALLS_DASHBOARD.DEVICES.map((dev, i) => (
+                <DeviceCard key={i} $active={dev.active}>
+                  <Stspan2 className="material-icons wifi-icon">wifi</Stspan2>
+
+                  <Toggle $active={dev.active}>
+                    <St2div className="circle" />
+                  </Toggle>
+
+                  <Stspan>{dev.status}</Stspan>
+                  <StyledHead>{dev.title}</StyledHead>
+                </DeviceCard>
               ))}
-            </SideImages>
+            </DeviceRow>
+          </LeftContent>
 
-            
-            <UsageBox>
-              <BoxHeader>
-                <StyleHeader2>{HALLS_DASHBOARD.USAGE_HISTORY}</StyleHeader2>
-                <InfoIcon><MdInfoOutline size={18} /></InfoIcon>
-              </BoxHeader>
 
-              <Chartimg src={HALLS_DASHBOARD.CHART_URL} alt="chart" />
-            </UsageBox>
+          <RightSidebar>
+            <Time>{HALLS_DASHBOARD.TIME}</Time>
+            <Divider />
 
-          </TopRow>
+            <ThermoHeader>
+              <ThermoTitle>{HALLS_DASHBOARD.THERMOVALUE}</ThermoTitle>
+              <ThermoToggle />
+            </ThermoHeader>
 
-         
-          <InfoRow>
+            <ThermoWrapper>
+              <ThermoProgress></ThermoProgress>
+              <CenterTemp>{HALLS_DASHBOARD.CENT_VALUE}</CenterTemp>
+              <UnitText>{HALLS_DASHBOARD.UNIT_VALUE}</UnitText>
+            </ThermoWrapper>
 
-            <InfoCard>
-              <Label>{HALLS_DASHBOARD.CURRENT_CONSUMPTION}</Label>
-              <Value>{HALLS_DASHBOARD.CURRENT_VALUE}</Value>
-            </InfoCard>
+            <ModeRow>
+              {HALLS_DASHBOARD.MODES.map((mode, index) => (
+                <ModeBtn key={index} active={index === 3}>
+                  <Stspan3 className="material-icons">
+                    {index === 0 && "brightness_high"}
+                    {index === 1 && "eco"}
+                    {index === 2 && "air"}
+                    {index === 3 && "ac_unit"}
+                  </Stspan3>
+                  <Span>{mode}</Span>
+                </ModeBtn>
+              ))}
+            </ModeRow>
 
-            <InfoCard>
-              <Label>{HALLS_DASHBOARD.TEMPERATURE}</Label>
-              <Value>{HALLS_DASHBOARD.TEMP_VALUE}</Value>
-            </InfoCard>
+            <LastUsersBox>
+              <LastHeader>
+                <Stspan3>{HALLS_DASHBOARD.LAST_HEAD}</Stspan3>
+                <AvatarGroup>
+                  <Avtimg src={Avt1} />
+                  <Avtimg src={Avt2} />
+                  <Avtimg src={Avt3} />
+                </AvatarGroup>
+              </LastHeader>
 
-            <InfoCard>
-              <Label>{HALLS_DASHBOARD.SCAN_TEXT}</Label>
-              <QRCode src={HALLS_DASHBOARD.SCAN_QR} />
-            </InfoCard>
+              <UserActivity>
+                <LastImg src={doorimg} />
+                <LastInfo>
+                  <Header4>{HALLS_DASHBOARD.HALLS}</Header4>
+                  <Paragraph>{HALLS_DASHBOARD.BACK_DOOR}</Paragraph>
+                  <SmallPara>{HALLS_DASHBOARD.D_TIME}</SmallPara>
+                </LastInfo>
+              </UserActivity>
+            </LastUsersBox>
+          </RightSidebar>
+        </BodySection>
 
-          </InfoRow>
 
-          
-          <DeviceRow>
-            {HALLS_DASHBOARD.DEVICES.map((dev, i) => (
-              <DeviceCard key={i} active={dev.active}>
-                <Stspan className="dev-status">{dev.status}</Stspan>
-                <StyledHead>{dev.title}</StyledHead>
-                <Toggle active={dev.active} />
-              </DeviceCard>
-            ))}
-          </DeviceRow>
-        </LeftContent>
+        <HeaderContainer>
+          <LeftSection>
+            <Lstspan className="material-icons">cottage</Lstspan>
+            <Header3>{HALLS_DASHBOARD.HEADER_CROS}</Header3>
+          </LeftSection>
 
-        
-        <RightSidebar>
+          <NavSection>
+            <NavItem active>{HALLS_DASHBOARD.HALLS}</NavItem>
+            <NavItem>{HALLS_DASHBOARD.BACK_DOOR}</NavItem>
+            <NavItem>{HALLS_DASHBOARD.D_TIME}</NavItem>
+          </NavSection>
 
-          <Time>{HALLS_DASHBOARD.TIME}</Time>
-          <ThermoTitle>{HALLS_DASHBOARD.THERMOSTAT}</ThermoTitle>
-
-         
-          <ThermoCircle>
-            <CenterTemp>60°</CenterTemp>
-            <UnitText>Fahrenheit</UnitText>
-          </ThermoCircle>
-
-         
-          <ModeRow>
-            {HALLS_DASHBOARD.MODES.map((mode, i) => (
-              <ModeBtn key={i}>{mode}</ModeBtn>
-            ))}
-          </ModeRow>
-
-    
-          <LastUsersBox>
-            <StyleHeader2>{HALLS_DASHBOARD.LAST_USERS}</StyleHeader2>
-
-            <UserActivity>
-              <img src={HALLS_DASHBOARD.LAST_USER_IMG} />
-              <div>
-                <Styledpara>{HALLS_DASHBOARD.ACTIVITY_USER}</Styledpara>
-                <Stspan>{HALLS_DASHBOARD.ACTIVITY_TEXT}</Stspan>
-                <Stsmall>{HALLS_DASHBOARD.ACTIVITY_TIME}</Stsmall>
-              </div>
-            </UserActivity>
-          </LastUsersBox>
-
-        </RightSidebar>
-
-      </BodySection>
-
-     
+          <RightSection>
+            <ProfileBox>
+              <ProfileImg src="https://i.pravatar.cc/100?img=15" alt="User" />
+              <ProfileInfo>
+                <Ltspan className="name">{HALLS_DASHBOARD.HENRY}</Ltspan>
+                <Ltspan className="role">{HALLS_DASHBOARD.BUILD_MANAGER}</Ltspan>
+              </ProfileInfo>
+              <ArrowIcon className="material-icons">
+                {HALLS_DASHBOARD.KEYBOARD}
+              </ArrowIcon>
+            </ProfileBox>
+          </RightSection>
+        </HeaderContainer>
+      </Wrapper>
     </Page>
   );
 };
 
-export default HallsDashboard;
-
-
-
-
-
-// import React from "react";
-// import {
-//   Page,
-//   HeaderRow,
-//   ControlIcon,
-//   ControlTitle,
-//   TopRow,
-//   VenueCard,
-//   VenueImg,
-//   UserBar,
-//   UserPhoto,
-//   UserDetails,
-//   UserName,
-//   IconGroup,
-//   SmallImagesBox,
-//   SmallImg,
-//   UsageCard,
-//   UsageHeader,
-//   ChartImg
-// } from "./Controlpage.style.jsx";
-
-// import { FiPhoneCall } from "react-icons/fi";
-// import { MdChatBubbleOutline, MdInfoOutline } from "react-icons/md";
-
-// import conference_image from "../../assets/ControlPage_img/conference_image.jpg";
-// import control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
-// import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
-// import control_img from "../../assets/ControlPage_img/control_img.jpeg";
-
-// // import * as d3 from "d3";
-// // import {select, selectAll} from "d3";
-// // import {mean, median} from "d3-array";
-
-
-// const ControlPage = () => {
-//   return (
-//     <Page>
-
-      
-//       <HeaderRow>
-//         <ControlIcon className="material-icons">bar_chart</ControlIcon>
-//         <ControlTitle>Control</ControlTitle>
-//       </HeaderRow>
-
-      
-//       <TopRow>
-
-//         <VenueCard>
-//           <VenueImg src= {conference_image}/>
-
-//           <UserBar>
-//             <UserPhoto src={control_avtar} />
-//             <UserDetails>
-//               <UserName>Henry, Arthur</UserName>
-//             </UserDetails>
-
-//             <IconGroup>
-//               <MdChatBubbleOutline size={22} color="#16a34a" />
-//               <FiPhoneCall size={22} color="#16a34a" />
-//             </IconGroup>
-//           </UserBar>
-//         </VenueCard>
-
-       
-//         <SmallImagesBox>
-//           <SmallImg src= {control_img2} />
-//           <SmallImg src={control_img} />
-//         </SmallImagesBox>
-
-       
-//         <UsageCard>
-//           <UsageHeader>
-//             <h4>Usage History</h4>
-//             <MdInfoOutline size={20} color="#777" />
-//           </UsageHeader>
-
-//           <ChartImg src="https://quickchart.io/chart?c={type:'bar',data:{labels:['2020','2021','2022','2023'],datasets:[{data:[20,40,60,30]}]}}" />
-//         </UsageCard>
-
-//       </TopRow>
-//     </Page>
-//   );
-// };
-
-// export default ControlPage;
-
+export default ControlDashboard;

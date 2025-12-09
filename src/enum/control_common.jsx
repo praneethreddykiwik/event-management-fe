@@ -1,55 +1,50 @@
 import control_img2 from "../assets/ControlPage_img/control_img2.jpeg";
 import control_img from "../assets/ControlPage_img/control_img.jpeg";
+
 export const HALLS_DASHBOARD = {
-  CONTROL: "Control",
-
- 
-
-  USER_AVATAR: "https://i.pravatar.cc/70",
   USER_NAME: "Henry, Arthur",
 
-  SIDE_IMAGES: [
-    control_img,
-    control_img2
-  ],
-
-  USAGE_HISTORY: "Usage History",
-  CHART_URL:
-    "https://quickchart.io/chart?c={type:'bar',data:{labels:['2020','2021','2022','2023'],datasets:[{data:[12,30,60,40]}]}}",
-
-  CURRENT_CONSUMPTION: "Current Consumption",
-  CURRENT_VALUE: "1kWh",
+  CONTROLHEADER: "Control",
+  CONTROLHEADER2: "Available device and controls ",
+  HISTORY_HEADER: "Usage History",
+  CURRENT: "Current Consumption",
+  VALUE1: "1kWh",
 
   TEMPERATURE: "Temperature",
-  TEMP_VALUE: "65° F",
+  DEGREE: "65° F",
 
-  SCAN_TEXT: "Scan to activate your device and access control",
-  SCAN_QR:
-    "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=device",
+  SCAN:"Scan to activate your device and access control",
+
+  TIME:"05:06 AM",
+  THERMOVALUE: "Thermostat",
+
+  CENT_VALUE: "60°",
+  UNIT_VALUE: "Fahrenheit",
+
+  LAST_HEAD: "Last Users",
+
+  HALLS:"Halls",
+  BACK_DOOR: "Back Door was Closed",
+  D_TIME: "02:00 AM",
+
+  SIDE_IMAGES: [control_img, control_img2],
+
+  CHART_URL:
+    "https://image-charts.com/chart?cht=bvs&chs=300x200&chd=t:12,30,60,40&chl=2020|2021|2022|2023&chco=4A90E2",
 
   DEVICES: [
     { title: "Door Lock", status: "Locked", active: true },
     { title: "Projector", status: "Inactive", active: false },
     { title: "Camera", status: "Active", active: true },
-    { title: "AC", status: "Power saving mode", active: false },
+    { title: "AC", status: "Powersavingmode", active: false },
   ],
 
-  TIME: "05:06 AM",
-  THERMOSTAT: "Thermostat",
   MODES: ["Hot", "Eco", "Fan", "Cold"],
 
-  LAST_USERS: "Last Users",
-  LAST_USER_IMG:
-    "https://images.unsplash.com/photo-1558005530-a4ddc2f7f4f5?auto=format",
+  HEADER_CROS: "Crostek Center",
 
-  ACTIVITY_USER: "Halls",
-  ACTIVITY_TEXT: "Back Door was Closed",
-  ACTIVITY_TIME: "02:00 AM",
+  HENRY: "Henry, Arthur",
+  BUILD_MANAGER : "Building manager",
+  KEYBOARD : "keyboard_arrow_down",
 
-  TABS: [
-    { label: "Crosteck Center", active: false },
-    { label: "Halls", active: true },
-    { label: "Device", active: false },
-    { label: "Analytics", active: false },
-  ],
 };

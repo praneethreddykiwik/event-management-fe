@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
-          <Route path={"/PaymentSuccess"} element= {<PaymentSuccess />} />
+          <Route path={"/PaymentSuccess"} element= {<PaymentSuccess/>} />
           <Route path={"/Navbar"} element= {<Navbar />} />
           <Route path={"/AccountSetting"} element= {<AccountSettingsPage />} />
           <Route path={"/Controlpage"} element= {<Controlpage />} />
