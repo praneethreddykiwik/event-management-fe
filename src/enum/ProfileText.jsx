@@ -17,7 +17,5 @@ export const PROFILE_DATA = {
   LOCATION: "Naperville",
   JOINED_DATE: "October 12, 2020",
   HELP_ICON: "help_outline",
-
-
-
+   
 };
