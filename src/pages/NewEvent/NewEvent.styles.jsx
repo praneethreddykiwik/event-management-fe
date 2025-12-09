@@ -23,19 +23,21 @@ export const PageWrapper = styled.div`
 
 export const SecondContainer = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  background: #fff;
-  padding: 32px;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 32px;
-  box-shadow: 0px 6px 12px -4px rgba(0, 0, 0, 0.3);
+  padding: 32px;
+  background: #fff;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  align-items: stretch;
+  overflow: visible;   /* IMPORTANT for Type2 arrows */
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
+
 
 export const LocationIcon = styled.span`
   color: #062e70;
@@ -45,6 +47,10 @@ export const LocationIcon = styled.span`
 export const AboutLeft = styled.div`
   flex: 1;
   min-width: 0;
+`;
+
+export const RightNextEvent = styled.div`
+  flex: 1;   // 50%
 `;
 
 export const AboutLeftSide = styled.div`

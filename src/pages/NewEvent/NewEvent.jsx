@@ -8,11 +8,11 @@ const NewEvent = () => {
   return (
     <PageWrapper>
       <EventIntroSection />
-     <AboutAndNextEventSection /> 
-      <CardsRow>
+    <AboutAndNextEventSection />
+      {/* <CardsRow>
         <ParticipantsSection />
         <PastEventsSection />
-      </CardsRow>
+      </CardsRow>  */}
     </PageWrapper>
   );
 };
