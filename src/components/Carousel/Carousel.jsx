@@ -10,11 +10,8 @@ const Carousel = ({ carouselList = [], type = CAROUSEL_TYPES.TYPE1 }) => {
     setIndex((prev) => (prev - 1 + carouselList.length) % carouselList.length);
 
   const handleNext = () => setIndex((prev) => (prev + 1) % carouselList.length);
-
-  const bgColor = type === "type1" ? "#d5f0e1" : "#fff";
-
   return (
-    <FirstContainer type={type} bgColor={bgColor}>
+    <FirstContainer type={type}>
       {type === "type2" && (
         <>
           <ArrowCircleLeft onClick={handlePrev}>
@@ -47,6 +44,24 @@ const Carousel = ({ carouselList = [], type = CAROUSEL_TYPES.TYPE1 }) => {
           </ArrowButton>
         </RightSide>
       )}
+
+      {type === "type3" && (
+        <BottomLeftArrows>
+          <PlainArrow
+            onClick={handlePrev}
+            className="material-symbols-outlined"
+          >
+            chevron_left
+          </PlainArrow>
+
+          <PlainArrow
+            onClick={handleNext}
+            className="material-symbols-outlined"
+          >
+            chevron_right
+          </PlainArrow>
+        </BottomLeftArrows>
+      )}
     </FirstContainer>
   );
 };
@@ -76,19 +91,20 @@ export const FirstContainer = styled.div`
     padding: 0;
     height: auto;
   `}
+
+   ${({ type }) =>
+    type === "type3" &&
+    `
+    background-color: #ffffff;
+    padding: 20px;
+    height: auto;
+  `}
 `;
 
 /* ---------------- SLIDE WRAPPER ---------------- */
 export const SlideWrapper = styled.div`
   width: 100%;
   overflow: hidden;
-
-  ${({ type }) =>
-    type === "type2" &&
-    `
-    padding-left: px;
-    padding-right: 0px;
-  `}
 `;
 
 /* ---------------- TRACK ---------------- */
@@ -112,9 +128,12 @@ export const SlideItem = styled.div`
 
   ${({ type }) =>
     type === "type2" &&
+    `justify-content: center;
+  `}
+    ${({ type }) =>
+    type === "type3" &&
     `
-    justify-content: center;
-    padding: 0;
+    justify-content: flex-start;
   `}
 `;
 
@@ -158,4 +177,21 @@ export const ArrowCircleLeft = styled.div`
 export const ArrowCircleRight = styled(ArrowCircleLeft)`
   left: auto;
   right: 0px;
+`;
+
+export const BottomLeftArrows = styled.div`
+  position: absolute;
+  bottom: 15px;
+  left: 35px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+`;
+
+
+export const PlainArrow = styled.span`
+  font-size: 28px;
+  cursor: pointer;
+  color: #000;   
+  user-select: none;
 `;

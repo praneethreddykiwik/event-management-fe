@@ -86,6 +86,7 @@ export const SecondContainer = styled.div`
   box-sizing: border-box;
   align-items: stretch;
   overflow: visible;
+  border-radius:0 0 5px 5px;
 
   @media (max-width: 768px) {
     flex-direction: column;
