@@ -16,7 +16,7 @@ const Home = () => {
     </div>,
   ]
   return <div style={{ height: "100vh", background: "#fff" }}>
-   <Carousel type="type2"  carouselList={carouselList}/>
+   <Carousel type="type1"  carouselList={carouselList}/>
   
   </div>;
 };

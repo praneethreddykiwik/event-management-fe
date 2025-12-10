@@ -9,25 +9,23 @@ const Carousel = ({ carouselList = [], type = CAROUSEL_TYPES.TYPE1 }) => {
   const handlePrev = () =>
     setIndex((prev) => (prev - 1 + carouselList.length) % carouselList.length);
 
-  const handleNext = () =>
-    setIndex((prev) => (prev + 1) % carouselList.length);
+  const handleNext = () => setIndex((prev) => (prev + 1) % carouselList.length);
 
   const bgColor = type === "type1" ? "#d5f0e1" : "#fff";
 
   return (
     <FirstContainer type={type} bgColor={bgColor}>
-      
-        {type === "type2" && (
-          <>
-            <ArrowCircleLeft onClick={handlePrev}>
-              <span className="material-symbols-outlined">chevron_left</span>
-            </ArrowCircleLeft>
+      {type === "type2" && (
+        <>
+          <ArrowCircleLeft onClick={handlePrev}>
+            <span className="material-symbols-outlined">chevron_left</span>
+          </ArrowCircleLeft>
 
-            <ArrowCircleRight onClick={handleNext}>
-              <span className="material-symbols-outlined">chevron_right</span>
-            </ArrowCircleRight>
-          </>
-        )}
+          <ArrowCircleRight onClick={handleNext}>
+            <span className="material-symbols-outlined">chevron_right</span>
+          </ArrowCircleRight>
+        </>
+      )}
 
       <SlideWrapper type={type}>
         <SlideTrack style={{ transform: `translateX(-${index * 100}%)` }}>
@@ -54,7 +52,6 @@ const Carousel = ({ carouselList = [], type = CAROUSEL_TYPES.TYPE1 }) => {
 };
 
 export default Carousel;
-
 
 /* ---------------- FIRST CONTAINER ---------------- */
 export const FirstContainer = styled.div`

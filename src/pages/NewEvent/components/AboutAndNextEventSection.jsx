@@ -8,7 +8,6 @@ import {
   StyledParagraphSmallVisible,
 } from "../../../components/Styled/Typography.styled";
 
-
 const AboutAndNextEventSection = () => {
   const eventList = [
     {
@@ -37,13 +36,13 @@ const AboutAndNextEventSection = () => {
       </Row>
 
       <RowSpaceBetween>
-  <div className="left-group">
-    <span className="material-symbols-outlined">notifications</span>
-    <DateText>{e.date}</DateText>
-  </div>
+        <div className="left-group">
+          <span className="material-symbols-outlined">notifications</span>
+          <DateText>{e.date}</DateText>
+        </div>
 
-  <span className="material-symbols-outlined">podcasts</span>
-</RowSpaceBetween>
+        <span className="material-symbols-outlined">podcasts</span>
+      </RowSpaceBetween>
     </YellowCard>
   ));
 
@@ -153,7 +152,6 @@ export const RightNextEvent = styled.div`
 export const YellowCard = styled.div`
   width: 100%;
   max-width: 355px;
-  min-height: 230px;
   background: ${(p) => p.bg};
 
   display: flex;
@@ -162,7 +160,6 @@ export const YellowCard = styled.div`
   align-items: flex-start;
   padding: 20px 24px;
 
-  border-radius: 18px;
   color: white;
   box-sizing: border-box;
   overflow: hidden;
@@ -179,7 +176,7 @@ export const SmallTitle = styled(StyledParagraphSmallGray)`
 export const MainTitle = styled(StyledSemiHeading)`
   color: white;
   margin: 0;
-  font-size: 20px; 
+  font-size: 20px;
   line-height: 26px;
   width: 100%;
   text-align: left;
@@ -210,7 +207,7 @@ export const DateText = styled(StyledParagraphSmallVisible)`
 export const RowSpaceBetween = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;  
+  justify-content: space-between;
   width: 100%;
   margin-top: 8px;
 
@@ -221,10 +218,10 @@ export const RowSpaceBetween = styled.div`
   }
 
   span.material-symbols-outlined {
-    color: black !important; 
+    color: black !important;
   }
 
   p {
-    color: black !important; 
+    color: black !important;
   }
 `;

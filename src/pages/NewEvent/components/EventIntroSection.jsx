@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { EVENT_TEXT } from "../../../Enum/EventText";
 import speaker1 from "../../../assets/speaker1.jpg";
 import speaker2 from "../../../assets/speaker2.jpg";
-
 import Carousel from "../../../components/Carousel/Carousel";
 
 import {
@@ -93,12 +92,12 @@ export const TopRow = styled.div`
 
 export const ShareIcon = styled.span`
   cursor: pointer;
-  color:#062E70;
+  color: #062e70;
 `;
 
 export const NewEventTxt = styled(StyledParagraphSmallGray)`
   font-weight: 600;
-  color:#062E70;
+  color: #062e70;
 `;
 
 export const HeadingTight = styled(StyledHeading)`
