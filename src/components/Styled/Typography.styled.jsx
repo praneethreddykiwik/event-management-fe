@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../../theme/media-queries";
 
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
@@ -15,6 +16,10 @@ export const StyledHeadingBig = styled.p`
   letter-spacing: -0.144px;
   margin: 20px 0;
   text-align: ${textAlign};
+
+  // ${mobile`
+  //     color: red;
+  //   `}
 `;
 
 export const StyledHeading = styled.p`
