@@ -118,6 +118,9 @@ const FooterGrid = styled.div`
       display: none;
     }
   }
+  @media (max-width: 540px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const Column = styled.div`
