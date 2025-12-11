@@ -1,4 +1,4 @@
-import logo from "../../assets/gateway-images/eventz-logo.png";
+import logo from "../../assets/Logos/eventz-logo.png";
 import Gateway from "../../assets/gateway-images/img.jpg";
 
 import {

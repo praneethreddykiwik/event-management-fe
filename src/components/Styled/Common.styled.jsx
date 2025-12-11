@@ -13,3 +13,10 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
   justify-content: space-between;
 `;
+export const StyledFlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  gap: 10px;
+`;
