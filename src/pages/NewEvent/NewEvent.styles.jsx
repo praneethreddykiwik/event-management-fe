@@ -1,105 +1,10 @@
 import styled from "styled-components";
 import video_image from "../../assets/video_image.jpg";
 import {
-  StyledParagraphGray,
   StyledHeadingBig,
   StyledMediumHeading,
   StyledParagraphBold,
-  StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-
-export const PageWrapper = styled.div`
-  background-color: #e8f4ff;
-  min-height: 768px;
-  padding-left: 120px;
-  padding-right: 120px;
-  padding-bottom: 60px;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-    padding-bottom: 40px;
-  }
-`;
-
-export const SecondContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
-  padding: 32px;
-  background: #fff;
-  width: 100%;
-  box-sizing: border-box;
-  align-items: stretch;
-  overflow: visible;   /* IMPORTANT for Type2 arrows */
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-
-export const LocationIcon = styled.span`
-  color: #062e70;
-  cursor: pointer;
-`;
-
-export const AboutLeft = styled.div`
-  flex: 1;
-  min-width: 0;
-`;
-
-export const RightNextEvent = styled.div`
-  flex: 1;   // 50%
-`;
-
-export const AboutLeftSide = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-export const NextEventRight = styled.div`
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  @media (max-width: 768px) {
-    justify-content: space-between;
-  }
-`;
-
-export const HelpIcon = styled.span`
-  color: #062e70;
-  cursor: pointer;
-`;
-
-export const AboutHeaderRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const ShowLocationText = styled.span`
-  font-size: 14px;
-  font-weight: 500;
-  color: #0541a8;
-`;
-
-export const LocationRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-`;
-
-export const AboutParagraph = styled(StyledParagraphGray)`
-  color: #a9abaa;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-`;
 
 export const ParticipantsCard = styled.div`
   width: 300px;
@@ -437,9 +342,4 @@ export const TopRow = styled.div`
   @media (max-width: 768px) {
     margin-bottom: 12px;
   }
-`;
-
-export const AboutTitle = styled(StyledSemiHeading)`
-  font-size: 20px;
-  color: #062e70;
 `;

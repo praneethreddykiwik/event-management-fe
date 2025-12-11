@@ -36,8 +36,9 @@ const EventIntroSection = () => {
 
   const carouselList = headerEvents.map((e) => (
     <IntroSlideContainer key={e.title}>
-      <LeftImage src={e.image} />
-
+      <ImageWrapper>
+        <LeftImage src={e.image} />
+      </ImageWrapper>
       <RightContent>
         <TopRow>
           <NewEventTxt>{e.label}</NewEventTxt>
@@ -65,23 +66,27 @@ export default EventIntroSection;
 export const IntroSlideContainer = styled.div`
   display: flex;
   gap: 40px;
-  align-items: center;
+  align-items: stretch;
+`;
+
+export const ImageWrapper = styled.div`
+  width: 230px;
+  height: 185px;
+  overflow: hidden;
+  border-radius: 4px;
 `;
 
 export const LeftImage = styled.img`
-  width: 260px;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
 `;
 
 export const RightContent = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: -45px;
-  text-align: left;
   align-items: flex-start;
+  margin-top: -10px;
 `;
 
 export const TopRow = styled.div`
@@ -118,6 +123,7 @@ export const ButtonsRow = styled.div`
 
 export const Button = styled(StyledBaseButton)`
   color: white;
+  width: 120px;
 `;
 
 export const AttendLink = styled(StyledAnchorSmall)`
