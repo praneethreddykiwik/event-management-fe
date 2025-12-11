@@ -9,7 +9,7 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile.jsx";
-import DropdownComponent from "./components/Dropdown/DropdownComponent.jsx";
+import DropdownComponent from "./components/Avatar/AvatarComponent.jsx";
 
 function App() {
   const theme = useTheme();

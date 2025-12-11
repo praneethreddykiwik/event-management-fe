@@ -7,9 +7,9 @@ import {
   MenuItem,
   Divider,
   Icon,
-} from "./Dropdown.styles";
+} from "./Avatar.styles";
 
-import { defaultMenuItems } from "./Dropdown.helper";
+import { defaultMenuItems } from "../../metadata/userProfileMetadata";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 
 const DropdownComponent = ({
