@@ -34,6 +34,7 @@ export default LoginImages;
 const ContainerRight = styled.div`
   display: flex;
   width: 50%;
+  height: 100%;
   overflow: hidden;
   gap: 10px;
   padding: 10px;
@@ -67,7 +68,6 @@ const Column3 = styled.div`
 `;
 
 const Img = styled.img`
-  height: 250px;
   width: 100%;
   object-fit: cover;
 `;

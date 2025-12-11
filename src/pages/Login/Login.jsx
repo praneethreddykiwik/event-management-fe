@@ -4,8 +4,6 @@ import WelcomeTxts from './WelcomeTxts';
 import GetStartedWithButtons from './GetStartedWithButtons';
 import LineTxts from './LineTxts';
 import Forms from './Forms';
-import { StyledContainer, ContainerLeft, MainContainer } from './Login.Styled';
-
 import leftImage1 from '../../assets/loginImgs/left1.jpg';
 import leftImage2 from '../../assets/loginImgs/left2.jpg';
 import leftImage3 from '../../assets/loginImgs/left3.jpg';
@@ -18,6 +16,7 @@ import rightImage1 from '../../assets/loginImgs/right1.jpg';
 import rightImage2 from '../../assets/loginImgs/right2.jpg';
 import rightImage3 from '../../assets/loginImgs/right3.jpg';
 import rightImage4 from '../../assets/loginImgs/right4.jpg';
+import styled from 'styled-components';
 
 const Login = () => {
   const leftImages = [leftImage1, leftImage2, leftImage3, leftImage4];
@@ -44,3 +43,37 @@ const Login = () => {
 };
 
 export default Login;
+
+
+export const StyledContainer = styled.div`
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+  }
+`;
+
+export const ContainerLeft = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const MainContainer = styled.div`
+  width: 300px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
