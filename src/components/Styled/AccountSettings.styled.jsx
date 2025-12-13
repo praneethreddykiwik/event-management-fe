@@ -63,13 +63,13 @@ export const StyledContainer = styled.div`
   display: flex;
 
   @media (max-width: 1024px) {
-    padding: 0 50px;
+    padding: 0 40px;
   }
 
   @media (max-width: 768px) {
-    padding: 0 40px;
+    padding: 0 20px;
   }
-  @media (max-width: 430px) {
+  @media (max-width: 540px) {
     padding: 0;
   }
 `;
@@ -111,6 +111,10 @@ export const StyledHr = styled.hr`
   border: none;
   border-bottom: 1px solid #dfdfdf;
   margin: 0 -40px;
+
+  @media (max-width: 768px) {
+    margin: 0 -20px;
+  }
 `;
 
 export const Nav = styled.nav`

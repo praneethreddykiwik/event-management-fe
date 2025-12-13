@@ -32,9 +32,7 @@ const AccountSettingsLeftNav = () => {
   return (
     <StyledLeftNav>
       <AccountProfileSection />
-      <StyledSemiHeadingAccount>
-        {HEADINGS.MY_ACCOUNT}
-      </StyledSemiHeadingAccount>
+      <StyledSemiHeadingAccount>{HEADINGS.MY_ACCOUNT}</StyledSemiHeadingAccount>
       <Nav>
         <List>
           {menuItems.map((item) => (
@@ -52,11 +50,10 @@ const AccountSettingsLeftNav = () => {
       <SidebarModal show={showModal}>
         <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
-        <ModalText>Invite your friends to share the wonderful experience.
+        <ModalText>
+          Invite your friends to share the wonderful experience.
         </ModalText>
-        <StyledAccButton onClick={() => setShowModal(false)}>
-          Invite Friends
-        </StyledAccButton>
+        <StyledAccButton>Invite Friends</StyledAccButton>
       </SidebarModal>
     </StyledLeftNav>
   );

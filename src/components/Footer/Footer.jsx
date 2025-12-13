@@ -114,7 +114,7 @@ const FooterGrid = styled.div`
 
   @media (max-width: 980px) {
     grid-template-columns: repeat(3, 1fr);
-    div:last-child{
+    div:last-child {
       display: none;
     }
   }
@@ -140,7 +140,7 @@ const Title = styled.h4`
 const LinkStyled = styled.div`
   a {
     font-size: 14px;
-    color: #B8B8B8;
+    color: #b8b8b8;
     text-decoration: none;
     transition: 0.2s;
 
@@ -163,7 +163,7 @@ const Logo = styled.div`
 `;
 
 const Description = styled.p`
-  color: #B8B8B8;
+  color: #b8b8b8;
   line-height: 1.5;
 `;
 
@@ -175,7 +175,11 @@ const ContactRow = styled.div`
   align-items: flex-start;
   margin-bottom: 40px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 1024px) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px) {
     gap: 30px;
   }
 
@@ -189,7 +193,7 @@ const ContactRow = styled.div`
 const ContactItem = styled.div`
   display: flex;
   align-items: flex-start;
-  color: #B8B8B8;
+  color: #b8b8b8;
   font-size: 1rem;
   gap: 10px;
   text-align: left;
@@ -201,7 +205,7 @@ const ContactItem = styled.div`
 `;
 
 const Icon = styled.span`
-  color: #FFF;
+  color: #fff;
   font-size: 24px;
   margin-top: 2px;
 `;
@@ -212,10 +216,10 @@ const BottomBar = styled.div`
   border-top: 1px solid #333;
   padding-top: 40px;
   font-size: 0.9rem;
-  color: #B8B8B8;
+  color: #b8b8b8;
 
   a {
-    color: #B8B8B8;
+    color: #b8b8b8;
     text-decoration: none;
 
     &:hover {
