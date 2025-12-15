@@ -10,8 +10,6 @@ const Home = () => {
 
 const StyledHome = styled.div`
   ${({ theme }) => theme.typography["body-regular"]}
-  
 `;
-
 
 export default Home;
