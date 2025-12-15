@@ -1,4 +1,6 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 export const StyledBaseButton = styled.button`
   height: 40px;
