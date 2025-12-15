@@ -1,10 +1,10 @@
 /** @format */
 
-import { useMemo } from 'react';
-import { theme } from './theme';
+import { useMemo } from "react";
+import { theme } from "./theme";
 
 const useTheme = () => {
-  const selectedTheme = 'light';
+  const selectedTheme = "light";
 
   // useMemo is cache
   const createTheme = useMemo(() => {
