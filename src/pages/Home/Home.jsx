@@ -1,11 +1,15 @@
-import LandingPage from "../LandingPage/LandingPage";
+import styled from "styled-components";
 
 const Home = () => {
   return (
-    <>
-    <LandingPage/>
-    </>
-  )
+    <StyledHome style={{ height: "100vh", background: "#fff" }}>
+      Home
+    </StyledHome>
+  );
 };
+
+const StyledHome = styled.div`
+  ${({ theme }) => theme.typography["body-regular"]}
+`;
 
 export default Home;

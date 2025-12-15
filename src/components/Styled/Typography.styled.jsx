@@ -1,7 +1,9 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 const textAlign = ({ left, right }) =>
-  left ? "left" : right ? "right" : "center";
+  left ? 'left' : right ? 'right' : 'center';
 
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 

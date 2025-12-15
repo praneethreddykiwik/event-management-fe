@@ -1,3 +1,5 @@
+/** @format */
+
 import { useMemo } from "react";
 import { theme } from "./theme";
 
@@ -8,6 +10,9 @@ const useTheme = () => {
   const createTheme = useMemo(() => {
     return theme[selectedTheme];
   }, [selectedTheme]);
+
+  // console.log('abdul createTheme', createTheme);
+
   return createTheme;
 };
 
