@@ -11,6 +11,8 @@ import Home from "./pages/Home/Home";
 import NewEvent from "./pages/NewEvent/NewEvent";
 import { paths } from "./constants/paths";
 
+import SampleInput from "./pages/sample/SampleInput";
+import ExInput from "./pages/sample/ExInput";
 
 function App() {
   const theme = useTheme();
@@ -24,7 +26,8 @@ function App() {
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={paths.newsFeed} element={<NewEvent />} />
-
+          <Route path={"/sampleinput"} element={<SampleInput />} />
+          <Route path="/exinput" element={<ExInput />} />
         </Routes>
 
         {/* <Footer /> */}
