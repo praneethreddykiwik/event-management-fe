@@ -3,10 +3,18 @@ import control_img from "../assets/ControlPage_img/control_img.jpeg";
 
 export const HALLS_DASHBOARD = {
   USER_NAME: "Henry, Arthur",
+  
+
 
   CONTROLHEADER: "Control",
+  CONTROL_ICON: "bar_chart",
   CONTROLHEADER2: "Available device and controls ",
+  DOWN_ICON: "expand_more",
+  
   HISTORY_HEADER: "Usage History",
+
+  INFO_ICON: "info",
+
   CURRENT: "Current Consumption",
   VALUE1: "1kWh",
 
@@ -14,6 +22,8 @@ export const HALLS_DASHBOARD = {
   DEGREE: "65° F",
 
   SCAN:"Scan to activate your device and access control",
+
+  WIFI_ICON : "wifi",
 
   TIME:"05:06 AM",
   THERMOVALUE: "Thermostat",
@@ -23,6 +33,7 @@ export const HALLS_DASHBOARD = {
 
   LAST_HEAD: "Last Users",
 
+  COTTAGE_ICON: "cottage",
   HALLS:"Halls",
   BACK_DOOR: "Back Door was Closed",
   D_TIME: "02:00 AM",
@@ -47,4 +58,7 @@ export const HALLS_DASHBOARD = {
   BUILD_MANAGER : "Building manager",
   KEYBOARD : "keyboard_arrow_down",
 
+  HALLS2: "Halls",
+  DEVICE: "Device",
+  ANALYTICS: "Analytics"
 };

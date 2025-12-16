@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import nav_img from "../../assets/nav_bar_img/nav_img.jpeg";
+import { NAVBAR_PAGE } from "../../enum/nav_common";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -17,21 +18,21 @@ const Navbar = () => {
 
       
       <MobileMenu open={open}>
-        <MobileItem>Home </MobileItem>
-        <MobileItem>Events</MobileItem>
-        <MobileItem>Venues</MobileItem>
+        <MobileItem>{NAVBAR_PAGE.MOBILE_HOME} </MobileItem>
+        <MobileItem>{NAVBAR_PAGE.MOBILE_EVENTS}</MobileItem>
+        <MobileItem>{NAVBAR_PAGE.MOBILE_VENUES}</MobileItem>
       </MobileMenu>
       
         <LogoWrapper>
           <LogoIcon className="material-icons">diamond</LogoIcon>
-          <LogoText>eventz</LogoText>
+          <LogoText>{NAVBAR_PAGE.LOGO_TEXT}</LogoText>
         </LogoWrapper>
 
        
         <Menu>
-          <MenuItem>Home</MenuItem>
-          <MenuItem>Events <Stylespan className="material-icons">expand_more</Stylespan></MenuItem>
-          <MenuItem>Venues <Stylespan className="material-icons">expand_more</Stylespan></MenuItem>
+          <MenuItem>{NAVBAR_PAGE.NAV_HOME}</MenuItem>
+          <MenuItem>{NAVBAR_PAGE.NAV_EVENTS}<Stylespan className="material-icons">expand_more</Stylespan></MenuItem>
+          <MenuItem>{NAVBAR_PAGE.NAV_VENUES}<Stylespan className="material-icons">expand_more</Stylespan></MenuItem>
         </Menu>
       </LeftSection>
 

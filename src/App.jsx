@@ -11,27 +11,26 @@ import Home from "./pages/Home/Home";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import Navbar from "./pages/Navbar/Navbar";
 import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
-import Controlpage from "./pages/Controlpage/Controlpage";
+import Controlpage from "./pages/Controlpage/Controlpage"
 
 function App() {
   const theme = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="main-container">
+      {/* <Stdiv className="main-container"> */}
         <Header />
 
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
-          <Route path={"/PaymentSuccess"} element= {<PaymentSuccess/>} />
-          <Route path={"/Navbar"} element= {<Navbar />} />
-          <Route path={"/AccountSetting"} element= {<AccountSettingsPage />} />
-          <Route path={"/Controlpage"} element= {<Controlpage />} />
+          <Route path={"/paymentSuccess"} element= {<PaymentSuccess/>} />
+          <Route path={"/navbar"} element= {<Navbar />} />
+          <Route path={"/accountSetting"} element= {<AccountSettingsPage />} />
+          <Route path={"/controlpage"} element= {<Controlpage/>} />
         </Routes>
 
-        {/* <Footer /> */}
-      </div>
+      {/* </Stdiv> */}
     </ThemeProvider>
   );
 }

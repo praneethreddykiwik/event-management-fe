@@ -4,7 +4,9 @@ SATISFACTION_PARA:  "Place your order with peace of mind",
 SUMMARY_TEXT : "Order summary",
 SUMMARY_ITEMS: "1 item",
 INSURANCE_TEXT: "Add travels insurance for $450.00",
-// INFO_ICON: "info",
+TICK_ICON: "check_circle",
+
+INFO_ICON: "info",
 SUBTOTAL: "Subtotal",
 SUBTOTAL_VALUE: "$1200.99",
 ADDED_FEES: "Added fees",
@@ -25,7 +27,9 @@ STYLED_TEXT: " temporarily authorized for $50.",
 STYLED_TEXT2: "Learn more",
 VENUE_TEXT: "Silverstone Event Center",
 VENUE_ADDRESS: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
-// TICK_ICON: "check_circle",
+
+
+TICK_ICON2: "check_circle",
 PAYMENT_SUCESS: "Payment Success!",
 DETAILS: "Details",
 REFERENCE_TEXT: "Reference Number",
@@ -38,9 +42,11 @@ REFERENCE_TEXT4: "Payment Method",
 REF_VALUE4: "Credit Card",
 TOTAL_AMOUNT: "Amount",
 AMOUNT_VALUE: "$16,000.61",
-// DOWNLOAD_ICON: "download",
+
+DOWNLOAD_ICON: "download",
 DOWNLOAD_TEXT: "Download Receipt",
-// SHARE_I: " share",
+
+SHARE_I: " share",
 SHARE_TEXT: "Share",
 CANCEL_TEXT: "Cancel"
 }
