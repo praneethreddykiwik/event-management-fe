@@ -1,4 +1,4 @@
-import {PAYMENT_PAGE} from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 
 export const rows = [
   { label: PAYMENT_PAGE.SUBTOTAL, value: PAYMENT_PAGE.SUBTOTAL_VALUE },

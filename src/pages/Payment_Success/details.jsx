@@ -1,4 +1,4 @@
-import { PAYMENT_PAGE } from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 import styled from "styled-components";
 
 const Details = () => {
@@ -40,14 +40,13 @@ const Details = () => {
 
 export default Details;
 
-
 const DetailsCard = styled.div`
- width: calc(100% - 40px);
-  background: #ffffff
+  width: calc(100% - 40px);
+  background: #ffffff;
   border-radius: 3px;
   padding: 16px;
   margin-top: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   text-align: left;
   padding-bottom: 15px;
 `;

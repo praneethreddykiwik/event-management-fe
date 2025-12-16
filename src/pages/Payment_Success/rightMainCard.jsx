@@ -1,14 +1,12 @@
-
-import { PAYMENT_PAGE } from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 import styled from "styled-components";
 import PaymentSuccessfull from "./paymentSuccessfull";
 import Details from "./details";
 import payment_img from "../../assets/payment_images/payment_img.jpg";
 
-
 const rightMainCard = () => {
   return (
-    < >
+    <>
       <RightCard>
         <EventImage src={payment_img} alt="Event" />
         <PaymentSuccessfull />
@@ -16,14 +14,24 @@ const rightMainCard = () => {
         <ButtonGroup>
           <DownloadCard>
             <DownloadBtn>
-              <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "6px" }}>{PAYMENT_PAGE.DOWNLOAD_ICON}</Stylespan>
+              <Stylespan
+                className="material-icons"
+                style={{ fontSize: "18px", marginRight: "6px" }}
+              >
+                {PAYMENT_PAGE.DOWNLOAD_ICON}
+              </Stylespan>
               <Stylespan>{PAYMENT_PAGE.DOWNLOAD_TEXT}</Stylespan>
             </DownloadBtn>
           </DownloadCard>
 
           <ShareLink>
             <ShareBtn>
-              <Stylespan className="material-icons" style={{ fontSize: "18px", marginRight: "4px" }}>{PAYMENT_PAGE.SHARE_I}</Stylespan>
+              <Stylespan
+                className="material-icons"
+                style={{ fontSize: "18px", marginRight: "4px" }}
+              >
+                {PAYMENT_PAGE.SHARE_I}
+              </Stylespan>
               <Stylespan>{PAYMENT_PAGE.SHARE_TEXT}</Stylespan>
             </ShareBtn>
           </ShareLink>
@@ -33,16 +41,12 @@ const rightMainCard = () => {
           <CancelBtn>{PAYMENT_PAGE.CANCEL_TEXT}</CancelBtn>
         </CancelWrap>
       </RightCard>
-
     </>
   );
 };
 export default rightMainCard;
 
-
-const Stylespan = styled.span`
-
-`;
+const Stylespan = styled.span``;
 
 const RightCard = styled.div`
   background: #fff;
@@ -102,7 +106,6 @@ const ShareLink = styled.div`
   color: #16a34a;
   font-weight: 500;
   cursor: pointer;
-   
 `;
 
 const ShareBtn = styled.button`
@@ -115,7 +118,6 @@ const ShareBtn = styled.button`
   display: inline-flex;
   align-items: right;
   padding-right: 60px;
-  
 `;
 
 const CancelWrap = styled.div`

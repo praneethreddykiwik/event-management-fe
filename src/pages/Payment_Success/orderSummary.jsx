@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { PAYMENT_PAGE } from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 import { rows } from "./Payment.helper";
 
 const OrderSummary = () => {

@@ -1,5 +1,4 @@
-
-import { PAYMENT_PAGE } from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 import styled from "styled-components";
 
 const promoCode = () => {
@@ -16,19 +15,21 @@ const promoCode = () => {
 
       <Terms>
         {PAYMENT_PAGE.TERMS_TEXT}
-        <HighlightText>{PAYMENT_PAGE.HIGHLIGHT_TEXT}</HighlightText> {PAYMENT_PAGE.TERMS_TEXT2}
-        <HighlightText>{PAYMENT_PAGE.HIGHLIGHT_TEXT2}</HighlightText> {PAYMENT_PAGE.TERMS_TEXT3}
-        <Styledb>{PAYMENT_PAGE.STYLED_TEXT}</Styledb> {PAYMENT_PAGE.TERMS_TEXT4} <Styledb>{PAYMENT_PAGE.STYLED_TEXT2}</Styledb>
+        <HighlightText>{PAYMENT_PAGE.HIGHLIGHT_TEXT}</HighlightText>{" "}
+        {PAYMENT_PAGE.TERMS_TEXT2}
+        <HighlightText>{PAYMENT_PAGE.HIGHLIGHT_TEXT2}</HighlightText>{" "}
+        {PAYMENT_PAGE.TERMS_TEXT3}
+        <Styledb>{PAYMENT_PAGE.STYLED_TEXT}</Styledb> {PAYMENT_PAGE.TERMS_TEXT4}{" "}
+        <Styledb>{PAYMENT_PAGE.STYLED_TEXT2}</Styledb>
       </Terms>
     </>
   );
 };
 export default promoCode;
 
-
-
 const Styledb = styled.b`
-font-weight: 500;`;
+  font-weight: 500;
+`;
 
 const Button = styled.button`
   background-color: #16a34a;
@@ -74,9 +75,7 @@ const Terms = styled.p`
   line-height: 1.45;
   text-align: justify;
   margin-top: 60px;
-  
 `;
-
 
 const HighlightText = styled.span`
   color: #1f4bd8;

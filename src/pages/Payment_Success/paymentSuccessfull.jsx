@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PAYMENT_PAGE } from "../../enum/common";
+import { PAYMENT_PAGE } from "../../enum/Payment.common";
 
 const PaymentSuccessfull = () => {
   return (
@@ -8,15 +8,14 @@ const PaymentSuccessfull = () => {
       <VenueCard>
         <VenueTitle>{PAYMENT_PAGE.VENUE_TEXT}</VenueTitle>
 
-        <VenueAddress>
-          {PAYMENT_PAGE.VENUE_ADDRESS}
-        </VenueAddress>
+        <VenueAddress>{PAYMENT_PAGE.VENUE_ADDRESS}</VenueAddress>
 
         <SuccessWrapper>
           <BadgeIcon>
             <Span
               className="material-icons"
-              style={{ fontSize: "20px", color: "#16a34a" }}>
+              style={{ fontSize: "20px", color: "#16a34a" }}
+            >
               {PAYMENT_PAGE.TICK_ICON2}
             </Span>
           </BadgeIcon>
@@ -48,7 +47,6 @@ const VenueTitle = styled.h3`
   font-size: 18px;
   font-weight: 600;
   color: #111827;
-  
 `;
 
 const VenueAddress = styled.p`
@@ -56,8 +54,6 @@ const VenueAddress = styled.p`
   font-size: 13px;
   color: #6b7280;
   text-align: left;
-  
-  
 `;
 
 const SuccessWrapper = styled.div`
@@ -68,7 +64,7 @@ const SuccessWrapper = styled.div`
 `;
 
 const BadgeIcon = styled.div`
-    background: rgba(38, 52, 48, 0.18);
+  background: rgba(38, 52, 48, 0.18);
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -84,4 +80,4 @@ const PaymentTitle = styled.h3`
   color: #111827;
   padding-bottom: 1px;
   margin: 0 0 14px 0;
-  `;
+`;
