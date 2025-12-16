@@ -1,37 +1,79 @@
-import styled from "styled-components";
-import { Button } from "../../components/Buttons/Button";
-import {
-  StyledSemiHeading,
-  StyledHeadingBig,
-} from "../../components/Styled/Typography.styled";
+/** @format */
+import LoginImages from './LoginImages';
+import WelcomeTxts from './WelcomeTxts';
+import GetStartedWithButtons from './GetStartedWithButtons';
+import LineTxts from './LineTxts';
+import Forms from './Forms';
+import leftImage1 from '../../assets/loginImgs/left1.jpg';
+import leftImage2 from '../../assets/loginImgs/left2.jpg';
+import leftImage3 from '../../assets/loginImgs/left3.jpg';
+import leftImage4 from '../../assets/loginImgs/left4.jpg';
+import middleImage1 from '../../assets/loginImgs/middle1.jpg';
+import middleImage2 from '../../assets/loginImgs/middle2.jpg';
+import middleImage3 from '../../assets/loginImgs/middle3.jpg';
+import middleImage4 from '../../assets/loginImgs/middle4.jpg';
+import rightImage1 from '../../assets/loginImgs/right1.jpg';
+import rightImage2 from '../../assets/loginImgs/right2.jpg';
+import rightImage3 from '../../assets/loginImgs/right3.jpg';
+import rightImage4 from '../../assets/loginImgs/right4.jpg';
+import styled from 'styled-components';
 
 const Login = () => {
+  const leftImages = [leftImage1, leftImage2, leftImage3, leftImage4];
+  const middleImages = [middleImage1, middleImage2, middleImage3, middleImage4];
+  const rightImages = [rightImage1, rightImage2, rightImage3, rightImage4];
+
   return (
     <StyledContainer>
-      <StyledHeadingBig>Eventz</StyledHeadingBig>
-      <StyledSemiHeading>Welcome to Eventz</StyledSemiHeading>
-      {/* add inputs late */}
-
-      <StyledBox2>
-        <Button>Continue</Button>
-        <Button type="outlined">Back</Button>
-        <Button type="secondary">My secondary button</Button>
-      </StyledBox2>
+      <ContainerLeft>
+        <MainContainer>
+          <WelcomeTxts />
+          <GetStartedWithButtons />
+          <LineTxts />
+          <Forms />
+        </MainContainer>
+      </ContainerLeft>
+      <LoginImages
+        leftImages={leftImages}
+        middleImages={middleImages}
+        rightImages={rightImages}
+      />
     </StyledContainer>
   );
 };
 
-const StyledContainer = styled.div`
+export default Login;
+
+
+export const StyledContainer = styled.div`
   height: 100vh;
   background: #fff;
-`;
-const StyledBox2 = styled.div`
   display: flex;
-  flexdirection: column;
-  width: 400px;
-  margin: auto;
-  gap: 20px;
-  margintop: 40px;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+  }
 `;
 
-export default Login;
+export const ContainerLeft = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const MainContainer = styled.div`
+  width: 300px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
