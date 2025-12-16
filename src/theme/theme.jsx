@@ -1,3 +1,5 @@
+/** @format */
+
 const spacings = {
   "spacing-1": "4px", // Micro gaps
   "spacing-2": "8px", // Between small elements

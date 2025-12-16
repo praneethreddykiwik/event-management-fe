@@ -9,23 +9,43 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
+import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
+import Navbar from "./pages/Navbar/Navbar";
+import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
+import Controlpage from "./pages/Controlpage/Controlpage";
+import Profile from "./pages/Profile/Profile.jsx";
+import DropdownComponent from "./components/Avatar/AvatarComponent.jsx";
+// import LandingPage from "./pages/LandingPage/LandingPage";
+import NewEvent from "./pages/NewEvent/NewEvent";
+import { paths } from "./constants/paths";
+
+import SampleInput from "./pages/sample/SampleInput";
+import ExInput from "./pages/sample/ExInput";
 
 function App() {
   const theme = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="main-container">
-        <Header />
+      {/* <Stdiv className="main-container"> */}
+      <Header />
 
-        <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path ={"/Getintouch"} element={<GetInTouch />} />
-        </Routes>
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/Getintouch"} element={<GetInTouch />} />
+        <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
+        <Route path={"/navbar"} element={<Navbar />} />
+        <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
+        <Route path={"/controlpage"} element={<Controlpage />} />
+        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/dropdown"} element={<DropdownComponent />} />
+        <Route path={paths.newsFeed} element={<NewEvent />} />
+        <Route path={"/sampleinput"} element={<SampleInput />} />
+        <Route path="/exinput" element={<ExInput />} />
+      </Routes>
 
-        {/* <Footer /> */}
-      </div>
+      {/* </Stdiv> */}
     </ThemeProvider>
   );
 }
