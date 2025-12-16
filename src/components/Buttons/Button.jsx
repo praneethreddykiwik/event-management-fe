@@ -1,7 +1,10 @@
+/** @format */
+
 import {
   StyledBaseButton,
   StyledOutlinedButton,
   StyledSecButton,
+  StyledTransparentButton,
 } from "../Styled/Buttons.styled";
 
 export const Button = ({ type, children, onClick }) => {
@@ -19,7 +22,12 @@ export const Button = ({ type, children, onClick }) => {
         );
       case "secondary":
         return <StyledSecButton onClick={onClick}>{children}</StyledSecButton>;
-
+      case "transparent":
+        return (
+          <StyledTransparentButton onClick={onClick}>
+            {children}
+          </StyledTransparentButton>
+        );
       default:
         return (
           <StyledBaseButton onClick={onClick}>{children}</StyledBaseButton>

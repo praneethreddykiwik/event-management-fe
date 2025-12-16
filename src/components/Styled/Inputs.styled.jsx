@@ -1,5 +1,6 @@
+/** @format */
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const baseStyles = `
   width:100%;
@@ -9,6 +10,7 @@ const baseStyles = `
   height: 40px;
   padding: 10px;
   outline: none;
+  padding-left: 20px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
