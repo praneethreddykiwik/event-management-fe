@@ -3,7 +3,10 @@ import {
   StyledBaseButton,
   StyledSecButton,
 } from "../../components/Styled/Buttons.styled";
-import { StyledHeading } from "../../components/Styled/Typography.styled";
+import {
+  StyledHeading,
+  StyledParagraph,
+} from "../../components/Styled/Typography.styled";
 const bp = {
   sm: "480px",
   md: "768px",
@@ -22,6 +25,8 @@ export const StyledContainer = styled.div`
     padding: 1.25rem 1rem 3rem;
   }
 `;
+
+export const Message = styled(StyledParagraph)``;
 
 export const ChoosePlanTxt = styled(StyledHeading)``;
 
@@ -49,7 +54,7 @@ export const ToggleRow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 25px;
   margin-top: 1rem;
   span {
     font-size: 0.9rem;
@@ -366,5 +371,16 @@ export const TitleRow = styled.div`
 
   h3 {
     margin: 0;
+  }
+`;
+
+export const PlanDivider = styled.div`
+  width: 100%;
+  height: 1px;
+  margin: 0.75rem 0 1rem;
+  background: ${({ $selected }) =>
+    $selected ? "rgba(255, 255, 255, 0.16)" : "#e5e7eb"};
+  @media (max-width: ${bp.md}) {
+    display: none;
   }
 `;

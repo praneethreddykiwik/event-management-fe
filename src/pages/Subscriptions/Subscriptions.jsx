@@ -26,40 +26,10 @@ import {
   ToggleKnob,
   ToggleRow,
   ToggleSwitch,
-} from "./Styled.Subscriptions";
-import {
-  access,
-  add_more,
-  advance_audit,
-  advance_downloads,
-  advance_features,
-  and,
-  attendance,
-  audit,
-  backup,
-  buy_now,
-  chat,
-  chat_support,
-  choose_plan,
-  discount,
-  download,
-  download_1,
-  enjoy_message,
-  get_started,
-  marketing_line,
-  mo,
-  month,
-  more_storage,
-  privacy,
-  service,
-  skip_trial,
-  skip_trial_1,
-  storge,
-  super_storage,
-  terms,
-  year,
-  agree,
-} from "../../enums/Subscriptions.enum";
+  Message,
+  PlanDivider,
+} from "./Subscriptions.styled";
+import { SUBSCRIPTIONS_ENUM } from "../../enums/Subscriptions.enum";
 
 const Subscriptions = () => {
   const [yearly, setYearly] = useState(false);
@@ -71,22 +41,24 @@ const Subscriptions = () => {
   const compute = (base) =>
     yearly ? Math.round(base * (1 - yearlyDiscount)) : base;
 
-  const mobileOneLiner = marketing_line;
-
   return (
     <StyledContainer>
       <ChoosePlan>
         <Header>
-          <ChoosePlanTxt>{choose_plan}</ChoosePlanTxt>
-          <p>{enjoy_message}</p>
+          <ChoosePlanTxt>{SUBSCRIPTIONS_ENUM.CHOOSE_PLAN}</ChoosePlanTxt>
+          <Message>{SUBSCRIPTIONS_ENUM.enjoy_message}</Message>
 
           <ToggleRow>
-            <span className={!yearly ? "active" : ""}>{month}</span>
+            <span className={!yearly ? "active" : ""}>
+              {SUBSCRIPTIONS_ENUM.month}
+            </span>
             <ToggleSwitch onClick={() => setYearly((v) => !v)}>
               <ToggleKnob $move={yearly} />
             </ToggleSwitch>
-            <span className={yearly ? "active" : ""}>{year}</span>
-            <Discount>{discount}</Discount>
+            <span className={yearly ? "active" : ""}>
+              {SUBSCRIPTIONS_ENUM.year}
+            </span>
+            <Discount>{SUBSCRIPTIONS_ENUM.discount}</Discount>
           </ToggleRow>
         </Header>
 
@@ -111,61 +83,85 @@ const Subscriptions = () => {
 
               <Price>
                 ${compute(price)}
-                <small>{mo}</small>
+                <small>{SUBSCRIPTIONS_ENUM.mo}</small>
               </Price>
 
-             
-              <MobileLine>{mobileOneLiner}</MobileLine>
+              <PlanDivider $selected={selected === key} />
+
+              <MobileLine>{SUBSCRIPTIONS_ENUM.mobileOneLiner}</MobileLine>
 
               <Features>
                 {key === "starter" && (
                   <>
-                    <Feature $selected={selected === key}>{access}</Feature>
-                    <Feature $selected={selected === key}>{download}</Feature>
-                    <Feature $selected={selected === key}>{audit}</Feature>
-                    <Feature $selected={selected === key}>{storge}</Feature>
-                    <Feature $selected={selected === key}>{chat}</Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.access}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.download}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.audit}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.storge}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.chat}
+                    </Feature>
                   </>
                 )}
                 {key === "standard" && (
                   <>
-                    <Feature $selected={selected === key}>{attendance}</Feature>
-                    <Feature $selected={selected === key}>{download_1}</Feature>
                     <Feature $selected={selected === key}>
-                      {advance_features}
+                      {SUBSCRIPTIONS_ENUM.attendance}
                     </Feature>
                     <Feature $selected={selected === key}>
-                      {more_storage}
+                      {SUBSCRIPTIONS_ENUM.download_1}
                     </Feature>
                     <Feature $selected={selected === key}>
-                      {chat_support}
+                      {SUBSCRIPTIONS_ENUM.advance_features}
                     </Feature>
-                    <Feature $selected={selected === key}>{backup}</Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.more_storage}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.chat_support}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.backup}
+                    </Feature>
                   </>
                 )}
                 {key === "pro" && (
                   <>
                     <Feature $selected={selected === key}>
-                      {advance_audit}
-                    </Feature>
-                    <Feature $selected={selected === key}>{service}</Feature>
-                    <Feature $selected={selected === key}>
-                      {advance_downloads}
+                      {SUBSCRIPTIONS_ENUM.advance_audit}
                     </Feature>
                     <Feature $selected={selected === key}>
-                      {super_storage}
+                      {SUBSCRIPTIONS_ENUM.service}
                     </Feature>
-                    <Feature $selected={selected === key}>{add_more}</Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.advance_downloads}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.super_storage}
+                    </Feature>
+                    <Feature $selected={selected === key}>
+                      {SUBSCRIPTIONS_ENUM.add_more}
+                    </Feature>
                   </>
                 )}
               </Features>
 
               <ButtonWrapper>
-                <StyledBaseButton>{get_started}</StyledBaseButton>
+                <StyledBaseButton>
+                  {SUBSCRIPTIONS_ENUM.get_started}
+                </StyledBaseButton>
               </ButtonWrapper>
 
               <SmallText $selected={selected === key}>
-                {skip_trial} <a href="#">{buy_now}</a>
+                {SUBSCRIPTIONS_ENUM.skip_trial}{" "}
+                <a href="#">{SUBSCRIPTIONS_ENUM.buy_now}</a>
               </SmallText>
             </PlanCard>
           ))}
@@ -179,15 +175,19 @@ const Subscriptions = () => {
             onChange={(e) => setHasAgreed(e.target.checked)}
           />
           <span>
-            {agree} <a href="#">{terms}</a> {and} <a href="#">{privacy}</a>
+            {SUBSCRIPTIONS_ENUM.agree}{" "}
+            <a href="#">{SUBSCRIPTIONS_ENUM.terms}</a> {SUBSCRIPTIONS_ENUM.and}{" "}
+            <a href="#">{SUBSCRIPTIONS_ENUM.privacy}</a>
           </span>
         </TermsRow>
 
         <MobileCTA>
-          <button disabled={!hasAgreed}>{get_started}</button>
+          <button disabled={!hasAgreed}>
+            {SUBSCRIPTIONS_ENUM.get_started}
+          </button>
         </MobileCTA>
 
-        <MobileSkip>{skip_trial_1}</MobileSkip>
+        <MobileSkip>{SUBSCRIPTIONS_ENUM.skip_trial_1}</MobileSkip>
       </ChoosePlan>
     </StyledContainer>
   );

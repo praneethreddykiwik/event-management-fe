@@ -1,33 +1,34 @@
-export const marketing_line =
-  "For the new marketer on a budget who just wants basic tracking...";
-export const choose_plan = "Choose your plan";
-export const enjoy_message =
-  "enjoy 14 days free trial. No contract or credit card required.";
-export const month = "Monthly";
-export const year = "Yearly";
-export const mo = "/mo";
-export const discount = "15% OFF";
-export const access = "Access to basic features";
-export const download = "Download up to 10 events";
-export const audit = "Audit log and note";
-export const storge = "20GB individual data";
-export const chat = "Basic chat support";
-export const download_1 = "Download up to 30 events";
-export const advance_features = "Advanced audit log and note";
-export const more_storage = "100GB individual data";
-export const chat_support = "Standard chat support";
-export const backup = "Backup and restore";
-export const service = "Personalized service";
-export const advance_downloads = "Download all events";
-export const super_storage = "1TB individual data";
-export const skip_trial = "or skip trial and";
-export const buy_now = "buy now";
-export const agree = "Agree to the";
-export const terms = "Terms of Use";
-export const privacy = "Privacy Policy";
-export const get_started = "Get started";
-export const skip_trial_1 = "or skip trial and buy now";
-export const add_more = "+ many more";
-export const advance_audit = "Advance audit log and note";
-export const and = "and";
-export const attendance = "200+ online attendance";
+export const SUBSCRIPTIONS_ENUM = {  marketing_line :
+  "For the new marketer on a budget who just wants basic tracking...",
+  CHOOSE_PLAN : "Choose your plan",
+  enjoy_message :
+  "enjoy 14 days free trial. No contract or credit card required.",
+  month : "Monthly",
+  year : "Yearly",
+  mo : "/mo",
+  discount : "15% OFF",
+  access : "Access to basic features",
+  download : "Download up to 10 events",
+  audit : "Audit log and note",
+  storge : "20GB individual data",
+  chat : "Basic chat support",
+  download_1 : "Download up to 30 events",
+  advance_features : "Advanced audit log and note",
+  more_storage : "100GB individual data",
+  chat_support : "Standard chat support",
+  backup : "Backup and restore",
+  service : "Personalized service",
+  advance_downloads : "Download all events",
+  super_storage : "1TB individual data",
+  skip_trial : "or skip trial and",
+  buy_now : "buy now",
+  agree : "Agree to the",
+  terms : "Terms of Use",
+  privacy : "Privacy Policy",
+  get_started : "Get started",
+  skip_trial_1 : "or skip trial and buy now",
+  add_more : "+ many more",
+  advance_audit : "Advance audit log and note",
+  and : "and",
+  attendance : "200+ online attendance",
+}

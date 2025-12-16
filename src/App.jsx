@@ -9,6 +9,7 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
+import PlayerCard from "./components/PlayerCard/PlayerCard";
 
 function App() {
   const theme = useTheme();
@@ -22,6 +23,7 @@ function App() {
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/Subscriptions"} element={<Subscriptions />} />
+          <Route path={"/PlayerCard"} element={<PlayerCard />} />
         </Routes>
 
         {/* <Footer /> */}
