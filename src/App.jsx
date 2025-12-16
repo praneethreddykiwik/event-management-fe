@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import Navbar from "./pages/Navbar/Navbar";
 import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
+        <Route path={"/Getintouch"} element={<GetInTouch />} />
         <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
         <Route path={"/navbar"} element={<Navbar />} />
         <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
