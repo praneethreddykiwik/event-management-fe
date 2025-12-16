@@ -10,6 +10,7 @@ import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import Navbar from "./pages/Navbar/Navbar";
@@ -35,6 +36,8 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<RegistrationPage />} />
+        <Route path={"/Gateway"} element={<GatewayPage />} />
         <Route path={"/Registration"} element={<RegistrationPage />} />
         <Route path={"/Gateway"} element={<GatewayPage />} />
         <Route path={"/Getintouch"} element={<GetInTouch />} />
