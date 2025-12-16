@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import GatewayPage from "./pages/GatewayPage/GatewayPage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import Navbar from "./pages/Navbar/Navbar";
@@ -33,6 +35,8 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
+        <Route path={"/Registration"} element={<RegistrationPage />} />
+        <Route path={"/Gateway"} element={<GatewayPage />} />
         <Route path={"/Getintouch"} element={<GetInTouch />} />
         <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
         <Route path={"/navbar"} element={<Navbar />} />
