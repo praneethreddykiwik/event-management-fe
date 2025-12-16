@@ -1,7 +1,9 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 const textAlign = ({ left, right }) =>
-  left ? "left" : right ? "right" : "center";
+  left ? 'left' : right ? 'right' : 'center';
 
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
@@ -14,7 +16,7 @@ export const StyledHeadingBig = styled.p`
   line-height: 52px;
   letter-spacing: -0.144px;
   margin: 20px 0;
-  text-align: ${textAlign};
+  text-align: ${({ left, right }) => textAlign({ left, right })};
 `;
 
 export const StyledHeading = styled.p`
@@ -25,7 +27,7 @@ export const StyledHeading = styled.p`
   margin: 20px 0;
   text-align: ${textAlign};
 `;
-export const StyledSemiHeading = styled.p`
+export const StyledSemiHeading = styled.p`   
   color: #000;
   font-size: 24px;
   font-weight: 600;
