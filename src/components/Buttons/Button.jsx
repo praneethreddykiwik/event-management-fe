@@ -1,32 +1,63 @@
 /** @format */
-
 import {
   StyledBaseButton,
+  StyledIconButton,
   StyledOutlinedButton,
   StyledSecButton,
+  ButtonContent,
+  ButtonImage,
 } from '../Styled/Buttons.styled';
 
-export const Button = ({ type, children, onClick }) => {
-  const generateButton = () => {
-    switch (type) {
-      case 'base':
-        return (
-          <StyledBaseButton onClick={onClick}>{children}</StyledBaseButton>
-        );
-      case 'outlined':
-        return (
-          <StyledOutlinedButton onClick={onClick}>
-            {children}
-          </StyledOutlinedButton>
-        );
-      case 'secondary':
-        return <StyledSecButton onClick={onClick}>{children}</StyledSecButton>;
+export const Button = ({
+  type = 'base',
+  children,
+  onClick,
+  icon,
+  image
+}) => {
+  const renderContent = () => (
+    <ButtonContent>
+      {icon && (
+        <span className="material-symbols-outlined">
+          {icon}
+        </span>
+      )}
 
-      default:
-        return (
-          <StyledBaseButton onClick={onClick}>{children}</StyledBaseButton>
-        );
-    }
-  };
-  return <>{generateButton()}</>;
+      {image && <ButtonImage src={image} alt="button-icon" />}
+
+      {children && <span>{children}</span>}
+    </ButtonContent>
+  );
+
+  switch (type) {
+    case 'outlined':
+      return (
+        <StyledOutlinedButton onClick={onClick}>
+          {renderContent()}
+        </StyledOutlinedButton>
+      );
+
+    case 'secondary':
+      return (
+        <StyledSecButton onClick={onClick}>
+          {renderContent()}
+        </StyledSecButton>
+      );
+
+    case 'icon':
+      return (
+        <StyledIconButton onClick={onClick}>
+          {renderContent()}
+        </StyledIconButton>
+      );
+
+    default:
+      return (
+        <StyledBaseButton onClick={onClick}>
+          {renderContent()}
+        </StyledBaseButton>
+      );
+  }
 };
+
+

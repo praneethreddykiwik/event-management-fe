@@ -34,7 +34,7 @@ export default LoginImages;
 const ContainerRight = styled.div`
   display: flex;
   width: 50%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   gap: 10px;
   padding: 10px;

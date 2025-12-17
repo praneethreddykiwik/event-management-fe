@@ -10,6 +10,7 @@ import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import SampleInput from "./pages/sample/SampleInput";
 import ExInput from "./pages/sample/ExInput"
+import ExButton from "./pages/sample/ExButton";
 
 function App() {
   const theme = useTheme();
@@ -18,13 +19,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="main-container">
         <Header />
-
+        
         <Routes>
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<Login />} />
           <Route path={"/sampleinput"} element={<SampleInput />} />
           <Route path="/exinput" element= {<ExInput/>}/>
-
+          <Route path="/exbutton" element= {<ExButton/>}/>
         </Routes>
 
         {/* <Footer /> */}
