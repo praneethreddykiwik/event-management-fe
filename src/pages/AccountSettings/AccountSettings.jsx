@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -601,3 +602,26 @@ const GreenButton = styled.button`
 
 const SectionTitleText = styled.h3``;
 
+=======
+import React from 'react'
+import { StyledContainer, StyledContent } from '../../components/Styled/AccountSettings.styled'
+import AccountSettingsLeftNav from './AccountSettingsLeftNav'
+import AccountSettingsRightContent from './AccountSettingsRightContent'
+import Footer from '../../components/Footer/Footer'
+
+const AccountSettings = () => {
+  return (
+    <>
+    <StyledContainer>
+        <StyledContent>
+            <AccountSettingsLeftNav />
+            <AccountSettingsRightContent />
+        </StyledContent>
+    </StyledContainer>
+    <Footer />
+    </>
+  )
+}
+
+export default AccountSettings
+>>>>>>> 06b56696462739c122cf0a1755a9208954528282
