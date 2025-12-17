@@ -10,7 +10,6 @@ import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
 import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import Navbar from "./pages/Navbar/Navbar";
