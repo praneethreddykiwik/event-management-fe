@@ -1,10 +1,10 @@
 import venue_hall from "../../assets/landingPage/venue.jpg";
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
-import { Button } from "../../components/Buttons/Button";
 import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common";
 import {
   StyledSemiHeading,
   StyledParagraphSmallGray,
+  StyledAnchor,
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 
@@ -22,15 +22,25 @@ const FindInspiration = () => {
         </StyledSemiHeading>
         <StyledContent>{FINDINSIPRATION_TXT.FIND_PARAGRAPH}</StyledContent>
         <StyledBtnContainer>
-          <Button type="transparent">
-            {FINDINSIPRATION_TXT.FINDOUTLINE_BTN}{" "}
-            <StyledIcon src={forward_arrow} />
-          </Button>
+          <StyledLink>{FINDINSIPRATION_TXT.FINDOUTLINE_BTN}</StyledLink>
+          <StyledIcon src={forward_arrow} />
         </StyledBtnContainer>
       </StyledContainerTwo>
     </StyledFindInspirationLayout>
   );
 };
+
+const StyledLink = styled(StyledAnchor)`
+  color: ${({ theme }) => theme.colors.primary};
+  font: ${({ theme }) => theme.typography["button-text"]};
+  text-decoration: none;
+`;
+
+const StyledIcon = styled.img`
+  margin-left: 5px;
+  width: 8px;
+  margin-top: 1.2px;
+`;
 
 const StyledFindInspirationLayout = styled(LandingPageLayout)`
   @media (max-width: 768px) {
@@ -71,7 +81,7 @@ const StyledContainerTwo = styled.div`
     margin-top: 10px;
     width: 90%;
     height: 200px;
-    color: #000000;
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 
@@ -82,11 +92,6 @@ const StyledContent = styled(StyledParagraphSmallGray)`
     font-weight: 600;
     font-size: 16px;
   }
-`;
-
-const StyledIcon = styled.img`
-  margin-left: 5px;
-  width: 10px;
 `;
 
 const StyledBtnContainer = styled.div`

@@ -27,7 +27,7 @@ const StylesTrustedLayout = styled(LandingPageLayout)`
   background-color: #f1faff;
 
   @media (max-width: 768px) {
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -55,7 +55,7 @@ const StyledIconFirst = styled.img`
 `;
 const StyledIconContainer = styled.div`
   width: 120px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +70,7 @@ const StyledIconOnes = styled.img`
   width: 120px;
   height: none;
   border-radius: none;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
 
   @media (max-width: 768px) {
     width: 80px;
