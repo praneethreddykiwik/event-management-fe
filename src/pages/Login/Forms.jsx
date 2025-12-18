@@ -2,15 +2,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { InputDefault } from '../../components/Styled/Inputs.styled';
 import {
   StyledAnchor,
   StyledParagraphSmallGray,
 } from '../../components/Styled/Typography.styled';
 import {
-  StyledBaseButton,
-  StyledIconButton,
+  StyledBaseButton
 } from '../../components/Styled/Buttons.styled';
+import { Input } from '../../components/Inputs/Input';
 
 const Forms = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -80,7 +79,6 @@ export const InputBox = styled.div`
 export const InputWrapper = styled.div`
   position: relative;
 `;
-export const Input = styled(InputDefault)``;
 export const ShowHideIcon = styled.span`
   position: absolute;
   right: 15px;
@@ -135,7 +133,7 @@ export const AnchorParah = styled(StyledParagraphSmallGray)`
   line-height: 18.2px;
   text-align: justify;
 `;
-export const ContinueButton = styled(StyledIconButton)`
+export const ContinueButton = styled(StyledBaseButton)`
   color: white;
   width: 100%;
 `;
