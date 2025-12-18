@@ -26,6 +26,7 @@ export const StyledContainer = styled.div`
   }
 `;
 
+export const SpanButton = styled.span``;
 export const Message = styled(StyledParagraph)``;
 
 export const ChoosePlanTxt = styled(StyledHeading)``;

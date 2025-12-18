@@ -28,6 +28,7 @@ import {
   ToggleSwitch,
   Message,
   PlanDivider,
+  SpanButton,
 } from "./Subscriptions.styled";
 import { SUBSCRIPTIONS_ENUM } from "../../enums/Subscriptions.enum";
 
@@ -41,6 +42,31 @@ const Subscriptions = () => {
   const compute = (base) =>
     yearly ? Math.round(base * (1 - yearlyDiscount)) : base;
 
+  const FEATURE_MAP = {
+    starter: [
+      SUBSCRIPTIONS_ENUM.access,
+      SUBSCRIPTIONS_ENUM.download,
+      SUBSCRIPTIONS_ENUM.audit,
+      SUBSCRIPTIONS_ENUM.storge,
+      SUBSCRIPTIONS_ENUM.chat,
+    ],
+    standard: [
+      SUBSCRIPTIONS_ENUM.attendance,
+      SUBSCRIPTIONS_ENUM.download_1,
+      SUBSCRIPTIONS_ENUM.advance_features,
+      SUBSCRIPTIONS_ENUM.more_storage,
+      SUBSCRIPTIONS_ENUM.chat_support,
+      SUBSCRIPTIONS_ENUM.backup,
+    ],
+    pro: [
+      SUBSCRIPTIONS_ENUM.advance_audit,
+      SUBSCRIPTIONS_ENUM.service,
+      SUBSCRIPTIONS_ENUM.advance_downloads,
+      SUBSCRIPTIONS_ENUM.super_storage,
+      SUBSCRIPTIONS_ENUM.add_more,
+    ],
+  };
+
   return (
     <StyledContainer>
       <ChoosePlan>
@@ -49,15 +75,15 @@ const Subscriptions = () => {
           <Message>{SUBSCRIPTIONS_ENUM.enjoy_message}</Message>
 
           <ToggleRow>
-            <span className={!yearly ? "active" : ""}>
+            <SpanButton className={!yearly ? "active" : ""}>
               {SUBSCRIPTIONS_ENUM.month}
-            </span>
+            </SpanButton>
             <ToggleSwitch onClick={() => setYearly((v) => !v)}>
               <ToggleKnob $move={yearly} />
             </ToggleSwitch>
-            <span className={yearly ? "active" : ""}>
+            <SpanButton className={yearly ? "active" : ""}>
               {SUBSCRIPTIONS_ENUM.year}
-            </span>
+            </SpanButton>
             <Discount>{SUBSCRIPTIONS_ENUM.discount}</Discount>
           </ToggleRow>
         </Header>
@@ -90,7 +116,7 @@ const Subscriptions = () => {
 
               <MobileLine>{SUBSCRIPTIONS_ENUM.mobileOneLiner}</MobileLine>
 
-              <Features>
+              {/* <Features>
                 {key === "starter" && (
                   <>
                     <Feature $selected={selected === key}>
@@ -151,6 +177,13 @@ const Subscriptions = () => {
                     </Feature>
                   </>
                 )}
+              </Features> */}
+              <Features>
+                {FEATURE_MAP[key]?.map((feature, index) => (
+                  <Feature key={index} $selected={selected === key}>
+                    {feature}
+                  </Feature>
+                ))}
               </Features>
 
               <ButtonWrapper>
@@ -174,11 +207,11 @@ const Subscriptions = () => {
             checked={hasAgreed}
             onChange={(e) => setHasAgreed(e.target.checked)}
           />
-          <span>
+          <SpanButton>
             {SUBSCRIPTIONS_ENUM.agree}{" "}
             <a href="#">{SUBSCRIPTIONS_ENUM.terms}</a> {SUBSCRIPTIONS_ENUM.and}{" "}
             <a href="#">{SUBSCRIPTIONS_ENUM.privacy}</a>
-          </span>
+          </SpanButton>
         </TermsRow>
 
         <MobileCTA>
