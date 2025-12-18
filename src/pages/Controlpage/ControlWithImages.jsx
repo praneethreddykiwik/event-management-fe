@@ -13,12 +13,11 @@ const VenueCard = () => {
         <Avatar src={Control_avtar} alt="User" />
 
         <WhiteCard>
-          <UserName>Henry, Arthur</UserName>
+          <UserName>{HALLS_DASHBOARD.USER_NAME}</UserName>
 
           <Icons>
-            <Span1 className="material-icons-outlined" style={{ fontSize: "22px" }}>chat</Span1>
-            <Span2 className="material-icons-outlined" style={{ fontSize: "20px" }}>call</Span2>
-
+            <Span1 className="material-icons-outlined" style={{ fontSize: "22px" }}>{HALLS_DASHBOARD.CHAT_ICON}</Span1>
+            <Span2 className="material-icons-outlined" style={{ fontSize: "20px" }}>{HALLS_DASHBOARD.CALL_ICON}</Span2>
           </Icons>
         </WhiteCard>
       </VenueCard2>

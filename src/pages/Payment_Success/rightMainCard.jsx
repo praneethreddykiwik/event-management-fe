@@ -16,8 +16,7 @@ const rightMainCard = () => {
             <DownloadBtn>
               <Stylespan
                 className="material-icons"
-                style={{ fontSize: "18px", marginRight: "6px" }}
-              >
+                style={{ fontSize: "18px", marginRight: "6px" }}>
                 {PAYMENT_PAGE.DOWNLOAD_ICON}
               </Stylespan>
               <Stylespan>{PAYMENT_PAGE.DOWNLOAD_TEXT}</Stylespan>
