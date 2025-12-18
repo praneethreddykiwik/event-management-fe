@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HEADINGS } from "../../enum/common";
+import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
 import modalImg from "../../assets/modalimg.jpg";
 import {
   CloseButton,
@@ -50,10 +50,8 @@ const AccountSettingsLeftNav = () => {
       <SidebarModal show={showModal}>
         <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
-        <ModalText>
-          Invite your friends to share the wonderful experience.
-        </ModalText>
-        <StyledAccButton>Invite Friends</StyledAccButton>
+        <ModalText>{TEXTS.MODAL_TEXT}</ModalText>
+        <StyledAccButton type="base">Invite Friends</StyledAccButton>
       </SidebarModal>
     </StyledLeftNav>
   );

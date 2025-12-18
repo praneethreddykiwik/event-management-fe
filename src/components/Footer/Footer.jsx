@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FOOTER_CONTENT } from "../../enum/common";
+import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
 
 const Footer = () => {
@@ -39,16 +39,16 @@ const Footer = () => {
           </Column>
         ))}
 
-        {/* Logo section */}
         <LogoSection>
           <Logo>eventz</Logo>
-          <Description>{FOOTER_CONTENT.DESCRIPTION_TEXT} </Description>
+          <Description>{FOOTER_CONTENT.DESCRIPTION_TEXT}</Description>
         </LogoSection>
       </FooterGrid>
 
-      <div style={{ marginTop: "40px" }}>
+      <ContactWrapper>
         <ContactRow>
-          <ContactRow>{FOOTER_CONTENT.CONTACT_US}</ContactRow>
+          <ContactTitle>{FOOTER_CONTENT.CONTACT_US}</ContactTitle>
+
           <ContactItem>
             <Icon className="material-symbols-outlined">call</Icon>
             {FOOTER_CONTENT.CONTACT_PHONE}
@@ -59,23 +59,20 @@ const Footer = () => {
             {FOOTER_CONTENT.EMAIL_ID}
           </ContactItem>
 
-          <ContactItem style={{ maxWidth: "280px" }}>
+          <ContactItem maxWidth>
             <Icon className="material-symbols-outlined">location_on</Icon>
             {FOOTER_CONTENT.LOCATION}
           </ContactItem>
         </ContactRow>
-      </div>
+      </ContactWrapper>
 
-      {/* ---------------- Bottom Bar ---------------- */}
       <BottomBar>
-        <span>{FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</span>
+        <BottomText>{FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
 
-        <div>
-          <NavLink to="/privacy" style={{ marginRight: "20px" }}>
-            {FOOTER_CONTENT.PRIVACY_POLICY}
-          </NavLink>
+        <BottomLinks>
+          <NavLink to="/privacy">{FOOTER_CONTENT.PRIVACY_POLICY}</NavLink>
           <NavLink to="/terms">{FOOTER_CONTENT.TERMS_CONDITIONS}</NavLink>
-        </div>
+        </BottomLinks>
       </BottomBar>
     </FooterContainer>
   );
@@ -86,7 +83,7 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   background: #131212;
   color: #fff;
-  padding: 70px 120px 25px 120px;
+  padding: 70px 120px 25px;
   font-family: "Inter", sans-serif;
 
   @media (max-width: 1024px) {
@@ -98,46 +95,37 @@ const FooterContainer = styled.footer`
   }
 `;
 
-const FooterGrid = styled.div`
+const FooterGrid = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
   padding-bottom: 20px;
-  //  border-bottom: 1px solid #333;
-
-  /* FLEX fallback */
-  @supports not (display: grid) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
 
   @media (max-width: 980px) {
     grid-template-columns: repeat(3, 1fr);
-    div:last-child {
+    section:last-child {
       display: none;
     }
   }
+
   @media (max-width: 540px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
 
-const Column = styled.div`
+const Column = styled.section`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  text-align: left;
 `;
 
 const Title = styled.h4`
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
   font-weight: normal;
-  margin-top: 0;
 `;
 
-const LinkStyled = styled.div`
+const LinkStyled = styled.article`
   a {
     font-size: 14px;
     color: #b8b8b8;
@@ -150,16 +138,15 @@ const LinkStyled = styled.div`
   }
 `;
 
-const LogoSection = styled.div`
+const LogoSection = styled.section`
   max-width: 280px;
   text-align: right;
 `;
 
-const Logo = styled.div`
+const Logo = styled.h2`
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 12px;
-  align-items: center;
 `;
 
 const Description = styled.p`
@@ -167,56 +154,69 @@ const Description = styled.p`
   line-height: 1.5;
 `;
 
-const ContactRow = styled.div`
+const ContactWrapper = styled.section`
+  margin-top: 40px;
+`;
+
+const ContactRow = styled.section`
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   gap: 60px;
   flex-wrap: wrap;
-  align-items: flex-start;
   margin-bottom: 40px;
 
   @media (max-width: 1024px) {
     justify-content: space-between;
   }
 
-  @media (max-width: 768px) {
-    gap: 30px;
-  }
-
   @media (max-width: 500px) {
     flex-direction: column;
-    text-align: left;
     gap: 20px;
   }
 `;
 
-const ContactItem = styled.div`
-  display: flex;
-  align-items: flex-start;
-  color: #b8b8b8;
-  font-size: 1rem;
-  gap: 10px;
-  text-align: left;
-  line-height: 1.4;
-
-  span {
-    display: inline-block;
-  }
+const ContactTitle = styled.h4`
+  color: #fff;
+  font-weight: normal;
+  margin: 0;
 `;
 
-const Icon = styled.span`
+const ContactItem = styled.article`
+  display: flex;
+  gap: 10px;
+  color: #b8b8b8;
+  line-height: 1.4;
+  max-width: ${({ maxWidth }) => (maxWidth ? "280px" : "auto")};
+`;
+
+const Icon = styled.i`
   color: #fff;
   font-size: 24px;
   margin-top: 2px;
 `;
 
-const BottomBar = styled.div`
+const BottomBar = styled.section`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #333;
   padding-top: 40px;
   font-size: 0.9rem;
   color: #b8b8b8;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+`;
+
+const BottomText = styled.p`
+  margin: 0;
+`;
+
+const BottomLinks = styled.nav`
+  display: flex;
+  gap: 20px;
 
   a {
     color: #b8b8b8;
@@ -225,12 +225,6 @@ const BottomBar = styled.div`
     &:hover {
       color: #fff;
     }
-  }
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
   }
 `;
 

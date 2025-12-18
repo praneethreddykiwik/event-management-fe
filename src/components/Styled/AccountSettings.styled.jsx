@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledBaseButton } from "./Buttons.styled";
+import { StyledBaseButton, StyledTransparentButton } from "./Buttons.styled";
 import { StyledHeading, StyledMediumHeading } from "./Typography.styled";
 
 const textAlign = ({ left, right }) =>
@@ -15,18 +15,12 @@ export const StyledMediumHeadingAccount = styled(StyledMediumHeading)`
   text-align: ${textAlign};
 `;
 
-export const StyledLink = styled.button`
+export const StyledLink = styled(StyledTransparentButton)`
   display: flex;
   align-items: center;
-  font-size: 0.75em;
-  font-weight: 400;
+  font-size: 16px;
   margin-left: 50px;
   color: #060058;
-  // font-weight: 600;
-  background: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
 
   &:hover {
     text-decoration: none;
@@ -44,7 +38,7 @@ export const StyledSectionText = styled.div`
   font-size: 1.2em;
   margin-top: 10px;
 `;
-export const StyledSemiHeadingAccount = styled.h4`
+export const StyledSemiHeadingAccount = styled.p`
   font-size: 24px;
   line-height: 28px;
   margin: 75px 0 12px 0;
@@ -199,7 +193,6 @@ export const StyledProfileCard = styled.div`
   background: #eef8ff;
   border-radius: 10px;
   padding: 16px;
-  font-family: sans-serif;
   box-shadow: 0 0 0 1px #dbe7f1 inset;
   margin: 10px;
 `;
@@ -311,4 +304,9 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
 
 export const LabelText = styled.span`
   margin-left: 10px;
+`;
+
+export const UpgrateOptions = styled.div`
+  margin-top: 40px;
+  color: #AEAEAE;
 `;

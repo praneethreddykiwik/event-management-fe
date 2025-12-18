@@ -3,7 +3,7 @@ import {
   HEADINGS,
   TEXTS,
   SETTINGS_LABELS,
-} from "../../enum/common";
+} from "../../enum/accountsettings.common";
 
 export const sections = [
   {

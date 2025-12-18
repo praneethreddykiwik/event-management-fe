@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { HEADINGS } from "../../enum/common";
+import { HEADINGS } from "../../enum/accountsettings.common";
 import {
   StyledAccButton,
   StyledButtonContainer,
@@ -11,19 +11,24 @@ import {
   StyledRightContent,
   StyledSection,
   StyledSectionText,
+  UpgrateOptions
 } from "../../components/Styled/AccountSettings.styled";
-import AccountSettingsForm from "./AccountSettingsForm";
 import { sections } from "./AccountSettings.helper";
+import { Input } from "../../components/Inputs/Input";
 
 const AccountSettingsRightContent = () => {
   // ----- CONFIG FOR MAPPING -----
-  
 
+  const [upgradeOptions, setUpgradeOptions] = useState([]);
+
+  function handleCheckBoxChage(data) {
+    setUpgradeOptions((prev) =>
+      data.checked ? [...prev, data.item] : prev.filter((v) => v !== data.item)
+    );
+  }
   return (
     <StyledRightContent>
-      <StyledHeadingTitle left>
-        {HEADINGS.ACCOUNT_SETTINGS}
-      </StyledHeadingTitle>
+      <StyledHeadingTitle left>{HEADINGS.ACCOUNT_SETTINGS}</StyledHeadingTitle>
 
       <StyledHr />
 
@@ -40,14 +45,26 @@ const AccountSettingsRightContent = () => {
       ))}
 
       <StyledButtonContainer left>
-        <StyledAccButton style={{ marginTop: "10px" }}>
-          Upgrade now
-        </StyledAccButton>
+        <StyledAccButton type="base">Upgrade now </StyledAccButton>
       </StyledButtonContainer>
 
       <StyledHr />
 
-      <AccountSettingsForm />
+      <UpgrateOptions>
+        <Input
+          type="checkbox-group"
+          name="upgradeOptions"
+          placeholder=""
+          list={[
+            "Block adult contents from gallery",
+            "Opt out of recommendation based on views and subscriptions",
+            "Don’t allow search engines to index my profile",
+            "Allow auto update of contents",
+          ]}
+          value={upgradeOptions}
+          onChange={handleCheckBoxChage}
+        />
+      </UpgrateOptions>
     </StyledRightContent>
   );
 };
