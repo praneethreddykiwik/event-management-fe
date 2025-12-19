@@ -1,7 +1,7 @@
 import React from "react";
-import OrderSummary from "./orderSummary";
-import RightMainCard from "./rightMainCard";
-import PromoCode from "./promoCode";
+import OrderSummary from "./OrderSummary";
+import RightMainCard from "./RightMainCard";
+import PromoCode from "./PromoCode";
 import styled from "styled-components";
 
 const PaymentSuccess = () => {

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import LastBox from "./ControlLastBox.jsx";
-import CardsContainer from "./ControlCards.jsx";
-import FourCardsContainer from "./ControlFourCards.jsx";
-import RightCardContainer from "./ControlRightCard.jsx";
-import Topcard2 from "./ControlTopCard.jsx";
-import VenueCard from "./ControlWithImages.jsx";
-import UsageBox from "./ControlGraph.jsx";
+import LastBox from "./ControlLastBox";
+import CardsContainer from "./ControlCards";
+import FourCardsContainer from "./ControlFourCards";
+import RightCardContainer from "./ControlRightCard";
+import Topcard2 from "./ControlTopCard";
+import VenueCard from "./ControlWithImages";
+import UsageBox from "./ControlGraph";
 
 const ControlDashboard = () => {
   return (
@@ -15,7 +15,7 @@ const ControlDashboard = () => {
       <Wrapper>
         <Topcard2 />
         <BodySection>
-           <LeftContent>
+           <LeftContent> 
             <TopRow>
               <VenueCard />
               <UsageBox />
