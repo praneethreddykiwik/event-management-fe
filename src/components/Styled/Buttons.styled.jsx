@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export const StyledBaseButton = styled.button`
   height: 40px;
   border-radius: 30px;
+  width: 100%;
+
   padding: 6px 20px;
   background-color: #26c867;
   color: #000000;
@@ -15,6 +17,7 @@ export const StyledBaseButton = styled.button`
 
 export const StyledOutlinedButton = styled.button`
   height: 40px;
+  width: 100%;
   border-radius: 30px;
   padding: 6px 20px;
   background-color: #fff;
@@ -27,6 +30,8 @@ export const StyledOutlinedButton = styled.button`
 
 export const StyledSecButton = styled.button`
   height: 40px;
+  width: 100%;
+
   border-radius: 30px;
   padding: 6px 20px;
   background-color: #fff;

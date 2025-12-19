@@ -1,5 +1,6 @@
 /** @format */
 
+import { validateInput } from '../../components/Validations/validationInput';
 import { Input } from '../../components/Inputs/Input';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -17,6 +18,16 @@ const MyComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [gender, setGender] = useState('');
   const [favPlaces, setFavPlaces] = useState([]);
+
+  const [errors, setErrors] = useState({
+    userName: '',
+    firstName: '',
+    secondName: '',
+    number: '',
+    password: '',
+    gender: '',
+    favPlaces: '',
+  });
 
   function handleUserNameChage(UserName) {
     setUserName(UserName.value);
@@ -47,18 +58,35 @@ const MyComponent = () => {
     );
   }
 
-  function handleSubmit() {
-    const formData = {
-      userName,
-      firstName,
-      secondName,
-      number,
-      password,
-      gender,
-      favPlaces,
-    };
-    console.log('Submitted Data:', formData);
-  }
+function handleSubmit() {
+  const newErrors = {
+    userName: validateInput(userName, ['required']),
+    firstName: validateInput(firstName, ['required']),
+    secondName: '',
+    number: validateInput(number, ['required']),
+    password: validateInput(password, [
+      'required',
+      { type: 'min-length', value: 6 },
+    ]),
+    gender: validateInput(gender, ['required']),
+    favPlaces: validateInput(favPlaces, ['required']),
+  };
+
+  setErrors(newErrors);
+
+  const hasError = Object.values(newErrors).some(Boolean);
+  if (hasError) return;
+
+  console.log('Submitted Data:', {
+    userName,
+    firstName,
+    secondName,
+    number,
+    password,
+    gender,
+    favPlaces,
+  });
+}
 
   return (
     <ExampleInputs>
@@ -66,37 +94,48 @@ const MyComponent = () => {
         type="text"
         value={userName}
         onChange={handleUserNameChage}
-        placeholder={'User Name'}
+        placeholder="User Name"
+        validations={['required']}
+        error={errors.userName}
+        setError={(err) => setErrors((prev) => ({ ...prev, userName: err }))}
       />
 
       <Input
         type="text"
         value={firstName}
         onChange={handleFirstNameChage}
-        placeholder={'First Name'}
+        placeholder="First Name"
+        validations={['required']}
+        error={errors.firstName}
+        setError={(err) => setErrors((prev) => ({ ...prev, firstName: err }))}
       />
 
       <Input
         type="text"
         value={secondName}
         onChange={handleSecondNameChage}
-        placeholder={'Second Name'}
+        placeholder="Second Name"
       />
 
       <Input
         type="number"
         value={number}
         onChange={handleNumberChage}
-        placeholder={'Mobile Number'}
+        placeholder="Mobile Number"
+        validations={['required']}
+        error={errors.number}
+        setError={(err) => setErrors((prev) => ({ ...prev, number: err }))}
       />
 
       <ExInputWrapper>
         <Input
-          type={showPassword ? 'text' : 'password'}
-          required
+          type="password"
           value={password}
           onChange={handlePasswordChage}
-          placeholder={'Password'}
+          placeholder="Password"
+          validations={['required', { type: 'min-length', value: 6 }]}
+          error={errors.password}
+          setError={(err) => setErrors((prev) => ({ ...prev, password: err }))}
         />
         <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? (
@@ -114,6 +153,9 @@ const MyComponent = () => {
         list={['male', 'female', 'prefer not to say']}
         value={gender}
         onChange={handleGenderChange}
+        validations={['required']}
+        error={errors.gender}
+        setError={(err) => setErrors((prev) => ({ ...prev, gender: err }))}
       />
       <Input
         type="checkbox-group"
@@ -122,6 +164,9 @@ const MyComponent = () => {
         list={['Hyderbad', 'Delhi', 'Some other place']}
         value={favPlaces}
         onChange={handleCheckBoxChage}
+        validations={['required']}
+        error={errors.favPlaces}
+        setError={(err) => setErrors((prev) => ({ ...prev, favPlaces: err }))}
       />
 
       <Button type="base" onClick={handleSubmit}>

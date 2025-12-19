@@ -8,6 +8,7 @@ import { StyledFlexContainer } from '../../components/Styled/Common.styled';
 import {LOGIN_COMMON} from '../../enum/Login.Common';
 import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
 import { StyledParagraph } from '../../components/Styled/Typography.styled';
+import { Button } from '../../components/Buttons/Button';
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
@@ -63,9 +64,7 @@ export const ContinueSignIn = styled.div`
   display: flex;
   gap: 10px;
 `;
-export const Button = styled(StyledOutlinedButton)`
-  width: 100%;
-`;
+
 export const AppleLogo = styled.img`
   width: 17px;
   position: relative;

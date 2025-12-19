@@ -5,6 +5,8 @@ import {
   InputCheckbox,
   InputRadio,
 } from '../Styled/Inputs.styled';
+import { validateInput } from '../../components/Validations/validationInput';
+import styled from 'styled-components';
 
 export const Input = ({
   type,
@@ -14,139 +16,158 @@ export const Input = ({
   name,
   list = [],
   disabled,
+  validations = [],
+  error,
+  setError,
 }) => {
   const makeId = (item) =>
     `${name}-${String(item).toLowerCase().replace(/\s+/g, '-')}`;
 
-  switch (type) {
-    case 'text':
-      return (
+  const runValidation = (val) => {
+    if (!setError) return;
+    const err = validateInput(val, validations);
+    setError(err);
+  };
+
+  const handleChange = (val) => {
+    onChange({ value: val });
+    runValidation(val);
+  };
+
+  if (type === 'text' || type === 'email') {
+    return (
+      <>
         <InputDefault
           id={name}
           name={name}
-          type="text"
+          type={type}
           placeholder={placeholder}
           value={value || ''}
-          onChange={(e) => onChange({ value: e.target.value })}
+          onChange={(e) => handleChange(e.target.value)}
           disabled={disabled}
+          $hasError={!!error}
         />
-      );
+        {error && <ErrorText>{error}</ErrorText>}
+      </>
+    );
+  }
 
-    case 'number':
-      return (
+
+  if (type === 'number') {
+    return (
+      <>
         <InputNumber
           id={name}
           name={name}
           type="number"
           placeholder={placeholder}
           value={value ?? ''}
-          onChange={(e) => onChange({ value: e.target.value })}
+          onChange={(e) => handleChange(e.target.value)}
           disabled={disabled}
+          $hasError={!!error}
         />
-      );
-
-    case 'password':
-      return (
-        <InputPassword
-          id={name}
-          name={name}
-          type="password"
-          placeholder={placeholder}
-          value={value || ''}
-          onChange={(e) => onChange({ value: e.target.value })}
-          disabled={disabled}
-        />
-      );
-
-    case 'checkbox-group':
-      return (
-        <div role="group" aria-labelledby={`${name}-label`}>
-          <div id={`${name}-label`} style={{ marginBottom: 6, fontSize: 14 }}>
-            {placeholder}
-          </div>
-          {list.map((item) => {
-            const id = makeId(item);
-            const isChecked = Array.isArray(value) && value.includes(item);
-            return (
-              <label
-                key={id}
-                htmlFor={id}
-                style={{
-                  display: 'flex',
-                  gap: 8,
-                  alignItems: 'center',
-                  marginBottom: 6,
-                  cursor: 'pointer',
-                }}
-              >
-                <InputCheckbox
-                  id={id}
-                  name={name}
-                  type="checkbox"
-                  checked={!!isChecked}
-                  onChange={(e) =>
-                    onChange({
-                      type: 'checkbox-toggle',
-                      checked: e.target.checked,
-                      item,
-                    })
-                  }
-                  disabled={disabled}
-                />
-                <span>{item}</span>
-              </label>
-            );
-          })}
-        </div>
-      );
-
-    case 'radio-group':
-      return (
-        <div role="radiogroup" aria-labelledby={`${name}-label`}>
-          <div id={`${name}-label`} style={{ marginBottom: 6, fontSize: 14 }}>
-            {placeholder}
-          </div>
-          {list.map((item) => {
-            const id = makeId(item);
-            const isChecked = value === item;
-            return (
-              <label
-                key={id}
-                htmlFor={id}
-                style={{
-                  display: 'flex',
-                  gap: 8,
-                  alignItems: 'center',
-                  marginBottom: 6,
-                  cursor: 'pointer',
-                }}
-              >
-                <InputRadio
-                  id={id}
-                  name={name}
-                  type="radio"
-                  checked={!!isChecked}
-                  onChange={() => onChange({ value: item })}
-                  disabled={disabled}
-                />
-                <span>{item}</span>
-              </label>
-            );
-          })}
-        </div>
-      );
-
-    default:
-      return (
-        <InputDefault
-          id={name}
-          name={name}
-          type="text"
-          placeholder={placeholder}
-          value={value || ''}
-          onChange={(e) => onChange({ value: e.target.value })}
-          disabled={disabled}
-        />
-      );
+        {error && <ErrorText>{error}</ErrorText>}
+      </>
+    );
   }
+
+
+if (type === 'password' || type === 'text') {
+  return (
+    <InputPassword
+      id={name}
+      name={name}
+      type={type} 
+      placeholder={placeholder}
+      value={value || ''}
+      onChange={(e) => handleChange(e.target.value)}
+      disabled={disabled}
+      $hasError={!!error}
+    />
+  );
+}
+
+
+  if (type === 'checkbox-group') {
+    return (
+      <>
+        <GroupLabel>{placeholder}</GroupLabel>
+        {list.map((item) => {
+          const id = makeId(item);
+          const isChecked = Array.isArray(value) && value.includes(item);
+
+          return (
+            <label key={id} style={rowStyle}>
+              <InputCheckbox
+                id={id}
+                name={name}
+                type="checkbox"
+                checked={!!isChecked}
+                onChange={(e) => {
+                  onChange({
+                    type: 'checkbox-toggle',
+                    checked: e.target.checked,
+                    item,
+                  });
+                  runValidation(value);
+                }}
+                disabled={disabled}
+              />
+              <span>{item}</span>
+            </label>
+          );
+        })}
+        {error && <ErrorText>{error}</ErrorText>}
+      </>
+    );
+  }
+
+  if (type === 'radio-group') {
+    return (
+      <>
+        <GroupLabel>{placeholder}</GroupLabel>
+        {list.map((item) => {
+          const id = makeId(item);
+          const isChecked = value === item;
+
+          return (
+            <label key={id} style={rowStyle}>
+              <InputRadio
+                id={id}
+                name={name}
+                type="radio"
+                checked={!!isChecked}
+                onChange={() => handleChange(item)}
+                disabled={disabled}
+              />
+              <span>{item}</span>
+            </label>
+          );
+        })}
+        {error && <ErrorText>{error}</ErrorText>}
+      </>
+    );
+  }
+
+  return null;
+};
+
+const ErrorText = styled.p`
+  color: #e53935;
+  font-size: 12px;
+  margin: 0;
+  bottom: 42px;
+  left: 21px;
+  position: absolute;
+`;
+
+const GroupLabel = styled.div`
+  font-size: 14px;
+`;
+
+const rowStyle = {
+  display: 'flex',
+  gap: 8,
+  alignItems: 'center',
+  cursor: 'pointer',
 };

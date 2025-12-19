@@ -1,10 +1,12 @@
 /** @format */
+
 import { useState } from 'react';
 import styled from 'styled-components';
-import ClosePassWord from '../../assets/Logo/ClosePassword.svg';
-import SeePassWord from '../../assets/Logo/SeePassword.svg';
 import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { InputDefault } from '../../components/Styled/Inputs.styled';
+import { validateInput } from '../../components/Validations/validationInput';
+import { Input } from '../../components/Inputs/Input';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../../components/Buttons/Button';
 import {
   StyledAnchor,
   StyledParagraphSmallGray,
@@ -12,58 +14,125 @@ import {
 import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
 
 const Forms = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
-  // dummy commit
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    terms: '',
+  });
+
+  const handleSubmit = () => {
+    const newErrors = {
+      email: validateInput(email, ['required', 'email']),
+      password: validateInput(password, [
+        'required',
+        { type: 'min-length', value: 6 },
+      ]),
+      terms: acceptedTerms ? '' : 'You must accept terms & conditions',
+    };
+
+    setErrors(newErrors);
+
+    const hasError = Object.values(newErrors).some(Boolean);
+    if (hasError) return;
+    
+    navigate('/');
+  };
+
   return (
     <Form>
       <InputBox>
         <InputWrapper>
-          <Input type="email" required placeholder="Email address" />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={email}
+            onChange={({ value }) => setEmail(value)}
+            validations={['required', 'email']}
+            error={errors.email}
+            setError={(err) => setErrors((prev) => ({ ...prev, email: err }))}
+          />
         </InputWrapper>
 
         <InputWrapper>
           <Input
             type={showPassword ? 'text' : 'password'}
-            required
+            name="password"
             placeholder="Password"
+            value={password}
+            onChange={({ value }) => setPassword(value)}
+            validations={['required', { type: 'min-length', value: 6 }]}
+            error={errors.password}
+            setError={(err) =>
+              setErrors((prev) => ({ ...prev, password: err }))
+            }
           />
+
           <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <PassWordImg src={SeePassWord} alt="show" />
-            ) : (
-              <PassWordImg src={ClosePassWord} alt="hide" />
-            )}
+            <span className="material-symbols-outlined">
+              {showPassword ? 'visibility' : 'visibility_off'}
+            </span>
           </ShowHideIcon>
         </InputWrapper>
       </InputBox>
+
       <ForgotPassword>
         {LOGIN_COMMON.FORGOT_PASS}
-        <Reset> {LOGIN_COMMON.RESET}</Reset>
+        <Reset>{LOGIN_COMMON.RESET}</Reset>
       </ForgotPassword>
 
       <CheckboxRow>
-        <InputCheckBox type="checkbox" />
+        <Input
+          type="checkbox-group"
+          checked={acceptedTerms}
+          onChange={(e) => setAcceptedTerms(e.target.checked)}
+        />
         <AnchorParah>
-          {LOGIN_COMMON.TERMS}{' '}
-          <SignInAnchor>{LOGIN_COMMON.CONDITIONS}</SignInAnchor> and{' '}
+          {LOGIN_COMMON.TERMS}
+          <SignInAnchor>{LOGIN_COMMON.CONDITIONS}</SignInAnchor> and
           <SignInAnchor>{LOGIN_COMMON.POLICY}</SignInAnchor>
         </AnchorParah>
       </CheckboxRow>
 
-      <ContinueButton type="base">{LOGIN_COMMON.CONTINUE}</ContinueButton>
+      {errors.terms && (
+        <StyledParagraphSmallGray
+          style={{ color: 'red', margin: 0, fontSize: 12 }}
+        >
+          {errors.terms}
+        </StyledParagraphSmallGray>
+      )}
+
+      <Button type="base" onClick={handleSubmit}>
+        {LOGIN_COMMON.CONTINUE}
+      </Button>
+
       <NewUser>
         {LOGIN_COMMON.NEW_USER}
         <RegisterAnchor>{LOGIN_COMMON.REGISTER}</RegisterAnchor>
+        <RegisterAnchor onClick={() => navigate('/Registration')}>
+          {LOGIN_COMMON.REGISTER}
+        </RegisterAnchor>
       </NewUser>
 
       <AccountSignIn>
-        {LOGIN_COMMON.ACCOUNT}{' '}
-        <SignInAnchoru>{LOGIN_COMMON.SIGN_IN}</SignInAnchoru>
+        {LOGIN_COMMON.ACCOUNT}
+        <SignInAnchoru onClick={() => navigate('/login')}>
+          {LOGIN_COMMON.SIGN_IN}
+        </SignInAnchoru>
       </AccountSignIn>
+
       <TermsConditionsTxt>{LOGIN_COMMON.TERMS_CONDITIONS}</TermsConditionsTxt>
     </Form>
   );
 };
+
 export default Forms;
 
 export const Form = styled.div`
@@ -76,13 +145,12 @@ export const Form = styled.div`
 export const InputBox = styled.div`
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
 `;
 export const InputWrapper = styled.div`
   position: relative;
 `;
-export const Input = styled(InputDefault)``;
 export const ShowHideIcon = styled.span`
   position: absolute;
   right: 15px;
@@ -91,7 +159,6 @@ export const ShowHideIcon = styled.span`
   font-size: 18px;
 `;
 export const PassWordImg = styled.img``;
-
 export const ForgotPassword = styled(StyledParagraphSmallGray)`
   margin-top: 3px;
   margin-bottom: 15px;
@@ -117,7 +184,10 @@ export const CheckboxRow = styled.div`
     display: none;
   }
 `;
-export const InputCheckBox = styled.input``;
+export const InputCheckBox = styled.input`
+  accent-color: #27c14a;
+  color: white;
+`;
 export const NewUser = styled(StyledParagraphSmallGray)`
   @media screen and (min-width: 769px) {
     display: none;
@@ -134,8 +204,8 @@ export const RegisterAnchor = styled(StyledAnchor)`
 `;
 
 export const AnchorParah = styled(StyledParagraphSmallGray)`
-  line-height: 18.2px;
   text-align: justify;
+  margin-bottom: 0;
 `;
 export const ContinueButton = styled(StyledBaseButton)`
   color: white;
