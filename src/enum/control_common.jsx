@@ -3,9 +3,8 @@ import control_img from "../assets/ControlPage_img/control_img.jpeg";
 
 export const HALLS_DASHBOARD = {
   USER_NAME: "Henry, Arthur",
-  
-
-
+  CHAT_ICON: "chat",
+  CALL_ICON: "call",
   CONTROLHEADER: "Control",
   CONTROL_ICON: "bar_chart",
   CONTROLHEADER2: "Available device and controls ",

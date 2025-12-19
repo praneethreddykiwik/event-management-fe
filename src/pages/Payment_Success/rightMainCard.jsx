@@ -1,7 +1,7 @@
 import { PAYMENT_PAGE } from "../../enum/Payment.common";
 import styled from "styled-components";
-import PaymentSuccessfull from "./paymentSuccessfull";
-import Details from "./details";
+import PaymentSuccessfull from "./PaymentSuccessfull";
+import Details from "./Details";
 import payment_img from "../../assets/payment_images/payment_img.jpg";
 
 const rightMainCard = () => {
@@ -16,8 +16,7 @@ const rightMainCard = () => {
             <DownloadBtn>
               <Stylespan
                 className="material-icons"
-                style={{ fontSize: "18px", marginRight: "6px" }}
-              >
+                style={{ fontSize: "18px", marginRight: "6px" }}>
                 {PAYMENT_PAGE.DOWNLOAD_ICON}
               </Stylespan>
               <Stylespan>{PAYMENT_PAGE.DOWNLOAD_TEXT}</Stylespan>

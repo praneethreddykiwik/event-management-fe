@@ -1,22 +1,22 @@
 /** @format */
-import LoginImages from './LoginImages';
-import WelcomeTxts from './WelcomeTxts';
-import GetStartedWithButtons from './GetStartedWithButtons';
-import LineTxts from './LineTxts';
-import Forms from './Forms';
-import leftImage1 from '../../assets/loginImgs/left1.jpg';
-import leftImage2 from '../../assets/loginImgs/left2.jpg';
-import leftImage3 from '../../assets/loginImgs/left3.jpg';
-import leftImage4 from '../../assets/loginImgs/left4.jpg';
-import middleImage1 from '../../assets/loginImgs/middle1.jpg';
-import middleImage2 from '../../assets/loginImgs/middle2.jpg';
-import middleImage3 from '../../assets/loginImgs/middle3.jpg';
-import middleImage4 from '../../assets/loginImgs/middle4.jpg';
-import rightImage1 from '../../assets/loginImgs/right1.jpg';
-import rightImage2 from '../../assets/loginImgs/right2.jpg';
-import rightImage3 from '../../assets/loginImgs/right3.jpg';
-import rightImage4 from '../../assets/loginImgs/right4.jpg';
-import styled from 'styled-components';
+import LoginImages from "./LoginImages";
+import WelcomeTxts from "./WelcomeTxts";
+import GetStartedWithButtons from "./GetStartedWithButtons";
+import LineTxts from "./LineTxts";
+import Forms from "./Forms";
+import leftImage1 from "../../assets/loginImgs/left1.jpg";
+import leftImage2 from "../../assets/loginImgs/left2.jpg";
+import leftImage3 from "../../assets/loginImgs/left3.jpg";
+import leftImage4 from "../../assets/loginImgs/left4.jpg";
+import middleImage1 from "../../assets/loginImgs/middle1.jpg";
+import middleImage2 from "../../assets/loginImgs/middle2.jpg";
+import middleImage3 from "../../assets/loginImgs/middle3.jpg";
+import middleImage4 from "../../assets/loginImgs/middle4.jpg";
+import rightImage1 from "../../assets/loginImgs/right1.jpg";
+import rightImage2 from "../../assets/loginImgs/right2.jpg";
+import rightImage3 from "../../assets/loginImgs/right3.jpg";
+import rightImage4 from "../../assets/loginImgs/right4.jpg";
+import styled from "styled-components";
 
 const Login = () => {
   const leftImages = [
@@ -72,6 +72,11 @@ export const StyledContainer = styled.div`
   height: 100%;
   background: #fff;
   display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  gap: 20px;
+  margin-top: 40px;
   justify-content: center;
 
   @media (max-width: 768px) {

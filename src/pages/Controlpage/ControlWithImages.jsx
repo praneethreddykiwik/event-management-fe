@@ -1,10 +1,8 @@
 
 import styled from "styled-components";
-import {HALLS_DASHBOARD} from "../../enum/control_common";
+import { HALLS_DASHBOARD } from "../../enum/control_common";
 import Conference_image from "../../assets/ControlPage_img/conference_image.jpg";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
-import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { FiPhoneCall } from "react-icons/fi";
 
 const VenueCard = () => {
   return (
@@ -14,14 +12,14 @@ const VenueCard = () => {
 
         <Avatar src={Control_avtar} alt="User" />
 
-      <WhiteCard>
-        <UserName>Henry, Arthur</UserName>
+        <WhiteCard>
+          <UserName>{HALLS_DASHBOARD.USER_NAME}</UserName>
 
-        <Icons>
-          <HiOutlineChatAlt2 size={22} />
-          <FiPhoneCall size={20} />
-        </Icons>
-       </WhiteCard>
+          <Icons>
+            <Span1 className="material-icons-outlined" style={{ fontSize: "22px" }}>{HALLS_DASHBOARD.CHAT_ICON}</Span1>
+            <Span2 className="material-icons-outlined" style={{ fontSize: "20px" }}>{HALLS_DASHBOARD.CALL_ICON}</Span2>
+          </Icons>
+        </WhiteCard>
       </VenueCard2>
 
       <SideImages>
@@ -91,6 +89,9 @@ const WhiteCard = styled.div`
   border-radius: 0 0 16px 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 `;
+const Span1 = styled.span``;
+
+const Span2 = styled.span``;
 
 const UserName = styled.h3`
   margin: 10px;
