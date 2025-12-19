@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-
-import { HEADINGS } from "../../enum/accountsettings.common";
+import google from "../../assets/Logo/Google.svg.webp";
+import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
 import {
+  Action,
+  ActionSpan,
+  Icon,
+  RowLink,
+  Section,
+  SectionHeader,
   StyledAccButton,
   StyledButtonContainer,
   StyledHeadingTitle,
   StyledHr,
-  StyledLink,
-  StyledMediumHeadingAccount,
   StyledRightContent,
-  StyledSection,
-  StyledSectionText,
-  UpgrateOptions
+  SubText,
+  TextLink,
+  Title,
+  UpgrateOptions,
+  GoogleLogo,
 } from "../../components/Styled/AccountSettings.styled";
-import { sections } from "./AccountSettings.helper";
 import { Input } from "../../components/Inputs/Input";
 
 const AccountSettingsRightContent = () => {
-
   const [upgradeOptions, setUpgradeOptions] = useState([]);
 
   function handleCheckBoxChage(data) {
@@ -31,18 +35,38 @@ const AccountSettingsRightContent = () => {
 
       <StyledHr />
 
-      {/* ---- Using MAP here ---- */}
-      {sections.map((section, index) => (
-        <StyledSection key={index}>
-          <StyledMediumHeadingAccount left small>
-            {section.heading}
-            {section.link && <StyledLink>{section.link.text}</StyledLink>}
-          </StyledMediumHeadingAccount>
+      <Section medium>
+        <SectionHeader>
+          <Title>{HEADINGS.LINKED_ACCOUNTS}</Title>
+          <Action>+ Add</Action>
+        </SectionHeader>
+        <RowLink>
+          <GoogleLogo src={google} alt="google" />
+          <TextLink>Google</TextLink>
+        </RowLink>
+      </Section>
 
-          <StyledSectionText left>{section.content}</StyledSectionText>
-        </StyledSection>
-      ))}
+      <Section small>
+        <SectionHeader>
+          <Title>{HEADINGS.EMAIL_PREFERENCE}</Title>
+          <Action>
+            <ActionSpan
+              className="material-symbols-outlined"
+              style={{ fontSize: "18px" }}
+            >
+              autorenew
+            </ActionSpan>
+          </Action>
+        </SectionHeader>
+        <SubText left>{TEXTS.EMAIL_PREFERENCE}</SubText>
+      </Section>
 
+      <Section small>
+        <SectionHeader>
+          <Title>{HEADINGS.BACKUP}</Title>
+        </SectionHeader>
+        <SubText left>{TEXTS.BACKUP}</SubText>
+      </Section>
       <StyledButtonContainer left>
         <StyledAccButton type="base">Upgrade now </StyledAccButton>
       </StyledButtonContainer>

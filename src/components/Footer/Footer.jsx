@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import E_logo from "../../assets/Header_images/E_logo.jpg";
 import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
 
@@ -40,7 +41,9 @@ const Footer = () => {
         ))}
 
         <LogoSection>
-          <Logo>eventz</Logo>
+          <Logo>
+            <LogoImage src={E_logo} alt="logo" /> eventz
+          </Logo>
           <Description>{FOOTER_CONTENT.DESCRIPTION_TEXT}</Description>
         </LogoSection>
       </FooterGrid>
@@ -143,10 +146,10 @@ const LogoSection = styled.section`
   text-align: right;
 `;
 
-const Logo = styled.h2`
+const Logo = styled.div`
   font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 `;
 
 const Description = styled.p`
@@ -226,6 +229,12 @@ const BottomLinks = styled.nav`
       color: #fff;
     }
   }
+`;
+
+const LogoImage = styled.img`
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
 `;
 
 export default Footer;
