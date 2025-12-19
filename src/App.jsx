@@ -1,5 +1,5 @@
 import "./App.css";
-import Footer from "./components/Footer/Footer";
+//import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
 import { Route, Routes } from "react-router-dom";
@@ -19,9 +19,10 @@ import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
 import Controlpage from "./pages/Controlpage/Controlpage";
 import Profile from "./pages/Profile/Profile.jsx";
 import DropdownComponent from "./components/Avatar/AvatarComponent.jsx";
+import AccountSettings from "./pages/AccountSettings/AccountSettings";
+import { paths } from "./constants/paths";
 // import LandingPage from "./pages/LandingPage/LandingPage";
 import NewEvent from "./pages/NewEvent/NewEvent";
-import { paths } from "./constants/paths";
 
 import SampleInput from "./pages/sample/SampleInput";
 import ExInput from "./pages/sample/ExInput";
@@ -53,6 +54,7 @@ function App() {
         <Route path="/exinput" element={<ExInput />} />
         <Route path={"/Subscriptions"} element={<Subscriptions />} />
         <Route path={"/PlayerCard"} element={<PlayerCard />} />
+        <Route path={paths.accountSettings} element={<AccountSettings />} />
       </Routes>
 
       {/* </Stdiv> */}
