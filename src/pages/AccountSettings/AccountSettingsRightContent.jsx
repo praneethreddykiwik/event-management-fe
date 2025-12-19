@@ -17,7 +17,6 @@ import { sections } from "./AccountSettings.helper";
 import { Input } from "../../components/Inputs/Input";
 
 const AccountSettingsRightContent = () => {
-  // ----- CONFIG FOR MAPPING -----
 
   const [upgradeOptions, setUpgradeOptions] = useState([]);
 
