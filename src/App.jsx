@@ -13,7 +13,7 @@ import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
 import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
-import Navbar from "./pages/Navbar/Navbar";
+// import Navbar from "./pages/Navbar/Navbar";
 import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
 import Controlpage from "./pages/Controlpage/Controlpage";
 import Profile from "./pages/Profile/Profile.jsx";
