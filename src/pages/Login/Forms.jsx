@@ -13,7 +13,7 @@ import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
 
 const Forms = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  // dummy commit
   return (
     <Form>
       <InputBox>
@@ -52,7 +52,8 @@ const Forms = () => {
 
       <ContinueButton type="base">{LOGIN_COMMON.CONTINUE}</ContinueButton>
       <NewUser>
-        {LOGIN_COMMON.NEW_USER}<RegisterAnchor>{LOGIN_COMMON.REGISTER}</RegisterAnchor>
+        {LOGIN_COMMON.NEW_USER}
+        <RegisterAnchor>{LOGIN_COMMON.REGISTER}</RegisterAnchor>
       </NewUser>
 
       <AccountSignIn>
