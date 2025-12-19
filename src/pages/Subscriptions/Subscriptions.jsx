@@ -43,27 +43,29 @@ const Subscriptions = () => {
     yearly ? Math.round(base * (1 - yearlyDiscount)) : base;
 
   const FEATURE_MAP = {
-    starter: [
-      SUBSCRIPTIONS_ENUM.access,
-      SUBSCRIPTIONS_ENUM.download,
-      SUBSCRIPTIONS_ENUM.audit,
-      SUBSCRIPTIONS_ENUM.storge,
-      SUBSCRIPTIONS_ENUM.chat,
+    STARTER: [
+      SUBSCRIPTIONS_ENUM.ACCESS,
+      SUBSCRIPTIONS_ENUM.DOWNLOAD,
+      SUBSCRIPTIONS_ENUM.AUDIT,
+      SUBSCRIPTIONS_ENUM.STORGE,
+      SUBSCRIPTIONS_ENUM.CHAT,
     ],
-    standard: [
-      SUBSCRIPTIONS_ENUM.attendance,
-      SUBSCRIPTIONS_ENUM.download_1,
-      SUBSCRIPTIONS_ENUM.advance_features,
-      SUBSCRIPTIONS_ENUM.more_storage,
-      SUBSCRIPTIONS_ENUM.chat_support,
-      SUBSCRIPTIONS_ENUM.backup,
+
+    STANDARD: [
+      SUBSCRIPTIONS_ENUM.ATTENDANCE,
+      SUBSCRIPTIONS_ENUM.DOWNLOAD_1,
+      SUBSCRIPTIONS_ENUM.ADVANCE_FEATURES,
+      SUBSCRIPTIONS_ENUM.MORE_STORAGE,
+      SUBSCRIPTIONS_ENUM.CHAT_SUPPORT,
+      SUBSCRIPTIONS_ENUM.BACKUP,
     ],
-    pro: [
-      SUBSCRIPTIONS_ENUM.advance_audit,
-      SUBSCRIPTIONS_ENUM.service,
-      SUBSCRIPTIONS_ENUM.advance_downloads,
-      SUBSCRIPTIONS_ENUM.super_storage,
-      SUBSCRIPTIONS_ENUM.add_more,
+
+    PRO: [
+      SUBSCRIPTIONS_ENUM.ADVANCE_AUDIT,
+      SUBSCRIPTIONS_ENUM.SERVICE,
+      SUBSCRIPTIONS_ENUM.ADVANCE_DOWNLOADS,
+      SUBSCRIPTIONS_ENUM.SUPER_STORAGE,
+      SUBSCRIPTIONS_ENUM.ADD_MORE,
     ],
   };
 
@@ -116,68 +118,67 @@ const Subscriptions = () => {
 
               <MobileLine>{SUBSCRIPTIONS_ENUM.mobileOneLiner}</MobileLine>
 
-              {/* <Features>
-                {key === "starter" && (
-                  <>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.access}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.download}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.audit}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.storge}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.chat}
-                    </Feature>
-                  </>
-                )}
-                {key === "standard" && (
-                  <>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.attendance}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.download_1}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.advance_features}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.more_storage}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.chat_support}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.backup}
-                    </Feature>
-                  </>
-                )}
-                {key === "pro" && (
-                  <>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.advance_audit}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.service}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.advance_downloads}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.super_storage}
-                    </Feature>
-                    <Feature $selected={selected === key}>
-                      {SUBSCRIPTIONS_ENUM.add_more}
-                    </Feature>
-                  </>
-                )}
-              </Features> */}
+              {key === "starter" && (
+                <>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.access}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.download}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.audit}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.storge}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.chat}
+                  </Feature>
+                </>
+              )}
+              {key === "standard" && (
+                <>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.attendance}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.download_1}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.advance_features}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.more_storage}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.chat_support}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.backup}
+                  </Feature>
+                </>
+              )}
+              {key === "pro" && (
+                <>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.advance_audit}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.service}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.advance_downloads}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.super_storage}
+                  </Feature>
+                  <Feature $selected={selected === key}>
+                    {SUBSCRIPTIONS_ENUM.add_more}
+                  </Feature>
+                </>
+              )}
+
               <Features>
                 {FEATURE_MAP[key]?.map((feature, index) => (
                   <Feature key={index} $selected={selected === key}>
