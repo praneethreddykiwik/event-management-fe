@@ -68,7 +68,7 @@ const AccountSettingsRightContent = () => {
         <SubText left>{TEXTS.BACKUP}</SubText>
       </Section>
       <StyledButtonContainer left>
-        <StyledAccButton type="base">Upgrade now </StyledAccButton>
+        <StyledAccButton>Upgrade now </StyledAccButton>
       </StyledButtonContainer>
 
       <StyledHr />
