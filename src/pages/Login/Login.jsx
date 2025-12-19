@@ -19,9 +19,33 @@ import rightImage4 from "../../assets/loginImgs/right4.jpg";
 import styled from "styled-components";
 
 const Login = () => {
-  const leftImages = [leftImage1, leftImage2, leftImage3, leftImage4];
-  const middleImages = [middleImage1, middleImage2, middleImage3, middleImage4];
-  const rightImages = [rightImage1, rightImage2, rightImage3, rightImage4];
+  const leftImages = [
+    leftImage2,
+    leftImage1,
+    leftImage3,
+    leftImage4,
+    middleImage3,
+    leftImage1,
+  ];
+  const middleImages = [
+    leftImage2,
+    middleImage3,
+    middleImage2,
+    leftImage2,
+    middleImage3,
+    middleImage4,
+    middleImage1,
+    leftImage2,
+  ];
+  const rightImages = [
+    rightImage1,
+    middleImage3,
+    middleImage3,
+    rightImage2,
+    rightImage3,
+    leftImage2,
+    rightImage4,
+  ];
 
   return (
     <StyledContainer>
@@ -45,7 +69,7 @@ const Login = () => {
 export default Login;
 
 export const StyledContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   background: #fff;
   display: flex;
   flex-direction: column;

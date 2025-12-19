@@ -1,15 +1,15 @@
 /** @format */
 import { useState } from 'react';
 import styled from 'styled-components';
-import ClosePassWord from '../../assets/Logo/ClosePassword.svg';
-import SeePassWord from '../../assets/Logo/SeePassword.svg';
 import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { InputDefault } from '../../components/Styled/Inputs.styled';
 import {
   StyledAnchor,
   StyledParagraphSmallGray,
 } from '../../components/Styled/Typography.styled';
-import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
+import {
+  StyledBaseButton
+} from '../../components/Styled/Buttons.styled';
+import { Input } from '../../components/Inputs/Input';
 
 const Forms = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +20,6 @@ const Forms = () => {
         <InputWrapper>
           <Input type="email" required placeholder="Email address" />
         </InputWrapper>
-
         <InputWrapper>
           <Input
             type={showPassword ? 'text' : 'password'}
@@ -28,11 +27,9 @@ const Forms = () => {
             placeholder="Password"
           />
           <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <PassWordImg src={SeePassWord} alt="show" />
-            ) : (
-              <PassWordImg src={ClosePassWord} alt="hide" />
-            )}
+            <span className="material-symbols-outlined">
+              {showPassword ? 'visibility' : 'visibility_off'}
+            </span>
           </ShowHideIcon>
         </InputWrapper>
       </InputBox>
@@ -44,15 +41,16 @@ const Forms = () => {
       <CheckboxRow>
         <InputCheckBox type="checkbox" />
         <AnchorParah>
-          {LOGIN_COMMON.TERMS}{' '}
-          <SignInAnchor>{LOGIN_COMMON.CONDITIONS}</SignInAnchor> and{' '}
+          {LOGIN_COMMON.TERMS}
+          <SignInAnchor>{LOGIN_COMMON.CONDITIONS}</SignInAnchor> and
           <SignInAnchor>{LOGIN_COMMON.POLICY}</SignInAnchor>
         </AnchorParah>
       </CheckboxRow>
 
       <ContinueButton type="base">{LOGIN_COMMON.CONTINUE}</ContinueButton>
       <NewUser>
-        {LOGIN_COMMON.NEW_USER}<RegisterAnchor>{LOGIN_COMMON.REGISTER}</RegisterAnchor>
+        {LOGIN_COMMON.NEW_USER}
+        <RegisterAnchor>{LOGIN_COMMON.REGISTER}</RegisterAnchor>
       </NewUser>
 
       <AccountSignIn>
@@ -81,7 +79,6 @@ export const InputBox = styled.div`
 export const InputWrapper = styled.div`
   position: relative;
 `;
-export const Input = styled(InputDefault)``;
 export const ShowHideIcon = styled.span`
   position: absolute;
   right: 15px;
