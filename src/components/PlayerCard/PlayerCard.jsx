@@ -107,12 +107,13 @@ export const Banner = styled.div`
   position: relative;
   width: 100%;
   height: 320px;
-  background-image: url("ev.jpeg");
+  background-image: url(${ev});
   background-size: cover;
   background-position: center;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
 `;
+
 
 export const BannerInner = styled.div`
   position: relative;
