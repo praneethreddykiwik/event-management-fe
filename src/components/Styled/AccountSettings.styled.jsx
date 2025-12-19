@@ -5,6 +5,8 @@ import { StyledHeading, StyledMediumHeading } from "./Typography.styled";
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
 
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
+
 // Account Settings Specific
 export const StyledHeadingTitle = styled(StyledHeading)`
   text-align: ${textAlign};
@@ -13,23 +15,6 @@ export const StyledHeadingTitle = styled(StyledHeading)`
 export const StyledMediumHeadingAccount = styled(StyledMediumHeading)`
   display: flex;
   text-align: ${textAlign};
-`;
-
-export const StyledLink = styled(StyledTransparentButton)`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-left: 50px;
-  color: #060058;
-
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
-export const StyledLinkIcon = styled.span`
-  transform: rotate(45deg);
-  margin-right: 10px;
 `;
 
 export const StyledSectionText = styled.div`
@@ -47,7 +32,7 @@ export const StyledSemiHeadingAccount = styled.p`
 `;
 
 export const StyledButtonContainer = styled.div`
-  margin: 10px 0 50px 0;
+  margin: 10px 0 25px 0;
   text-align: ${textAlign};
 `;
 
@@ -309,4 +294,71 @@ export const LabelText = styled.span`
 export const UpgrateOptions = styled.div`
   margin-top: 40px;
   color: #AEAEAE;
+`;
+
+export const GoogleLogo = styled.img`
+  width: 20px;
+  position: relative;
+  right: 4px;
+  bottom: 1px;
+`;
+
+export const Section = styled.div`
+  margin-top: ${marginTop}px;
+  margin-bottom: 50px;
+`;
+
+export const SectionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const Title = styled.p`
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #060058;
+`;
+
+export const Action = styled.button`
+  background: none;
+  border: none;
+  color: #060058;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 25px;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const ActionSpan = styled.span`
+  transform: rotate(45deg);
+  margin-right: 10px;
+`;
+
+export const RowLink = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Icon = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
+export const TextLink = styled.p`
+  margin: 0;
+  color: #aeaeae;
+`;
+
+export const SubText = styled.p`
+  margin: 0;
+  color: #aeaeae;
+  text-align: ${textAlign};
 `;
