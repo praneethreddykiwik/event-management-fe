@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home/Home";
+import Subscriptions from "./pages/Subscriptions/Subscriptions";
+import PlayerCard from "./components/PlayerCard/PlayerCard";
 import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
@@ -48,6 +50,8 @@ function App() {
         <Route path={paths.newsFeed} element={<NewEvent />} />
         <Route path={"/sampleinput"} element={<SampleInput />} />
         <Route path="/exinput" element={<ExInput />} />
+        <Route path={"/Subscriptions"} element={<Subscriptions />} />
+        <Route path={"/PlayerCard"} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
       </Routes>
 
