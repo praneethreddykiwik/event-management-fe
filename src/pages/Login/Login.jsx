@@ -72,11 +72,8 @@ export const StyledContainer = styled.div`
   height: 100%;
   background: #fff;
   display: flex;
-  flex-direction: column;
-  width: 400px;
   margin: auto;
   gap: 20px;
-  margin-top: 40px;
   justify-content: center;
 
   @media (max-width: 768px) {
