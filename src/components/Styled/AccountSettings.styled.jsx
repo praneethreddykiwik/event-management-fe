@@ -137,6 +137,7 @@ export const Item = styled.li`
 `;
 
 export const StyledAccButton = styled(StyledBaseButton)`
+  width: auto;
   color: #fff;
 `;
 
@@ -292,7 +293,7 @@ export const LabelText = styled.span`
 `;
 
 export const UpgrateOptions = styled.div`
-  margin-top: 40px;
+  margin: 40px 0;
   color: #AEAEAE;
 `;
 

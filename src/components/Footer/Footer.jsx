@@ -87,7 +87,7 @@ const FooterContainer = styled.footer`
   background: #131212;
   color: #fff;
   padding: 70px 120px 25px;
-  font-family: "Inter", sans-serif;
+  text-align: left;
 
   @media (max-width: 1024px) {
     padding: 50px;
@@ -98,7 +98,7 @@ const FooterContainer = styled.footer`
   }
 `;
 
-const FooterGrid = styled.section`
+const FooterGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
