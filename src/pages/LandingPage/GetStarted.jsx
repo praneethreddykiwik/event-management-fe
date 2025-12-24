@@ -1,6 +1,5 @@
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
-import { Button } from "../../components/Buttons/Button";
 import { GETSTARTED_TXT } from "../../enum/landingPage.common";
 import {
   StyledHeadingBig,
@@ -10,6 +9,8 @@ import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
 import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
+
 import { useNavigate } from "react-router-dom";
 const GetStarted = () => {
    const navigate = useNavigate();
@@ -25,7 +26,9 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
+            <StyledGetStartedBtn>
+              {GETSTARTED_TXT.START_BTN}
+            </StyledGetStartedBtn>
             <StyledLink>
               {GETSTARTED_TXT.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />
@@ -40,6 +43,10 @@ const GetStarted = () => {
     </StyledGetStartedLayout>
   );
 };
+
+const StyledGetStartedBtn = styled(StyledBaseButton)`
+  width: 120px;
+`;
 
 const StyledLink = styled(StyledAnchor)`
   color: ${({ theme }) => theme.colors.primary};
