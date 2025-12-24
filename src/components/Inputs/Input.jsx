@@ -87,6 +87,23 @@ if (type === 'password' || type === 'text') {
   );
 }
 
+if (type === 'checkbox') {
+  return (
+    <label style={rowStyle}>
+      <InputCheckbox
+        id={name}
+        name={name}
+        type="checkbox"
+        checked={!!value}
+        onChange={(e) => handleChange(e.target.checked)}
+        disabled={disabled}
+      />
+      <span>{list[0]}</span>
+      {error && <ErrorText>{error}</ErrorText>}
+    </label>
+  );
+}
+
 
   if (type === 'checkbox-group') {
     return (

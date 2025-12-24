@@ -7,7 +7,10 @@ import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
 import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { useNavigate } from "react-router-dom";
 const GetStarted = () => {
+   const navigate = useNavigate();
+
   return (
     <StyledGetStartedLayout>
       <StyledChildContainer>
@@ -19,7 +22,9 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
+            <Button type="base" onClick={() => navigate('/registration')}>
+              {GETSTARTED_TXT.START_BTN}
+            </Button>
             <Button type="transparent">
               {GETSTARTED_TXT.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />

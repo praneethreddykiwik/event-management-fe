@@ -5,9 +5,6 @@ import { Input } from '../../components/Inputs/Input';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from '../../components/Buttons/Button';
-import ClosePassWord from '../../assets/Logo/ClosePassword.svg';
-import SeePassWord from '../../assets/Logo/SeePassword.svg';
-import { PassWordImg, ShowHideIcon } from '../Login/Forms';
 
 const MyComponent = () => {
   const [userName, setUserName] = useState('');
@@ -129,7 +126,7 @@ function handleSubmit() {
 
       <ExInputWrapper>
         <Input
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           value={password}
           onChange={handlePasswordChage}
           placeholder="Password"
@@ -138,11 +135,9 @@ function handleSubmit() {
           setError={(err) => setErrors((prev) => ({ ...prev, password: err }))}
         />
         <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? (
-            <PassWordImg src={SeePassWord} alt="show" />
-          ) : (
-            <PassWordImg src={ClosePassWord} alt="hide" />
-          )}
+          <span className="material-symbols-outlined">
+            {showPassword ? 'visibility' : 'visibility_off'}
+          </span>
         </ShowHideIcon>
       </ExInputWrapper>
 
@@ -186,5 +181,12 @@ const ExampleInputs = styled.div`
 const ExInputWrapper = styled.div`
   position: relative;
   width: 100%;
+`;
+const ShowHideIcon = styled.span`
+  position: absolute;
+  right: 15px;
+  top: 9px;
+  cursor: pointer;
+  font-size: 18px;
 `;
 export default MyComponent;
