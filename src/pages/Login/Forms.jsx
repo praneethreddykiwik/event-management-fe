@@ -11,7 +11,10 @@ import {
   StyledAnchor,
   StyledParagraphSmallGray,
 } from '../../components/Styled/Typography.styled';
-import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
+import {
+  StyledBaseButton
+} from '../../components/Styled/Buttons.styled';
+import { Input } from '../../components/Inputs/Input';
 
 const Forms = () => {
   const navigate = useNavigate();
@@ -60,7 +63,6 @@ const Forms = () => {
             setError={(err) => setErrors((prev) => ({ ...prev, email: err }))}
           />
         </InputWrapper>
-
         <InputWrapper>
           <Input
             type={showPassword ? 'text' : 'password'}

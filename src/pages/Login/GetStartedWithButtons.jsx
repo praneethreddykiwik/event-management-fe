@@ -1,12 +1,9 @@
 /** @format */
 
-import apple from '../../assets/Logo/Apple.svg.png';
 import styled from 'styled-components';
-
+import apple from '../../assets/Logo/Apple.svg';
 import google from '../../assets/Logo/Google.svg.webp';
-import { StyledFlexContainer } from '../../components/Styled/Common.styled';
-import {LOGIN_COMMON} from '../../enum/Login.Common';
-import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
+import { LOGIN_COMMON } from '../../enum/Login.Common';
 import { StyledParagraph } from '../../components/Styled/Typography.styled';
 import { Button } from '../../components/Buttons/Button';
 const GetStartedWithButtons = () => {
@@ -15,17 +12,11 @@ const GetStartedWithButtons = () => {
       <GetStarted>{LOGIN_COMMON.STARTED_WITH}</GetStarted>
       <SignInTxtM>{LOGIN_COMMON.SIGN_IN_TEXT}</SignInTxtM>
       <ContinueSignIn>
-        <Button type="outlined">
-          <StyledFlexContainer>
-            <AppleLogo src={apple} alt="apple" />
-            {LOGIN_COMMON.APPLE}
-          </StyledFlexContainer>
+        <Button type="outlined" image={apple}>
+          {LOGIN_COMMON.APPLE}
         </Button>
-        <Button type="outlined">
-          <StyledFlexContainer>
-            <GoogleLogo src={google} alt="google" />
-            {LOGIN_COMMON.GOOGLE}
-          </StyledFlexContainer>
+        <Button type="outlined" image={google}>
+          {LOGIN_COMMON.GOOGLE}
         </Button>
       </ContinueSignIn>
     </GetStartedWithButtonsWrapper>
@@ -41,7 +32,6 @@ export const GetStarted = styled(StyledParagraph)`
     display: none;
   }
 `;
-
 export const SignInTxtM = styled(StyledParagraph)`
   @media (min-width: 60px) and (max-width: 768px) {
     margin-top: 35px;

@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 const JoinNow = () => {
   return (
-    <LandingPageLayout flexDirection= "column">
+    <LandingPageLayout flexDirection="column">
       <StyledContainerOne>
         <StyledContainerOneImg src={joinNowOne} />
         <StyledContainerOneImg src={joinNowTwo} />

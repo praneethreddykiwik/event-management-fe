@@ -90,7 +90,7 @@ const StyledSubContainerTwo = styled.div`
 
 // cards
 const StyledExperience = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
   width: 350px;
   padding-left: 10px;
   padding-right: 10px;
@@ -106,7 +106,7 @@ const StyledExperience = styled.div`
 `;
 
 const StyledConnection = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
   width: 350px;
   padding-left: 10px;
   padding-right: 10px;
@@ -123,7 +123,7 @@ const StyledConnection = styled.div`
 `;
 
 const StyledAnyWhere = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
   width: 400px;
   padding-left: 10px;
   padding-right: 10px;

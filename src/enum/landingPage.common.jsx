@@ -8,7 +8,7 @@ export const GETSTARTED_TXT = {
 
   //buttons text
   START_BTN: "Get started",
-  OUTLINE_BTN: "Get started",
+  OUTLINE_BTN: "Explore",
 };
 
 // find inspiration texts
@@ -70,7 +70,7 @@ export const CUSTOMERCOMPONET_TXT = {
 import styled from "styled-components";
 import { StyledGrayLink } from "../components/Styled/Typography.styled";
 const StyledAnchor = styled(StyledGrayLink)`
-  color: #26c867;
+  color: ${({ theme }) => theme.colors.primary};
   font-size: 14px;
   text-decoration: none;
 `;

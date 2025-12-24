@@ -2,7 +2,10 @@ import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
 import { Button } from "../../components/Buttons/Button";
 import { GETSTARTED_TXT } from "../../enum/landingPage.common";
-import { StyledHeadingBig } from "../../components/Styled/Typography.styled.jsx";
+import {
+  StyledHeadingBig,
+  StyledAnchor,
+} from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
 import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
@@ -22,13 +25,11 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <Button type="base" onClick={() => navigate('/registration')}>
-              {GETSTARTED_TXT.START_BTN}
-            </Button>
-            <Button type="transparent">
+            <Button type="base">{GETSTARTED_TXT.START_BTN}</Button>
+            <StyledLink>
               {GETSTARTED_TXT.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />
-            </Button>
+            </StyledLink>
           </StyledContentBtn>
         </StyledContent>
       </StyledChildContainer>
@@ -40,12 +41,18 @@ const GetStarted = () => {
   );
 };
 
+const StyledLink = styled(StyledAnchor)`
+  color: ${({ theme }) => theme.colors.primary};
+  font: ${({ theme }) => theme.typography["button-text"]};
+  text-decoration: none;
+`;
+
 const StyledGetStartedLayout = styled(LandingPageLayout)`
   background-color: #f1faff;
   gap: 20px;
 
   @media (max-width: 768px) {
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.white};
     background-image: url(${getStarted_imgMi});
     background-size: cover;
     background-position: center;
@@ -67,10 +74,6 @@ const StyledChildContainer = styled.div`
 `;
 const StyledRightChildContainer = styled.div`
   width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   @media (max-width: 768px) {
     display: none;
   }
@@ -88,7 +91,7 @@ const StyledContentParagraph = styled(StyledParagraphGray)`
   color: #88898bff;
 
   @media (max-width: 768px) {
-    color: #000000;
+    color: ${({ theme }) => theme.colors.white};
     font-size: 16px;
   }
 `;
@@ -97,11 +100,12 @@ const StyledContentBtn = styled.div`
   display: flex;
   gap: 30px;
   margin-top: 20px;
+  align-items: center;
 `;
 
 const StyledBtnIcon = styled.img`
   margin-left: 5px;
-  width: 10px;
+  width: 8px;
 `;
 
 const StyledChildContainerImg = styled.img`
@@ -109,7 +113,6 @@ const StyledChildContainerImg = styled.img`
 
   @media (max-width: 768px) {
     justify-content: center;
-    background-color: red;
     background-image: url(${getStarted_imgMi});
     background-size: cover;
     background-repeat: no-repeat;
