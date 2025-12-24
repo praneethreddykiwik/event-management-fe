@@ -14,7 +14,7 @@ import {
 import {
   StyledBaseButton
 } from '../../components/Styled/Buttons.styled';
-import { Input } from '../../components/Inputs/Input';
+// import { Input } from '../../components/Inputs/Input';
 
 const Forms = () => {
   const navigate = useNavigate();
