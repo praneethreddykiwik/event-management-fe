@@ -11,7 +11,10 @@ import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
+import { useNavigate } from "react-router-dom";
 const GetStarted = () => {
+   const navigate = useNavigate();
+
   return (
     <StyledGetStartedLayout>
       <StyledChildContainer>

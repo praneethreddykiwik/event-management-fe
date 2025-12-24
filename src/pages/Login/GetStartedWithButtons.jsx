@@ -54,3 +54,16 @@ export const ContinueSignIn = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const AppleLogo = styled.img`
+  width: 17px;
+  position: relative;
+  right: 4px;
+  bottom: 2px;
+`;
+export const GoogleLogo = styled.img`
+  width: 20px;
+  position: relative;
+  right: 4px;
+  bottom: 1px;
+`;

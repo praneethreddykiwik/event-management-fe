@@ -1,6 +1,9 @@
+/** @format */
+
 import { useState } from 'react';
 import ClosePassWord from '../../assets/Logos/SeePassWord.svg';
-import SeePassWord   from '../../assets/Logos/ClosePassword.svg';
+import SeePassWord from '../../assets/Logos/ClosePassword.svg';
+import { useNavigate } from 'react-router-dom';
 
 import {
   AnchorParah,
@@ -31,9 +34,12 @@ import {
 const Forms = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-
+  const navigate = useNavigate();
+  const handleContinue = () => {
+    navigate('/login');
+  };
   return (
-    <Form onSubmit={(e) => e.preventDefault()}> 
+    <Form onSubmit={(e) => e.preventDefault()}>
       <InputBox>
         <InputWrapper>
           <Input type="email" required placeholder="Email address" />
@@ -80,8 +86,10 @@ const Forms = () => {
         </AnchorParah>
       </CheckboxRow>
 
-      {/* ⚠ Button no longer triggers HTTP request */}
-      <ContinueButton type="button">{Continue}</ContinueButton>
+      {/*  Button no longer triggers HTTP request */}
+      <ContinueButton type="button" onClick={handleContinue}>
+        {Continue}
+      </ContinueButton>
 
       <AccountSignIn>
         {Account} <SignInAnchor>{SignIn}</SignInAnchor>
