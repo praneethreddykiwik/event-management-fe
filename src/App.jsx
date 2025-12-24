@@ -51,7 +51,7 @@ function App() {
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/dropdown"} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={"/sampleinput"} element={<SampleInput />} />
+        <Route path={'/sampleinput'} element={<SampleInput />} />
         <Route path="/exinput" element={<ExInput />} />
         <Route path="/exbutton" element={<ExButton />} />
         <Route path={"/Subscriptions"} element={<Subscriptions />} />
