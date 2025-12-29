@@ -26,7 +26,7 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <StyledGetStartedBtn>
+            <StyledGetStartedBtn onClick={() => navigate('/registration')}>
               {GETSTARTED_TXT.START_BTN}
             </StyledGetStartedBtn>
             <StyledLink>
