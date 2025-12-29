@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { StyledBaseButton } from "./Buttons.styled";
+import { StyledBaseButton, StyledTransparentButton } from "./Buttons.styled";
 import { StyledHeading, StyledMediumHeading } from "./Typography.styled";
 
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
+
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
 // Account Settings Specific
 export const StyledHeadingTitle = styled(StyledHeading)`
@@ -15,36 +17,13 @@ export const StyledMediumHeadingAccount = styled(StyledMediumHeading)`
   text-align: ${textAlign};
 `;
 
-export const StyledLink = styled.button`
-  display: flex;
-  align-items: center;
-  font-size: 0.75em;
-  font-weight: 400;
-  margin-left: 50px;
-  color: #060058;
-  // font-weight: 600;
-  background: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
-export const StyledLinkIcon = styled.span`
-  transform: rotate(45deg);
-  margin-right: 10px;
-`;
-
 export const StyledSectionText = styled.div`
   color: #aeaeae;
   text-align: ${textAlign};
   font-size: 1.2em;
   margin-top: 10px;
 `;
-export const StyledSemiHeadingAccount = styled.h4`
+export const StyledSemiHeadingAccount = styled.p`
   font-size: 24px;
   line-height: 28px;
   margin: 75px 0 12px 0;
@@ -53,7 +32,7 @@ export const StyledSemiHeadingAccount = styled.h4`
 `;
 
 export const StyledButtonContainer = styled.div`
-  margin: 10px 0 50px 0;
+  margin: 10px 0 25px 0;
   text-align: ${textAlign};
 `;
 
@@ -158,6 +137,7 @@ export const Item = styled.li`
 `;
 
 export const StyledAccButton = styled(StyledBaseButton)`
+  width: auto;
   color: #fff;
 `;
 
@@ -199,7 +179,6 @@ export const StyledProfileCard = styled.div`
   background: #eef8ff;
   border-radius: 10px;
   padding: 16px;
-  font-family: sans-serif;
   box-shadow: 0 0 0 1px #dbe7f1 inset;
   margin: 10px;
 `;
@@ -311,4 +290,76 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
 
 export const LabelText = styled.span`
   margin-left: 10px;
+`;
+
+export const UpgrateOptions = styled.div`
+  margin: 40px 0;
+  color: #AEAEAE;
+`;
+
+export const GoogleLogo = styled.img`
+  width: 20px;
+  position: relative;
+  right: 4px;
+  bottom: 1px;
+`;
+
+export const Section = styled.div`
+  margin-top: ${marginTop}px;
+  margin-bottom: 50px;
+`;
+
+export const SectionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const Title = styled.p`
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #060058;
+`;
+
+export const Action = styled.button`
+  background: none;
+  border: none;
+  color: #060058;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 25px;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const ActionSpan = styled.span`
+  transform: rotate(45deg);
+  margin-right: 10px;
+`;
+
+export const RowLink = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Icon = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
+export const TextLink = styled.p`
+  margin: 0;
+  color: #aeaeae;
+`;
+
+export const SubText = styled.p`
+  margin: 0;
+  color: #aeaeae;
+  text-align: ${textAlign};
 `;

@@ -1,53 +1,93 @@
-import React from "react";
-
-import { HEADINGS } from "../../enum/common";
+import React, { useState } from "react";
+import google from "../../assets/Logo/Google.svg.webp";
+import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
 import {
+  Action,
+  ActionSpan,
+  Icon,
+  RowLink,
+  Section,
+  SectionHeader,
   StyledAccButton,
   StyledButtonContainer,
   StyledHeadingTitle,
   StyledHr,
-  StyledLink,
-  StyledMediumHeadingAccount,
   StyledRightContent,
-  StyledSection,
-  StyledSectionText,
+  SubText,
+  TextLink,
+  Title,
+  UpgrateOptions,
+  GoogleLogo,
 } from "../../components/Styled/AccountSettings.styled";
-import AccountSettingsForm from "./AccountSettingsForm";
-import { sections } from "./AccountSettings.helper";
+import { Input } from "../../components/Inputs/Input";
 
 const AccountSettingsRightContent = () => {
-  // ----- CONFIG FOR MAPPING -----
-  
+  const [upgradeOptions, setUpgradeOptions] = useState([]);
 
+  function handleCheckBoxChage(data) {
+    setUpgradeOptions((prev) =>
+      data.checked ? [...prev, data.item] : prev.filter((v) => v !== data.item)
+    );
+  }
   return (
     <StyledRightContent>
-      <StyledHeadingTitle left>
-        {HEADINGS.ACCOUNT_SETTINGS}
-      </StyledHeadingTitle>
+      <StyledHeadingTitle left>{HEADINGS.ACCOUNT_SETTINGS}</StyledHeadingTitle>
 
       <StyledHr />
 
-      {/* ---- Using MAP here ---- */}
-      {sections.map((section, index) => (
-        <StyledSection key={index}>
-          <StyledMediumHeadingAccount left small>
-            {section.heading}
-            {section.link && <StyledLink>{section.link.text}</StyledLink>}
-          </StyledMediumHeadingAccount>
+      <Section medium>
+        <SectionHeader>
+          <Title>{HEADINGS.LINKED_ACCOUNTS}</Title>
+          <Action>+ Add</Action>
+        </SectionHeader>
+        <RowLink>
+          <GoogleLogo src={google} alt="google" />
+          <TextLink>Google</TextLink>
+        </RowLink>
+      </Section>
 
-          <StyledSectionText left>{section.content}</StyledSectionText>
-        </StyledSection>
-      ))}
+      <Section small>
+        <SectionHeader>
+          <Title>{HEADINGS.EMAIL_PREFERENCE}</Title>
+          <Action>
+            <ActionSpan
+              className="material-symbols-outlined"
+              style={{ fontSize: "18px" }}
+            >
+              autorenew
+            </ActionSpan>
+          </Action>
+        </SectionHeader>
+        <SubText left>{TEXTS.EMAIL_PREFERENCE}</SubText>
+      </Section>
 
+      <Section small>
+        <SectionHeader>
+          <Title>{HEADINGS.BACKUP}</Title>
+        </SectionHeader>
+        <SubText left>{TEXTS.BACKUP}</SubText>
+      </Section>
       <StyledButtonContainer left>
-        <StyledAccButton style={{ marginTop: "10px" }}>
-          Upgrade now
-        </StyledAccButton>
+        <StyledAccButton>Upgrade now </StyledAccButton>
       </StyledButtonContainer>
 
       <StyledHr />
 
-      <AccountSettingsForm />
+      <UpgrateOptions>
+        <Input
+          type="checkbox-group"
+          name="upgradeOptions"
+          placeholder=""
+          list={[
+            "Block adult contents from gallery",
+            "Opt out of recommendation based on views and subscriptions",
+            "Don’t allow search engines to index my profile",
+            "Allow auto update of contents",
+          ]}
+          value={upgradeOptions}
+          onChange={handleCheckBoxChage}
+        />
+      </UpgrateOptions>
     </StyledRightContent>
   );
 };

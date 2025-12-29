@@ -1,27 +1,51 @@
 /** @format */
-import LoginImages from './LoginImages';
-import WelcomeTxts from './WelcomeTxts';
-import GetStartedWithButtons from './GetStartedWithButtons';
-import LineTxts from './LineTxts';
-import Forms from './Forms';
-import leftImage1 from '../../assets/loginImgs/left1.jpg';
-import leftImage2 from '../../assets/loginImgs/left2.jpg';
-import leftImage3 from '../../assets/loginImgs/left3.jpg';
-import leftImage4 from '../../assets/loginImgs/left4.jpg';
-import middleImage1 from '../../assets/loginImgs/middle1.jpg';
-import middleImage2 from '../../assets/loginImgs/middle2.jpg';
-import middleImage3 from '../../assets/loginImgs/middle3.jpg';
-import middleImage4 from '../../assets/loginImgs/middle4.jpg';
-import rightImage1 from '../../assets/loginImgs/right1.jpg';
-import rightImage2 from '../../assets/loginImgs/right2.jpg';
-import rightImage3 from '../../assets/loginImgs/right3.jpg';
-import rightImage4 from '../../assets/loginImgs/right4.jpg';
-import styled from 'styled-components';
+import LoginImages from "./LoginImages";
+import WelcomeTxts from "./WelcomeTxts";
+import GetStartedWithButtons from "./GetStartedWithButtons";
+import LineTxts from "./LineTxts";
+import Forms from "./Forms";
+import leftImage1 from "../../assets/loginImgs/left1.jpg";
+import leftImage2 from "../../assets/loginImgs/left2.jpg";
+import leftImage3 from "../../assets/loginImgs/left3.jpg";
+import leftImage4 from "../../assets/loginImgs/left4.jpg";
+import middleImage1 from "../../assets/loginImgs/middle1.jpg";
+import middleImage2 from "../../assets/loginImgs/middle2.jpg";
+import middleImage3 from "../../assets/loginImgs/middle3.jpg";
+import middleImage4 from "../../assets/loginImgs/middle4.jpg";
+import rightImage1 from "../../assets/loginImgs/right1.jpg";
+import rightImage2 from "../../assets/loginImgs/right2.jpg";
+import rightImage3 from "../../assets/loginImgs/right3.jpg";
+import rightImage4 from "../../assets/loginImgs/right4.jpg";
+import styled from "styled-components";
 
 const Login = () => {
-  const leftImages = [leftImage1, leftImage2, leftImage3, leftImage4];
-  const middleImages = [middleImage1, middleImage2, middleImage3, middleImage4];
-  const rightImages = [rightImage1, rightImage2, rightImage3, rightImage4];
+  const leftImages = [
+    leftImage2,
+    leftImage1,
+    leftImage3,
+    leftImage4,
+    middleImage3,
+    leftImage1,
+  ];
+  const middleImages = [
+    leftImage2,
+    middleImage3,
+    middleImage2,
+    leftImage2,
+    middleImage3,
+    middleImage4,
+    middleImage1,
+    leftImage2,
+  ];
+  const rightImages = [
+    rightImage1,
+    middleImage3,
+    middleImage3,
+    rightImage2,
+    rightImage3,
+    leftImage2,
+    rightImage4,
+  ];
 
   return (
     <StyledContainer>
@@ -44,11 +68,12 @@ const Login = () => {
 
 export default Login;
 
-
 export const StyledContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   background: #fff;
   display: flex;
+  margin: auto;
+  gap: 20px;
   justify-content: center;
 
   @media (max-width: 768px) {

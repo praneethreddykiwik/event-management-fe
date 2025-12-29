@@ -1,9 +1,9 @@
 /** @format */
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const textAlign = ({ left, right }) =>
-  left ? 'left' : right ? 'right' : 'center';
+  left ? "left" : right ? "right" : "center";
 
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
@@ -27,7 +27,7 @@ export const StyledHeading = styled.p`
   margin: 20px 0;
   text-align: ${textAlign};
 `;
-export const StyledSemiHeading = styled.p`
+export const StyledSemiHeading = styled.p`   
   color: #000;
   font-size: 24px;
   font-weight: 600;
@@ -99,13 +99,18 @@ export const StyledParagraphSmallVisible = styled.p`
 // Anchor tags (links)
 
 export const StyledAnchor = styled.a`
-  color: ${({ theme }) => theme.color} !important;
-  font-size: 12px;
+  color: ${({ theme }) => theme.colors} !important;
+  font: ${({ theme }) => theme.typography};
+
+  /* check this once  */
+  
+  /* font-size: 12px;
   font-weight: 600;
-  line-height: 18.2px;
+  line-height: 18.2px; */
   cursor: pointer;
   text-decoration: none;
   text-align: ${textAlign};
+  /* check this its 2 text decoration is there */
   text-decoration: underline;
 
   &:hover {

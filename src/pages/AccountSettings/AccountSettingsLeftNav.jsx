@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { HEADINGS } from "../../enum/common";
+import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
 import modalImg from "../../assets/modalimg.jpg";
 import {
+  StyledGroupIcon,
+  StyledProfileCard,
+  StyledProfileDivider,
+  StyledProfileHeader,
+  StyledProfileLabel,
+  StyledProfileRow,
+  StyledProfileSubtitle,
+  StyledProfileTitle,
   CloseButton,
   Item,
   List,
@@ -13,7 +21,6 @@ import {
   StyledLeftNav,
   StyledSemiHeadingAccount,
 } from "../../components/Styled/AccountSettings.styled";
-import AccountProfileSection from "./AccountProfileSection";
 
 const AccountSettingsLeftNav = () => {
   const [active, setActive] = useState("Account Settings");
@@ -31,7 +38,24 @@ const AccountSettingsLeftNav = () => {
 
   return (
     <StyledLeftNav>
-      <AccountProfileSection />
+      
+      <StyledProfileCard>
+        <StyledProfileHeader>
+          <StyledProfileTitle>Wade’s Profile</StyledProfileTitle>
+          <span className="material-symbols-outlined icon">keyboard_arrow_down</span>
+        </StyledProfileHeader>
+        <StyledProfileSubtitle>1 friend</StyledProfileSubtitle>
+
+        <StyledProfileDivider />
+
+        <StyledProfileRow>
+          <StyledGroupIcon className="material-symbols-outlined icon">
+            groups
+          </StyledGroupIcon>
+          <StyledProfileLabel>Invite friends</StyledProfileLabel>
+        </StyledProfileRow>
+      </StyledProfileCard>
+      
       <StyledSemiHeadingAccount>{HEADINGS.MY_ACCOUNT}</StyledSemiHeadingAccount>
       <Nav>
         <List>
@@ -50,10 +74,8 @@ const AccountSettingsLeftNav = () => {
       <SidebarModal show={showModal}>
         <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
-        <ModalText>
-          Invite your friends to share the wonderful experience.
-        </ModalText>
-        <StyledAccButton>Invite Friends</StyledAccButton>
+        <ModalText>{TEXTS.MODAL_TEXT}</ModalText>
+        <StyledAccButton type="base">Invite Friends</StyledAccButton>
       </SidebarModal>
     </StyledLeftNav>
   );

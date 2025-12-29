@@ -1,7 +1,5 @@
-import { Button } from "../../components/Buttons/Button";
-
+import { useState } from "react";
 import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common";
-
 import {
   StyledHeading,
   StyledParagraphSmallGray,
@@ -11,8 +9,16 @@ import {
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 
 import styled from "styled-components";
+import { Input } from "../../components/Inputs/Input.jsx";
+import { Button } from "../../components/Buttons/Button";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 const BookVenue = () => {
+  const [email, setEmail] = useState("");
+
+  const handlEmailChange = (e) => {
+    setEmail(e.value);
+  };
   return (
     <LandingPageLayout flexDirection="column">
       <StyledContainer>
@@ -20,8 +26,13 @@ const BookVenue = () => {
         <StyledPara>{BOOKCOMPONENT_TXT.BOOK_PARA}</StyledPara>
       </StyledContainer>
       <StyledInputContainer>
-        <StyledInput type="email" placeholder="email address" />
-        <Button>{BOOKCOMPONENT_TXT.BOOK_BTN}</Button>
+        <Input
+          type={"email"}
+          placeholder={"email address"}
+          onChange={handlEmailChange}
+          value={email}
+        />
+        <StyledBtn type="base">{BOOKCOMPONENT_TXT.BOOK_BTN}</StyledBtn>
       </StyledInputContainer>
       <StyledPolicy>
         <StyledPolicyTxt>{BOOKCOMPONENT_TXT.BOOK_POLICY}</StyledPolicyTxt>
@@ -30,6 +41,10 @@ const BookVenue = () => {
   );
 };
 
+const StyledBtn = styled(StyledBaseButton)`
+  width: 250px;
+  color: ${({ theme }) => theme.colors.white};
+`;
 
 const StyledPolicy = styled.div`
   width: 50%;
@@ -84,18 +99,6 @@ const StyledInputContainer = styled.div`
   @media (max-width: 767px) {
     width: 90%;
     flex-direction: column;
-  }
-`;
-
-const StyledInput = styled.input`
-  padding: 10px;
-  width: 400px;
-  height: 28px;
-  border-radius: 30px;
-  border: 1px black solid;
-
-  @media (max-width: 767px) {
-    width: 90%;
   }
 `;
 
