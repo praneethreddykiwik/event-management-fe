@@ -1,8 +1,8 @@
 /** @format */
 
 import styled from 'styled-components';
-import SummaryCard from '../../components/EventManagerCard/SummaryCard';
-import TaskItem from '../../components/EventManagerTask/TaskItem';
+import SummaryCard from './SummaryCard';
+import TaskItem from './TaskItem';
 import {
   StyledMediumHeading,
   StyledParagraphSmall,

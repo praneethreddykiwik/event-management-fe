@@ -1,7 +1,10 @@
 /** @format */
 
 import styled from 'styled-components';
-import { StyledMediumHeading, StyledParagraphSmall } from '../Styled/Typography.styled';
+import {
+  StyledMediumHeading,
+  StyledParagraphSmall,
+} from '../../components/Styled/Typography.styled';
 
 const SummaryCard = ({ value, label, type }) => (
   <Card>
@@ -27,7 +30,7 @@ const Value = styled(StyledMediumHeading)`
 `;
 
 const Label = styled(StyledParagraphSmall)`
-text-align: left;
+  text-align: left;
   margin-top: 10px;
 `;
 export default SummaryCard;

@@ -1,12 +1,12 @@
 /** @format */
 
 import styled from 'styled-components';
-import Badge from '../Badge/Badge.component';
-import { StyledSecButton } from '../Styled/Buttons.styled';
+import Badge from '../../components/Badge/Badge.component';
+import { StyledSecButton } from '../../components/Styled/Buttons.styled';
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-} from '../Styled/Typography.styled';
+} from '../../components/Styled/Typography.styled';
 import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
 import { BADGE_TYPES } from '../../enum/Common';
 
