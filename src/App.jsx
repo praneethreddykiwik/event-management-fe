@@ -25,9 +25,9 @@ import Home from "./pages/Home/Home";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import PlayerCard from "./components/PlayerCard/PlayerCard";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import SampleInput from "./pages/sample/SampleInput";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
+import SamplePage from "./pages/SamplePages/Sample.page.jsx";
 
 function App() {
   const theme = useTheme();
@@ -51,9 +51,8 @@ function App() {
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/dropdown"} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={'/sampleinput'} element={<SampleInput />} />
+        <Route path={"/samplePage"} element={<SamplePage />} />
         <Route path="/exinput" element={<ExInput />} />
-        <Route path="/exbutton" element={<ExButton />} />
         <Route path={"/Subscriptions"} element={<Subscriptions />} />
         <Route path={"/PlayerCard"} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
