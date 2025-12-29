@@ -42,3 +42,10 @@ export const FOOTER_CONTENT = {
   PRIVACY_POLICY: "Privacy Policy",
   TERMS_CONDITIONS: "Terms and Conditions",
 };
+
+export const BADGE_TYPES = {
+  COMPLETED: "completed",
+  INPROGRESS: "inprogress",
+  PENDING: "pending",
+  ACCEPTED: "accepted",
+};

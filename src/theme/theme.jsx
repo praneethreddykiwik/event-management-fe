@@ -80,6 +80,18 @@ const colors = {
   "inactive-color": "#666666",
 };
 
+const badgeColors = {
+  // Badge colors:
+  "badge-completed-primary": "#0cc657",
+  "badge-completed-transparent": "rgba(38, 200, 103, 0.231)",
+  "badge-inprogress-primary": "#edab27",
+  "badge-inprogress-transparent": "rgb(238, 217, 51, 0.3)",
+  "badge-pending-primary": "#525151",
+  "badge-pending-transparent": "rgba(102, 102, 102, 0.314)",
+  "badge-accepted-primary": `${colors.white}`,
+  "badge-accepted-transparent": `${colors.primary}`,
+};
+
 const shadows = {
   "level-1": "O, 1px, 3px, rgba(0,0,0,0,1)",
   "level-2": "O, 4px, 6px, rgba(0,0,0,0,0.8)",
@@ -130,6 +142,8 @@ export const theme = {
     typography,
     colors,
     shadows,
+    borders,
+    badgeColors,
     inputs,
   },
   dark: {
