@@ -18,6 +18,9 @@ const RoleDropdown = () => {
         placeholder="Choose your role"
         styles={customStyles}
         isSearchable={false}
+        components={{
+          IndicatorSeparator: () => null,
+        }}
       />
     </StyledRoleDropdownLayout>
   );
@@ -35,18 +38,25 @@ const Styledselect = styled(StyledMediumHeading)`
 const customStyles = {
   control: (base) => ({
     ...base,
-    height: "60px",
     borderRadius: "25px",
     paddingLeft: "12px",
     paddingRight: "12px",
-    backgroundColor: "#e1e1e14c",
     cursor: "pointer",
     textAlign: "left",
-    border: "0.5px black solid",
+    border: "1px #000000 solid",
     "&:focus-within": {
-      border: "0.5px black solid",
+      border: "1px #000000 solid",
       boxShadow: "none",
     },
+    "&:hover": {
+      border: "1px #000000 solid",
+    },
+  }),
+
+  dropdownIndicator: (base) => ({
+    ...base,
+    color: "#000000",
+    padding: 8,
   }),
 
   valueContainer: (base) => ({
@@ -57,13 +67,11 @@ const customStyles = {
   placeholder: (base) => ({
     ...base,
     color: "#000000",
-    fontWeight: 500,
     fontSize: "16px",
   }),
 
   singleValue: (base) => ({
     ...base,
-    fontWeight: 500,
     fontSize: "16px",
     color: "#000000",
   }),
@@ -81,8 +89,8 @@ const customStyles = {
     ...base,
     padding: "14px 20px",
     borderRadius: "20px",
+    marginTop: "10px",
     fontSize: "16px",
-    fontWeight: 500,
     cursor: "pointer",
 
     backgroundColor: state.isSelected
