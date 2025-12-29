@@ -1,6 +1,6 @@
 /** @format */
 
-import { validateInput } from '../../components/Validations/validationInput';
+import { inputValidation } from '../../components/Validations/inputValidation';
 import { Input } from '../../components/Inputs/Input';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -57,16 +57,16 @@ const MyComponent = () => {
 
 function handleSubmit() {
   const newErrors = {
-    userName: validateInput(userName, ['required']),
-    firstName: validateInput(firstName, ['required']),
+    userName: inputValidation(userName, ['required']),
+    firstName: inputValidation(firstName, ['required']),
     secondName: '',
-    number: validateInput(number, ['required']),
-    password: validateInput(password, [
+    number: inputValidation(number, ['required']),
+    password: inputValidation(password, [
       'required',
       { type: 'min-length', value: 6 },
     ]),
-    gender: validateInput(gender, ['required']),
-    favPlaces: validateInput(favPlaces, ['required']),
+    gender: inputValidation(gender, ['required']),
+    favPlaces: inputValidation(favPlaces, ['required']),
   };
 
   setErrors(newErrors);
