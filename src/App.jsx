@@ -28,6 +28,7 @@ import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
 
 function App() {
   const theme = useTheme();
@@ -35,27 +36,27 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* <Stdiv className="main-container"> */}
-      <Header />
+      {/* <Header /> */}
 
       <Routes>
-        <Route path={"/"} element={<Home />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/register"} element={<RegistrationPage />} />
-        <Route path={"/Gateway"} element={<GatewayPage />} />
-        <Route path={"/Registration"} element={<RegistrationPage />} />
-        <Route path={"/Gateway"} element={<GatewayPage />} />
-        <Route path={"/Getintouch"} element={<GetInTouch />} />
-        <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
-        <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
-        <Route path={"/controlpage"} element={<Controlpage />} />
-        <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/dropdown"} element={<DropdownComponent />} />
+        <Route path={'/'} element={<Home />} />
+        <Route path={'/login'} element={<Login />} />
+        <Route path={'/register'} element={<RegistrationPage />} />
+        <Route path={'/Gateway'} element={<GatewayPage />} />
+        <Route path={'/Registration'} element={<RegistrationPage />} />
+        <Route path={'/Gateway'} element={<GatewayPage />} />
+        <Route path={'/Getintouch'} element={<GetInTouch />} />
+        <Route path={'/paymentSuccess'} element={<PaymentSuccess />} />
+        <Route path={'/accountSetting'} element={<AccountSettingsPage />} />
+        <Route path={'/controlpage'} element={<Controlpage />} />
+        <Route path={'/profile'} element={<Profile />} />
+        <Route path={'/dropdown'} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={"/samplePage"} element={<SamplePage />} />
-        <Route path="/exinput" element={<ExInput />} />
-        <Route path={"/Subscriptions"} element={<Subscriptions />} />
-        <Route path={"/PlayerCard"} element={<PlayerCard />} />
+        <Route path={'/samplePage'} element={<SamplePage />} />
+        <Route path={'/Subscriptions'} element={<Subscriptions />} />
+        <Route path={'/PlayerCard'} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
+        <Route path="/event-manager" element={<EventManagerDashboard />} />
       </Routes>
 
       {/* </Stdiv> */}
