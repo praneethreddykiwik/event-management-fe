@@ -8,7 +8,7 @@ import {
   ButtonContent,
   ButtonImage,
 } from '../Styled/Buttons.styled';
-
+// dummy commit
 export const Button = ({ type, children, onClick, icon, image }) => {
   const renderContent = () => (
     <ButtonContent>
