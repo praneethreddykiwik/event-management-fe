@@ -27,7 +27,7 @@ export const StyledHeading = styled.p`
   margin: 20px 0;
   text-align: ${textAlign};
 `;
-export const StyledSemiHeading = styled.p`   
+export const StyledSemiHeading = styled.p`
   color: #000;
   font-size: 24px;
   font-weight: 600;
@@ -64,7 +64,7 @@ export const StyledParagraphBold = styled.p`
 `;
 
 export const StyledParagraphGray = styled.p`
-  color: #86868d;
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   line-height: 22.4px;
   font-size: 17px;
   font-weight: 600;
@@ -72,7 +72,7 @@ export const StyledParagraphGray = styled.p`
 `;
 
 export const StyledParagraphSmallGray = styled.p`
-  color: ${({ theme }) => theme.commonGrayColor};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   font-size: 14px;
   font-weight: 400;
   line-height: 22.4px;
@@ -80,7 +80,7 @@ export const StyledParagraphSmallGray = styled.p`
 `;
 
 export const StyledParagraphSmall = styled.p`
-  color: ${({ theme }) => theme.commonGrayColor};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   font-size: 12px;
   font-weight: 400;
   line-height: 18.2px;
@@ -103,7 +103,7 @@ export const StyledAnchor = styled.a`
   font: ${({ theme }) => theme.typography};
 
   /* check this once  */
-  
+
   /* font-size: 12px;
   font-weight: 600;
   line-height: 18.2px; */

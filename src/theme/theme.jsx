@@ -78,6 +78,7 @@ const colors = {
   "light-blue": "#F1FAFF", // for background
   "active-color": "#FF4A4A",
   "inactive-color": "#666666",
+  "text-gray-color": " #86868d;",
 };
 
 const badgeColors = {

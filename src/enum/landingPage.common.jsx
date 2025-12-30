@@ -26,8 +26,12 @@ export const FINDINSIPRATION_TXT = {
 // join now component text
 
 export const JOINCOMPONENT_TXT = {
-  JOIN_PARAGRAPH:
-    "Experience the convenience on our wedsite today and discover how easy it is to plan your events with us",
+  JOIN_PARAGRAPH: (
+    <>
+      Experience the convenience on our wedsite today and discover how easy it
+      is to plan your <br /> events with us
+    </>
+  ),
 
   JOIN_HEADING: "There is a venue for every event",
 
@@ -73,6 +77,9 @@ const StyledAnchor = styled(StyledGrayLink)`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 14px;
   text-decoration: none;
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary} !important;
+  }
 `;
 
 export const BOOKCOMPONENT_TXT = {
@@ -86,7 +93,7 @@ export const BOOKCOMPONENT_TXT = {
 
   BOOK_POLICY: (
     <>
-      *Please refer to our <StyledAnchor>Privancy Policy</StyledAnchor> for more
+      *Please refer to our <StyledAnchor>Privacy Policy</StyledAnchor> for more
       details.
     </>
   ),

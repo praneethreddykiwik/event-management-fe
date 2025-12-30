@@ -43,7 +43,6 @@ const BookVenue = () => {
 
 const StyledBtn = styled(StyledBaseButton)`
   width: 250px;
-  color: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledPolicy = styled.div`
@@ -55,9 +54,9 @@ const StyledPolicy = styled.div`
   }
 `;
 
-const StyledPolicyTxt = styled(StyledParagraphGray)`
+const StyledPolicyTxt = styled(StyledParagraphSmallGray)`
   text-align: left;
-  font-size: 14px;
+
 
   @media (max-width: 767px) {
     text-align: center;
@@ -83,6 +82,8 @@ const StyledHead = styled(StyledHeading)`
 
 const StyledPara = styled(StyledParagraphSmallGray)`
   text-align: left;
+  /* color: ${({ theme }) => theme.colors["inactive-color"]}; */
+  color: #88898bff;
 
   @media (max-width: 767px) {
     text-align: center;
