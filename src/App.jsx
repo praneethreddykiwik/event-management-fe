@@ -28,6 +28,7 @@ import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
 import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
 
@@ -37,21 +38,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* <Stdiv className="main-container"> */}
-      {/* <Header /> */}
+      <Header />
 
       <Routes>
-        <Route path={'/'} element={<Home />} />
-        <Route path={'/login'} element={<Login />} />
-        <Route path={'/register'} element={<RegistrationPage />} />
-        <Route path={'/Gateway'} element={<GatewayPage />} />
-        <Route path={'/Registration'} element={<RegistrationPage />} />
-        <Route path={'/Gateway'} element={<GatewayPage />} />
-        <Route path={'/Getintouch'} element={<GetInTouch />} />
-        <Route path={'/paymentSuccess'} element={<PaymentSuccess />} />
-        <Route path={'/accountSetting'} element={<AccountSettingsPage />} />
-        <Route path={'/controlpage'} element={<Controlpage />} />
-        <Route path={'/profile'} element={<Profile />} />
-        <Route path={'/dropdown'} element={<DropdownComponent />} />
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/admin"} element={<AdminDashboard />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<RegistrationPage />} />
+        <Route path={"/Gateway"} element={<GatewayPage />} />
+        <Route path={"/Registration"} element={<RegistrationPage />} />
+        <Route path={"/Gateway"} element={<GatewayPage />} />
+        <Route path={"/Getintouch"} element={<GetInTouch />} />
+        <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
+        <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
+        <Route path={"/controlpage"} element={<Controlpage />} />
+        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/dropdown"} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
         <Route path={'/samplePage'} element={<SamplePage />} />
         <Route path={'/Subscriptions'} element={<Subscriptions />} />
