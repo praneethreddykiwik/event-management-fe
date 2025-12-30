@@ -24,11 +24,14 @@ const CreateEventButtons = styled.div`
   display: flex;
   padding: 20px 0;
   gap: 10px;
+  /* width: 50%; */
 `;
+// const Button = styled(StyledIconButton)`
+
+// `
 
 const CreateButton = styled.div`
   button {
-    background-color: #4f46e5;
     span {
         font-size: 15px;
     }
@@ -38,9 +41,6 @@ const ManageButton = styled.div`
   button {
     background-color: #eeeeee;
     color: #000000;
-    span {
-      font-size: 15px;
-    }
   }
 `;
 export default CreateEventManagerB;

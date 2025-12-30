@@ -81,11 +81,9 @@ const Header = () => {
 export default Header;
 
 const Navbar = styled.header`
-  width: 100%;
   padding: 12px 40px;
   background: #ffffff;
   border-bottom: 1px solid #eee;
-
   display: flex;
   justify-content: space-between;
   align-items: center;

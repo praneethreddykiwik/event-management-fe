@@ -41,7 +41,7 @@ const Left = styled.div`
 `;
 
 const Taskcard = styled.div`
-justify-items: left;
+  justify-items: left;
   margin: -1px;
 `;
 const EventName = styled(StyledParagraphBold)`
@@ -57,6 +57,7 @@ const TaskDate = styled(StyledParagraphSmall)`
   margin: 0;
 `;
 const BadgeButton = styled.div`
+  width: 25%;
   gap: 5px;
   display: flex;
   align-content: center;
@@ -64,7 +65,7 @@ const BadgeButton = styled.div`
   margin: 0;
 `;
 const ViewButton = styled(StyledSecButton)`
-  position: relative;
+  width: 100%;
   background-color: #eeeeee;
   cursor: pointer;
 `;
