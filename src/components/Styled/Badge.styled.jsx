@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StyledParagraphSmall } from "./Typography.styled";
 
 export const StyledBadge = styled(StyledParagraphSmall)`
-  width: fit-content;
+  width: 100%;
   padding: ${({ theme }) =>
     `${theme.spacings["spacing-1"]} ${theme.spacings["spacing-3"]}`};
   border-radius: 18px;
