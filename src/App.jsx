@@ -28,6 +28,7 @@ import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 
 function App() {
   const theme = useTheme();
@@ -39,6 +40,7 @@ function App() {
 
       <Routes>
         <Route path={"/"} element={<Home />} />
+        <Route path={"/admin"} element={<AdminDashboard />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<RegistrationPage />} />
         <Route path={"/Gateway"} element={<GatewayPage />} />
