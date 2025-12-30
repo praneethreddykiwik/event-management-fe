@@ -29,6 +29,8 @@ import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
+import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
+import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
 
 function App() {
   const theme = useTheme();
@@ -53,11 +55,12 @@ function App() {
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/dropdown"} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={"/samplePage"} element={<SamplePage />} />
-        <Route path="/exinput" element={<ExInput />} />
-        <Route path={"/Subscriptions"} element={<Subscriptions />} />
-        <Route path={"/PlayerCard"} element={<PlayerCard />} />
+        <Route path={'/samplePage'} element={<SamplePage />} />
+        <Route path={'/Subscriptions'} element={<Subscriptions />} />
+        <Route path={'/PlayerCard'} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
+        <Route path={"/stake-holder"} element={<StakeholderDashboard />}/>
+        <Route path="/event-manager" element={<EventManagerDashboard />} />
       </Routes>
 
       {/* </Stdiv> */}

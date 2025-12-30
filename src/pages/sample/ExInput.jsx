@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from '../../components/Buttons/Button';
 
-const MyComponent = () => {
+const ExInput = () => {
   const [userName, setUserName] = useState('');
   const [firstName, setfirstName] = useState('');
   const [secondName, setSecondName] = useState('');
@@ -189,4 +189,4 @@ const ShowHideIcon = styled.span`
   cursor: pointer;
   font-size: 18px;
 `;
-export default MyComponent;
+export default ExInput;

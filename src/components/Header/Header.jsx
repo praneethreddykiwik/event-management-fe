@@ -81,7 +81,7 @@ const Header = () => {
 export default Header;
 
 const Navbar = styled.header`
-  width: 95%;
+  width: 100%;
   padding: 12px 40px;
   background: #ffffff;
   border-bottom: 1px solid #eee;
