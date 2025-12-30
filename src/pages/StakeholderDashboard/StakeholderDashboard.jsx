@@ -11,6 +11,25 @@ import {
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
 
+
+const TASKS = [
+    {
+      id: 1,
+      title: "Provide catering for 200 attendees",
+      eventName: "Annual Conference 2025",
+      eventDate: "March 15, 2025",
+      status: BADGE_TYPES.PENDING,
+    },
+  {
+    id: 2,
+    title: "Set up audio equipment",
+    eventName: "Product Launch Event",
+    eventDate: "April 20, 2025",
+    status: BADGE_TYPES.ACCEPTED,
+  },
+];
+
+
 const StakeholderDashboard = () => {
   return (
     <PageWrapper>
@@ -28,76 +47,61 @@ const StakeholderDashboard = () => {
           </SubtitleWrapper>
         </Header>
 
-        {/* Pending Task */}
-        <Card>
-          <CardHeader>
-            <TaskTextWrapper>
-              <TaskTitle>
-                <StyledSemiHeading left>
-                  Provide catering for 200 attendees
-                </StyledSemiHeading>
-              </TaskTitle>
+        {/* Task Cards */}
+        {TASKS.map((task) => (
+          <Card key={task.id}>
+            <CardHeader>
+              <TaskTextWrapper>
+                <TaskTitle>
+                  <StyledSemiHeading left>
+                    {task.title}
+                  </StyledSemiHeading>
+                </TaskTitle>
 
-              <StyledParagraphSmall left>
-                Annual Conference 2025
-              </StyledParagraphSmall>
+                <StyledParagraphSmall left>
+                  {task.eventName}
+                </StyledParagraphSmall>
 
-              <StyledParagraphSmallGray left>
-                Date: March 15, 2025
-              </StyledParagraphSmallGray>
-            </TaskTextWrapper>
+                <StyledParagraphSmallGray left>
+                  Date: {task.eventDate}
+                </StyledParagraphSmallGray>
+              </TaskTextWrapper>
 
-            <CompactBadge>
-              <Badge type={BADGE_TYPES.PENDING}>pending</Badge>
-            </CompactBadge>
-          </CardHeader>
+              <CompactBadge>
+                <Badge type={task.status}>{task.status}</Badge>
+              </CompactBadge>
+            </CardHeader>
 
-          <ActionsRow>
-            <ButtonWrapper>
-              <AcceptButton>
-                <Button type="icon" icon="check">
-                  Accept
-                </Button>
-              </AcceptButton>
-            </ButtonWrapper>
+            {/* Pending Actions */}
+            {task.status === BADGE_TYPES.PENDING && (
+              <ActionsRow>
+                <ButtonWrapper>
+                  <AcceptButton>
+                    <Button type="icon" icon="check">
+                      Accept
+                    </Button>
+                  </AcceptButton>
+                </ButtonWrapper>
 
-            <ButtonWrapper>
-              <Button type="outlined">Decline</Button>
-            </ButtonWrapper>
-          </ActionsRow>
-        </Card>
+                <ButtonWrapper>
+                  <Button type="outlined">Decline</Button>
+                </ButtonWrapper>
+              </ActionsRow>
+            )}
 
-        {/* Accepted Task */}
-        <Card>
-          <CardHeader>
-            <TaskTextWrapper>
-              <TaskTitle>
-                <StyledSemiHeading left>
-                  Set up audio equipment
-                </StyledSemiHeading>
-              </TaskTitle>
-
-              <StyledParagraphSmall left>
-                Product Launch Event
-              </StyledParagraphSmall>
-
-              <StyledParagraphSmallGray left>
-                Date: April 20, 2025
-              </StyledParagraphSmallGray>
-            </TaskTextWrapper>
-
-            <CompactBadge>
-              <Badge type={BADGE_TYPES.ACCEPTED}>accepted</Badge>
-            </CompactBadge>
-          </CardHeader>
-
-          <AcceptedText>
-            <span className="material-symbols-outlined">check_circle</span>
-            <StyledParagraphSmall>
-              You've accepted this assignment
-            </StyledParagraphSmall>
-          </AcceptedText>
-        </Card>
+            {/* Accepted State */}
+            {task.status === BADGE_TYPES.ACCEPTED && (
+              <AcceptedText>
+                <span className="material-symbols-outlined">
+                  check_circle
+                </span>
+                <StyledParagraphSmall>
+                  You've accepted this assignment
+                </StyledParagraphSmall>
+              </AcceptedText>
+            )}
+          </Card>
+        ))}
       </Container>
     </PageWrapper>
   );
