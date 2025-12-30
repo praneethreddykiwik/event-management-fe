@@ -25,9 +25,12 @@ import Home from "./pages/Home/Home";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import PlayerCard from "./components/PlayerCard/PlayerCard";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import SampleInput from "./pages/sample/SampleInput";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
+import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
+import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
+import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
 
 function App() {
   const theme = useTheme();
@@ -39,6 +42,7 @@ function App() {
 
       <Routes>
         <Route path={"/"} element={<Home />} />
+        <Route path={"/admin"} element={<AdminDashboard />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<RegistrationPage />} />
         <Route path={"/Gateway"} element={<GatewayPage />} />
@@ -51,12 +55,12 @@ function App() {
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/dropdown"} element={<DropdownComponent />} />
         <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={'/sampleinput'} element={<SampleInput />} />
-        <Route path="/exinput" element={<ExInput />} />
-        <Route path="/exbutton" element={<ExButton />} />
-        <Route path={"/Subscriptions"} element={<Subscriptions />} />
-        <Route path={"/PlayerCard"} element={<PlayerCard />} />
+        <Route path={'/samplePage'} element={<SamplePage />} />
+        <Route path={'/Subscriptions'} element={<Subscriptions />} />
+        <Route path={'/PlayerCard'} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
+        <Route path={"/stake-holder"} element={<StakeholderDashboard />}/>
+        <Route path="/event-manager" element={<EventManagerDashboard />} />
       </Routes>
 
       {/* </Stdiv> */}

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { validateInput } from '../../components/Validations/validationInput';
+import { inputValidation } from '../../components/Validations/inputValidation';
 import { Input } from '../../components/Inputs/Input';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Buttons/Button';
@@ -11,10 +11,7 @@ import {
   StyledAnchor,
   StyledParagraphSmallGray,
 } from '../../components/Styled/Typography.styled';
-import {
-  StyledBaseButton
-} from '../../components/Styled/Buttons.styled';
-// import { Input } from '../../components/Inputs/Input';
+import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
 
 const Forms = () => {
   const navigate = useNavigate();
@@ -32,8 +29,8 @@ const Forms = () => {
 
   const handleSubmit = () => {
     const newErrors = {
-      email: validateInput(email, ['required', 'email']),
-      password: validateInput(password, [
+      email: inputValidation(email, ['required', 'email']),
+      password: inputValidation(password, [
         'required',
         { type: 'min-length', value: 6 },
       ]),

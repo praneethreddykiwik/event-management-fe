@@ -1,6 +1,6 @@
 /** @format */
 
-export const validateInput = (value, validations = []) => {
+export const inputValidation = (value, validations = []) => {
   for (let rule of validations) {
     if (rule === 'required') {
       if (typeof value === 'string' && value.trim() === '') {

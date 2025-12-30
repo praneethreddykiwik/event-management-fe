@@ -5,7 +5,7 @@ import {
   InputCheckbox,
   InputRadio,
 } from '../Styled/Inputs.styled';
-import { validateInput } from '../../components/Validations/validationInput';
+import { inputValidation } from '../../components/Validations/inputValidation';
 import styled from 'styled-components';
 
 export const Input = ({
@@ -25,7 +25,7 @@ export const Input = ({
 
   const runValidation = (val) => {
     if (!setError) return;
-    const err = validateInput(val, validations);
+    const err = inputValidation(val, validations);
     setError(err);
   };
 
