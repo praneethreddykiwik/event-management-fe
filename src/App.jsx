@@ -28,6 +28,7 @@ import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import ExInput from "./pages/sample/ExInput";
 import ExButton from "./pages/sample/ExButton";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
 import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path={'/Subscriptions'} element={<Subscriptions />} />
         <Route path={'/PlayerCard'} element={<PlayerCard />} />
         <Route path={paths.accountSettings} element={<AccountSettings />} />
+        <Route path={"/stake-holder"} element={<StakeholderDashboard />}/>
         <Route path="/event-manager" element={<EventManagerDashboard />} />
       </Routes>
 
