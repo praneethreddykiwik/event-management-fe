@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import Badge from '../../components/Badge/Badge.component';
-import { StyledSecButton } from '../../components/Styled/Buttons.styled';
+import { StyledOutlinedButton, StyledSecButton } from '../../components/Styled/Buttons.styled';
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
@@ -64,10 +64,8 @@ const BadgeButton = styled.div`
   align-items: center;
   margin: 0;
 `;
-const ViewButton = styled(StyledSecButton)`
-  width: 100%;
+const ViewButton = styled(StyledOutlinedButton)`
   background-color: #eeeeee;
-  cursor: pointer;
 `;
 
 export default TaskItem;
