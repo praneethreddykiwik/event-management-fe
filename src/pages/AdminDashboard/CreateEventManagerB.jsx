@@ -2,7 +2,6 @@
 
 import styled from 'styled-components';
 import { Button } from '../../components/Buttons/Button';
-import { StyledIconButton } from '../../components/Styled/Buttons.styled';
 
 const CreateEventManagerB = () => {
   return (
@@ -24,16 +23,12 @@ const CreateEventButtons = styled.div`
   display: flex;
   padding: 20px 0;
   gap: 10px;
-  /* width: 50%; */
 `;
-// const Button = styled(StyledIconButton)`
-
-// `
 
 const CreateButton = styled.div`
   button {
     span {
-        font-size: 15px;
+      font-size: 15px;
     }
   }
 `;

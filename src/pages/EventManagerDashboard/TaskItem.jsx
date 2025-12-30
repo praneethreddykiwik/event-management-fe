@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import Badge from '../../components/Badge/Badge.component';
-import { StyledOutlinedButton, StyledSecButton } from '../../components/Styled/Buttons.styled';
+import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
@@ -76,7 +76,7 @@ const TaskAssignee = styled(StyledParagraphSmall)`
   margin: 0;
 `;
 const BadgeButton = styled.div`
-width: 30%;
+  width: 30%;
   gap: 5px;
   display: flex;
   align-content: center;

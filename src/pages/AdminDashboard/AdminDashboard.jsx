@@ -8,7 +8,7 @@ import {
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
 import { BADGE_TYPES } from '../../enum/Common';
-import CreateEventButtons from './CreateEventManagerB'
+import CreateEventButtons from './CreateEventManagerB';
 
 const AdminDashboard = () => {
   const tasks = [
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
         <AdminSummaryCard label="Event Managers" value="5" />
         <AdminSummaryCard label="Completion Rate" value="87%" />
       </CardsRow>
-      <CreateEventButtons/>
+      <CreateEventButtons />
       <TaskMainCard>
         <Tasktxt>
           <TaskEvents>Upcoming Events</TaskEvents>
