@@ -4,6 +4,7 @@ import { GETSTARTED_TXT } from "../../enum/landingPage.common";
 import {
   StyledHeadingBig,
   StyledAnchor,
+  StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
@@ -13,7 +14,7 @@ import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 import { useNavigate } from "react-router-dom";
 const GetStarted = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <StyledGetStartedLayout>
@@ -26,7 +27,7 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <StyledGetStartedBtn onClick={() => navigate('/registration')}>
+            <StyledGetStartedBtn onClick={() => navigate("/registration")}>
               {GETSTARTED_TXT.START_BTN}
             </StyledGetStartedBtn>
             <StyledLink>
@@ -91,11 +92,10 @@ const StyledContent = styled.div`
   word-wrap: break-word;
 `;
 
-const StyledContentParagraph = styled(StyledParagraphGray)`
-  font-size: 12px;
+const StyledContentParagraph = styled(StyledParagraphSmallGray)`
   word-wrap: break-word;
   text-align: left;
-  color: #88898bff;
+  font-weight: 500;
 
   @media (max-width: 768px) {
     color: ${({ theme }) => theme.colors.white};
