@@ -92,7 +92,7 @@ const Forms = () => {
       </ContinueButton>
 
       <AccountSignIn>
-        {Account} <SignInAnchor>{SignIn}</SignInAnchor>
+        {Account} <SignInAnchor onClick={()=> navigate("/login")}>{SignIn}</SignInAnchor>
       </AccountSignIn>
 
       <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>

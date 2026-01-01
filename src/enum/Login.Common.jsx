@@ -22,6 +22,7 @@ export const LOGIN_COMMON = {
     'By using our app you agree to the Terms of Use Privacy Policy',
     CONTINUE : 'Continue',
     ACCOUNT : 'Already have an account?',
+    NO_ACCOUNT_TEXT: "Don’t have an account?",
     SIGN_IN : 'Sign in'
 
 }

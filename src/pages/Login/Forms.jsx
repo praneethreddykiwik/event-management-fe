@@ -117,9 +117,9 @@ const Forms = () => {
         </RegisterAnchor>
       </NewUser>
       <AccountSignIn>
-        {LOGIN_COMMON.ACCOUNT}
-        <SignInAnchoru onClick={() => navigate('/login')}>
-          {LOGIN_COMMON.SIGN_IN}
+        {LOGIN_COMMON.NO_ACCOUNT_TEXT}
+        <SignInAnchoru onClick={() => navigate('/register')}>
+          {LOGIN_COMMON.REGISTER}
         </SignInAnchoru>
       </AccountSignIn>
       <TermsConditionsTxt>{LOGIN_COMMON.TERMS_CONDITIONS}</TermsConditionsTxt>
