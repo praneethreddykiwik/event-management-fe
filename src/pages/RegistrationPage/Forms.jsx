@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ClosePassWord from '../../assets/Logos/SeePassWord.svg';
 import SeePassWord from '../../assets/Logos/ClosePassword.svg';
 import { useNavigate } from 'react-router-dom';
+import { AnchorLinkPrimary } from '../../components/Styled/Links.styles';
 
 import {
   AnchorParah,
@@ -92,7 +93,7 @@ const Forms = () => {
       </ContinueButton>
 
       <AccountSignIn>
-        {Account} <SignInAnchor onClick={()=> navigate("/login")}>{SignIn}</SignInAnchor>
+        {Account} <AnchorLinkPrimary onClick={()=> navigate("/login")}>{SignIn}</AnchorLinkPrimary>
       </AccountSignIn>
 
       <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>

@@ -12,6 +12,8 @@ import {
   StyledParagraphSmallGray,
 } from '../../components/Styled/Typography.styled';
 import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
+import { AnchorLinkPrimary } from '../../components/Styled/Links.styles';
+
 
 const Forms = () => {
   const navigate = useNavigate();
@@ -118,9 +120,9 @@ const Forms = () => {
       </NewUser>
       <AccountSignIn>
         {LOGIN_COMMON.NO_ACCOUNT_TEXT}
-        <SignInAnchoru onClick={() => navigate('/register')}>
+        <AnchorLinkPrimary onClick={() => navigate('/register')}>
           {LOGIN_COMMON.REGISTER}
-        </SignInAnchoru>
+        </AnchorLinkPrimary>
       </AccountSignIn>
       <TermsConditionsTxt>{LOGIN_COMMON.TERMS_CONDITIONS}</TermsConditionsTxt>
     </Form>
