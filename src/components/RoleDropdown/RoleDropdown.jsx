@@ -2,19 +2,17 @@ import Select from "react-select";
 import styled from "styled-components";
 import { StyledMediumHeading } from "../Styled/Typography.styled";
 
-const RoleDropdown = () => {
-  const options = [
-    { value: "admin", label: "Admin" },
-    { value: "event-manager", label: "Event Manager" },
-    { value: "stakeholder/Vendor/Worker", label: "stakeholder/Vendor/Worker" },
-  ];
-
+const RoleDropdown = ({ options, label, values, onChange }) => {
+  
   return (
     <StyledRoleDropdownLayout>
       <Styledselect>Select Role</Styledselect>
 
       <Select
         options={options}
+        lable={label}
+        value={values}
+        onChange={onChange}
         placeholder="Choose your role"
         styles={customStyles}
         isSearchable={false}

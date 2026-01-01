@@ -132,6 +132,11 @@ const StyledActionRow = styled.div`
   width: fit-content;
   margin: 16px 0;
   margin-left: auto;
+  
+  button {
+    background-color: #26c867;
+    color: #ffffff;
+  }
 `;
 
 const StyledTableWrapper = styled.div`
