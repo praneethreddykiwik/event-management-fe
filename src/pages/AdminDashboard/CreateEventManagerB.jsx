@@ -1,9 +1,17 @@
 /** @format */
 
-import styled from 'styled-components';
-import { Button } from '../../components/Buttons/Button';
+import styled from "styled-components";
+import { Button } from "../../components/Buttons/Button";
+import AdminPopupModal from "./AdminPopupModal/AdminPopupModal";
+import { useState } from "react";
 
 const CreateEventManagerB = () => {
+  const [open, setOpen] = useState(false);
+
+  const onClickTaskMonitor = () => {
+    setOpen(true);
+  };
+
   return (
     <CreateEventButtons>
       <CreateButton>
@@ -12,9 +20,10 @@ const CreateEventManagerB = () => {
         </Button>
       </CreateButton>
       <ManageButton>
-        <Button type="icon" icon="group">
+        <Button onClick={onClickTaskMonitor} type="icon" icon="group">
           Manage Event Managers
         </Button>
+        {open && <AdminPopupModal onClose={() => setOpen(false)} />}
       </ManageButton>
     </CreateEventButtons>
   );
