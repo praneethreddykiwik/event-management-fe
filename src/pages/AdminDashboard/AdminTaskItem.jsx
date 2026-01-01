@@ -7,35 +7,20 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
-import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
-import { BADGE_TYPES } from '../../enum/Common';
 
-const ICONS = {
-  [BADGE_TYPES.COMPLETED]: 'task_alt',
-  [BADGE_TYPES.INPROGRESS]: 'schedule',
-  [BADGE_TYPES.PENDING]: 'error_outline',
-};
-
-const getIcon = (type) => ICONS[type] || '';
 const TaskItem = ({ data }) => {
   return (
     <TaskRow>
       <Left>
-        <StatusIcon type={data.type} className="material-symbols-outlined">
-          {getIcon(data.type)}
-        </StatusIcon>
         <Taskcard>
-          <Title>{data.title}</Title>
           <EventName>{data.event}</EventName>
-          <TaskAssignee>
-            {E_M_DASHBOARD_COMMON.TASKASSIGNEE} {data.assigned}
-            {E_M_DASHBOARD_COMMON.TASKDUE} {data.due}
-          </TaskAssignee>
+          <TaskDate>{data.date}</TaskDate>
+          <TaskAssignee>Manager: {data.assigned}</TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
         <Badge type={data.type}>{data.status}</Badge>
-        <ManageButton>{E_M_DASHBOARD_COMMON.MANAGE_B}</ManageButton>
+        <ViewButton>View Details</ViewButton>
       </BadgeButton>
     </TaskRow>
   );
@@ -54,36 +39,32 @@ const Left = styled.div`
   display: flex;
   gap: 10px;
 `;
-const StatusIcon = styled.span`
-  font-size: 20px;
-  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
-`;
+
 const Taskcard = styled.div`
+  justify-items: left;
   margin: -1px;
 `;
-const Title = styled(StyledParagraphBold)`
-  text-align: left;
-  margin: 0;
-`;
-const EventName = styled(StyledParagraphSmall)`
+const EventName = styled(StyledParagraphBold)`
   margin-top: 0;
   margin-bottom: 5px;
-  color: gray;
-  text-align: left;
 `;
 const TaskAssignee = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0;
 `;
+const TaskDate = styled(StyledParagraphSmall)`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin: 0;
+`;
 const BadgeButton = styled.div`
-  width: 30%;
+  width: 25%;
   gap: 5px;
   display: flex;
   align-content: center;
   align-items: center;
   margin: 0;
 `;
-const ManageButton = styled(StyledOutlinedButton)`
+const ViewButton = styled(StyledOutlinedButton)`
   background-color: #eeeeee;
 `;
 
