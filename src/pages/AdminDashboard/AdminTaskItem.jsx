@@ -8,7 +8,7 @@ import {
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
 
-const TaskItem = ({ data }) => {
+const AdminTaskItem = ({ data }) => {
   return (
     <TaskRow>
       <Left>
@@ -68,4 +68,4 @@ const ViewButton = styled(StyledOutlinedButton)`
   background-color: #eeeeee;
 `;
 
-export default TaskItem;
+export default AdminTaskItem;

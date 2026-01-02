@@ -1,5 +1,6 @@
 /** @format */
 
+import { useState } from 'react';
 import styled from 'styled-components';
 import AdminSummaryCard from './AdminSummaryCard';
 import AdminTaskItem from './AdminTaskItem';
@@ -9,8 +10,10 @@ import {
 } from '../../components/Styled/Typography.styled';
 import { BADGE_TYPES } from '../../enum/Common';
 import CreateEventButtons from './CreateEventManagerB';
+import CreateEventModal from './CreateEventModal';
 
 const AdminDashboard = () => {
+  const [open, setOpen] = useState(false);
   const tasks = [
     {
       event: 'Annual Conference 2025',
@@ -36,25 +39,28 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <AdminDashboardContainer>
-      <CardsRow>
-        <AdminSummaryCard label="Total Events" value="12" />
-        <AdminSummaryCard label="Event Managers" value="5" />
-        <AdminSummaryCard label="Completion Rate" value="87%" />
-      </CardsRow>
-      <CreateEventButtons />
-      <TaskMainCard>
-        <Tasktxt>
-          <TaskEvents>Upcoming Events</TaskEvents>
-          <TaskMonitor>Manage and monitor all events</TaskMonitor>
-        </Tasktxt>
-        <TaskList>
-          {tasks.map((task, index) => (
-            <AdminTaskItem key={index} data={task} />
-          ))}
-        </TaskList>
-      </TaskMainCard>
-    </AdminDashboardContainer>
+    <>
+      <AdminDashboardContainer>
+        <CardsRow>
+          <AdminSummaryCard label="Total Events" value="12" />
+          <AdminSummaryCard label="Event Managers" value="5" />
+          <AdminSummaryCard label="Completion Rate" value="87%" />
+        </CardsRow>
+        <CreateEventButtons onCreateEvent={() => setOpen(true)} />
+        {open && <CreateEventModal onClose={() => setOpen(false)} />}
+        <TaskMainCard>
+          <Tasktxt>
+            <TaskEvents>Upcoming Events</TaskEvents>
+            <TaskMonitor>Manage and monitor all events</TaskMonitor>
+          </Tasktxt>
+          <TaskList>
+            {tasks.map((task, index) => (
+              <AdminTaskItem key={index} data={task} />
+            ))}
+          </TaskList>
+        </TaskMainCard>
+      </AdminDashboardContainer>
+    </>
   );
 };
 
