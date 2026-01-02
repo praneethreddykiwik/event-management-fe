@@ -11,9 +11,17 @@ import { Button } from "../../../components/Buttons/Button";
 import Badge from "../../../components/Badge/Badge.component";
 import PopupModal from "../../../components/PopupModal/PopupModal";
 import { VIEW_AND_MANAGE_EVENT_MANAGER } from "../../../Enum/PopupModal.common";
+import { useState } from "react";
+import CreateManager from "./CreateManager";
 
 const AdminPopupModal = ({ onClose }) => {
   const adminPopupData = AdminPopupCard();
+
+  const [open, setOpen] = useState(false);
+
+  const onClickAddManager = () => {
+    setOpen(true);
+  };
 
   const TABLE_HEADERS = [
     { label: VIEW_AND_MANAGE_EVENT_MANAGER.NAME, flex: 2 },
@@ -31,9 +39,10 @@ const AdminPopupModal = ({ onClose }) => {
       subtitle={VIEW_AND_MANAGE_EVENT_MANAGER.SUBTITLE}
     >
       <StyledActionRow>
-        <Button type="icon" icon="add">
+        <Button type="icon" icon="add" onClick={onClickAddManager}>
           Add Manager
         </Button>
+        {open && <CreateManager onClose={() => setOpen(false)} />}
       </StyledActionRow>
 
       <StyledTableWrapper>

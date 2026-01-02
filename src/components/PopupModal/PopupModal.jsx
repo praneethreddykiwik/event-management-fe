@@ -10,6 +10,7 @@ const PopupModal = ({
   children,
   title,
   subtitle,
+  width = "60%",
   showHeader = true,
 }) => {
   const handleBackdropClick = (e) => {
@@ -18,7 +19,7 @@ const PopupModal = ({
 
   return (
     <StyledBackdrop onClick={handleBackdropClick}>
-      <StyledPopupModal>
+      <StyledPopupModal width={width}>
         {showHeader && (
           <StyledPopupHeader>
             <StyledheaderTxt>
@@ -52,7 +53,7 @@ const StyledBackdrop = styled.div`
 
 const StyledPopupModal = styled.div`
   background: #fff;
-  width: 60%;
+  width: ${({ width }) => width};
   border-radius: 12px;
   padding: 24px;
   overflow: hidden;
