@@ -119,7 +119,7 @@ const Forms = () => {
         </RegisterAnchor>
       </NewUser>
       <AccountSignIn>
-        {LOGIN_COMMON.NO_ACCOUNT_TEXT}
+        {LOGIN_COMMON.DONT_HAVE_ACCOUNT_TEXT}
         <AnchorLinkPrimary onClick={() => navigate('/register')}>
           {LOGIN_COMMON.REGISTER}
         </AnchorLinkPrimary>
