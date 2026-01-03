@@ -1,51 +1,36 @@
 /** @format */
-
-import { useState } from 'react';
-import styled from 'styled-components';
-import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { inputValidation } from '../../components/Validations/inputValidation';
-import { Input } from '../../components/Inputs/Input';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Buttons/Button';
+import styled from "styled-components";
+import { LOGIN_COMMON } from "../../enum/Login.Common";
+import { Input } from "../../components/Inputs/Input";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/Buttons/Button";
 import {
   StyledAnchor,
   StyledParagraphSmallGray,
-} from '../../components/Styled/Typography.styled';
-import { StyledBaseButton } from '../../components/Styled/Buttons.styled';
-import { AnchorLinkPrimary } from '../../components/Styled/Links.styles';
-
+} from "../../components/Styled/Typography.styled";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
+import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
+import { useLoginForm } from "../../hooks/useLoginForm.hook";
+import Spinner from "../../components/Spinner/Spinner.component";
 
 const Forms = () => {
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-    terms: '',
-  });
-
-  const handleSubmit = () => {
-    const newErrors = {
-      email: inputValidation(email, ['required', 'email']),
-      password: inputValidation(password, [
-        'required',
-        { type: 'min-length', value: 6 },
-      ]),
-      terms: acceptedTerms ? '' : 'You must accept terms & conditions',
-    };
-
-    setErrors(newErrors);
-
-    const hasError = Object.values(newErrors).some(Boolean);
-    if (hasError) return;
-
-    navigate('/');
-  };
+  const {
+    email,
+    password,
+    acceptedTerms,
+    showPassword,
+    errors,
+    loading,
+    // error,
+    setEmail,
+    setPassword,
+    setAcceptedTerms,
+    setShowPassword,
+    setErrors,
+    submit,
+  } = useLoginForm();
 
   return (
     <Form>
@@ -57,19 +42,19 @@ const Forms = () => {
             placeholder="Email address"
             value={email}
             onChange={({ value }) => setEmail(value)}
-            validations={['required', 'email']}
+            validations={["required", "email"]}
             error={errors.email}
             setError={(err) => setErrors((prev) => ({ ...prev, email: err }))}
           />
         </InputWrapper>
         <InputWrapper>
           <Input
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Password"
             value={password}
             onChange={({ value }) => setPassword(value)}
-            validations={['required', { type: 'min-length', value: 6 }]}
+            validations={["required", { type: "min-length", value: 6 }]}
             error={errors.password}
             setError={(err) =>
               setErrors((prev) => ({ ...prev, password: err }))
@@ -78,7 +63,7 @@ const Forms = () => {
 
           <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
             <span className="material-symbols-outlined">
-              {showPassword ? 'visibility' : 'visibility_off'}
+              {showPassword ? "visibility_off" : "visibility"}
             </span>
           </ShowHideIcon>
         </InputWrapper>
@@ -105,22 +90,22 @@ const Forms = () => {
         />
       </CheckboxRow>
       {errors.terms && (
-        <ErrorTerms style={{ color: 'red', margin: 0, fontSize: 12 }}>
+        <ErrorTerms style={{ color: "red", margin: 0, fontSize: 12 }}>
           {errors.terms}
         </ErrorTerms>
       )}
-      <Button type="base" onClick={handleSubmit}>
-        {LOGIN_COMMON.CONTINUE}
+      <Button type="base" onClick={submit} disabled={loading}>
+        {loading ? <Spinner loading={loading} /> : LOGIN_COMMON.CONTINUE}
       </Button>
       <NewUser>
         {LOGIN_COMMON.NEW_USER}
-        <RegisterAnchor onClick={() => navigate('/registration')}>
+        <AnchorLinkPrimary onClick={() => navigate("/registration")}>
           {LOGIN_COMMON.REGISTER}
-        </RegisterAnchor>
+        </AnchorLinkPrimary>
       </NewUser>
       <AccountSignIn>
         {LOGIN_COMMON.DONT_HAVE_ACCOUNT_TEXT}
-        <AnchorLinkPrimary onClick={() => navigate('/register')}>
+        <AnchorLinkPrimary onClick={() => navigate("/register")}>
           {LOGIN_COMMON.REGISTER}
         </AnchorLinkPrimary>
       </AccountSignIn>
@@ -187,18 +172,19 @@ const InputCheckBox = styled.input`
   color: white;
 `;
 const NewUser = styled(StyledParagraphSmallGray)`
-  @media screen and (min-width: 769px) {
+  /* @media screen and (min-width: 769px) {
     display: none;
-  }
+  } */
 `;
 const RegisterAnchor = styled(StyledAnchor)`
   text-decoration: none;
   font-weight: 400;
   font-size: 14px;
   color: #26c867 !important;
-  @media screen and (min-width: 769px) {
+  margin-left: 4px;
+  /* @media screen and (min-width: 769px) {
     display: none;
-  }
+  } */
 `;
 
 const AnchorParah = styled(StyledParagraphSmallGray)`

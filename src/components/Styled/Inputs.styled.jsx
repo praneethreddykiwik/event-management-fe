@@ -46,15 +46,24 @@ const baseStyles = `
 
 export const InputDefault = styled.input`
   ${baseStyles};
-  border-color: ${({ $hasError }) => ($hasError ? '#e53935' : '#e0e0e0')};
+  border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#e0e0e0")};
 
   &:focus {
-    border-color: ${({ $hasError }) => ($hasError ? '#e53935' : '#27c14a')};
+    border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#27c14a")};
   }
+`;
+
+export const InputSelect = styled.select`
+  border: 1px solid red;
+`;
+
+export const InputSelectOptions = styled.option`
+  color: red;
 `;
 
 export const InputNumber = styled(InputDefault)``;
 export const InputPassword = styled(InputDefault)``;
+// export const InputSelect = styled(InputDefault)``;
 
 export const InputCheckbox = styled.input`
   border-radius: 4px;

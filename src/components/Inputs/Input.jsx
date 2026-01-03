@@ -4,9 +4,11 @@ import {
   InputPassword,
   InputCheckbox,
   InputRadio,
-} from '../Styled/Inputs.styled';
-import { inputValidation } from '../../components/Validations/inputValidation';
-import styled from 'styled-components';
+  InputSelect,
+  InputSelectOptions,
+} from "../Styled/Inputs.styled";
+import { inputValidation } from "../../components/Validations/inputValidation";
+import styled from "styled-components";
 
 export const Input = ({
   type,
@@ -19,9 +21,10 @@ export const Input = ({
   validations = [],
   error,
   setError,
+  options,
 }) => {
   const makeId = (item) =>
-    `${name}-${String(item).toLowerCase().replace(/\s+/g, '-')}`;
+    `${name}-${String(item).toLowerCase().replace(/\s+/g, "-")}`;
 
   const runValidation = (val) => {
     if (!setError) return;
@@ -34,7 +37,7 @@ export const Input = ({
     runValidation(val);
   };
 
-  if (type === 'text' || type === 'email') {
+  if (type === "text" || type === "email") {
     return (
       <>
         <InputDefault
@@ -42,7 +45,7 @@ export const Input = ({
           name={name}
           type={type}
           placeholder={placeholder}
-          value={value || ''}
+          value={value || ""}
           onChange={(e) => handleChange(e.target.value)}
           disabled={disabled}
           $hasError={!!error}
@@ -52,8 +55,19 @@ export const Input = ({
     );
   }
 
+  if (type === "select") {
+    return (
+      <InputSelect>
+        {options.map((option) => (
+          <InputSelectOptions value={option.label} key={option.label}>
+            {option.value}
+          </InputSelectOptions>
+        ))}
+      </InputSelect>
+    );
+  }
 
-  if (type === 'number') {
+  if (type === "number") {
     return (
       <>
         <InputNumber
@@ -61,7 +75,7 @@ export const Input = ({
           name={name}
           type="number"
           placeholder={placeholder}
-          value={value ?? ''}
+          value={value ?? ""}
           onChange={(e) => handleChange(e.target.value)}
           disabled={disabled}
           $hasError={!!error}
@@ -71,41 +85,39 @@ export const Input = ({
     );
   }
 
-
-if (type === 'password' || type === 'text') {
-  return (
-    <InputPassword
-      id={name}
-      name={name}
-      type={type} 
-      placeholder={placeholder}
-      value={value || ''}
-      onChange={(e) => handleChange(e.target.value)}
-      disabled={disabled}
-      $hasError={!!error}
-    />
-  );
-}
-
-if (type === 'checkbox') {
-  return (
-    <label style={rowStyle}>
-      <InputCheckbox
+  if (type === "password" || type === "text") {
+    return (
+      <InputPassword
         id={name}
         name={name}
-        type="checkbox"
-        checked={!!value}
-        onChange={(e) => handleChange(e.target.checked)}
+        type={type}
+        placeholder={placeholder}
+        value={value || ""}
+        onChange={(e) => handleChange(e.target.value)}
         disabled={disabled}
+        $hasError={!!error}
       />
-      <span>{list[0]}</span>
-      {error && <ErrorText>{error}</ErrorText>}
-    </label>
-  );
-}
+    );
+  }
 
+  if (type === "checkbox") {
+    return (
+      <label style={rowStyle}>
+        <InputCheckbox
+          id={name}
+          name={name}
+          type="checkbox"
+          checked={!!value}
+          onChange={(e) => handleChange(e.target.checked)}
+          disabled={disabled}
+        />
+        <span>{list[0]}</span>
+        {error && <ErrorText>{error}</ErrorText>}
+      </label>
+    );
+  }
 
-  if (type === 'checkbox-group') {
+  if (type === "checkbox-group") {
     return (
       <>
         <GroupLabel>{placeholder}</GroupLabel>
@@ -122,7 +134,7 @@ if (type === 'checkbox') {
                 checked={!!isChecked}
                 onChange={(e) => {
                   onChange({
-                    type: 'checkbox-toggle',
+                    type: "checkbox-toggle",
                     checked: e.target.checked,
                     item,
                   });
@@ -139,7 +151,7 @@ if (type === 'checkbox') {
     );
   }
 
-  if (type === 'radio-group') {
+  if (type === "radio-group") {
     return (
       <>
         <GroupLabel>{placeholder}</GroupLabel>
@@ -183,8 +195,8 @@ const GroupLabel = styled.div`
 `;
 
 const rowStyle = {
-  display: 'flex',
+  display: "flex",
   gap: 8,
-  alignItems: 'center',
-  cursor: 'pointer',
+  alignItems: "center",
+  cursor: "pointer",
 };
