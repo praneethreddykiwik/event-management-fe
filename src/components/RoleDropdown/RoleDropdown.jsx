@@ -1,19 +1,23 @@
-import Select from "react-select";
-import styled from "styled-components";
-import { StyledMediumHeading } from "../Styled/Typography.styled";
+/** @format */
 
-const RoleDropdown = ({ options, label, values, onChange }) => {
-  
+import Select from 'react-select';
+import styled from 'styled-components';
+import {
+  StyledParagraph,
+  StyledParagraphSmall,
+} from '../Styled/Typography.styled';
+
+const RoleDropdown = ({ options, label, value, onChange, placeholder }) => {
   return (
     <StyledRoleDropdownLayout>
-      <Styledselect>Select Role</Styledselect>
+      {label && <Styledselect small>{label}*</Styledselect>}
 
       <Select
         options={options}
-        lable={label}
-        value={values}
+        label={label}
+        value={value}
         onChange={onChange}
-        placeholder="Choose your role"
+        placeholder={placeholder}
         styles={customStyles}
         isSearchable={false}
         components={{
@@ -27,80 +31,76 @@ const RoleDropdown = ({ options, label, values, onChange }) => {
 const StyledRoleDropdownLayout = styled.div`
   width: 100%;
 `;
-const Styledselect = styled(StyledMediumHeading)`
+const Styledselect = styled(StyledParagraphSmall)`
   text-align: left;
   /* adjust padding according to your figma */
+  margin-bottom: ${({ theme }) => theme.spacings['spacing-2']};
+  font-weight: ${({ theme }) => theme.fontWeights['default']};
   padding-left: 10px;
 `;
 
 const customStyles = {
   control: (base) => ({
     ...base,
-    borderRadius: "25px",
-    paddingLeft: "12px",
-    paddingRight: "12px",
-    cursor: "pointer",
-    textAlign: "left",
-    border: "1px #000000 solid",
-    "&:focus-within": {
-      border: "1px #000000 solid",
-      boxShadow: "none",
-    },
-    "&:hover": {
-      border: "1px #000000 solid",
+    borderRadius: '25px',
+    paddingLeft: '12px',
+    paddingRight: '12px',
+    cursor: 'pointer',
+    textAlign: 'left',
+    border: '1px solid #B9B9B9',
+    '&:focus-within': {
+      border: `1px solid #B9B9B9`,
+      boxShadow: 'none',
     },
   }),
 
   dropdownIndicator: (base) => ({
     ...base,
-    color: "#000000",
+    color: '#66666',
     padding: 8,
   }),
 
   valueContainer: (base) => ({
     ...base,
-    padding: "0 8px",
+    padding: '0 8px',
   }),
 
   placeholder: (base) => ({
     ...base,
-    color: "#000000",
-    fontSize: "16px",
+    color: 'gray',
+    fontSize: '14px',
   }),
 
   singleValue: (base) => ({
     ...base,
-    fontSize: "16px",
-    color: "#000000",
+    fontSize: '14px',
+    color: '#000000',
   }),
 
   menu: (base) => ({
     ...base,
-    marginTop: "8px",
-    borderRadius: "20px",
-    backgroundColor: "#e6e6e6",
-    padding: "8px",
-    textAlign: "left",
+    // marginTop: '8px',
+    borderRadius: '30px',
+    backgroundColor: '#e6e6e6',
+    padding: '0 8px',
+    textAlign: 'left',
   }),
 
   option: (base, state) => ({
     ...base,
-    padding: "14px 20px",
-    borderRadius: "20px",
-    marginTop: "10px",
-    fontSize: "16px",
-    cursor: "pointer",
+    padding: '8px 20px',
+    borderRadius: '28px',
+    margin: '4px 0',
+    fontSize: '14px',
+    cursor: 'pointer',
 
-    backgroundColor: state.isSelected
-      ? "#f2f1ff"
-      : state.isFocused
-      ? "#f2f1ff"
-      : "transparent",
+    backgroundColor: state.isFocused ? '#f2f1ff' : 'transparent',
+    // backgroundColor: state.isFocused ? '#f2f1ff' : 'transparent',
 
-    color: state.isSelected ? "#7b6cf6" : "#000000",
+    color: state.isFocused ? '#7b6cf6' : '#000000',
 
-    "&:active": {
-      backgroundColor: "#f2f1ff",
+    '&:active': {
+      backgroundColor: '#f2f1ff',
     },
   }),
 };

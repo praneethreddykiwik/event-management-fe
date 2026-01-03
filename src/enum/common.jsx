@@ -51,3 +51,8 @@ export const BADGE_TYPES = {
   ACTIVE: "active",
   INACTIVE: "inactive",
 };
+export const userRoles = {
+  adminRole: "admin",
+  eventManagerRole: "eventManager",
+  stakeHolderRole: "stakeHolder",
+};
