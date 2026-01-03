@@ -49,3 +49,8 @@ export const BADGE_TYPES = {
   PENDING: "pending",
   ACCEPTED: "accepted",
 };
+export const userRoles = {
+  adminRole: "admin",
+  eventManagerRole: "eventManager",
+  stakeHolderRole: "stakeHolder",
+};
