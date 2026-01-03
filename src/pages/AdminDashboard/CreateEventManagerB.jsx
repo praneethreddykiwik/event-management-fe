@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Button } from '../../components/Buttons/Button';
 import AdminPopupModal from './AdminPopupModal/AdminPopupModal';
 import { useState } from 'react';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
 
 const CreateEventManagerB = ({ onCreateEvent }) => {
   const [open, setOpen] = useState(false);
@@ -16,13 +17,13 @@ const CreateEventManagerB = ({ onCreateEvent }) => {
     <CreateEventButtons>
       <CreateButton>
         <Button type="icon" icon="add" onClick={onCreateEvent}>
-          Create Event
+          {ADMIN_COMMON.CREATE_BUTTON}
         </Button>
       </CreateButton>
 
       <ManageButton>
         <Button onClick={onClickTaskMonitor} type="icon" icon="group">
-          Manage Event Managers
+          {ADMIN_COMMON.MANAGE_BUTTON}
         </Button>
         {open && <AdminPopupModal onClose={() => setOpen(false)} />}
       </ManageButton>

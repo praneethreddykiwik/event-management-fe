@@ -13,6 +13,7 @@ import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});
@@ -32,7 +33,7 @@ const CreateEventModal = ({ onClose }) => {
   };
 
   const handleCreate = () => {
-    console.log('EVENT CREATED (no validation):', form);
+    console.log('EVENT CREATED:', form);
     onClose();
   };
 
@@ -88,10 +89,8 @@ const CreateEventModal = ({ onClose }) => {
     <Overlay onClick={onClose}>
       <Box onClick={(e) => e.stopPropagation()}>
         <Top>
-          <CreateEventTxt>Create New Event</CreateEventTxt>
-          <CreateEventS>
-            Fill in the details below to create a new event
-          </CreateEventS>
+          <CreateEventTxt>{ADMIN_COMMON.EVENT_TXT}</CreateEventTxt>
+          <CreateEventS>{ADMIN_COMMON.EVENT_TXT_SMALL} </CreateEventS>
         </Top>
 
         <Form>
@@ -108,11 +107,11 @@ const CreateEventModal = ({ onClose }) => {
 
         <Actions>
           <CreateB>
-            <Button onClick={handleCreate}>Create Event</Button>
+            <Button onClick={handleCreate}>{ADMIN_COMMON.CREATE_BUTTON}</Button>
           </CreateB>
 
           <CancelB>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>{ADMIN_COMMON.CANCEL_BUTTON}</Button>
           </CancelB>
         </Actions>
       </Box>

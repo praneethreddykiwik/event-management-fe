@@ -11,30 +11,37 @@ import {
 import { BADGE_TYPES } from '../../enum/Common';
 import CreateEventButtons from './CreateEventManagerB';
 import CreateEventModal from './CreateEventModal';
+import {
+  ADMIN_COMMON,
+  EVENT_ASSIGNED,
+  EVENT_DATE,
+  EVENT_NAME,
+  EVENT_STATUS,
+} from '../../Enum/Admin.common';
 
 const AdminDashboard = () => {
   const [open, setOpen] = useState(false);
   const tasks = [
     {
-      event: 'Annual Conference 2025',
-      date: 'March 15, 2025',
-      assigned: 'Unassigned',
+      event: EVENT_NAME.EVENT_NAME1,
+      date: EVENT_DATE.EVENT_DATE1,
+      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED1,
       type: BADGE_TYPES.PENDING,
-      status: BADGE_TYPES.PENDING,
+      status: EVENT_STATUS.EVENT_STATUS1,
     },
     {
-      event: 'Product Launch Event',
-      date: 'April 20, 2025',
-      assigned: 'Sarah Johnson',
+      event: EVENT_NAME.EVENT_NAME2,
+      date: EVENT_DATE.EVENT_DATE2,
+      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED2,
       type: BADGE_TYPES.INPROGRESS,
-      status: 'in progress',
+      status: EVENT_STATUS.EVENT_STATUS2,
     },
     {
-      event: 'Team Building Workshop',
-      date: 'May 10, 2025',
-      assigned: 'Mike Chen',
+      event: EVENT_NAME.EVENT_NAME3,
+      date: EVENT_DATE.EVENT_DATE3,
+      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED3,
       type: BADGE_TYPES.COMPLETED,
-      status: BADGE_TYPES.COMPLETED,
+      status: EVENT_STATUS.EVENT_STATUS3,
     },
   ];
 
@@ -50,8 +57,8 @@ const AdminDashboard = () => {
         {open && <CreateEventModal onClose={() => setOpen(false)} />}
         <TaskMainCard>
           <Tasktxt>
-            <TaskEvents>Upcoming Events</TaskEvents>
-            <TaskMonitor>Manage and monitor all events</TaskMonitor>
+            <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
+            <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
           </Tasktxt>
           <TaskList>
             {tasks.map((task, index) => (

@@ -7,7 +7,6 @@ export const eventFormConfig = [
     type: 'text',
     component: 'input',
     placeholder: 'e.g., Annual Conference',
-    // validations: ['required'],
   },
 
   {
@@ -20,7 +19,6 @@ export const eventFormConfig = [
       { value: 'private', label: 'Private' },
       { value: 'corporate', label: 'Corporate' },
     ],
-    // validations: ['required'],
   },
 
   {
@@ -31,14 +29,13 @@ export const eventFormConfig = [
         label: 'Event Date *',
         type: 'date',
         component: 'input',
-        // validations: ['required'],
+
       },
       {
         name: 'time',
         label: 'Event Time *',
         type: 'time',
         component: 'input',
-        // validations: ['required'],
       },
     ],
   },
@@ -49,7 +46,6 @@ export const eventFormConfig = [
     type: 'text',
     component: 'input',
     placeholder: 'e.g., Grand Ballroom, City Convention Center',
-    // validations: ['required'],
   },
 
   {
@@ -58,7 +54,6 @@ export const eventFormConfig = [
     type: 'number',
     component: 'input',
     placeholder: 'e.g. 150',
-    // validations: ['required'],
   },
 
   {
@@ -71,7 +66,6 @@ export const eventFormConfig = [
       { value: 'john', label: 'John Smith' },
       { value: 'sarah', label: 'Sarah Johnson' },
     ],
-    // validations: ['required'],
   },
 
   {
@@ -80,6 +74,5 @@ export const eventFormConfig = [
     type: 'textarea',
     component: 'textarea',
     placeholder: 'Provide additional details...',
-    // validations: [],
   },
 ];

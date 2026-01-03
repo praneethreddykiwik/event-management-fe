@@ -7,6 +7,7 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
 
 const AdminTaskItem = ({ data }) => {
   return (
@@ -15,12 +16,15 @@ const AdminTaskItem = ({ data }) => {
         <Taskcard>
           <EventName>{data.event}</EventName>
           <TaskDate>{data.date}</TaskDate>
-          <TaskAssignee>Manager: {data.assigned}</TaskAssignee>
+          <TaskAssignee>
+            {ADMIN_COMMON.ADMIN_MANAGER}
+            {data.assigned}
+          </TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
         <Badge type={data.type}>{data.status}</Badge>
-        <ViewButton>View Details</ViewButton>
+        <ViewButton>{ADMIN_COMMON.ADMIN_DETAILS}</ViewButton>
       </BadgeButton>
     </TaskRow>
   );
