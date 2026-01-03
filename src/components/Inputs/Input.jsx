@@ -6,9 +6,9 @@ import {
   InputPassword,
   InputCheckbox,
   InputRadio,
-} from '../Styled/Inputs.styled';
-import { inputValidation } from '../../components/Validations/inputValidation';
-import styled from 'styled-components';
+} from "../Styled/Inputs.styled";
+import { inputValidation } from "../../components/Validations/inputValidation";
+import styled from "styled-components";
 
 export const Input = ({
   type,
@@ -23,7 +23,7 @@ export const Input = ({
   setError,
 }) => {
   const makeId = (item) =>
-    `${name}-${String(item).toLowerCase().replace(/\s+/g, '-')}`;
+    `${name}-${String(item).toLowerCase().replace(/\s+/g, "-")}`;
 
   const runValidation = (val) => {
     if (!setError) return;
@@ -37,8 +37,8 @@ export const Input = ({
   };
 
   switch (type) {
-    case 'text':
-    case 'email':
+    case "text":
+    case "email":
       return (
         <>
           <InputDefault
@@ -46,7 +46,7 @@ export const Input = ({
             name={name}
             type={type}
             placeholder={placeholder}
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -55,7 +55,7 @@ export const Input = ({
         </>
       );
 
-    case 'number':
+    case "number":
       return (
         <>
           <InputNumber
@@ -63,7 +63,7 @@ export const Input = ({
             name={name}
             type="number"
             placeholder={placeholder}
-            value={value ?? ''}
+            value={value ?? ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -72,7 +72,7 @@ export const Input = ({
         </>
       );
 
-    case 'password':
+    case "password":
       return (
         <>
           <InputPassword
@@ -80,7 +80,7 @@ export const Input = ({
             name={name}
             type="password"
             placeholder={placeholder}
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -89,14 +89,14 @@ export const Input = ({
         </>
       );
 
-    case 'date':
+    case "date":
       return (
         <>
           <InputDefault
             id={name}
             name={name}
             type="date"
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -105,14 +105,14 @@ export const Input = ({
         </>
       );
 
-    case 'time':
+    case "time":
       return (
         <>
           <InputDefault
             id={name}
             name={name}
             type="time"
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -121,14 +121,14 @@ export const Input = ({
         </>
       );
 
-    case 'datetime-local':
+    case "datetime-local":
       return (
         <>
           <InputDefault
             id={name}
             name={name}
             type="datetime-local"
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -137,7 +137,7 @@ export const Input = ({
         </>
       );
 
-    case 'textarea':
+    case "textarea":
       return (
         <>
           <InputDefault
@@ -145,7 +145,7 @@ export const Input = ({
             id={name}
             name={name}
             placeholder={placeholder}
-            value={value || ''}
+            value={value || ""}
             onChange={(e) => handleChange(e.target.value)}
             disabled={disabled}
             $hasError={!!error}
@@ -155,7 +155,7 @@ export const Input = ({
         </>
       );
 
-    case 'checkbox':
+    case "checkbox":
       return (
         <label style={rowStyle}>
           <InputCheckbox
@@ -171,7 +171,7 @@ export const Input = ({
         </label>
       );
 
-    case 'checkbox-group':
+    case "checkbox-group":
       return (
         <>
           <GroupLabel>{placeholder}</GroupLabel>
@@ -188,7 +188,7 @@ export const Input = ({
                   checked={!!isChecked}
                   onChange={(e) => {
                     onChange({
-                      type: 'checkbox-toggle',
+                      type: "checkbox-toggle",
                       checked: e.target.checked,
                       item,
                     });
@@ -204,7 +204,7 @@ export const Input = ({
         </>
       );
 
-    case 'radio-group':
+    case "radio-group":
       return (
         <>
           <GroupLabel>{placeholder}</GroupLabel>
@@ -249,8 +249,8 @@ const GroupLabel = styled.div`
 `;
 
 const rowStyle = {
-  display: 'flex',
+  display: "flex",
   gap: 8,
-  alignItems: 'center',
-  cursor: 'pointer',
+  alignItems: "center",
+  cursor: "pointer",
 };
