@@ -48,6 +48,8 @@ export const BADGE_TYPES = {
   INPROGRESS: "inprogress",
   PENDING: "pending",
   ACCEPTED: "accepted",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
 };
 export const userRoles = {
   adminRole: "admin",
