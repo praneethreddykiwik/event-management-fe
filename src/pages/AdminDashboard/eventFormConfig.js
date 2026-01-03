@@ -1,5 +1,3 @@
-/** @format */
-
 export const eventFormConfig = [
   {
     name: 'title',

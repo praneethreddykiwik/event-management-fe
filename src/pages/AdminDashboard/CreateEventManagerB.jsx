@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from 'styled-components';
 import { Button } from '../../components/Buttons/Button';
 import AdminPopupModal from './AdminPopupModal/AdminPopupModal';

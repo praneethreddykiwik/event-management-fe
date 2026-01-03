@@ -1,14 +1,9 @@
-/** @format */
-
 import { useState } from 'react';
 import styled from 'styled-components';
-
 import { eventFormConfig } from './eventFormConfig';
-
 import { Input } from '../../components/Inputs/Input';
 import RoleDropdown from '../../components/RoleDropdown/RoleDropdown';
 import { Button } from '../../components/Buttons/Button';
-
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
