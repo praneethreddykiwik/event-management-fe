@@ -1,11 +1,10 @@
-/** @format */
+import styled from 'styled-components';
+import { Button } from '../../components/Buttons/Button';
+import AdminPopupModal from './AdminPopupModal/AdminPopupModal';
+import { useState } from 'react';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
 
-import styled from "styled-components";
-import { Button } from "../../components/Buttons/Button";
-import AdminPopupModal from "./AdminPopupModal/AdminPopupModal";
-import { useState } from "react";
-
-const CreateEventManagerB = () => {
+const CreateEventManagerB = ({ onCreateEvent }) => {
   const [open, setOpen] = useState(false);
 
   const onClickTaskMonitor = () => {
@@ -15,13 +14,14 @@ const CreateEventManagerB = () => {
   return (
     <CreateEventButtons>
       <CreateButton>
-        <Button type="icon" icon="add">
-          Create Event
+        <Button type="icon" icon="add" onClick={onCreateEvent}>
+          {ADMIN_COMMON.CREATE_BUTTON}
         </Button>
       </CreateButton>
+
       <ManageButton>
         <Button onClick={onClickTaskMonitor} type="icon" icon="group">
-          Manage Event Managers
+          {ADMIN_COMMON.MANAGE_BUTTON}
         </Button>
         {open && <AdminPopupModal onClose={() => setOpen(false)} />}
       </ManageButton>

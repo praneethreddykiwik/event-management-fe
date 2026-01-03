@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from 'styled-components';
 import Badge from '../../components/Badge/Badge.component';
 import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
@@ -7,20 +5,24 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
 
-const TaskItem = ({ data }) => {
+const AdminTaskItem = ({ data }) => {
   return (
     <TaskRow>
       <Left>
         <Taskcard>
           <EventName>{data.event}</EventName>
           <TaskDate>{data.date}</TaskDate>
-          <TaskAssignee>Manager: {data.assigned}</TaskAssignee>
+          <TaskAssignee>
+            {ADMIN_COMMON.ADMIN_MANAGER}
+            {data.assigned}
+          </TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
         <Badge type={data.type}>{data.status}</Badge>
-        <ViewButton>View Details</ViewButton>
+        <ViewButton>{ADMIN_COMMON.ADMIN_DETAILS}</ViewButton>
       </BadgeButton>
     </TaskRow>
   );
@@ -68,4 +70,4 @@ const ViewButton = styled(StyledOutlinedButton)`
   background-color: #eeeeee;
 `;
 
-export default TaskItem;
+export default AdminTaskItem;
