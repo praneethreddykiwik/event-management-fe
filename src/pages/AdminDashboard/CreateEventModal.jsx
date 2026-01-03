@@ -2,71 +2,86 @@
 
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '../../components/Buttons/Button';
+
+import { eventFormConfig } from './eventFormConfig';
+
 import { Input } from '../../components/Inputs/Input';
 import RoleDropdown from '../../components/RoleDropdown/RoleDropdown';
+import { Button } from '../../components/Buttons/Button';
+
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from '../../components/Styled/Typography.styled';
 
 const CreateEventModal = ({ onClose }) => {
-  const [form, setForm] = useState({
-    title: '',
-    type: '',
-    date: '',
-    time: '',
-    venue: '',
-    attendees: '',
-    manager: '',
-    description: '',
-  });
+  const [form, setForm] = useState({});
 
-  const [errors, setErrors] = useState({
-    title: '',
-    type: '',
-    date: '',
-    time: '',
-    venue: '',
-    attendees: '',
-    manager: '',
-  });
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!form.title.trim()) newErrors.title = 'Title is required';
-    if (!form.type) newErrors.type = 'Event type is required';
-    if (!form.date) newErrors.date = 'Event date is required';
-    if (!form.time) newErrors.time = 'Event time is required';
-    if (!form.venue.trim()) newErrors.venue = 'Venue is required';
-
-    if (!form.attendees) newErrors.attendees = 'Expected attendees required';
-    else if (Number(form.attendees) <= 0)
-      newErrors.attendees = 'Attendees must be greater than 0';
-
-    if (!form.manager) newErrors.manager = 'Please assign a manager';
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0; 
-  };
-  const handleInputChange = (field) => (obj) => {
-    setForm((prev) => ({ ...prev, [field]: obj.value }));
-  };
-
-  const handleError = (field) => (msg) => {
-    setErrors((prev) => ({ ...prev, [field]: msg }));
+  const handleInputChange = (name) => (e) => {
+    let value = e;
+    if (e && typeof e === 'object' && 'value' in e && !e.target) {
+      value = e.value;
+    }
+    if (e?.target) {
+      value = e.target.value;
+    }
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleCreate = () => {
-    if (!validateForm()) {
-      console.log('Form has errors');
-      return;
+    console.log('EVENT CREATED (no validation):', form);
+    onClose();
+  };
+
+  const renderField = (field) => {
+    if (field.component === 'select') {
+      return (
+        <Field key={field.name}>
+          <RoleDropdown
+            label={field.label}
+            options={field.options}
+            value={form[field.name] || null}
+            placeholder={field.label}
+            onChange={(opt) =>
+              setForm((prev) => ({ ...prev, [field.name]: opt }))
+            }
+          />
+        </Field>
+      );
     }
 
-    console.log('EVENT CREATED:', form);
-    onClose();
+    if (field.component === 'textarea') {
+      return (
+        <Field key={field.name}>
+          <LabelTxt>{field.label}</LabelTxt>
+
+          <Input
+            type="textarea"
+            name={field.name}
+            placeholder={field.placeholder}
+            value={form[field.name] || ''}
+            onChange={handleInputChange(field.name)}
+          />
+        </Field>
+      );
+    }
+
+    return (
+      <Field key={field.name}>
+        <LabelTxt>{field.label}</LabelTxt>
+
+        <Input
+          type={field.type}
+          name={field.name}
+          placeholder={field.placeholder}
+          value={form[field.name] || ''}
+          onChange={handleInputChange(field.name)}
+        />
+      </Field>
+    );
   };
 
   return (
@@ -80,120 +95,22 @@ const CreateEventModal = ({ onClose }) => {
         </Top>
 
         <Form>
-          <Field>
-            <LabelTxt>Event Name *</LabelTxt>
-            <Input
-              type="text"
-              name="title"
-              placeholder="e.g., Annual Conference 2025"
-              value={form.title}
-              onChange={handleInputChange('title')}
-              validations={['required']}
-              error={errors.title}
-              setError={handleError('title')}
-            />
-          </Field>
-          <Field>
-            <RoleDropdown
-              label="Event Type"
-              value={form.type}
-              placeholder="Select event type"
-              onChange={(opt) => setForm({ ...form, type: opt })}
-              options={[
-                { value: 'public', label: 'Public' },
-                { value: 'private', label: 'Private' },
-                { value: 'corporate', label: 'Corporate' },
-              ]}
-            />
-          </Field>
-          <Row>
-            <Field>
-              <LabelTxt>Event Date *</LabelTxt>
-
-              <Input
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleInputChange('date')}
-                validations={['required']}
-                error={errors.date}
-                setError={handleError('date')}
-              />
-            </Field>
-
-            <Field>
-              <LabelTxt>Event Time *</LabelTxt>
-              <Input
-                type="time"
-                name="time"
-                value={form.time}
-                onChange={handleInputChange('time')}
-                validations={['required']}
-                error={errors.time}
-                setError={handleError('time')}
-              />
-            </Field>
-          </Row>
-          <Field>
-            <LabelTxt>Venue *</LabelTxt>
-
-            <Input
-              type="text"
-              name="venue"
-              placeholder="e.g., Grand Ballroom, City Convention Center"
-              value={form.venue}
-              onChange={handleInputChange('venue')}
-              validations={['required']}
-              error={errors.venue}
-              setError={handleError('venue')}
-            />
-          </Field>
-
-          <Field>
-            <LabelTxt>Expected Attendees *</LabelTxt>
-
-            <Input
-              type="number"
-              name="attendees"
-              placeholder="e.g., 150"
-              value={form.attendees}
-              onChange={handleInputChange('attendees')}
-              validations={['required']}
-              error={errors.attendees}
-              setError={handleError('attendees')}
-            />
-          </Field>
-
-          <Field>
-            <RoleDropdown
-              label="Assign Event Manager"
-              value={form.manager}
-              placeholder="Select event manager"
-              onChange={(opt) => setForm({ ...form, manager: opt })}
-              options={[
-                { value: 'none', label: 'No Manager Assigned' },
-                { value: 'john', label: 'John Smith' },
-                { value: 'sarah', label: 'Sarah Johnson' },
-              ]}
-            />
-          </Field>
-          <Field>
-            <LabelTxt>Event Description</LabelTxt>
-            <Input
-              type="textarea"
-              name="description"
-              placeholder="Provide additional details about the event…"
-              value={form.description}
-              onChange={handleInputChange('description')}
-              rows={8}
-              style={{ height: '160px', resize: 'none' }}
-            />
-          </Field>
+          {eventFormConfig.map((field) =>
+            field.group === 'row' ? (
+              <Row key={field.fields.map((f) => f.name).join('-')}>
+                {field.fields.map(renderField)}
+              </Row>
+            ) : (
+              renderField(field)
+            )
+          )}
         </Form>
+
         <Actions>
           <CreateB>
             <Button onClick={handleCreate}>Create Event</Button>
           </CreateB>
+
           <CancelB>
             <Button onClick={onClose}>Cancel</Button>
           </CancelB>
@@ -234,7 +151,9 @@ const Box = styled.div`
 const CreateEventTxt = styled(StyledMediumHeading)`
   margin: 4px 0 0;
 `;
+
 const CreateEventS = styled(StyledParagraphSmall)``;
+
 const Top = styled.div`
   margin-bottom: 12px;
   justify-items: left;
@@ -256,18 +175,13 @@ const Field = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
-  label {
-    font-size: 13px;
-    font-weight: 600;
-  }
 `;
 
 const Actions = styled.div`
   display: flex;
   justify-content: left;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 35px;
 `;
 
 const CancelB = styled.div`
@@ -276,6 +190,7 @@ const CancelB = styled.div`
     color: #000000;
   }
 `;
+
 const CreateB = styled.div`
   button {
     color: white;
