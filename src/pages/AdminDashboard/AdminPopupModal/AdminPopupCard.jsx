@@ -1,3 +1,5 @@
+import { BADGE_TYPES } from "../../../Enum/common";
+
 const AdminPopupCard = () => {
   const adminPopupData = [
     {
@@ -5,42 +7,42 @@ const AdminPopupCard = () => {
       mail: "john@gmail.com",
       mobile: "9876545678",
       assignedEvent: 3,
-      status: true,
+      status: `${BADGE_TYPES.ACTIVE}`,
     },
     {
       name: "Sarah",
       mail: "sarah@gmail.com",
       mobile: "1234567890",
       assignedEvent: 1,
-      status: false,
+      status: `${BADGE_TYPES.INACTIVE}`,
     },
     {
       name: "Sarah",
       mail: "sarah@gmail.com",
       mobile: "1234567890",
       assignedEvent: 1,
-      status: false,
+      status: `${BADGE_TYPES.ACTIVE}`,
     },
     {
       name: "Sarah",
       mail: "sarah@gmail.com",
       mobile: "1234567890",
       assignedEvent: 1,
-      status: false,
+      status: BADGE_TYPES.INACTIVE,
     },
     {
       name: "Sarah",
       mail: "sarah@gmail.com",
       mobile: "1234567890",
       assignedEvent: 1,
-      status: false,
+      status: BADGE_TYPES.INACTIVE,
     },
     {
       name: "Sarah",
       mail: "sarah@gmail.com",
       mobile: "1234567890",
       assignedEvent: 1,
-      status: false,
+      status: BADGE_TYPES.INACTIVE,
     },
   ];
 
