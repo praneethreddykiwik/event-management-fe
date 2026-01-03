@@ -25,7 +25,7 @@ const Header = () => {
 
       {/* CENTER MENU */}
       <MenuBox open={menuOpen}>
-        <MenuItem>Home</MenuItem>
+        <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
         <MenuItem>
           Events <ArrowIcon />
         </MenuItem>
