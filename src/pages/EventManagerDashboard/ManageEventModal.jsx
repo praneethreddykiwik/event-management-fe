@@ -99,7 +99,7 @@ const AddTaskModal = ({ onClose, onAddTask }) => {
             )}
 
             {field.component === "date" && (
-              <Input
+              <InputDefault
                 type="date"
                 value={field.value}
                 onChange={field.onChange}
