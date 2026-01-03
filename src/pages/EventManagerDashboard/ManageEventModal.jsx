@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
 
 import {
   StyledBaseButton,
@@ -10,9 +11,11 @@ import { InputDefault } from "../../components/Styled/Inputs.styled";
 /*  Add Task Modal  */
 
 const AddTaskModal = ({ onClose, onAddTask }) => {
-  const [taskName, setTaskName] = useState("");
-  const [assignedTo, setAssignedTo] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const [form, setForm] = useState({
+    taskName: "",
+    assignedTo: "",
+    dueDate: "",
+  });
 
   const formFields = [
     {
@@ -21,16 +24,14 @@ const AddTaskModal = ({ onClose, onAddTask }) => {
       required: true,
       component: "input",
       placeholder: "e.g. Setup audio equipment",
-      value: taskName,
-      onChange: (e) => setTaskName(e.target.value),
+      value: form.taskName,
+      onChange: (e) => setForm((p) => ({ ...p, taskName: e.target.value })),
     },
     {
       id: "assignedTo",
       label: "Assign To",
       required: true,
       component: "select",
-      value: assignedTo,
-      onChange: (e) => setAssignedTo(e.target.value),
       options: [
         { value: "", label: "Select stakeholder/vendor" },
         { value: "XYZ Decorations", label: "XYZ Decorations" },
@@ -42,12 +43,14 @@ const AddTaskModal = ({ onClose, onAddTask }) => {
       label: "Due Date",
       required: true,
       component: "date",
-      value: dueDate,
-      onChange: (e) => setDueDate(e.target.value),
+      value: form.dueDate,
+      onChange: (e) => setForm((p) => ({ ...p, dueDate: e.target.value })),
     },
   ];
 
   const handleSubmit = () => {
+    const { taskName, assignedTo, dueDate } = form;
+
     if (!taskName || !assignedTo || !dueDate) return;
 
     onAddTask({
@@ -89,13 +92,19 @@ const AddTaskModal = ({ onClose, onAddTask }) => {
             )}
 
             {field.component === "select" && (
-              <Select value={field.value} onChange={field.onChange}>
-                {field.options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Select>
+              <Field>
+                <RoleDropdown
+                  options={field.options}
+                  value={form.assignedTo}
+                  placeholder="Select stakeholder/vendor"
+                  onChange={(opt) =>
+                    setForm((prev) => ({
+                      ...prev,
+                      assignedTo: opt.value, // IMPORTANT
+                    }))
+                  }
+                />
+              </Field>
             )}
 
             {field.component === "date" && (
@@ -308,13 +317,13 @@ const SummaryItem = styled.div``;
 
 const Label = styled.p`
   margin: 0;
-  font-size: 13px;
-  color: #6b7280;
+  color: #86868d;
+  font-size: 12px;
 `;
 
 const Value = styled.p`
   margin: 4px 0 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 `;
 
@@ -445,9 +454,15 @@ const Input = styled.input`
 
 const Select = styled.select`
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 10px 28px 10px 12px;
+  border-radius: 50px;
   border: 1px solid #d1d5db;
+`;
+
+const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
 `;
 
 const ButtonRow = styled.div`
