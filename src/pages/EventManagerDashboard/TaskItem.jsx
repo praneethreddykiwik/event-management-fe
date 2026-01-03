@@ -9,6 +9,8 @@ import {
 } from '../../components/Styled/Typography.styled';
 import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
 import { BADGE_TYPES } from '../../enum/Common';
+import { useState } from 'react';
+import ManageEventModal from './ManageEventModal';
 
 const ICONS = {
   [BADGE_TYPES.COMPLETED]: 'task_alt',
@@ -18,6 +20,8 @@ const ICONS = {
 
 const getIcon = (type) => ICONS[type] || '';
 const TaskItem = ({ data }) => {
+  
+    const [showManageEvent, setShowManageEvent] = useState(false);
   return (
     <TaskRow>
       <Left>
@@ -34,8 +38,13 @@ const TaskItem = ({ data }) => {
         </Taskcard>
       </Left>
       <BadgeButton>
-        <Badge type={data.type}>{data.status}</Badge>
-        <ManageButton>{E_M_DASHBOARD_COMMON.MANAGE_B}</ManageButton>
+        <Badge type={data.type}>{data.status}</Badge>        
+        <ManageButton onClick={() => setShowManageEvent(true)}>
+          {E_M_DASHBOARD_COMMON.MANAGE_B}
+        </ManageButton>
+        {showManageEvent && (
+          <ManageEventModal onClose={() => setShowManageEvent(false)} />
+        )}
       </BadgeButton>
     </TaskRow>
   );

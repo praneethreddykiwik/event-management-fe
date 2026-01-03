@@ -72,7 +72,7 @@ const AccountSettingsLeftNav = () => {
         </List>
       </Nav>
       <SidebarModal show={showModal}>
-        <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
+        <CloseButton onClick={() => setShowModal(false)}><span class="material-symbols-outlined">close_small</span></CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
         <ModalText>{TEXTS.MODAL_TEXT}</ModalText>
         <StyledAccButton type="base">Invite Friends</StyledAccButton>
