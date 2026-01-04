@@ -10,9 +10,9 @@ import {
 import { Button } from "../../../components/Buttons/Button";
 import Badge from "../../../components/Badge/Badge.component";
 import PopupModal from "../../../components/PopupModal/PopupModal";
-import { VIEW_AND_MANAGE_EVENT_MANAGER } from "../../../Enum/PopupModal.common";
 import { useState } from "react";
 import CreateManager from "./CreateManager";
+import { MANAGE_EVENT_MANAGER } from "../../../enum/common";
 
 const AdminPopupModal = ({ onClose }) => {
   const adminPopupData = AdminPopupCard();
@@ -24,19 +24,22 @@ const AdminPopupModal = ({ onClose }) => {
   };
 
   const TABLE_HEADERS = [
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.NAME, flex: 2 },
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.EMAIL, flex: 3 },
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.MOBILE, flex: 2 },
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.ASSIGN_EVENTS, flex: 2.2 },
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.STATUS, flex: 2 },
-    { label: VIEW_AND_MANAGE_EVENT_MANAGER.ACTIONS, flex: 1 },
+    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_NAME, flex: 2 },
+    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_EMAIL, flex: 3 },
+    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_MOBILE, flex: 2 },
+    {
+      label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ASSIGN_EVENTS,
+      flex: 2.2,
+    },
+    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_STATUS, flex: 2 },
+    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
   ];
 
   return (
     <PopupModal
       onClose={onClose}
-      title={VIEW_AND_MANAGE_EVENT_MANAGER.TITLE}
-      subtitle={VIEW_AND_MANAGE_EVENT_MANAGER.SUBTITLE}
+      title={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_TITLE}
+      subtitle={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_SUBTITLE}
     >
       <StyledActionRow>
         <Button type="icon" icon="add" onClick={onClickAddManager}>

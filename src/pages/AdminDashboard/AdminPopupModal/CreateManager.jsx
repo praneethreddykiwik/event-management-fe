@@ -5,6 +5,7 @@ import PopupModal from "../../../components/PopupModal/PopupModal";
 import { Input } from "../../../components/Inputs/Input";
 import { StyledParagraphSmall } from "../../../components/Styled/Typography.styled";
 import { Button } from "../../../components/Buttons/Button";
+import { CREATE_MANGER } from "../../../enum/common";
 
 const CreateManager = ({ onClose }) => {
   const [form, setForm] = useState({
@@ -50,16 +51,20 @@ const CreateManager = ({ onClose }) => {
 
   return (
     <PopupModal
-      title="Add Event Manager"
-      subtitle="Fill in the details to add a new event manager"
+      title={CREATE_MANGER.CREATE_MANAGER_TITLE}
+      subtitle={CREATE_MANGER.CREATE_MANGER_SUBTITLE}
       onClose={onClose}
       width="30%"
     >
       <StyledCMForm>
         <StyledCMField>
           <StyledCMRow>
-            <StyledCMLabel>First Name *</StyledCMLabel>
-            <StyledCMLabel>Last Name *</StyledCMLabel>
+            <StyledCMLabel>
+              {CREATE_MANGER.CREATE_MANAGER_FIRSTNAME}
+            </StyledCMLabel>
+            <StyledCMLabel>
+              {CREATE_MANGER.CREATE_MANAGER_LASTNAME}
+            </StyledCMLabel>
           </StyledCMRow>
           <StyledCMRow>
             <Input
@@ -76,7 +81,7 @@ const CreateManager = ({ onClose }) => {
         </StyledCMField>
 
         <StyledCMField>
-          <StyledCMLabel>Email *</StyledCMLabel>
+          <StyledCMLabel>{CREATE_MANGER.CREATE_MANGER_EMAIL}</StyledCMLabel>
           <Input
             type="email"
             value={form.email}
@@ -85,7 +90,7 @@ const CreateManager = ({ onClose }) => {
         </StyledCMField>
 
         <StyledCMField>
-          <StyledCMLabel>Mobile *</StyledCMLabel>
+          <StyledCMLabel>{CREATE_MANGER.CREATE_MANAGER_MOBILE}</StyledCMLabel>
           <Input
             type="number"
             value={form.mobile}
@@ -94,7 +99,7 @@ const CreateManager = ({ onClose }) => {
         </StyledCMField>
 
         <StyledCMField>
-          <StyledCMLabel>Address *</StyledCMLabel>
+          <StyledCMLabel>{CREATE_MANGER.CREATE_MANAGER_ADDRESS}</StyledCMLabel>
           <Input
             type="text"
             value={form.address}
@@ -104,7 +109,9 @@ const CreateManager = ({ onClose }) => {
 
         <StyledCMRow>
           <StyledCMField>
-            <StyledCMLabel>Emergency Contact Name</StyledCMLabel>
+            <StyledCMLabel>
+              {CREATE_MANGER.CREATE_MANAGER_EMERGENCY_NAME}
+            </StyledCMLabel>
             <Input
               type="text"
               value={form.emergencyName}
@@ -112,7 +119,9 @@ const CreateManager = ({ onClose }) => {
             />
           </StyledCMField>
           <StyledCMField>
-            <StyledCMLabel>Emergency Contact Phone</StyledCMLabel>
+            <StyledCMLabel>
+              {CREATE_MANGER.CREATE_MANAGER_EMERGENCY_PHONE}
+            </StyledCMLabel>
             <Input
               type="number"
               value={form.emergencyPhone}
@@ -123,7 +132,9 @@ const CreateManager = ({ onClose }) => {
       </StyledCMForm>
 
       <StyledCMActions>
-        <Button onClick={handleCreate}>Add Manager</Button>
+        <Button type="icon" icon="add" onClick={handleCreate}>
+          Add Manager
+        </Button>
         <StyledCMCancelButton onClick={onClose}>Cancel</StyledCMCancelButton>
       </StyledCMActions>
     </PopupModal>
@@ -160,7 +171,7 @@ const StyledCMActions = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 20px;
-  width: 300px;
+  width: 100%;
 `;
 
 const StyledCMCancelButton = styled(Button)`
