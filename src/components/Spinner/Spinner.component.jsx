@@ -1,14 +1,12 @@
 import { PuffLoader } from "react-spinners";
 import styled from "styled-components";
 
-const Spinner = ({ loading }) => {
-  let color = "#ffffff";
-
+const Spinner = ({ loading, color = "#ffffff", size = 10 }) => {
   return (
     <StyledSpinner
       color={color}
       loading={loading}
-      size={10}
+      size={size}
       aria-label="Loading Spinner"
       data-testid="loader"
     />

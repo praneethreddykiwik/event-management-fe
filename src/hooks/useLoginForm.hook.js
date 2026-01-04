@@ -2,31 +2,33 @@ import { useState } from "react";
 import { inputValidation } from "../components/Validations/inputValidation";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth.hook";
-import { userRoles } from "../Enum/common";
+import { userRoles } from "../enum/Common";
 
 export const useLoginForm = () => {
   const navigate = useNavigate();
   const { login, loading, error, setUserDetails } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("admin");
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+  const [tenant, setTenant] = useState({});
   const [password, setPassword] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const [errors, setErrors] = useState({
-    email: "",
+    username: "",
     password: "",
     terms: "",
   });
 
   const validateForm = () => {
     const newErrors = {
-      email: inputValidation(email, ["required", "email"]),
+      username: inputValidation(username, ["required"]),
       password: inputValidation(password, [
         "required",
         { type: "min-length", value: 6 },
       ]),
+      tenant: inputValidation(tenant, ["required"]),
       terms: acceptedTerms ? "" : "You must accept terms & conditions",
     };
 
@@ -41,7 +43,12 @@ export const useLoginForm = () => {
     let loginResponse;
 
     try {
-      loginResponse = await login({ userRole: role, email, password });
+      loginResponse = await login({
+        userRole: role,
+        username,
+        password,
+        tenant,
+      });
     } catch (error) {
       console.log("error at useLoginForm hook", error);
       const loginError = {
@@ -59,23 +66,25 @@ export const useLoginForm = () => {
     if (role === userRoles.adminRole) {
       navigate("/admin");
     } else if (role === userRoles.eventManagerRole) {
-      navigate("/stake-holder");
+      navigate("/vendor");
     } else if (role === userRoles.stakeHolderRole) {
       navigate("/event-manager");
     }
   };
 
   return {
-    email,
+    username,
     password,
+    tenant,
     acceptedTerms,
     showPassword,
     errors,
     loading,
     error,
 
-    setEmail,
+    setUsername,
     setPassword,
+    setTenant,
     setAcceptedTerms,
     setShowPassword,
     setErrors,

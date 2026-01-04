@@ -12,39 +12,56 @@ import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import { useLoginForm } from "../../hooks/useLoginForm.hook";
 import Spinner from "../../components/Spinner/Spinner.component";
+import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../redux/auth/auth.actions";
 
 const Forms = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
-    email,
+    username,
     password,
+    tenant,
     acceptedTerms,
     showPassword,
     errors,
     loading,
     // error,
-    setEmail,
+    setUsername,
     setPassword,
+    setTenant,
     setAcceptedTerms,
     setShowPassword,
     setErrors,
-    submit,
   } = useLoginForm();
+
+  const onSubmit = () => {
+    debugger;
+    const payload = {
+      username,
+      password,
+      tenantId: tenant.value,
+    };
+    dispatch(loginAction(payload));
+  };
 
   return (
     <Form>
       <InputBox>
         <InputWrapper>
           <Input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            value={email}
-            onChange={({ value }) => setEmail(value)}
-            validations={["required", "email"]}
-            error={errors.email}
-            setError={(err) => setErrors((prev) => ({ ...prev, email: err }))}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={({ value }) => setUsername(value)}
+            validations={["required"]}
+            error={errors.username}
+            setError={(err) =>
+              setErrors((prev) => ({ ...prev, username: err }))
+            }
           />
         </InputWrapper>
         <InputWrapper>
@@ -66,6 +83,19 @@ const Forms = () => {
               {showPassword ? "visibility_off" : "visibility"}
             </span>
           </ShowHideIcon>
+        </InputWrapper>
+        <InputWrapper>
+          <RoleDropdown
+            options={[
+              { value: "tenant_001", label: "tenant_001" },
+              { value: "tenant_007", label: "tenant_007" },
+            ]}
+            value={tenant}
+            onChange={(val) => {
+              setTenant(val);
+            }}
+            placeholder="Select Tenant"
+          />
         </InputWrapper>
       </InputBox>
 
@@ -94,7 +124,7 @@ const Forms = () => {
           {errors.terms}
         </ErrorTerms>
       )}
-      <Button type="base" onClick={submit} disabled={loading}>
+      <Button type="base" onClick={onSubmit} disabled={loading}>
         {loading ? <Spinner loading={loading} /> : LOGIN_COMMON.CONTINUE}
       </Button>
       <NewUser>
@@ -105,7 +135,7 @@ const Forms = () => {
       </NewUser>
       <AccountSignIn>
         {LOGIN_COMMON.DONT_HAVE_ACCOUNT_TEXT}
-        <AnchorLinkPrimary onClick={() => navigate("/register")}>
+        <AnchorLinkPrimary onClick={() => navigate("/registration")}>
           {LOGIN_COMMON.REGISTER}
         </AnchorLinkPrimary>
       </AccountSignIn>
