@@ -5,7 +5,9 @@ const useTenant = () => {
   const [searchParams] = useSearchParams();
 
   const tenantId = useMemo(() => {
-    return searchParams.get("tenantId");
+    const val = searchParams.get("tenantId");
+
+    return val;
   }, [searchParams]);
 
   return tenantId;

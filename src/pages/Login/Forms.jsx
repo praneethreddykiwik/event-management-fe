@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { LOGIN_COMMON } from "../../enum/Login.Common";
 import { Input } from "../../components/Inputs/Input";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Buttons/Button";
 import {
   StyledAnchor,
@@ -9,79 +8,79 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
-import { useLoginForm } from "../../hooks/useLoginForm.hook";
 import Spinner from "../../components/Spinner/Spinner.component";
 import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
 import useTenant from "../../hooks/useTenant.hook";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { Inputs } from "../../components/Inputs/Inputs";
+import { loginMetaData } from "./login.helper";
+import { useState } from "react";
 
 const Forms = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const tenantId = useTenant();
 
-  const {
-    username,
-    password,
-    acceptedTerms,
-    showPassword,
-    errors,
-    loading,
-    // error,
-    setUsername,
-    setPassword,
-    setAcceptedTerms,
-    setShowPassword,
-    setErrors,
-  } = useLoginForm();
+  const [inputs, setInputs] = useState(loginMetaData);
+
+  const validateFields = () => {
+    let isValid = true;
+    debugger;
+    const newInputs = inputs.map((el) => {
+      if (!el.value) {
+        isValid = false;
+        return { ...el, error: "Invalid input!" };
+      }
+      return el;
+    });
+
+    setInputs(newInputs);
+
+    return isValid;
+  };
 
   const onSubmit = () => {
+    const isValid = validateFields();
+    debugger;
+    if (!isValid) return;
+
+    const inpObj = inputs.reduce((acu, cur) => {
+      return { ...acu, [cur.name]: cur.value };
+    }, {});
+
     const payload = {
-      username,
-      password,
-      tenantId,
+      navigate,
+      reqPayload: {
+        tenantId,
+        username: inpObj.username,
+        password: inpObj.password,
+      },
     };
     dispatch(loginAction(payload));
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+
+    setInputs((prv) => {
+      const dat = prv.map((el) => ({
+        ...el,
+        value: name === el.name ? value : el.value,
+        error: null,
+      }));
+
+      return dat;
+    });
   };
 
   return (
     <Form>
       <InputBox>
-        <InputWrapper>
-          <Input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
-            onChange={({ value }) => setUsername(value)}
-            validations={["required"]}
-            error={errors.username}
-            setError={(err) =>
-              setErrors((prev) => ({ ...prev, username: err }))
-            }
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <Input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={({ value }) => setPassword(value)}
-            validations={["required", { type: "min-length", value: 6 }]}
-            error={errors.password}
-            setError={(err) =>
-              setErrors((prev) => ({ ...prev, password: err }))
-            }
-          />
-
-          <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-            <span className="material-symbols-outlined">
-              {showPassword ? "visibility_off" : "visibility"}
-            </span>
-          </ShowHideIcon>
-        </InputWrapper>
+        {inputs.map((inp) => {
+          return <Inputs {...inp} onChange={onChange} />;
+        })}
       </InputBox>
 
       <ForgotPassword>
@@ -89,29 +88,7 @@ const Forms = () => {
         <Reset>{LOGIN_COMMON.RESET}</Reset>
       </ForgotPassword>
 
-      <CheckboxRow>
-        <Input
-          type="checkbox"
-          name="terms"
-          list={[
-            <AnchorParah>
-              {LOGIN_COMMON.TERMS}
-              <SignInAnchor>{LOGIN_COMMON.CONDITIONS}</SignInAnchor> and
-              <SignInAnchor>{LOGIN_COMMON.POLICY}</SignInAnchor>
-            </AnchorParah>,
-          ]}
-          value={acceptedTerms}
-          onChange={({ value }) => setAcceptedTerms(value)}
-        />
-      </CheckboxRow>
-      {errors.terms && (
-        <ErrorTerms style={{ color: "red", margin: 0, fontSize: 12 }}>
-          {errors.terms}
-        </ErrorTerms>
-      )}
-      <Button type="base" onClick={onSubmit} disabled={loading}>
-        {loading ? <Spinner loading={loading} /> : LOGIN_COMMON.CONTINUE}
-      </Button>
+      <Button onClick={onSubmit}>{LOGIN_COMMON.CONTINUE}</Button>
       <NewUser>
         {LOGIN_COMMON.NEW_USER}
         <AnchorLinkPrimary onClick={() => navigate("/registration")}>

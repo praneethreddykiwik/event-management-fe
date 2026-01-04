@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { inputValidation } from "../components/Validations/inputValidation";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth.hook";
 import { userRoles } from "../enum/Common";
+import useNavigateWithQuery from "./useNavigateWithQuery";
 
 export const useLoginForm = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const { login, loading, error, setUserDetails } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);

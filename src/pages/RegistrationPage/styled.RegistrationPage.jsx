@@ -163,13 +163,7 @@ export const InputWrapper = styled.div`
   position: relative;
 `;
 export const Input = styled(InputDefault)``;
-export const ShowHideIcon = styled.span`
-  position: absolute;
-  right: 12px;
-  top: 14px;
-  cursor: pointer;
-  font-size: 18px;
-`;
+
 export const Form = styled.div`
   display: flex;
   flex-direction: column;

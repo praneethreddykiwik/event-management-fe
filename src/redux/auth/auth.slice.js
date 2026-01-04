@@ -5,6 +5,10 @@ const initialState = {
   authUser: null,
   authStatus: "loading", // idle | loading | authenticated | unauthenticated
   authError: null,
+
+  registrationError: null,
+  registrationSuccess: false,
+  registrationLoading: false,
 };
 
 const authSlice = createSlice({
@@ -14,6 +18,9 @@ const authSlice = createSlice({
     // optional: if you want a manual reset
     clearAuthError(state) {
       state.authError = null;
+    },
+    clearRegistrationSuccessMsg(state) {
+      state.registrationSuccess = false;
     },
   },
   extraReducers: (builder) => {
@@ -30,9 +37,10 @@ const authSlice = createSlice({
       .addCase(actions.bootstrapAuthAction.rejected, (state) => {
         state.authUser = null;
         state.authStatus = "unauthenticated";
-      })
+      });
 
-      // login
+    // login
+    builder
       .addCase(actions.loginAction.pending, (state) => {
         state.authStatus = "loading";
         state.authError = null;
@@ -45,16 +53,31 @@ const authSlice = createSlice({
         state.authUser = null;
         state.authStatus = "unauthenticated";
         state.authError = action.payload || "Login failed";
-      })
+      });
 
-      // logout
-      .addCase(actions.logoutAction.fulfilled, (state) => {
-        state.authUser = null;
-        state.authStatus = "unauthenticated";
+    // logout
+    builder.addCase(actions.logoutAction.fulfilled, (state) => {
+      state.authUser = null;
+      state.authStatus = "unauthenticated";
+    });
+
+    // registration
+    builder
+      .addCase(actions.registrationAction.pending, (state) => {
+        state.registrationLoading = true;
+      })
+      .addCase(actions.registrationAction.fulfilled, (state, action) => {
+        state.registrationSuccess = true;
+        state.registrationLoading = false;
+      })
+      .addCase(actions.registrationAction.rejected, (state, action) => {
+        state.registrationError = "Something went wrong";
+        state.registrationLoading = false;
       });
   },
 });
 
 export const authSelector = (st) => st.auth;
-export const { clearAuthError } = authSlice.actions;
+export const { clearAuthError, clearRegistrationSuccessMsg } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { InputPassword } from "../Styled/Inputs.styled";
-import { ShowHideIcon } from "../../pages/RegistrationPage/styled.RegistrationPage";
 import EyeIcon from "../../assets/Logos/SeePassWord.svg";
 import CloseEyeIcon from "../../assets/Logos/ClosePassword.svg";
 import { useState } from "react";
@@ -16,6 +15,7 @@ export const Password = ({
   placeholder,
   disabled = false,
   label,
+  name,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,6 +23,7 @@ export const Password = ({
     <StyledCtn>
       {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
       <InputPassword
+        name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder || "Password"}
@@ -45,9 +46,23 @@ export const Password = ({
 };
 
 const StyledCtn = styled.div`
+  position: relative;
   p {
     text-align: left;
     margin-left: 20px;
   }
 `;
-const StyledPasswordImg = styled.img``;
+
+export const ShowHideIcon = styled.span`
+  cursor: pointer;
+  // font-size: 18px;
+
+  right: 12px;
+  top: 27px;
+
+  position: absolute;
+`;
+const StyledPasswordImg = styled.img`
+  width: 22px;
+  height: 22px;
+`;
