@@ -16,15 +16,15 @@ function App() {
   const theme = useTheme();
 
   const dispatch = useDispatch();
-  const { status } = useSelector(authSelector);
-  console.log("status", status);
+  const { authStatus } = useSelector(authSelector);
+  console.log("authStatus", authStatus);
 
   useEffect(() => {
     // validate session cookie on app load
     dispatch(bootstrapAuthAction());
   }, [dispatch]);
 
-  const isLoading = status === "loading";
+  const isLoading = authStatus === "loading";
 
   return (
     <ThemeProvider theme={theme}>

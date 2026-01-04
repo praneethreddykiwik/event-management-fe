@@ -24,7 +24,6 @@ export const loginAndFetchUserService = async (creds) => {
         lastName: "Shaik",
       },
     };
-    debugger;
 
     const userDetailsResponseData = userDetailsResponse?.data;
 

@@ -7,7 +7,6 @@ import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
 import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
 import Controlpage from "./pages/Controlpage/Controlpage";
 import Profile from "./pages/Profile/Profile.jsx";
-import DropdownComponent from "./components/Avatar/AvatarComponent.jsx";
 // import LandingPage from "./pages/LandingPage/LandingPage";
 import NewEvent from "./pages/NewEvent/NewEvent";
 import { paths } from "./constants/paths";
@@ -26,7 +25,7 @@ import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 
 const AppRoutes = () => {
-  const { status } = useSelector(authSelector);
+  const { authStatus } = useSelector(authSelector);
 
   const unAuthenticatedRoutes = (
     <>
@@ -48,7 +47,6 @@ const AppRoutes = () => {
       <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
       <Route path={"/controlpage"} element={<Controlpage />} />
       <Route path={"/profile"} element={<Profile />} />
-      <Route path={"/dropdown"} element={<DropdownComponent />} />
       <Route path={paths.newsFeed} element={<NewEvent />} />
       <Route path={"/samplePage"} element={<SamplePage />} />
       <Route path={"/Subscriptions"} element={<Subscriptions />} />
@@ -64,7 +62,7 @@ const AppRoutes = () => {
     </>
   );
 
-  const isLoggedIn = status === "authenticated";
+  const isLoggedIn = authStatus === "authenticated";
 
   return (
     <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>

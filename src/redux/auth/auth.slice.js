@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./auth.actions";
 
 const initialState = {
-  user: null,
-  status: "loading", // idle | loading | authenticated | unauthenticated
-  error: null,
+  authUser: null,
+  authStatus: "loading", // idle | loading | authenticated | unauthenticated
+  authError: null,
 };
 
 const authSlice = createSlice({
@@ -13,44 +13,44 @@ const authSlice = createSlice({
   reducers: {
     // optional: if you want a manual reset
     clearAuthError(state) {
-      state.error = null;
+      state.authError = null;
     },
   },
   extraReducers: (builder) => {
     builder
       // bootstrapAuthAction
       .addCase(actions.bootstrapAuthAction.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
+        state.authStatus = "loading";
+        state.authError = null;
       })
       .addCase(actions.bootstrapAuthAction.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.status = "authenticated";
+        state.authUser = action.payload;
+        state.authStatus = "authenticated";
       })
       .addCase(actions.bootstrapAuthAction.rejected, (state) => {
-        state.user = null;
-        state.status = "unauthenticated";
+        state.authUser = null;
+        state.authStatus = "unauthenticated";
       })
 
       // login
       .addCase(actions.loginAction.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
+        state.authStatus = "loading";
+        state.authError = null;
       })
       .addCase(actions.loginAction.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.status = "authenticated";
+        state.authUser = action.payload;
+        state.authStatus = "authenticated";
       })
       .addCase(actions.loginAction.rejected, (state, action) => {
-        state.user = null;
-        state.status = "unauthenticated";
-        state.error = action.payload || "Login failed";
+        state.authUser = null;
+        state.authStatus = "unauthenticated";
+        state.authError = action.payload || "Login failed";
       })
 
       // logout
       .addCase(actions.logoutAction.fulfilled, (state) => {
-        state.user = null;
-        state.status = "unauthenticated";
+        state.authUser = null;
+        state.authStatus = "unauthenticated";
       });
   },
 });

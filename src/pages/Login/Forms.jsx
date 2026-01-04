@@ -38,7 +38,6 @@ const Forms = () => {
   } = useLoginForm();
 
   const onSubmit = () => {
-    debugger;
     const payload = {
       username,
       password,

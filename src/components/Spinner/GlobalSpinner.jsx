@@ -6,7 +6,7 @@ const GlobalSpinner = ({ loading, children }) => {
     <>
       {loading ? (
         <StyledSpinner>
-          <Spinner loading={loading} color="red" size={50} />
+          <Spinner loading={loading} color="green" size={50} />
         </StyledSpinner>
       ) : (
         children
