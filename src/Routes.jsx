@@ -39,7 +39,7 @@ const AppRoutes = () => {
   const authenticatedRoutes = (
     <>
       <Route path={"/"} element={<Home />} />
-      <Route path={"/login"} element={<Login />} />
+      {/* <Route path={"/login"} element={<Login />} /> */}
       <Route path={"/registration"} element={<RegistrationPage />} />
       {/* //  */}
       <Route path={"/admin"} element={<AdminDashboard />} />

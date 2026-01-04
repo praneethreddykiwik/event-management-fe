@@ -5,16 +5,28 @@ import {
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
 
-const Dropdown = ({ options, label, value, onChange, placeholder, error }) => {
+const Dropdown = ({
+  name,
+  options,
+  label,
+  value,
+  onChange,
+  placeholder,
+  error,
+}) => {
   return (
     <StyledRoleDropdownLayout>
       {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
 
       <Select
+        name={name}
         options={options}
         label={label}
         value={value}
-        onChange={onChange}
+        onChange={(val) => {
+          const params = { target: { name, value: val } };
+          onChange(params);
+        }}
         placeholder={placeholder}
         styles={customStyles}
         isSearchable={false}

@@ -1,5 +1,5 @@
 import { httpsClient } from "./client/httpsClient";
 
 export const getHealthStatusAPI = () => {
-  return httpsClient.get("/v1/health");
+  return httpsClient.get("/health");
 };

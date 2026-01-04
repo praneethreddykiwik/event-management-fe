@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../Buttons/Button";
 import Avatar from "../Avatar/Avatar";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
 
   return (
     <MenuBox open={menuOpen}>

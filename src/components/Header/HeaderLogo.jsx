@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import E_logo from "../../assets/Header_images/E_logo.jpg";
 import { paths } from "../../constants/paths";
 import styled from "styled-components";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 export const HeaderLogo = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const goHome = () => navigate(paths.home);
 
   return (

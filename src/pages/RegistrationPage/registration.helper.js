@@ -4,19 +4,28 @@ export const registrationMetaData = [
     name: "username",
     placeholder: "Username",
     label: "Username",
+    error: null,
   },
-  { type: "email", name: "email", placeholder: "Email", label: "Email" },
+  {
+    type: "email",
+    name: "email",
+    placeholder: "Email",
+    label: "Email",
+    error: null,
+  },
   {
     type: "password",
     name: "password",
     placeholder: "Password",
     label: "Password",
+    error: null,
   },
   {
     type: "password",
     name: "confirmPassword",
     placeholder: "Re-enter Password",
     label: "Confirm Password",
+    error: null,
   },
   {
     type: "dropdown",
@@ -29,5 +38,6 @@ export const registrationMetaData = [
       { value: "customer", label: "Customer" },
     ],
     label: "Role",
+    error: null,
   },
 ];

@@ -8,13 +8,12 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
-import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
 
-import { useNavigate } from "react-router-dom";
 const GetStarted = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
 
   return (
     <StyledGetStartedLayout>

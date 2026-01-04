@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 
 import {
@@ -23,30 +22,66 @@ import { Inputs } from "../../components/Inputs/Inputs";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import styled from "styled-components";
 import { StyledAnchor, StyledParagraphSmallGray } from "../../components/Styled/Typography.styled";
+import { Button } from "../../components/Buttons/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { registrationAction } from "../../redux/auth/auth.actions";
+import useTenant from "../../hooks/useTenant.hook";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { authSelector } from "../../redux/auth/auth.slice";
 
 const Forms = () => {
-  const navigate = useNavigate();
-  const handleContinue = () => {
-    navigate("/login");
-  };
+  const navigate = useNavigateWithQuery();
+  const dispatch = useDispatch();
+  const tenantId = useTenant();
+  const { registrationSuccess } = useSelector(authSelector);
 
   const [inputs, setInputs] = useState(registrationMetaData);
 
-  /*
-    {
-      "tenantId": "tenant_001",
-      "username": "abdul",
-      "email": "abdul.s@criskasecurity.com",
-      "password": "MyStrongPassword@123",
-      "role": "admin"
-    }
-  */
+  const validateFields = () => {
+    let isValid = true;
+
+    const newInputs = inputs.map((el) => {
+      if (!el.value) {
+        isValid = false;
+        return { ...el, error: "Invalid input!" };
+      }
+      return el;
+    });
+
+    setInputs(newInputs);
+
+    return isValid;
+  };
+
+  const onSubmit = () => {
+    const isValid = validateFields();
+    if (!isValid) return;
+
+    const inpObj = inputs.reduce((acu, cur) => {
+      return { ...acu, [cur.name]: cur.value };
+    }, {});
+
+    const payload = {
+      navigate,
+      reqPayload: {
+        tenantId,
+        username: inpObj.username,
+        email: inpObj.email,
+        password: inpObj.password,
+        role: inpObj.role.value,
+      },
+    };
+    dispatch(registrationAction(payload));
+  };
 
   const onChange = (e) => {
+    const { name, value } = e.target;
+
     setInputs((prv) => {
       const dat = prv.map((el) => ({
         ...el,
-        value: prv.name === el.name ? e.target.value : el.value,
+        value: name === el.name ? value : el.value,
+        error: null,
       }));
 
       return dat;
@@ -61,19 +96,26 @@ const Forms = () => {
         })}
       </InputBox>
 
-      {/* Terms + Checkbox */}      
-
-      <StyledBaseButton $whiteText onClick={handleContinue}>
+      <Button whiteText onClick={onSubmit}>
         {Continue}
-      </StyledBaseButton>
+      </Button>
 
       <StyledBox>
-        <AccountSignIn>
-          {Account}{" "}
-          <AnchorLinkPrimary onClick={() => navigate("/login")}>
-            {SignIn}
-          </AnchorLinkPrimary>
-        </AccountSignIn>
+        {registrationSuccess ? (
+          <AccountSignIn>
+            Successfully registered user. You can proceed to{" "}
+            <AnchorLinkPrimary onClick={() => navigate("/login")}>
+              {SignIn}
+            </AnchorLinkPrimary>
+          </AccountSignIn>
+        ) : (
+          <AccountSignIn>
+            {Account}{" "}
+            <AnchorLinkPrimary onClick={() => navigate("/login")}>
+              {SignIn}
+            </AnchorLinkPrimary>
+          </AccountSignIn>
+        )}
 
         <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
 

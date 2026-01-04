@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { paths } from "../../constants/paths";
 import { Button } from "../Buttons/Button";
@@ -12,9 +11,10 @@ import { HeaderMenu } from "./HeaderMenu";
 
 import { userProfileMeta } from "../../metadata/userProfileMetadata";
 import { logoutAction } from "../../redux/auth/auth.actions";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
   const { authStatus } = useSelector(authSelector);
@@ -64,11 +64,11 @@ const Header = () => {
       </RightBox>
 
       {/* RIGHT ICONS (Mobile only) */}
-      <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
+      {/* <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
         <Icon aria-label={menuOpen ? "Close menu" : "Open menu"}>
           {menuOpen ? "close" : "menu"}
         </Icon>
-      </Hamburger>
+      </Hamburger> */}
     </Navbar>
   );
 };
