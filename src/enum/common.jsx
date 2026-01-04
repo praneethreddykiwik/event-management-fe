@@ -51,3 +51,32 @@ export const BADGE_TYPES = {
   ACTIVE: "active",
   INACTIVE: "inactive",
 };
+
+export const MANAGE_EVENT_MANAGER = {
+  MANAGE_EVENT_MANAGER_TITLE: "Event Managers",
+  MANAGE_EVENT_MANAGER_SUBTITLE: "View and manage event managers",
+
+  //   TABLES HEADING NAMES
+
+  MANAGE_EVENT_MANAGER_NAME: "Name",
+  MANAGE_EVENT_MANAGER_EMAIL: "Email",
+  MANAGE_EVENT_MANAGER_MOBILE: "Mobile",
+  MANAGE_EVENT_MANAGER_ASSIGN_EVENTS: "Assigned Events",
+  MANAGE_EVENT_MANAGER_STATUS: "Status",
+  MANAGE_EVENT_MANAGER_ACTIONS: "Actions",
+};
+
+export const CREATE_MANGER = {
+  CREATE_MANAGER_TITLE: "Add Event Manager",
+  CREATE_MANGER_SUBTITLE: "Fill in the details to add a new event manager",
+
+  //FORM LABELS NAMES
+
+  CREATE_MANAGER_FIRSTNAME: "First Name *",
+  CREATE_MANAGER_LASTNAME: "Last Name *",
+  CREATE_MANGER_EMAIL: "Email *",
+  CREATE_MANAGER_MOBILE: "Mobile *",
+  CREATE_MANAGER_ADDRESS: "Address *",
+  CREATE_MANAGER_EMERGENCY_NAME: "Emergency Contact Name",
+  CREATE_MANAGER_EMERGENCY_PHONE: "Emergency Contact Phone",
+};
