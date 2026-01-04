@@ -14,6 +14,7 @@ import { InputDefault } from "../../components/Styled/Inputs.styled";
 export const InputCheckBox = styled.input``;
 export const PassWordImg = styled.img``;
 export const AccountSignIn = styled(StyledParagraphSmallGray)`
+  margin-top: 0px;
   @media (max-width: 768px) {
     display: none;
   }
