@@ -160,11 +160,8 @@ const CardHeader = styled.div`
 `;
 
 const CompactBadge = styled.div`
-  span {
-    padding: 4px 12px;
-    font-weight: 600;
-    border-radius: 999px;
-  }
+  display: inline-flex;
+  align-self: flex-start;
 `;
 
 const TaskTextWrapper = styled.div`

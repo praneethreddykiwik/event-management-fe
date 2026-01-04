@@ -80,3 +80,9 @@ export const CREATE_MANGER = {
   CREATE_MANAGER_EMERGENCY_NAME: "Emergency Contact Name",
   CREATE_MANAGER_EMERGENCY_PHONE: "Emergency Contact Phone",
 };
+
+export const userRoles = {
+  adminRole: "admin",
+  eventManagerRole: "eventManager",
+  stakeHolderRole: "stakeHolder",
+};
