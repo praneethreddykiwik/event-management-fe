@@ -11,7 +11,6 @@ export const useLoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
-  const [tenant, setTenant] = useState({});
   const [password, setPassword] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
@@ -28,7 +27,6 @@ export const useLoginForm = () => {
         "required",
         { type: "min-length", value: 6 },
       ]),
-      tenant: inputValidation(tenant, ["required"]),
       terms: acceptedTerms ? "" : "You must accept terms & conditions",
     };
 
@@ -47,7 +45,6 @@ export const useLoginForm = () => {
         userRole: role,
         username,
         password,
-        tenant,
       });
     } catch (error) {
       console.log("error at useLoginForm hook", error);
@@ -75,7 +72,6 @@ export const useLoginForm = () => {
   return {
     username,
     password,
-    tenant,
     acceptedTerms,
     showPassword,
     errors,
@@ -84,7 +80,6 @@ export const useLoginForm = () => {
 
     setUsername,
     setPassword,
-    setTenant,
     setAcceptedTerms,
     setShowPassword,
     setErrors,

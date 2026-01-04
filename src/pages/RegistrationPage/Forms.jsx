@@ -1,104 +1,93 @@
-/** @format */
-
-import { useState } from 'react';
-import ClosePassWord from '../../assets/Logos/SeePassWord.svg';
-import SeePassWord from '../../assets/Logos/ClosePassword.svg';
-import { useNavigate } from 'react-router-dom';
-import { AnchorLinkPrimary } from '../../components/Styled/Links.styles';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 
 import {
-  AnchorParah,
-  CheckboxRow,
   Form,
-  Input,
-  InputCheckBox,
-  PassWordImg,
-  InputWrapper,
   InputBox,
-  ShowHideIcon,
-  ContinueButton,
   AccountSignIn,
-  SignInAnchor,
   TermsConditionsTxt,
-} from './styled.RegistrationPage';
+} from "./styled.RegistrationPage";
 
 import {
-  Terms,
-  Conditions,
-  Policy,
   Continue,
   Account,
   SignIn,
   TermsConditions,
-} from '../../Enum/RegistrationPage.Enum';
+} from "../../Enum/RegistrationPage.Enum";
+import { registrationMetaData } from "./registration.helper";
+import { Inputs } from "../../components/Inputs/Inputs";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
+import styled from "styled-components";
 
 const Forms = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
   const navigate = useNavigate();
   const handleContinue = () => {
-    navigate('/login');
+    navigate("/login");
   };
+
+  const [inputs, setInputs] = useState(registrationMetaData);
+
+  /*
+    {
+      "tenantId": "tenant_001",
+      "username": "abdul",
+      "email": "abdul.s@criskasecurity.com",
+      "password": "MyStrongPassword@123",
+      "role": "admin"
+    }
+  */
+
+  const onChange = (e) => {
+    setInputs((prv) => {
+      const dat = prv.map((el) => ({
+        ...el,
+        value: prv.name === el.name ? e.target.value : el.value,
+      }));
+
+      return dat;
+    });
+  };
+
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
       <InputBox>
-        <InputWrapper>
-          <Input type="email" required placeholder="Email address" />
-        </InputWrapper>
-
-        <InputWrapper>
-          <Input
-            type={showPassword ? 'text' : 'password'}
-            required
-            placeholder="Password"
-          />
-          <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <PassWordImg src={SeePassWord} alt="show" />
-            ) : (
-              <PassWordImg src={ClosePassWord} alt="hide" />
-            )}
-          </ShowHideIcon>
-        </InputWrapper>
-
-        {/* Confirm Password */}
-        <InputWrapper>
-          <Input
-            type={showConfirmPass ? 'text' : 'password'}
-            required
-            placeholder="Confirm Password"
-          />
-          <ShowHideIcon onClick={() => setShowConfirmPass(!showConfirmPass)}>
-            {showConfirmPass ? (
-              <PassWordImg src={SeePassWord} alt="show" />
-            ) : (
-              <PassWordImg src={ClosePassWord} alt="hide" />
-            )}
-          </ShowHideIcon>
-        </InputWrapper>
+        {inputs.map((inp) => {
+          return <Inputs {...inp} onChange={onChange} />;
+        })}
       </InputBox>
 
       {/* Terms + Checkbox */}
-      <CheckboxRow>
+      {/* <CheckboxRow>
         <InputCheckBox type="checkbox" required />
         <AnchorParah>
-          {Terms} <SignInAnchor>{Conditions}</SignInAnchor> and{' '}
+          {Terms} <SignInAnchor>{Conditions}</SignInAnchor> and{" "}
           <SignInAnchor>{Policy}</SignInAnchor>
         </AnchorParah>
-      </CheckboxRow>
+      </CheckboxRow> */}
 
-      {/*  Button no longer triggers HTTP request */}
-      <ContinueButton type="button" onClick={handleContinue}>
+      <StyledBaseButton $whiteText onClick={handleContinue}>
         {Continue}
-      </ContinueButton>
+      </StyledBaseButton>
 
-      <AccountSignIn>
-        {Account} <AnchorLinkPrimary onClick={()=> navigate("/login")}>{SignIn}</AnchorLinkPrimary>
-      </AccountSignIn>
+      <StyledBox>
+        <AccountSignIn>
+          {Account}{" "}
+          <AnchorLinkPrimary onClick={() => navigate("/login")}>
+            {SignIn}
+          </AnchorLinkPrimary>
+        </AccountSignIn>
 
-      <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
+        <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
+
+        {/* Raghavendra */}
+      </StyledBox>
     </Form>
   );
 };
+
+const StyledBox = styled.div`
+  margin-top: 30px;
+`;
 
 export default Forms;

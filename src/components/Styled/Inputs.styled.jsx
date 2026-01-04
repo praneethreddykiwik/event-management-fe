@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 
 const baseStyles = `
@@ -8,12 +6,13 @@ const baseStyles = `
   box-sizing: border-box;
   height: 40px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #e0e0e0;
-  color: #696969;
+  color: #000000ff;
 
   &::placeholder {
     color: #bdbdbd;
+      font-size: 14px;
   }
 
   &:focus {

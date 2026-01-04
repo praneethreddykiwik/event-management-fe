@@ -11,8 +11,6 @@ const useTheme = () => {
     return theme[selectedTheme];
   }, [selectedTheme]);
 
-  // console.log('abdul createTheme', createTheme);
-
   return createTheme;
 };
 

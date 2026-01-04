@@ -1,16 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   StyledHeadingBig,
   StyledAnchor,
   StyledParagraphSmallGray,
-  StyledParagraph
-} from '../../components/Styled/Typography.styled';
+  StyledParagraph,
+} from "../../components/Styled/Typography.styled";
 import {
   StyledBaseButton,
   StyledOutlinedButton,
-} from '../../components/Styled/Buttons.styled';
+} from "../../components/Styled/Buttons.styled";
 
-import { InputDefault } from '../../components/Styled/Inputs.styled';
+import { InputDefault } from "../../components/Styled/Inputs.styled";
 export const InputCheckBox = styled.input``;
 export const PassWordImg = styled.img``;
 export const AccountSignIn = styled(StyledParagraphSmallGray)`
@@ -140,22 +140,7 @@ export const LineTxt = styled.div`
     display: none;
   }
 `;
-export const LineOne = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
-  width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-export const LineTwo = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
-  width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
+
 export const SignWithEmail = styled.p`
   font-size: 16px;
   font-weight: 350;
@@ -168,7 +153,7 @@ export const SignUpWith = styled.p`
   width: 100%;
   font-size: 16px;
   font-weight: 350;
-  padding: 10px;
+  padding: 20px;
   @media (max-width: 768px) {
     display: none;
   }
@@ -190,17 +175,17 @@ export const Form = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 16px;
 `;
 export const InputBox = styled.div`
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 16px;
   flex-direction: column;
 `;
 export const ForgotPassword = styled(StyledParagraphSmallGray)`
-    margin-top: 3px;
-    margin-bottom: 15px;
+  margin-top: 3px;
+  margin-bottom: 15px;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -242,16 +227,11 @@ export const AnchorParah = styled(StyledParagraphSmallGray)`
   /* line-height: 18.2px;
   text-align: justify; */
 `;
-export const ContinueButton = styled(StyledBaseButton)`
-  color: white;
-  height: 50px;
-  width: 100%;
-`;
+
 export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
-width: 75%;
-margin: 0;
+  width: 75%;
+  margin: 0;
   @media screen and (min-width: 768px) {
     display: none;
-    
   }
 `;

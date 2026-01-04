@@ -9,19 +9,24 @@ import {
 } from "../Styled/Inputs.styled";
 import { inputValidation } from "../../components/Validations/inputValidation";
 import styled from "styled-components";
+import Dropdown from "./Dropdown";
+import { Password } from "./Password";
 
-export const Input = ({
-  type,
-  placeholder,
-  value,
-  onChange,
-  name,
-  list = [],
-  disabled,
-  validations = [],
-  error,
-  setError,
-}) => {
+export const Input = (props) => {
+  const {
+    type,
+    placeholder,
+    value,
+    onChange,
+    name,
+    list = [],
+    disabled,
+    validations = [],
+    error,
+    setError,
+    options,
+  } = props;
+
   const makeId = (item) =>
     `${name}-${String(item).toLowerCase().replace(/\s+/g, "-")}`;
 
@@ -73,17 +78,16 @@ export const Input = ({
       );
 
     case "password":
+      return <Password {...props} />;
+
+    case "dropdown":
       return (
         <>
-          <InputPassword
-            id={name}
-            name={name}
-            type="password"
+          <Dropdown
+            options={options}
+            value={value}
+            onChange={onChange}
             placeholder={placeholder}
-            value={value || ""}
-            onChange={(e) => handleChange(e.target.value)}
-            disabled={disabled}
-            $hasError={!!error}
           />
           {error && <ErrorText>{error}</ErrorText>}
         </>

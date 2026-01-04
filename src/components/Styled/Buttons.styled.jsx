@@ -1,5 +1,5 @@
 /** @format */
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ButtonContent = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const StyledBaseButton = styled.button`
 
   padding: 6px 20px;
   background-color: #26c867;
-  color: #000;
+  color: ${({ $whiteText }) => ($whiteText ? "#fff" : "#000")};
   min-width: 100px;
   border: none;
   cursor: pointer;

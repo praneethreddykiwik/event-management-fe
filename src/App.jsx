@@ -5,12 +5,9 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
 import { bootstrapAuthAction } from "./redux/auth/auth.actions";
-import Spinner from "./components/Spinner/Spinner.component";
 import AppRoutes from "./routes";
-import { ClipLoader } from "react-spinners";
 import GlobalSpinner from "./components/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
-// import GlobalSpinner from "./";
 
 function App() {
   const theme = useTheme();

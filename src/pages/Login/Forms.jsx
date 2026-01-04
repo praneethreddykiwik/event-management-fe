@@ -1,4 +1,3 @@
-/** @format */
 import styled from "styled-components";
 import { LOGIN_COMMON } from "../../enum/Login.Common";
 import { Input } from "../../components/Inputs/Input";
@@ -15,15 +14,16 @@ import Spinner from "../../components/Spinner/Spinner.component";
 import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
+import useTenant from "../../hooks/useTenant.hook";
 
 const Forms = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const tenantId = useTenant();
 
   const {
     username,
     password,
-    tenant,
     acceptedTerms,
     showPassword,
     errors,
@@ -31,7 +31,6 @@ const Forms = () => {
     // error,
     setUsername,
     setPassword,
-    setTenant,
     setAcceptedTerms,
     setShowPassword,
     setErrors,
@@ -41,7 +40,7 @@ const Forms = () => {
     const payload = {
       username,
       password,
-      tenantId: tenant.value,
+      tenantId,
     };
     dispatch(loginAction(payload));
   };
@@ -82,19 +81,6 @@ const Forms = () => {
               {showPassword ? "visibility_off" : "visibility"}
             </span>
           </ShowHideIcon>
-        </InputWrapper>
-        <InputWrapper>
-          <RoleDropdown
-            options={[
-              { value: "tenant_001", label: "tenant_001" },
-              { value: "tenant_007", label: "tenant_007" },
-            ]}
-            value={tenant}
-            onChange={(val) => {
-              setTenant(val);
-            }}
-            placeholder="Select Tenant"
-          />
         </InputWrapper>
       </InputBox>
 

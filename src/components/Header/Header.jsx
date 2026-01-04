@@ -27,6 +27,7 @@ const Header = () => {
   const onClickMenu = (item) => {
     if (item.label === "Logout") {
       dispatch(logoutAction());
+      return;
     }
 
     if (item.navigate) {
@@ -62,7 +63,7 @@ const Header = () => {
         )}
       </RightBox>
 
-      {/* MOBILE MENU ICON */}
+      {/* RIGHT ICONS (Mobile only) */}
       <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
         <Icon aria-label={menuOpen ? "Close menu" : "Open menu"}>
           {menuOpen ? "close" : "menu"}
