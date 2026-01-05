@@ -2,22 +2,34 @@ import styled from "styled-components";
 import PopupModal from "../PopupModal/PopupModal";
 import { Button } from "../Buttons/Button";
 import {
+  updateUserAction,
   fetchManagersAction,
   registrationAction,
 } from "../../redux/users/users.actions";
 import { useDispatch } from "react-redux";
 import RegistrationForm from "../../Forms/RegistrationForm";
 
-const EditUserPopup = ({ onClose, title, subtitle }) => {
+const EditUserPopup = ({ onClose, modalDetails }) => {
   const dispatch = useDispatch();
 
   const onCreateUser = async (payload) => {
-    await dispatch(registrationAction(payload));
+    if (modalDetails.type === "edit") {
+      const dat = { ...payload.reqPayload, uid: modalDetails.userUid };
+      await dispatch(updateUserAction(dat));
+    } else {
+      await dispatch(registrationAction(payload));
+    }
     await dispatch(fetchManagersAction());
+    onClose();
   };
 
   return (
-    <PopupModal title={title} subtitle={subtitle} onClose={onClose} width="30%">
+    <PopupModal
+      title={modalDetails.title}
+      subtitle={modalDetails.subtitle}
+      onClose={onClose}
+      width="560px"
+    >
       <StyledGap />
       <RegistrationForm onCreateUser={onCreateUser} />
 

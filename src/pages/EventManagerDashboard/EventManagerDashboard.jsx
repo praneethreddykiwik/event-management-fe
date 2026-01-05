@@ -23,7 +23,6 @@ const EventManagerDashboard = () => {
 
   const { authUser } = useSelector(authSelector);
   const { tasks } = useSelector(tasksSelector);
-  console.log("abdul tasks", tasks);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
