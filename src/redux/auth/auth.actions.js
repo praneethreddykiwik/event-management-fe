@@ -16,11 +16,12 @@ export const bootstrapAuthAction = createAsyncThunk(
 
 export const loginAction = createAsyncThunk(
   "auth/loginAction",
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, dispatch }) => {
     // const navigate = payload.navigate;
     try {
       const res = await loginApi(payload.reqPayload);
-      return res.data; // user object (or any success response)
+      await dispatch(bootstrapAuthAction());
+      return res.data;
     } catch (err) {
       return rejectWithValue(err?.response?.data || "Login failed");
     }

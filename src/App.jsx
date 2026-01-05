@@ -8,7 +8,7 @@ import { bootstrapAuthAction } from "./redux/auth/auth.actions";
 import AppRoutes from "./routes";
 import GlobalSpinner from "./components/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
-import { GlobalHOC } from "./GlobalHOC";
+import { TenantIdHOC } from "./HOC/TenantIdHOC";
 
 function App() {
   const theme = useTheme();
@@ -25,12 +25,12 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalHOC>
+      <TenantIdHOC>
         <GlobalSpinner loading={isLoading}>
           <Header />
           <AppRoutes />
         </GlobalSpinner>
-      </GlobalHOC>
+      </TenantIdHOC>
     </ThemeProvider>
   );
 }

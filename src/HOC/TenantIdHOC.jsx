@@ -3,10 +3,10 @@ import {
   StyledGrayLink,
   StyledHeading,
   StyledParagraph,
-} from "./components/Styled/Typography.styled";
-import useTenant from "./hooks/useTenant.hook";
+} from "../components/Styled/Typography.styled";
+import useTenant from "../hooks/useTenant.hook";
 
-export const GlobalHOC = (props) => {
+export const TenantIdHOC = (props) => {
   const tenantId = useTenant();
   if (!tenantId)
     return (

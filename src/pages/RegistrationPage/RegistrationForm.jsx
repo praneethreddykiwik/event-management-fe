@@ -11,7 +11,6 @@ import {
   updateRegInputs,
   usersSelector,
 } from "../../redux/users/users.slice";
-import { registrationAction } from "../../redux/users/users.actions";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -84,8 +83,6 @@ export const InputBox = styled.div`
   gap: 16px;
 
   flex-wrap: wrap;
-  // min-width: 460px;
-  // max-width: 460px;
   flex-direction: row;
 `;
 

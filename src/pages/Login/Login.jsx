@@ -54,7 +54,7 @@ export const ContainerLeft = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  width: 300px;
+  max-width: 460px;
   align-items: center;
   display: flex;
   flex-direction: column;

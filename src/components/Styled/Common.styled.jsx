@@ -22,3 +22,13 @@ export const StyledFlexContainer = styled.div`
   font-size: 15px;
   gap: 10px;
 `;
+
+export const StyledHr = styled.hr`
+  border: none;
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0 -20px 40px -20px;
+
+  @media (max-width: 768px) {
+    margin: 0 -20px;
+  }
+`;

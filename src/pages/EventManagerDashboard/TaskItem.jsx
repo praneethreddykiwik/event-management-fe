@@ -1,44 +1,50 @@
 /** @format */
 
-import styled from 'styled-components';
-import Badge from '../../components/Badge/Badge.component';
-import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
+import styled from "styled-components";
+import Badge from "../../components/Badge/Badge.component";
+import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
-import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
-import { BADGE_TYPES } from '../../enum/Common';
-import { useState } from 'react';
-import ManageEventModal from './ManageEventModal';
+} from "../../components/Styled/Typography.styled";
+import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
+import { BADGE_TYPES } from "../../enum/Common";
+import { useState } from "react";
+import ManageEventModal from "./ManageEventModal";
+import { Section } from "../../HOC/SectionsHOC";
 
 const ICONS = {
-  [BADGE_TYPES.COMPLETED]: 'task_alt',
-  [BADGE_TYPES.INPROGRESS]: 'schedule',
-  [BADGE_TYPES.PENDING]: 'error_outline',
+  [BADGE_TYPES.COMPLETED]: "task_alt",
+  [BADGE_TYPES.INPROGRESS]: "schedule",
+  [BADGE_TYPES.PENDING]: "error_outline",
 };
 
-const getIcon = (type) => ICONS[type] || '';
-const TaskItem = ({ data }) => {
-  
-    const [showManageEvent, setShowManageEvent] = useState(false);
+const getIcon = (type) => ICONS[type] || "";
+
+const TaskItem = ({ task = {} }) => {
+  const [showManageEvent, setShowManageEvent] = useState(false);
+  /*
+  const status = taskStatuses[task.taskStatus];
+  const badgeColor = status.badgeColor;
+  const icon = status.icon;
+  */
   return (
     <TaskRow>
       <Left>
-        <StatusIcon type={data.type} className="material-symbols-outlined">
-          {getIcon(data.type)}
+        <StatusIcon type={task.type} className="material-symbols-outlined">
+          {getIcon(task.type)}
         </StatusIcon>
         <Taskcard>
-          <Title>{data.title}</Title>
-          <EventName>{data.event}</EventName>
+          <Title>{task.taskTitle}</Title>
+          <EventName>{task.taskDescription}</EventName>
           <TaskAssignee>
-            {E_M_DASHBOARD_COMMON.TASKASSIGNEE} {data.assigned}
-            {E_M_DASHBOARD_COMMON.TASKDUE} {data.due}
+            {E_M_DASHBOARD_COMMON.TASKASSIGNEE} {task.taskAssignedToUid}
+            {E_M_DASHBOARD_COMMON.TASKDUE} {task.taskDueAt}
           </TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
-        <Badge type={data.type}>{data.status}</Badge>        
+        <Badge type={task.type}>{task.taskStatus}</Badge>
         <ManageButton onClick={() => setShowManageEvent(true)}>
           {E_M_DASHBOARD_COMMON.MANAGE_B}
         </ManageButton>
@@ -50,14 +56,12 @@ const TaskItem = ({ data }) => {
   );
 };
 
-const TaskRow = styled.div`
+const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 `;
+
 const Left = styled.div`
   padding: 20px 0;
   display: flex;
@@ -72,21 +76,22 @@ const Taskcard = styled.div`
 `;
 const Title = styled(StyledParagraphBold)`
   text-align: left;
-  margin: 0;
+  margin: 0 0 6px 0;
 `;
 const EventName = styled(StyledParagraphSmall)`
   margin-top: 0;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: gray;
   text-align: left;
 `;
 const TaskAssignee = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0;
+  text-align: left;
 `;
 const BadgeButton = styled.div`
   width: 30%;
-  gap: 5px;
+  gap: 6px;
   display: flex;
   align-content: center;
   align-items: center;

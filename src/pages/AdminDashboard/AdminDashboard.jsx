@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AdminSummaryCard from "./AdminSummaryCard";
 import AdminTaskItem from "./AdminTaskItem";
 import {
+  StyledHeading,
   StyledHeadingMaxBig,
   StyledMediumHeading,
   StyledParagraphSmall,
@@ -18,6 +19,8 @@ import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../redux/events/events.actions";
 import { eventsSelector } from "../../redux/events/events.slice";
 import GlobalSpinner from "../../components/Spinner/GlobalSpinner";
+import { BlueBackHOC } from "../../HOC/BlueBackHOC";
+import { StyledHr } from "../../components/Styled/Common.styled";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -38,42 +41,45 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <AdminDashboardContainer>
-      <StyledHeadingMaxBig left>Admin Manager</StyledHeadingMaxBig>
-      <CardsRow>
-        <AdminSummaryCard label="Total Events" value={events.length} />
-        <AdminSummaryCard label="Event Managers" value="5" />
-        <AdminSummaryCard label="Completion Rate" value="87%" />
-      </CardsRow>
-      <CreateEventButtons
-        onCreateEvent={() => setOpen(true)}
-        setOpenManagersPopup={setOpenManagersPopup}
-      />
+    <BlueBackHOC>
+      <AdminDashboardContainer>
+        <StyledHeading left>Admin Manager</StyledHeading>
+        <StyledHr />
 
-      {open && <CreateEventModal onClose={() => setOpen(false)} />}
-      {openManagersPopup && (
-        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
-      )}
+        <CardsRow>
+          <AdminSummaryCard label="Total Events" value={events.length} />
+          <AdminSummaryCard label="Event Managers" value="5" />
+          <AdminSummaryCard label="Completion Rate" value="87%" />
+        </CardsRow>
 
-      <TaskMainCard>
-        <Tasktxt>
-          <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
-          <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
-        </Tasktxt>
-        <TaskList>
-          {events.map((task, index) => (
-            <AdminTaskItem key={index} data={task} />
-          ))}
-        </TaskList>
-      </TaskMainCard>
-    </AdminDashboardContainer>
+        <CreateEventButtons
+          onCreateEvent={() => setOpen(true)}
+          setOpenManagersPopup={setOpenManagersPopup}
+        />
+
+        {open && <CreateEventModal onClose={() => setOpen(false)} />}
+        {openManagersPopup && (
+          <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+        )}
+
+        <TaskMainCard>
+          <Tasktxt>
+            <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
+            <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
+          </Tasktxt>
+          <TaskList>
+            {events.map((task, index) => (
+              <AdminTaskItem key={index} data={task} />
+            ))}
+          </TaskList>
+        </TaskMainCard>
+      </AdminDashboardContainer>
+    </BlueBackHOC>
   );
 };
 
 const AdminDashboardContainer = styled.div`
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 `;
 const CardsRow = styled.div`
   display: grid;

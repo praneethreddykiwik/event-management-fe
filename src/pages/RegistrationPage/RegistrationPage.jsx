@@ -55,7 +55,6 @@ export const ContainerLeft = styled.div`
   }
 `;
 export const MainContainer = styled.div`
-  min-width: 460px;
   max-width: 460px;
   align-items: center;
   display: flex;

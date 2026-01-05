@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchTasksApi } from "../../api/tasks.api";
+import { fetchEventsAndTasksApi } from "../../api/tasks.api";
 
-export const fetchTasksDispatch = createAsyncThunk(
-  "auth/fetchTasksDispatch",
-  async (_, { rejectWithValue }) => {
+export const fetchEventsAndTasksAction = createAsyncThunk(
+  "tasks/fetchEventsAndTasksAction",
+  async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetchTasksApi();
-      debugger;
+      const res = await fetchEventsAndTasksApi(payload);
       return res.data;
     } catch (err) {
       debugger;

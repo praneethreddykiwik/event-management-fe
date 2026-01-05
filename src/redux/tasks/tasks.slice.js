@@ -17,14 +17,28 @@ const tasksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(actions.fetchTasksDispatch.pending, (state) => {
+      .addCase(actions.fetchEventsAndTasksAction.pending, (state) => {
         state.tasksLoading = true;
       })
-      .addCase(actions.fetchTasksDispatch.fulfilled, (state, action) => {
-        state.tasks = action.payload?.details;
+      .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
+        const dat = action.payload?.details;
+        const manipulateData = [];
+        dat.forEach((el) => {
+          const eventUid = el.eventUid;
+          const exists = manipulateData.find((fl) => fl.eventUid === eventUid);
+          if (exists) {
+            const i = manipulateData.findIndex(
+              (fl) => fl.eventUid === eventUid
+            );
+            manipulateData[i].tasks.push(el);
+          } else {
+            manipulateData.push({ ...el, tasks: [el] });
+          }
+        });
+        state.tasks = manipulateData;
         state.tasksLoading = false;
       })
-      .addCase(actions.fetchTasksDispatch.rejected, (state) => {
+      .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
         state.authUser = null;
         state.tasksLoading = false;
         state.tasksError = "Error";
