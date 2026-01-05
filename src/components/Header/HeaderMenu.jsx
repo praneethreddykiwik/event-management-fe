@@ -2,18 +2,73 @@ import styled from "styled-components";
 import { Button } from "../Buttons/Button";
 import Avatar from "../Avatar/Avatar";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { useEffect, useRef, useState } from "react";
 
 export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
   const navigate = useNavigateWithQuery();
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const menuRef = useRef(null);
+
+  const toggleDropdown = (name) => {
+    setOpenDropdown((prev) => (prev === name ? null : name));
+  };
+
+   // Close dropdown when clicked outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <MenuBox open={menuOpen}>
+    <MenuBox ref={menuRef} open={menuOpen}>
       <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
-      <MenuItem>
-        Events <ArrowIcon />
+
+      <MenuItem onClick={() => toggleDropdown("events")}>
+        Events <ArrowIcon $open={openDropdown === "events"} />
+        <Dropdown $open={openDropdown === "events"}>
+          <DropdownItem>
+            <ItemIcon>event</ItemIcon>
+            Upcoming Events
+          </DropdownItem>
+          <DropdownItem>
+            <ItemIcon>schedule</ItemIcon>
+            Current Events
+          </DropdownItem>
+          <DropdownItem>
+            <ItemIcon>add_circle</ItemIcon>
+            Create Event
+          </DropdownItem>
+        </Dropdown>
       </MenuItem>
-      <MenuItem>
-        Venues <ArrowIcon />
+
+      <MenuItem onClick={() => toggleDropdown("venues")}>
+        Venues <ArrowIcon $open={openDropdown === "venues"} />
+        <Dropdown $open={openDropdown === "venues"}>
+          <DropdownItem>
+            <ItemIcon>location_on</ItemIcon>
+            Venues Near Me
+          </DropdownItem>
+        </Dropdown>
+      </MenuItem>
+
+      <MenuItem onClick={() => toggleDropdown("pages")}>
+        Pages <ArrowIcon $open={openDropdown === "pages"} />
+        <Dropdown $open={openDropdown === "pages"}>
+          <DropdownItem>
+            <ItemIcon>admin_panel_settings</ItemIcon>
+            Admin
+          </DropdownItem>
+          <DropdownItem>
+            <ItemIcon>dashboard</ItemIcon>
+            Event Manager
+          </DropdownItem>
+        </Dropdown>
       </MenuItem>
 
       {/* MOBILE EXTRA ICONS */}
@@ -124,5 +179,49 @@ const AvatarBox = styled.div`
   img {
     width: 100%;
     height: 100%;
+  }
+`;
+
+const Dropdown = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: clamp(150px, 40vw, 200px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  text-align: left;
+  z-index: 50;
+
+  opacity: ${(props) => (props.$open ? 1 : 0)};
+  visibility: ${(props) => (props.$open ? "visible" : "hidden")};
+  transform: ${(props) => (props.$open ? "translateY(0)" : "translateY(10px)")};
+
+  transition: all 0.2s ease;
+`;
+
+const DropdownItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+
+  &:hover {
+    background: #e6f7e9;
+  }
+`;
+
+const ItemIcon = styled.span.attrs(() => ({
+  className: "material-symbols-outlined",
+}))`
+  font-size: 20px;
+  color: #444;
+
+  ${DropdownItem}:hover & {
+    color: #1ac468;
   }
 `;
