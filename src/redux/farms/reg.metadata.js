@@ -76,3 +76,32 @@ export const registrationMetaData = [
     validations: [validationList.REQUIRED],
   },
 ];
+
+export const generateRegDataToEdit = (user) => {
+  debugger;
+  const allowedFields = [
+    "firstName",
+    "lastName",
+    "email",
+    "username",
+    "mobile",
+    "role",
+  ];
+
+  return allowedFields.map((el) => {
+    const input = registrationMetaData.find((fn) => fn.name === el);
+    return { ...input, value: user[el] };
+  });
+
+  // const dat = Object.keys(user)
+  //   .map((key) => {
+  //     const input = registrationMetaData.find((fn) => fn.name === key);
+  //     if (!input) return null;
+  //     return {
+  //       ...input,
+  //       value: user[key],
+  //     };
+  //   })
+  //   .filter((el) => el);
+  // return dat;
+};

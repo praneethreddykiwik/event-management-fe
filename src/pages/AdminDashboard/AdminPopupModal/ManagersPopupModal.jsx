@@ -10,37 +10,57 @@ import { useState } from "react";
 import { MANAGE_EVENT_MANAGER } from "../../../enum/common";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { useDispatch, useSelector } from "react-redux";
-import CreateManagerPopup from "./CreateManagerPopup";
 import EditUserPopup from "../../../components/users/EditUserPopup";
 import { Icon } from "../../../components/Icons/Icons";
 import {
   deleteUserAction,
   fetchManagersAction,
 } from "../../../redux/users/users.actions";
+import {
+  generateRegDataToEdit,
+  registrationMetaData,
+} from "../../../redux/farms/reg.metadata";
+import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
+
+const det = {
+  add: {
+    title: "Add Manager",
+    description: "Make sure to choose the Manager's role as Event Manager",
+    type: "add",
+    userUid: "",
+  },
+  edit: {
+    title: "Edit Manager",
+    description: "Edit Details",
+    type: "edit",
+    userUid: "",
+  },
+};
+
+const TABLE_HEADERS = [
+  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_NAME, flex: 2 },
+  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_EMAIL, flex: 3 },
+  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_MOBILE, flex: 2 },
+  {
+    label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ASSIGN_EVENTS,
+    flex: 2.2,
+  },
+  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_STATUS, flex: 2 },
+  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
+];
 
 const ManagersPopupModal = ({ onClose }) => {
   const { eventManagers } = useSelector(usersSelector);
   const dispatch = useDispatch();
 
-  console.log("abdul eventManagers", eventManagers);
-
   const [open, setOpen] = useState(false);
+  const [modalDetails, setModalDetails] = useState({});
 
   const onClickAddManager = () => {
+    setModalDetails(det.add);
     setOpen(true);
+    dispatch(updateAllRegInputs(registrationMetaData));
   };
-
-  const TABLE_HEADERS = [
-    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_NAME, flex: 2 },
-    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_EMAIL, flex: 3 },
-    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_MOBILE, flex: 2 },
-    {
-      label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ASSIGN_EVENTS,
-      flex: 2.2,
-    },
-    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_STATUS, flex: 2 },
-    { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
-  ];
 
   const onDelete = async () => {
     debugger;
@@ -49,8 +69,12 @@ const ManagersPopupModal = ({ onClose }) => {
     await dispatch(fetchManagersAction(payload));
   };
 
-  const onEdit = () => {
-    debugger;
+  const onEdit = (user) => {
+    setOpen(true);
+    setModalDetails({ ...det.edit, userUid: user.uid });
+
+    const regDataToEdit = generateRegDataToEdit(user);
+    dispatch(updateAllRegInputs(regDataToEdit));
   };
 
   return (
@@ -58,6 +82,7 @@ const ManagersPopupModal = ({ onClose }) => {
       onClose={onClose}
       title={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_TITLE}
       subtitle={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_SUBTITLE}
+      width="800px"
     >
       <StyledActionRow>
         <Button type="icon" icon="add" onClick={onClickAddManager}>
@@ -66,8 +91,7 @@ const ManagersPopupModal = ({ onClose }) => {
         {open && (
           <EditUserPopup
             onClose={() => setOpen(false)}
-            title={"Add Manager"}
-            subtitle={"Make sure to choose the Manager's role as Event Manager"}
+            modalDetails={modalDetails}
           />
         )}
       </StyledActionRow>
@@ -94,7 +118,7 @@ const ManagersPopupModal = ({ onClose }) => {
                 <Badge type={item.status}>{item.status}</Badge>
               </StyledPopupData>
               <StyledPopupActions>
-                <Icon variant="edit" onClick={onEdit} />
+                <Icon variant="edit" onClick={() => onEdit(item)} />
                 <Icon variant="delete" onClick={onDelete} />
               </StyledPopupActions>
             </StyledPopupRow>

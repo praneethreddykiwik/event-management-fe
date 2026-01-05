@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registrationMetaData } from "./reg.metadata";
 
 const initialState = {
-  createUserInputs: registrationMetaData,
+  createUserInputs: [],
 };
 
 const formsSlice = createSlice({

@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createUserApi, getUsersApi, userDeleteApi } from "../../api/users.api";
+import {
+  createUserApi,
+  getUsersApi,
+  updateUserApi,
+  userDeleteApi,
+} from "../../api/users.api";
 import { roles } from "../../constants/roles";
 
 export const fetchManagersAction = createAsyncThunk(
@@ -40,6 +45,21 @@ export const deleteUserAction = createAsyncThunk(
     debugger;
     try {
       const res = await userDeleteApi(payload);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(err?.response?.data || "Login failed");
+    }
+  }
+);
+
+export const updateUserAction = createAsyncThunk(
+  "auth/updateUserAction",
+  async (payload, { rejectWithValue }) => {
+    debugger;
+    // const navigate = payload.navigate;
+    debugger;
+    try {
+      const res = await updateUserApi(payload);
       return res.data;
     } catch (err) {
       return rejectWithValue(err?.response?.data || "Login failed");
