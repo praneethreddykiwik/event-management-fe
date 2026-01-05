@@ -21,6 +21,8 @@ import { eventsSelector } from "../../redux/events/events.slice";
 import GlobalSpinner from "../../components/Spinner/GlobalSpinner";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHr } from "../../components/Styled/Common.styled";
+import { usersSelector } from "../../redux/users/users.slice";
+import PolarChart from "../../components/PolarChart/PolarChart";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const AdminDashboard = () => {
   const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
+  const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
     const payload = {
@@ -48,8 +51,15 @@ const AdminDashboard = () => {
 
         <CardsRow>
           <AdminSummaryCard label="Total Events" value={events.length} />
-          <AdminSummaryCard label="Event Managers" value="5" />
-          <AdminSummaryCard label="Completion Rate" value="87%" />
+          <AdminSummaryCard
+            label="Event Managers"
+            value={eventManagers.length}
+          />
+          <AdminSummaryCard
+            label="Completion Rate"
+            value="87%"
+            chart={<PolarChart percent={87} />}
+          />
         </CardsRow>
 
         <CreateEventButtons
