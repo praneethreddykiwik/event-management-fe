@@ -9,6 +9,7 @@ import AppRoutes from "./routes";
 import GlobalSpinner from "./components/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
 import { TenantIdHOC } from "./HOC/TenantIdHOC";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const theme = useTheme();
@@ -29,6 +30,7 @@ function App() {
         <GlobalSpinner loading={isLoading}>
           <Header />
           <AppRoutes />
+          <Footer />
         </GlobalSpinner>
       </TenantIdHOC>
     </ThemeProvider>

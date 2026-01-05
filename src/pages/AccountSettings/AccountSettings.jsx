@@ -13,7 +13,6 @@ const AccountSettings = () => {
             <AccountSettingsRightContent />
         </StyledContent>
     </StyledContainer>
-    <Footer />
     </>
   )
 }
