@@ -61,17 +61,12 @@ const EventDetails = () => {
               </StyledEventHeaderInfoCont1Bottom>
             </StyledEventHeaderInfoCont1>
             <StyledEventHeaderInfoCont2>
-              <EditButtonWrap>
-                <Button icon="edit">
-                  Edit Event
-                </Button>
-              </EditButtonWrap>
-
-              <DeleteButtonWrap>
-                <Button icon="delete">
-                  Delete Event
-                </Button>
-              </DeleteButtonWrap>
+              <Button sx={StyledButton1} type="outlined" icon="edit">
+                Edit Event
+              </Button>
+              <Button sx={StyledButton2} type="icon" icon="delete">
+                Delete Event
+              </Button>
             </StyledEventHeaderInfoCont2>
           </StyledEventHeaderInfo>
         </StyledEventHeader>
@@ -220,35 +215,16 @@ const StyledEventHeaderInfoCont2 = styled.div`
   gap: 12px;
 `;
 
-const EditButtonWrap = styled.div`
-  button {
-    height: 44px;
-    padding: 0 18px;
-    border-radius: 999px;
-    border: 1px solid #d9d9d9;
-    background-color: #ffffff;
-    color: #2f2f2f;
-    font-weight: 500;
+const StyledButton1 = {
+  height: "50px",
+  width: "160px",
+};
 
-    display: inline-flex;
-    align-items: center;
-  }
-`;
-
-const DeleteButtonWrap = styled.div`
-  button {
-    height: 44px;
-    padding: 0 20px;
-    border-radius: 999px;
-    background-color: #d63a2f;
-    border: none;
-    color: #ffffff;
-    font-weight: 500;
-
-    display: inline-flex;
-    align-items: center;
-  }
-`;
+const StyledButton2 = {
+  height: "50px",
+  width: "160px",
+  "background-color": "#d63a2f;",
+};
 
 // --------- Event BODY -------------
 
