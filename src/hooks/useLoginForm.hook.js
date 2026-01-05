@@ -66,7 +66,7 @@ export const useLoginForm = () => {
     } else if (role === userRoles.eventManagerRole) {
       navigate("/vendor");
     } else if (role === userRoles.stakeHolderRole) {
-      navigate(paths.eventManager);
+      navigate(paths.tasks);
     }
   };
 

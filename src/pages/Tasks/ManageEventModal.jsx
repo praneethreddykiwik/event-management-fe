@@ -7,155 +7,159 @@ import {
   StyledOutlinedButton,
 } from "../../components/Styled/Buttons.styled";
 import { InputDefault } from "../../components/Inputs/Inputs.styled";
+import { Icon } from "../../components/Icons/Icons";
+import { formatDateTime } from "../../utils/utils";
 
 /*  Add Task Modal  */
 
-const AddTaskModal = ({ onClose, onAddTask }) => {
-  const [form, setForm] = useState({
-    taskName: "",
-    assignedTo: "",
-    dueDate: "",
-  });
+// const AddTaskModal = ({ onClose, onAddTask }) => {
+//   const [form, setForm] = useState({
+//     taskName: "",
+//     assignedTo: "",
+//     dueDate: "",
+//   });
 
-  const formFields = [
-    {
-      id: "taskName",
-      label: "Task Name",
-      required: true,
-      component: "input",
-      placeholder: "e.g. Setup audio equipment",
-      value: form.taskName,
-      onChange: (e) => setForm((p) => ({ ...p, taskName: e.target.value })),
-    },
-    {
-      id: "assignedTo",
-      label: "Assign To",
-      required: true,
-      component: "select",
-      options: [
-        { value: "", label: "Select stakeholder/vendor" },
-        { value: "XYZ Decorations", label: "XYZ Decorations" },
-        { value: "ABC Catering", label: "ABC Catering" },
-      ],
-    },
-    {
-      id: "dueDate",
-      label: "Due Date",
-      required: true,
-      component: "date",
-      value: form.dueDate,
-      onChange: (e) => setForm((p) => ({ ...p, dueDate: e.target.value })),
-    },
-  ];
+//   const formFields = [
+//     {
+//       id: "taskName",
+//       label: "Task Name",
+//       required: true,
+//       component: "input",
+//       placeholder: "e.g. Setup audio equipment",
+//       value: form.taskName,
+//       onChange: (e) => setForm((p) => ({ ...p, taskName: e.target.value })),
+//     },
+//     {
+//       id: "assignedTo",
+//       label: "Assign To",
+//       required: true,
+//       component: "select",
+//       options: [
+//         { value: "", label: "Select stakeholder/vendor" },
+//         { value: "XYZ Decorations", label: "XYZ Decorations" },
+//         { value: "ABC Catering", label: "ABC Catering" },
+//       ],
+//     },
+//     {
+//       id: "dueDate",
+//       label: "Due Date",
+//       required: true,
+//       component: "date",
+//       value: form.dueDate,
+//       onChange: (e) => setForm((p) => ({ ...p, dueDate: e.target.value })),
+//     },
+//   ];
 
-  const handleSubmit = () => {
-    const { taskName, assignedTo, dueDate } = form;
+//   const handleSubmit = () => {
+//     const { taskName, assignedTo, dueDate } = form;
 
-    if (!taskName || !assignedTo || !dueDate) return;
+//     if (!taskName || !assignedTo || !dueDate) return;
 
-    onAddTask({
-      id: Date.now(),
-      name: taskName,
-      assignedTo,
-      dueDate,
-      status: "not started",
-    });
+//     onAddTask({
+//       id: Date.now(),
+//       name: taskName,
+//       assignedTo,
+//       dueDate,
+//       status: "not started",
+//     });
 
-    onClose();
-  };
+//     onClose();
+//   };
 
-  return (
-    <Overlay>
-      <ModalContainer style={{ width: "460px" }}>
-        <ModalHeader>
-          <HeaderText>
-            <Title>Add New Task</Title>
-            <Subtitle>Create a task for this event</Subtitle>
-          </HeaderText>
-          <CloseButton onClick={onClose}>
-            <span className="material-symbols-outlined">close_small</span>
-          </CloseButton>
-        </ModalHeader>
+//   return (
+//     <Overlay>
+//       <ModalContainer style={{ width: "460px" }}>
+//         <ModalHeader>
+//           <HeaderText>
+//             <Title>Add New Task</Title>
+//             <Subtitle>Create a task for this event</Subtitle>
+//           </HeaderText>
+//           <CloseButton onClick={onClose}>
+//             <span className="material-symbols-outlined">close_small</span>
+//           </CloseButton>
+//         </ModalHeader>
 
-        {formFields.map((field) => (
-          <FormGroup key={field.id}>
-            <Label>
-              {field.label} {field.required && <sup>*</sup>}
-            </Label>
+//         {formFields.map((field) => (
+//           <FormGroup key={field.id}>
+//             <Label>
+//               {field.label} {field.required && <sup>*</sup>}
+//             </Label>
 
-            {field.component === "input" && (
-              <InputDefault
-                placeholder={field.placeholder}
-                value={field.value}
-                onChange={field.onChange}
-              />
-            )}
+//             {field.component === "input" && (
+//               <InputDefault
+//                 placeholder={field.placeholder}
+//                 value={field.value}
+//                 onChange={field.onChange}
+//               />
+//             )}
 
-            {field.component === "select" && (
-              <Field>
-                <RoleDropdown
-                  options={field.options}
-                  value={form.assignedTo}
-                  placeholder="Select stakeholder/vendor"
-                  onChange={(opt) =>
-                    setForm((prev) => ({
-                      ...prev,
-                      assignedTo: opt.value, // IMPORTANT
-                    }))
-                  }
-                />
-              </Field>
-            )}
+//             {field.component === "select" && (
+//               <Field>
+//                 <RoleDropdown
+//                   options={field.options}
+//                   value={form.assignedTo}
+//                   placeholder="Select stakeholder/vendor"
+//                   onChange={(opt) =>
+//                     setForm((prev) => ({
+//                       ...prev,
+//                       assignedTo: opt.value, // IMPORTANT
+//                     }))
+//                   }
+//                 />
+//               </Field>
+//             )}
 
-            {field.component === "date" && (
-              <InputDefault
-                type="date"
-                value={field.value}
-                onChange={field.onChange}
-              />
-            )}
-          </FormGroup>
-        ))}
+//             {field.component === "date" && (
+//               <InputDefault
+//                 type="date"
+//                 value={field.value}
+//                 onChange={field.onChange}
+//               />
+//             )}
+//           </FormGroup>
+//         ))}
 
-        <ButtonRow>
-          <PrimaryButton onClick={handleSubmit}>Add Task</PrimaryButton>
-          <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
-        </ButtonRow>
-      </ModalContainer>
-    </Overlay>
-  );
-};
+//         <ButtonRow>
+//           <PrimaryButton onClick={handleSubmit}>Add Task</PrimaryButton>
+//           <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
+//         </ButtonRow>
+//       </ModalContainer>
+//     </Overlay>
+//   );
+// };
 
 /*  Event Modal  */
 
-const ManageEventModal = ({ onClose }) => {
-  const [showAddTask, setShowAddTask] = useState(false);
-  const [tasks, setTasks] = useState([]);
+const ManageEventModal = ({ onClose, task }) => {
+  console.log("abdul task", task);
+
+  // const [showAddTask, setShowAddTask] = useState(false);
+  // const [tasks, setTasks] = useState([]);
 
   const eventSummaryData = [
-    { label: "Event Name", value: "Annual Tech Conference" },
-    { label: "Event Type", value: "Corporate" },
-    { label: "Date & Time", value: "February 15, 2025 at 09:00" },
-    { label: "Venue", value: "Convention Center" },
-    { label: "Assigned By", value: "Admin User" },
-    { label: "Expected Attendees", value: "500" },
+    { label: "Task Name", value: task.taskTitle },
+    { label: "Task Description", value: task.taskDescription },
+    { label: "Task Created At", value: formatDateTime(task.taskCreatedAt) },
+    { label: "Venue", value: task.venue },
+    { label: "Assigned By", value: task.taskAssignedToUid },
+    { label: "Status", value: task.taskStatus },
   ];
 
-  const getStatusStyles = (status) => {
-    switch (status) {
-      case "in progress":
-        return {
-          background: "#FEF3C7",
-          color: "#92400E",
-        };
-      case "not started":
-      default:
-        return {
-          background: "#E5E7EB",
-          color: "#374151",
-        };
-    }
-  };
+  // const getStatusStyles = (status) => {
+  //   switch (status) {
+  //     case "in progress":
+  //       return {
+  //         background: "#FEF3C7",
+  //         color: "#92400E",
+  //       };
+  //     case "not started":
+  //     default:
+  //       return {
+  //         background: "#E5E7EB",
+  //         color: "#374151",
+  //       };
+  //   }
+  // };
 
   return (
     <>
@@ -163,16 +167,14 @@ const ManageEventModal = ({ onClose }) => {
         <ModalContainer>
           <ModalHeader>
             <HeaderText>
-              <Title>Manage Event</Title>
-              <Subtitle>View event details and manage tasks</Subtitle>
+              <Title>Event: {task.eventName}</Title>
+              <Subtitle>{task.venue}</Subtitle>
             </HeaderText>
-            <CloseButton onClick={onClose}>
-              <span className="material-symbols-outlined">close_small</span>
-            </CloseButton>
+            <Icon variant="close" onClick={onClose} />
           </ModalHeader>
 
           <Section>
-            <SectionTitle>Event Summary</SectionTitle>
+            <SectionTitle>Task Summary</SectionTitle>
 
             <SummaryGrid>
               {eventSummaryData.map((item, index) => (
@@ -195,14 +197,14 @@ const ManageEventModal = ({ onClose }) => {
             </DeclineButton>
           </ActionRow>
 
-          <TaskHeader>
-            <SectionTitle>Tasks</SectionTitle>
-            <AddTaskButton onClick={() => setShowAddTask(true)}>
-              <span className="material-symbols-outlined">add</span> Add Task
-            </AddTaskButton>
-          </TaskHeader>
+          {/* <TaskHeader> */}
+          {/* <SectionTitle>Tasks</SectionTitle> */}
+          {/* <AddTaskButton onClick={() => setShowAddTask(true)}>
+            <span className="material-symbols-outlined">add</span> Add Task
+          </AddTaskButton> */}
+          {/* </TaskHeader> */}
 
-          <TaskList>
+          {/* <TaskList>
             {tasks.map((task) => (
               <TaskCard key={task.id}>
                 <TaskLeft>
@@ -229,16 +231,16 @@ const ManageEventModal = ({ onClose }) => {
                 </TaskRight>
               </TaskCard>
             ))}
-          </TaskList>
+          </TaskList> */}
         </ModalContainer>
       </Overlay>
 
-      {showAddTask && (
+      {/* {showAddTask && (
         <AddTaskModal
           onClose={() => setShowAddTask(false)}
           onAddTask={(task) => setTasks((prev) => [...prev, task])}
         />
-      )}
+      )} */}
     </>
   );
 };
@@ -368,6 +370,7 @@ const AddTaskButton = styled(StyledBaseButton)`
   justify-content: center;
   width: auto;
   color: #fff;
+  margin-left: auto;
 `;
 
 const TaskList = styled.div`

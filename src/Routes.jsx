@@ -13,14 +13,15 @@ import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import PlayerCard from "./components/PlayerCard/PlayerCard";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import SamplePage from "./pages/SamplePages/Sample.page.jsx";
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
-import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDashboard.jsx";
+import Tasks from "./pages/Tasks/Tasks.jsx";
 import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Event/EventDetails.page.jsx";
 import CreateEvent from "./pages/Event/CreateEvent/CreateEvent.jsx";
+import Events from "./pages/Events/Events.jsx";
+import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -50,7 +51,7 @@ const AppRoutes = () => {
       <Route path={"/player-card"} element={<PlayerCard />} />
 
       {/* Admin */}
-      <Route path={paths.adminDashboard} element={<AdminDashboard />} />
+      <Route path={paths.events} element={<Events />} />
 
       {/* Profile */}
       <Route path={paths.accountSettings} element={<AccountSettings />} />
@@ -59,7 +60,10 @@ const AppRoutes = () => {
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
       <Route path={paths.createEvent} element={<CreateEvent />} />
-      <Route path={paths.eventManager} element={<EventManagerDashboard />} />
+
+      {/* Tasks */}
+      <Route path={paths.tasks} element={<Tasks />} />
+      <Route path={paths.createTask} element={<CreateTask />} />
 
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />

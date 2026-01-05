@@ -49,11 +49,15 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       </MenuItem>
 
       <MenuItem onClick={() => toggleDropdown("venues")}>
-        Venues <ArrowIcon $open={openDropdown === "venues"} />
+        Market <ArrowIcon $open={openDropdown === "venues"} />
         <Dropdown $open={openDropdown === "venues"}>
           <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>location_on</ItemIcon>
             Venues Near Me
+          </DropdownItem>
+          <DropdownItem onClick={() => navigate(paths.marketPlace)}>
+            <ItemIcon>location_on</ItemIcon>
+            Market Place
           </DropdownItem>
         </Dropdown>
       </MenuItem>
@@ -61,21 +65,25 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       <MenuItem onClick={() => toggleDropdown("pages")}>
         Pages <ArrowIcon $open={openDropdown === "pages"} />
         <Dropdown $open={openDropdown === "pages"}>
-          <DropdownItem onClick={() => navigate(paths.adminDashboard)}>
+          <DropdownItem onClick={() => navigate(paths.events)}>
             <ItemIcon>admin_panel_settings</ItemIcon>
-            Admin
+            Events
           </DropdownItem>
-          <DropdownItem onClick={() => navigate(paths.eventManager)}>
+          <DropdownItem onClick={() => navigate(paths.tasks)}>
             <ItemIcon>dashboard</ItemIcon>
-            Event Manager
+            Tasks
           </DropdownItem>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>dashboard</ItemIcon>
-            User Management
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate("/vendor")}>
+          <DropdownItem onClick={() => navigate(paths.vendor)}>
             <ItemIcon>dashboard</ItemIcon>
             Vendor
+          </DropdownItem>
+          <DropdownItem onClick={() => navigate(paths.customer)}>
+            <ItemIcon>dashboard</ItemIcon>
+            Customer
+          </DropdownItem>
+          <DropdownItem onClick={() => navigate(paths.userManagement)}>
+            <ItemIcon>dashboard</ItemIcon>
+            User Management
           </DropdownItem>
         </Dropdown>
       </MenuItem>

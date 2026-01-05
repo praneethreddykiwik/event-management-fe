@@ -14,9 +14,10 @@ import { tasksSelector } from "../../redux/tasks/tasks.slice";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { Section } from "../../HOC/SectionsHOC";
-import { mapTaskForUI } from '../.././helpers/Dashboard.helper';
+import { mapTaskForUI } from "../../helpers/Dashboard.helper";
+import { Button } from "../../components/Buttons/Button";
 
-const EventManagerDashboard = () => {
+export const CreateTask = () => {
   const dispatch = useDispatch();
 
   const { authUser } = useSelector(authSelector);
@@ -30,7 +31,7 @@ const EventManagerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Event Manager</StyledHeading>
+        <StyledHeading left>Tasks</StyledHeading>
         <StyledHr />
 
         <CardsRow>
@@ -42,8 +43,15 @@ const EventManagerDashboard = () => {
 
         {tasks.map((event) => (
           <Section key={event.eventUid}>
-            <TaskOverview>{event.eventName}</TaskOverview>
-            <TaskMonitor>{event.venue}</TaskMonitor>
+            <StyledBtnBox>
+              <StyledBox2>
+                <TaskOverview>{event.eventName}</TaskOverview>
+                <TaskMonitor>{event.venue}</TaskMonitor>
+              </StyledBox2>
+              <Button icon="add" sx={{ width: "180px" }} whiteText>
+                Add Task
+              </Button>
+            </StyledBtnBox>
 
             {event.tasks.map((task) => (
               <TaskItem task={mapTaskForUI(task)} />
@@ -76,4 +84,11 @@ const TaskMonitor = styled(StyledParagraphSmall)`
   text-align: left;
 `;
 
-export default EventManagerDashboard;
+const StyledBtnBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  // width: 40px;
+`;
+const StyledBox2 = styled.div`
+  flex-basis: 50%;
+`;

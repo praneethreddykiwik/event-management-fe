@@ -10,9 +10,15 @@ import { useState } from "react";
 import ManageEventModal from "./ManageEventModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { BADGE_TYPES } from "../../enum/common";
+import { Button } from "../../components/Buttons/Button";
+import { ADMIN_COMMON } from "../../Enum/Admin.common";
 
 const TaskItem = ({ task = {} }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
+
+  const onOpen = () => {
+    setShowManageEvent(true);
+  };
 
   return (
     <TaskRow>
@@ -31,11 +37,14 @@ const TaskItem = ({ task = {} }) => {
       </Left>
       <BadgeButton>
         <Badge type={task.type}>{task.taskStatus}</Badge>
-        <ManageButton onClick={() => setShowManageEvent(true)}>
+        <Button type="secondary" onClick={() => onOpen()}>
           {E_M_DASHBOARD_COMMON.MANAGE_B}
-        </ManageButton>
+        </Button>
         {showManageEvent && (
-          <ManageEventModal onClose={() => setShowManageEvent(false)} />
+          <ManageEventModal
+            onClose={() => setShowManageEvent(false)}
+            task={task}
+          />
         )}
       </BadgeButton>
     </TaskRow>

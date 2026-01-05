@@ -9,7 +9,6 @@ import {
 } from "../../components/Styled/Typography.styled";
 import CreateEventButtons from "./CreateEventManagerB";
 import CreateEventModal from "./CreateEventModal";
-import { ADMIN_COMMON } from "../../enum/Admin.common";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../redux/users/users.actions";
 import useTenant from "../../hooks/useTenant.hook";
@@ -19,11 +18,12 @@ import { fetchEventsDispatch } from "../../redux/events/events.actions";
 import { eventsSelector } from "../../redux/events/events.slice";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHr } from "../../components/Styled/Common.styled";
-import { mapEventForUI } from '../../helpers/Dashboard.helper';
+import { mapEventForUI } from "../../helpers/Dashboard.helper";
 import { usersSelector } from "../../redux/users/users.slice";
 import PolarChart from "../../components/PolarChart/PolarChart";
+import { ADMIN_COMMON } from "../../Enum/Admin.common";
 
-const AdminDashboard = () => {
+const Events = () => {
   const dispatch = useDispatch();
   const tenantId = useTenant();
 
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
   return (
     <BlueBackHOC>
       <AdminDashboardContainer>
-        <StyledHeading left>Admin Manager</StyledHeading>
+        <StyledHeading left>Events</StyledHeading>
         <StyledHr />
 
         <CardsRow>
@@ -118,4 +118,4 @@ const TaskList = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-export default AdminDashboard;
+export default Events;
