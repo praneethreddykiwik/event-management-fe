@@ -26,6 +26,7 @@ const usersSlice = createSlice({
       })
       .addCase(actions.fetchManagersAction.fulfilled, (state, action) => {
         state.eventManagers = action.payload?.details;
+        debugger;
         state.eventManagersLoading = false;
       })
       .addCase(actions.fetchManagersAction.rejected, (state) => {

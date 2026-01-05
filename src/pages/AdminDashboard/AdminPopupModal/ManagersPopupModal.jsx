@@ -42,11 +42,11 @@ const ManagersPopupModal = ({ onClose }) => {
     { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
   ];
 
-  const onDelete = async () => {
+  const onDelete = async (uid) => {
+    const payload = { uid };
     debugger;
-    const payload = {};
     await dispatch(deleteUserAction(payload));
-    await dispatch(fetchManagersAction(payload));
+    await dispatch(fetchManagersAction());
   };
 
   const onEdit = () => {
@@ -95,7 +95,7 @@ const ManagersPopupModal = ({ onClose }) => {
               </StyledPopupData>
               <StyledPopupActions>
                 <Icon variant="edit" onClick={onEdit} />
-                <Icon variant="delete" onClick={onDelete} />
+                <Icon variant="delete" onClick={() => onDelete(item.uid)} />
               </StyledPopupActions>
             </StyledPopupRow>
           ))}
