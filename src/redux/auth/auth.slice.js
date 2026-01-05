@@ -6,9 +6,7 @@ const initialState = {
   authStatus: "loading", // idle | loading | authenticated | unauthenticated
   authError: null,
 
-  registrationError: null,
-  registrationSuccess: false,
-  registrationLoading: false,
+  tenantId: "",
 };
 
 const authSlice = createSlice({
@@ -19,8 +17,8 @@ const authSlice = createSlice({
     clearAuthError(state) {
       state.authError = null;
     },
-    clearRegistrationSuccessMsg(state) {
-      state.registrationSuccess = false;
+    updateTenantId(state, action) {
+      state.tenantId = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -60,24 +58,9 @@ const authSlice = createSlice({
       state.authUser = null;
       state.authStatus = "unauthenticated";
     });
-
-    // registration
-    builder
-      .addCase(actions.registrationAction.pending, (state) => {
-        state.registrationLoading = true;
-      })
-      .addCase(actions.registrationAction.fulfilled, (state, action) => {
-        state.registrationSuccess = true;
-        state.registrationLoading = false;
-      })
-      .addCase(actions.registrationAction.rejected, (state, action) => {
-        state.registrationError = "Something went wrong";
-        state.registrationLoading = false;
-      });
   },
 });
 
 export const authSelector = (st) => st.auth;
-export const { clearAuthError, clearRegistrationSuccessMsg } =
-  authSlice.actions;
+export const { clearAuthError, updateTenantId } = authSlice.actions;
 export default authSlice.reducer;

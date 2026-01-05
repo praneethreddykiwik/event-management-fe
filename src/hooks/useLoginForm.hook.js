@@ -3,6 +3,7 @@ import { inputValidation } from "../components/Validations/inputValidation";
 import { useAuth } from "./useAuth.hook";
 import { userRoles } from "../enum/Common";
 import useNavigateWithQuery from "./useNavigateWithQuery";
+import { paths } from "../constants/paths";
 
 export const useLoginForm = () => {
   const navigate = useNavigateWithQuery();
@@ -65,7 +66,7 @@ export const useLoginForm = () => {
     } else if (role === userRoles.eventManagerRole) {
       navigate("/vendor");
     } else if (role === userRoles.stakeHolderRole) {
-      navigate("/event-manager");
+      navigate(paths.eventManager);
     }
   };
 

@@ -4,5 +4,6 @@ export const paths = {
   newsFeed: "/news-feed",
   accountSettings: "/account-settings",
   adminDashboard: "/admin",
-  events: "/eventDetails"
+  events: "/eventDetails",
+  eventManager: "/event-manager",
 };

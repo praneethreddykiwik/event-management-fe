@@ -1,10 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  loginApi,
-  logoutApi,
-  meApi,
-  registrationApi,
-} from "../../api/auth.api";
+import { loginApi, logoutApi, meApi } from "../../api/auth.api";
 
 // Runs on app load/refresh to check if session cookie is valid
 export const bootstrapAuthAction = createAsyncThunk(
@@ -40,21 +35,6 @@ export const logoutAction = createAsyncThunk(
       return true;
     } catch (err) {
       return rejectWithValue(err?.response?.data || "Logout failed");
-    }
-  }
-);
-
-export const registrationAction = createAsyncThunk(
-  "auth/registrationAction",
-  async (payload, { rejectWithValue }) => {
-    // const navigate = payload.navigate;
-    try {
-      const res = await registrationApi(payload.reqPayload);
-      debugger;
-      return res.data; // user object (or any success response)
-    } catch (err) {
-      debugger;
-      return rejectWithValue(err?.response?.data || "Registration failed");
     }
   }
 );

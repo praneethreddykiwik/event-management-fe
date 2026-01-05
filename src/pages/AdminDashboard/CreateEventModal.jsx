@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { eventFormConfig } from './eventFormConfig';
-import { Input } from '../../components/Inputs/Input';
-import RoleDropdown from '../../components/RoleDropdown/RoleDropdown';
-import { Button } from '../../components/Buttons/Button';
+import { useState } from "react";
+import styled from "styled-components";
+import { eventFormConfig } from "./eventFormConfig";
+import { Input } from "../../components/Inputs/Input";
+import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
+import { Button } from "../../components/Buttons/Button";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
-import { ADMIN_COMMON } from '../../Enum/Admin.common';
+} from "../../components/Styled/Typography.styled";
+import { ADMIN_COMMON } from "../../Enum/Admin.common";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});
 
   const handleInputChange = (name) => (e) => {
     let value = e;
-    if (e && typeof e === 'object' && 'value' in e && !e.target) {
+    if (e && typeof e === "object" && "value" in e && !e.target) {
       value = e.value;
     }
     if (e?.target) {
@@ -28,12 +28,12 @@ const CreateEventModal = ({ onClose }) => {
   };
 
   const handleCreate = () => {
-    console.log('EVENT CREATED:', form);
+    console.log("EVENT CREATED:", form);
     onClose();
   };
 
   const renderField = (field) => {
-    if (field.component === 'select') {
+    if (field.component === "select") {
       return (
         <Field key={field.name}>
           <RoleDropdown
@@ -49,7 +49,7 @@ const CreateEventModal = ({ onClose }) => {
       );
     }
 
-    if (field.component === 'textarea') {
+    if (field.component === "textarea") {
       return (
         <Field key={field.name}>
           <LabelTxt>{field.label}</LabelTxt>
@@ -58,7 +58,7 @@ const CreateEventModal = ({ onClose }) => {
             type="textarea"
             name={field.name}
             placeholder={field.placeholder}
-            value={form[field.name] || ''}
+            value={form[field.name] || ""}
             onChange={handleInputChange(field.name)}
           />
         </Field>
@@ -73,7 +73,7 @@ const CreateEventModal = ({ onClose }) => {
           type={field.type}
           name={field.name}
           placeholder={field.placeholder}
-          value={form[field.name] || ''}
+          value={form[field.name] || ""}
           onChange={handleInputChange(field.name)}
         />
       </Field>
@@ -90,8 +90,8 @@ const CreateEventModal = ({ onClose }) => {
 
         <Form>
           {eventFormConfig.map((field) =>
-            field.group === 'row' ? (
-              <Row key={field.fields.map((f) => f.name).join('-')}>
+            field.group === "row" ? (
+              <Row key={field.fields.map((f) => f.name).join("-")}>
                 {field.fields.map(renderField)}
               </Row>
             ) : (

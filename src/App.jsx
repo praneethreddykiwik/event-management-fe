@@ -15,7 +15,6 @@ function App() {
 
   const dispatch = useDispatch();
   const { authStatus } = useSelector(authSelector);
-  console.log("authStatus", authStatus);
 
   useEffect(() => {
     // validate session cookie on app load

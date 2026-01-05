@@ -1,26 +1,18 @@
-/** @format */
-
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
+} from "../../components/Styled/Typography.styled";
+import { Card } from "../../components/Cards/Cards";
 
 const AdminSummaryCard = ({ value, label, type }) => (
-  <AdminCard>
-    <Value type={type}>{value}</Value>
-    <Label>{label}</Label>
-  </AdminCard>
+  <Card>
+    <StyledValue type={type}>{value || 0}</StyledValue>
+    <StyledLabel>{label}</StyledLabel>
+  </Card>
 );
 
-const AdminCard = styled.div`
-  padding: 25px 15px 0;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-`;
-
-const Value = styled(StyledMediumHeading)`
+const StyledValue = styled(StyledMediumHeading)`
   width: 100%;
   text-align: left;
   margin: 0;
@@ -30,9 +22,10 @@ const Value = styled(StyledMediumHeading)`
       : theme.colors.textPrimary};
 `;
 
-const Label = styled(StyledParagraphSmall)`
+const StyledLabel = styled(StyledParagraphSmall)`
   width: 100%;
   text-align: left;
   margin-top: 10px;
 `;
+
 export default AdminSummaryCard;

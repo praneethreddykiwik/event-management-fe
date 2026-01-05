@@ -6,7 +6,7 @@ import {
   StyledBaseButton,
   StyledOutlinedButton,
 } from "../../components/Styled/Buttons.styled";
-import { InputDefault } from "../../components/Styled/Inputs.styled";
+import { InputDefault } from "../../components/Inputs/Inputs.styled";
 
 /*  Add Task Modal  */
 

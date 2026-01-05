@@ -1,12 +1,10 @@
-/** @format */
-
 import {
   InputDefault,
   InputNumber,
   InputPassword,
   InputCheckbox,
   InputRadio,
-} from "../Styled/Inputs.styled";
+} from "./Inputs.styled";
 import { inputValidation } from "../../components/Validations/inputValidation";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";

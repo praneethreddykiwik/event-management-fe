@@ -1,22 +1,22 @@
-import styled from 'styled-components';
-import Badge from '../../components/Badge/Badge.component';
-import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
+import styled from "styled-components";
+import Badge from "../../components/Badge/Badge.component";
+import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
-import { ADMIN_COMMON } from '../../Enum/Admin.common';
+} from "../../components/Styled/Typography.styled";
+import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { Card } from "../../components/Cards/Cards";
 
 const AdminTaskItem = ({ data }) => {
   return (
-    <TaskRow>
+    <StyledCard>
       <Left>
         <Taskcard>
-          <EventName>{data.event}</EventName>
-          <TaskDate>{data.date}</TaskDate>
+          <EventName>{data.eventName}</EventName>
+          <TaskDate>Scheduled At: {data.scheduledAt}</TaskDate>
           <TaskAssignee>
-            {ADMIN_COMMON.ADMIN_MANAGER}
-            {data.assigned}
+            {ADMIN_COMMON.EVENT_MANAGER}: {data.firstName}
           </TaskAssignee>
         </Taskcard>
       </Left>
@@ -24,20 +24,18 @@ const AdminTaskItem = ({ data }) => {
         <Badge type={data.type}>{data.status}</Badge>
         <ViewButton>{ADMIN_COMMON.ADMIN_DETAILS}</ViewButton>
       </BadgeButton>
-    </TaskRow>
+    </StyledCard>
   );
 };
 
-const TaskRow = styled.div`
+const StyledCard = styled(Card)`
   display: flex;
   justify-content: space-between;
-  padding: 0 15px;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 const Left = styled.div`
-  padding: 20px 0;
+  // padding: 20px 0;
   display: flex;
   gap: 10px;
 `;

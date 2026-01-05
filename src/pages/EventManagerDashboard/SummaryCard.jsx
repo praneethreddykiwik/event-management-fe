@@ -1,10 +1,11 @@
 /** @format */
 
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
+} from "../../components/Styled/Typography.styled";
+import { Card } from "../../components/Cards/Cards";
 
 const SummaryCard = ({ value, label, type }) => (
   <Card>
@@ -12,13 +13,6 @@ const SummaryCard = ({ value, label, type }) => (
     <Label>{label}</Label>
   </Card>
 );
-
-const Card = styled.div`
-  padding: 25px 15px 0;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-`;
 
 const Value = styled(StyledMediumHeading)`
   text-align: left;

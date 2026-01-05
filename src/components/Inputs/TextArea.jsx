@@ -1,7 +1,7 @@
 import { InputLayout } from "./InputLayout";
 import { InputDefault } from "./Inputs.styled";
 
-export const BaseInput = ({
+export const TextArea = ({
   label,
   name,
   placeholder,
@@ -9,17 +9,19 @@ export const BaseInput = ({
   onChange,
   disabled,
   error,
-  width,
+  rows = 4,
 }) => {
   return (
-    <InputLayout label={label} error={error} width={width}>
+    <InputLayout label={label} error={error}>
       <InputDefault
+        as="textarea"
+        id={name}
         name={name}
-        type={"text"}
         placeholder={placeholder}
-        value={value}
+        value={value || ""}
         onChange={onChange}
         disabled={disabled}
+        rows={rows}
         $hasError={!!error}
       />
     </InputLayout>

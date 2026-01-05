@@ -61,7 +61,7 @@ const AppRoutes = () => {
       <Route path={"/vendor"} element={<StakeholderDashboard />} />
 
       {/*  */}
-      <Route path="/event-manager" element={<EventManagerDashboard />} />
+      <Route path={paths.eventManager} element={<EventManagerDashboard />} />
       <Route path="*" element={<Home />} />
     </>
   );

@@ -19,6 +19,7 @@ const BookVenue = () => {
   const handlEmailChange = (e) => {
     setEmail(e.value);
   };
+
   return (
     <LandingPageLayout flexDirection="column">
       <StyledContainer>
@@ -42,7 +43,7 @@ const BookVenue = () => {
 };
 
 const StyledBtn = styled(StyledBaseButton)`
-  width: 250px;
+  min-width: 250px;
 `;
 
 const StyledPolicy = styled.div`
@@ -56,7 +57,6 @@ const StyledPolicy = styled.div`
 
 const StyledPolicyTxt = styled(StyledParagraphSmallGray)`
   text-align: left;
-
 
   @media (max-width: 767px) {
     text-align: center;

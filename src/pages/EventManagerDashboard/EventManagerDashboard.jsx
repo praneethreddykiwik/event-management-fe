@@ -1,53 +1,62 @@
-/** @format */
-
-import styled from 'styled-components';
-import SummaryCard from './SummaryCard';
-import TaskItem from './TaskItem';
+import styled from "styled-components";
+import SummaryCard from "./SummaryCard";
+import TaskItem from "./TaskItem";
 import {
+  StyledHeadingMaxBig,
   StyledMediumHeading,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
-import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
-import { BADGE_TYPES } from '../../enum/Common';
+} from "../../components/Styled/Typography.styled";
+import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
+import { BADGE_TYPES } from "../../Enum/common";
+import { useEffect } from "react";
+import { fetchTasksDispatch } from "../../redux/tasks/tasks.actions";
+import { useDispatch } from "react-redux";
 
 const EventManagerDashboard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTasksDispatch());
+  }, []);
+
   const tasks = [
     {
-      title: 'Set up venue decorations',
-      event: 'Annual Conference 2025',
-      assigned: 'John Doe',
-      due: '3/10/2025',
+      title: "Set up venue decorations",
+      event: "Annual Conference 2025",
+      assigned: "John Doe",
+      due: "3/10/2025",
       type: BADGE_TYPES.PENDING,
       status: BADGE_TYPES.PENDING,
     },
     {
-      title: 'Coordinate catering service',
-      event: 'Annual Conference 2025',
-      assigned: 'Jane Smith',
-      due: '3/12/2025',
+      title: "Coordinate catering service",
+      event: "Annual Conference 2025",
+      assigned: "Jane Smith",
+      due: "3/12/2025",
       type: BADGE_TYPES.INPROGRESS,
-      status: 'in progress',
+      status: "in progress",
     },
     {
-      title: 'Prepare presentation materials',
-      event: 'Product Launch Event',
-      assigned: 'Mike Wilson',
-      due: '4/15/2025',
+      title: "Prepare presentation materials",
+      event: "Product Launch Event",
+      assigned: "Mike Wilson",
+      due: "4/15/2025",
       type: BADGE_TYPES.COMPLETED,
       status: BADGE_TYPES.COMPLETED,
     },
     {
-      title: 'Book audio-visual equipment',
-      event: 'Product Launch Event',
-      assigned: 'Sarah Lee',
-      due: '4/18/2025',
+      title: "Book audio-visual equipment",
+      event: "Product Launch Event",
+      assigned: "Sarah Lee",
+      due: "4/18/2025",
       type: BADGE_TYPES.INPROGRESS,
-      status: 'in progress',
+      status: "in progress",
     },
   ];
 
   return (
     <DashboardContainer>
+      <StyledHeadingMaxBig left>Event Manager</StyledHeadingMaxBig>
       <CardsRow>
         <SummaryCard label="Total Tasks" value="4" />
         <SummaryCard type="completed" label="Completed" value="1" />

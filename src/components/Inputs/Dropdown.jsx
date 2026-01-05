@@ -1,9 +1,6 @@
 import Select from "react-select";
-import styled from "styled-components";
-import {
-  StyledParagraphError,
-  StyledParagraphSmall,
-} from "../Styled/Typography.styled";
+import { InputLayout } from "./InputLayout";
+import { useMemo } from "react";
 
 const Dropdown = ({
   name,
@@ -14,17 +11,19 @@ const Dropdown = ({
   placeholder,
   error,
 }) => {
-  return (
-    <StyledRoleDropdownLayout>
-      {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
+  const extractValue = useMemo(() => {
+    return options.find((fn) => fn.value === value);
+  }, [options, value]);
 
+  return (
+    <InputLayout label={label} error={error}>
       <Select
         name={name}
         options={options}
         label={label}
-        value={value}
+        value={extractValue}
         onChange={(val) => {
-          const params = { target: { name, value: val } };
+          const params = { target: { name, value: val.value } };
           onChange(params);
         }}
         placeholder={placeholder}
@@ -34,24 +33,9 @@ const Dropdown = ({
           IndicatorSeparator: () => null,
         }}
       />
-      {error && <StyledParagraphError>{error}</StyledParagraphError>}
-    </StyledRoleDropdownLayout>
+    </InputLayout>
   );
 };
-
-const StyledRoleDropdownLayout = styled.div`
-  p {
-    text-align: left;
-    margin-left: 20px;
-  }
-`;
-const Styledselect = styled(StyledParagraphSmall)`
-  text-align: left;
-  /* adjust padding according to your figma */
-  margin-bottom: ${({ theme }) => theme.spacings["spacing-2"]};
-  font-weight: ${({ theme }) => theme.fontWeights["default"]};
-  padding-left: 10px;
-`;
 
 const customStyles = {
   control: (base) => ({
@@ -61,7 +45,6 @@ const customStyles = {
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
-    // border: "1px solid #B9B9B9",
     border: "1px solid #e0e0e0",
     "&:focus-within": {
       border: `1px solid #B9B9B9`,
@@ -82,7 +65,6 @@ const customStyles = {
 
   placeholder: (base) => ({
     ...base,
-    // color: "gray",
     fontSize: "14px",
     color: "#bdbdbd",
   }),
@@ -95,7 +77,6 @@ const customStyles = {
 
   menu: (base) => ({
     ...base,
-    // marginTop: '8px',
     borderRadius: "22px",
     backgroundColor: "#e6e6e6",
     padding: "0 8px",
@@ -110,14 +91,10 @@ const customStyles = {
     fontSize: "14px",
     cursor: "pointer",
 
-    // backgroundColor: state.isFocused ? "#ffffffff" : "transparent",
-    // backgroundColor: state.isFocused ? '#f2f1ff' : 'transparent',
-    // color: state.isFocused ? "#26C867" : "#000000",
-
     backgroundColor: state.isSelected
-      ? "#26C867" // selected
+      ? "#26C867"
       : state.isFocused
-      ? "#f6fff1ff" // hover
+      ? "#f6fff1ff"
       : "transparent",
 
     color: state.isSelected ? "#fff" : state.isFocused ? "#26C867" : "#000000",

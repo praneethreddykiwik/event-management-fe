@@ -3,12 +3,15 @@ import {
   InputNumber,
   InputCheckbox,
   InputRadio,
-} from "../Styled/Inputs.styled";
+} from "./Inputs.styled";
 import { inputValidation } from "../../components/Validations/inputValidation";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import { Password } from "./Password";
 import { BaseInput } from "./BaseInput";
+import { NumberInput } from "./NumberInput";
+import { DateInput } from "./DateInput";
+import { TextArea } from "./TextArea";
 
 export const Inputs = (props) => {
   const {
@@ -41,47 +44,24 @@ export const Inputs = (props) => {
   switch (type) {
     case "text":
       return <BaseInput {...props} />;
+
     case "email":
       return <BaseInput {...props} />;
 
     case "number":
-      return (
-        <>
-          <InputNumber
-            id={name}
-            name={name}
-            type="number"
-            placeholder={placeholder}
-            value={value ?? ""}
-            onChange={onChange}
-            disabled={disabled}
-            $hasError={!!error}
-          />
-          {error && <ErrorText>{error}</ErrorText>}
-        </>
-      );
+      return <NumberInput {...props} />;
 
     case "password":
       return <Password {...props} />;
+
+    case "setPassword":
+      return <Password {...props} confirmPassword />;
 
     case "dropdown":
       return <Dropdown {...props} />;
 
     case "date":
-      return (
-        <>
-          <InputDefault
-            id={name}
-            name={name}
-            type="date"
-            value={value || ""}
-            onChange={onChange}
-            disabled={disabled}
-            $hasError={!!error}
-          />
-          {error && <ErrorText>{error}</ErrorText>}
-        </>
-      );
+      return <DateInput {...props} />;
 
     case "time":
       return (
@@ -116,22 +96,7 @@ export const Inputs = (props) => {
       );
 
     case "textarea":
-      return (
-        <>
-          <InputDefault
-            as="textarea"
-            id={name}
-            name={name}
-            placeholder={placeholder}
-            value={value || ""}
-            onChange={onChange}
-            disabled={disabled}
-            $hasError={!!error}
-            rows={4}
-          />
-          {error && <ErrorText>{error}</ErrorText>}
-        </>
-      );
+      return <TextArea />;
 
     case "checkbox":
       return (

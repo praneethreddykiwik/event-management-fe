@@ -5,12 +5,9 @@ import {
   StyledParagraphSmallGray,
   StyledParagraph,
 } from "../../components/Styled/Typography.styled";
-import {
-  StyledBaseButton,
-  StyledOutlinedButton,
-} from "../../components/Styled/Buttons.styled";
+import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
+import { InputDefault } from "../../components/Inputs/Inputs.styled";
 
-import { InputDefault } from "../../components/Styled/Inputs.styled";
 export const InputCheckBox = styled.input``;
 export const PassWordImg = styled.img``;
 export const AccountSignIn = styled(StyledParagraphSmallGray)`
@@ -19,41 +16,10 @@ export const AccountSignIn = styled(StyledParagraphSmallGray)`
     display: none;
   }
 `;
+
 export const SignInAnchor = styled(StyledAnchor)`
   text-decoration: none;
   font-size: 14px;
-`;
-export const StyledContainer = styled.div`
-  height: 100vh;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 25px;
-  }
-`;
-
-export const ContainerLeft = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-export const MainContainer = styled.div`
-  width: 300px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const LogoEventz = styled.div`
@@ -165,19 +131,6 @@ export const InputWrapper = styled.div`
 `;
 export const Input = styled(InputDefault)``;
 
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 16px;
-`;
-export const InputBox = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
-`;
 export const ForgotPassword = styled(StyledParagraphSmallGray)`
   margin-top: 3px;
   margin-bottom: 15px;
@@ -221,12 +174,4 @@ export const CheckboxRow = styled.div`
 export const AnchorParah = styled(StyledParagraphSmallGray)`
   /* line-height: 18.2px;
   text-align: justify; */
-`;
-
-export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
-  width: 75%;
-  margin: 0;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 `;

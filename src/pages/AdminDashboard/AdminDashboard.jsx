@@ -1,71 +1,72 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import AdminSummaryCard from './AdminSummaryCard';
-import AdminTaskItem from './AdminTaskItem';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import AdminSummaryCard from "./AdminSummaryCard";
+import AdminTaskItem from "./AdminTaskItem";
 import {
+  StyledHeadingMaxBig,
   StyledMediumHeading,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
-import { BADGE_TYPES } from '../../enum/Common';
-import CreateEventButtons from './CreateEventManagerB';
-import CreateEventModal from './CreateEventModal';
-import {
-  ADMIN_COMMON,
-  EVENT_ASSIGNED,
-  EVENT_DATE,
-  EVENT_NAME,
-  EVENT_STATUS,
-} from '../../Enum/Admin.common';
+} from "../../components/Styled/Typography.styled";
+import CreateEventButtons from "./CreateEventManagerB";
+import CreateEventModal from "./CreateEventModal";
+import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchManagersAction } from "../../redux/users/users.actions";
+import useTenant from "../../hooks/useTenant.hook";
+import { roles } from "../../constants/roles";
+import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
+import { fetchEventsDispatch } from "../../redux/events/events.actions";
+import { eventsSelector } from "../../redux/events/events.slice";
+import GlobalSpinner from "../../components/Spinner/GlobalSpinner";
 
 const AdminDashboard = () => {
+  const dispatch = useDispatch();
+  const tenantId = useTenant();
+
+  const [openManagersPopup, setOpenManagersPopup] = useState(false);
   const [open, setOpen] = useState(false);
-  const tasks = [
-    {
-      event: EVENT_NAME.EVENT_NAME1,
-      date: EVENT_DATE.EVENT_DATE1,
-      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED1,
-      type: BADGE_TYPES.PENDING,
-      status: EVENT_STATUS.EVENT_STATUS1,
-    },
-    {
-      event: EVENT_NAME.EVENT_NAME2,
-      date: EVENT_DATE.EVENT_DATE2,
-      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED2,
-      type: BADGE_TYPES.INPROGRESS,
-      status: EVENT_STATUS.EVENT_STATUS2,
-    },
-    {
-      event: EVENT_NAME.EVENT_NAME3,
-      date: EVENT_DATE.EVENT_DATE3,
-      assigned: EVENT_ASSIGNED.EVENT_ASSIGNED3,
-      type: BADGE_TYPES.COMPLETED,
-      status: EVENT_STATUS.EVENT_STATUS3,
-    },
-  ];
+
+  const { events } = useSelector(eventsSelector);
+
+  useEffect(() => {
+    const payload = {
+      query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
+    };
+    dispatch(fetchManagersAction(payload));
+
+    dispatch(fetchEventsDispatch());
+  }, []);
 
   return (
-    <>
-      <AdminDashboardContainer>
-        <CardsRow>
-          <AdminSummaryCard label="Total Events" value="12" />
-          <AdminSummaryCard label="Event Managers" value="5" />
-          <AdminSummaryCard label="Completion Rate" value="87%" />
-        </CardsRow>
-        <CreateEventButtons onCreateEvent={() => setOpen(true)} />
-        {open && <CreateEventModal onClose={() => setOpen(false)} />}
-        <TaskMainCard>
-          <Tasktxt>
-            <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
-            <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
-          </Tasktxt>
-          <TaskList>
-            {tasks.map((task, index) => (
-              <AdminTaskItem key={index} data={task} />
-            ))}
-          </TaskList>
-        </TaskMainCard>
-      </AdminDashboardContainer>
-    </>
+    <AdminDashboardContainer>
+      <StyledHeadingMaxBig left>Admin Manager</StyledHeadingMaxBig>
+      <CardsRow>
+        <AdminSummaryCard label="Total Events" value={events.length} />
+        <AdminSummaryCard label="Event Managers" value="5" />
+        <AdminSummaryCard label="Completion Rate" value="87%" />
+      </CardsRow>
+      <CreateEventButtons
+        onCreateEvent={() => setOpen(true)}
+        setOpenManagersPopup={setOpenManagersPopup}
+      />
+
+      {open && <CreateEventModal onClose={() => setOpen(false)} />}
+      {openManagersPopup && (
+        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+      )}
+
+      <TaskMainCard>
+        <Tasktxt>
+          <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
+          <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
+        </Tasktxt>
+        <TaskList>
+          {events.map((task, index) => (
+            <AdminTaskItem key={index} data={task} />
+          ))}
+        </TaskList>
+      </TaskMainCard>
+    </AdminDashboardContainer>
   );
 };
 

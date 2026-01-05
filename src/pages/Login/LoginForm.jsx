@@ -19,7 +19,7 @@ import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";
 import { useState } from "react";
 
-const Forms = () => {
+const LoginForm = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const tenantId = useTenant();
@@ -28,7 +28,6 @@ const Forms = () => {
 
   const validateFields = () => {
     let isValid = true;
-    debugger;
     const newInputs = inputs.map((el) => {
       if (!el.value) {
         isValid = false;
@@ -44,7 +43,6 @@ const Forms = () => {
 
   const onSubmit = () => {
     const isValid = validateFields();
-    debugger;
     if (!isValid) return;
 
     const inpObj = inputs.reduce((acu, cur) => {
@@ -220,4 +218,4 @@ const SignInAnchor = styled(StyledAnchor)`
   font-size: 12px;
   text-decoratoin: none;
 `;
-export default Forms;
+export default LoginForm;

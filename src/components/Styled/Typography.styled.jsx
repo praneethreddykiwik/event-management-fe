@@ -8,6 +8,15 @@ const textAlign = ({ left, right }) =>
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
 // headings
+export const StyledHeadingMaxBig = styled.p`
+  color: black;
+  font-size: 60px;
+  font-weight: 400;
+  // line-height: 52px;
+  letter-spacing: -0.144px;
+  margin: 36px 0;
+  text-align: ${({ left, right }) => textAlign({ left, right })};
+`;
 export const StyledHeadingBig = styled.p`
   //   color: ${({ theme, gradient }) => (gradient ? null : theme.color)};
   color: black;

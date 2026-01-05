@@ -1,5 +1,7 @@
 import { httpsClient } from "./client/httpsClient";
 
-export const getUsersApi = () => {
-  return httpsClient.get("/health");
+export const getUsersApi = (queryParams) => {
+  return httpsClient.get("/users" + queryParams);
 };
+
+export const createUserApi = (body) => httpsClient.post("/users", body);
