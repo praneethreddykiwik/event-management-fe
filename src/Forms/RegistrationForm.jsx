@@ -11,6 +11,7 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
+import { toast } from "react-toastify"; // Toastify
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -25,29 +26,42 @@ const RegistrationForm = ({ onCreateUser }) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
       if (isReq && !el.value) {
         isValid = false;
-        return { ...el, error: "Invalid input!" };
+        return { ...el, error: "This field is required" };
       }
-      return el;
+      return { ...el, error: "" };
     });
 
-    dispatch(updateAllRegInputs(newInputs));
+    if (!isValid) {
+      toast.error("Please fill all required fields"); // Validation error toast
+    }
 
+    dispatch(updateAllRegInputs(newInputs));
     return isValid;
   };
 
   const onSubmit = async () => {
-    const isValid = validateFields();
-    if (!isValid) return;
+    // try {
+      const isValid = validateFields();
+      if (!isValid) return;
 
-    const reqPayload = createUserInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
+      const reqPayload = createUserInputs.reduce((acu, cur) => {
+        return { ...acu, [cur.name]: cur.value };
+      }, {});
 
-    const payload = {
-      navigate,
-      reqPayload: { ...reqPayload, tenantId },
-    };
-    onCreateUser(payload);
+      const payload = {
+        navigate,
+        reqPayload: { ...reqPayload, tenantId },
+      };
+
+      await onCreateUser(payload); // API call
+
+      toast.success("Registration successful"); // Success toast
+    // } 
+    // catch (error) {
+    //   toast.error(
+    //     error?.message || "Registration failed. Please try again."
+    //   ); // API error toast
+    // }
   };
 
   const onChange = (e) => {
@@ -58,9 +72,9 @@ const RegistrationForm = ({ onCreateUser }) => {
   return (
     <Form>
       <InputBox>
-        {createUserInputs.map((inp) => {
-          return <Inputs {...inp} onChange={onChange} />;
-        })}
+        {createUserInputs.map((inp) => (
+          <Inputs key={inp.name} {...inp} onChange={onChange} />
+        ))}
       </InputBox>
 
       <Button whiteText onClick={onSubmit}>
@@ -81,7 +95,6 @@ export const Form = styled.div`
 export const InputBox = styled.div`
   display: flex;
   gap: 16px;
-
   flex-wrap: wrap;
   flex-direction: row;
 `;

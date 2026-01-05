@@ -7,3 +7,4 @@ export const getUsersApi = (queryParams) => {
 export const createUserApi = (body) => httpsClient.post("/users", body);
 export const userDeleteApi = ({ uid }) =>
   httpsClient.delete(`/users/delete-user?uid=${uid}`);
+export const updateUserApi = (body) => httpsClient.put("/users", body);
