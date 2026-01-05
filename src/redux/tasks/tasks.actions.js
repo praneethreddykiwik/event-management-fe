@@ -8,7 +8,6 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
       const res = await fetchEventsAndTasksApi(payload);
       return res.data;
     } catch (err) {
-      debugger;
       return rejectWithValue(err?.response?.data || "Error");
     }
   }

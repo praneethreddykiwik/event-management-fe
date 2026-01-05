@@ -64,7 +64,6 @@ const ManagersPopupModal = ({ onClose }) => {
 
   const onDelete = async (uid) => {
     const payload = { uid };
-    debugger;
     await dispatch(deleteUserAction(payload));
     await dispatch(fetchManagersAction());
   };
@@ -117,7 +116,7 @@ const ManagersPopupModal = ({ onClose }) => {
               <StyledPopupData flex={1}>
                 <Badge type={item.status}>{item.status}</Badge>
               </StyledPopupData>
-              <StyledPopupActions>
+              <StyledPopupActions style={{ marginRight: "10px" }}>
                 <Icon variant="edit" onClick={() => onEdit(item)} />
                 <Icon variant="delete" onClick={() => onDelete(item.uid)} />
               </StyledPopupActions>

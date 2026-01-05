@@ -20,6 +20,7 @@ import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Event/EventDetails.page.jsx";
+import CreateEvent from "./pages/Event/CreateEvent/CreateEvent.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -35,28 +36,34 @@ const AppRoutes = () => {
 
   const authenticatedRoutes = (
     <>
+      {/* base */}
       <Route path={"/"} element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      {/* //  */}
-      <Route path={paths.adminDashboard} element={<AdminDashboard />} />
       <Route path={"/Gateway"} element={<GatewayPage />} />
       <Route path={"/Getintouch"} element={<GetInTouch />} />
       <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
       <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
       <Route path={"/controlpage"} element={<Controlpage />} />
       <Route path={"/profile"} element={<Profile />} />
-      <Route path={paths.newsFeed} element={<NewEvent />} />
       <Route path={"/samplePage"} element={<SamplePage />} />
       <Route path={"/Subscriptions"} element={<Subscriptions />} />
-      <Route path={"/PlayerCard"} element={<PlayerCard />} />
+      <Route path={"/player-card"} element={<PlayerCard />} />
+
+      {/* Admin */}
+      <Route path={paths.adminDashboard} element={<AdminDashboard />} />
+
+      {/* Profile */}
       <Route path={paths.accountSettings} element={<AccountSettings />} />
-      <Route path={paths.events} element={<Event />} />
+      <Route path={paths.newsFeed} element={<NewEvent />} />
 
-      {/*  */}
-      <Route path={"/vendor"} element={<StakeholderDashboard />} />
-
-      {/*  */}
+      {/* Events */}
+      <Route path={paths.eventsDetails} element={<Event />} />
+      <Route path={paths.createEvent} element={<CreateEvent />} />
       <Route path={paths.eventManager} element={<EventManagerDashboard />} />
+
+      {/* Vendor */}
+      <Route path={paths.vendor} element={<StakeholderDashboard />} />
+
       <Route path="*" element={<Home />} />
     </>
   );

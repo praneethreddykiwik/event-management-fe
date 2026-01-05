@@ -78,7 +78,6 @@ export const registrationMetaData = [
 ];
 
 export const generateRegDataToEdit = (user) => {
-  debugger;
   const allowedFields = [
     "firstName",
     "lastName",

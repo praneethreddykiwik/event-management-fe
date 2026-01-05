@@ -25,7 +25,6 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  const onClick = () => {};
 
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
@@ -62,7 +61,7 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       <MenuItem onClick={() => toggleDropdown("pages")}>
         Pages <ArrowIcon $open={openDropdown === "pages"} />
         <Dropdown $open={openDropdown === "pages"}>
-          <DropdownItem onClick={() => navigate(paths.adminDashboard)}> 
+          <DropdownItem onClick={() => navigate(paths.adminDashboard)}>
             <ItemIcon>admin_panel_settings</ItemIcon>
             Admin
           </DropdownItem>
@@ -73,6 +72,10 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
           <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>dashboard</ItemIcon>
             User Management
+          </DropdownItem>
+          <DropdownItem onClick={() => navigate("/vendor")}>
+            <ItemIcon>dashboard</ItemIcon>
+            Vendor
           </DropdownItem>
         </Dropdown>
       </MenuItem>

@@ -17,7 +17,6 @@ export const fetchManagersAction = createAsyncThunk(
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      debugger;
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
@@ -31,7 +30,6 @@ export const registrationAction = createAsyncThunk(
       const res = await createUserApi(payload.reqPayload);
       return res.data; // user object (or any success response)
     } catch (err) {
-      debugger;
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
   }
@@ -42,7 +40,6 @@ export const deleteUserAction = createAsyncThunk(
   "auth/deleteUserAction",
   async (payload, { rejectWithValue }) => {
     // const navigate = payload.navigate;
-    debugger;
     try {
       const res = await userDeleteApi(payload);
       return res.data;
@@ -55,9 +52,7 @@ export const deleteUserAction = createAsyncThunk(
 export const updateUserAction = createAsyncThunk(
   "auth/updateUserAction",
   async (payload, { rejectWithValue }) => {
-    debugger;
     // const navigate = payload.navigate;
-    debugger;
     try {
       const res = await updateUserApi(payload);
       return res.data;

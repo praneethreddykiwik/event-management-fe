@@ -20,7 +20,7 @@ const Header = () => {
   const { authStatus } = useSelector(authSelector);
 
   const isLoggedIn = authStatus === "authenticated";
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen] = useState(false);
 
   const goLogin = () => navigate(paths.login);
 

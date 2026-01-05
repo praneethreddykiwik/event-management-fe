@@ -8,4 +8,5 @@ export const Icon = ({ variant, onClick }) => (
 
 const StyledIcon = styled.span`
   cursor: pointer;
+  font-size: 20px;
 `;

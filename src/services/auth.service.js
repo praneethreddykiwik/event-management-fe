@@ -33,7 +33,6 @@ export const loginAndFetchUserService = async (creds) => {
 
     return userDetailsResponseData;
   } catch (error) {
-    debugger;
     console.log("getCurrentUserService error ", error);
     throw error;
   }

@@ -4,7 +4,11 @@ export const paths = {
   newsFeed: "/news-feed",
   accountSettings: "/account-settings",
   adminDashboard: "/admin",
-  events: "/event-details",
   eventManager: "/event-manager",
   registration: "/registration",
+
+  eventsDetails: "/events/event-details",
+  createEvent: "/events/create-event",
+
+  vendor: "/vendor",
 };
