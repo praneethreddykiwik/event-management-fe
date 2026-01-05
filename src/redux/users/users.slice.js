@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./users.actions";
-import { registrationMetaData } from "../../pages/RegistrationPage/registration.helper";
+import { registrationMetaData } from "../farms/reg.metadata";
 
 const initialState = {
   eventManagersLoading: false,
