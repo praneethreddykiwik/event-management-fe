@@ -13,6 +13,7 @@ import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
 import useTenant from "../../hooks/useTenant.hook";
+import { Conditions, Policy, Terms } from "../../Enum/RegistrationPage.Enum";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";
@@ -102,6 +103,13 @@ const Forms = () => {
         </AnchorLinkPrimary>
       </AccountSignIn>
       <TermsConditionsTxt>{LOGIN_COMMON.TERMS_CONDITIONS}</TermsConditionsTxt>
+
+      <CheckboxRow>
+        <AnchorParah>
+          {Terms} <SignInAnchor>{Conditions}</SignInAnchor> and{" "}
+          <SignInAnchor>{Policy}</SignInAnchor>
+        </AnchorParah>
+      </CheckboxRow>
     </Form>
   );
 };
@@ -116,7 +124,7 @@ const Form = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 16px;
 `;
 const InputBox = styled.div`
   width: 100%;
@@ -155,6 +163,7 @@ const CheckboxRow = styled.div`
   display: flex;
   align-items: baseline;
   gap: 10px;
+  margin-bottom: 30px;
   @media (max-width: 768px) {
     display: none;
   }
@@ -164,6 +173,8 @@ const InputCheckBox = styled.input`
   color: white;
 `;
 const NewUser = styled(StyledParagraphSmallGray)`
+  margin-bottom: 0;
+  margin-top: 0;
   /* @media screen and (min-width: 769px) {
     display: none;
   } */
@@ -180,8 +191,11 @@ const RegisterAnchor = styled(StyledAnchor)`
 `;
 
 const AnchorParah = styled(StyledParagraphSmallGray)`
-  text-align: justify;
-  margin-bottom: 0;
+  margin: 0 auto;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: 30px;
 `;
 const ContinueButton = styled(StyledBaseButton)`
   color: white;
@@ -190,20 +204,20 @@ const ContinueButton = styled(StyledBaseButton)`
 const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
   width: 75%;
   margin: 0;
+
   @media screen and (min-width: 769px) {
     display: none;
   }
 `;
 const AccountSignIn = styled(StyledParagraphSmallGray)`
+  margin: 0;
+  margin-top: -8px;
   @media (max-width: 768px) {
     display: none;
   }
 `;
 const SignInAnchor = styled(StyledAnchor)`
-  font-size: 14px;
-`;
-const SignInAnchoru = styled(StyledAnchor)`
-  text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  text-decoratoin: none;
 `;
 export default Forms;
