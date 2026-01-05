@@ -50,6 +50,7 @@ export const BADGE_TYPES = {
   ACCEPTED: "accepted",
   ACTIVE: "active",
   INACTIVE: "inactive",
+  CORPORATE: "Corporate", // remove while pushing
 };
 
 export const MANAGE_EVENT_MANAGER = {

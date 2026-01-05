@@ -23,6 +23,7 @@ import EventManagerDashboard from "./pages/EventManagerDashboard/EventManagerDas
 import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
+import Event from "./pages/Event/EventDetails.page.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -54,6 +55,7 @@ const AppRoutes = () => {
       <Route path={"/Subscriptions"} element={<Subscriptions />} />
       <Route path={"/PlayerCard"} element={<PlayerCard />} />
       <Route path={paths.accountSettings} element={<AccountSettings />} />
+      <Route path={paths.events} element={<Event />} />
 
       {/*  */}
       <Route path={"/vendor"} element={<StakeholderDashboard />} />

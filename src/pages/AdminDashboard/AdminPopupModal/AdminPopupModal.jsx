@@ -71,7 +71,9 @@ const AdminPopupModal = ({ onClose }) => {
               </StyledPopupData>
               <StyledPopupData>
                 <StyledPopupActions>
-                  <StyledPopupIcons src={edit} alt="edit" />
+                  <span className="material-symbols-outlined">
+                    "edit"
+                  </span>
                   <StyledPopupIcons src={bin} alt="delete" />
                 </StyledPopupActions>
               </StyledPopupData>
