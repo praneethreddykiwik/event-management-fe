@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import bin from "../../../assets/admin's_icons/bin_icon.svg";
-import edit from "../../../assets/admin's_icons/edit_icon.svg";
-
 import {
   StyledParagraphSmallVisible,
   StyledSemiHeading,
@@ -12,11 +9,19 @@ import PopupModal from "../../../components/PopupModal/PopupModal";
 import { useState } from "react";
 import { MANAGE_EVENT_MANAGER } from "../../../enum/common";
 import { usersSelector } from "../../../redux/users/users.slice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateManagerPopup from "./CreateManagerPopup";
+import EditUserPopup from "../../../components/users/EditUserPopup";
+import { Icon } from "../../../components/Icons/Icons";
+import {
+  deleteUserAction,
+  fetchManagersAction,
+} from "../../../redux/users/users.actions";
 
 const ManagersPopupModal = ({ onClose }) => {
   const { eventManagers } = useSelector(usersSelector);
+  const dispatch = useDispatch();
+
   console.log("abdul eventManagers", eventManagers);
 
   const [open, setOpen] = useState(false);
@@ -37,6 +42,17 @@ const ManagersPopupModal = ({ onClose }) => {
     { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
   ];
 
+  const onDelete = async () => {
+    debugger;
+    const payload = {};
+    await dispatch(deleteUserAction(payload));
+    await dispatch(fetchManagersAction(payload));
+  };
+
+  const onEdit = () => {
+    debugger;
+  };
+
   return (
     <PopupModal
       onClose={onClose}
@@ -47,7 +63,13 @@ const ManagersPopupModal = ({ onClose }) => {
         <Button type="icon" icon="add" onClick={onClickAddManager}>
           Add Manager
         </Button>
-        {open && <CreateManagerPopup onClose={() => setOpen(false)} />}
+        {open && (
+          <EditUserPopup
+            onClose={() => setOpen(false)}
+            title={"Add Manager"}
+            subtitle={"Make sure to choose the Manager's role as Event Manager"}
+          />
+        )}
       </StyledActionRow>
 
       <StyledTableWrapper>
@@ -71,12 +93,10 @@ const ManagersPopupModal = ({ onClose }) => {
               <StyledPopupData flex={1}>
                 <Badge type={item.status}>{item.status}</Badge>
               </StyledPopupData>
-              <StyledFlex flex={2}>
-                <StyledPopupActions>
-                  <span className="material-symbols-outlined">"edit"</span>
-                  <StyledPopupIcons src={bin} alt="delete" />
-                </StyledPopupActions>
-              </StyledFlex>
+              <StyledPopupActions>
+                <Icon variant="edit" onClick={onEdit} />
+                <Icon variant="delete" onClick={onDelete} />
+              </StyledPopupActions>
             </StyledPopupRow>
           ))}
         </StyledTableBody>
@@ -92,11 +112,6 @@ const StyledActionRow = styled.div`
   width: fit-content;
   margin: 0px 0;
   margin-left: auto;
-
-  // button {
-  //   background-color: #26c867;
-  //   color: #ffffff;
-  // }
 `;
 
 const StyledTableWrapper = styled.div`
@@ -130,19 +145,14 @@ const StyledPopupData = styled(StyledParagraphSmallVisible)`
   flex: ${({ flex }) => flex};
   text-align: left;
 `;
-const StyledFlex = styled.div`
-  flex: ${({ flex }) => flex};
-  display: flex;
-  justify-content: center;
-`;
+
 const StyledPopupActions = styled.div`
   display: flex;
   gap: 16px;
   margin-left: 50px;
-`;
-
-const StyledPopupIcons = styled.img`
-  cursor: pointer;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledDividerline = styled.div`

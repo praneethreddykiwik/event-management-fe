@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./users.actions";
-import { registrationMetaData } from "../farms/reg.metadata";
 
 const initialState = {
   eventManagersLoading: false,
@@ -10,8 +9,6 @@ const initialState = {
   registrationError: null,
   registrationSuccess: false,
   registrationLoading: false,
-
-  createUserInputs: registrationMetaData,
 };
 
 const usersSlice = createSlice({
@@ -20,15 +17,6 @@ const usersSlice = createSlice({
   reducers: {
     clearRegistrationSuccessMsg(state) {
       state.registrationSuccess = false;
-    },
-    updateRegInputs(state, action) {
-      const { value, name } = action.payload;
-      const i = state.createUserInputs.findIndex((fi) => fi.name === name);
-      state.createUserInputs[i].value = value;
-      state.createUserInputs[i].error = null;
-    },
-    updateAllRegInputs(state, action) {
-      state.createUserInputs = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -53,11 +41,6 @@ const usersSlice = createSlice({
       .addCase(actions.registrationAction.fulfilled, (state) => {
         state.registrationSuccess = true;
         state.registrationLoading = false;
-        // clear inputs
-        state.createUserInputs = state.createUserInputs.map((el) => ({
-          ...el,
-          value: "",
-        }));
       })
       .addCase(actions.registrationAction.rejected, (state) => {
         state.registrationError = "Something went wrong";

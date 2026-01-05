@@ -1,7 +1,6 @@
 import WelcomeTxts from "./WelcomeTxts";
 import GetStartedWithButtons from "./GetStartedWithButtons";
 import LineTxts from "./LineTxts";
-// import RegistrationForm from "./RegistrationForm";
 import RegistrationImages from "./RegistrationImages";
 import { BottomReg } from "./BottomReg";
 import styled from "styled-components";
@@ -11,10 +10,11 @@ import RegistrationForm from "../../Forms/RegistrationForm";
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();
-  // await dispatch(fetchManagersAction());
+
   const onCreateUser = async (payload) => {
     dispatch(registrationAction(payload));
   };
+
   return (
     <StyledContainer>
       <ContainerLeft>
