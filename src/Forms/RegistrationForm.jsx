@@ -11,7 +11,7 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
-import { toast } from "react-toastify"; // Toastify
+import { toast } from "react-toastify";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -41,22 +41,22 @@ const RegistrationForm = ({ onCreateUser }) => {
 
   const onSubmit = async () => {
     // try {
-      const isValid = validateFields();
-      if (!isValid) return;
+    const isValid = validateFields();
+    if (!isValid) return;
 
-      const reqPayload = createUserInputs.reduce((acu, cur) => {
-        return { ...acu, [cur.name]: cur.value };
-      }, {});
+    const reqPayload = createUserInputs.reduce((acu, cur) => {
+      return { ...acu, [cur.name]: cur.value };
+    }, {});
 
-      const payload = {
-        navigate,
-        reqPayload: { ...reqPayload, tenantId },
-      };
+    const payload = {
+      navigate,
+      reqPayload: { ...reqPayload, tenantId },
+    };
 
-      await onCreateUser(payload); // API call
+    await onCreateUser(payload); // API call
 
-      toast.success("Registration successful"); // Success toast
-    // } 
+    toast.success("Registration successful"); // Success toast
+    // }
     // catch (error) {
     //   toast.error(
     //     error?.message || "Registration failed. Please try again."

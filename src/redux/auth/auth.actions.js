@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginApi, logoutApi, meApi } from "../../api/auth.api";
+import { toast } from "react-toastify";
 
 // Runs on app load/refresh to check if session cookie is valid
 export const bootstrapAuthAction = createAsyncThunk(
@@ -23,6 +24,7 @@ export const loginAction = createAsyncThunk(
       await dispatch(bootstrapAuthAction());
       return res.data;
     } catch (err) {
+      toast.error("Login failed");
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
