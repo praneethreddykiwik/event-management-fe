@@ -9,6 +9,9 @@ import AppRoutes from "./routes";
 import GlobalSpinner from "./components/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
 import { TenantIdHOC } from "./HOC/TenantIdHOC";
+import Footer from "./components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const theme = useTheme();
@@ -29,6 +32,13 @@ function App() {
         <GlobalSpinner loading={isLoading}>
           <Header />
           <AppRoutes />
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick
+          />
+          <Footer />
         </GlobalSpinner>
       </TenantIdHOC>
     </ThemeProvider>

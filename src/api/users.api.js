@@ -5,3 +5,5 @@ export const getUsersApi = (queryParams) => {
 };
 
 export const createUserApi = (body) => httpsClient.post("/users", body);
+export const userDeleteApi = (body) => httpsClient.post("/users", body);
+export const updateUserApi = (body) => httpsClient.put("/users", body);

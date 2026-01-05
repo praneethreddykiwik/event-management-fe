@@ -1,0 +1,102 @@
+import { Continue } from "../enum/RegistrationPage.Enum";
+import { Inputs } from "../components/Inputs/Inputs";
+import styled from "styled-components";
+import { Button } from "../components/Buttons/Button";
+import { useDispatch, useSelector } from "react-redux";
+import useTenant from "../hooks/useTenant.hook";
+import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
+import { validationList } from "../constants/validations.constants";
+import {
+  formsSelector,
+  updateAllRegInputs,
+  updateRegInputs,
+} from "../redux/farms/farms.slice";
+import { toast } from "react-toastify"; // Toastify
+
+const RegistrationForm = ({ onCreateUser }) => {
+  const navigate = useNavigateWithQuery();
+  const dispatch = useDispatch();
+  const tenantId = useTenant();
+  const { createUserInputs } = useSelector(formsSelector);
+
+  const validateFields = () => {
+    let isValid = true;
+
+    const newInputs = createUserInputs.map((el) => {
+      const isReq = el.validations?.includes(validationList.REQUIRED);
+      if (isReq && !el.value) {
+        isValid = false;
+        return { ...el, error: "This field is required" };
+      }
+      return { ...el, error: "" };
+    });
+
+    if (!isValid) {
+      toast.error("Please fill all required fields"); // Validation error toast
+    }
+
+    dispatch(updateAllRegInputs(newInputs));
+    return isValid;
+  };
+
+  const onSubmit = async () => {
+    // try {
+      const isValid = validateFields();
+      if (!isValid) return;
+
+      const reqPayload = createUserInputs.reduce((acu, cur) => {
+        return { ...acu, [cur.name]: cur.value };
+      }, {});
+
+      const payload = {
+        navigate,
+        reqPayload: { ...reqPayload, tenantId },
+      };
+
+      await onCreateUser(payload); // API call
+
+      toast.success("Registration successful"); // Success toast
+    // } 
+    // catch (error) {
+    //   toast.error(
+    //     error?.message || "Registration failed. Please try again."
+    //   ); // API error toast
+    // }
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateRegInputs({ name, value }));
+  };
+
+  return (
+    <Form>
+      <InputBox>
+        {createUserInputs.map((inp) => (
+          <Inputs key={inp.name} {...inp} onChange={onChange} />
+        ))}
+      </InputBox>
+
+      <Button whiteText onClick={onSubmit}>
+        {Continue}
+      </Button>
+    </Form>
+  );
+};
+
+export const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+`;
+
+export const InputBox = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-direction: row;
+`;
+
+export default RegistrationForm;

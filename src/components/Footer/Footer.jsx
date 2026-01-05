@@ -3,27 +3,20 @@ import { NavLink } from "react-router-dom";
 import E_logo from "../../assets/Header_images/E_logo.jpg";
 import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { useSelector } from "react-redux";
+import { footerLinks } from "./Footer.helper";
 
 const Footer = () => {
-  const footerLinks = {
-    Event: [
-      { label: "Create Events", to: "/create" },
-      { label: "Pricing", to: "/pricing" },
-      { label: "Events Mobile App", to: "/mobile-app" },
-      { label: "Virtual Event Platform", to: "/virtual" },
-    ],
-    About: [
-      { label: "About us", to: "/about" },
-      { label: "Why us", to: "/why-us" },
-      { label: "Security", to: "/security" },
-      { label: "Testimonials", to: "/testimonials" },
-    ],
-    Help: [
-      { label: "Account", to: "/account" },
-      { label: "Support Center", to: "/support" },
-      { label: "FAQ", to: "/faq" },
-    ],
-  };
+  
+  const { authStatus } = useSelector(authSelector);
+  const isLoggedIn = authStatus === "authenticated";
+  
+  if(!isLoggedIn){
+    return null;
+  }
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <FooterContainer>
@@ -70,7 +63,7 @@ const Footer = () => {
       </ContactWrapper>
 
       <BottomBar>
-        <BottomText>{FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
+        <BottomText>{'\u00A9'} {currentYear} {FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
 
         <BottomLinks>
           <NavLink to="/privacy">{FOOTER_CONTENT.PRIVACY_POLICY}</NavLink>
