@@ -38,11 +38,12 @@ const AccountSettingsLeftNav = () => {
 
   return (
     <StyledLeftNav>
-      
       <StyledProfileCard>
         <StyledProfileHeader>
           <StyledProfileTitle>Wade’s Profile</StyledProfileTitle>
-          <span className="material-symbols-outlined icon">keyboard_arrow_down</span>
+          <span className="material-symbols-outlined icon">
+            keyboard_arrow_down
+          </span>
         </StyledProfileHeader>
         <StyledProfileSubtitle>1 friend</StyledProfileSubtitle>
 
@@ -55,7 +56,7 @@ const AccountSettingsLeftNav = () => {
           <StyledProfileLabel>Invite friends</StyledProfileLabel>
         </StyledProfileRow>
       </StyledProfileCard>
-      
+
       <StyledSemiHeadingAccount>{HEADINGS.MY_ACCOUNT}</StyledSemiHeadingAccount>
       <Nav>
         <List>
@@ -72,7 +73,9 @@ const AccountSettingsLeftNav = () => {
         </List>
       </Nav>
       <SidebarModal show={showModal}>
-        <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
+        <CloseButton onClick={() => setShowModal(false)}>
+          <span class="material-symbols-outlined">close_small</span>
+        </CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
         <ModalText>{TEXTS.MODAL_TEXT}</ModalText>
         <StyledAccButton type="base">Invite Friends</StyledAccButton>

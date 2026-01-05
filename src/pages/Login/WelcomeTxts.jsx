@@ -1,12 +1,12 @@
 /** @format */
-import styled from 'styled-components';
-import logoImg from '../../assets/Logo/eventz-logo.png';
+import styled from "styled-components";
+import logoImg from "../../assets/Logo/eventz-logo.png";
 import {
   StyledHeading,
   StyledHeadingBig,
   StyledParagraphSmallGray,
-} from '../../components/Styled/Typography.styled';
-import {LOGIN_COMMON} from '../../enum/Login.Common.jsx'
+} from "../../components/Styled/Typography.styled";
+import { LOGIN_COMMON } from "../../enum/Login.Common.jsx";
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (

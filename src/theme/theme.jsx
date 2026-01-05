@@ -68,16 +68,41 @@ const typography = {
 };
 
 const colors = {
+  // Default colors
   primary: "#26C867",
-  "gray-disabled": "#B9B9B9",
-  // "border-color-primary": "#41CF7A",
-  warning: "#E53935",
-  "warning-light": "#EE9A98",
   white: "#fff",
   black: "#000",
+  "gray-disabled": "#B9B9B9",
+  // "border-color-primary": "#41CF7A",
+
+  // Condition based colors.
+  warning: "#E53935",
+  "warning-light": "#EE9A98",
   "light-blue": "#F1FAFF", // for background
   "active-color": "#FF4A4A",
   "inactive-color": "#666666",
+  "text-gray-color": " #86868d;",
+};
+
+const fontWeights = {
+  default: 400,
+  medium: 500,
+  semiBold: 600,
+  bold: 700,
+};
+
+const badgeColors = {
+  // Badge colors:
+  "badge-completed-primary": "#0cc657",
+  "badge-completed-transparent": "rgba(38, 200, 103, 0.231)",
+  "badge-active-primary": "rgba(38, 200, 103, 0.231)",
+  "badge-active-transparent": "rgba(38, 200, 103, 0.231)",
+  "badge-inprogress-primary": "#edab27",
+  "badge-inprogress-transparent": "rgb(238, 217, 51, 0.3)",
+  "badge-pending-primary": "#525151",
+  "badge-pending-transparent": "rgba(1, 0, 0, 0.314)",
+  "badge-accepted-primary": `${colors.white}`,
+  "badge-accepted-transparent": `${colors.primary}`,
 };
 
 const shadows = {
@@ -91,6 +116,7 @@ const borders = {
   "border-warning-light": `1px solid ${colors["warning-light"]}`,
   "border-warning": `1px solid ${colors.warning}`,
   "border-default": `1px solid ${colors.black}`,
+  "border-gray": `1px solid ${colors["gray-disabled"]}`,
 };
 
 const inputs = {
@@ -130,12 +156,16 @@ export const theme = {
     typography,
     colors,
     shadows,
+    borders,
+    badgeColors,
     inputs,
+    fontWeights,
   },
   dark: {
     appBackgroundColor: "#000",
     color: "#fff",
     spacings,
     typography,
+    fontWeights,
   },
 };

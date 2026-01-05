@@ -1,4 +1,4 @@
-export const defaultMenuItems = [
+export const userProfileMeta = [
   {
     label: "Profile",
     highlight: true,
@@ -7,18 +7,19 @@ export const defaultMenuItems = [
   {
     label: "Settings",
     icon: "settings",
+    navigate: "/accountSetting",
   },
   {
-    label : "Bookmark",
-    icon : "bookmark",
+    label: "Bookmark",
+    icon: "bookmark",
   },
   {
-    label : "Help",
-    icon : "help",
+    label: "Help",
+    icon: "help",
   },
   { type: "divider" },
   {
     label: "Logout",
-    icon: "logout", 
+    icon: "logout",
   },
 ];

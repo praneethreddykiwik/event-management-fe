@@ -1,14 +1,14 @@
 /** @format */
 
-import styled from 'styled-components';
-import { LOGIN_COMMON } from '../../enum/Login.Common';
+import styled from "styled-components";
+import { LOGIN_COMMON } from "../../enum/Login.Common";
 
 const LineTxts = () => {
   return (
     <>
       <LineTxt>
         <LineOne />
-        <SignUpWith>{LOGIN_COMMON.SIGN_UP_LINE}</SignUpWith>
+        <SignUpWith>{LOGIN_COMMON.SIGN_IN_EMAIL}</SignUpWith>
         <LineTwo />
       </LineTxt>
       <SignWithEmail>{LOGIN_COMMON.SIGN_IN_EMAIL}</SignWithEmail>
@@ -19,7 +19,7 @@ export default LineTxts;
 
 export const SignUpWith = styled.p`
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 350;
   padding: 10px;
   @media (max-width: 768px) {

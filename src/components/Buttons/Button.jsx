@@ -7,9 +7,9 @@ import {
   StyledTransparentButton,
   ButtonContent,
   ButtonImage,
-} from '../Styled/Buttons.styled';
-
-export const Button = ({ type, children, onClick, icon, image }) => {
+} from "../Styled/Buttons.styled";
+// dummy commit
+export const Button = ({ type, sx, children, onClick, icon, image, whiteText }) => {
   const renderContent = () => (
     <ButtonContent>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
@@ -21,33 +21,35 @@ export const Button = ({ type, children, onClick, icon, image }) => {
   );
 
   switch (type) {
-    case 'outlined':
+    case "outlined":
       return (
-        <StyledOutlinedButton onClick={onClick}>
+        <StyledOutlinedButton sx={sx} onClick={onClick}>
           {renderContent()}
         </StyledOutlinedButton>
       );
 
-    case 'secondary':
+    case "secondary":
       return (
-        <StyledSecButton onClick={onClick}>{renderContent()}</StyledSecButton>
+        <StyledSecButton sx={sx} onClick={onClick}>{renderContent()}</StyledSecButton>
       );
 
-    case 'transparent':
+    case "transparent":
       return (
-        <StyledTransparentButton onClick={onClick}>
+        <StyledTransparentButton sx={sx} onClick={onClick}>
           {renderContent()}
         </StyledTransparentButton>
       );
 
-    case 'icon':
+    case "icon":
       return (
-        <StyledIconButton onClick={onClick}>{renderContent()}</StyledIconButton>
+        <StyledIconButton sx={sx} onClick={onClick}>{renderContent()}</StyledIconButton>
       );
 
     default:
       return (
-        <StyledBaseButton onClick={onClick}>{renderContent()}</StyledBaseButton>
+        <StyledBaseButton sx={sx} $whiteText={whiteText} onClick={onClick}>
+          {renderContent()}
+        </StyledBaseButton>
       );
   }
 };

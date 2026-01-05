@@ -1,6 +1,5 @@
-
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common"
+import { HALLS_DASHBOARD } from "../../enum/control_common";
 import Avt1 from "../../assets/ControlPage_img/Avt1.jpeg";
 import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
@@ -34,15 +33,12 @@ const LastUsersBox = () => {
 
 export default LastUsersBox;
 
-
-
 const LastUsersBox2 = styled.div`
   background: #ffffff;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   height: 140px;
-  
 `;
 
 const LastHeader = styled.div`
@@ -55,7 +51,6 @@ const HeaderTitle = styled.span`
   font-size: 14px;
   font-weight: 600;
   color: #111;
-  
 `;
 
 const AvatarGroup = styled.div`

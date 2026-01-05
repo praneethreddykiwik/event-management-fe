@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { EVENT_TEXT } from "../../../Enum/EventText";
+import { EVENT_TEXT } from "../../../enum/EventText";
 import speaker1 from "../../../assets/speaker1.jpg";
 import speaker2 from "../../../assets/speaker2.jpg";
 import Carousel from "../../../components/Carousel/Carousel";

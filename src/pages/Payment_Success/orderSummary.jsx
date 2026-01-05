@@ -8,52 +8,55 @@ const OrderSummary = () => {
   return (
     <>
       <BadgeIcon>
-        <Stylespan className="material-icons" style={{ fontSize: "18px", color: "#0d0d0dff" }}>
+        <Stylespan
+          className="material-icons"
+          style={{ fontSize: "18px", color: "#0d0d0dff" }}
+        >
           {PAYMENT_PAGE.TICK_ICON}
         </Stylespan>
       </BadgeIcon>
 
       <StyledHeading>{PAYMENT_PAGE.SATISFACTION_TITLE}</StyledHeading>
       <StyledPara>{PAYMENT_PAGE.SATISFACTION_PARA}</StyledPara>
-     
-    <Card>
 
-      <Summary>
-        <SummaryTitle>{PAYMENT_PAGE.SUMMARY_TEXT}</SummaryTitle>
+      <Card>
+        <Summary>
+          <SummaryTitle>{PAYMENT_PAGE.SUMMARY_TEXT}</SummaryTitle>
 
-        <StRow>
-          <Stylespan>{PAYMENT_PAGE.SUMMARY_ITEMS}</Stylespan>
-        </StRow>
-
-
-
-        <InsuranceRow>
-          <Stylespan3>{PAYMENT_PAGE.INSURANCE_TEXT}</Stylespan3>
-          <InfoButton>
-            <Stylespan5 className="material-icons" style={{ fontSize: "18px" }}>{PAYMENT_PAGE.INFO_ICON}</Stylespan5>
-          </InfoButton>
-          <ToggleSwitch />
-        </InsuranceRow>
-
-        <Divider2 />
-
-        {rows.map((item, index) => (
-          <StRow key={index}>
-            <Stylespan>{item.label}</Stylespan>
-            <Stylespan>{item.value}</Stylespan>
+          <StRow>
+            <Stylespan>{PAYMENT_PAGE.SUMMARY_ITEMS}</Stylespan>
           </StRow>
-        ))}
 
-        <Divider2 />
+          <InsuranceRow>
+            <Stylespan3>{PAYMENT_PAGE.INSURANCE_TEXT}</Stylespan3>
+            <InfoButton>
+              <Stylespan5
+                className="material-icons"
+                style={{ fontSize: "18px" }}
+              >
+                {PAYMENT_PAGE.INFO_ICON}
+              </Stylespan5>
+            </InfoButton>
+            <ToggleSwitch />
+          </InsuranceRow>
 
-        <TotalRow>
-          <Stylespan2>{PAYMENT_PAGE.TOTAL}</Stylespan2>
-          <Stylespan4>{PAYMENT_PAGE.TOTAL_VALUE}</Stylespan4>
-        </TotalRow>
-      </Summary>
+          <Divider2 />
+
+          {rows.map((item, index) => (
+            <StRow key={index}>
+              <Stylespan>{item.label}</Stylespan>
+              <Stylespan>{item.value}</Stylespan>
+            </StRow>
+          ))}
+
+          <Divider2 />
+
+          <TotalRow>
+            <Stylespan2>{PAYMENT_PAGE.TOTAL}</Stylespan2>
+            <Stylespan4>{PAYMENT_PAGE.TOTAL_VALUE}</Stylespan4>
+          </TotalRow>
+        </Summary>
       </Card>
-     
-      
     </>
   );
 };
@@ -85,13 +88,9 @@ const Divider2 = styled.hr`
   border: none;
   border-top: 1px solid #a0a0a0ff;
   margin: 14px 42px;
- 
-
 `;
 
-const Stylespan = styled.span`
-   
-`;
+const Stylespan = styled.span``;
 
 const Stylespan5 = styled.span`
   color: #474444ff;
@@ -102,20 +101,17 @@ const Stylespan4 = styled.span`
   font-size: 16px;
   color: #2e1d5aff;
   font-weight: 600;
- 
- `;
+`;
 
 const Stylespan2 = styled.span`
   color: #6dc18cff;
   font-weight: 600;
-  
 `;
 
 const Stylespan3 = styled.span`
   font-size: 14px;
   color: #111827;
   font-weight: 500;
- 
 `;
 
 const StyledHeading = styled.h3`
@@ -200,4 +196,4 @@ const ToggleSwitch = styled.div`
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
   }
-`; 
+`;

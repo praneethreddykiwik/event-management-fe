@@ -8,6 +8,15 @@ const textAlign = ({ left, right }) =>
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
 // headings
+export const StyledHeadingMaxBig = styled.p`
+  color: black;
+  font-size: 60px;
+  font-weight: 400;
+  // line-height: 52px;
+  letter-spacing: -0.144px;
+  margin: 36px 0;
+  text-align: ${({ left, right }) => textAlign({ left, right })};
+`;
 export const StyledHeadingBig = styled.p`
   //   color: ${({ theme, gradient }) => (gradient ? null : theme.color)};
   color: black;
@@ -27,7 +36,7 @@ export const StyledHeading = styled.p`
   margin: 20px 0;
   text-align: ${textAlign};
 `;
-export const StyledSemiHeading = styled.p`   
+export const StyledSemiHeading = styled.p`
   color: #000;
   font-size: 24px;
   font-weight: 600;
@@ -48,7 +57,7 @@ export const StyledMediumHeading = styled.p`
 export const StyledParagraph = styled.p`
   color: ${({ theme }) => theme.color};
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 22.4px;
   margin-top: 0;
   margin-bottom: 0;
@@ -64,7 +73,7 @@ export const StyledParagraphBold = styled.p`
 `;
 
 export const StyledParagraphGray = styled.p`
-  color: #86868d;
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   line-height: 22.4px;
   font-size: 17px;
   font-weight: 600;
@@ -72,7 +81,7 @@ export const StyledParagraphGray = styled.p`
 `;
 
 export const StyledParagraphSmallGray = styled.p`
-  color: ${({ theme }) => theme.commonGrayColor};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   font-size: 14px;
   font-weight: 400;
   line-height: 22.4px;
@@ -80,10 +89,11 @@ export const StyledParagraphSmallGray = styled.p`
 `;
 
 export const StyledParagraphSmall = styled.p`
-  color: ${({ theme }) => theme.commonGrayColor};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   font-size: 12px;
   font-weight: 400;
   line-height: 18.2px;
+  margin: 0;
   text-align: ${textAlign};
 `;
 
@@ -103,7 +113,7 @@ export const StyledAnchor = styled.a`
   font: ${({ theme }) => theme.typography};
 
   /* check this once  */
-  
+
   /* font-size: 12px;
   font-weight: 600;
   line-height: 18.2px; */
@@ -156,7 +166,5 @@ export const StyledParagraphError = styled.p`
   font-weight: 400;
   line-height: 18.2px;
   margin: 0;
-  margin-top: -20px;
-  margin-bottom: 20px;
   text-align: left;
 `;

@@ -1,4 +1,4 @@
-import { EVENT_TEXT } from "../../../Enum/EventText";
+import { EVENT_TEXT } from "../../../enum/EventText";
 import Carousel from "../../../components/Carousel/Carousel";
 import styled from "styled-components";
 import {
@@ -86,7 +86,7 @@ export const SecondContainer = styled.div`
   box-sizing: border-box;
   align-items: stretch;
   overflow: visible;
-  border-radius:0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
 
   @media (max-width: 768px) {
     flex-direction: column;

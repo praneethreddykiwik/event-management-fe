@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { HALLS_DASHBOARD } from "../../enum/control_common";
 
@@ -12,7 +11,6 @@ const CardsContainer = () => {
             <Value1>{HALLS_DASHBOARD.VALUE1}</Value1>
           </CardColumn>
         </InfoCard>
-
 
         <InfoCard>
           <InfoCardInner>
@@ -30,7 +28,6 @@ const CardsContainer = () => {
           </InfoCardInner>
         </InfoCard>
 
-
         <InfoCard>
           <InfoCardInner>
             <Label2>{HALLS_DASHBOARD.SCAN}</Label2>
@@ -43,8 +40,6 @@ const CardsContainer = () => {
 };
 export default CardsContainer;
 
-
-
 const InfoRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -53,7 +48,6 @@ const InfoRow = styled.div`
   width: 100%;
   padding: 18px 10px 0 0px;
   height: 15%;
-
 `;
 
 const InfoCard = styled.div`
@@ -72,7 +66,6 @@ const CardColumn = styled.div`
   justify-content: center;
 `;
 
-
 const Label = styled.p`
   font-size: 15px;
   color: #8a8a8a;
@@ -90,7 +83,6 @@ const Label2 = styled.p`
   color: #8a8a8a;
   max-width: 170px;
   margin: 0;
-
 `;
 
 const Value1 = styled.h3`
@@ -99,33 +91,28 @@ const Value1 = styled.h3`
   font-weight: 600;
   margin-bottom: 20px;
   margin-left: -60px;
-
 `;
 
 const Value = styled.h3`
   font-size: 26px;
   margin: 0;
   font-weight: 600;
-
 `;
 
 const Stdiv2 = styled.div``;
 
 const SSspan = styled.span``;
 
-
 const InfoCardInner = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 `;
 
 const QRCode = styled.img`
   width: 60px;
   height: 60px;
-
 `;
 
 const TempToggle = styled.div`
@@ -133,7 +120,6 @@ const TempToggle = styled.div`
   flex-direction: column;
   align-items: flex-end;
   gap: 6px;
-
 `;
 
 const TempPercent = styled.span`
