@@ -14,6 +14,7 @@ import { tasksSelector } from "../../redux/tasks/tasks.slice";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { Section } from "../../HOC/SectionsHOC";
+import { mapTaskForUI } from '../.././helpers/Dashboard.helper';
 
 const EventManagerDashboard = () => {
   const dispatch = useDispatch();
@@ -40,11 +41,12 @@ const EventManagerDashboard = () => {
         </CardsRow>
 
         {tasks.map((event) => (
-          <Section>
+          <Section key={event.eventUid}>
             <TaskOverview>{event.eventName}</TaskOverview>
             <TaskMonitor>{event.venue}</TaskMonitor>
+
             {event.tasks.map((task) => (
-              <TaskItem key={event.eventUid} task={task} />
+              <TaskItem task={mapTaskForUI(task)} />
             ))}
           </Section>
         ))}
@@ -62,10 +64,6 @@ const CardsRow = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-bottom: 30px;
-`;
-
-const Tasktxt = styled.div`
-  padding: 20px 20px 10px;
 `;
 
 const TaskOverview = styled(StyledMediumHeading)`

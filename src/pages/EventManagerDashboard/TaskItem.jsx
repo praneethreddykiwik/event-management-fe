@@ -5,32 +5,20 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { E_M_DASHBOARD_COMMON } from "../../enum/EMDashboard.common";
+import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
 import { useState } from "react";
 import ManageEventModal from "./ManageEventModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { BADGE_TYPES } from "../../enum/common";
 
-const ICONS = {
-  [BADGE_TYPES.COMPLETED]: "task_alt",
-  [BADGE_TYPES.INPROGRESS]: "schedule",
-  [BADGE_TYPES.PENDING]: "error_outline",
-};
-
-const getIcon = (type) => ICONS[type] || "";
-
 const TaskItem = ({ task = {} }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
-  /*
-  const status = taskStatuses[task.taskStatus];
-  const badgeColor = status.badgeColor;
-  const icon = status.icon;
-  */
+
   return (
     <TaskRow>
       <Left>
         <StatusIcon type={task.type} className="material-symbols-outlined">
-          {getIcon(task.type)}
+          {task.taskIcon}
         </StatusIcon>
         <Taskcard>
           <Title>{task.taskTitle}</Title>
