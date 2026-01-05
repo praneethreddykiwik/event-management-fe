@@ -1,6 +1,5 @@
-
 import styled from "styled-components";
-import {HALLS_DASHBOARD} from "../../enum/control_common";
+import { HALLS_DASHBOARD } from "../../enum/control_common";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
 
 const LastBox = () => {
@@ -37,7 +36,6 @@ const LastBox = () => {
   );
 };
 export default LastBox;
-
 
 const HeaderWrapper = styled.div`
   padding: 3px;

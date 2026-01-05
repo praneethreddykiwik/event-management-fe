@@ -10,7 +10,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import CreateEventButtons from "./CreateEventManagerB";
 import CreateEventModal from "./CreateEventModal";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../redux/users/users.actions";
 import useTenant from "../../hooks/useTenant.hook";

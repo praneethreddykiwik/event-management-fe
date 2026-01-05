@@ -73,9 +73,7 @@ const ManagersPopupModal = ({ onClose }) => {
               </StyledPopupData>
               <StyledFlex flex={2}>
                 <StyledPopupActions>
-                  <span className="material-symbols-outlined">
-                    "edit"
-                  </span>
+                  <span className="material-symbols-outlined">"edit"</span>
                   <StyledPopupIcons src={bin} alt="delete" />
                 </StyledPopupActions>
               </StyledFlex>

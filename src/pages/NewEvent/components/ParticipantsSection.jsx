@@ -21,7 +21,7 @@ import participant4 from "../../../assets/participant4.jpg";
 import participant5 from "../../../assets/participant5.jpg";
 import participant6 from "../../../assets/participant6.jpg";
 
-import { EVENT_TEXT } from "../../../Enum/EventText";
+import { EVENT_TEXT } from "../../../enum/EventText";
 
 const ParticipantsSection = () => {
   const participants = [
@@ -54,7 +54,9 @@ const ParticipantsSection = () => {
 
               <ParticipantActions>
                 <Icon className="material-symbols-outlined">mic</Icon>
-                <Icon className="material-symbols-outlined">video_camera_front_off</Icon>
+                <Icon className="material-symbols-outlined">
+                  video_camera_front_off
+                </Icon>
               </ParticipantActions>
             </ParticipantDetails>
           </ParticipantRow>

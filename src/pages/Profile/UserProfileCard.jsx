@@ -60,7 +60,6 @@ const UserProfileCard = () => {
 
 export default UserProfileCard;
 
-
 export const StyleLeftCard = styled.div`
   width: 300px;
   max-width: 100%;

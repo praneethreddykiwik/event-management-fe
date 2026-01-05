@@ -5,8 +5,8 @@ import {
   EVENT_DATE,
   EVENT_NAME,
   EVENT_STATUS,
-} from "../../Enum/Admin.common";
-import { BADGE_TYPES } from "../../enum/Common";
+} from "../../enum/Admin.common";
+import { BADGE_TYPES } from "../../enum/common";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 import Badge from "../../components/Badge/Badge.component";
 import {
@@ -17,7 +17,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
 import { StyledIconButton } from "../../components/Styled/Buttons.styled";
-import { DummyEventDetails } from "../../Enum/eventDetails.enum";
+import { DummyEventDetails } from "../../enum/eventDetails.enum";
 
 const EventDetails = () => {
   return (

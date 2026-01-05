@@ -8,9 +8,7 @@ const ProfileEdit = () => {
   return (
     <StyleRightForm>
       <StyleProfileTitle>{PROFILE_DATA.PROFILE}</StyleProfileTitle>
-      <StyleProfileSubtitle>
-        {PROFILE_DATA.EVENTS_PROFILE}
-      </StyleProfileSubtitle>
+      <StyleProfileSubtitle>{PROFILE_DATA.EVENTS_PROFILE}</StyleProfileSubtitle>
 
       <StyleProfileImageLarge src={Speaker1} alt="profile" />
 
@@ -39,9 +37,7 @@ const ProfileEdit = () => {
           {PROFILE_DATA.PASSWORD_LOG}
         </StyleDescribetext>
 
-        <StyledOutlinedButton>
-          {PROFILE_DATA.CHANGE_BTN}
-        </StyledOutlinedButton>
+        <StyledOutlinedButton>{PROFILE_DATA.CHANGE_BTN}</StyledOutlinedButton>
       </StylePasswordRow>
     </StyleRightForm>
   );

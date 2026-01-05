@@ -7,11 +7,11 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
-import { BADGE_TYPES } from "../../enum/Common";
+import { E_M_DASHBOARD_COMMON } from "../../enum/EMDashboard.common";
 import { useState } from "react";
 import ManageEventModal from "./ManageEventModal";
 import { Section } from "../../HOC/SectionsHOC";
+import { BADGE_TYPES } from "../../enum/common";
 
 const ICONS = {
   [BADGE_TYPES.COMPLETED]: "task_alt",

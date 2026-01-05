@@ -1,8 +1,8 @@
-import AppleImg from '../../assets/Logos/Apple-logo.jpeg';
-import GoogleImg from '../../assets/Logos/Google-logo.jpeg';
+import AppleImg from "../../assets/Logos/Apple-logo.jpeg";
+import GoogleImg from "../../assets/Logos/Google-logo.jpeg";
 
-import { Apple, Google, SignInText } from '../../Enum/RegistrationPage.Enum';
-import { StyledFlexContainer } from '../../components/Styled/Common.styled';
+import { Apple, Google, SignInText } from "../../enum/RegistrationPage.Enum";
+import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 
 import {
   SignInTxtM,
@@ -11,7 +11,7 @@ import {
   GoogleLogo,
   GetStartedWithButtonsWrapper,
   Button,
-} from './styled.RegistrationPage';
+} from "./styled.RegistrationPage";
 
 const GetStartedWithButtons = () => {
   return (

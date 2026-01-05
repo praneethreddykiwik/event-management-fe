@@ -8,7 +8,7 @@ import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});

@@ -7,8 +7,8 @@ import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
-import { BADGE_TYPES } from "../../Enum/common";
+import { E_M_DASHBOARD_COMMON } from "../../enum/EMDashboard.common";
+import { BADGE_TYPES } from "../../enum/common";
 import { useEffect } from "react";
 import { fetchEventsAndTasksAction } from "../../redux/tasks/tasks.actions";
 import { useDispatch, useSelector } from "react-redux";

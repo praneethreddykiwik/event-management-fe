@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common";
+import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledHeading,
   StyledParagraphSmallGray,

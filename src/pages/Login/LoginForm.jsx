@@ -13,7 +13,7 @@ import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
 import useTenant from "../../hooks/useTenant.hook";
-import { Conditions, Policy, Terms } from "../../Enum/RegistrationPage.Enum";
+import { Conditions, Policy, Terms } from "../../enum/RegistrationPage.Enum";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";

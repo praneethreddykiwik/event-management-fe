@@ -5,7 +5,7 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 import { Card } from "../../components/Cards/Cards";
 
 const AdminTaskItem = ({ data }) => {

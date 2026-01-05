@@ -1,6 +1,6 @@
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
-import { GETSTARTED_TXT } from "../../enum/landingPage.common";
+import { GETSTARTED_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledHeadingBig,
   StyledAnchor,

@@ -1,4 +1,4 @@
-import { Continue } from "../../Enum/RegistrationPage.Enum";
+import { Continue } from "../../enum/RegistrationPage.Enum";
 import { Inputs } from "../../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";

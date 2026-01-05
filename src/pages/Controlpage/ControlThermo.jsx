@@ -13,7 +13,6 @@ const Thermo = () => {
 
 export default Thermo;
 
-
 const ThermoWrapper = styled.div`
   text-align: center;
 `;

@@ -8,11 +8,11 @@ import {
   ShareIconWhite,
   ExpandIconWhite,
   StyledHeadingBigWhite,
-  StyledParagraphBoldWhite
+  StyledParagraphBoldWhite,
 } from "../NewEvent.styles";
 
 import Controls from "./Controls";
-import { EVENT_TEXT } from "../../../Enum/EventText";
+import { EVENT_TEXT } from "../../../enum/EventText";
 
 const PastEventsSection = () => {
   return (
@@ -21,11 +21,17 @@ const PastEventsSection = () => {
         <OverlayText>
           <TopRow>
             <LeftGroup>
-              <StyledMediumHeadingWhite left small>{EVENT_TEXT.PAST_EVENTS}</StyledMediumHeadingWhite>
-              <ShareIconWhite className="material-symbols-outlined">share</ShareIconWhite>
+              <StyledMediumHeadingWhite left small>
+                {EVENT_TEXT.PAST_EVENTS}
+              </StyledMediumHeadingWhite>
+              <ShareIconWhite className="material-symbols-outlined">
+                share
+              </ShareIconWhite>
             </LeftGroup>
 
-            <ExpandIconWhite className="material-symbols-outlined">arrows_output</ExpandIconWhite>
+            <ExpandIconWhite className="material-symbols-outlined">
+              arrows_output
+            </ExpandIconWhite>
           </TopRow>
 
           <StyledHeadingBigWhite left style={{ whiteSpace: "pre-line" }}>

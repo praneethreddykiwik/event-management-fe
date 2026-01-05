@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { HALLS_DASHBOARD } from "../../enum/control_common";
 import Conference_image from "../../assets/ControlPage_img/conference_image.jpg";
@@ -16,8 +15,18 @@ const VenueCard = () => {
           <UserName>{HALLS_DASHBOARD.USER_NAME}</UserName>
 
           <Icons>
-            <Span1 className="material-icons-outlined" style={{ fontSize: "22px" }}>{HALLS_DASHBOARD.CHAT_ICON}</Span1>
-            <Span2 className="material-icons-outlined" style={{ fontSize: "20px" }}>{HALLS_DASHBOARD.CALL_ICON}</Span2>
+            <Span1
+              className="material-icons-outlined"
+              style={{ fontSize: "22px" }}
+            >
+              {HALLS_DASHBOARD.CHAT_ICON}
+            </Span1>
+            <Span2
+              className="material-icons-outlined"
+              style={{ fontSize: "20px" }}
+            >
+              {HALLS_DASHBOARD.CALL_ICON}
+            </Span2>
           </Icons>
         </WhiteCard>
       </VenueCard2>
@@ -32,7 +41,6 @@ const VenueCard = () => {
 };
 export default VenueCard;
 
-
 const VenueWrapper = styled.div`
   display: flex;
   gap: 16px;
@@ -43,7 +51,6 @@ const VenueWrapper = styled.div`
   }
 `;
 
-
 const VenueCard2 = styled.div`
   position: relative;
   flex: 1;
@@ -52,7 +59,6 @@ const VenueCard2 = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 `;
-
 
 const VenueImg = styled.img`
   width: 100%;
@@ -64,11 +70,10 @@ const VenueImg = styled.img`
   }
 `;
 
-
 const Avatar = styled.img`
   width: 85px;
   height: 85px;
-  
+
   object-fit: cover;
 
   position: absolute;
@@ -99,7 +104,6 @@ const UserName = styled.h3`
   font-weight: 600;
   color: #111827;
   flex: 1;
-  
 `;
 
 const Icons = styled.div`
@@ -108,7 +112,6 @@ const Icons = styled.div`
   color: #22c55e;
   cursor: pointer;
 `;
-
 
 const SideImages = styled.div`
   width: 100px;

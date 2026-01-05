@@ -1,11 +1,11 @@
 /** @format */
 
-import styled from 'styled-components';
-import apple from '../../assets/Logo/Apple.svg';
-import google from '../../assets/Logo/Google.svg.webp';
-import { LOGIN_COMMON } from '../../enum/Login.Common';
-import { StyledParagraph } from '../../components/Styled/Typography.styled';
-import { Button } from '../../components/Buttons/Button';
+import styled from "styled-components";
+import apple from "../../assets/Logo/Apple.svg";
+import google from "../../assets/Logo/Google.svg.webp";
+import { LOGIN_COMMON } from "../../enum/Login.Common";
+import { StyledParagraph } from "../../components/Styled/Typography.styled";
+import { Button } from "../../components/Buttons/Button";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>

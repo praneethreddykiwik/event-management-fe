@@ -13,7 +13,7 @@ import {
   NextButton,
   SkipButton,
   StyledCstHeading,
-  TitleTxt
+  TitleTxt,
 } from "./Styled.Gateway.jsx";
 
 import {
@@ -21,8 +21,8 @@ import {
   DESCRIPTION_TEXT,
   TITLE_TEXT,
   SKIP_BUTTON_TEXT,
-  NEXT_BUTTON_TEXT
-} from "../../Enum/Gateway.Enum.jsx";
+  NEXT_BUTTON_TEXT,
+} from "../../enum/Gateway.Enum.jsx";
 
 const GatewayPage = () => {
   return (
