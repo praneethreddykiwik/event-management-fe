@@ -43,14 +43,29 @@ export const FOOTER_CONTENT = {
   TERMS_CONDITIONS: "Terms and Conditions",
 };
 
-export const BADGE_TYPES = {
-  COMPLETED: "completed",
-  INPROGRESS: "inprogress",
-  PENDING: "pending",
-  ACCEPTED: "accepted",
-  ACTIVE: "active",
-  INACTIVE: "inactive",
-  CORPORATE: "Corporate", // remove while pushing
+export const BADGE_STATUS = {
+  COMPLETED: 'Completed',
+  INPROGRESS: 'In Progress',
+  PENDING: 'Pending',
+  ACCEPTED: 'Accepted',
+  ACTIVE: 'Active',
+  INACTIVE: 'Inactive',
+  CORPORATE: 'Corporate', // remove while pushing
+  ASSIGNED: 'Assigned',
+  CANCELLED: 'Cancelled',
+  NOTSTARTED: 'Not Started',
+};
+export const BADGE_TYPES= {
+  COMPLETED: 'completed',
+  INPROGRESS: 'inprogress',
+  PENDING: 'pending',
+  ACCEPTED: 'accepted',
+  ACTIVE: 'active',
+  INACTIVE: 'inactive',
+  CORPORATE: 'corporate', // remove while pushing
+  ASSIGNED: 'assigned',
+  CANCELLED: 'cancelled',
+  NOTSTARTED: 'notstarted',
 };
 
 export const MANAGE_EVENT_MANAGER = {

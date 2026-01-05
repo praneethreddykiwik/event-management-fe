@@ -4,7 +4,6 @@ import AdminSummaryCard from "./AdminSummaryCard";
 import AdminTaskItem from "./AdminTaskItem";
 import {
   StyledHeading,
-  StyledHeadingMaxBig,
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
@@ -18,9 +17,9 @@ import { roles } from "../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../redux/events/events.actions";
 import { eventsSelector } from "../../redux/events/events.slice";
-import GlobalSpinner from "../../components/Spinner/GlobalSpinner";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHr } from "../../components/Styled/Common.styled";
+import { mapEventForUI } from '../../helpers/Dashboard.helper';
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -68,8 +67,8 @@ const AdminDashboard = () => {
             <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
           </Tasktxt>
           <TaskList>
-            {events.map((task, index) => (
-              <AdminTaskItem key={index} data={task} />
+            {events.map((event, index) => (
+              <AdminTaskItem key={index} data={mapEventForUI(event)} />
             ))}
           </TaskList>
         </TaskMainCard>

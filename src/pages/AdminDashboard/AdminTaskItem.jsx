@@ -1,17 +1,23 @@
-import styled from "styled-components";
-import Badge from "../../components/Badge/Badge.component";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
+/** @format */
+
+import styled from 'styled-components';
+import Badge from '../../components/Badge/Badge.component';
+import { StyledOutlinedButton } from '../../components/Styled/Buttons.styled';
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-} from "../../components/Styled/Typography.styled";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
-import { Card } from "../../components/Cards/Cards";
+} from '../../components/Styled/Typography.styled';
+import { ADMIN_COMMON } from '../../Enum/Admin.common';
+import { Card } from '../../components/Cards/Cards';
 
 const AdminTaskItem = ({ data }) => {
   return (
     <StyledCard>
       <Left>
+        <StatusIcon type={data.type} className="material-symbols-outlined">
+          {data.statusIcon}
+        </StatusIcon>
+
         <Taskcard>
           <EventName>{data.eventName}</EventName>
           <TaskDate>Scheduled At: {data.scheduledAt}</TaskDate>
@@ -20,8 +26,10 @@ const AdminTaskItem = ({ data }) => {
           </TaskAssignee>
         </Taskcard>
       </Left>
+
       <BadgeButton>
-        <Badge type={data.type}>{data.status}</Badge>
+        <Badge type={data.type}>{data.statusLabel}</Badge>
+
         <ViewButton>{ADMIN_COMMON.ADMIN_DETAILS}</ViewButton>
       </BadgeButton>
     </StyledCard>
@@ -35,11 +43,14 @@ const StyledCard = styled(Card)`
   padding-right: 15px;
 `;
 const Left = styled.div`
-  // padding: 20px 0;
   display: flex;
   gap: 10px;
 `;
 
+const StatusIcon = styled.span`
+  font-size: 20px;
+  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
+`;
 const Taskcard = styled.div`
   justify-items: left;
   margin: -1px;
