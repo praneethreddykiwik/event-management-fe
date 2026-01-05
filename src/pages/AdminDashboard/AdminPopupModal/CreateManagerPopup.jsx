@@ -3,12 +3,12 @@ import PopupModal from "../../../components/PopupModal/PopupModal";
 import { StyledParagraphSmall } from "../../../components/Styled/Typography.styled";
 import { Button } from "../../../components/Buttons/Button";
 import { CREATE_MANGER } from "../../../enum/common";
-import RegistrationForm from "../../RegistrationPage/RegistrationForm";
 import {
   fetchManagersAction,
   registrationAction,
 } from "../../../redux/users/users.actions";
 import { useDispatch } from "react-redux";
+import RegistrationForm from "../../../Forms/RegistrationForm";
 
 const CreateManagerPopup = ({ onClose }) => {
   const dispatch = useDispatch();

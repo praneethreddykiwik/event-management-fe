@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 import Badge from "../../components/Badge/Badge.component";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
