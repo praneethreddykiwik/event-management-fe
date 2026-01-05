@@ -15,7 +15,7 @@ import {
   StyledParagraphSmallGray,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-import { Button } from "../RegistrationPage/styled.RegistrationPage";
+import { Button } from "../../components/Buttons/Button";
 import { StyledIconButton } from "../../components/Styled/Buttons.styled";
 import { DummyEventDetails } from "../../Enum/eventDetails.enum";
 
@@ -61,15 +61,17 @@ const EventDetails = () => {
               </StyledEventHeaderInfoCont1Bottom>
             </StyledEventHeaderInfoCont1>
             <StyledEventHeaderInfoCont2>
-              {/* <CreateButton type="icon" icon="add"> */}
-              <Button type="icon" icon="add">
-                Edit Event
-              </Button>
-              {/* {ADMIN_COMMON.CREATE_BUTTON} */}
-              {/* </CreateButton> */}
-              <Button type="icon" icon="group">
-                Delete Event
-              </Button>
+              <EditButtonWrap>
+                <Button icon="edit">
+                  Edit Event
+                </Button>
+              </EditButtonWrap>
+
+              <DeleteButtonWrap>
+                <Button icon="delete">
+                  Delete Event
+                </Button>
+              </DeleteButtonWrap>
             </StyledEventHeaderInfoCont2>
           </StyledEventHeaderInfo>
         </StyledEventHeader>
@@ -141,6 +143,33 @@ const StyledEventContainer = styled.div`
   padding: 60px;
 `;
 
+const EditButton = styled.div`
+  button {
+    border-radius: 999px;
+    padding: 10px 18px;
+    border: 1px solid #d0d0d0;
+    color: #333;
+    background: transparent;
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+`;
+
+const DeleteButton = styled.div`
+  button {
+    border-radius: 999px;
+    padding: 10px 18px;
+    background-color: #d43a2f;
+    border: none;
+    color: #fff;
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+`;
 // --------- Event Header ------------
 
 const StyledEventHeader = styled(StyledFlexContainer)`
@@ -186,10 +215,39 @@ const StyledBadge = styled(Badge)`
 `;
 
 const StyledEventHeaderInfoCont2 = styled.div`
-  /* border: 1px solid #14bedc; */
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+`;
+
+const EditButtonWrap = styled.div`
+  button {
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid #d9d9d9;
+    background-color: #ffffff;
+    color: #2f2f2f;
+    font-weight: 500;
+
+    display: inline-flex;
+    align-items: center;
+  }
+`;
+
+const DeleteButtonWrap = styled.div`
+  button {
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background-color: #d63a2f;
+    border: none;
+    color: #ffffff;
+    font-weight: 500;
+
+    display: inline-flex;
+    align-items: center;
+  }
 `;
 
 // --------- Event BODY -------------
