@@ -3,7 +3,6 @@ import SummaryCard from "./SummaryCard";
 import TaskItem from "./TaskItem";
 import {
   StyledHeading,
-  StyledHeadingMaxBig,
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
@@ -22,7 +21,6 @@ const EventManagerDashboard = () => {
 
   const { authUser } = useSelector(authSelector);
   const { tasks } = useSelector(tasksSelector);
-  console.log("abdul tasks", tasks);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;

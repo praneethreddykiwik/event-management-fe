@@ -17,7 +17,9 @@ const PlayerCard = () => {
               </ShareButton>
             </TopLeftGroup>
 
-            <FullscreenButton aria-label="Fullscreen">⤢</FullscreenButton>
+            <FullscreenButton aria-label="Fullscreen">
+              <span class="material-symbols-outlined">fullscreen</span>
+            </FullscreenButton>
           </TopRow>
 
           <BottomLeftText>
@@ -34,23 +36,35 @@ const PlayerCard = () => {
       <PlayerSection>
         <ControlsRow>
           <SideLeft>
-            <SmallIconButton aria-label="Playlist">≡</SmallIconButton>
+            <SmallIconButton aria-label="Playlist">
+              <span class="material-symbols-outlined">menu</span>
+            </SmallIconButton>
             <SmallIconButton aria-label="Switch event">
               <span class="material-symbols-outlined">open_in_full</span>
             </SmallIconButton>
           </SideLeft>
 
           <CenterControls>
-            <SmallIconButton aria-label="Previous track">⏮</SmallIconButton>
-            <PlayButton aria-label="Play">▶</PlayButton>
-            <SmallIconButton aria-label="Next track">⏭</SmallIconButton>
+            <SmallIconButton aria-label="Previous track">
+              <span class="material-symbols-outlined">skip_previous</span>
+            </SmallIconButton>
+            <PlayButton aria-label="Play">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </PlayButton>
+            <SmallIconButton aria-label="Next track">
+              <span class="material-symbols-outlined">skip_next</span>
+            </SmallIconButton>
           </CenterControls>
 
           <SideRight>
-            <HeartButton aria-label="Favourite">♡</HeartButton>
+            <HeartButton aria-label="Favourite">
+              <span class="material-symbols-outlined">favorite</span>
+            </HeartButton>
 
             <VolumeGroup>
-              <VolumeIcon>🔊</VolumeIcon>
+              <VolumeIcon>
+                <span class="material-symbols-outlined">volume_up</span>
+              </VolumeIcon>
               <VolumeBar>
                 <VolumeFill />
               </VolumeBar>

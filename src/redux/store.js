@@ -3,6 +3,7 @@ import authReducer from "./auth/auth.slice";
 import usersReducer from "./users/users.slice";
 import eventsReducer from "./events/events.slice";
 import tasksReducer from "./tasks/tasks.slice";
+import formsReducer from "./farms/farms.slice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     users: usersReducer,
     events: eventsReducer,
     tasks: tasksReducer,
+    forms: formsReducer,
   },
 });

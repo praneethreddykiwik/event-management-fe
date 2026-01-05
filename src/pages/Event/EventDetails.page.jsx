@@ -5,8 +5,8 @@ import {
   EVENT_DATE,
   EVENT_NAME,
   EVENT_STATUS,
-} from "../../Enum/Admin.common";
-import { BADGE_TYPES } from "../../enum/Common";
+} from "../../enum/Admin.common";
+import { BADGE_TYPES } from "../../enum/common";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 import Badge from "../../components/Badge/Badge.component";
 import {
@@ -15,9 +15,9 @@ import {
   StyledParagraphSmallGray,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
-import { Button } from "../RegistrationPage/styled.RegistrationPage";
+import { Button } from "../../components/Buttons/Button";
 import { StyledIconButton } from "../../components/Styled/Buttons.styled";
-import { DummyEventDetails } from "../../Enum/eventDetails.enum";
+import { DummyEventDetails } from "../../enum/eventDetails.enum";
 
 const EventDetails = () => {
   return (
@@ -61,13 +61,10 @@ const EventDetails = () => {
               </StyledEventHeaderInfoCont1Bottom>
             </StyledEventHeaderInfoCont1>
             <StyledEventHeaderInfoCont2>
-              {/* <CreateButton type="icon" icon="add"> */}
-              <Button type="icon" icon="add">
+              <Button sx={StyledButton1} type="outlined" icon="edit">
                 Edit Event
               </Button>
-              {/* {ADMIN_COMMON.CREATE_BUTTON} */}
-              {/* </CreateButton> */}
-              <Button type="icon" icon="group">
+              <Button sx={StyledButton2} type="icon" icon="delete">
                 Delete Event
               </Button>
             </StyledEventHeaderInfoCont2>
@@ -141,6 +138,33 @@ const StyledEventContainer = styled.div`
   padding: 60px;
 `;
 
+const EditButton = styled.div`
+  button {
+    border-radius: 999px;
+    padding: 10px 18px;
+    border: 1px solid #d0d0d0;
+    color: #333;
+    background: transparent;
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+`;
+
+const DeleteButton = styled.div`
+  button {
+    border-radius: 999px;
+    padding: 10px 18px;
+    background-color: #d43a2f;
+    border: none;
+    color: #fff;
+
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+`;
 // --------- Event Header ------------
 
 const StyledEventHeader = styled(StyledFlexContainer)`
@@ -186,11 +210,21 @@ const StyledBadge = styled(Badge)`
 `;
 
 const StyledEventHeaderInfoCont2 = styled.div`
-  /* border: 1px solid #14bedc; */
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 `;
+
+const StyledButton1 = {
+  height: "50px",
+  width: "160px",
+};
+
+const StyledButton2 = {
+  height: "50px",
+  width: "160px",
+  "background-color": "#d63a2f;",
+};
 
 // --------- Event BODY -------------
 

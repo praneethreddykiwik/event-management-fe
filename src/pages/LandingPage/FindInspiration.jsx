@@ -1,6 +1,6 @@
 import venue_hall from "../../assets/landingPage/venue.jpg";
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
-import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common";
+import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledSemiHeading,
   StyledParagraphSmallGray,

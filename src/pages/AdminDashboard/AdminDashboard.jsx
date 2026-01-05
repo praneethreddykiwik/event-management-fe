@@ -9,7 +9,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import CreateEventButtons from "./CreateEventManagerB";
 import CreateEventModal from "./CreateEventModal";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../redux/users/users.actions";
 import useTenant from "../../hooks/useTenant.hook";
@@ -20,6 +20,8 @@ import { eventsSelector } from "../../redux/events/events.slice";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { mapEventForUI } from '../../helpers/Dashboard.helper';
+import { usersSelector } from "../../redux/users/users.slice";
+import PolarChart from "../../components/PolarChart/PolarChart";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const AdminDashboard = () => {
   const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
+  const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
     const payload = {
@@ -47,8 +50,15 @@ const AdminDashboard = () => {
 
         <CardsRow>
           <AdminSummaryCard label="Total Events" value={events.length} />
-          <AdminSummaryCard label="Event Managers" value="5" />
-          <AdminSummaryCard label="Completion Rate" value="87%" />
+          <AdminSummaryCard
+            label="Event Managers"
+            value={eventManagers.length}
+          />
+          <AdminSummaryCard
+            label="Completion Rate"
+            value="87%"
+            chart={<PolarChart percent={87} />}
+          />
         </CardsRow>
 
         <CreateEventButtons

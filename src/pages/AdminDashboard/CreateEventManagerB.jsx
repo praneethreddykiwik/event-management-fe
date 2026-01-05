@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 
 const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
   const onClickTaskMonitor = () => {

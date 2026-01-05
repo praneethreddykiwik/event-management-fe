@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
 
 import Badge from "../../components/Badge/Badge.component";
-import { BADGE_TYPES } from "../../enum/Common";
+import { BADGE_TYPES } from "../../enum/common";
 
 import {
   StyledHeading,
@@ -11,15 +11,14 @@ import {
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
 
-
 const TASKS = [
-    {
-      id: 1,
-      title: "Provide catering for 200 attendees",
-      eventName: "Annual Conference 2025",
-      eventDate: "March 15, 2025",
-      status: BADGE_TYPES.PENDING,
-    },
+  {
+    id: 1,
+    title: "Provide catering for 200 attendees",
+    eventName: "Annual Conference 2025",
+    eventDate: "March 15, 2025",
+    status: BADGE_TYPES.PENDING,
+  },
   {
     id: 2,
     title: "Set up audio equipment",
@@ -28,7 +27,6 @@ const TASKS = [
     status: BADGE_TYPES.ACCEPTED,
   },
 ];
-
 
 const StakeholderDashboard = () => {
   return (
@@ -53,9 +51,7 @@ const StakeholderDashboard = () => {
             <CardHeader>
               <TaskTextWrapper>
                 <TaskTitle>
-                  <StyledSemiHeading left>
-                    {task.title}
-                  </StyledSemiHeading>
+                  <StyledSemiHeading left>{task.title}</StyledSemiHeading>
                 </TaskTitle>
 
                 <StyledParagraphSmall left>
@@ -92,9 +88,7 @@ const StakeholderDashboard = () => {
             {/* Accepted State */}
             {task.status === BADGE_TYPES.ACCEPTED && (
               <AcceptedText>
-                <span className="material-symbols-outlined">
-                  check_circle
-                </span>
+                <span className="material-symbols-outlined">check_circle</span>
                 <StyledParagraphSmall>
                   You've accepted this assignment
                 </StyledParagraphSmall>

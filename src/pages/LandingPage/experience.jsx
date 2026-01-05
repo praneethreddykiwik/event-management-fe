@@ -1,7 +1,7 @@
 import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
 import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
 import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
-import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common";
+import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common.jsx";
 
 import styled from "styled-components";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";

@@ -3,6 +3,7 @@ import { Button } from "../Buttons/Button";
 import Avatar from "../Avatar/Avatar";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { useEffect, useRef, useState } from "react";
+import { paths } from "../../constants/paths";
 
 export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
   const navigate = useNavigateWithQuery();
@@ -13,7 +14,7 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-   // Close dropdown when clicked outside
+  // Close dropdown when clicked outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -24,6 +25,7 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  const onClick = () => {};
 
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
@@ -32,15 +34,15 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       <MenuItem onClick={() => toggleDropdown("events")}>
         Events <ArrowIcon $open={openDropdown === "events"} />
         <Dropdown $open={openDropdown === "events"}>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>event</ItemIcon>
             Upcoming Events
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>schedule</ItemIcon>
             Current Events
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>add_circle</ItemIcon>
             Create Event
           </DropdownItem>
@@ -50,7 +52,7 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       <MenuItem onClick={() => toggleDropdown("venues")}>
         Venues <ArrowIcon $open={openDropdown === "venues"} />
         <Dropdown $open={openDropdown === "venues"}>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>location_on</ItemIcon>
             Venues Near Me
           </DropdownItem>
@@ -60,13 +62,17 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
       <MenuItem onClick={() => toggleDropdown("pages")}>
         Pages <ArrowIcon $open={openDropdown === "pages"} />
         <Dropdown $open={openDropdown === "pages"}>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate(paths.adminDashboard)}> 
             <ItemIcon>admin_panel_settings</ItemIcon>
             Admin
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate(paths.eventManager)}>
             <ItemIcon>dashboard</ItemIcon>
             Event Manager
+          </DropdownItem>
+          <DropdownItem onClick={() => navigate("/")}>
+            <ItemIcon>dashboard</ItemIcon>
+            User Management
           </DropdownItem>
         </Dropdown>
       </MenuItem>

@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 import Badge from "../../components/Badge/Badge.component";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
@@ -11,6 +9,7 @@ import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
 import { useState } from "react";
 import ManageEventModal from "./ManageEventModal";
 import { Section } from "../../HOC/SectionsHOC";
+import { BADGE_TYPES } from "../../enum/common";
 
 const TaskItem = ({ task = {} }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);

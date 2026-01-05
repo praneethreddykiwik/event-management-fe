@@ -8,7 +8,7 @@ import {
   Account,
   SignIn,
   TermsConditions,
-} from "../../Enum/RegistrationPage.Enum";
+} from "../../enum/RegistrationPage.Enum";
 import { usersSelector } from "../../redux/users/users.slice";
 
 export const BottomReg = () => {

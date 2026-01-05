@@ -1,22 +1,22 @@
-import { Continue } from "../../Enum/RegistrationPage.Enum";
-import { Inputs } from "../../components/Inputs/Inputs";
+import { Continue } from "../enum/RegistrationPage.Enum";
+import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
-import { Button } from "../../components/Buttons/Button";
+import { Button } from "../components/Buttons/Button";
 import { useDispatch, useSelector } from "react-redux";
-import useTenant from "../../hooks/useTenant.hook";
-import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import { validationList } from "../../constants/validations.constants";
+import useTenant from "../hooks/useTenant.hook";
+import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
+import { validationList } from "../constants/validations.constants";
 import {
+  formsSelector,
   updateAllRegInputs,
   updateRegInputs,
-  usersSelector,
-} from "../../redux/users/users.slice";
+} from "../redux/farms/farms.slice";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const tenantId = useTenant();
-  const { createUserInputs } = useSelector(usersSelector);
+  const { createUserInputs } = useSelector(formsSelector);
 
   const validateFields = () => {
     let isValid = true;
@@ -25,13 +25,12 @@ const RegistrationForm = ({ onCreateUser }) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
       if (isReq && !el.value) {
         isValid = false;
-        return { ...el, error: "Invalid input!" };
+        return { ...el, error: "This field is required" };
       }
-      return el;
+      return { ...el, error: "" };
     });
 
     dispatch(updateAllRegInputs(newInputs));
-
     return isValid;
   };
 
@@ -47,7 +46,8 @@ const RegistrationForm = ({ onCreateUser }) => {
       navigate,
       reqPayload: { ...reqPayload, tenantId },
     };
-    onCreateUser(payload);
+
+    await onCreateUser(payload);
   };
 
   const onChange = (e) => {
@@ -56,11 +56,11 @@ const RegistrationForm = ({ onCreateUser }) => {
   };
 
   return (
-    <Form onSubmit={(e) => e.preventDefault()}>
+    <Form>
       <InputBox>
-        {createUserInputs.map((inp) => {
-          return <Inputs {...inp} onChange={onChange} />;
-        })}
+        {createUserInputs.map((inp) => (
+          <Inputs key={inp.name} {...inp} onChange={onChange} />
+        ))}
       </InputBox>
 
       <Button whiteText onClick={onSubmit}>
@@ -81,7 +81,6 @@ export const Form = styled.div`
 export const InputBox = styled.div`
   display: flex;
   gap: 16px;
-
   flex-wrap: wrap;
   flex-direction: row;
 `;
