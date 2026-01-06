@@ -13,6 +13,6 @@ export const paths = {
 
   vendor: "/vendor",
   customer: "/customer",
-  userManagement: "/user-management",
+  userManagement: "/user/management",
   marketPlace: "/market-place",
 };
