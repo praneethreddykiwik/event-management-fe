@@ -30,7 +30,6 @@ const authSlice = createSlice({
       })
       .addCase(actions.bootstrapAuthAction.fulfilled, (state, action) => {
         state.authUser = action.payload;
-        debugger;
         state.authStatus = "authenticated";
       })
       .addCase(actions.bootstrapAuthAction.rejected, (state) => {

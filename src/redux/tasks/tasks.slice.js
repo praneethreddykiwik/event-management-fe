@@ -25,21 +25,7 @@ const tasksSlice = createSlice({
         state.tasksLoading = true;
       })
       .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
-        const dat = action.payload?.details;
-        const manipulateData = [];
-        dat.forEach((el) => {
-          const eventUid = el.eventUid;
-          const exists = manipulateData.find((fl) => fl.eventUid === eventUid);
-          if (exists) {
-            const i = manipulateData.findIndex(
-              (fl) => fl.eventUid === eventUid
-            );
-            manipulateData[i].tasks.push(el);
-          } else {
-            manipulateData.push({ ...el, tasks: [el] });
-          }
-        });
-        state.tasks = manipulateData;
+        state.tasks = action.payload?.details;
         state.tasksLoading = false;
         state.tasksError = null;
       })
@@ -51,16 +37,32 @@ const tasksSlice = createSlice({
     builder
       .addCase(actions.declineTasksAction.pending, (state) => {
         state.declineTaskLoading = true;
+        state.declineTaskError = null;
       })
       .addCase(actions.declineTasksAction.fulfilled, (state, action) => {
         state.declineTask = action.payload;
         state.declineTaskLoading = false;
-        state.declineTaskError = "Error";
+        state.declineTaskError = null;
       })
       .addCase(actions.declineTasksAction.rejected, (state) => {
         state.authUser = null;
         state.declineTaskLoading = false;
-        state.declineTaskError = "Error";
+        state.declineTaskError = actions.payload || "Failed to decline task";
+      });
+
+    builder
+      .addCase(actions.acceptTasksAction.pending, (state) => {
+        state.acceptTaskLoading = true;
+        state.acceptTaskError = null;
+      })
+      .addCase(actions.acceptTasksAction.fulfilled, (state, action) => {
+        state.acceptTask = action.payload;
+        state.acceptTaskLoading = false;
+        state.acceptTaskError = null;
+      })
+      .addCase(actions.acceptTasksAction.rejected, (state, action) => {
+        state.acceptTaskLoading = false;
+        state.acceptTaskError = action.payload || "Failed to accept task";
       });
   },
 });

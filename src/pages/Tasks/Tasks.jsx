@@ -5,6 +5,7 @@ import {
   StyledHeading,
   StyledMediumHeading,
   StyledParagraphSmall,
+  StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import { useEffect } from "react";
 import { fetchEventsAndTasksAction } from "../../redux/tasks/tasks.actions";
@@ -35,10 +36,12 @@ const EventManagerDashboard = () => {
     navigate(paths.createEvent);
   };
 
+  console.log("abdul tasks", tasks);
+
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Event Tasks</StyledHeading>
+        <StyledHeading left>Tasks</StyledHeading>
         <StyledHr />
 
         <CardsRow>
@@ -50,11 +53,12 @@ const EventManagerDashboard = () => {
 
         {tasks.map((event) => (
           <Section key={event.eventUid}>
-            <StyledBtnBox>
+            <StyledTaskHeading>
               <StyledBox2>
                 <TaskOverview>{event.eventName}</TaskOverview>
-                <TaskMonitor>{event.venue}</TaskMonitor>
+                <TaskMonitor>{event.eventVenue}</TaskMonitor>
               </StyledBox2>
+
               <Button
                 icon="add"
                 sx={{ width: "180px" }}
@@ -63,11 +67,16 @@ const EventManagerDashboard = () => {
               >
                 Add Task
               </Button>
-            </StyledBtnBox>
+            </StyledTaskHeading>
+            <StyledHrTask />
 
-            {event.tasks.map((task) => (
-              <TaskItem task={mapTaskForUI(task)} />
-            ))}
+            {event.tasks.length ? (
+              event.tasks.map((task) => <TaskItem task={mapTaskForUI(task)} />)
+            ) : (
+              <StyledParagraphSmallGray>
+                No tasks added yet
+              </StyledParagraphSmallGray>
+            )}
           </Section>
         ))}
       </DashboardContainer>
@@ -96,13 +105,17 @@ const TaskMonitor = styled(StyledParagraphSmall)`
   text-align: left;
 `;
 
-const StyledBtnBox = styled.div`
+const StyledTaskHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  // width: 40px;
+  margin-bottom: 14px;
 `;
 const StyledBox2 = styled.div`
   flex-basis: 50%;
+`;
+
+const StyledHrTask = styled(StyledHr)`
+  margin: 0;
 `;
 
 export default EventManagerDashboard;
