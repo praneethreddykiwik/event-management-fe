@@ -44,28 +44,28 @@ export const FOOTER_CONTENT = {
 };
 
 export const BADGE_STATUS = {
-  COMPLETED: 'Completed',
-  INPROGRESS: 'In Progress',
-  PENDING: 'Pending',
-  ACCEPTED: 'Accepted',
-  ACTIVE: 'Active',
-  INACTIVE: 'Inactive',
-  CORPORATE: 'Corporate', // remove while pushing
-  ASSIGNED: 'Assigned',
-  CANCELLED: 'Cancelled',
-  NOTSTARTED: 'Not Started',
+  COMPLETED: "Completed",
+  INPROGRESS: "In Progress",
+  PENDING: "Pending",
+  ACCEPTED: "Accepted",
+  ACTIVE: "Active",
+  INACTIVE: "Inactive",
+  CORPORATE: "Corporate", // remove while pushing
+  ASSIGNED: "Assigned",
+  CANCELLED: "Cancelled",
+  NOTSTARTED: "Not Started",
 };
-export const BADGE_TYPES= {
-  COMPLETED: 'completed',
-  INPROGRESS: 'inprogress',
-  PENDING: 'pending',
-  ACCEPTED: 'accepted',
-  ACTIVE: 'active',
-  INACTIVE: 'inactive',
-  CORPORATE: 'corporate', // remove while pushing
-  ASSIGNED: 'assigned',
-  CANCELLED: 'cancelled',
-  NOTSTARTED: 'notstarted',
+export const BADGE_TYPES = {
+  COMPLETED: "completed",
+  INPROGRESS: "inprogress",
+  PENDING: "pending",
+  ACCEPTED: "accepted",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+  CORPORATE: "corporate", // remove while pushing
+  ASSIGNED: "assigned",
+  CANCELLED: "cancelled",
+  NOTSTARTED: "notstarted",
 };
 
 export const MANAGE_EVENT_MANAGER = {
@@ -80,6 +80,14 @@ export const MANAGE_EVENT_MANAGER = {
   MANAGE_EVENT_MANAGER_ASSIGN_EVENTS: "Assigned Events",
   MANAGE_EVENT_MANAGER_STATUS: "Status",
   MANAGE_EVENT_MANAGER_ACTIONS: "Actions",
+
+  // DELETE MANAGER
+
+  MANAGE_EVENT_MANAGER_DELETE: "Delete Manager",
+  MANAGE_EVENT_MANAGER_CONFIRMATION:
+    "Are you sure you want to delete this manager?",
+  MANAGE_EVENT_MANAGER_DELETE_NO: "No",
+  MANAGE_EVENT_MANAGER_DELETE_YES: "Yes",
 };
 
 export const CREATE_MANGER = {
