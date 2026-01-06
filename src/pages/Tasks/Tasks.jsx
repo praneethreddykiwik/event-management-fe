@@ -38,7 +38,7 @@ const EventManagerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Tasks</StyledHeading>
+        <StyledHeading left>Event Tasks</StyledHeading>
         <StyledHr />
 
         <CardsRow>

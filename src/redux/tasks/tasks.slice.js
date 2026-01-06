@@ -5,6 +5,10 @@ const initialState = {
   tasks: [],
   tasksLoading: false, // idle | loading | authenticated | unauthenticated
   tasksError: null,
+
+  declineTaskLoading: false,
+  declineTask: false,
+  declineTaskError: false,
 };
 
 const tasksSlice = createSlice({
@@ -37,11 +41,26 @@ const tasksSlice = createSlice({
         });
         state.tasks = manipulateData;
         state.tasksLoading = false;
+        state.tasksError = null;
       })
       .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
         state.authUser = null;
         state.tasksLoading = false;
         state.tasksError = "Error";
+      });
+    builder
+      .addCase(actions.declineTasksAction.pending, (state) => {
+        state.declineTaskLoading = true;
+      })
+      .addCase(actions.declineTasksAction.fulfilled, (state, action) => {
+        state.declineTask = action.payload;
+        state.declineTaskLoading = false;
+        state.declineTaskError = "Error";
+      })
+      .addCase(actions.declineTasksAction.rejected, (state) => {
+        state.authUser = null;
+        state.declineTaskLoading = false;
+        state.declineTaskError = "Error";
       });
   },
 });
