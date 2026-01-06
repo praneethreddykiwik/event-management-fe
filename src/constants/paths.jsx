@@ -1,3 +1,5 @@
+
+
 export const paths = {
   home: "/",
   login: "/login",
@@ -15,4 +17,5 @@ export const paths = {
   customer: "/customer",
   userManagement: "/user-management",
   marketPlace: "/market-place",
+  getInTouch : "/get-in-touch",
 };

@@ -34,6 +34,7 @@ const AppRoutes = () => {
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
       <Route path="*" element={<Login />} />
+      <Route path={"/get-in-touch"} element={<GetInTouch />} />
     </>
   );
 
