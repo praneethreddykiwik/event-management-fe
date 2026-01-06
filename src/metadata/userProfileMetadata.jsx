@@ -14,8 +14,9 @@ export const userProfileMeta = [
     icon: "bookmark",
   },
   {
-    label: "Help",
+    label: "Get In Touch",
     icon: "help",
+    navigate: "/get-in-touch",
   },
   { type: "divider" },
   {
