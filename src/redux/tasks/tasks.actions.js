@@ -4,7 +4,6 @@ import {
   fetchEventsAndTasksApi,
   acceptTasksApi,
 } from "../../api/tasks.api";
-import { declineTasksApi, fetchEventsAndTasksApi } from "../../api/tasks.api";
 import { toast } from "react-toastify";
 
 export const fetchEventsAndTasksAction = createAsyncThunk(
@@ -15,7 +14,11 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
       toast.success("Events and Tasks loaded successfully");
       return res.data;
     } catch (err) {
-     toast.error(err?.response?.data?.message||err?.message||"Failed to load Events & Tasks");
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to load Events & Tasks"
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   }
@@ -31,9 +34,7 @@ export const declineTasksAction = createAsyncThunk(
       return res.data;
     } catch (err) {
       toast.error(
-        err?.response?.data?.message ||
-        err?.message ||
-        "Failed to decline task"
+        err?.response?.data?.message || err?.message || "Failed to decline task"
       );
       debugger;
       toast.error(err?.response?.data?.message || "Failed to decline task");
