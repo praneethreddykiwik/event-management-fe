@@ -16,13 +16,12 @@ export const fetchManagersAction = createAsyncThunk(
     try {
       const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
       const res = await getUsersApi(query);
-      toast.success("Managers fetched successfully");
       return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||
-        err?.message ||
-        "Failed to fetch managers"
+          err?.message ||
+          "Failed to fetch managers"
       );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
@@ -38,10 +37,8 @@ export const registrationAction = createAsyncThunk(
       toast.success("registration successful");
       return res.data; // user object (or any success response)
     } catch (err) {
-       toast.error(
-        err?.response?.data?.message ||
-        err?.message ||
-        "Registration failed"
+      toast.error(
+        err?.response?.data?.message || err?.message || "Registration failed"
       );
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
@@ -58,11 +55,9 @@ export const deleteUserAction = createAsyncThunk(
       toast.success("user deleted successfully");
       return res.data;
     } catch (err) {
-        toast.error(
-        err?.response?.data?.message ||
-        err?.message ||
-        "Failed to delete user"
-      );      
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to delete user"
+      );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
@@ -77,11 +72,9 @@ export const updateUserAction = createAsyncThunk(
       toast.success("Users updated successfully");
       return res.data;
     } catch (err) {
-        toast.error(
-        err?.response?.data?.message ||
-        err?.message ||
-        "Failed to update user"
-      );      
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to update user"
+      );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
