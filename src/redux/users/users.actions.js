@@ -17,6 +17,7 @@ export const fetchManagersAction = createAsyncThunk(
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
+      // toast
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
@@ -28,8 +29,10 @@ export const registrationAction = createAsyncThunk(
     // const navigate = payload.navigate;
     try {
       const res = await createUserApi(payload.reqPayload);
+      // toast
       return res.data; // user object (or any success response)
     } catch (err) {
+      // toast
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
   }
@@ -42,8 +45,10 @@ export const deleteUserAction = createAsyncThunk(
     // const navigate = payload.navigate;
     try {
       const res = await userDeleteApi(payload);
+      // toast
       return res.data;
     } catch (err) {
+      // toast
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }
@@ -55,8 +60,10 @@ export const updateUserAction = createAsyncThunk(
     // const navigate = payload.navigate;
     try {
       const res = await updateUserApi(payload);
+      // toast
       return res.data;
     } catch (err) {
+      // toast
       return rejectWithValue(err?.response?.data || "Login failed");
     }
   }

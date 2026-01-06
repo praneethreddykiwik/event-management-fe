@@ -22,7 +22,6 @@ const ManageTaskModal = ({ onClose, task }) => {
     { label: "Status", value: task.taskStatus },
   ];
 
-  // add toast
   const onDecline = () => {
     const payload = {
       taskUid: "",

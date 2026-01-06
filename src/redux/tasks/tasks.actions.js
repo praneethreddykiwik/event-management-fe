@@ -6,8 +6,10 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await fetchEventsAndTasksApi(payload);
+      // toast
       return res.data;
     } catch (err) {
+      // toast
       return rejectWithValue(err?.response?.data || "Error");
     }
   }
@@ -21,6 +23,7 @@ export const declineTasksAction = createAsyncThunk(
       debugger;
       return res.data;
     } catch (err) {
+      // error
       debugger;
       return rejectWithValue(err?.response?.data || "Error");
     }
