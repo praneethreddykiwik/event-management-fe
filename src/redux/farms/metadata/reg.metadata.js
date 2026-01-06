@@ -1,4 +1,4 @@
-import { validationList } from "../../constants/validations.constants";
+import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
 

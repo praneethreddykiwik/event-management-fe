@@ -6,56 +6,39 @@ import {
 } from "../Styled/Typography.styled";
 import { Button } from "../Buttons/Button";
 
-export const Venue = ({ venueDetails }) => {
+export const Venue = ({ venueDetails, btnText, onClick }) => {
   return (
-    <StyledVenue>
+    <StyledVenue className="venue-ctn">
       <ImageWrapper>
-        <VenueImage
-          src={venueDetails.image}
-          alt={venueDetails.name}
-        />
-        <Badge>{venueDetails.bookings}</Badge>
+        <VenueImage src={venueDetails.image} alt={venueDetails.title} />
+        <Badge>{venueDetails.bookings || 0}</Badge>
       </ImageWrapper>
 
       <TextBlock>
-        <Address left>{venueDetails.address}</Address>
-        <VenueName left>{venueDetails.name}</VenueName>
+        <Address left>{venueDetails.address || "None"}</Address>
+        <VenueName left>{venueDetails.title}</VenueName>
         <VenueDesc left>{venueDetails.description}</VenueDesc>
       </TextBlock>
 
-      {venueDetails.available ? (
-        <Button
-          sx={{
-            marginTop: "auto",
-            width: "auto",
-            padding: "12px 28px",
-          }}
-        > Book now
-        </Button>
-      ) : (
-        <Button
-          type="secondary"
-          sx={{
-            marginTop: "auto",
-            width: "auto",
-            cursor: "not-allowed",
-            backgroundColor: "#dcdcdc",
-            color: "#777777",
-          }}
-        > Fully Booked
-        </Button>
-      )}
+      <Button
+        sx={{ marginTop: "auto" }}
+        disabled={!venueDetails.available}
+        onClick={() => onClick(venueDetails)}
+      >
+        {btnText || "Book now"}
+      </Button>
+
+      {/* Fully Booked */}
     </StyledVenue>
   );
 };
-
 
 const StyledVenue = styled.div`
   background: #ffffff;
   border-radius: 6px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  width: 330px;
-  padding: 10px;
+  // width: 330px;
+  padding: 20px;
 
   display: flex;
   flex-direction: column;
@@ -67,7 +50,7 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 210px;
-  padding: 8px;
+  // padding: 8px;
   box-sizing: border-box;
 `;
 
@@ -85,14 +68,13 @@ const VenueImage = styled.img`
   border-radius: 4px;
 `;
 
-const Badge = styled.span`
+const Badge = styled(StyledParagraphSmall)`
   position: absolute;
   top: 20px;
   left: 20px;
   background: #3b82f6;
   color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
+  line-height: 14.2px;
   padding: 4px 10px;
   border-radius: 20px;
 `;

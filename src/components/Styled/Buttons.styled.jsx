@@ -33,6 +33,12 @@ export const StyledBaseButton = styled.button`
   border: none;
   cursor: pointer;
   ${({ sx }) => ({ ...sx })}
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #dcdcdc;
+    color: #777777;
+  }
 `;
 
 export const StyledOutlinedButton = styled.button`

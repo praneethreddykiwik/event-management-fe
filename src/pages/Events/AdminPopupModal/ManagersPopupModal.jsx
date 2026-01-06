@@ -16,11 +16,11 @@ import {
   deleteUserAction,
   fetchManagersAction,
 } from "../../../redux/users/users.actions";
+import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
 import {
   generateRegDataToEdit,
   registrationMetaData,
-} from "../../../redux/farms/reg.metadata";
-import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
+} from "../../../redux/farms/metadata/reg.metadata";
 
 const det = {
   add: {

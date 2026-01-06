@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
-import { eventMetaData } from "../../../redux/farms/eventsData/event.metadata";
+import { eventMetaData } from "../../../redux/farms/metadata/event.metadata";
 import CreateEvent from "./CreateEvent";
 import styled from "styled-components";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";

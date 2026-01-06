@@ -17,6 +17,7 @@ export const Button = ({
   icon,
   image,
   whiteText,
+  disabled,
 }) => {
   const renderContent = () => (
     <ButtonContent>
@@ -59,7 +60,12 @@ export const Button = ({
 
     default:
       return (
-        <StyledBaseButton sx={sx} $whiteText={whiteText} onClick={onClick}>
+        <StyledBaseButton
+          sx={sx}
+          $whiteText={whiteText}
+          onClick={onClick}
+          disabled={disabled}
+        >
           {renderContent()}
         </StyledBaseButton>
       );

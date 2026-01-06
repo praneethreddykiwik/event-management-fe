@@ -33,7 +33,7 @@ const EventManagerDashboard = () => {
   }, []);
 
   const onAddTask = () => {
-    navigate(paths.createEvent);
+    navigate(paths.createTask);
   };
 
   console.log("abdul tasks", tasks);

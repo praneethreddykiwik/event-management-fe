@@ -1,94 +1,88 @@
 import styled from "styled-components";
-import SummaryCard from "./SummaryCard";
-import TaskItem from "./TaskItem";
 import {
   StyledHeading,
-  StyledMediumHeading,
-  StyledParagraphSmall,
+  StyledHeadingBig,
 } from "../../components/Styled/Typography.styled";
 import { useEffect } from "react";
-import { fetchEventsAndTasksAction } from "../../redux/tasks/tasks.actions";
-import { useDispatch, useSelector } from "react-redux";
-import { authSelector } from "../../redux/auth/auth.slice";
-import { tasksSelector } from "../../redux/tasks/tasks.slice";
+import { useDispatch } from "react-redux";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
-import { Section } from "../../HOC/SectionsHOC";
-import { mapTaskForUI } from "../../helpers/Dashboard.helper";
-import { Button } from "../../components/Buttons/Button";
+import TaskForm from "../../Forms/TaskForm";
+import { updateAllTaskInputs } from "../../redux/farms/farms.slice";
+import {
+  generateTaskDataToEdit,
+  taskMetaData,
+} from "../../redux/farms/metadata/task.metadata";
+import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
+import { Venue } from "../../components/Venue/Venue";
+import { toast } from "react-toastify";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
 
-  const { authUser } = useSelector(authSelector);
-  const { tasks } = useSelector(tasksSelector);
-
   useEffect(() => {
-    const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
-    dispatch(fetchEventsAndTasksAction(query));
+    dispatch(updateAllTaskInputs(taskMetaData));
   }, []);
+
+  const onCreateTask = () => {
+    // dispatch()
+  };
+
+  const onClickSuggestion = (selectedTask) => {
+    dispatch(updateAllTaskInputs(generateTaskDataToEdit(selectedTask)));
+    toast.success("Selected task details are added in the input fields");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Tasks</StyledHeading>
+        <StyledHeading left>Create Task</StyledHeading>
         <StyledHr />
-
-        <CardsRow>
-          <SummaryCard label="Total Tasks" value={tasks.length} />
-          <SummaryCard type="completed" label="Completed" value="1" />
-          <SummaryCard type="inprogress" label="In Progress" value="2" />
-          <SummaryCard type="pending" label="Pending" value="1" />
-        </CardsRow>
-
-        {tasks.map((event) => (
-          <Section key={event.eventUid}>
-            <StyledBtnBox>
-              <StyledBox2>
-                <TaskOverview>{event.eventName}</TaskOverview>
-                <TaskMonitor>{event.venue}</TaskMonitor>
-              </StyledBox2>
-              <Button icon="add" sx={{ width: "180px" }} whiteText>
-                Add Task
-              </Button>
-            </StyledBtnBox>
-
-            {event.tasks.map((task) => (
-              <TaskItem task={mapTaskForUI(task)} />
-            ))}
-          </Section>
-        ))}
+        <StyledFlex>
+          <TaskForm onCreateTask={onCreateTask} />
+          <StyledBox>
+            <StyledHeadingBig left>
+              Please choose from one of the below Tasks
+            </StyledHeadingBig>
+          </StyledBox>
+        </StyledFlex>
+        <StyledSuggestions>
+          {tasksMetadata.map((el) => (
+            <Venue
+              venueDetails={el}
+              btnText="Choose"
+              onClick={onClickSuggestion}
+            />
+          ))}
+        </StyledSuggestions>
       </DashboardContainer>
     </BlueBackHOC>
   );
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 60px 20px;
 `;
 
-const CardsRow = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
-`;
-
-const TaskOverview = styled(StyledMediumHeading)`
-  margin: 0;
-  text-align: left;
-`;
-
-const TaskMonitor = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
-
-const StyledBtnBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  // width: 40px;
-`;
-const StyledBox2 = styled.div`
+const StyledBox = styled.div`
   flex-basis: 50%;
+  flex-shrink: 0;
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  gap: 160px;
+  padding-left: 140px;
+`;
+
+const StyledSuggestions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+
+  .venue-ctn {
+    flex: 0 0 calc((100% - 180px) / 3);
+  }
 `;

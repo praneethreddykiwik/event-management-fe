@@ -11,7 +11,6 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await fetchEventsAndTasksApi(payload);
-      toast.success("Events and Tasks loaded successfully");
       return res.data;
     } catch (err) {
       toast.error(
