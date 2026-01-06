@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ProgressChart from "./ProgressChart/ProgressChart";
+import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
 

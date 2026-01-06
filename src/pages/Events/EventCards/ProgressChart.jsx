@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { StyledSemiHeading } from "../../../../components/Styled/Typography.styled";
+import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 
 const ProgressChart = ({ events }) => {
   const data = React.useMemo(() => {
