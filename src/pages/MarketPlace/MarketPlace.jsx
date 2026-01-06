@@ -5,7 +5,7 @@ import { Venues } from "./Venues";
 export const MarketPlace = () => {
   return (
     <BlueBackHOC>
-      <StyledHeading>Welcome to market place.</StyledHeading>
+      <StyledHeading></StyledHeading>
       {/* <MarketDescription /> */}
       {/* <FeaturedEvents /> */}
       <Venues />
