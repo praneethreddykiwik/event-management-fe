@@ -1,7 +1,7 @@
 import { InputLayout } from "./InputLayout";
 import { InputDefault } from "./Inputs.styled";
 
-export const DateInput = ({
+export const TimeInput = ({
   name,
   label,
   placeholder,
@@ -10,6 +10,7 @@ export const DateInput = ({
   disabled,
   error,
   width,
+  type,
 }) => {
   return (
     <InputLayout label={label} error={error} width={width}>
@@ -17,7 +18,7 @@ export const DateInput = ({
         id={name}
         name={name}
         placeholder={placeholder}
-        type="date"
+        type={type}
         value={value || ""}
         onChange={onChange}
         disabled={disabled}

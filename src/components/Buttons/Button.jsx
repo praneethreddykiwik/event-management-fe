@@ -8,8 +8,16 @@ import {
   ButtonContent,
   ButtonImage,
 } from "../Styled/Buttons.styled";
-// dummy commit
-export const Button = ({ type, sx, children, onClick, icon, image, whiteText }) => {
+
+export const Button = ({
+  type,
+  sx,
+  children,
+  onClick,
+  icon,
+  image,
+  whiteText,
+}) => {
   const renderContent = () => (
     <ButtonContent>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
@@ -30,7 +38,9 @@ export const Button = ({ type, sx, children, onClick, icon, image, whiteText }) 
 
     case "secondary":
       return (
-        <StyledSecButton sx={sx} onClick={onClick}>{renderContent()}</StyledSecButton>
+        <StyledSecButton sx={sx} onClick={onClick}>
+          {renderContent()}
+        </StyledSecButton>
       );
 
     case "transparent":
@@ -42,7 +52,9 @@ export const Button = ({ type, sx, children, onClick, icon, image, whiteText }) 
 
     case "icon":
       return (
-        <StyledIconButton sx={sx} onClick={onClick}>{renderContent()}</StyledIconButton>
+        <StyledIconButton sx={sx} onClick={onClick}>
+          {renderContent()}
+        </StyledIconButton>
       );
 
     default:

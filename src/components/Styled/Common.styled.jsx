@@ -27,7 +27,7 @@ export const StyledHr = styled.hr`
   border: none;
   border-bottom: 1px solid #dfdfdf;
   margin: 0 -20px 40px -20px;
-
+  width: 100%;
   @media (max-width: 768px) {
     margin: 0 -20px;
   }

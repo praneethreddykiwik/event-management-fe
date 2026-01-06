@@ -7,11 +7,9 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
 import { useState } from "react";
-import ManageEventModal from "./ManageEventModal";
+import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
-import { BADGE_TYPES } from "../../enum/common";
 import { Button } from "../../components/Buttons/Button";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
 
 const TaskItem = ({ task = {} }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
@@ -41,7 +39,7 @@ const TaskItem = ({ task = {} }) => {
           {E_M_DASHBOARD_COMMON.MANAGE_B}
         </Button>
         {showManageEvent && (
-          <ManageEventModal
+          <ManageTaskModal
             onClose={() => setShowManageEvent(false)}
             task={task}
           />

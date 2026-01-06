@@ -12,6 +12,7 @@ import { BaseInput } from "./BaseInput";
 import { NumberInput } from "./NumberInput";
 import { DateInput } from "./DateInput";
 import { TextArea } from "./TextArea";
+import { TimeInput } from "./TimeInput";
 
 export const Inputs = (props) => {
   const {
@@ -64,20 +65,7 @@ export const Inputs = (props) => {
       return <DateInput {...props} />;
 
     case "time":
-      return (
-        <>
-          <InputDefault
-            id={name}
-            name={name}
-            type="time"
-            value={value || ""}
-            onChange={onChange}
-            disabled={disabled}
-            $hasError={!!error}
-          />
-          {error && <ErrorText>{error}</ErrorText>}
-        </>
-      );
+      return <TimeInput {...props} />;
 
     case "datetime-local":
       return (
@@ -96,7 +84,7 @@ export const Inputs = (props) => {
       );
 
     case "textarea":
-      return <TextArea />;
+      return <TextArea {...props} />;
 
     case "checkbox":
       return (
