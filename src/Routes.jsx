@@ -23,6 +23,7 @@ import Events from "./pages/Events/Events.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
+import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -40,17 +41,17 @@ const AppRoutes = () => {
   const authenticatedRoutes = (
     <>
       {/* base */}
-      <Route path={"/"} element={<Home />} />
+      <Route path={'/'} element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path={"/Gateway"} element={<GatewayPage />} />
-      <Route path={"/get-in-touch"} element={<GetInTouch />} />
-      <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
-      <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
-      <Route path={"/controlpage"} element={<Controlpage />} />
-      <Route path={"/profile"} element={<Profile />} />
-      <Route path={"/samplePage"} element={<SamplePage />} />
-      <Route path={"/Subscriptions"} element={<Subscriptions />} />
-      <Route path={"/player-card"} element={<PlayerCard />} />
+      <Route path={'/Gateway'} element={<GatewayPage />} />
+      <Route path={'/Getintouch'} element={<GetInTouch />} />
+      <Route path={'/paymentSuccess'} element={<PaymentSuccess />} />
+      <Route path={'/accountSetting'} element={<AccountSettingsPage />} />
+      <Route path={'/controlpage'} element={<Controlpage />} />
+      <Route path={'/profile'} element={<Profile />} />
+      <Route path={'/samplePage'} element={<SamplePage />} />
+      <Route path={'/Subscriptions'} element={<Subscriptions />} />
+      <Route path={'/player-card'} element={<PlayerCard />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
 
       {/* Admin */}
@@ -67,6 +68,9 @@ const AppRoutes = () => {
       {/* Tasks */}
       <Route path={paths.tasks} element={<Tasks />} />
       <Route path={paths.createTask} element={<CreateTask />} />
+
+      {/* Customer */}
+      <Route path={paths.customer} element={<CustomerDashboard />} />
 
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />

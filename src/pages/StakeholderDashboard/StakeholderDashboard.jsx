@@ -1,29 +1,31 @@
-import styled from "styled-components";
-import { Button } from "../../components/Buttons/Button";
+/** @format */
 
-import Badge from "../../components/Badge/Badge.component";
-import { BADGE_TYPES } from "../../enum/common";
+import styled from 'styled-components';
+import { Button } from '../../components/Buttons/Button';
+
+import Badge from '../../components/Badge/Badge.component';
+import { BADGE_TYPES } from '../../enum/common';
 
 import {
   StyledHeading,
   StyledSemiHeading,
   StyledParagraphSmallGray,
   StyledParagraphSmall,
-} from "../../components/Styled/Typography.styled";
+} from '../../components/Styled/Typography.styled';
 
 const TASKS = [
   {
     id: 1,
-    title: "Provide catering for 200 attendees",
-    eventName: "Annual Conference 2025",
-    eventDate: "March 15, 2025",
+    title: 'Provide catering for 200 attendees',
+    eventName: 'Annual Conference 2025',
+    eventDate: 'March 15, 2025',
     status: BADGE_TYPES.PENDING,
   },
   {
     id: 2,
-    title: "Set up audio equipment",
-    eventName: "Product Launch Event",
-    eventDate: "April 20, 2025",
+    title: 'Set up audio equipment',
+    eventName: 'Product Launch Event',
+    eventDate: 'April 20, 2025',
     status: BADGE_TYPES.ACCEPTED,
   },
 ];
@@ -191,30 +193,7 @@ const ButtonWrapper = styled.div`
   flex: 1;
 `;
 
-const AcceptButton = styled.div`
-  button {
-    background-color: #4f46e5;
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    span {
-      color: #ffffff;
-    }
-
-    .material-symbols-outlined {
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      border-radius: 50%;
-      font-size: 8px;
-      padding: 4px;
-      line-height: 1;
-    }
-  }
-`;
+const AcceptButton = styled.div``;
 
 const AcceptedText = styled.div`
   margin-top: 10px;
