@@ -5,7 +5,8 @@ import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
-import { footerLinks } from "./Footer.helper";
+import { footerLinks, socialLinks } from "./Footer.helper";
+import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
   
@@ -59,6 +60,20 @@ const Footer = () => {
             <Icon className="material-symbols-outlined">location_on</Icon>
             {FOOTER_CONTENT.LOCATION}
           </ContactItem>
+
+          <SocialWrapper>
+            {socialLinks.map((social) => (
+              <SocialLink
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.name}
+              </SocialLink>
+            ))}
+          </SocialWrapper>
+
         </ContactRow>
       </ContactWrapper>
 
@@ -156,7 +171,7 @@ const ContactWrapper = styled.section`
 
 const ContactRow = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   gap: 60px;
   flex-wrap: wrap;
   margin-bottom: 40px;
@@ -228,6 +243,26 @@ const LogoImage = styled.img`
   width: 64px;
   height: 64px;
   border-radius: 8px;
+`;
+
+const SocialWrapper = styled.div`
+  display: inline-flex;
+  gap: 16px;
+  align-items: flex-start;
+  vertical-align: top;
+`;
+
+const SocialLink = styled.a`
+  font-size: 14px;
+  font-weight: 500;
+  color: #b8b8b8;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
 export default Footer;
