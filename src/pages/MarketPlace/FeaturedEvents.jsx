@@ -1,87 +1,148 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import  {Button}  from "../../components/Buttons/Button"; 
 
-import CarImage1 from "../../assets/FeaturedEvents-Imgs/CarImage1.webp";
-import CarImage2 from "../../assets/FeaturedEvents-Imgs/CarImg2.jpg";
-import CarImage3 from "../../assets/FeaturedEvents-Imgs/CarImage3.webp";
-import CarImage4 from "../../assets/FeaturedEvents-Imgs/CarImg4.jpg";
-import CarImage5 from "../../assets/FeaturedEvents-Imgs/CarImg5.webp";
+import carImage1 from "../../assets/FeaturedEvents-Imgs/carImage1.jpg";
+import carImg2 from "../../assets/FeaturedEvents-Imgs/carImg2.jpg";
+import carImage3 from "../../assets/FeaturedEvents-Imgs/carImage3.jpg";
+import carImg4 from "../../assets/FeaturedEvents-Imgs/carImg4.jpg";
 
-import Speaker1 from "../../assets/FeaturedEvents-Imgs/Speaker1.png";
-import Speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
-import Speaker4 from "../../assets/FeaturedEvents-Imgs/Speaker4.jpeg";
+import speaker1 from "../../assets/FeaturedEvents-Imgs/Speaker1.png";
+import speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
+import speaker3 from "../../assets/FeaturedEvents-Imgs/Speaker3.jpeg";
+import speaker4 from "../../assets/FeaturedEvents-Imgs/Speaker4.jpeg";
 
-export const FeaturedEvents = () => {
+
+
+const events = [
+  { img: carImage1, role: "Speaker", name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+  { img: carImg2, role: "Speaker" , name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+  { img: carImage3, role: "Host" ,name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+  {
+    img: carImg4,
+    role: "Host",
+    name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group",
+  },
+  { img: carImage1, role: "Speaker", name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+  { img: carImg2, role: "Guest", name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+  { img: carImg4, role: "Speaker" , name: "Esther Howard",
+    title: "Marketing Coordinator HNG Group" },
+];
+
+
+
+const SIDE_WIDTH = 160;
+const CENTER_WIDTH = 320;
+const GAP = 12;
+const VISIBLE_COUNT =5;
+
+
+
+const FeaturedEvents = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const trackRef = useRef(null);
+
+  const minIndex = Math.floor(VISIBLE_COUNT / 2);
+  const maxIndex = events.length - minIndex - 1;
+
+  const prevSlide = () =>
+    setActiveIndex((p) => Math.max(p - 1, minIndex));
+
+  const nextSlide = () =>
+    setActiveIndex((p) => Math.min(p + 1, maxIndex));
+
+  useEffect(() => {
+    if (!trackRef.current) return;
+
+    const cardWidth = SIDE_WIDTH + GAP;
+    trackRef.current.style.transform = `translateX(-${
+      (activeIndex - minIndex) * cardWidth
+    }px)`;
+  }, [activeIndex]);
+
   return (
-    <FeaturedSection>
+    <Section>
       <Header>
         <h2>Featured Events</h2>
+
         <Actions>
-          <ViewAll>View all</ViewAll>
+          <ViewMore>View more</ViewMore>
           <Arrows>
-            <button>&lt;</button>
-            <button>&gt;</button>
+            <button onClick={prevSlide} disabled={activeIndex === minIndex}>
+              ‹
+            </button>
+            <button onClick={nextSlide} disabled={activeIndex === maxIndex}>
+              ›
+            </button>
           </Arrows>
         </Actions>
       </Header>
 
-      <Carousel>
-        <EventCard className="side">
-          <img src={CarImage1} alt="Speaker" />
-          <EventInfo>Speaker</EventInfo>
-        </EventCard>
+      <CarouselViewport>
+        <CarouselTrack ref={trackRef}>
+          {events.map((event, index) => {
+            const isCenter = index === activeIndex;
 
-        <EventCard className="side">
-          <img src={CarImage2} alt="Speaker" />
-          <EventInfo>Speaker</EventInfo>
-        </EventCard>
+            return (
+              <EventCard key={index} className={isCenter ? "center" : ""}>
+                <img src={event.img} alt={event.role} />
 
-        <EventCard className="side">
-          <img src={CarImage3} alt="Host" />
-          <EventInfo>Host</EventInfo>
-        </EventCard>
+                {!isCenter && <RoleLabel>{event.role}</RoleLabel>}
 
-        <EventCard className="center">
-          <img src={CarImage4} alt="Featured Host" />
+                {isCenter && (
+                  <>
+                    <ImgText>
+                      <p>{event.title}</p>
+                      <h2>{event.name}</h2>
+                    </ImgText>
 
-          <ImgText>
-            <p>Marketing Coordinator HNG Groups</p>
-            <h2>Esther Howard</h2>
-          </ImgText>
+                    <Overlay>
+                      <OverlayLeft>
+                        <Badge>{event.role}</Badge>
 
-          <Overlay>
-            <OverlayLeft>
-              <Badge>Hosts</Badge>
+                        <Hosts>
+                          <HostCount>+23k</HostCount>
+                          <Avatars>
+                            <img src={speaker1} alt="" />
+                            <img src={speaker2} alt="" />
+                            <img src={speaker3} alt="" />
+                            <img src={speaker4} alt="" />
+                          </Avatars>
+                        </Hosts>
 
-              <Hosts>
-                <HostCount>+23k</HostCount>
-                <MultiImgs>
-                  <img src={Speaker1} alt="Speaker 1" />
-                  <img src={Speaker2} alt="Speaker 2" />
-                  <img src={Speaker4} alt="Speaker 3" />
-                </MultiImgs>
-              </Hosts>
+                        <BottomText>
+                          Winning in Today’s Economy
+                        </BottomText>
+                      </OverlayLeft>
 
-              <BottomText>bwefbweuih</BottomText>
-            </OverlayLeft>
-
-            <SubscribeBtn href="#">Subscribe</SubscribeBtn>
-          </Overlay>
-        </EventCard>
-
-        <EventCard className="side">
-          <img src={CarImage5} alt="Speaker" />
-          <EventInfo>Speaker</EventInfo>
-        </EventCard>
-      </Carousel>
-    </FeaturedSection>
+                      <Button variant="secondary">
+                        Subscribe
+                      </Button>
+                    </Overlay>
+                  </>
+                )}
+              </EventCard>
+            );
+          })}
+        </CarouselTrack>
+      </CarouselViewport>
+    </Section>
   );
 };
 
+export default FeaturedEvents;
 
 
-const FeaturedSection = styled.section`
+
+const Section = styled.section`
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 60px auto;
   padding: 0 20px;
 `;
 
@@ -89,21 +150,16 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-  }
+  margin-bottom: 24px;
 `;
 
 const Actions = styled.div`
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 `;
 
-const ViewAll = styled.span`
+const ViewMore = styled.span`
   font-size: 14px;
   color: #007bff;
   cursor: pointer;
@@ -114,118 +170,130 @@ const Arrows = styled.div`
   gap: 8px;
 
   button {
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     border: 1px solid #ccc;
-    background: #e1dada;
+    background: #fff;
     cursor: pointer;
+    font-size: 18px;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
   }
 `;
 
-const Carousel = styled.div`
-  display: flex;
-  gap: 10px;
+
+const CarouselViewport = styled.div`
+  width: ${SIDE_WIDTH * 4 + CENTER_WIDTH + GAP * 4}px;
   overflow: hidden;
+  margin: 0 auto;
+`;
+
+const CarouselTrack = styled.div`
+  display: flex;
+  gap: ${GAP}px;
+  transition: transform 0.45s ease;
 `;
 
 const EventCard = styled.div`
-  width: 150px;
-  height: 570px;
-  flex-shrink: 0;
   position: relative;
+  width: ${SIDE_WIDTH}px;
+  height: 560px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transform: scale(0.9);
+  transition: all 0.35s ease;
+  border-radius: 2px;
   overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
 
-  &.side {
-    opacity: 0.7;
-    transform: scale(0.9);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &.center {
-    width: 300px;
-  }
-
-  img {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
+    width: ${CENTER_WIDTH}px;
+    opacity: 1;
+    transform: scale(1);
   }
 `;
 
-const EventInfo = styled.div`
+const RoleLabel = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   color: #fff;
-  font-size: 14px;
   text-align: center;
 `;
 
 const ImgText = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 20px;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
 
   p {
-    color: #fff;
-    font-size: 14px;
+    font-size: 13px;
+    opacity: 0.85;
   }
 
   h2 {
-    color: #0d0d0e;
+    font-size: 22px;
+    margin-top: 4px;
   }
 `;
 
 const Overlay = styled.div`
   position: absolute;
-  width: 100%;
   bottom: 0;
-  background: rgba(3, 3, 3, 0.48);
+  width: 100%;
+  padding: 14px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
 `;
 
 const OverlayLeft = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
 `;
 
 const Badge = styled.span`
-  padding: 4px 10px;
-  border-radius: 30px;
-  color: #eee;
-  margin-right: 15px;
-  background: #555;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
 `;
 
 const Hosts = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
 `;
 
 const HostCount = styled.span`
   font-size: 10px;
   background: #0084ff;
   padding: 4px 8px;
-  border-radius: 30px;
+  border-radius: 20px;
   color: #fff;
-  margin-right: 10px;
+  margin-right: 6px;
 `;
 
-const MultiImgs = styled.div`
+const Avatars = styled.div`
   position: relative;
-  width: 60px;
+  width: 70px;
+  height: 20px;
 
   img {
     position: absolute;
@@ -235,38 +303,15 @@ const MultiImgs = styled.div`
     border: 1px solid #0084ff;
   }
 
-  img:nth-child(1) {
-    left: 0;
-    z-index: 3;
-  }
-
-  img:nth-child(2) {
-    left: 15px;
-    z-index: 2;
-  }
-
-  img:nth-child(3) {
-    left: 30px;
-    z-index: 1;
-  }
+  img:nth-child(1) { left: 0; }
+  img:nth-child(2) { left: 15px; }
+  img:nth-child(3) { left: 30px; }
+  img:nth-child(4) { left: 45px; }
 `;
 
 const BottomText = styled.div`
-  margin-left: 10px;
   font-size: 12px;
   color: #ccc;
 `;
 
-const SubscribeBtn = styled.a`
-  margin-left: auto;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-size: 14px;
-  text-decoration: none;
-  background: #28a745;
-  color: #fff;
 
-  &:hover {
-    background: #218838;
-  }
-`;
