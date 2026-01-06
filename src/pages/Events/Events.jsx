@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import AdminSummaryCard from "./AdminSummaryCard";
 import AdminTaskItem from "./AdminTaskItem";
 import {
   StyledHeading,
@@ -20,10 +19,10 @@ import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { mapEventForUI } from "../../helpers/Dashboard.helper";
 import { usersSelector } from "../../redux/users/users.slice";
-import PolarChart from "../../components/PolarChart/PolarChart";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
+import { EventCards } from "./EventCards/EventCards";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
 
 const Events = () => {
   const dispatch = useDispatch();
@@ -53,18 +52,7 @@ const Events = () => {
         <StyledHeading left>Events</StyledHeading>
         <StyledHr />
 
-        <CardsRow>
-          <AdminSummaryCard label="Total Events" value={events.length} />
-          <AdminSummaryCard
-            label="Event Managers"
-            value={eventManagers.length}
-          />
-          <AdminSummaryCard
-            label="Completion Rate"
-            value="87%"
-            chart={<PolarChart percent={87} />}
-          />
-        </CardsRow>
+        <EventCards events={events} eventManagers={eventManagers} />
 
         <CreateEventButtons
           onCreateEvent={() =>
@@ -97,11 +85,7 @@ const Events = () => {
 const AdminDashboardContainer = styled.div`
   padding: 0 20px 20px 20px;
 `;
-const CardsRow = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-`;
+
 const TaskMainCard = styled.div`
   border-radius: 14px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,

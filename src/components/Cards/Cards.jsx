@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-// export const Card = (props) => {
-//   return <AdminCard>{props.children}</AdminCard>;
-// };
-
 export const Card = styled.div`
   padding: 20px 14px;
   border-radius: 14px;
