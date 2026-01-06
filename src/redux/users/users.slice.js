@@ -4,7 +4,6 @@ import * as actions from "./users.actions";
 const initialState = {
   eventManagersLoading: false,
   eventManagers: [],
-  eventManagerNames: [],
   eventManagersError: false,
 
   registrationError: null,
@@ -31,10 +30,6 @@ const usersSlice = createSlice({
       })
       .addCase(actions.fetchManagersAction.fulfilled, (state, action) => {
         state.eventManagers = action.payload?.details;
-        const managerUsernames = action.payload?.details.map(
-          (manager) => `${manager?.firstName} ${manager?.lastName}`
-        );
-        state.eventManagerNames = managerUsernames;
         state.eventManagersLoading = false;
         state.eventManagersError = null;
       })
@@ -76,6 +71,5 @@ const usersSlice = createSlice({
 });
 
 export const usersSelector = (st) => st.users;
-export const { clearRegistrationSuccessMsg, updateEventManagerNames } =
-  usersSlice.actions;
+export const { clearRegistrationSuccessMsg } = usersSlice.actions;
 export default usersSlice.reducer;

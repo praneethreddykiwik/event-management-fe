@@ -42,6 +42,7 @@ const eventsSlice = createSlice({
       .addCase(actions.createEventsDispatch.fulfilled, (state, action) => {
         const newEvent = action.payload.details;
         state.events = [newEvent, ...state.events];
+        state.createEventLoading = false;
       })
       .addCase(actions.createEventsDispatch.rejected, (state) => {
         state.createEventLoading = false;

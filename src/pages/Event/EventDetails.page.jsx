@@ -18,11 +18,99 @@ import {
 import { Button } from "../../components/Buttons/Button";
 import { StyledIconButton } from "../../components/Styled/Buttons.styled";
 import { DummyEventDetails } from "../../enum/eventDetails.enum";
+import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 
 const EventDetails = () => {
   return (
     <>
+      {/* <BlueBackHOC> */}
       <StyledEventContainer>
+        <StyledBG>
+          <StyledEventHeader>
+            <StyledEventHeaderInfo>
+              <StyledEventHeaderInfoCont1>
+                <StyledEventHeaderInfoCont1Top>
+                  <StyledHeading>Annual Tech Conference</StyledHeading>
+                  <StyledBadge type={BADGE_TYPES.COMPLETED}>
+                    {BADGE_TYPES.COMPLETED}
+                  </StyledBadge>
+                </StyledEventHeaderInfoCont1Top>
+                <StyledEventHeaderInfoCont1Bottom>
+                  <StyledBadge type={BADGE_TYPES.ACCEPTED}>
+                    {BADGE_TYPES.CORPORATE}
+                  </StyledBadge>
+                </StyledEventHeaderInfoCont1Bottom>
+              </StyledEventHeaderInfoCont1>
+              <StyledEventHeaderInfoCont2>
+                <Button sx={StyledButton1} type="outlined" icon="edit">
+                  Edit Event
+                </Button>
+                <Button sx={StyledButton2} type="icon" icon="delete">
+                  Delete Event
+                </Button>
+              </StyledEventHeaderInfoCont2>
+            </StyledEventHeaderInfo>
+          </StyledEventHeader>
+
+          {/* Event Body */}
+          <StyledEventBody>
+            <StyledEventBodyContainerLeft>
+              <StyledEventBodyContainerLeftHeading left>
+                Event Details
+              </StyledEventBodyContainerLeftHeading>
+              <StyledEventBodyContainerLeftContent>
+                <StyledEvenInfo>
+                  {DummyEventDetails.map((curItem) => (
+                    <>
+                      <StyledEvenInfoCard>
+                        <StyledEvenInfoCardIcon>
+                          <span className="material-symbols-outlined">
+                            {curItem.Icon}
+                          </span>
+                        </StyledEvenInfoCardIcon>
+                        <StyledEvenInfoCardInfo>
+                          <StyledParagraph1 left>
+                            {curItem.Type}
+                          </StyledParagraph1>
+                          <StyledParagraph2 left>
+                            {curItem.Info}
+                          </StyledParagraph2>
+                        </StyledEvenInfoCardInfo>
+                      </StyledEvenInfoCard>
+                    </>
+                  ))}
+                </StyledEvenInfo>
+              </StyledEventBodyContainerLeftContent>
+            </StyledEventBodyContainerLeft>
+            <StyledEventBodyContainerRight>
+              <StyledEventBodyContainerRightTop>
+                <StyledEventBodyHeader left>
+                  Assigned Manager
+                </StyledEventBodyHeader>
+                <StyledEvenInfoCard>
+                  <StyledEvenInfoCardIcon>
+                    <StyledSpan className="material-symbols-outlined">
+                      person
+                    </StyledSpan>
+                  </StyledEvenInfoCardIcon>
+                  <StyledParagraph2 left>Adnan Shaik Yousuf</StyledParagraph2>
+                </StyledEvenInfoCard>
+              </StyledEventBodyContainerRightTop>
+              <StyledEventBodyContainerRightBototm>
+                <StyledEventBodyContainerRightBototmHeader>
+                  <StyledEvenInfoCard2>
+                    <StyledEventBodyHeader left>
+                      Description
+                    </StyledEventBodyHeader>
+                    <StyledParagraph2 left>
+                      My Event Description ABCD.
+                    </StyledParagraph2>
+                  </StyledEvenInfoCard2>
+                </StyledEventBodyContainerRightBototmHeader>
+              </StyledEventBodyContainerRightBototm>
+            </StyledEventBodyContainerRight>
+          </StyledEventBody>
+        </StyledBG>
         {/* 
         
         1. Container 1: HEADER
@@ -45,87 +133,8 @@ const EventDetails = () => {
         */}
 
         {/* Event Header */}
-        <StyledEventHeader>
-          <StyledEventHeaderInfo>
-            <StyledEventHeaderInfoCont1>
-              <StyledEventHeaderInfoCont1Top>
-                <StyledHeading>Annual Tech Conference</StyledHeading>
-                <StyledBadge type={BADGE_TYPES.COMPLETED}>
-                  {BADGE_TYPES.COMPLETED}
-                </StyledBadge>
-              </StyledEventHeaderInfoCont1Top>
-              <StyledEventHeaderInfoCont1Bottom>
-                <StyledBadge type={BADGE_TYPES.ACCEPTED}>
-                  {BADGE_TYPES.CORPORATE}
-                </StyledBadge>
-              </StyledEventHeaderInfoCont1Bottom>
-            </StyledEventHeaderInfoCont1>
-            <StyledEventHeaderInfoCont2>
-              <Button sx={StyledButton1} type="outlined" icon="edit">
-                Edit Event
-              </Button>
-              <Button sx={StyledButton2} type="icon" icon="delete">
-                Delete Event
-              </Button>
-            </StyledEventHeaderInfoCont2>
-          </StyledEventHeaderInfo>
-        </StyledEventHeader>
-
-        {/* Event Body */}
-        <StyledEventBody>
-          <StyledEventBodyContainerLeft>
-            <StyledEventBodyContainerLeftHeading left>
-              Event Details
-            </StyledEventBodyContainerLeftHeading>
-            <StyledEventBodyContainerLeftContent>
-              <StyledEvenInfo>
-                {DummyEventDetails.map((curItem) => (
-                  <>
-                    <StyledEvenInfoCard>
-                      <StyledEvenInfoCardIcon>
-                        <span className="material-symbols-outlined">
-                          {curItem.Icon}
-                        </span>
-                      </StyledEvenInfoCardIcon>
-                      <StyledEvenInfoCardInfo>
-                        <StyledParagraph1 left>{curItem.Type}</StyledParagraph1>
-                        <StyledParagraph2 left>{curItem.Info}</StyledParagraph2>
-                      </StyledEvenInfoCardInfo>
-                    </StyledEvenInfoCard>
-                  </>
-                ))}
-              </StyledEvenInfo>
-            </StyledEventBodyContainerLeftContent>
-          </StyledEventBodyContainerLeft>
-          <StyledEventBodyContainerRight>
-            <StyledEventBodyContainerRightTop>
-              <StyledEventBodyHeader left>
-                Assigned Manager
-              </StyledEventBodyHeader>
-              <StyledEvenInfoCard>
-                <StyledEvenInfoCardIcon>
-                  <StyledSpan className="material-symbols-outlined">
-                    person
-                  </StyledSpan>
-                </StyledEvenInfoCardIcon>
-                <StyledParagraph2 left>Adnan Shaik Yousuf</StyledParagraph2>
-              </StyledEvenInfoCard>
-            </StyledEventBodyContainerRightTop>
-            <StyledEventBodyContainerRightBototm>
-              <StyledEventBodyContainerRightBototmHeader>
-                <StyledEvenInfoCard2>
-                  <StyledEventBodyHeader left>
-                    Description
-                  </StyledEventBodyHeader>
-                  <StyledParagraph2 left>
-                    My Event Description ABCD.
-                  </StyledParagraph2>
-                </StyledEvenInfoCard2>
-              </StyledEventBodyContainerRightBototmHeader>
-            </StyledEventBodyContainerRightBototm>
-          </StyledEventBodyContainerRight>
-        </StyledEventBody>
       </StyledEventContainer>
+      {/* </BlueBackHOC> */}
     </>
   );
 };
@@ -136,35 +145,9 @@ const StyledEventContainer = styled.div`
   /* margin: 100px; */
   border: 1px solid blue;
   padding: 60px;
+  /* margin: 200px; */
 `;
 
-const EditButton = styled.div`
-  button {
-    border-radius: 999px;
-    padding: 10px 18px;
-    border: 1px solid #d0d0d0;
-    color: #333;
-    background: transparent;
-
-    .material-symbols-outlined {
-      font-size: 20px;
-    }
-  }
-`;
-
-const DeleteButton = styled.div`
-  button {
-    border-radius: 999px;
-    padding: 10px 18px;
-    background-color: #d43a2f;
-    border: none;
-    color: #fff;
-
-    .material-symbols-outlined {
-      font-size: 20px;
-    }
-  }
-`;
 // --------- Event Header ------------
 
 const StyledEventHeader = styled(StyledFlexContainer)`
@@ -242,8 +225,9 @@ const StyledSpan = styled.span`
 
 const StyledEventBodyContainerLeft = styled.div`
   /* border: 1px solid red; */
-  width: 50%;
-  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
+  width: 30%;
+  background-color: white;
+  box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   border-radius: 10px;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
@@ -254,17 +238,28 @@ const StyledEventBodyHeader = styled(StyledSemiHeading)`
   /* border: 1px solid peachpuff; */
 `;
 
+const StyledBG = styled.div`
+  background-color: white;
+  padding: 40px 50px;
+  box-shadow: ${({ theme }) => theme.shadows["level-1"]};
+`;
+
 const StyledEventBodyContainerRight = styled.div`
   justify-content: start;
+  display: flex;
+  flex-direction: column;
+  /* margin: 0 auto; */
   /* border: 1px solid purple; */
   /* padding: ${({ theme }) => `10px ${theme.spacings["spacing-5"]}`}; */
-  width: 50%;
+  width: 30%;
 `;
 
 const StyledEventBodyContainerRightTop = styled.div`
   /* border: 1px solid yellow; */
+  background-color: white;
   box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   margin-bottom: 40px;
+  height: 50%;
   /* gap: 20px; */
   padding: 25px;
   border-radius: 10px;
@@ -273,8 +268,10 @@ const StyledEventBodyContainerRightTop = styled.div`
 
 const StyledEventBodyContainerRightBototm = styled.div`
   border: ${({ theme }) => theme.borders["border-gray-lite"]};
-  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
+  background-color: white;
+  box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   border-radius: 10px;
+  height: 50%;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
   border: ${({ theme }) => theme.borders["border-gray-lite"]};

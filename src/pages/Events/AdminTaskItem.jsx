@@ -10,8 +10,17 @@ import {
 import { ADMIN_COMMON } from "../../Enum/Admin.common";
 import { Card } from "../../components/Cards/Cards";
 import { Button } from "../../components/Buttons/Button";
+import { paths } from "../../constants/paths";
+
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 const AdminTaskItem = ({ data }) => {
+  const navigate = useNavigateWithQuery();
+
+  const onClickViewDetails = () => {
+    navigate(paths.eventsDetails);
+  };
+
   return (
     <StyledCard>
       <Left>
@@ -30,7 +39,9 @@ const AdminTaskItem = ({ data }) => {
 
       <BadgeButton>
         <Badge type={data.type}>{data.statusLabel}</Badge>
-        <Button type="secondary">{ADMIN_COMMON.ADMIN_DETAILS}</Button>
+        <Button onClick={onClickViewDetails} type="secondary">
+          {ADMIN_COMMON.ADMIN_DETAILS}
+        </Button>
       </BadgeButton>
     </StyledCard>
   );

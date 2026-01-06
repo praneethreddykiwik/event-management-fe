@@ -10,13 +10,15 @@ import { usersSelector } from "../../../redux/users/users.slice";
 import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+
 const CreateEventPage = () => {
   const dispatch = useDispatch();
 
-  const { eventManagerNames } = useSelector(usersSelector);
+  const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
-    const eventMetaDataFull = eventMetaData(eventManagerNames);
+    const eventMetaDataFull = eventMetaData(eventManagers);
     dispatch(updateAllEventInputs(eventMetaDataFull));
   }, []);
 
@@ -37,7 +39,7 @@ const CreateEventPage = () => {
 };
 
 const EventsPageContainer = styled.div`
-  padding: 0 20px 20px 20px;
+  padding: 20px 20px 40px 20px;
 `;
 
 export default CreateEventPage;

@@ -118,9 +118,11 @@ const badgeColors = {
 };
 
 const shadows = {
-  'level-1': 'O, 1px, 3px, rgba(0,0,0,0,1)',
-  'level-2': 'O, 4px, 6px, rgba(0,0,0,0,0.8)',
-  'level-3': 'O, 8px, 16px, rgba(0,0,0,0,.1)',
+  "level-1": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+  "level-2":
+    "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+  "level-3":
+    "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
 };
 
 const borders = {

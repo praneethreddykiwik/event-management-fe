@@ -70,7 +70,7 @@ const EventManagerDashboard = () => {
             </StyledTaskHeading>
             <StyledHrTask />
 
-            {event.tasks.length ? (
+            {event.tasks?.length ? (
               event.tasks.map((task) => <TaskItem task={mapTaskForUI(task)} />)
             ) : (
               <StyledParagraphSmallGray>

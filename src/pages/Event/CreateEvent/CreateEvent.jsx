@@ -9,15 +9,16 @@ import styled from "styled-components";
 import { Inputs } from "../../../components/Inputs/Inputs";
 import { Button } from "../../../components/Buttons/Button";
 import { Continue } from "../../../enum/RegistrationPage.Enum";
-import { useNavigate } from "react-router-dom";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import {
   extractHoursAndMinutes,
   formatScheduleDate,
 } from "../../../utils/utils";
 
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+
 const CreateEvent = ({ onCreateEvent }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { createEventInputs } = useSelector(formsSelector);
   const { authUser } = useSelector(authSelector);
@@ -63,10 +64,14 @@ const CreateEvent = ({ onCreateEvent }) => {
 
     const payload = {
       navigate,
-      reqPayload: { ...reqPayload, tenantUid, scheduledAt, status: "pending" },
+      reqPayload: {
+        ...reqPayload,
+        assigned_to_uid: reqPayload.assignedEventManager,
+        tenantUid,
+        scheduledAt,
+        status: "pending",
+      },
     };
-
-    console.log("payload", payload);
 
     await onCreateEvent(payload);
   };
