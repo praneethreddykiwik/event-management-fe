@@ -6,10 +6,14 @@ import {
 import { Icon } from "../../components/Icons/Icons";
 import { formatDateTime } from "../../utils/utils";
 import { useDispatch } from "react-redux";
-import { declineTasksAction } from "../../redux/tasks/tasks.actions";
+import { acceptTasksAction, declineTasksAction } from "../../redux/tasks/tasks.actions";
+import useTenant from "../../hooks/useTenant.hook";
+
 
 const ManageTaskModal = ({ onClose, task }) => {
   const dispatch = useDispatch();
+  const tenantId = useTenant();
+
 
   console.log("abdul task", task);
 
@@ -22,13 +26,30 @@ const ManageTaskModal = ({ onClose, task }) => {
     { label: "Status", value: task.taskStatus },
   ];
 
-  // add toast
+  const onAccept = () => {
+    const payload = {
+      taskUid: task.taskUid,
+      tenantId,
+    };
+
+    dispatch(acceptTasksAction(payload)).then((res) => {
+      if (!res.error) {
+        onClose();
+      }
+    });
+  };
+
   const onDecline = () => {
     const payload = {
-      taskUid: "",
-      tenantId: "",
+      taskUid: task.taskUid,
+      tenantId,  
     };
-    dispatch(declineTasksAction(payload));
+
+    dispatch(declineTasksAction(payload)).then((res) => {
+      if (!res.error) {
+        onClose();
+      }
+    });
   };
 
   return (
@@ -57,13 +78,13 @@ const ManageTaskModal = ({ onClose, task }) => {
           </Section>
 
           <ActionRow>
-            <AcceptButton>
+            <AcceptButton onClick={onAccept}>
               <span className="material-symbols-outlined">check_small</span>{" "}
-              Accept Event
+              Accept Task
             </AcceptButton>
             <DeclineButton onClick={onDecline}>
               <span className="material-symbols-outlined">close_small</span>{" "}
-              Decline Event
+              Decline Task
             </DeclineButton>
           </ActionRow>
         </ModalContainer>

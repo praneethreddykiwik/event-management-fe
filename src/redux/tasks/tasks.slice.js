@@ -51,16 +51,32 @@ const tasksSlice = createSlice({
     builder
       .addCase(actions.declineTasksAction.pending, (state) => {
         state.declineTaskLoading = true;
+        state.declineTaskError = null;
       })
       .addCase(actions.declineTasksAction.fulfilled, (state, action) => {
         state.declineTask = action.payload;
         state.declineTaskLoading = false;
-        state.declineTaskError = "Error";
+        state.declineTaskError = null;
       })
       .addCase(actions.declineTasksAction.rejected, (state) => {
         state.authUser = null;
         state.declineTaskLoading = false;
-        state.declineTaskError = "Error";
+        state.declineTaskError = actions.payload || "Failed to decline task";
+      });
+
+    builder
+      .addCase(actions.acceptTasksAction.pending, (state) => {
+        state.acceptTaskLoading = true;
+        state.acceptTaskError = null;
+      })
+      .addCase(actions.acceptTasksAction.fulfilled, (state, action) => {
+        state.acceptTask = action.payload;
+        state.acceptTaskLoading = false;
+        state.acceptTaskError = null;
+      })
+      .addCase(actions.acceptTasksAction.rejected, (state, action) => {
+        state.acceptTaskLoading = false;
+        state.acceptTaskError = action.payload || "Failed to accept task";
       });
   },
 });
