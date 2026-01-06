@@ -23,10 +23,11 @@ export const createEventsDispatch = createAsyncThunk(
       debugger;
       const res = await createEventsApi(payload.reqPayload);
       debugger;
-      // success toast
+            toast.success("created Events successfully");
       return res.data;
-      // error toast
     } catch (err) {
+      toast.error(err?.response?.data?.message ||
+        err?.message ||"Failed to create Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   }
