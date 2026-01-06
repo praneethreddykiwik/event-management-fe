@@ -42,13 +42,15 @@ const PopupModal = ({
 export default PopupModal;
 
 const StyledBackdrop = styled.div`
-  position: fixed;
+   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgb(157 157 157 / 8%);;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+  margin: 0px auto;
+  padding: 20px;
 `;
 
 const StyledPopupModal = styled.div`
