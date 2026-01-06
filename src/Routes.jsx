@@ -22,6 +22,7 @@ import Event from "./pages/Event/EventDetails.page.jsx";
 import Events from "./pages/Events/Events.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
+import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -49,6 +50,7 @@ const AppRoutes = () => {
       <Route path={"/samplePage"} element={<SamplePage />} />
       <Route path={"/Subscriptions"} element={<Subscriptions />} />
       <Route path={"/player-card"} element={<PlayerCard />} />
+      <Route path={paths.marketPlace} element={<MarketPlace />} />
 
       {/* Admin */}
       <Route path={paths.events} element={<Events />} />
