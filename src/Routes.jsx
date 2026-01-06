@@ -19,9 +19,9 @@ import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Event/EventDetails.page.jsx";
-import CreateEvent from "./pages/Event/CreateEvent/CreateEvent.jsx";
 import Events from "./pages/Events/Events.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
+import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -59,7 +59,7 @@ const AppRoutes = () => {
 
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
-      <Route path={paths.createEvent} element={<CreateEvent />} />
+      <Route path={paths.createEvent} element={<CreateEventPage />} />
 
       {/* Tasks */}
       <Route path={paths.tasks} element={<Tasks />} />

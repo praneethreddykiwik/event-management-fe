@@ -5,6 +5,9 @@ const initialState = {
   events: [],
   eventsLoading: false, // idle | loading | authenticated | unauthenticated
   eventsError: null,
+
+  createEventLoading: false,
+  createEventError: null,
 };
 
 const eventsSlice = createSlice({
@@ -16,6 +19,7 @@ const eventsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Get All Events.
     builder
       .addCase(actions.fetchEventsDispatch.pending, (state) => {
         state.eventsLoading = true;
@@ -28,6 +32,21 @@ const eventsSlice = createSlice({
         state.authUser = null;
         state.eventsLoading = false;
         state.eventsError = "Error";
+      });
+
+    // Create Events.
+    builder
+      .addCase(actions.createEventsDispatch.pending, (state) => {
+        state.createEventLoading = true;
+      })
+      .addCase(actions.createEventsDispatch.fulfilled, (state, action) => {
+        const newEvent = action.payload.details;
+        debugger;
+        state.events = [newEvent, ...state.events];
+      })
+      .addCase(actions.createEventsDispatch.rejected, (state) => {
+        state.createEventLoading = false;
+        state.createEventError = "Something went wrong while creating Event.";
       });
   },
 });

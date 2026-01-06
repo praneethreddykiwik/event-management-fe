@@ -22,6 +22,8 @@ import { mapEventForUI } from "../../helpers/Dashboard.helper";
 import { usersSelector } from "../../redux/users/users.slice";
 import PolarChart from "../../components/PolarChart/PolarChart";
 import { ADMIN_COMMON } from "../../Enum/Admin.common";
+import { useNavigate } from "react-router-dom";
+import { paths } from "../../constants/paths";
 
 const Events = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,10 @@ const Events = () => {
   const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
+  console.log("Events", events);
   const { eventManagers } = useSelector(usersSelector);
+  // console.log("usersSelector", eventManagers);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const payload = {
@@ -62,7 +67,9 @@ const Events = () => {
         </CardsRow>
 
         <CreateEventButtons
-          onCreateEvent={() => setOpen(true)}
+          onCreateEvent={() =>
+            navigate(`${paths.createEvent}?tenantId=${tenantId}`)
+          }
           setOpenManagersPopup={setOpenManagersPopup}
         />
 
