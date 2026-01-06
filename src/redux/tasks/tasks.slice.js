@@ -25,21 +25,7 @@ const tasksSlice = createSlice({
         state.tasksLoading = true;
       })
       .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
-        const dat = action.payload?.details;
-        const manipulateData = [];
-        dat.forEach((el) => {
-          const eventUid = el.eventUid;
-          const exists = manipulateData.find((fl) => fl.eventUid === eventUid);
-          if (exists) {
-            const i = manipulateData.findIndex(
-              (fl) => fl.eventUid === eventUid
-            );
-            manipulateData[i].tasks.push(el);
-          } else {
-            manipulateData.push({ ...el, tasks: [el] });
-          }
-        });
-        state.tasks = manipulateData;
+        state.tasks = action.payload?.details;
         state.tasksLoading = false;
         state.tasksError = null;
       })

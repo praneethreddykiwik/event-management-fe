@@ -17,7 +17,7 @@ const ManageTaskModal = ({ onClose, task }) => {
     { label: "Task Name", value: task.taskTitle },
     { label: "Task Description", value: task.taskDescription },
     { label: "Task Created At", value: formatDateTime(task.taskCreatedAt) },
-    { label: "Venue", value: task.venue },
+    { label: "Venue", value: task.eventVenue },
     { label: "Assigned By", value: task.taskAssignedToUid },
     { label: "Status", value: task.taskStatus },
   ];

@@ -15,7 +15,7 @@ export const EventCards = ({ events, eventManagers }) => {
         />
         <EventsSummaryCard label="Completion Rate" value="87%" />
       </StyledFlex>
-      <ProgressChart />
+      <ProgressChart events={events} />
     </CardsRow>
   );
 };
