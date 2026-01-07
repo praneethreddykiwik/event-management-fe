@@ -44,7 +44,7 @@ export default PopupModal;
 const StyledBackdrop = styled.div`
    position: fixed;
   inset: 0;
-  background: rgb(157 157 157 / 8%);;
+  background: rgb(0 0 0 / 80%);
   display: flex;
   align-items: center;
   justify-content: center;
