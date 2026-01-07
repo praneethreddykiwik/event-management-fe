@@ -6,6 +6,10 @@ const initialState = {
   eventManagers: [],
   eventManagersError: false,
 
+  vendorsLoading: false,
+  vendors: [],
+  vendorsError: false,
+
   registrationError: null,
   registrationSuccess: false,
   registrationLoading: false,
@@ -36,6 +40,20 @@ const usersSlice = createSlice({
       .addCase(actions.fetchManagersAction.rejected, (state) => {
         state.eventManagersError = "Something went wrong";
         state.eventManagersLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchVendorsAction.pending, (state) => {
+        state.vendorsLoading = true;
+      })
+      .addCase(actions.fetchVendorsAction.fulfilled, (state, action) => {
+        state.vendors = action.payload?.details;
+        state.vendorsLoading = false;
+        state.vendorsError = null;
+      })
+      .addCase(actions.fetchVendorsAction.rejected, (state) => {
+        state.vendorsError = "Something went wrong";
+        state.vendorsLoading = false;
       });
 
     // registration

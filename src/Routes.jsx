@@ -41,21 +41,21 @@ const AppRoutes = () => {
   const authenticatedRoutes = (
     <>
       {/* base */}
-      <Route path={'/'} element={<Home />} />
+      <Route path={"/"} element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path={'/Gateway'} element={<GatewayPage />} />
-      <Route path={'/Getintouch'} element={<GetInTouch />} />
-      <Route path={'/paymentSuccess'} element={<PaymentSuccess />} />
-      <Route path={'/accountSetting'} element={<AccountSettingsPage />} />
-      <Route path={'/controlpage'} element={<Controlpage />} />
-      <Route path={'/profile'} element={<Profile />} />
-      <Route path={'/samplePage'} element={<SamplePage />} />
-      <Route path={'/Subscriptions'} element={<Subscriptions />} />
-      <Route path={'/player-card'} element={<PlayerCard />} />
+      <Route path={"/Gateway"} element={<GatewayPage />} />
+      <Route path={"/Getintouch"} element={<GetInTouch />} />
+      <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
+      <Route path={"/controlpage"} element={<Controlpage />} />
+      <Route path={"/profile"} element={<Profile />} />
+      <Route path={"/samplePage"} element={<SamplePage />} />
+      <Route path={"/Subscriptions"} element={<Subscriptions />} />
+      <Route path={"/player-card"} element={<PlayerCard />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
 
       {/* Admin */}
       <Route path={paths.events} element={<Events />} />
+      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
 
       {/* Profile */}
       <Route path={paths.accountSettings} element={<AccountSettings />} />

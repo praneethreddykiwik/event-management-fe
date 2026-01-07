@@ -4,7 +4,7 @@ const useNavigateWithQuery = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const allowedVars = ["tenantId"]; // whitelist
+  const allowedVars = ["tenantId", "mode"]; // whitelist
 
   return (to, options = {}) => {
     const currentParams = new URLSearchParams(location.search);

@@ -9,12 +9,33 @@ import { roles } from "../../constants/roles";
 import { toast } from "react-toastify";
 
 export const fetchManagersAction = createAsyncThunk(
-  "users/getUsers",
+  "users/fetchManagersAction",
   async (_, { rejectWithValue, getState }) => {
     const store = getState();
     const { tenantId } = store.auth;
     try {
       const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
+      const res = await getUsersApi(query);
+      return res.data;
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch managers"
+      );
+      return rejectWithValue(err?.response?.data || "Login failed");
+    }
+  }
+);
+
+export const fetchVendorsAction = createAsyncThunk(
+  "users/fetchVendorsAction",
+  // http://localhost:4000/v1/users?tenantId=tenant_001&role=vendor
+  async (_, { rejectWithValue, getState }) => {
+    const store = getState();
+    const { tenantId } = store.auth;
+    try {
+      const query = `?tenantId=${tenantId}&role=${roles.vendor}`;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {

@@ -65,11 +65,30 @@ export const taskMetaData = [
       { value: "customer", label: "Customer" },
     ],
     value: "",
-    label: "Assign to",
+    label: "Assign to Vendor",
     error: null,
     validations: [validationList.REQUIRED],
   },
 ];
+
+export const generateAddEventInpMetadata = (vendors) => {
+  console.log("abdul vendors", vendors);
+
+  const dat = taskMetaData.map((el) => {
+    if (el.name === "assignedToUid") {
+      return {
+        ...el,
+        options: vendors.map((vendor) => ({
+          value: vendor.uid,
+          label: `${vendor.firstName} ${vendor.lastName}`,
+        })),
+      };
+    }
+    return el;
+  });
+
+  return dat;
+};
 
 export const generateTaskDataToEdit = (data) => {
   const allowedFields = [
