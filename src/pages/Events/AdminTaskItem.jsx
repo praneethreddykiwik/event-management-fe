@@ -12,12 +12,14 @@ import { ADMIN_COMMON } from "../../enum/Admin.common";
 import GaugeChart from "../../components/Charts/GuageChart";
 
 const AdminTaskItem = ({ data }) => {
+  console.log("my data", data);
+
   const navigate = useNavigateWithQuery();
 
   const onClickViewDetails = () => {
     navigate(paths.eventsDetails);
   };
-
+  const valueData = Math.floor(Math.random() * 101);
   return (
     <StyledCard>
       <Left>
@@ -36,11 +38,14 @@ const AdminTaskItem = ({ data }) => {
 
       <BadgeButton>
         <Badge type={data.type}>{data.statusLabel}</Badge>
-        <Button onClick={onClickViewDetails} type="secondary">
+        <Button onClick={onClickViewDetails} type="no-border" small>
           {ADMIN_COMMON.ADMIN_DETAILS}
         </Button>
       </BadgeButton>
-      <GaugeChart value={40} fill={"#52b202"} />
+      <GaugeChart
+        value={valueData}
+        fill={valueData <= 30 ? "red" : valueData <= 70 ? "orange" : "green"}
+      />
     </StyledCard>
   );
 };
@@ -78,11 +83,10 @@ const TaskDate = styled(StyledParagraphSmall)`
 `;
 const BadgeButton = styled.div`
   width: 25%;
-  gap: 5px;
+  gap: 15px;
   display: flex;
-  align-content: center;
   align-items: center;
-  margin: 0;
+  margin-left: auto;
 `;
 
 export default AdminTaskItem;

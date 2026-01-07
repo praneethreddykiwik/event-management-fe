@@ -32,9 +32,9 @@ export const Password = ({
 
         <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? (
-            <StyledPasswordImg src={CloseEyeIcon} alt="show" />
+            <StyledPasswordImg src={EyeIcon} alt="show" />
           ) : (
-            <StyledPasswordImg src={EyeIcon} alt="hide" />
+            <StyledPasswordImg src={CloseEyeIcon} alt="hide" />
           )}
         </ShowHideIcon>
       </InputLayout>
@@ -53,9 +53,9 @@ export const Password = ({
 
           <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? (
-              <StyledPasswordImg src={CloseEyeIcon} alt="show" />
+              <StyledPasswordImg src={EyeIcon} alt="show" />
             ) : (
-              <StyledPasswordImg src={EyeIcon} alt="hide" />
+              <StyledPasswordImg src={CloseEyeIcon} alt="hide" />
             )}
           </ShowHideIcon>
         </InputLayout>

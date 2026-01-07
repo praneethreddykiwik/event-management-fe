@@ -113,3 +113,10 @@ export const taskPriorities = {
   medium: "medium",
   high: "high",
 };
+
+export const usersRoles = {
+  admin: { label: "Admin" },
+  event_manager: { label: "Event Manager" },
+  vendor: { label: "Vendor" },
+  customer: { label: "Customer" },
+};

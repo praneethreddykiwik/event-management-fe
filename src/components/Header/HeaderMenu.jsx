@@ -4,6 +4,7 @@ import Avatar from "../Avatar/Avatar";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { useEffect, useRef, useState } from "react";
 import { paths } from "../../constants/paths";
+import { RBACHOC } from "../../RBAC/RBAC";
 
 export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
   const navigate = useNavigateWithQuery();
@@ -28,30 +29,30 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
 
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
-      <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
+      <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown('events')}>
-        Events <ArrowIcon $open={openDropdown === 'events'} />
-        <Dropdown $open={openDropdown === 'events'}>
-          <DropdownItem onClick={() => navigate('/')}>
+      <MenuItem onClick={() => toggleDropdown("events")}>
+        Events <ArrowIcon $open={openDropdown === "events"} />
+        <Dropdown $open={openDropdown === "events"}>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>event</ItemIcon>
             Upcoming Events
           </DropdownItem>
-          <DropdownItem onClick={() => navigate('/')}>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>event_note</ItemIcon>
             Current Events
           </DropdownItem>
-          <DropdownItem onClick={() => navigate('/')}>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>add_ad</ItemIcon>
             Create Event
           </DropdownItem>
         </Dropdown>
       </MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown('venues')}>
-        Market <ArrowIcon $open={openDropdown === 'venues'} />
-        <Dropdown $open={openDropdown === 'venues'}>
-          <DropdownItem onClick={() => navigate('/')}>
+      <MenuItem onClick={() => toggleDropdown("venues")}>
+        Market <ArrowIcon $open={openDropdown === "venues"} />
+        <Dropdown $open={openDropdown === "venues"}>
+          <DropdownItem onClick={() => navigate("/")}>
             <ItemIcon>map_search</ItemIcon>
             Venues Near Me
           </DropdownItem>
@@ -62,13 +63,15 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
         </Dropdown>
       </MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown('pages')}>
-        Pages <ArrowIcon $open={openDropdown === 'pages'} />
-        <Dropdown $open={openDropdown === 'pages'}>
-          <DropdownItem onClick={() => navigate(paths.events)}>
-            <ItemIcon>event</ItemIcon>
-            Events
-          </DropdownItem>
+      <MenuItem onClick={() => toggleDropdown("pages")}>
+        Pages <ArrowIcon $open={openDropdown === "pages"} />
+        <Dropdown $open={openDropdown === "pages"}>
+          <RBACHOC perm="admin:panel">
+            <DropdownItem onClick={() => navigate(paths.events)}>
+              <ItemIcon>event</ItemIcon>
+              Admin Dashboard
+            </DropdownItem>
+          </RBACHOC>
           <DropdownItem onClick={() => navigate(paths.tasks)}>
             <ItemIcon>checklist_rtl</ItemIcon>
             Tasks
@@ -77,14 +80,18 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
             <ItemIcon>storefront</ItemIcon>
             Vendor
           </DropdownItem>
-          <DropdownItem onClick={() => navigate(paths.customer)}>
-            <ItemIcon>emoji_people</ItemIcon>
-            Customer
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate(paths.userManagement)}>
-            <ItemIcon>supervised_user_circle</ItemIcon>
-            User Management
-          </DropdownItem>
+          <RBACHOC perm="customer:panel">
+            <DropdownItem onClick={() => navigate(paths.customer)}>
+              <ItemIcon>emoji_people</ItemIcon>
+              Customer
+            </DropdownItem>
+          </RBACHOC>
+          <RBACHOC perm="admin:panel">
+            <DropdownItem onClick={() => navigate(paths.userManagement)}>
+              <ItemIcon>supervised_user_circle</ItemIcon>
+              User Management
+            </DropdownItem>
+          </RBACHOC>
         </Dropdown>
       </MenuItem>
 

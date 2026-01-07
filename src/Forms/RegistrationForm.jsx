@@ -11,6 +11,7 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
+import { registrationMetaData } from "../redux/farms/metadata/reg.metadata";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -35,19 +36,24 @@ const RegistrationForm = ({ onCreateUser }) => {
   };
 
   const onSubmit = async () => {
-    const isValid = validateFields();
-    if (!isValid) return;
+  const isValid = validateFields();
+  if (!isValid) return;
 
-    const reqPayload = createUserInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
+  const reqPayload = createUserInputs.reduce((acu, cur) => {
+    return { ...acu, [cur.name]: cur.value };
+  }, {});
 
-    const payload = {
-      navigate,
-      reqPayload: { ...reqPayload, tenantId },
-    };
+  const payload = {
+    navigate,
+    reqPayload: { ...reqPayload, tenantId },
+  };
 
+  try {
     await onCreateUser(payload);
+    dispatch(updateAllRegInputs(registrationMetaData));
+  } catch (error) {
+    console.error(error);
+  }
   };
 
   const onChange = (e) => {
