@@ -16,6 +16,8 @@ import {
 } from "../../../utils/utils";
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
+import { paths } from "../../../constants/paths";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -76,17 +78,38 @@ const CreateEvent = ({ onCreateEvent }) => {
     await onCreateEvent(payload);
   };
 
+  const goBack = () => {
+    navigate(paths.tasks);
+  };
+
   return (
     <Form>
-      <InputBox>
+      {/* <InputBox>
         {createEventInputs.map((inp) => (
           <Inputs key={inp.name} {...inp} onChange={onChange} />
         ))}
-      </InputBox>
+        <Button whiteText onClick={onSubmit}>
+          {Continue}
+        </Button>
+      </InputBox> */}
 
-      <Button whiteText onClick={onSubmit}>
-        {Continue}
-      </Button>
+      <StyledFlex>
+        {/* <TaskForm onCreateTask={onSubmit} /> */}
+        <InputBox>
+          {createEventInputs.map((inp) => (
+            <Inputs key={inp.name} {...inp} onChange={onChange} />
+          ))}
+          <Button whiteText onClick={onSubmit}>
+            {Continue}
+          </Button>
+        </InputBox>
+        <StyledBox>
+          <StyledHeadingBig left>
+            Please choose from one of the below Tasks
+          </StyledHeadingBig>
+          <Button onClick={goBack}>Go Back</Button>
+        </StyledBox>
+      </StyledFlex>
     </Form>
   );
 };
@@ -107,3 +130,29 @@ export const InputBox = styled.div`
 `;
 
 export default CreateEvent;
+
+const DashboardContainer = styled.div`
+  padding: 0 20px 60px 20px;
+`;
+
+const StyledBox = styled.div`
+  flex-basis: 40%;
+  flex-shrink: 0;
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  gap: 60px;
+  // padding-left: 140px;
+`;
+
+const StyledSuggestions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+
+  .venue-ctn {
+    flex: 0 0 calc((100% - 180px) / 3);
+  }
+`;
