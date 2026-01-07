@@ -77,8 +77,6 @@ export const taskMetaData = [
 ];
 
 export const generateAddEventInpMetadata = (vendors) => {
-  console.log("abdul vendors", vendors);
-
   const dat = taskMetaData.map((el) => {
     if (el.name === "assignedToUid") {
       return {

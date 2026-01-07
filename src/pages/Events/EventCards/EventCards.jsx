@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
+import { NpmSparkLine } from "../../../components/Charts/SparkLine";
 
 export const EventCards = ({ events, eventManagers }) => {
   return (
@@ -13,7 +14,11 @@ export const EventCards = ({ events, eventManagers }) => {
           value={eventManagers.length}
           chart={<ManagerStatusChart percent={87} />}
         />
-        <EventsSummaryCard label="Completion Rate" value="87%" />
+        <EventsSummaryCard
+          label="Completion Rate"
+          value="87%"
+          chart={<NpmSparkLine />}
+        />
       </StyledFlex>
       <ProgressChart events={events} />
     </CardsRow>

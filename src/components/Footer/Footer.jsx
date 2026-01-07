@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import E_logo from "../../assets/Header_images/E_logo.jpg";
+// import E_logo from "../../assets/Header_images/E_logo.jpg";
+import Helm_logo from "../../assets/Logos/Helm_logo.svg"
 import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
 import { footerLinks, socialLinks } from "./Footer.helper";
-import SocialIcons from "./SocialIcons";
+// import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
   
@@ -36,7 +37,7 @@ const Footer = () => {
 
         <LogoSection>
           <Logo>
-            <LogoImage src={E_logo} alt="logo" /> eventz
+            <LogoImage src={Helm_logo} alt="logo" />
           </Logo>
           <Description>{FOOTER_CONTENT.DESCRIPTION_TEXT}</Description>
         </LogoSection>
@@ -240,8 +241,11 @@ const BottomLinks = styled.nav`
 `;
 
 const LogoImage = styled.img`
-  width: 64px;
-  height: 64px;
+  // width: 64px;
+  // height: 64px;
+  // border-radius: 8px;
+  width: 146px;
+  height: 80px;
   border-radius: 8px;
 `;
 

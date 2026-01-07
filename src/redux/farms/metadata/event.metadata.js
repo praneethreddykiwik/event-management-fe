@@ -12,7 +12,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "text",
       name: "eventName",
-      value: "Homies Meetup",
+      value: "",
       placeholder: "e.g.. Annual Conference",
       label: "Event Name",
       error: null,
@@ -35,7 +35,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "date",
       name: "eventDate",
-      value: "Homies Meetup", // check this up
+      value: "", // check this up
       // placeholder: "e.g.. Annual Conference",
       label: "Event Date",
       error: null,
@@ -45,7 +45,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "time",
       name: "eventTime",
-      value: "Homies Meetup",
+      value: "",
       // placeholder: "e.g.. Annual Conference",
       label: "Event Time",
       error: null,
@@ -55,7 +55,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "text",
       name: "venue",
-      value: "Hyderabad ITC",
+      value: "",
       placeholder: "e.g.. Some Good Place",
       label: "Venue",
       error: null,
@@ -66,7 +66,7 @@ export const eventMetaData = (eventManagers) => {
       name: "expectedAttendees",
       value: "200",
       placeholder: "e.g.. 150",
-      label: "Expected Attendees",
+      label: "",
       error: null,
       validations: [validationList.REQUIRED],
     },
@@ -83,7 +83,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "textarea",
       name: "eventDescription",
-      value: "Basic Event Description",
+      value: "",
       placeholder: "Provide your event details...",
       label: "Event Description",
       error: null,
