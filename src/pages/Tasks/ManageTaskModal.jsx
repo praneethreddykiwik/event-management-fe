@@ -6,16 +6,16 @@ import {
 import { Icon } from "../../components/Icons/Icons";
 import { formatDateTime } from "../../utils/utils";
 import { useDispatch } from "react-redux";
-import { acceptTasksAction, declineTasksAction } from "../../redux/tasks/tasks.actions";
+import {
+  acceptTasksAction,
+  declineTasksAction,
+} from "../../redux/tasks/tasks.actions";
 import useTenant from "../../hooks/useTenant.hook";
-
+import { Button } from "../../components/Buttons/Button";
 
 const ManageTaskModal = ({ onClose, task }) => {
   const dispatch = useDispatch();
   const tenantId = useTenant();
-
-
-  console.log("abdul task", task);
 
   const eventSummaryData = [
     { label: "Task Name", value: task.taskTitle },
@@ -40,16 +40,17 @@ const ManageTaskModal = ({ onClose, task }) => {
   };
 
   const onDecline = () => {
-    const payload = {
-      taskUid: task.taskUid,
-      tenantId,  
-    };
+    onClose();
+    // const payload = {
+    //   taskUid: task.taskUid,
+    //   tenantId,
+    // };
 
-    dispatch(declineTasksAction(payload)).then((res) => {
-      if (!res.error) {
-        onClose();
-      }
-    });
+    // dispatch(declineTasksAction(payload)).then((res) => {
+    //   if (!res.error) {
+    //     onClose();
+    //   }
+    // });
   };
 
   return (
@@ -78,14 +79,13 @@ const ManageTaskModal = ({ onClose, task }) => {
           </Section>
 
           <ActionRow>
-            <AcceptButton onClick={onAccept}>
+            {/* <AcceptButton onClick={onAccept}>
               <span className="material-symbols-outlined">check_small</span>{" "}
               Accept Task
-            </AcceptButton>
-            <DeclineButton onClick={onDecline}>
-              <span className="material-symbols-outlined">close_small</span>{" "}
-              Decline Task
-            </DeclineButton>
+            </AcceptButton> */}
+            <Button onClick={onDecline} icon="close_small">
+              Close
+            </Button>
           </ActionRow>
         </ModalContainer>
       </Overlay>
@@ -184,10 +184,10 @@ const AcceptButton = styled(StyledBaseButton)`
 `;
 
 const DeclineButton = styled(StyledOutlinedButton)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // flex: 1;
 `;
 
 export default ManageTaskModal;

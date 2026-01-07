@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createEventsApi, fetchEventsApi } from "../../api/events.api";
 import { toast } from "react-toastify";
+import { paths } from "../../constants/paths";
 
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
@@ -22,12 +23,15 @@ export const createEventsDispatch = createAsyncThunk(
     try {
       debugger;
       const res = await createEventsApi(payload.reqPayload);
-      debugger;
-            toast.success("created Events successfully");
+      toast.success("created Events successfully");
+      payload.navigate(paths.events);
       return res.data;
     } catch (err) {
-      toast.error(err?.response?.data?.message ||
-        err?.message ||"Failed to create Events");
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to create Events"
+      );
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   }

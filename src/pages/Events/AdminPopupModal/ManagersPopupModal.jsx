@@ -16,11 +16,11 @@ import {
   deleteUserAction,
   fetchManagersAction,
 } from "../../../redux/users/users.actions";
+import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
 import {
   generateRegDataToEdit,
   registrationMetaData,
-} from "../../../redux/farms/reg.metadata";
-import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
+} from "../../../redux/farms/metadata/reg.metadata";
 
 const det = {
   add: {
@@ -66,6 +66,14 @@ const ManagersPopupModal = ({ onClose }) => {
     const payload = { uid };
     await dispatch(deleteUserAction(payload));
     await dispatch(fetchManagersAction());
+  };
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [selectedUserUid, setSelectedUserUid] = useState(null);
+
+  const onClickDeleteIcon = (uid) => {
+    setSelectedUserUid(uid);
+    setShowDeleteConfirm(true);
   };
 
   const onEdit = (user) => {
@@ -116,9 +124,43 @@ const ManagersPopupModal = ({ onClose }) => {
               <StyledPopupData flex={1}>
                 <Badge type={item.status}>{item.status}</Badge>
               </StyledPopupData>
+              {showDeleteConfirm && (
+                <PopupModal
+                  onClose={() => setShowDeleteConfirm(false)}
+                  title={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE}
+                  subtitle={
+                    MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_CONFIRMATION
+                  }
+                  width="400px"
+                >
+                  <DeletePopup>
+                    <Button
+                      type="secondary"
+                      onClick={() => setShowDeleteConfirm(false)}
+                    >
+                      {MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE_NO}
+                    </Button>
+
+                    <Button
+                      type="danger"
+                      onClick={async () => {
+                        await onDelete(selectedUserUid);
+                        setShowDeleteConfirm(false);
+                        setSelectedUserUid(null);
+                      }}
+                    >
+                      {MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE_YES}
+                    </Button>
+                  </DeletePopup>
+                </PopupModal>
+              )}
+
               <StyledPopupActions style={{ marginRight: "10px" }}>
                 <Icon variant="edit" onClick={() => onEdit(item)} />
-                <Icon variant="delete" onClick={() => onDelete(item.uid)} />
+                <Icon
+                  variant="delete"
+                  onClick={() => onClickDeleteIcon(item.uid)}
+                />
               </StyledPopupActions>
             </StyledPopupRow>
           ))}
@@ -129,6 +171,13 @@ const ManagersPopupModal = ({ onClose }) => {
 };
 
 export default ManagersPopupModal;
+
+const DeletePopup = styled.div`
+  display: flex;
+  justifycontent: flex-end;
+  gap: 15px;
+  padding: 20px 0px;
+`;
 
 const StyledActionRow = styled.div`
   display: flex;

@@ -9,7 +9,8 @@ import { registrationAction } from "../../redux/users/users.actions";
 import RegistrationForm from "../../Forms/RegistrationForm";
 import { useEffect } from "react";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
-import { registrationMetaData } from "../../redux/farms/reg.metadata";
+import { registrationMetaData } from "../../redux/farms/metadata/reg.metadata";
+// import { registrationMetaData } from "../../redux/farms/reg.metadata";
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();

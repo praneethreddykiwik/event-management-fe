@@ -1,17 +1,23 @@
-/** @format */
-
 import styled from "styled-components";
 import Badge from "../../components/Badge/Badge.component";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { ADMIN_COMMON } from "../../Enum/Admin.common";
 import { Card } from "../../components/Cards/Cards";
 import { Button } from "../../components/Buttons/Button";
+import { paths } from "../../constants/paths";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { ADMIN_COMMON } from "../../enum/Admin.common";
+import GaugeChart from "../../components/Charts/GuageChart";
 
 const AdminTaskItem = ({ data }) => {
+  const navigate = useNavigateWithQuery();
+
+  const onClickViewDetails = () => {
+    navigate(paths.eventsDetails);
+  };
+
   return (
     <StyledCard>
       <Left>
@@ -30,8 +36,11 @@ const AdminTaskItem = ({ data }) => {
 
       <BadgeButton>
         <Badge type={data.type}>{data.statusLabel}</Badge>
-        <Button type="secondary">{ADMIN_COMMON.ADMIN_DETAILS}</Button>
+        <Button onClick={onClickViewDetails} type="secondary">
+          {ADMIN_COMMON.ADMIN_DETAILS}
+        </Button>
       </BadgeButton>
+      <GaugeChart value={40} fill={"#52b202"} />
     </StyledCard>
   );
 };

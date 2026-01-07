@@ -2,14 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   createUserInputs: [],
-
   createEventInputs: [],
+  createTaskInputs: [],
 };
 
 const formsSlice = createSlice({
   name: "forms",
   initialState,
   reducers: {
+    // Registration Task
     updateRegInputs(state, action) {
       const { value, name } = action.payload;
       const i = state.createUserInputs.findIndex((fi) => fi.name === name);
@@ -19,6 +20,8 @@ const formsSlice = createSlice({
     updateAllRegInputs(state, action) {
       state.createUserInputs = action.payload;
     },
+
+    // Events Inputs
     updateEventInputs(state, action) {
       const { value, name } = action.payload;
       const i = state.createEventInputs.findIndex((fi) => fi.name === name);
@@ -27,6 +30,17 @@ const formsSlice = createSlice({
     },
     updateAllEventInputs(state, action) {
       state.createEventInputs = action.payload;
+    },
+
+    // Task Inputs
+    updateTaskInputs(state, action) {
+      const { value, name } = action.payload;
+      const i = state.createTaskInputs.findIndex((fi) => fi.name === name);
+      state.createTaskInputs[i].value = value;
+      state.createTaskInputs[i].error = null;
+    },
+    updateAllTaskInputs(state, action) {
+      state.createTaskInputs = action.payload;
     },
   },
 });
@@ -37,5 +51,7 @@ export const {
   updateAllRegInputs,
   updateEventInputs,
   updateAllEventInputs,
+  updateTaskInputs,
+  updateAllTaskInputs,
 } = formsSlice.actions;
 export default formsSlice.reducer;

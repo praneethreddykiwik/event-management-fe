@@ -10,8 +10,9 @@ import { useState } from "react";
 import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { Button } from "../../components/Buttons/Button";
+import { Icon } from "../../components/Icons/Icons";
 
-const TaskItem = ({ task = {} }) => {
+const TaskItem = ({ task = {}, onEdit }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
 
   const onOpen = () => {
@@ -35,8 +36,8 @@ const TaskItem = ({ task = {} }) => {
       </Left>
       <BadgeButton>
         <Badge type={task.type}>{task.taskStatus}</Badge>
-        <Button type="secondary" onClick={() => onOpen()}>
-          {E_M_DASHBOARD_COMMON.MANAGE_B}
+        <Button type="no-border" onClick={() => onOpen()} small>
+          Details
         </Button>
         {showManageEvent && (
           <ManageTaskModal
@@ -44,6 +45,10 @@ const TaskItem = ({ task = {} }) => {
             task={task}
           />
         )}
+        <Button onClick={() => onEdit(task)} icon="edit" type="no-border" small>
+          Edit
+        </Button>
+        {/* <Icon variant="edit" /> */}
       </BadgeButton>
     </TaskRow>
   );
@@ -53,6 +58,7 @@ const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
+  background: #f3fff4;
 `;
 
 const Left = styled.div`
@@ -83,8 +89,8 @@ const TaskAssignee = styled(StyledParagraphSmall)`
   text-align: left;
 `;
 const BadgeButton = styled.div`
-  width: 30%;
-  gap: 6px;
+  // width: 30%;
+  gap: 16px;
   display: flex;
   align-content: center;
   align-items: center;

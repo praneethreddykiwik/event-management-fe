@@ -19,6 +19,7 @@ import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
+import { fetchVendorsAction } from "../../redux/users/users.actions";
 
 const EventManagerDashboard = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,34 @@ const EventManagerDashboard = () => {
   useEffect(() => {
     const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
+    dispatch(fetchVendorsAction());
   }, []);
 
-  const onAddTask = () => {
-    navigate(paths.createEvent);
+  const onAddTask = (event) => {
+    navigate(`${paths.createTask}`, {
+      state: {
+        eventUid: event.eventUid,
+        mode: "add",
+      },
+    });
   };
 
-  console.log("abdul tasks", tasks);
+  const onEdit = (task, event) => {
+    navigate(`${paths.createTask}`, {
+      state: {
+        eventUid: event.eventUid,
+        taskUid: task.taskUid,
+        mode: "edit",
+        taskData: {
+          title: task.taskTitle,
+          description: task.taskDescription,
+          priority: task.taskPriority,
+          dueAt: task.taskDueAt,
+          assignedToUid: task.taskAssignedToUid,
+        },
+      },
+    });
+  };
 
   return (
     <BlueBackHOC>
@@ -63,15 +85,20 @@ const EventManagerDashboard = () => {
                 icon="add"
                 sx={{ width: "180px" }}
                 whiteText
-                onClick={onAddTask}
+                onClick={() => onAddTask(event)}
               >
                 Add Task
               </Button>
             </StyledTaskHeading>
             <StyledHrTask />
 
-            {event.tasks.length ? (
-              event.tasks.map((task) => <TaskItem task={mapTaskForUI(task)} />)
+            {event.tasks?.length ? (
+              event.tasks.map((task) => (
+                <TaskItem
+                  task={mapTaskForUI(task)}
+                  onEdit={(tsk) => onEdit(tsk, event)}
+                />
+              ))
             ) : (
               <StyledParagraphSmallGray>
                 No tasks added yet

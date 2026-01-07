@@ -23,6 +23,8 @@ import Events from "./pages/Events/Events.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
+import UserManagement from "./pages/UserManagement/UserManagement.jsx";
+import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -33,6 +35,7 @@ const AppRoutes = () => {
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
       <Route path="*" element={<Login />} />
+      <Route path={"/get-in-touch"} element={<GetInTouch />} />
     </>
   );
 
@@ -42,9 +45,8 @@ const AppRoutes = () => {
       <Route path={"/"} element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
       <Route path={"/Gateway"} element={<GatewayPage />} />
-      <Route path={"/Getintouch"} element={<GetInTouch />} />
+      <Route path={"/get-in-touch"} element={<GetInTouch />} />
       <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
-      <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
       <Route path={"/controlpage"} element={<Controlpage />} />
       <Route path={"/profile"} element={<Profile />} />
       <Route path={"/samplePage"} element={<SamplePage />} />
@@ -54,6 +56,7 @@ const AppRoutes = () => {
 
       {/* Admin */}
       <Route path={paths.events} element={<Events />} />
+      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
 
       {/* Profile */}
       <Route path={paths.accountSettings} element={<AccountSettings />} />
@@ -67,10 +70,14 @@ const AppRoutes = () => {
       <Route path={paths.tasks} element={<Tasks />} />
       <Route path={paths.createTask} element={<CreateTask />} />
 
+      {/* Customer */}
+      <Route path={paths.customer} element={<CustomerDashboard />} />
+
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
 
       <Route path="*" element={<Home />} />
+      <Route path={paths.userManagement} element ={<UserManagement />}/>
     </>
   );
 

@@ -3,6 +3,8 @@ import {
   declineTasksApi,
   fetchEventsAndTasksApi,
   acceptTasksApi,
+  createTasksApi,
+  editTasksApi,
 } from "../../api/tasks.api";
 import { toast } from "react-toastify";
 
@@ -11,7 +13,6 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await fetchEventsAndTasksApi(payload);
-      toast.success("Events and Tasks loaded successfully");
       return res.data;
     } catch (err) {
       toast.error(
@@ -29,14 +30,12 @@ export const declineTasksAction = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await declineTasksApi(payload);
-      debugger;
       toast.success("Task declined successfully");
       return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message || err?.message || "Failed to decline task"
       );
-      debugger;
       toast.error(err?.response?.data?.message || "Failed to decline task");
       return rejectWithValue(err?.response?.data || "Error");
     }
@@ -48,12 +47,38 @@ export const acceptTasksAction = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await acceptTasksApi(payload);
-      debugger;
       toast.success("Task accepted successfully");
       return res.data;
     } catch (err) {
-      debugger;
       toast.error(err?.response?.data?.message || "Failed to accept task");
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  }
+);
+
+export const createTaskAction = createAsyncThunk(
+  "tasks/createTaskAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await createTasksApi(payload.reqPayload);
+      toast.success("Task created successfully");
+      return res.data;
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Failed to create Task");
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  }
+);
+
+export const editTaskAction = createAsyncThunk(
+  "tasks/editTaskAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await editTasksApi(payload.reqPayload);
+      toast.success("Task edited successfully");
+      return res.data;
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Failed to edit Task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   }
