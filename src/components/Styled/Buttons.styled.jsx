@@ -32,9 +32,8 @@ export const StyledBaseButton = styled.button`
   min-width: 100px;
   border: none;
   cursor: pointer;
-  ${({ sx }) => ({ ...sx })}
-
-  &:disabled {
+  white-space: nowrap;
+  ${({ sx }) => ({ ...sx })} &:disabled {
     cursor: not-allowed;
     background-color: #dcdcdc;
     color: #777777;
@@ -51,6 +50,23 @@ export const StyledOutlinedButton = styled.button`
   min-width: 100px;
   border: 1px solid #000;
   cursor: pointer;
+  white-space: nowrap;
+  ${({ sx }) => ({ ...sx })}
+`;
+
+export const StyledNoBorderButton = styled.button`
+  height: 40px;
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 20px;
+  // background-color: #eaeaeaff;
+  color: #000;
+  min-width: 100px;
+  // border: 1px solid #000;
+  cursor: pointer;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  white-space: nowrap;
   ${({ sx }) => ({ ...sx })}
 `;
 
@@ -64,6 +80,7 @@ export const StyledSecButton = styled.button`
   min-width: 100px;
   border: 1px solid #eee;
   cursor: pointer;
+  white-space: nowrap;
   ${({ sx }) => ({ ...sx })}
 `;
 
@@ -78,6 +95,7 @@ export const StyledTransparentButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   align-items: center;
+  white-space: nowrap;
   ${({ sx }) => ({ ...sx })}
 `;
 export const StyledIconButton = styled.button`
@@ -90,5 +108,6 @@ export const StyledIconButton = styled.button`
   min-width: 100px;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
   ${({ sx }) => ({ ...sx })}
 `;

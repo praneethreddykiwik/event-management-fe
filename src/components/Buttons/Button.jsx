@@ -7,6 +7,7 @@ import {
   StyledTransparentButton,
   ButtonContent,
   ButtonImage,
+  StyledNoBorderButton,
 } from "../Styled/Buttons.styled";
 
 export const Button = ({
@@ -35,6 +36,12 @@ export const Button = ({
         <StyledOutlinedButton sx={sx} onClick={onClick}>
           {renderContent()}
         </StyledOutlinedButton>
+      );
+    case "no-border":
+      return (
+        <StyledNoBorderButton sx={sx} onClick={onClick}>
+          {renderContent()}
+        </StyledNoBorderButton>
       );
 
     case "secondary":

@@ -36,7 +36,7 @@ const TaskItem = ({ task = {} }) => {
       </Left>
       <BadgeButton>
         <Badge type={task.type}>{task.taskStatus}</Badge>
-        <Button type="secondary" onClick={() => onOpen()}>
+        <Button type="transparent" onClick={() => onOpen()}>
           View details
         </Button>
         {showManageEvent && (
@@ -45,8 +45,11 @@ const TaskItem = ({ task = {} }) => {
             task={task}
           />
         )}
+        <Button onClick={() => onOpen()} icon="edit" type="no-border">
+          Edit
+        </Button>
+        {/* <Icon variant="edit" /> */}
       </BadgeButton>
-      <Icon variant="edit" />
     </TaskRow>
   );
 };
@@ -86,8 +89,8 @@ const TaskAssignee = styled(StyledParagraphSmall)`
   text-align: left;
 `;
 const BadgeButton = styled.div`
-  width: 30%;
-  gap: 6px;
+  // width: 30%;
+  gap: 16px;
   display: flex;
   align-content: center;
   align-items: center;
