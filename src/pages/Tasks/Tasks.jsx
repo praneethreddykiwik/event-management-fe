@@ -19,6 +19,7 @@ import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
+import { fetchVendorsAction } from "../../redux/users/users.actions";
 
 const EventManagerDashboard = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,18 @@ const EventManagerDashboard = () => {
   useEffect(() => {
     const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
+    dispatch(fetchVendorsAction());
   }, []);
 
-  const onAddTask = () => {
-    navigate(paths.createTask);
+  const onAddTask = (event) => {
+    debugger;
+    navigate(`${paths.createTask}`, {
+      state: {
+        eventUid: event.eventUid,
+        mode: "add",
+      },
+    });
   };
-
-  console.log("abdul tasks", tasks);
 
   return (
     <BlueBackHOC>
@@ -63,7 +69,7 @@ const EventManagerDashboard = () => {
                 icon="add"
                 sx={{ width: "180px" }}
                 whiteText
-                onClick={onAddTask}
+                onClick={() => onAddTask(event)}
               >
                 Add Task
               </Button>

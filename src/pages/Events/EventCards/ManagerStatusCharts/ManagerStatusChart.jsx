@@ -16,7 +16,7 @@ const ManagerStatusChart = () => {
           { data: disabledData, label: "Disabled", id: "disabled" },
         ]}
         xAxis={[{ data: xLabels }]}
-        yAxis={[{ width: 30 }]}
+        yAxis={[{ width: 50 }]}
       />
     </Box>
   );

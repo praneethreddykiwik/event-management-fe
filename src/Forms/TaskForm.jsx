@@ -3,7 +3,6 @@ import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../components/Buttons/Button";
 import { useDispatch, useSelector } from "react-redux";
-import useTenant from "../hooks/useTenant.hook";
 import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
 import { validationList } from "../constants/validations.constants";
 import {
@@ -15,7 +14,6 @@ import {
 const TaskForm = ({ onCreateTask }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
-  const tenantId = useTenant();
   const { createTaskInputs } = useSelector(formsSelector);
 
   const validateFields = () => {
@@ -23,6 +21,7 @@ const TaskForm = ({ onCreateTask }) => {
 
     const newInputs = createTaskInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
+      debugger;
       if (isReq && !el.value) {
         isValid = false;
         return { ...el, error: "This field is required" };
@@ -44,7 +43,7 @@ const TaskForm = ({ onCreateTask }) => {
 
     const payload = {
       navigate,
-      reqPayload: { ...reqPayload, tenantId },
+      reqPayload,
     };
 
     await onCreateTask(payload);

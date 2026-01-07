@@ -4,28 +4,50 @@ import {
   StyledHeadingBig,
 } from "../../components/Styled/Typography.styled";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import TaskForm from "../../Forms/TaskForm";
 import { updateAllTaskInputs } from "../../redux/farms/farms.slice";
 import {
+  generateAddEventInpMetadata,
   generateTaskDataToEdit,
   taskMetaData,
 } from "../../redux/farms/metadata/task.metadata";
 import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
 import { Venue } from "../../components/Venue/Venue";
 import { toast } from "react-toastify";
+import { createTaskAction } from "../../redux/tasks/tasks.actions";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { useLocation } from "react-router-dom";
+import { usersSelector } from "../../redux/users/users.slice";
+import { Button } from "../../components/Buttons/Button";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { paths } from "../../constants/paths";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigateWithQuery();
+
+  const { authUser } = useSelector(authSelector);
+  const { vendors } = useSelector(usersSelector);
+
+  const isEditMode = location.state?.mode === "edit";
+  const isAddMode = location.state?.mode === "add";
 
   useEffect(() => {
-    dispatch(updateAllTaskInputs(taskMetaData));
+    dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
   }, []);
 
-  const onCreateTask = () => {
-    // dispatch()
+  const onCreateTask = (payloadParams) => {
+    const payload = {
+      ...payloadParams,
+    };
+    payload.reqPayload.tenantUid = authUser.tenantUid;
+    payload.reqPayload.eventUid = location.state.eventUid;
+
+    dispatch(createTaskAction(payload));
   };
 
   const onClickSuggestion = (selectedTask) => {
@@ -34,10 +56,20 @@ export const CreateTask = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const goBack = () => {
+    navigate(paths.tasks);
+  };
+
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Create Task</StyledHeading>
+        <StyledHeading left>
+          {isEditMode
+            ? "Edit Task"
+            : isAddMode
+            ? "Add task to Event"
+            : "Create Task"}
+        </StyledHeading>
         <StyledHr />
         <StyledFlex>
           <TaskForm onCreateTask={onCreateTask} />
@@ -45,8 +77,10 @@ export const CreateTask = () => {
             <StyledHeadingBig left>
               Please choose from one of the below Tasks
             </StyledHeadingBig>
+            <Button onClick={goBack}>Go Back</Button>
           </StyledBox>
         </StyledFlex>
+
         <StyledSuggestions>
           {tasksMetadata.map((el) => (
             <Venue

@@ -10,6 +10,7 @@ import { useState } from "react";
 import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { Button } from "../../components/Buttons/Button";
+import { Icon } from "../../components/Icons/Icons";
 
 const TaskItem = ({ task = {} }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
@@ -36,7 +37,7 @@ const TaskItem = ({ task = {} }) => {
       <BadgeButton>
         <Badge type={task.type}>{task.taskStatus}</Badge>
         <Button type="secondary" onClick={() => onOpen()}>
-          {E_M_DASHBOARD_COMMON.MANAGE_B}
+          View details
         </Button>
         {showManageEvent && (
           <ManageTaskModal
@@ -45,6 +46,7 @@ const TaskItem = ({ task = {} }) => {
           />
         )}
       </BadgeButton>
+      <Icon variant="edit" />
     </TaskRow>
   );
 };
@@ -53,6 +55,7 @@ const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
+  background: #f3fff4;
 `;
 
 const Left = styled.div`
