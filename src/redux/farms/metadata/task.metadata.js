@@ -36,9 +36,14 @@ export const taskMetaData = [
     // width: halfSize,
   },
   {
-    type: "text",
+    type: "dropdown",
     name: "priority",
     value: "",
+    options: [
+      { value: "low", label: "Low" },
+      { value: "medium", label: "Medium" },
+      { value: "high", label: "High" },
+    ],
     placeholder: "Add Priority",
     label: "Priority",
     error: null,
@@ -90,7 +95,7 @@ export const generateAddEventInpMetadata = (vendors) => {
   return dat;
 };
 
-export const generateTaskDataToEdit = (data) => {
+export const generateTaskDataToEdit = (vendors, data) => {
   const allowedFields = [
     "title",
     "description",
@@ -101,6 +106,16 @@ export const generateTaskDataToEdit = (data) => {
 
   return allowedFields.map((el) => {
     const input = taskMetaData.find((fn) => fn.name === el);
+    if (el === "assignedToUid") {
+      return {
+        ...input,
+        value: data[el],
+        options: vendors.map((vendor) => ({
+          value: vendor.uid,
+          label: `${vendor.firstName} ${vendor.lastName}`,
+        })),
+      };
+    }
     return { ...input, value: data[el] };
   });
 };

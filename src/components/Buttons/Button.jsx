@@ -19,6 +19,7 @@ export const Button = ({
   image,
   whiteText,
   disabled,
+  small,
 }) => {
   const renderContent = () => (
     <ButtonContent>
@@ -33,34 +34,34 @@ export const Button = ({
   switch (type) {
     case "outlined":
       return (
-        <StyledOutlinedButton sx={sx} onClick={onClick}>
+        <StyledOutlinedButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledOutlinedButton>
       );
     case "no-border":
       return (
-        <StyledNoBorderButton sx={sx} onClick={onClick}>
+        <StyledNoBorderButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledNoBorderButton>
       );
 
     case "secondary":
       return (
-        <StyledSecButton sx={sx} onClick={onClick}>
+        <StyledSecButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledSecButton>
       );
 
     case "transparent":
       return (
-        <StyledTransparentButton sx={sx} onClick={onClick}>
+        <StyledTransparentButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledTransparentButton>
       );
 
     case "icon":
       return (
-        <StyledIconButton sx={sx} onClick={onClick}>
+        <StyledIconButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledIconButton>
       );
@@ -71,6 +72,7 @@ export const Button = ({
           sx={sx}
           $whiteText={whiteText}
           onClick={onClick}
+          small={small}
           disabled={disabled}
         >
           {renderContent()}

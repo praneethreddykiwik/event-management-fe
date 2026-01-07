@@ -83,7 +83,7 @@ const ManageTaskModal = ({ onClose, task }) => {
               <span className="material-symbols-outlined">check_small</span>{" "}
               Accept Task
             </AcceptButton> */}
-            <Button onClick={onDecline} icon="close_small" type="primary">
+            <Button onClick={onDecline} icon="close_small">
               Close
             </Button>
           </ActionRow>
