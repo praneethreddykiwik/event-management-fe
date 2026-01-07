@@ -5,9 +5,13 @@ import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { useEffect, useRef, useState } from "react";
 import { paths } from "../../constants/paths";
 import { RBACHOC } from "../../RBAC/RBAC";
+import { useSelector } from "react-redux";
+import { authSelector } from "../../redux/auth/auth.slice";
 
-export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
+export const HeaderMenu = ({ menuOpen, goLogin }) => {
   const navigate = useNavigateWithQuery();
+  const { authStatus } = useSelector(authSelector);
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const menuRef = useRef(null);
 
@@ -27,27 +31,31 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const isLoggedIn = authStatus === "authenticated";
+
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
       <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown("events")}>
-        Events <ArrowIcon $open={openDropdown === "events"} />
-        <Dropdown $open={openDropdown === "events"}>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>event</ItemIcon>
-            Upcoming Events
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>event_note</ItemIcon>
-            Current Events
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>add_ad</ItemIcon>
-            Create Event
-          </DropdownItem>
-        </Dropdown>
-      </MenuItem>
+      {isLoggedIn ? (
+        <MenuItem onClick={() => toggleDropdown("events")}>
+          Events <ArrowIcon $open={openDropdown === "events"} />
+          <Dropdown $open={openDropdown === "events"}>
+            <DropdownItem onClick={() => navigate("/")}>
+              <ItemIcon>event</ItemIcon>
+              Upcoming Events
+            </DropdownItem>
+            <DropdownItem onClick={() => navigate("/")}>
+              <ItemIcon>event_note</ItemIcon>
+              Current Events
+            </DropdownItem>
+            <DropdownItem onClick={() => navigate("/")}>
+              <ItemIcon>add_ad</ItemIcon>
+              Create Event
+            </DropdownItem>
+          </Dropdown>
+        </MenuItem>
+      ) : null}
 
       <MenuItem onClick={() => toggleDropdown("venues")}>
         Market <ArrowIcon $open={openDropdown === "venues"} />
@@ -63,37 +71,39 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
         </Dropdown>
       </MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown("pages")}>
-        Pages <ArrowIcon $open={openDropdown === "pages"} />
-        <Dropdown $open={openDropdown === "pages"}>
-          <RBACHOC perm="admin:panel">
-            <DropdownItem onClick={() => navigate(paths.events)}>
-              <ItemIcon>event</ItemIcon>
-              Admin Dashboard
+      {isLoggedIn ? (
+        <MenuItem onClick={() => toggleDropdown("pages")}>
+          Pages <ArrowIcon $open={openDropdown === "pages"} />
+          <Dropdown $open={openDropdown === "pages"}>
+            <RBACHOC perm="admin:panel">
+              <DropdownItem onClick={() => navigate(paths.events)}>
+                <ItemIcon>event</ItemIcon>
+                Admin Dashboard
+              </DropdownItem>
+            </RBACHOC>
+            <DropdownItem onClick={() => navigate(paths.tasks)}>
+              <ItemIcon>checklist_rtl</ItemIcon>
+              Tasks
             </DropdownItem>
-          </RBACHOC>
-          <DropdownItem onClick={() => navigate(paths.tasks)}>
-            <ItemIcon>checklist_rtl</ItemIcon>
-            Tasks
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate(paths.vendor)}>
-            <ItemIcon>storefront</ItemIcon>
-            Vendor
-          </DropdownItem>
-          <RBACHOC perm="customer:panel">
-            <DropdownItem onClick={() => navigate(paths.customer)}>
-              <ItemIcon>emoji_people</ItemIcon>
-              Customer
+            <DropdownItem onClick={() => navigate(paths.vendor)}>
+              <ItemIcon>storefront</ItemIcon>
+              Vendor
             </DropdownItem>
-          </RBACHOC>
-          <RBACHOC perm="admin:panel">
-            <DropdownItem onClick={() => navigate(paths.userManagement)}>
-              <ItemIcon>supervised_user_circle</ItemIcon>
-              User Management
-            </DropdownItem>
-          </RBACHOC>
-        </Dropdown>
-      </MenuItem>
+            <RBACHOC perm="customer:panel">
+              <DropdownItem onClick={() => navigate(paths.customer)}>
+                <ItemIcon>emoji_people</ItemIcon>
+                Customer
+              </DropdownItem>
+            </RBACHOC>
+            <RBACHOC perm="admin:panel">
+              <DropdownItem onClick={() => navigate(paths.userManagement)}>
+                <ItemIcon>supervised_user_circle</ItemIcon>
+                User Management
+              </DropdownItem>
+            </RBACHOC>
+          </Dropdown>
+        </MenuItem>
+      ) : null}
 
       {/* MOBILE EXTRA ICONS */}
       <MobileOnlyContainer>

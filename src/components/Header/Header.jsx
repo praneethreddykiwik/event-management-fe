@@ -40,11 +40,7 @@ const Header = () => {
       <HeaderLogo />
 
       {/* CENTER MENU */}
-      <HeaderMenu
-        menuOpen={menuOpen}
-        isLoggedIn={isLoggedIn}
-        goLogin={goLogin}
-      />
+      <HeaderMenu menuOpen={menuOpen} goLogin={goLogin} />
 
       {/* RIGHT ICONS (Desktop Only) */}
       <RightBox>
