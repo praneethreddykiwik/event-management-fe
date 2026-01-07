@@ -57,10 +57,10 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
         </MenuItem>
       ) : null}
 
-      <MenuItem onClick={() => toggleDropdown("venues")}>
-        Market <ArrowIcon $open={openDropdown === "venues"} />
-        <Dropdown $open={openDropdown === "venues"}>
-          <DropdownItem onClick={() => navigate("/")}>
+      <MenuItem onClick={() => toggleDropdown('venues')}>
+        Market <ArrowIcon $open={openDropdown === 'venues'} />
+        <Dropdown $open={openDropdown === 'venues'}>
+          <DropdownItem onClick={() => navigate('/venues')}>
             <ItemIcon>map_search</ItemIcon>
             Venues Near Me
           </DropdownItem>

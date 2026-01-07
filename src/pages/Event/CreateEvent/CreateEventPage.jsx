@@ -11,6 +11,8 @@ import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { Venue } from "../../../components/Venue/Venue";
+import { tasksMetadata } from "../../../constants/metadata/tasks.metadata";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -34,6 +36,12 @@ const CreateEventPage = () => {
 
         <CreateEvent onCreateEvent={onCreateEvent} />
       </EventsPageContainer>
+
+      <StyledSuggestions>
+        {tasksMetadata.map((el) => (
+          <Venue venueDetails={el} btnText="Choose" onClick={() => {}} />
+        ))}
+      </StyledSuggestions>
     </BlueBackHOC>
   );
 };
@@ -43,3 +51,29 @@ const EventsPageContainer = styled.div`
 `;
 
 export default CreateEventPage;
+
+const DashboardContainer = styled.div`
+  padding: 0 20px 60px 20px;
+`;
+
+const StyledBox = styled.div`
+  flex-basis: 30%;
+  flex-shrink: 0;
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  gap: 160px;
+  // padding-left: 140px;
+`;
+
+const StyledSuggestions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+
+  .venue-ctn {
+    flex: 0 0 calc((100% - 180px) / 3);
+  }
+`;

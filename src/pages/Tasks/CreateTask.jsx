@@ -107,7 +107,7 @@ export const CreateTask = () => {
           <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
-              Please choose from one of the below Tasks
+              Please choose from one of the below Events
             </StyledHeadingBig>
             <Button onClick={goBack}>Go Back</Button>
           </StyledBox>

@@ -30,8 +30,6 @@ const VenueLocationMap = ({ mapUrl }) => {
 
 export default VenueLocationMap;
 
-/* -------- styles -------- */
-
 const MapWrapper = styled.div`
   width: 100%;
   height: 420px;
