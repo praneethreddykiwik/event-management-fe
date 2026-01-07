@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import PopupModal from "../PopupModal/PopupModal";
-import { Button } from "../Buttons/Button";
+import PopupModal from "../../components/PopupModal/PopupModal";
+import { Button } from "../../components/Buttons/Button";
 import {
   updateUserAction,
   fetchManagersAction,
   registrationAction,
+  fetchAllUsersAction,
 } from "../../redux/users/users.actions";
 import { useDispatch } from "react-redux";
 import RegistrationForm from "../../Forms/RegistrationForm";
@@ -19,7 +20,7 @@ const EditUserPopup = ({ onClose, modalDetails }) => {
     } else {
       await dispatch(registrationAction(payload));
     }
-    await dispatch(fetchManagersAction());
+    await dispatch(fetchAllUsersAction());
     onClose();
   };
 

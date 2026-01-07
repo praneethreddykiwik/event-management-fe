@@ -8,10 +8,9 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { Icon } from "../../components/Icons/Icons";
 
-const UserManagementItem = ({ data }) => {
+const UserManagementItem = ({ data, onEdit, onDelete }) => {
   return (
     <StyledCard>
-      {/* LEFT */}
       <Left>
         <UserName>
           {data.firstName} {data.lastName || ""}
@@ -23,14 +22,13 @@ const UserManagementItem = ({ data }) => {
         </UserMeta>
       </Left>
 
-      {/* RIGHT */}
       <Right>
         <IconWrapper>
-          <Icon variant="edit" />
+          <Icon variant="edit" onClick={onEdit} />
         </IconWrapper>
 
         <IconWrapper danger>
-          <Icon variant="delete" />
+          <Icon variant="delete" onClick={onDelete} />
         </IconWrapper>
       </Right>
     </StyledCard>
