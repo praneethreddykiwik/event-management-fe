@@ -35,7 +35,6 @@ const usersSlice = createSlice({
           (manager) => `${manager?.firstName} ${manager?.lastName}`
         );
         state.eventManagerNames = managerUsernames;
-        debugger;
         state.eventManagersLoading = false;
         state.eventManagersError = null;
       })

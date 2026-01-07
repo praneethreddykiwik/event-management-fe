@@ -2,11 +2,12 @@ import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
 
-export const eventMetaData = (eventManagersNameList) => {
-  const managerOptions = eventManagersNameList.map((manager) => ({
-    value: manager,
-    label: manager,
+export const eventMetaData = (eventManagers) => {
+  const managerOptions = eventManagers.map((manager) => ({
+    value: manager.uid,
+    label: `${manager?.firstName} ${manager?.lastName}`,
   }));
+
   return [
     {
       type: "text",

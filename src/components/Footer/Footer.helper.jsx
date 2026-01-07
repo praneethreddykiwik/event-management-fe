@@ -18,3 +18,11 @@
       { label: "FAQ", to: "/faq" },
     ],
   };
+
+  export const socialLinks = [
+  { name: "LinkedIn", url: "https://www.linkedin.com/company/criska/" },
+  { name: "X", url: "https://x.com" },
+  { name: "Instagram", url: "https://instagram.com" },
+  { name: "YouTube", url: "https://youtube.com" },
+  { name: "Facebook", url: "https://facebook.com" },
+];

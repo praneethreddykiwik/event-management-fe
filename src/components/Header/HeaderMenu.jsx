@@ -28,61 +28,61 @@ export const HeaderMenu = ({ menuOpen, isLoggedIn, goLogin }) => {
 
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
-      <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
+      <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown("events")}>
-        Events <ArrowIcon $open={openDropdown === "events"} />
-        <Dropdown $open={openDropdown === "events"}>
-          <DropdownItem onClick={() => navigate("/")}>
+      <MenuItem onClick={() => toggleDropdown('events')}>
+        Events <ArrowIcon $open={openDropdown === 'events'} />
+        <Dropdown $open={openDropdown === 'events'}>
+          <DropdownItem onClick={() => navigate('/')}>
             <ItemIcon>event</ItemIcon>
             Upcoming Events
           </DropdownItem>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>schedule</ItemIcon>
+          <DropdownItem onClick={() => navigate('/')}>
+            <ItemIcon>event_note</ItemIcon>
             Current Events
           </DropdownItem>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>add_circle</ItemIcon>
+          <DropdownItem onClick={() => navigate('/')}>
+            <ItemIcon>add_ad</ItemIcon>
             Create Event
           </DropdownItem>
         </Dropdown>
       </MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown("venues")}>
-        Market <ArrowIcon $open={openDropdown === "venues"} />
-        <Dropdown $open={openDropdown === "venues"}>
-          <DropdownItem onClick={() => navigate("/")}>
-            <ItemIcon>location_on</ItemIcon>
+      <MenuItem onClick={() => toggleDropdown('venues')}>
+        Market <ArrowIcon $open={openDropdown === 'venues'} />
+        <Dropdown $open={openDropdown === 'venues'}>
+          <DropdownItem onClick={() => navigate('/')}>
+            <ItemIcon>map_search</ItemIcon>
             Venues Near Me
           </DropdownItem>
           <DropdownItem onClick={() => navigate(paths.marketPlace)}>
-            <ItemIcon>location_on</ItemIcon>
+            <ItemIcon>local_mall</ItemIcon>
             Market Place
           </DropdownItem>
         </Dropdown>
       </MenuItem>
 
-      <MenuItem onClick={() => toggleDropdown("pages")}>
-        Pages <ArrowIcon $open={openDropdown === "pages"} />
-        <Dropdown $open={openDropdown === "pages"}>
+      <MenuItem onClick={() => toggleDropdown('pages')}>
+        Pages <ArrowIcon $open={openDropdown === 'pages'} />
+        <Dropdown $open={openDropdown === 'pages'}>
           <DropdownItem onClick={() => navigate(paths.events)}>
-            <ItemIcon>admin_panel_settings</ItemIcon>
+            <ItemIcon>event</ItemIcon>
             Events
           </DropdownItem>
           <DropdownItem onClick={() => navigate(paths.tasks)}>
-            <ItemIcon>dashboard</ItemIcon>
+            <ItemIcon>checklist_rtl</ItemIcon>
             Tasks
           </DropdownItem>
           <DropdownItem onClick={() => navigate(paths.vendor)}>
-            <ItemIcon>dashboard</ItemIcon>
+            <ItemIcon>storefront</ItemIcon>
             Vendor
           </DropdownItem>
           <DropdownItem onClick={() => navigate(paths.customer)}>
-            <ItemIcon>dashboard</ItemIcon>
+            <ItemIcon>emoji_people</ItemIcon>
             Customer
           </DropdownItem>
           <DropdownItem onClick={() => navigate(paths.userManagement)}>
-            <ItemIcon>dashboard</ItemIcon>
+            <ItemIcon>supervised_user_circle</ItemIcon>
             User Management
           </DropdownItem>
         </Dropdown>

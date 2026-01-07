@@ -57,7 +57,6 @@ const CreateEvent = ({ onCreateEvent }) => {
 
     const { hour, minute } = extractHoursAndMinutes(time);
     const formatedTime = formatScheduleDate(date, hour, minute);
-    debugger;
 
     const tenantUid = authUser.tenantUid;
     const scheduledAt = formatedTime;

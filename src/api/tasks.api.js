@@ -6,4 +6,7 @@ export const fetchEventsAndTasksApi = (query) =>
   httpsClient.get("/users/user-events-tasks?" + query);
 
 export const declineTasksApi = (data) =>
-  httpsClient.post("/tasks/decline-task", data);
+  httpsClient.put("/tasks/decline-task", data);
+
+export const acceptTasksApi = (data) =>
+  httpsClient.put("/tasks/accept-task", data);
