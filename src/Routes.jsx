@@ -25,6 +25,7 @@ import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
+import VenueLocations from "./pages/Venues/VenueLocations";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -78,10 +79,14 @@ const AppRoutes = () => {
 
       <Route path="*" element={<Home />} />
       <Route path={paths.userManagement} element ={<UserManagement />}/>
+
+      <Route path={paths.venues} element={<VenueLocations />} />
     </>
   );
 
   const isLoggedIn = authStatus === "authenticated";
+
+  
 
   return (
     <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>
