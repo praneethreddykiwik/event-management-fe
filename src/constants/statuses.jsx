@@ -107,3 +107,9 @@ export const managersStatuses = {
   IDLE: {},
   DISABLED: {},
 };
+
+export const taskPriorities = {
+  low: "low",
+  medium: "medium",
+  high: "high",
+};

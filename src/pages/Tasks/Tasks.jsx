@@ -35,11 +35,27 @@ const EventManagerDashboard = () => {
   }, []);
 
   const onAddTask = (event) => {
-    debugger;
     navigate(`${paths.createTask}`, {
       state: {
         eventUid: event.eventUid,
         mode: "add",
+      },
+    });
+  };
+
+  const onEdit = (task, event) => {
+    navigate(`${paths.createTask}`, {
+      state: {
+        eventUid: event.eventUid,
+        taskUid: task.taskUid,
+        mode: "edit",
+        taskData: {
+          title: task.taskTitle,
+          description: task.taskDescription,
+          priority: task.taskPriority,
+          dueAt: task.taskDueAt,
+          assignedToUid: task.taskAssignedToUid,
+        },
       },
     });
   };
@@ -77,7 +93,12 @@ const EventManagerDashboard = () => {
             <StyledHrTask />
 
             {event.tasks?.length ? (
-              event.tasks.map((task) => <TaskItem task={mapTaskForUI(task)} />)
+              event.tasks.map((task) => (
+                <TaskItem
+                  task={mapTaskForUI(task)}
+                  onEdit={(tsk) => onEdit(tsk, event)}
+                />
+              ))
             ) : (
               <StyledParagraphSmallGray>
                 No tasks added yet
