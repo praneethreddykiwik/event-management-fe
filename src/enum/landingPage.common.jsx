@@ -89,7 +89,7 @@ export const BOOKCOMPONENT_TXT = {
     " Join our email list to resceive updates on events near you, booking and appointment availabilty tips on great event planning, management and more.",
 
   //buttons text
-  BOOK_BTN: "Get more information",
+  BOOK_BTN: "Notify when available",
 
   BOOK_POLICY: (
     <>

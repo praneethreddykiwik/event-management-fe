@@ -151,7 +151,9 @@ const Heading = styled(StyledParagraphBold)`
 const StyledParagraph = styled(StyledParagraphSmall)`
   text-align: left;
   margin-top: -10px;
+  margin-bottom: 15px;
   word-wrap: break-word;
+  font-size: 13px; 
 `;
 
 const StyledHr = styled.hr`
@@ -163,7 +165,7 @@ const StyledHr = styled.hr`
 const StyledImageOne = styled.img`
   width: 100%;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 export default Experience;

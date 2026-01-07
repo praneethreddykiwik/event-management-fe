@@ -12,12 +12,14 @@ import { updateAllTaskInputs } from "../../redux/farms/farms.slice";
 import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
-  taskMetaData,
 } from "../../redux/farms/metadata/task.metadata";
 import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
 import { Venue } from "../../components/Venue/Venue";
 import { toast } from "react-toastify";
-import { createTaskAction } from "../../redux/tasks/tasks.actions";
+import {
+  createTaskAction,
+  editTaskAction,
+} from "../../redux/tasks/tasks.actions";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
 import { usersSelector } from "../../redux/users/users.slice";
@@ -35,12 +37,40 @@ export const CreateTask = () => {
 
   const isEditMode = location.state?.mode === "edit";
   const isAddMode = location.state?.mode === "add";
+  const taskData = location.state?.taskData;
 
   useEffect(() => {
-    dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
+    if (!vendors.length) {
+      navigate(paths.tasks);
+      return;
+    }
+    if (isEditMode) {
+      dispatch(updateAllTaskInputs(generateTaskDataToEdit(vendors, taskData)));
+    } else if (isAddMode) {
+      dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
+    }
   }, []);
 
-  const onCreateTask = (payloadParams) => {
+  const onSubmit = (payloadParams) => {
+    if (isEditMode) {
+      editTask(payloadParams);
+    } else if (isAddMode) {
+      createTask(payloadParams);
+    }
+  };
+
+  const editTask = (payloadParams) => {
+    const payload = {
+      ...payloadParams,
+    };
+    payload.reqPayload.tenantUid = authUser.tenantUid;
+    payload.reqPayload.eventUid = location.state.eventUid;
+    payload.reqPayload.taskUid = location.state.taskUid;
+
+    dispatch(editTaskAction(payload));
+  };
+
+  const createTask = (payloadParams) => {
     const payload = {
       ...payloadParams,
     };
@@ -51,7 +81,9 @@ export const CreateTask = () => {
   };
 
   const onClickSuggestion = (selectedTask) => {
-    dispatch(updateAllTaskInputs(generateTaskDataToEdit(selectedTask)));
+    dispatch(
+      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask))
+    );
     toast.success("Selected task details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -72,7 +104,7 @@ export const CreateTask = () => {
         </StyledHeading>
         <StyledHr />
         <StyledFlex>
-          <TaskForm onCreateTask={onCreateTask} />
+          <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
               Please choose from one of the below Tasks

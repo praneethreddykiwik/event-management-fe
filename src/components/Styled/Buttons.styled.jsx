@@ -1,6 +1,9 @@
 /** @format */
 import styled from "styled-components";
 
+const height = ({ small }) => (small ? "28px" : "40px");
+const padding = ({ small }) => (small ? "0px 20px;" : "6px 20px;");
+
 export const ButtonContent = styled.div`
   display: flex;
   align-items: center;
@@ -20,13 +23,14 @@ export const ButtonImage = styled.img`
 `;
 
 export const StyledBaseButton = styled.button`
-  height: 40px;
+  height: ${height};
+
   width: 100%;
   border-radius: 30px;
   width: 100%;
   font-size: 16px;
 
-  padding: 6px 20px;
+  padding: ${padding}
   background-color: #26c867;
   color: ${({ $whiteText }) => ($whiteText ? "#fff" : "#000")};
   min-width: 100px;
@@ -41,10 +45,11 @@ export const StyledBaseButton = styled.button`
 `;
 
 export const StyledOutlinedButton = styled.button`
-  height: 40px;
+  height: ${height};
+
   width: 100%;
   border-radius: 30px;
-  padding: 6px 20px;
+  padding: ${padding}
   background-color: #fff;
   color: #000;
   min-width: 100px;
@@ -55,11 +60,12 @@ export const StyledOutlinedButton = styled.button`
 `;
 
 export const StyledNoBorderButton = styled.button`
-  height: 40px;
+  height: ${height};
+
   width: 100%;
   border: none;
   border-radius: 30px;
-  padding: 6px 20px;
+  padding: ${padding}
   // background-color: #eaeaeaff;
   color: #000;
   min-width: 100px;
@@ -71,10 +77,11 @@ export const StyledNoBorderButton = styled.button`
 `;
 
 export const StyledSecButton = styled.button`
-  height: 40px;
+  height: ${height};
+
   width: 100%;
   border-radius: 30px;
-  padding: 6px 20px;
+  padding: ${padding}
   background-color: #fff;
   color: #000;
   min-width: 100px;
@@ -87,9 +94,10 @@ export const StyledSecButton = styled.button`
 // need to change this to links after the review
 export const StyledTransparentButton = styled.button`
   border: none;
-  height: 40px;
+  height: ${height};
+
   border-radius: 30px;
-  padding: 6px 20px;
+  padding: ${padding}
   color: #26c867;
   min-width: 100px;
   background-color: transparent;
@@ -99,10 +107,11 @@ export const StyledTransparentButton = styled.button`
   ${({ sx }) => ({ ...sx })}
 `;
 export const StyledIconButton = styled.button`
-  height: 40px;
+  height: ${height};
+
   width: 100%;
   border-radius: 30px;
-  padding: 6px 20px;
+  padding: ${padding}
   background-color: #26c867;
   color: #fff;
   min-width: 100px;

@@ -1,30 +1,29 @@
 /** @format */
 
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   StyledHeading,
   StyledMediumHeading,
   StyledParagraphSmall,
   StyledParagraphSmallGray,
-} from '../../components/Styled/Typography.styled';
-import { useEffect } from 'react';
-import { fetchEventsAndTasksAction } from '../../redux/tasks/tasks.actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '../../redux/auth/auth.slice';
-import { tasksSelector } from '../../redux/tasks/tasks.slice';
-import { StyledHr } from '../../components/Styled/Common.styled';
-import { BlueBackHOC } from '../../HOC/BlueBackHOC';
-import { Section } from '../../HOC/SectionsHOC';
-import { mapTaskForUI } from '../../helpers/Dashboard.helper';
-import CustomerItem from './CustomerItem';
-import { E_M_DASHBOARD_COMMON } from '../../Enum/EMDashboard.common';
+} from "../../components/Styled/Typography.styled";
+import { useEffect } from "react";
+import { fetchEventsAndTasksAction } from "../../redux/tasks/tasks.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { tasksSelector } from "../../redux/tasks/tasks.slice";
+import { StyledHr } from "../../components/Styled/Common.styled";
+import { BlueBackHOC } from "../../HOC/BlueBackHOC";
+import { Section } from "../../HOC/SectionsHOC";
+import { mapTaskForUI } from "../../helpers/Dashboard.helper";
+import CustomerItem from "./CustomerItem";
+import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
 
 const CustomerDashboard = () => {
   const dispatch = useDispatch();
 
   const { authUser } = useSelector(authSelector);
   const { tasks } = useSelector(tasksSelector);
-  // debugger;
   useEffect(() => {
     if (!authUser?.uid || !authUser?.tenantUid) return;
 
@@ -45,8 +44,8 @@ const CustomerDashboard = () => {
                 <TaskOverview>{event.eventName}</TaskOverview>
                 <TaskMonitor>{event.eventVenue}</TaskMonitor>
                 <TaskAssignee>
-                  {E_M_DASHBOARD_COMMON.TASKASSIGNEE}{' '}
-                  {event.eventAssignedToFirstName}{' '}
+                  {E_M_DASHBOARD_COMMON.TASKASSIGNEE}{" "}
+                  {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
                 </TaskAssignee>
                 {/* <TaskAssignee>

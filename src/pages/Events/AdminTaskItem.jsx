@@ -9,6 +9,7 @@ import { Button } from "../../components/Buttons/Button";
 import { paths } from "../../constants/paths";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { ADMIN_COMMON } from "../../enum/Admin.common";
+import GaugeChart from "../../components/Charts/GuageChart";
 
 const AdminTaskItem = ({ data }) => {
   const navigate = useNavigateWithQuery();
@@ -39,6 +40,7 @@ const AdminTaskItem = ({ data }) => {
           {ADMIN_COMMON.ADMIN_DETAILS}
         </Button>
       </BadgeButton>
+      <GaugeChart value={40} fill={"#52b202"} />
     </StyledCard>
   );
 };

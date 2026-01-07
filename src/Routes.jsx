@@ -23,6 +23,7 @@ import Events from "./pages/Events/Events.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
+import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 
 const AppRoutes = () => {
@@ -76,6 +77,7 @@ const AppRoutes = () => {
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
 
       <Route path="*" element={<Home />} />
+      <Route path={paths.userManagement} element ={<UserManagement />}/>
     </>
   );
 
