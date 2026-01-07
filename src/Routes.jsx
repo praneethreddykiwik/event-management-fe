@@ -44,7 +44,7 @@ const AppRoutes = () => {
       <Route path={'/'} element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
       <Route path={'/Gateway'} element={<GatewayPage />} />
-      <Route path={'/Getintouch'} element={<GetInTouch />} />
+      <Route path={'/Get-in-touch'} element={<GetInTouch />} />
       <Route path={'/paymentSuccess'} element={<PaymentSuccess />} />
       <Route path={'/accountSetting'} element={<AccountSettingsPage />} />
       <Route path={'/controlpage'} element={<Controlpage />} />
