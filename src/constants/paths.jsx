@@ -18,4 +18,6 @@ export const paths = {
   userManagement: "/user/management",
   marketPlace: "/market-place",
   getInTouch : "/get-in-touch",
+
+  venues: "/venues",
 };

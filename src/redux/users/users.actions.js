@@ -28,6 +28,26 @@ export const fetchManagersAction = createAsyncThunk(
   }
 );
 
+export const fetchAllUsersAction = createAsyncThunk(
+  "users/fetchAllUsersAction",
+  async (_, { rejectWithValue, getState }) => {
+    const store = getState();
+    const { tenantId } = store.auth;
+    try {
+      const query = `?tenantId=${tenantId}`;
+      const res = await getUsersApi(query);
+      return res.data;
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch Users"
+      );
+      return rejectWithValue(err?.response?.data || "Fetch users failed");
+    }
+  }
+);
+
 export const fetchVendorsAction = createAsyncThunk(
   "users/fetchVendorsAction",
   // http://localhost:4000/v1/users?tenantId=tenant_001&role=vendor
