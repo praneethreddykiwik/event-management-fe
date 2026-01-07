@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
@@ -26,6 +26,7 @@ import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 import VenueLocations from "./pages/Venues/VenueLocations";
+import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -35,8 +36,9 @@ const AppRoutes = () => {
       <Route path={"/"} element={<Home />} />
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path="*" element={<Login />} />
       <Route path={"/get-in-touch"} element={<GetInTouch />} />
+      <Route path={paths.marketPlace} element={<MarketPlace />} />
+      <Route path="*" element={<Login />} />
     </>
   );
 
@@ -56,7 +58,14 @@ const AppRoutes = () => {
       <Route path={paths.marketPlace} element={<MarketPlace />} />
 
       {/* Admin */}
-      <Route path={paths.events} element={<Events />} />
+      <Route
+        path={paths.events}
+        element={
+          <RBACRoute perm="admin:panel">
+            <Events />
+          </RBACRoute>
+        }
+      />
       <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
 
       {/* Profile */}
@@ -78,15 +87,21 @@ const AppRoutes = () => {
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
 
       <Route path="*" element={<Home />} />
-      <Route path={paths.userManagement} element ={<UserManagement />}/>
 
       <Route path={paths.venues} element={<VenueLocations />} />
+      <Route
+        path={paths.userManagement}
+        element={
+          <RBACRoute perm="admin:panel">
+            <UserManagement />
+          </RBACRoute>
+        }
+      />
     </>
   );
 
   const isLoggedIn = authStatus === "authenticated";
-
-  
+  console.log("abdul isLoggedIn", isLoggedIn);
 
   return (
     <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>

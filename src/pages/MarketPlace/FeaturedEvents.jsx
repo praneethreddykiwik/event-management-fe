@@ -98,7 +98,7 @@ const FeaturedEvents = () => {
   return (
     <Section>
       <Header>
-        <h2>Featured Events</h2>
+        <h2>Featured Event Managers</h2>
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>

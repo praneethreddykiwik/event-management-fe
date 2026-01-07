@@ -21,7 +21,6 @@ export const createEventsDispatch = createAsyncThunk(
   "events/createEventsDispatch",
   async (payload, { rejectWithValue }) => {
     try {
-      debugger;
       const res = await createEventsApi(payload.reqPayload);
       toast.success("created Events successfully");
       payload.navigate(paths.events);

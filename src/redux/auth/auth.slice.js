@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./auth.actions";
+import { ROLE_PERMISSIONS } from "../../RBAC/permissions";
 
 const initialState = {
   authUser: null,
@@ -7,6 +8,11 @@ const initialState = {
   authError: null,
 
   tenantId: "",
+
+  // RBAC
+  roles: ["manager"],
+  permissions: [],
+  isAuthReady: false,
 };
 
 const authSlice = createSlice({
@@ -30,6 +36,10 @@ const authSlice = createSlice({
       })
       .addCase(actions.bootstrapAuthAction.fulfilled, (state, action) => {
         state.authUser = action.payload;
+        const role = action.payload.role;
+
+        state.permissions = ROLE_PERMISSIONS[role];
+        state.isAuthReady = true;
         state.authStatus = "authenticated";
       })
       .addCase(actions.bootstrapAuthAction.rejected, (state) => {
@@ -60,6 +70,10 @@ const authSlice = createSlice({
     });
   },
 });
+
+export const selectPermissions = (s) => s.auth.permissions;
+export const selectIsAuthReady = (s) => s.auth.isAuthReady;
+// export const RBAC = (permissions, perm) => permissions.includes(perm);
 
 export const authSelector = (st) => st.auth;
 export const { clearAuthError, updateTenantId } = authSlice.actions;

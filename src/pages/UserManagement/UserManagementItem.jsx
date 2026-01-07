@@ -43,6 +43,7 @@ const StyledCard = styled(Card)`
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
+  background: #e1f1ff;
 `;
 
 const Left = styled.div`
