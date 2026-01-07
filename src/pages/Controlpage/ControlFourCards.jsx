@@ -1,6 +1,5 @@
-
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common"
+import { HALLS_DASHBOARD } from "../../enum/control_common";
 
 const FourCardsContainer = () => {
   return (
@@ -9,7 +8,9 @@ const FourCardsContainer = () => {
         <DeviceCard key={i} $active={dev.active}>
           <TopRow>
             <Icon>
-              <Span className="material-icons">{HALLS_DASHBOARD.WIFI_ICON}</Span>
+              <Span className="material-icons">
+                {HALLS_DASHBOARD.WIFI_ICON}
+              </Span>
             </Icon>
 
             <Toggle $active={dev.active}>
@@ -26,8 +27,6 @@ const FourCardsContainer = () => {
 };
 
 export default FourCardsContainer;
-
-
 
 const DeviceRow = styled.div`
   display: flex;
@@ -48,7 +47,6 @@ const DeviceCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-
 
 const TopRow = styled.div`
   display: flex;

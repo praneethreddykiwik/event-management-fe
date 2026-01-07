@@ -7,11 +7,6 @@ const textAlign = ({ left, right }) =>
 
 const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
-// Account Settings Specific
-export const StyledHeadingTitle = styled(StyledHeading)`
-  text-align: ${textAlign};
-`;
-
 export const StyledMediumHeadingAccount = styled(StyledMediumHeading)`
   display: flex;
   text-align: ${textAlign};
@@ -83,16 +78,6 @@ export const StyledRightContent = styled.div`
 
   @media (max-width: 768px) {
     padding: 0 20px;
-  }
-`;
-
-export const StyledHr = styled.hr`
-  border: none;
-  border-bottom: 1px solid #dfdfdf;
-  margin: 0 -40px;
-
-  @media (max-width: 768px) {
-    margin: 0 -20px;
   }
 `;
 
@@ -294,7 +279,7 @@ export const LabelText = styled.span`
 
 export const UpgrateOptions = styled.div`
   margin: 40px 0;
-  color: #AEAEAE;
+  color: #aeaeae;
 `;
 
 export const GoogleLogo = styled.img`

@@ -1,0 +1,20 @@
+import styled from "styled-components";
+
+/**
+ * Example icons
+ * info
+ * delete
+ * close
+ * close-small
+ */
+
+export const Icon = ({ variant, onClick }) => (
+  <StyledIcon className="material-symbols-outlined" onClick={onClick}>
+    {variant}
+  </StyledIcon>
+);
+
+const StyledIcon = styled.span`
+  cursor: pointer;
+  font-size: 20px;
+`;

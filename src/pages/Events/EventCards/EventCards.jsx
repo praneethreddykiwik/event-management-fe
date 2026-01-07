@@ -3,7 +3,6 @@ import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
 import { NpmSparkLine } from "../../../components/Charts/SparkLine";
-import GaugeChart from "../../../components/Charts/GuageChart";
 
 export const EventCards = ({ events, eventManagers }) => {
   return (

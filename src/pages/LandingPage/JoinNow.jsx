@@ -1,10 +1,10 @@
 import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
-import { JOINCOMPONENT_TXT } from "../../enum/landingPage.common";
+import { JOINCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import {
-  StyledParagraph,
+  StyledParagraphSmallGray,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled.jsx";
 
@@ -20,7 +20,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledParagraph>{JOINCOMPONENT_TXT.JOIN_PARAGRAPH}</StyledParagraph>
+        <StyledJoinNowPara>
+          {JOINCOMPONENT_TXT.JOIN_PARAGRAPH}
+        </StyledJoinNowPara>
         <StyledSemiHeading>{JOINCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
         <StyledJoinBtn>{JOINCOMPONENT_TXT.JOIN_BTN}</StyledJoinBtn>
       </StyledContainerTwo>
@@ -31,6 +33,8 @@ const JoinNow = () => {
 const StyledJoinBtn = styled(StyledBaseButton)`
   width: 120px;
 `;
+
+const StyledJoinNowPara = styled(StyledParagraphSmallGray)``;
 
 const StyledContainerOne = styled.div`
   width: 100%;

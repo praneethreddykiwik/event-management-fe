@@ -25,7 +25,7 @@ export const FOOTER_CONTENT = {
     EMAIL_ID: "events@email.com",
     LOCATION: (<>2118 Thornridge Cir.
 Syracuse,<br /> Connecticut<br /> 35624</>),
-    ALL_RIGHTS_RESERVED: "2025 Events - All rights reserved",
+    ALL_RIGHTS_RESERVED: "Eventz - All rights reserved",
     PRIVACY_POLICY: "Privacy Policy",
     TERMS_CONDITIONS: "Terms and Conditions"
 }

@@ -9,7 +9,7 @@ import {
   PRIVACY_TEXT_END,
   PRIVACY_TEXT_START,
   SPECIFICENQUIRY,
-} from "../../enum/Common";
+} from "../../enum/common";
 
 const GetInTouch = () => {
   const cardData = cardData1;
@@ -108,7 +108,7 @@ const HeaderTitle = styled.h1`
   color: #17171bff;
   text-align: left;
   max-width: 100%;
-  letter-spacing : -0.25%;
+  letter-spacing: -0.25%;
 
   @media (max-width: 900px) {
     font-size: 32px;

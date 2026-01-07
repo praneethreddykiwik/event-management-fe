@@ -42,3 +42,71 @@ export const FOOTER_CONTENT = {
   PRIVACY_POLICY: "Privacy Policy",
   TERMS_CONDITIONS: "Terms and Conditions",
 };
+
+export const BADGE_STATUS = {
+  COMPLETED: "Completed",
+  INPROGRESS: "In Progress",
+  PENDING: "Pending",
+  ACCEPTED: "Accepted",
+  ACTIVE: "Active",
+  INACTIVE: "Inactive",
+  CORPORATE: "Corporate", // remove while pushing
+  ASSIGNED: "Assigned",
+  CANCELLED: "Cancelled",
+  NOTSTARTED: "Not Started",
+};
+export const BADGE_TYPES = {
+  COMPLETED: "completed",
+  INPROGRESS: "inprogress",
+  PENDING: "pending",
+  ACCEPTED: "accepted",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+  CORPORATE: "corporate", // remove while pushing
+  ASSIGNED: "assigned",
+  CANCELLED: "cancelled",
+  NOTSTARTED: "notstarted",
+};
+
+export const MANAGE_EVENT_MANAGER = {
+  MANAGE_EVENT_MANAGER_TITLE: "Event Managers",
+  MANAGE_EVENT_MANAGER_SUBTITLE: "View and manage event managers",
+
+  //   TABLES HEADING NAMES
+
+  MANAGE_EVENT_MANAGER_NAME: "Name",
+  MANAGE_EVENT_MANAGER_EMAIL: "Email",
+  MANAGE_EVENT_MANAGER_MOBILE: "Mobile",
+  MANAGE_EVENT_MANAGER_ASSIGN_EVENTS: "Assigned Events",
+  MANAGE_EVENT_MANAGER_STATUS: "Status",
+  MANAGE_EVENT_MANAGER_ACTIONS: "Actions",
+
+  // DELETE MANAGER
+
+  MANAGE_EVENT_MANAGER_DELETE: "Delete Manager",
+  MANAGE_EVENT_MANAGER_CONFIRMATION:
+    "Are you sure you want to delete this manager?",
+  MANAGE_EVENT_MANAGER_DELETE_NO: "No",
+  MANAGE_EVENT_MANAGER_DELETE_YES: "Yes",
+};
+
+export const CREATE_MANGER = {
+  CREATE_MANAGER_TITLE: "Add Event Manager",
+  CREATE_MANGER_SUBTITLE: "Fill in the details to add a new event manager",
+
+  //FORM LABELS NAMES
+
+  CREATE_MANAGER_FIRSTNAME: "First Name *",
+  CREATE_MANAGER_LASTNAME: "Last Name *",
+  CREATE_MANGER_EMAIL: "Email *",
+  CREATE_MANAGER_MOBILE: "Mobile *",
+  CREATE_MANAGER_ADDRESS: "Address *",
+  CREATE_MANAGER_EMERGENCY_NAME: "Emergency Contact Name",
+  CREATE_MANAGER_EMERGENCY_PHONE: "Emergency Contact Phone",
+};
+
+export const userRoles = {
+  adminRole: "admin",
+  eventManagerRole: "eventManager",
+  stakeHolderRole: "stakeHolder",
+};

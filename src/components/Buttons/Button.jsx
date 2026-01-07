@@ -7,9 +7,20 @@ import {
   StyledTransparentButton,
   ButtonContent,
   ButtonImage,
-} from '../Styled/Buttons.styled';
+  StyledNoBorderButton,
+} from "../Styled/Buttons.styled";
 
-export const Button = ({ type, children, onClick, icon, image }) => {
+export const Button = ({
+  type,
+  sx,
+  children,
+  onClick,
+  icon,
+  image,
+  whiteText,
+  disabled,
+  small,
+}) => {
   const renderContent = () => (
     <ButtonContent>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
@@ -21,33 +32,51 @@ export const Button = ({ type, children, onClick, icon, image }) => {
   );
 
   switch (type) {
-    case 'outlined':
+    case "outlined":
       return (
-        <StyledOutlinedButton onClick={onClick}>
+        <StyledOutlinedButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledOutlinedButton>
       );
-
-    case 'secondary':
+    case "no-border":
       return (
-        <StyledSecButton onClick={onClick}>{renderContent()}</StyledSecButton>
+        <StyledNoBorderButton sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledNoBorderButton>
       );
 
-    case 'transparent':
+    case "secondary":
       return (
-        <StyledTransparentButton onClick={onClick}>
+        <StyledSecButton sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledSecButton>
+      );
+
+    case "transparent":
+      return (
+        <StyledTransparentButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledTransparentButton>
       );
 
-    case 'icon':
+    case "icon":
       return (
-        <StyledIconButton onClick={onClick}>{renderContent()}</StyledIconButton>
+        <StyledIconButton sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledIconButton>
       );
 
     default:
       return (
-        <StyledBaseButton onClick={onClick}>{renderContent()}</StyledBaseButton>
+        <StyledBaseButton
+          sx={sx}
+          $whiteText={whiteText}
+          onClick={onClick}
+          small={small}
+          disabled={disabled}
+        >
+          {renderContent()}
+        </StyledBaseButton>
       );
   }
 };

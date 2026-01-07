@@ -7,7 +7,7 @@ import customer5 from "../../assets/landingPage/customer5.jpg";
 import customer6 from "../../assets/landingPage/customer6.jpg";
 
 // text component
-import { CUSTOMERCOMPONET_TXT } from "../../enum/landingPage.common";
+import { CUSTOMERCOMPONET_TXT } from "../../enum/landingPage.common.jsx";
 
 import styled from "styled-components";
 

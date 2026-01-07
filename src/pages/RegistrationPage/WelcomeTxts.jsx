@@ -1,7 +1,7 @@
-import logoImg from '../../assets/Logos/eventz-logo.png';
-import { StyledHeading } from '../../components/Styled/Typography.styled';
-import { EVENTZ, } from '../../Enum/RegistrationPage.Enum';
-import { LogoEventz, Logo, EventzTxt } from './styled.RegistrationPage';
+import logoImg from "../../assets/Logos/eventz-logo.png";
+import { StyledHeading } from "../../components/Styled/Typography.styled";
+import { EVENTZ } from "../../enum/RegistrationPage.Enum";
+import { LogoEventz, Logo, EventzTxt } from "./styled.RegistrationPage";
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (

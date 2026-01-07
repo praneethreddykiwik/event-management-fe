@@ -4,14 +4,11 @@ import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
 import {
   Action,
   ActionSpan,
-  Icon,
   RowLink,
   Section,
   SectionHeader,
   StyledAccButton,
   StyledButtonContainer,
-  StyledHeadingTitle,
-  StyledHr,
   StyledRightContent,
   SubText,
   TextLink,
@@ -20,6 +17,8 @@ import {
   GoogleLogo,
 } from "../../components/Styled/AccountSettings.styled";
 import { Input } from "../../components/Inputs/Input";
+import { StyledHr } from "../../components/Styled/Common.styled";
+import { StyledHeading } from "../../components/Styled/Typography.styled";
 
 const AccountSettingsRightContent = () => {
   const [upgradeOptions, setUpgradeOptions] = useState([]);
@@ -31,8 +30,7 @@ const AccountSettingsRightContent = () => {
   }
   return (
     <StyledRightContent>
-      <StyledHeadingTitle left>{HEADINGS.ACCOUNT_SETTINGS}</StyledHeadingTitle>
-
+      <StyledHeading left>{HEADINGS.ACCOUNT_SETTINGS}</StyledHeading>
       <StyledHr />
 
       <Section medium>

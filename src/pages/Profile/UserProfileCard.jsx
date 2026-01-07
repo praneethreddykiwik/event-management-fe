@@ -6,8 +6,10 @@ import { StyledMediumHeading } from "../../components/Styled/Typography.styled";
 
 import { PROFILE_DATA } from "../../enum/ProfileText";
 import { ActivityData } from "./profile.helper";
+import { useNavigate } from "react-router-dom";
 
 const UserProfileCard = () => {
+  const navigate = useNavigate();
   return (
     <StyleLeftCard>
       <StyleProfileImageContainer>
@@ -49,7 +51,7 @@ const UserProfileCard = () => {
 
         <StyleJoinedDate>
           {PROFILE_DATA.JOINED_LABEL} {PROFILE_DATA.JOINED_DATE}
-          <StyleHelpIconCircle className="material-icons">
+          <StyleHelpIconCircle className="material-icons" onClick={()=>navigate("/get-in-touch")}>
             {PROFILE_DATA.HELP_ICON}
           </StyleHelpIconCircle>
         </StyleJoinedDate>
@@ -59,7 +61,6 @@ const UserProfileCard = () => {
 };
 
 export default UserProfileCard;
-
 
 export const StyleLeftCard = styled.div`
   width: 300px;

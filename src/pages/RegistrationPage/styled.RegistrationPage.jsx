@@ -1,58 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   StyledHeadingBig,
   StyledAnchor,
   StyledParagraphSmallGray,
-  StyledParagraph
-} from '../../components/Styled/Typography.styled';
-import {
-  StyledBaseButton,
-  StyledOutlinedButton,
-} from '../../components/Styled/Buttons.styled';
+  StyledParagraph,
+} from "../../components/Styled/Typography.styled";
+import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
+import { InputDefault } from "../../components/Inputs/Inputs.styled";
 
-import { InputDefault } from '../../components/Styled/Inputs.styled';
 export const InputCheckBox = styled.input``;
 export const PassWordImg = styled.img``;
 export const AccountSignIn = styled(StyledParagraphSmallGray)`
+  margin-top: 0px;
   @media (max-width: 768px) {
     display: none;
   }
 `;
+
 export const SignInAnchor = styled(StyledAnchor)`
   text-decoration: none;
   font-size: 14px;
-`;
-export const StyledContainer = styled.div`
-  height: 100vh;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 25px;
-  }
-`;
-
-export const ContainerLeft = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-export const MainContainer = styled.div`
-  width: 300px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const LogoEventz = styled.div`
@@ -140,22 +107,7 @@ export const LineTxt = styled.div`
     display: none;
   }
 `;
-export const LineOne = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
-  width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-export const LineTwo = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
-  width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
+
 export const SignWithEmail = styled.p`
   font-size: 16px;
   font-weight: 350;
@@ -168,7 +120,7 @@ export const SignUpWith = styled.p`
   width: 100%;
   font-size: 16px;
   font-weight: 350;
-  padding: 10px;
+  padding: 20px;
   @media (max-width: 768px) {
     display: none;
   }
@@ -178,29 +130,10 @@ export const InputWrapper = styled.div`
   position: relative;
 `;
 export const Input = styled(InputDefault)``;
-export const ShowHideIcon = styled.span`
-  position: absolute;
-  right: 12px;
-  top: 14px;
-  cursor: pointer;
-  font-size: 18px;
-`;
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-`;
-export const InputBox = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-`;
+
 export const ForgotPassword = styled(StyledParagraphSmallGray)`
-    margin-top: 3px;
-    margin-bottom: 15px;
+  margin-top: 3px;
+  margin-bottom: 15px;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -241,17 +174,4 @@ export const CheckboxRow = styled.div`
 export const AnchorParah = styled(StyledParagraphSmallGray)`
   /* line-height: 18.2px;
   text-align: justify; */
-`;
-export const ContinueButton = styled(StyledBaseButton)`
-  color: white;
-  height: 50px;
-  width: 100%;
-`;
-export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
-width: 75%;
-margin: 0;
-  @media screen and (min-width: 768px) {
-    display: none;
-    
-  }
 `;

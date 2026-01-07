@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LastUsersBox from "./CntrlLastUsers.jsx";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import { HALLS_DASHBOARD } from "../../enum/control_common.jsx";
 import Thermo from "./ControlThermo.jsx";
 import Temp from "./ControlTemp.jsx";
 
@@ -39,7 +39,6 @@ const RightCardContainer = () => {
 
 export default RightCardContainer;
 
-
 const RightSidebar = styled.div`
   flex: 0 0 290px;
   width: 290px;
@@ -52,7 +51,6 @@ const RightSidebar = styled.div`
   flex-direction: column;
   gap: 8px;
   height: 649px;
-
 `;
 
 const Divider = styled.div`
@@ -61,7 +59,6 @@ const Divider = styled.div`
   background: #ffffff55;
   margin: -6px auto 8px;
   border-radius: 20px;
-
 `;
 
 const Time = styled.h1`
@@ -103,4 +100,3 @@ const ThermoToggle = styled.div`
     transition: all 0.3s ease;
   }
 `;
-

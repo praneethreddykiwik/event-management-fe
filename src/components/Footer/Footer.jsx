@@ -3,27 +3,21 @@ import { NavLink } from "react-router-dom";
 import E_logo from "../../assets/Header_images/E_logo.jpg";
 import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
 import styled from "styled-components";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { useSelector } from "react-redux";
+import { footerLinks, socialLinks } from "./Footer.helper";
+import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
-  const footerLinks = {
-    Event: [
-      { label: "Create Events", to: "/create" },
-      { label: "Pricing", to: "/pricing" },
-      { label: "Events Mobile App", to: "/mobile-app" },
-      { label: "Virtual Event Platform", to: "/virtual" },
-    ],
-    About: [
-      { label: "About us", to: "/about" },
-      { label: "Why us", to: "/why-us" },
-      { label: "Security", to: "/security" },
-      { label: "Testimonials", to: "/testimonials" },
-    ],
-    Help: [
-      { label: "Account", to: "/account" },
-      { label: "Support Center", to: "/support" },
-      { label: "FAQ", to: "/faq" },
-    ],
-  };
+  
+  const { authStatus } = useSelector(authSelector);
+  const isLoggedIn = authStatus === "authenticated";
+  
+  if(!isLoggedIn){
+    return null;
+  }
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <FooterContainer>
@@ -66,11 +60,25 @@ const Footer = () => {
             <Icon className="material-symbols-outlined">location_on</Icon>
             {FOOTER_CONTENT.LOCATION}
           </ContactItem>
+
+          <SocialWrapper>
+            {socialLinks.map((social) => (
+              <SocialLink
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.name}
+              </SocialLink>
+            ))}
+          </SocialWrapper>
+
         </ContactRow>
       </ContactWrapper>
 
       <BottomBar>
-        <BottomText>{FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
+        <BottomText>{'\u00A9'} {currentYear} {FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
 
         <BottomLinks>
           <NavLink to="/privacy">{FOOTER_CONTENT.PRIVACY_POLICY}</NavLink>
@@ -163,7 +171,7 @@ const ContactWrapper = styled.section`
 
 const ContactRow = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   gap: 60px;
   flex-wrap: wrap;
   margin-bottom: 40px;
@@ -235,6 +243,26 @@ const LogoImage = styled.img`
   width: 64px;
   height: 64px;
   border-radius: 8px;
+`;
+
+const SocialWrapper = styled.div`
+  display: inline-flex;
+  gap: 16px;
+  align-items: flex-start;
+  vertical-align: top;
+`;
+
+const SocialLink = styled.a`
+  font-size: 14px;
+  font-weight: 500;
+  color: #b8b8b8;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
 export default Footer;

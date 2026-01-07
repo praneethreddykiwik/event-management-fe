@@ -30,7 +30,7 @@ import {
   PlanDivider,
   SpanButton,
 } from "./Subscriptions.styled";
-import { SUBSCRIPTIONS_ENUM } from "../../enums/Subscriptions.enum";
+import { SUBSCRIPTIONS_ENUM } from "../../enum/Subscriptions.enum";
 
 const Subscriptions = () => {
   const [yearly, setYearly] = useState(false);

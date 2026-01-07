@@ -1,7 +1,7 @@
 import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
 import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
 import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
-import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common";
+import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common.jsx";
 
 import styled from "styled-components";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
@@ -151,7 +151,9 @@ const Heading = styled(StyledParagraphBold)`
 const StyledParagraph = styled(StyledParagraphSmall)`
   text-align: left;
   margin-top: -10px;
+  margin-bottom: 15px;
   word-wrap: break-word;
+  font-size: 13px; 
 `;
 
 const StyledHr = styled.hr`
@@ -163,7 +165,7 @@ const StyledHr = styled.hr`
 const StyledImageOne = styled.img`
   width: 100%;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 export default Experience;

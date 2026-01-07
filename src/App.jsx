@@ -1,65 +1,46 @@
-/** @format */
-
 import "./App.css";
-import Footer from "./components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header/Header";
-
-import { Route, Routes } from "react-router-dom";
-
-import Login from "./pages/Login/Login";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
-import GatewayPage from "./pages/GatewayPage/GatewayPage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
-import PaymentSuccess from "./pages/Payment_Success/PaymentSuccess";
-// import Navbar from "./pages/Navbar/Navbar";
-import AccountSettingsPage from "./pages/AccountSettings/AccountSettings";
-import Controlpage from "./pages/Controlpage/Controlpage";
-import Profile from "./pages/Profile/Profile.jsx";
-import DropdownComponent from "./components/Avatar/AvatarComponent.jsx";
-// import LandingPage from "./pages/LandingPage/LandingPage";
-import NewEvent from "./pages/NewEvent/NewEvent";
-import { paths } from "./constants/paths";
-import Home from "./pages/Home/Home";
-import Subscriptions from "./pages/Subscriptions/Subscriptions";
-import PlayerCard from "./components/PlayerCard/PlayerCard";
-import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import SampleInput from "./pages/sample/SampleInput";
-import ExInput from "./pages/sample/ExInput";
-import ExButton from "./pages/sample/ExButton";
+import { useEffect } from "react";
+import { bootstrapAuthAction } from "./redux/auth/auth.actions";
+import GlobalSpinner from "./components/Spinner/GlobalSpinner";
+import { authSelector } from "./redux/auth/auth.slice";
+import { TenantIdHOC } from "./HOC/TenantIdHOC";
+import Footer from "./components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AppRoutes from "./Routes";
 
 function App() {
   const theme = useTheme();
 
+  const dispatch = useDispatch();
+  const { authStatus } = useSelector(authSelector);
+
+  useEffect(() => {
+    // validate session cookie on app load
+    dispatch(bootstrapAuthAction());
+  }, [dispatch]);
+
+  const isLoading = authStatus === "loading";
+
   return (
     <ThemeProvider theme={theme}>
-      {/* <Stdiv className="main-container"> */}
-      <Header />
-
-      <Routes>
-        <Route path={"/"} element={<Home />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/register"} element={<RegistrationPage />} />
-        <Route path={"/Gateway"} element={<GatewayPage />} />
-        <Route path={"/Registration"} element={<RegistrationPage />} />
-        <Route path={"/Gateway"} element={<GatewayPage />} />
-        <Route path={"/Getintouch"} element={<GetInTouch />} />
-        <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
-        <Route path={"/accountSetting"} element={<AccountSettingsPage />} />
-        <Route path={"/controlpage"} element={<Controlpage />} />
-        <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/dropdown"} element={<DropdownComponent />} />
-        <Route path={paths.newsFeed} element={<NewEvent />} />
-        <Route path={'/sampleinput'} element={<SampleInput />} />
-        <Route path="/exinput" element={<ExInput />} />
-        <Route path="/exbutton" element={<ExButton />} />
-        <Route path={"/Subscriptions"} element={<Subscriptions />} />
-        <Route path={"/PlayerCard"} element={<PlayerCard />} />
-        <Route path={paths.accountSettings} element={<AccountSettings />} />
-      </Routes>
-
-      {/* </Stdiv> */}
+      <TenantIdHOC>
+        <GlobalSpinner loading={isLoading}>
+          <Header />
+          <AppRoutes />
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            closeOnClick
+          />
+          <Footer />
+        </GlobalSpinner>
+      </TenantIdHOC>
     </ThemeProvider>
   );
 }
