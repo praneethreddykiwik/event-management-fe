@@ -1,4 +1,4 @@
-import { validationList } from "../../constants/validations.constants";
+import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
 
@@ -6,7 +6,7 @@ export const registrationMetaData = [
   {
     type: "text",
     name: "firstName",
-    value: "Abdul",
+    value: "",
     placeholder: "Enter your name",
     label: "First Name",
     error: null,
@@ -16,7 +16,7 @@ export const registrationMetaData = [
   {
     type: "text",
     name: "lastName",
-    value: "Wahid Syed",
+    value: "",
     placeholder: "Enter your name",
     label: "Last Name",
     error: null,
@@ -25,7 +25,7 @@ export const registrationMetaData = [
   {
     type: "email",
     name: "email",
-    value: "abdul.s8@criskasecurity.com",
+    value: "",
     placeholder: "Email",
     label: "Email",
     error: null,
@@ -34,7 +34,7 @@ export const registrationMetaData = [
   {
     type: "text",
     name: "username",
-    value: "abdul8",
+    value: "",
     placeholder: "Username",
     label: "Username",
     error: null,
@@ -44,7 +44,7 @@ export const registrationMetaData = [
   {
     type: "number",
     name: "mobile",
-    value: "9581122911",
+    value: "",
     placeholder: "Enter your mobile",
     label: "Mobile",
     error: null,
@@ -61,7 +61,7 @@ export const registrationMetaData = [
       { value: "vendor", label: "Vendor" },
       { value: "customer", label: "Customer" },
     ],
-    value: "admin",
+    value: "",
     label: "Role",
     error: null,
     validations: [validationList.REQUIRED],
@@ -69,7 +69,7 @@ export const registrationMetaData = [
   {
     type: "setPassword",
     name: "password",
-    value: "Wahid7151@",
+    value: "",
     placeholder: "Password",
     label: "Password",
     error: null,

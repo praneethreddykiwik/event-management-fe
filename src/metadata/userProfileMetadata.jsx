@@ -1,8 +1,11 @@
+import { paths } from "../constants/paths";
+
 export const userProfileMeta = [
   {
     label: "Profile",
     highlight: true,
     icon: "account_circle",
+    navigate: paths.accountSettings,
   },
   {
     label: "Settings",
@@ -16,7 +19,7 @@ export const userProfileMeta = [
   {
     label: "Get In Touch",
     icon: "help",
-    navigate: "/get-in-touch",
+    navigate: paths.getInTouch,
   },
   { type: "divider" },
   {

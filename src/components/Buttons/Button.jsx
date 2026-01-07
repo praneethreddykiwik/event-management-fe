@@ -7,6 +7,7 @@ import {
   StyledTransparentButton,
   ButtonContent,
   ButtonImage,
+  StyledNoBorderButton,
 } from "../Styled/Buttons.styled";
 
 export const Button = ({
@@ -17,6 +18,7 @@ export const Button = ({
   icon,
   image,
   whiteText,
+  disabled,
 }) => {
   const renderContent = () => (
     <ButtonContent>
@@ -34,6 +36,12 @@ export const Button = ({
         <StyledOutlinedButton sx={sx} onClick={onClick}>
           {renderContent()}
         </StyledOutlinedButton>
+      );
+    case "no-border":
+      return (
+        <StyledNoBorderButton sx={sx} onClick={onClick}>
+          {renderContent()}
+        </StyledNoBorderButton>
       );
 
     case "secondary":
@@ -59,7 +67,12 @@ export const Button = ({
 
     default:
       return (
-        <StyledBaseButton sx={sx} $whiteText={whiteText} onClick={onClick}>
+        <StyledBaseButton
+          sx={sx}
+          $whiteText={whiteText}
+          onClick={onClick}
+          disabled={disabled}
+        >
           {renderContent()}
         </StyledBaseButton>
       );

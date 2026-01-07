@@ -4,8 +4,11 @@ import * as actions from "./users.actions";
 const initialState = {
   eventManagersLoading: false,
   eventManagers: [],
-  eventManagerNames: [],
   eventManagersError: false,
+
+  vendorsLoading: false,
+  vendors: [],
+  vendorsError: false,
 
   registrationError: null,
   registrationSuccess: false,
@@ -31,16 +34,26 @@ const usersSlice = createSlice({
       })
       .addCase(actions.fetchManagersAction.fulfilled, (state, action) => {
         state.eventManagers = action.payload?.details;
-        const managerUsernames = action.payload?.details?.map(
-          (manager) => `${manager?.firstName} ${manager?.lastName}`
-        );
-        state.eventManagerNames = managerUsernames;
         state.eventManagersLoading = false;
         state.eventManagersError = null;
       })
       .addCase(actions.fetchManagersAction.rejected, (state) => {
         state.eventManagersError = "Something went wrong";
         state.eventManagersLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchVendorsAction.pending, (state) => {
+        state.vendorsLoading = true;
+      })
+      .addCase(actions.fetchVendorsAction.fulfilled, (state, action) => {
+        state.vendors = action.payload?.details;
+        state.vendorsLoading = false;
+        state.vendorsError = null;
+      })
+      .addCase(actions.fetchVendorsAction.rejected, (state) => {
+        state.vendorsError = "Something went wrong";
+        state.vendorsLoading = false;
       });
 
     // registration
@@ -76,6 +89,5 @@ const usersSlice = createSlice({
 });
 
 export const usersSelector = (st) => st.users;
-export const { clearRegistrationSuccessMsg, updateEventManagerNames } =
-  usersSlice.actions;
+export const { clearRegistrationSuccessMsg } = usersSlice.actions;
 export default usersSlice.reducer;

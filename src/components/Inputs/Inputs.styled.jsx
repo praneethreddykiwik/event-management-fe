@@ -29,6 +29,16 @@ export const InputDefault = styled.input`
     border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#27c14a")};
   }
 `;
+export const TextAreaDefault = styled.textarea`
+  ${baseStyles};
+  height: unset;
+  border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#e0e0e0")};
+  font-family: "Roboto", serif !important;
+
+  &:focus {
+    border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#27c14a")};
+  }
+`;
 
 export const InputSelect = styled.select`
   border: 1px solid red;
