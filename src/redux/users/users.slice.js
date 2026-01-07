@@ -17,6 +17,10 @@ const initialState = {
   updateUserError: null,
   updateUserSuccess: false,
   updateUserLoading: false,
+  
+  allUsersLoading:false,
+  allUsers:[],
+  allUsersError:null,
 };
 
 const usersSlice = createSlice({
@@ -40,6 +44,20 @@ const usersSlice = createSlice({
       .addCase(actions.fetchManagersAction.rejected, (state) => {
         state.eventManagersError = "Something went wrong";
         state.eventManagersLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchAllUsersAction.pending, (state) => {
+        state.allUsersLoading = true;
+      })
+      .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
+        state.allUsers = action.payload?.details;
+        state.allUsersLoading = false;
+        state.allUsersError = null;
+      })
+      .addCase(actions.fetchAllUsersAction.rejected, (state) => {
+        state.allUsersError = "Something went wrong";
+        state.allUsersLoading = false;
       });
 
     builder
