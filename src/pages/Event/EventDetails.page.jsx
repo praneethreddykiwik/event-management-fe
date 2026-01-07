@@ -17,10 +17,18 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
 import { StyledIconButton } from "../../components/Styled/Buttons.styled";
-import { DummyEventDetails } from "../../enum/eventDetails.enum";
-import { BlueBackHOC } from "../../HOC/BlueBackHOC";
+import { EventDetailsMap } from "../../enum/eventDetails.enum";
+import { useLocation } from "react-router-dom";
+import { dateObj } from "../../utils/utils";
 
 const EventDetails = () => {
+  const { state } = useLocation();
+  const event = state?.event;
+
+  const { date, time } = dateObj(event.scheduledAt);
+  console.log("date", date, time);
+
+  console.log("Event", event);
   return (
     <>
       {/* <BlueBackHOC> */}
@@ -30,10 +38,8 @@ const EventDetails = () => {
             <StyledEventHeaderInfo>
               <StyledEventHeaderInfoCont1>
                 <StyledEventHeaderInfoCont1Top>
-                  <StyledHeading>Annual Tech Conference</StyledHeading>
-                  <StyledBadge type={BADGE_TYPES.COMPLETED}>
-                    {BADGE_TYPES.COMPLETED}
-                  </StyledBadge>
+                  <StyledHeading>{event.eventName}</StyledHeading>
+                  <StyledBadge type={event.type}>{event.eventType}</StyledBadge>
                 </StyledEventHeaderInfoCont1Top>
                 <StyledEventHeaderInfoCont1Bottom>
                   <StyledBadge type={BADGE_TYPES.ACCEPTED}>
@@ -60,7 +66,7 @@ const EventDetails = () => {
               </StyledEventBodyContainerLeftHeading>
               <StyledEventBodyContainerLeftContent>
                 <StyledEvenInfo>
-                  {DummyEventDetails.map((curItem) => (
+                  {EventDetailsMap(event, date, time).map((curItem) => (
                     <>
                       <StyledEvenInfoCard>
                         <StyledEvenInfoCardIcon>
@@ -103,7 +109,7 @@ const EventDetails = () => {
                       Description
                     </StyledEventBodyHeader>
                     <StyledParagraph2 left>
-                      My Event Description ABCD.
+                      Basic Event Description.
                     </StyledParagraph2>
                   </StyledEvenInfoCard2>
                 </StyledEventBodyContainerRightBototmHeader>

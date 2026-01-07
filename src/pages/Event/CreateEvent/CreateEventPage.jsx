@@ -9,10 +9,9 @@ import { createEventsDispatch } from "../../../redux/events/events.actions";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
-
-import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { Venue } from "../../../components/Venue/Venue";
 import { tasksMetadata } from "../../../constants/metadata/tasks.metadata";
+import { fetchManagersAction } from "../../../redux/users/users.actions";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +19,7 @@ const CreateEventPage = () => {
   const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
+    dispatch(fetchManagersAction());
     const eventMetaDataFull = eventMetaData(eventManagers);
     dispatch(updateAllEventInputs(eventMetaDataFull));
   }, []);

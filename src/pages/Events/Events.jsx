@@ -32,7 +32,7 @@ const Events = () => {
   const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
-  console.log("Events", events);
+  // console.log("Events", events);
   const { eventManagers } = useSelector(usersSelector);
   // console.log("usersSelector", eventManagers);
   const navigate = useNavigate();

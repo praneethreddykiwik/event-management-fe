@@ -16,8 +16,12 @@ const AdminTaskItem = ({ data }) => {
 
   const navigate = useNavigateWithQuery();
 
-  const onClickViewDetails = () => {
-    navigate(paths.eventsDetails);
+  const onClickViewDetails = (data) => {
+    navigate(paths.eventsDetails, {
+      state: {
+        event: data,
+      },
+    });
   };
   const valueData = Math.floor(Math.random() * 101);
   return (
@@ -38,7 +42,7 @@ const AdminTaskItem = ({ data }) => {
 
       <BadgeButton>
         <Badge type={data.type}>{data.statusLabel}</Badge>
-        <Button onClick={onClickViewDetails} type="no-border" small>
+        <Button onClick={() => onClickViewDetails(data)} type="secondary">
           {ADMIN_COMMON.ADMIN_DETAILS}
         </Button>
       </BadgeButton>

@@ -3,25 +3,27 @@
 //   EVENT_STATU
 // };
 
-export const DummyEventDetails = [
-  {
-    Type: "Date",
-    Info: "Saturday, Febuary 15, 2025",
-    Icon: "date_range",
-  },
-  {
-    Type: "Time",
-    Info: "09:00 AM",
-    Icon: "aod_watch",
-  },
-  {
-    Type: "Venue",
-    Info: "Convention Cenrer",
-    Icon: "map",
-  },
-  {
-    Type: "Expected Attendes",
-    Info: "500 people",
-    Icon: "group",
-  },
-];
+export const EventDetailsMap = (event, date, time) => {
+  return [
+    {
+      Type: "Date",
+      Info: date,
+      Icon: "date_range",
+    },
+    {
+      Type: "Time",
+      Info: time,
+      Icon: "aod_watch",
+    },
+    {
+      Type: "Venue",
+      Info: event.venue,
+      Icon: "map",
+    },
+    {
+      Type: "Expected Attendes",
+      Info: event.expectedAttendees,
+      Icon: "group",
+    },
+  ];
+};

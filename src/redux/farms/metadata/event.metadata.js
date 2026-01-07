@@ -27,7 +27,7 @@ export const eventMetaData = (eventManagers) => {
         { value: "private", label: "Private" },
         { value: "corporate", label: "Corporate" },
       ],
-      value: "public",
+      // value: "public",
       label: "Event Type",
       error: null,
       validations: [validationList.REQUIRED],
@@ -64,7 +64,7 @@ export const eventMetaData = (eventManagers) => {
     {
       type: "number",
       name: "expectedAttendees",
-      value: "200",
+      // value: "200",
       placeholder: "e.g.. 150",
       label: "",
       error: null,
