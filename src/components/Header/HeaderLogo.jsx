@@ -1,4 +1,5 @@
-import E_logo from "../../assets/Header_images/E_logo.jpg";
+// import E_logo from "../../assets/Header_images/E_logo.jpg";
+import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 import { paths } from "../../constants/paths";
 import styled from "styled-components";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
@@ -9,8 +10,7 @@ export const HeaderLogo = () => {
 
   return (
     <LogoBox onClick={goHome}>
-      <LogoImage src={E_logo} alt="logo" />
-      <LogoTitle>eventz</LogoTitle>
+      <LogoImage src={Helm_logo} alt="logo" />
     </LogoBox>
   );
 };
@@ -23,6 +23,14 @@ const LogoBox = styled.div`
 `;
 
 const LogoImage = styled.img`
+  width: 146px;
+  height: 60px;
+  border-radius: 8px;
+  margin-top: -40px;
+  margin-bottom: -25px;
+`;
+
+const LogoSVG = styled.img`
   width: 34px;
   height: 34px;
   border-radius: 8px;
