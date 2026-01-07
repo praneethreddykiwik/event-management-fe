@@ -12,7 +12,7 @@ import { Section } from "../../HOC/SectionsHOC";
 import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
 
-const TaskItem = ({ task = {} }) => {
+const TaskItem = ({ task = {}, onEdit }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
 
   const onOpen = () => {
@@ -36,8 +36,8 @@ const TaskItem = ({ task = {} }) => {
       </Left>
       <BadgeButton>
         <Badge type={task.type}>{task.taskStatus}</Badge>
-        <Button type="transparent" onClick={() => onOpen()}>
-          View details
+        <Button type="no-border" onClick={() => onOpen()} small>
+          Details
         </Button>
         {showManageEvent && (
           <ManageTaskModal
@@ -45,7 +45,7 @@ const TaskItem = ({ task = {} }) => {
             task={task}
           />
         )}
-        <Button onClick={() => onOpen()} icon="edit" type="no-border">
+        <Button onClick={() => onEdit(task)} icon="edit" type="no-border" small>
           Edit
         </Button>
         {/* <Icon variant="edit" /> */}

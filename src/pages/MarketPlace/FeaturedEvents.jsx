@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import  {Button}  from "../../components/Buttons/Button"; 
+import { Button } from "../../components/Buttons/Button";
 
 import carImage1 from "../../assets/FeaturedEvents-Imgs/carImage1.jpg";
 import carImg2 from "../../assets/FeaturedEvents-Imgs/carImg2.jpg";
@@ -12,74 +12,98 @@ import speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
 import speaker3 from "../../assets/FeaturedEvents-Imgs/Speaker3.jpeg";
 import speaker4 from "../../assets/FeaturedEvents-Imgs/Speaker4.jpeg";
 
-
-
 const events = [
-  { img: carImage1, role: "Speaker", name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
-  { img: carImg2, role: "Speaker" , name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
-  { img: carImage3, role: "Host" ,name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
   {
-    img: carImg4,
-    role: "Host",
+    img: carImage1,
+    role: "SPEAKER",
+    name: "Sydney",
+    title: "Marketing Coordinator HNG Group",
+  },
+  {
+    img: carImg2,
+    role: "SPEAKER",
     name: "Esther Howard",
     title: "Marketing Coordinator HNG Group",
   },
-  { img: carImage1, role: "Speaker", name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
-  { img: carImg2, role: "Guest", name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
-  { img: carImg4, role: "Speaker" , name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group" },
+  {
+    img: carImage3,
+    role: "HOST",
+    name: "Mike",
+    title: "Marketing Coordinator HNG Group",
+  },
+  {
+    img: carImg4,
+    role: "HOST",
+    name: "Niki",
+    title: "Marketing Coordinator HNG Group",
+  },
+  {
+    img: carImage1,
+    role: "SPEAKER",
+    name: "Tyla",
+    title: "Marketing Coordinator HNG Group",
+  },
+  {
+    img: carImg2,
+    role: "GUEST",
+    name: "smithi john",
+    title: "Marketing Coordinator HNG Group",
+  },
+  {
+    img: carImg4,
+    role: "SPEAKER",
+    name: "Angelina",
+    title: "Marketing Coordinator HNG Group",
+  },
 ];
 
-
-
-const SIDE_WIDTH = 160;
-const CENTER_WIDTH = 320;
-const GAP = 12;
-const VISIBLE_COUNT =5;
-
-
+const SIDE_WIDTH = 150;
+const CENTER_WIDTH = 450;
+const GAP = 0;
+const VISIBLE_COUNT = 5;
 
 const FeaturedEvents = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(Math.floor(events.length / 2));
   const trackRef = useRef(null);
 
-  const minIndex = Math.floor(VISIBLE_COUNT / 2);
-  const maxIndex = events.length - minIndex - 1;
+  const prevSlide = () => {
+    setActiveIndex((prev) => {
+      const next = prev - 1;
+      return next < 0 ? events.length - 1 : next;
+    });
+  };
 
-  const prevSlide = () =>
-    setActiveIndex((p) => Math.max(p - 1, minIndex));
-
-  const nextSlide = () =>
-    setActiveIndex((p) => Math.min(p + 1, maxIndex));
+  const nextSlide = () => {
+    setActiveIndex((prev) => {
+      const next = prev + 1;
+      return next >= events.length ? 0 : next;
+    });
+  };
 
   useEffect(() => {
     if (!trackRef.current) return;
 
-    const cardWidth = SIDE_WIDTH + GAP;
-    trackRef.current.style.transform = `translateX(-${
-      (activeIndex - minIndex) * cardWidth
-    }px)`;
+    const sideCount = Math.floor(VISIBLE_COUNT / 2);
+    const sideSpace = sideCount * SIDE_WIDTH;
+
+    const targetLeft = sideSpace;
+
+    const currentLeft = activeIndex * SIDE_WIDTH;
+
+    const translateX = targetLeft - currentLeft;
+
+    trackRef.current.style.transform = `translateX(${translateX}px)`;
   }, [activeIndex]);
 
   return (
     <Section>
       <Header>
         <h2>Featured Events</h2>
-
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>
-            <button onClick={prevSlide} disabled={activeIndex === minIndex}>
-              ‹
-            </button>
-            <button onClick={nextSlide} disabled={activeIndex === maxIndex}>
-              ›
-            </button>
+            <button onClick={prevSlide}>‹</button>
+            <button onClick={nextSlide}>›</button>
           </Arrows>
         </Actions>
       </Header>
@@ -90,7 +114,13 @@ const FeaturedEvents = () => {
             const isCenter = index === activeIndex;
 
             return (
-              <EventCard key={index} className={isCenter ? "center" : ""}>
+              <EventCard
+                key={index}
+                $isCenter={isCenter}
+                style={{
+                  transform: isCenter ? "scale(1)" : "scale(0.94)",
+                }}
+              >
                 <img src={event.img} alt={event.role} />
 
                 {!isCenter && <RoleLabel>{event.role}</RoleLabel>}
@@ -104,26 +134,28 @@ const FeaturedEvents = () => {
 
                     <Overlay>
                       <OverlayLeft>
-                        <Badge>{event.role}</Badge>
-
                         <Hosts>
-                          <HostCount>+23k</HostCount>
-                          <Avatars>
-                            <img src={speaker1} alt="" />
-                            <img src={speaker2} alt="" />
-                            <img src={speaker3} alt="" />
-                            <img src={speaker4} alt="" />
-                          </Avatars>
+                          <Badge>{event.role}</Badge>
+
+                          <StyledHostAvatars>
+                            <StyledHostCount>
+                              <HostCount>+23k</HostCount>
+                            </StyledHostCount>
+                            <Avatars>
+                              <img src={speaker1} alt="" />
+                              <img src={speaker2} alt="" />
+                              <img src={speaker3} alt="" />
+                              <img src={speaker4} alt="" />
+                            </Avatars>
+                          </StyledHostAvatars>
                         </Hosts>
 
-                        <BottomText>
-                          Winning in Today’s Economy
-                        </BottomText>
+                        <BottomText>Winning in Today’s Economy</BottomText>
                       </OverlayLeft>
 
-                      <Button variant="secondary">
-                        Subscribe
-                      </Button>
+                      <StyledSubscribeBtn>
+                        <Button>Subscribe</Button>
+                      </StyledSubscribeBtn>
                     </Overlay>
                   </>
                 )}
@@ -138,7 +170,26 @@ const FeaturedEvents = () => {
 
 export default FeaturedEvents;
 
+const Hosts = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+`;
 
+const StyledHostCount = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+const StyledHostAvatars = styled.div`
+  display: flex;
+  margin-left: 20px;
+  gap: 5px;
+`;
+
+const StyledSubscribeBtn = styled.div`
+  width: 120px;
+`;
 
 const Section = styled.section`
   max-width: 1200px;
@@ -150,33 +201,41 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 `;
 
 const Actions = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 `;
 
 const ViewMore = styled.span`
-  font-size: 14px;
+  font-size: 15px;
   color: #007bff;
   cursor: pointer;
+  font-weight: 500;
 `;
 
 const Arrows = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 12px;
 
   button {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid #ddd;
+    background: white;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #f8f9fa;
+    }
 
     &:disabled {
       opacity: 0.4;
@@ -185,17 +244,17 @@ const Arrows = styled.div`
   }
 `;
 
-
 const CarouselViewport = styled.div`
-  width: ${SIDE_WIDTH * 4 + CENTER_WIDTH + GAP * 4}px;
-  overflow: hidden;
+  width: ${SIDE_WIDTH * 4 + CENTER_WIDTH}px;
   margin: 0 auto;
+  overflow: hidden;
 `;
 
 const CarouselTrack = styled.div`
   display: flex;
   gap: ${GAP}px;
-  transition: transform 0.45s ease;
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 `;
 
 const EventCard = styled.div`
@@ -203,23 +262,25 @@ const EventCard = styled.div`
   width: ${SIDE_WIDTH}px;
   height: 560px;
   flex-shrink: 0;
-  opacity: 0.5;
-  transform: scale(0.9);
-  transition: all 0.35s ease;
-  border-radius: 2px;
   overflow: hidden;
+  transition: all 0.225s ease;
+  border-radius: 5px;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.7s ease;
   }
 
-  &.center {
-    width: ${CENTER_WIDTH}px;
-    opacity: 1;
-    transform: scale(1);
-  }
+  ${({ $isCenter }) =>
+    $isCenter &&
+    `width: ${CENTER_WIDTH}px;
+    img {
+      filter: grayscale(0%) !important;
+    }
+  `}
 `;
 
 const RoleLabel = styled.div`
@@ -227,91 +288,96 @@ const RoleLabel = styled.div`
   bottom: 0;
   width: 100%;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  color: #ffffff99;
   text-align: center;
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 const ImgText = styled.div`
+  text-align: center;
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  color: #fff;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  pointer-events: none;
 
   p {
-    font-size: 13px;
-    opacity: 0.85;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 400;
   }
 
   h2 {
-    font-size: 22px;
-    margin-top: 4px;
+    font-size: 26px;
+    line-height: 0;
+    text-align: left;
   }
 `;
 
 const Overlay = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100%;
-  padding: 14px;
+  left: 0;
+  right: 0;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  align-items: flex-end;
+  backdrop-filter: blur(10px);
 `;
 
 const OverlayLeft = styled.div`
   display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const Badge = styled.span`
-  padding: 4px 12px;
-  border-radius: 20px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+const HostCount = styled.div`
   font-size: 12px;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.25);
-`;
-
-const Hosts = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const HostCount = styled.span`
-  font-size: 10px;
   background: #0084ff;
-  padding: 4px 8px;
-  border-radius: 20px;
-  color: #fff;
-  margin-right: 6px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: #000000;
 `;
 
 const Avatars = styled.div`
   position: relative;
-  width: 70px;
-  height: 20px;
+  width: 80px;
 
   img {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    border: 1px solid #0084ff;
+    border: 2px solid #0084ff;
+    object-fit: cover;
   }
 
-  img:nth-child(1) { left: 0; }
-  img:nth-child(2) { left: 15px; }
-  img:nth-child(3) { left: 30px; }
-  img:nth-child(4) { left: 45px; }
+  img:nth-child(1) {
+    left: 0px;
+  }
+  img:nth-child(2) {
+    left: 17px;
+  }
+  img:nth-child(3) {
+    left: 33px;
+  }
+  img:nth-child(4) {
+    left: 48px;
+  }
 `;
 
 const BottomText = styled.div`
-  font-size: 12px;
-  color: #ccc;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-right: auto;
 `;
-
-

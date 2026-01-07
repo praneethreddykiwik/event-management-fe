@@ -11,7 +11,7 @@ export const tasksMetadata = [
     title: "Finalize speakers list",
     description:
       "Confirm and lock the final list of keynote and panel speakers including session topics.",
-    priority: "High",
+    priority: "high",
     dueAt: "2026-01-05T17:00:00Z",
     image: venueImg1,
     available: true,
@@ -20,7 +20,7 @@ export const tasksMetadata = [
     title: "Confirm venue booking",
     description:
       "Ensure the convention center booking is finalized and advance payment is completed.",
-    priority: "Critical",
+    priority: "high",
     dueAt: "2026-01-06T12:00:00Z",
     image: venueImg2,
     available: true,
@@ -29,7 +29,7 @@ export const tasksMetadata = [
     title: "Setup stage and lighting",
     description:
       "Coordinate with vendors to complete stage, lighting, and audio setup as per event design.",
-    priority: "High",
+    priority: "high",
     dueAt: "2026-01-10T09:00:00Z",
     image: venueImg3,
     available: true,
@@ -38,7 +38,7 @@ export const tasksMetadata = [
     title: "Send delegate invitations",
     description:
       "Send formal invitations and registration links to all conference delegates.",
-    priority: "Medium",
+    priority: "medium",
     dueAt: "2026-01-08T18:00:00Z",
     image: venueImg4,
     available: true,
@@ -49,7 +49,7 @@ export const tasksMetadata = [
     title: "Confirm keynote speaker",
     description:
       "Finalize agreement and session details with the primary keynote speaker.",
-    priority: "Critical",
+    priority: "high",
     dueAt: "2026-01-12T14:00:00Z",
     image: venueImg5,
     available: true,
@@ -58,7 +58,7 @@ export const tasksMetadata = [
     title: "Design conference agenda",
     description:
       "Create the full conference agenda including session timing and speakers.",
-    priority: "High",
+    priority: "high",
     dueAt: "2026-01-14T16:00:00Z",
     image: venueImg6,
     available: true,
@@ -67,7 +67,7 @@ export const tasksMetadata = [
     title: "Arrange accommodation for speakers",
     description:
       "Book hotels and transport for all visiting speakers and VIP guests.",
-    priority: "Medium",
+    priority: "medium",
     dueAt: "2026-01-15T11:00:00Z",
     image: venueImg2,
     available: true,
@@ -78,7 +78,7 @@ export const tasksMetadata = [
     title: "Prepare annual report presentation",
     description:
       "Compile performance metrics and financials into the executive presentation deck.",
-    priority: "High",
+    priority: "high",
     dueAt: "2026-01-18T10:00:00Z",
     image: venueImg4,
     available: true,
@@ -87,7 +87,7 @@ export const tasksMetadata = [
     title: "Stage setup and branding",
     description:
       "Install branding materials, banners, LED screens, and podium graphics.",
-    priority: "Medium",
+    priority: "medium",
     dueAt: "2026-01-19T13:00:00Z",
     image: venueImg5,
     available: true,
