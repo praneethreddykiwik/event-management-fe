@@ -79,7 +79,7 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   const goBack = () => {
-    navigate(paths.tasks);
+    navigate(paths.events);
   };
 
   return (
