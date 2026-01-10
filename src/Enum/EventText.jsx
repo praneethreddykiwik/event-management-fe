@@ -9,7 +9,7 @@ export const EVENT_TEXT = {
   ABOUT_DESCRIPTION:
     "Lagos, Nigeria’s largest city, sprawls inland from the Gulf of Guinea across Lagos Lagoon. Victoria Island, the financial center of the metropolis, is known for its beach resorts, boutiques and nightlife. Nearby is Freedom Park, once a colonial-era prison and now a venue for concerts and public events.",
 
-    SHOW_LOCATION: "Show Location",
+  SHOW_LOCATION: "Show Location",
 
   NEXT_EVENT_TITLE: "Next Event",
   NEXT_EVENT_NAME: "The Creative Economy and The Rise of Content Creators",

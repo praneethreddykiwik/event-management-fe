@@ -9,7 +9,7 @@ const NewEvent = () => {
   return (
     <PageWrapper>
       <EventIntroSection />
-    <AboutAndNextEventSection />
+      <AboutAndNextEventSection />
       {/* <CardsRow>
         <ParticipantsSection />
         <PastEventsSection />

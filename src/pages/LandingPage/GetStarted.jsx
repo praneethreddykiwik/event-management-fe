@@ -26,9 +26,12 @@ const GetStarted = () => {
             {GETSTARTED_TXT.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <StyledGetStartedBtn onClick={() => navigate("/registration")}>
+            <StyledBaseButton
+              onClick={() => navigate("/registration")}
+              className="!w-[120px]"
+            >
               {GETSTARTED_TXT.START_BTN}
-            </StyledGetStartedBtn>
+            </StyledBaseButton>
             <StyledLink>
               {GETSTARTED_TXT.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />
@@ -45,7 +48,7 @@ const GetStarted = () => {
 };
 
 const StyledGetStartedBtn = styled(StyledBaseButton)`
-  width: 120px;
+  // width: 120px;
 `;
 
 const StyledLink = styled(StyledAnchor)`
