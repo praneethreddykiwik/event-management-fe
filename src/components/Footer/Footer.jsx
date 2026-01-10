@@ -1,20 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 // import E_logo from "../../assets/Header_images/E_logo.jpg";
-import Helm_logo from "../../assets/Logos/Helm_logo.svg"
-import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
+import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 import styled from "styled-components";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
 import { footerLinks, socialLinks } from "./Footer.helper";
-// import SocialIcons from "./SocialIcons";
+import { FOOTER_CONTENT } from "../../Enum/common";
 
 const Footer = () => {
-  
   const { authStatus } = useSelector(authSelector);
   const isLoggedIn = authStatus === "authenticated";
-  
-  if(!isLoggedIn){
+
+  if (!isLoggedIn) {
     return null;
   }
 
@@ -74,12 +72,13 @@ const Footer = () => {
               </SocialLink>
             ))}
           </SocialWrapper>
-
         </ContactRow>
       </ContactWrapper>
 
       <BottomBar>
-        <BottomText>{'\u00A9'} {currentYear} {FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
+        <BottomText>
+          {"\u00A9"} {currentYear} {FOOTER_CONTENT.ALL_RIGHTS_RESERVED}
+        </BottomText>
 
         <BottomLinks>
           <NavLink to="/privacy">{FOOTER_CONTENT.PRIVACY_POLICY}</NavLink>
