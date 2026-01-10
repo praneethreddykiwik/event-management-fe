@@ -9,7 +9,7 @@ import {
   PRIVACY_TEXT_END,
   PRIVACY_TEXT_START,
   SPECIFICENQUIRY,
-} from "../../Enum/common";
+} from "../../enum/common";
 
 const GetInTouch = () => {
   const cardData = cardData1;

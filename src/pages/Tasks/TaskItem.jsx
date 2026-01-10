@@ -5,7 +5,7 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
+import { E_M_DASHBOARD_COMMON } from "../../enum/EMDashboard.common";
 import { useState } from "react";
 import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";

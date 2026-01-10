@@ -1,15 +1,15 @@
 import { StyledHeading } from "../../components/Styled/Typography.styled";
 import styled from "styled-components";
-import { WELCOME, DESCRIPTION_TEXT } from "../../Enum/marketplace.enum";
+import { WELCOME, DESCRIPTION_TEXT } from "../../enum/marketplace.enum";
 
 const MarketDescription = () => {
   return (
     <PageSection>
       <MainContainer>
         <ArticleContent>
-          <HeadingWrapper> 
+          <HeadingWrapper>
             <StyledHeading>{WELCOME}</StyledHeading>
-              </HeadingWrapper>
+          </HeadingWrapper>
           <Description>{DESCRIPTION_TEXT}</Description>
         </ArticleContent>
 
