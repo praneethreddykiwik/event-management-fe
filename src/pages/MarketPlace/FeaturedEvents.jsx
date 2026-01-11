@@ -5,7 +5,7 @@ import { Button } from "../../components/Buttons/Button";
 import carImage1 from "../../assets/FeaturedEvents-Imgs/carImage1.jpg";
 import carImg2 from "../../assets/FeaturedEvents-Imgs/carImg2.jpg";
 import carImage3 from "../../assets/FeaturedEvents-Imgs/carImage3.jpg";
-import carImg4 from "../../assets/FeaturedEvents-Imgs/carImg4.jpg";
+import carImg4 from "../../assets/FeaturedEvents-Imgs/CarImg4.jpg";
 
 import speaker1 from "../../assets/FeaturedEvents-Imgs/Speaker1.png";
 import speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
