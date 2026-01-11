@@ -1,34 +1,47 @@
 import styled from "styled-components";
-import {
-  ADMIN_COMMON,
-  EVENT_ASSIGNED,
-  EVENT_DATE,
-  EVENT_NAME,
-  EVENT_STATUS,
-} from "../../enum/Admin.common";
-import { BADGE_TYPES } from "../../enum/common";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 import Badge from "../../components/Badge/Badge.component";
 import {
   StyledHeading,
   StyledParagraph,
-  StyledParagraphSmallGray,
   StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
-import { StyledIconButton } from "../../components/Styled/Buttons.styled";
-import { EventDetailsMap } from "../../enum/eventDetails.enum";
 import { useLocation } from "react-router-dom";
 import { dateObj } from "../../utils/utils";
+import { BADGE_TYPES } from "../../constants/badges";
 
 const EventDetails = () => {
   const { state } = useLocation();
   const event = state?.event;
 
   const { date, time } = dateObj(event.scheduledAt);
-  console.log("date", date, time);
 
-  console.log("Event", event);
+  const EventDetailsMap = (event, date, time) => {
+    return [
+      {
+        Type: "Date",
+        Info: date,
+        Icon: "date_range",
+      },
+      {
+        Type: "Time",
+        Info: time,
+        Icon: "aod_watch",
+      },
+      {
+        Type: "Venue",
+        Info: event.venue,
+        Icon: "map",
+      },
+      {
+        Type: "Expected Attendes",
+        Info: event.expectedAttendees,
+        Icon: "group",
+      },
+    ];
+  };
+
   return (
     <>
       {/* <BlueBackHOC> */}

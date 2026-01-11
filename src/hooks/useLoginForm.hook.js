@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { inputValidation } from "../components/Validations/inputValidation";
 import { useAuth } from "./useAuth.hook";
-import { userRoles } from "../enum/Common";
+import * as enums from "../enum";
 import useNavigateWithQuery from "./useNavigateWithQuery";
 import { paths } from "../constants/paths";
 
@@ -61,11 +61,11 @@ export const useLoginForm = () => {
     const { firstName, lastName } = loginResponse?.user || {};
     setUserDetails((prev) => ({ ...prev, firstName, lastName }));
 
-    if (role === userRoles.adminRole) {
+    if (role === enums.adminRole) {
       navigate("/admin");
-    } else if (role === userRoles.eventManagerRole) {
+    } else if (role === enums.eventManagerRole) {
       navigate("/vendor");
-    } else if (role === userRoles.stakeHolderRole) {
+    } else if (role === enums.stakeHolderRole) {
       navigate(paths.tasks);
     }
   };

@@ -21,7 +21,7 @@ import participant4 from "../../../assets/participant4.jpg";
 import participant5 from "../../../assets/participant5.jpg";
 import participant6 from "../../../assets/participant6.jpg";
 
-import { EVENT_TEXT } from "../../../enum/EventText";
+import * as enums from "../../../enum";
 
 const ParticipantsSection = () => {
   const participants = [
@@ -37,7 +37,7 @@ const ParticipantsSection = () => {
     <ParticipantsCard>
       <ParticipantsHeaderRow>
         <HeaderLeft>
-          {EVENT_TEXT.PARTICIPANTS}
+          {enums.PARTICIPANTS}
           <CountBadge>56</CountBadge>
         </HeaderLeft>
 
@@ -62,7 +62,7 @@ const ParticipantsSection = () => {
           </ParticipantRow>
         ))}
 
-        <SeeAll>{EVENT_TEXT.SEE_ALL_PARTICIPANTS}</SeeAll>
+        <SeeAll>{enums.SEE_ALL_PARTICIPANTS}</SeeAll>
       </ParticipantsBody>
     </ParticipantsCard>
   );

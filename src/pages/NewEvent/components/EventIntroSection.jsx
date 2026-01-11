@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { EVENT_TEXT } from "../../../enum/EventText";
+import * as enums from "../../../enum";
 import speaker1 from "../../../assets/speaker1.jpg";
 import speaker2 from "../../../assets/speaker2.jpg";
 import Carousel from "../../../components/Carousel/Carousel";
@@ -18,11 +18,11 @@ const EventIntroSection = () => {
   const headerEvents = [
     {
       image: speaker1,
-      label: EVENT_TEXT.NEW_EVENT,
-      title: EVENT_TEXT.TITLE,
-      date: EVENT_TEXT.DATE_TIME,
-      watchLive: EVENT_TEXT.WATCH_LIVE,
-      attendText: EVENT_TEXT.ATTEND_IN_PERSON,
+      label: enums.NEW_EVENT,
+      title: enums.TITLE,
+      date: enums.DATE_TIME,
+      watchLive: enums.WATCH_LIVE,
+      attendText: enums.ATTEND_IN_PERSON,
     },
     {
       image: speaker2,

@@ -1,17 +1,17 @@
 /** @format */
 
 import styled from "styled-components";
-import { LOGIN_COMMON } from "../../enum/Login.Common";
+import * as enums from "../../enum";
 
 const LineTxts = () => {
   return (
     <>
       <LineTxt>
         <LineOne />
-        <SignUpWith>{LOGIN_COMMON.SIGN_IN_EMAIL}</SignUpWith>
+        <SignUpWith>{enums.SIGN_IN_EMAIL}</SignUpWith>
         <LineTwo />
       </LineTxt>
-      <SignWithEmail>{LOGIN_COMMON.SIGN_IN_EMAIL}</SignWithEmail>
+      <SignWithEmail>{enums.SIGN_IN_EMAIL}</SignWithEmail>
     </>
   );
 };

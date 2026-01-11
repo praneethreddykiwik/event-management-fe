@@ -1,19 +1,22 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../enum";
 
 const UsageBox = () => {
+  const chartUrl =
+    "https://image-charts.com/chart?cht=bvs&chs=300x200&chd=t:12,30,60,40&chl=2020|2021|2022|2023&chco=4A90E2";
+
   return (
     <>
       <UsageBox2>
         <BoxHeader>
-          <StyleHeader2>{HALLS_DASHBOARD.HISTORY_HEADER}</StyleHeader2>
+          <StyleHeader2>{enums.HISTORY_HEADER}</StyleHeader2>
           <InfoIcon>
             <Styledspan className="material-symbols-rounded">
-              {HALLS_DASHBOARD.INFO_ICON}
+              {enums.INFO_ICON}
             </Styledspan>
           </InfoIcon>
         </BoxHeader>
-        <Chartimg src={HALLS_DASHBOARD.CHART_URL} alt="chart" />
+        <Chartimg src={chartUrl} alt="chart" />
       </UsageBox2>
     </>
   );

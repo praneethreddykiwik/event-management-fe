@@ -7,7 +7,7 @@ import customer5 from "../../assets/landingPage/customer5.jpg";
 import customer6 from "../../assets/landingPage/customer6.jpg";
 
 // text component
-import { CUSTOMERCOMPONET_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../enum";
 
 import styled from "styled-components";
 
@@ -27,7 +27,7 @@ const Customer = () => {
   return (
     <StyledCustomerLayout>
       <StyledSubContainerOne>
-        <StyledHead left>{CUSTOMERCOMPONET_TXT.CUSTOMER_HEADING}</StyledHead>
+        <StyledHead left>{enums.CUSTOMER_HEADING}</StyledHead>
         <CustomerCarouselWrapper>
           <Carousel
             type="type3"
@@ -39,7 +39,7 @@ const Customer = () => {
         </CustomerCarouselWrapper>
       </StyledSubContainerOne>
       <StyledSubContainerTwo>
-        <StyledHeadM>{CUSTOMERCOMPONET_TXT.CUSTOMER_HEADINGM}</StyledHeadM>
+        <StyledHeadM>{enums.CUSTOMER_HEADINGM}</StyledHeadM>
         <StyledImageOne>
           {imagesOne.map((img, i) => (
             <StyledImgOne key={i} src={img} />

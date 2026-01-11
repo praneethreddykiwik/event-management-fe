@@ -1,4 +1,4 @@
-import { EVENT_TEXT } from "../../../enum/EventText";
+import * as enums from "../../../enum";
 import Carousel from "../../../components/Carousel/Carousel";
 import styled from "styled-components";
 import {
@@ -11,16 +11,16 @@ import {
 const AboutAndNextEventSection = () => {
   const eventList = [
     {
-      title: EVENT_TEXT.NEXT_EVENT_TITLE,
-      name: EVENT_TEXT.NEXT_EVENT_NAME,
-      location: EVENT_TEXT.SHOW_LOCATION,
-      date: EVENT_TEXT.NEXT_EVENT_DATE,
+      title: enums.NEXT_EVENT_TITLE,
+      name: enums.NEXT_EVENT_NAME,
+      location: enums.SHOW_LOCATION,
+      date: enums.NEXT_EVENT_DATE,
       bgColor: "#cba50c",
     },
     {
       title: "Another Event",
       name: "Content Creators and the Future of the Global Economy",
-      location: EVENT_TEXT.SHOW_LOCATION,
+      location: enums.SHOW_LOCATION,
       date: "Mon, 10 Mar 2025 at 11:00",
       bgColor: "#8b5cf6",
     },
@@ -51,7 +51,7 @@ const AboutAndNextEventSection = () => {
       <AboutLeft>
         <AboutHeaderRow>
           <AboutLeftSide>
-            <AboutTitle>{EVENT_TEXT.ABOUT_TITLE}</AboutTitle>
+            <AboutTitle>{enums.ABOUT_TITLE}</AboutTitle>
             <HelpIcon className="material-symbols-outlined">help</HelpIcon>
           </AboutLeftSide>
 
@@ -59,11 +59,11 @@ const AboutAndNextEventSection = () => {
             <LocationIcon className="material-symbols-outlined">
               location_on
             </LocationIcon>
-            <ShowLocationText>{EVENT_TEXT.SHOW_LOCATION}</ShowLocationText>
+            <ShowLocationText>{enums.SHOW_LOCATION}</ShowLocationText>
           </LocationRow>
         </AboutHeaderRow>
 
-        <AboutParagraph>{EVENT_TEXT.ABOUT_DESCRIPTION}</AboutParagraph>
+        <AboutParagraph>{enums.ABOUT_DESCRIPTION}</AboutParagraph>
       </AboutLeft>
 
       <RightNextEvent>

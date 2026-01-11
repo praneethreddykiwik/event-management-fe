@@ -1,7 +1,7 @@
 import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
-import { JOINCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../enum";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import {
   StyledParagraphSmallGray,
@@ -20,11 +20,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledJoinNowPara>
-          {JOINCOMPONENT_TXT.JOIN_PARAGRAPH}
-        </StyledJoinNowPara>
-        <StyledSemiHeading>{JOINCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
-        <StyledJoinBtn>{JOINCOMPONENT_TXT.JOIN_BTN}</StyledJoinBtn>
+        <StyledJoinNowPara>{enums.JOIN_PARAGRAPH}</StyledJoinNowPara>
+        <StyledSemiHeading>{enums.JOIN_HEADING}</StyledSemiHeading>
+        <StyledJoinBtn>{enums.JOIN_BTN}</StyledJoinBtn>
       </StyledContainerTwo>
     </LandingPageLayout>
   );

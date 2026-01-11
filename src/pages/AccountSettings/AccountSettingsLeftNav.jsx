@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
+import * as enums from "../../enum";
 import modalImg from "../../assets/modalimg.jpg";
 import {
   StyledGroupIcon,
@@ -57,7 +57,7 @@ const AccountSettingsLeftNav = () => {
         </StyledProfileRow>
       </StyledProfileCard>
 
-      <StyledSemiHeadingAccount>{HEADINGS.MY_ACCOUNT}</StyledSemiHeadingAccount>
+      <StyledSemiHeadingAccount>{enums.MY_ACCOUNT}</StyledSemiHeadingAccount>
       <Nav>
         <List>
           {menuItems.map((item) => (

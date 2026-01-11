@@ -8,7 +8,7 @@ import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { ADMIN_COMMON } from "../../enum/Admin.common";
+import * as enums from "../../enum";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});
@@ -84,8 +84,8 @@ const CreateEventModal = ({ onClose }) => {
     <Overlay onClick={onClose}>
       <Box onClick={(e) => e.stopPropagation()}>
         <Top>
-          <CreateEventTxt>{ADMIN_COMMON.EVENT_TXT}</CreateEventTxt>
-          <CreateEventS>{ADMIN_COMMON.EVENT_TXT_SMALL} </CreateEventS>
+          <CreateEventTxt>{enums.EVENT_TXT}</CreateEventTxt>
+          <CreateEventS>{enums.EVENT_TXT_SMALL} </CreateEventS>
         </Top>
 
         <Form>
@@ -102,11 +102,11 @@ const CreateEventModal = ({ onClose }) => {
 
         <Actions>
           <CreateB>
-            <Button onClick={handleCreate}>{ADMIN_COMMON.CREATE_BUTTON}</Button>
+            <Button onClick={handleCreate}>{enums.CREATE_BUTTON}</Button>
           </CreateB>
 
           <CancelB>
-            <Button onClick={onClose}>{ADMIN_COMMON.CANCEL_BUTTON}</Button>
+            <Button onClick={onClose}>{enums.CANCEL_BUTTON}</Button>
           </CancelB>
         </Actions>
       </Box>

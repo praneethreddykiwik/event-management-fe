@@ -1,6 +1,6 @@
 import venue_hall from "../../assets/landingPage/venue.jpg";
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
-import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../enum";
 import {
   StyledSemiHeading,
   StyledParagraphSmallGray,
@@ -17,12 +17,10 @@ const FindInspiration = () => {
         <StyledImage src={venue_hall} />
       </StyledImageContainer>
       <StyledContainerTwo>
-        <StyledSemiHeading left>
-          {FINDINSIPRATION_TXT.FIND_HEADING}
-        </StyledSemiHeading>
-        <StyledContent>{FINDINSIPRATION_TXT.FIND_PARAGRAPH}</StyledContent>
+        <StyledSemiHeading left>{enums.FIND_HEADING}</StyledSemiHeading>
+        <StyledContent>{enums.FIND_PARAGRAPH}</StyledContent>
         <StyledBtnContainer>
-          <StyledLink>{FINDINSIPRATION_TXT.FINDOUTLINE_BTN}</StyledLink>
+          <StyledLink>{enums.FINDOUTLINE_BTN}</StyledLink>
           <StyledIcon src={forward_arrow} />
         </StyledBtnContainer>
       </StyledContainerTwo>

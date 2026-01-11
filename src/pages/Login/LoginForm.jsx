@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LOGIN_COMMON } from "../../enum/Login.Common";
+import * as enums from "../../enum";
 import { Button } from "../../components/Buttons/Button";
 import {
   StyledAnchor,
@@ -79,18 +79,18 @@ const LoginForm = () => {
       </InputBox>
 
       <ForgotPassword>
-        {LOGIN_COMMON.FORGOT_PASS}
-        <Reset>{LOGIN_COMMON.RESET}</Reset>
+        {enums.FORGOT_PASS}
+        <Reset>{enums.RESET}</Reset>
       </ForgotPassword>
 
-      <Button onClick={onSubmit}>{LOGIN_COMMON.CONTINUE}</Button>
+      <Button onClick={onSubmit}>{enums.CONTINUE}</Button>
       <AccountSignIn>
-        {LOGIN_COMMON.DONT_HAVE_ACCOUNT_TEXT}
+        {enums.DONT_HAVE_ACCOUNT_TEXT}
         <AnchorLinkPrimary onClick={() => navigate("/registration")}>
-          {LOGIN_COMMON.REGISTER}
+          {enums.REGISTER}
         </AnchorLinkPrimary>
       </AccountSignIn>
-      <TermsConditionsTxt>{LOGIN_COMMON.TERMS_CONDITIONS}</TermsConditionsTxt>
+      <TermsConditionsTxt>{enums.BY_USING_OUR_APPS_PP}</TermsConditionsTxt>
 
       <CheckboxRow>
         <AnchorParah>

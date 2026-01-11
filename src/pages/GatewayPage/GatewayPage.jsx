@@ -18,11 +18,11 @@ import {
 
 import {
   EVENTZ_LOGO_TEXT,
-  DESCRIPTION_TEXT,
+  GATEAWAY_DESCRIPTION_TEXT,
   TITLE_TEXT,
   SKIP_BUTTON_TEXT,
   NEXT_BUTTON_TEXT,
-} from "../../enum/Gateway.Enum.jsx";
+} from "../../enum";
 
 const GatewayPage = () => {
   return (
@@ -35,7 +35,7 @@ const GatewayPage = () => {
 
         <TitleTxt>{TITLE_TEXT}</TitleTxt>
 
-        <DescriptionTxt>{DESCRIPTION_TEXT}</DescriptionTxt>
+        <DescriptionTxt>{GATEAWAY_DESCRIPTION_TEXT}</DescriptionTxt>
 
         <Button_section>
           <SkipButton>{SKIP_BUTTON_TEXT}</SkipButton>

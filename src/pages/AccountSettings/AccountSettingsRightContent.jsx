@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import google from "../../assets/Logo/Google.svg.webp";
-import { HEADINGS, TEXTS } from "../../enum/accountsettings.common";
+import * as enums from "../../enum";
 import {
   Action,
   ActionSpan,
@@ -30,12 +30,12 @@ const AccountSettingsRightContent = () => {
   }
   return (
     <StyledRightContent>
-      <StyledHeading left>{HEADINGS.ACCOUNT_SETTINGS}</StyledHeading>
+      <StyledHeading left>{enums.ACCOUNT_SETTINGS}</StyledHeading>
       <StyledHr />
 
       <Section medium>
         <SectionHeader>
-          <Title>{HEADINGS.LINKED_ACCOUNTS}</Title>
+          <Title>{enums.LINKED_ACCOUNTS}</Title>
           <Action>+ Add</Action>
         </SectionHeader>
         <RowLink>
@@ -46,7 +46,7 @@ const AccountSettingsRightContent = () => {
 
       <Section small>
         <SectionHeader>
-          <Title>{HEADINGS.EMAIL_PREFERENCE}</Title>
+          <Title>{enums.EMAIL_PREFERENCE}</Title>
           <Action>
             <ActionSpan
               className="material-symbols-outlined"
@@ -56,14 +56,14 @@ const AccountSettingsRightContent = () => {
             </ActionSpan>
           </Action>
         </SectionHeader>
-        <SubText left>{TEXTS.EMAIL_PREFERENCE}</SubText>
+        <SubText left>{enums.EMAIL_PREFERENCE}</SubText>
       </Section>
 
       <Section small>
         <SectionHeader>
-          <Title>{HEADINGS.BACKUP}</Title>
+          <Title>{enums.BACKUP_AND_RESTORE}</Title>
         </SectionHeader>
-        <SubText left>{TEXTS.BACKUP}</SubText>
+        <SubText left>{enums.BACKUP}</SubText>
       </Section>
       <StyledButtonContainer left>
         <StyledAccButton>Upgrade now </StyledAccButton>

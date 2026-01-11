@@ -8,7 +8,7 @@ import {
   StyledHeadingBig,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
-import { LOGIN_COMMON } from "../../enum/Login.Common.jsx";
+import * as enums from "../../enum";
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (
@@ -21,8 +21,7 @@ const WelcomeTxts = ({ logo = logoImg }) => {
         <LogoImage src={Helm_logo} alt="logo" />
       </LogoBox>
       <WelcomeTxt>
-        {/* <WelcomeTextBig>{LOGIN_COMMON.WELCOME_TEXT}</WelcomeTextBig> */}
-        <SignUpTxt>{LOGIN_COMMON.SIGN_UP_TXT}</SignUpTxt>
+        <SignUpTxt>{enums.SIGN_UP_TXT}</SignUpTxt>
       </WelcomeTxt>
     </>
   );

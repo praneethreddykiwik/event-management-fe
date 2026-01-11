@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../enum";
 import Avt1 from "../../assets/ControlPage_img/Avt1.jpeg";
 import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
@@ -9,7 +9,7 @@ const LastUsersBox = () => {
   return (
     <LastUsersBox2>
       <LastHeader>
-        <HeaderTitle>{HALLS_DASHBOARD.LAST_HEAD}</HeaderTitle>
+        <HeaderTitle>{enums.LAST_HEAD}</HeaderTitle>
 
         <AvatarGroup>
           <Avtimg src={Avt1} />
@@ -22,9 +22,9 @@ const LastUsersBox = () => {
         <LastImg src={doorimg} />
 
         <LastInfo>
-          <Header4>{HALLS_DASHBOARD.HALLS}</Header4>
-          <Paragraph>{HALLS_DASHBOARD.BACK_DOOR}</Paragraph>
-          <SmallPara>{HALLS_DASHBOARD.D_TIME}</SmallPara>
+          <Header4>{enums.HALLS}</Header4>
+          <Paragraph>{enums.BACK_DOOR}</Paragraph>
+          <SmallPara>{enums.D_TIME}</SmallPara>
         </LastInfo>
       </UserActivity>
     </LastUsersBox2>

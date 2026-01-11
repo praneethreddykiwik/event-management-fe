@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  StyledBaseButton,
-  StyledSecButton,
-} from "../../components/Styled/Buttons.styled";
-import { StyledHeading } from "../../components/Styled/Typography.styled";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import {
   ButtonWrapper,
   Cards,
@@ -30,7 +26,7 @@ import {
   PlanDivider,
   SpanButton,
 } from "./Subscriptions.styled";
-import { SUBSCRIPTIONS_ENUM } from "../../enum/Subscriptions.enum";
+import * as enums from "../../enum";
 
 const Subscriptions = () => {
   const [yearly, setYearly] = useState(false);
@@ -44,28 +40,28 @@ const Subscriptions = () => {
 
   const FEATURE_MAP = {
     starter: [
-      SUBSCRIPTIONS_ENUM.ACCESS,
-      SUBSCRIPTIONS_ENUM.DOWNLOAD,
-      SUBSCRIPTIONS_ENUM.AUDIT,
-      SUBSCRIPTIONS_ENUM.STORGE,
-      SUBSCRIPTIONS_ENUM.CHAT,
+      enums.ACCESS,
+      enums.DOWNLOAD,
+      enums.AUDIT,
+      enums.STORGE,
+      enums.CHAT,
     ],
 
     standard: [
-      SUBSCRIPTIONS_ENUM.ATTENDANCE,
-      SUBSCRIPTIONS_ENUM.DOWNLOAD_1,
-      SUBSCRIPTIONS_ENUM.ADVANCE_FEATURES,
-      SUBSCRIPTIONS_ENUM.MORE_STORAGE,
-      SUBSCRIPTIONS_ENUM.CHAT_SUPPORT,
-      SUBSCRIPTIONS_ENUM.BACKUP,
+      enums.ATTENDANCE,
+      enums.DOWNLOAD_1,
+      enums.ADVANCE_FEATURES,
+      enums.MORE_STORAGE,
+      enums.CHAT_SUPPORT,
+      enums.BACKUP,
     ],
 
     pro: [
-      SUBSCRIPTIONS_ENUM.ADVANCE_AUDIT,
-      SUBSCRIPTIONS_ENUM.SERVICE,
-      SUBSCRIPTIONS_ENUM.ADVANCE_DOWNLOADS,
-      SUBSCRIPTIONS_ENUM.SUPER_STORAGE,
-      SUBSCRIPTIONS_ENUM.ADD_MORE,
+      enums.ADVANCE_AUDIT,
+      enums.SERVICE,
+      enums.ADVANCE_DOWNLOADS,
+      enums.SUPER_STORAGE,
+      enums.ADD_MORE,
     ],
   };
 
@@ -73,20 +69,20 @@ const Subscriptions = () => {
     <StyledContainer>
       <ChoosePlan>
         <Header>
-          <ChoosePlanTxt>{SUBSCRIPTIONS_ENUM.CHOOSE_PLAN}</ChoosePlanTxt>
-          <Message>{SUBSCRIPTIONS_ENUM.ENJOY_MESSAGE}</Message>
+          <ChoosePlanTxt>{enums.CHOOSE_PLAN}</ChoosePlanTxt>
+          <Message>{enums.ENJOY_MESSAGE}</Message>
 
           <ToggleRow>
             <SpanButton className={!yearly ? "active" : ""}>
-              {SUBSCRIPTIONS_ENUM.MONTH}
+              {enums.MONTH}
             </SpanButton>
             <ToggleSwitch onClick={() => setYearly((v) => !v)}>
               <ToggleKnob $move={yearly} />
             </ToggleSwitch>
             <SpanButton className={yearly ? "active" : ""}>
-              {SUBSCRIPTIONS_ENUM.YEAR}
+              {enums.YEAR}
             </SpanButton>
-            <Discount>{SUBSCRIPTIONS_ENUM.DISCOUNT}</Discount>
+            <Discount>{enums.DISCOUNT}</Discount>
           </ToggleRow>
         </Header>
 
@@ -111,12 +107,12 @@ const Subscriptions = () => {
 
               <Price>
                 ${compute(price)}
-                <small>{SUBSCRIPTIONS_ENUM.MONTH}</small>
+                <small>{enums.MONTH}</small>
               </Price>
 
               <PlanDivider $selected={selected === key} />
 
-              <MobileLine>{SUBSCRIPTIONS_ENUM.mobileOneLiner}</MobileLine>
+              <MobileLine>{enums.mobileOneLiner}</MobileLine>
 
               <Features>
                 {FEATURE_MAP[key]?.map((feature, index) => (
@@ -127,14 +123,11 @@ const Subscriptions = () => {
               </Features>
 
               <ButtonWrapper>
-                <StyledBaseButton>
-                  {SUBSCRIPTIONS_ENUM.GET_STARTED}
-                </StyledBaseButton>
+                <StyledBaseButton>{enums.GET_STARTED}</StyledBaseButton>
               </ButtonWrapper>
 
               <SmallText $selected={selected === key}>
-                {SUBSCRIPTIONS_ENUM.SKIP_TRIAL}{" "}
-                <a href="#">{SUBSCRIPTIONS_ENUM.BUY_NOW}</a>
+                {enums.SKIP_TRIAL} <a href="#">{enums.BUY_NOW}</a>
               </SmallText>
             </PlanCard>
           ))}
@@ -148,19 +141,16 @@ const Subscriptions = () => {
             onChange={(e) => setHasAgreed(e.target.checked)}
           />
           <SpanButton>
-            {SUBSCRIPTIONS_ENUM.AGREE}{" "}
-            <a href="#">{SUBSCRIPTIONS_ENUM.TERMS}</a> {SUBSCRIPTIONS_ENUM.AND}{" "}
-            <a href="#">{SUBSCRIPTIONS_ENUM.PRIVACY}</a>
+            {enums.AGREE} <a href="#">{enums.BY_USING_OUR_TERMS}</a> {enums.AND}{" "}
+            <a href="#">{enums.PRIVACY}</a>
           </SpanButton>
         </TermsRow>
 
         <MobileCTA>
-          <button disabled={!hasAgreed}>
-            {SUBSCRIPTIONS_ENUM.GET_STARTED}
-          </button>
+          <button disabled={!hasAgreed}>{enums.GET_STARTED}</button>
         </MobileCTA>
 
-        <MobileSkip>{SUBSCRIPTIONS_ENUM.SKIP_TRIAL_1}</MobileSkip>
+        <MobileSkip>{enums.SKIP_TRIAL_1}</MobileSkip>
       </ChoosePlan>
     </StyledContainer>
   );

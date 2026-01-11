@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../enum";
 
 const CardsContainer = () => {
   return (
@@ -7,20 +7,20 @@ const CardsContainer = () => {
       <InfoRow>
         <InfoCard>
           <CardColumn>
-            <Label>{HALLS_DASHBOARD.CURRENT}</Label>
-            <Value1>{HALLS_DASHBOARD.VALUE1}</Value1>
+            <Label>{enums.CURRENT}</Label>
+            <Value1>{enums.VALUE1}</Value1>
           </CardColumn>
         </InfoCard>
 
         <InfoCard>
           <InfoCardInner>
             <Stdiv2>
-              <Label1>{HALLS_DASHBOARD.TEMPERATURE}</Label1>
-              <Value>{HALLS_DASHBOARD.DEGREE}</Value>
+              <Label1>{enums.TEMPERATURE}</Label1>
+              <Value>{enums.DEGREE}</Value>
             </Stdiv2>
 
             <TempToggle>
-              <TempPercent>{HALLS_DASHBOARD.DEGREE}</TempPercent>
+              <TempPercent>{enums.DEGREE}</TempPercent>
               <TempSwitch>
                 <SSspan className="thumb" />
               </TempSwitch>
@@ -30,7 +30,7 @@ const CardsContainer = () => {
 
         <InfoCard>
           <InfoCardInner>
-            <Label2>{HALLS_DASHBOARD.SCAN}</Label2>
+            <Label2>{enums.SCAN}</Label2>
             <QRCode src="https://quickchart.io/qr?text=device&size=150" />
           </InfoCardInner>
         </InfoCard>
