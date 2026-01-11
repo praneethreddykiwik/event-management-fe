@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as enums from "../../myEnum";
-import modalImg from "../../assets/modalimg.jpg";
+// import modalImg from "../../assets/modalimg.jpg";
+import modalImg from "../../assets/modalImg.jpg";
 import {
   StyledGroupIcon,
   StyledProfileCard,
