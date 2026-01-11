@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
 import { footerLinks, socialLinks } from "./Footer.helper";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const Footer = () => {
   const { authStatus } = useSelector(authSelector);

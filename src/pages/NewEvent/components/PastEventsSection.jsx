@@ -12,7 +12,7 @@ import {
 } from "../NewEvent.styles";
 
 import Controls from "./Controls";
-import * as enums from "../../../enum";
+import * as enums from "../../../myEnum";
 
 const PastEventsSection = () => {
   return (

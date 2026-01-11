@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import * as enums from "../../../enum";
+import * as enums from "../../../myEnum";
 import speaker1 from "../../../assets/speaker1.jpg";
 import speaker2 from "../../../assets/speaker2.jpg";
 import Carousel from "../../../components/Carousel/Carousel";

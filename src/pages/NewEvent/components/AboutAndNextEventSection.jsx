@@ -1,4 +1,4 @@
-import * as enums from "../../../enum";
+import * as enums from "../../../myEnum";
 import Carousel from "../../../components/Carousel/Carousel";
 import styled from "styled-components";
 import {
