@@ -1,7 +1,7 @@
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
 
-const Details = () => {
+const Details2 = () => {
   return (
     <>
       <DetailsCard>
@@ -38,7 +38,7 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Details2;
 
 const DetailsCard = styled.div`
   width: calc(100% - 40px);
