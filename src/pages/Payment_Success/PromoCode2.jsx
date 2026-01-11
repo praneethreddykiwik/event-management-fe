@@ -1,7 +1,7 @@
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
 
-const promoCode = () => {
+const PromoCode2 = () => {
   return (
     <>
       <Promo>
@@ -25,7 +25,7 @@ const promoCode = () => {
     </>
   );
 };
-export default promoCode;
+export default PromoCode2;
 
 const Styledb = styled.b`
   font-weight: 500;
