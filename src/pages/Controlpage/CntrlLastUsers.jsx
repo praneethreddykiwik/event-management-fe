@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import Avt1 from "../../assets/ControlPage_img/Avt1.jpeg";
 import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";

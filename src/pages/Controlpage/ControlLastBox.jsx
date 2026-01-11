@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
 
 const LastBox = () => {

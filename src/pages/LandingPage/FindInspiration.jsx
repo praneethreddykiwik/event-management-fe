@@ -1,6 +1,6 @@
 import venue_hall from "../../assets/landingPage/venue.jpg";
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import {
   StyledSemiHeading,
   StyledParagraphSmallGray,

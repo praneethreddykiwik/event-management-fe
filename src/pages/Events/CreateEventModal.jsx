@@ -8,7 +8,7 @@ import {
   StyledMediumHeading,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});

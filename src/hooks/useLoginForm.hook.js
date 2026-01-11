@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { inputValidation } from "../components/Validations/inputValidation";
 import { useAuth } from "./useAuth.hook";
-import * as enums from "../enum";
+import * as enums from "../myEnum";
 import useNavigateWithQuery from "./useNavigateWithQuery";
 import { paths } from "../constants/paths";
 

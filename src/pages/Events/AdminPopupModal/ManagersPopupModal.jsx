@@ -7,7 +7,7 @@ import { Button } from "../../../components/Buttons/Button";
 import Badge from "../../../components/Badge/Badge.component";
 import PopupModal from "../../../components/PopupModal/PopupModal";
 import { useState } from "react";
-import * as enums from "../../../enum";
+import * as enums from "../../../myEnum";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { useDispatch, useSelector } from "react-redux";
 import EditUserPopup from "../../../components/users/EditUserPopup";

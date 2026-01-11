@@ -3,7 +3,7 @@ import qatar from "../../assets/landingPage/Qatar-Airways-Symbol.png";
 import saleForce from "../../assets/landingPage/salesForce.png";
 import standard from "../../assets/landingPage/standard_chartered.png";
 import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import styled from "styled-components";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 

@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import apple from "../../assets/Logo/Apple.svg";
 import google from "../../assets/Logo/Google.svg.webp";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import { StyledParagraph } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
 const GetStartedWithButtons = () => {

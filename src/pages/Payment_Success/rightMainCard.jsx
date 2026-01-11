@@ -1,4 +1,4 @@
-import { PAYMENT_PAGE } from "../../enum/Payment.common";
+import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
 import PaymentSuccessfull from "./PaymentSuccessfull";
 import Details from "./Details";

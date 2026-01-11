@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import Conference_image from "../../assets/ControlPage_img/conference_image.jpg";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
 import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";

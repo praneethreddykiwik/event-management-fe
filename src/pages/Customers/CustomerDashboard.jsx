@@ -17,7 +17,7 @@ import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { Section } from "../../HOC/SectionsHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import CustomerItem from "./CustomerItem";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const CustomerDashboard = () => {
   const dispatch = useDispatch();

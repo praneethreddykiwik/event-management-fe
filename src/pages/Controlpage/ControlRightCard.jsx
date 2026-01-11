@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LastUsersBox from "./CntrlLastUsers.jsx";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import Thermo from "./ControlThermo.jsx";
 import Temp from "./ControlTemp.jsx";
 

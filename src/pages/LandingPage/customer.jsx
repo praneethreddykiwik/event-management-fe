@@ -7,7 +7,7 @@ import customer5 from "../../assets/landingPage/customer5.jpg";
 import customer6 from "../../assets/landingPage/customer6.jpg";
 
 // text component
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 import styled from "styled-components";
 

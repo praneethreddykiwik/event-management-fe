@@ -1,6 +1,6 @@
 import logoImg from "../../assets/Logos/eventz-logo.png";
 import { StyledHeading } from "../../components/Styled/Typography.styled";
-import { EVENTZ } from "../../enum/RegistrationPage.Enum";
+import { EVENTZ } from "../../myEnum/RegistrationPage.Enum";
 import { LogoEventz, Logo, EventzTxt } from "./styled.RegistrationPage";
 
 const WelcomeTxts = ({ logo = logoImg }) => {

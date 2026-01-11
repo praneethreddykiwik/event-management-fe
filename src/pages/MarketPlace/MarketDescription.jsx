@@ -1,6 +1,6 @@
 import { StyledHeading } from "../../components/Styled/Typography.styled";
 import styled from "styled-components";
-import { WELCOME, MARKET_PLACE_DESCRIPTION_TEXT } from "../../enum";
+import { WELCOME, MARKET_PLACE_DESCRIPTION_TEXT } from "../../myEnum";
 
 const MarketDescription = () => {
   return (

@@ -26,7 +26,7 @@ import {
   PlanDivider,
   SpanButton,
 } from "./Subscriptions.styled";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const Subscriptions = () => {
   const [yearly, setYearly] = useState(false);

@@ -8,7 +8,7 @@ import {
   StyledHeadingBig,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (

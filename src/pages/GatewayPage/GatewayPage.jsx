@@ -22,7 +22,7 @@ import {
   TITLE_TEXT,
   SKIP_BUTTON_TEXT,
   NEXT_BUTTON_TEXT,
-} from "../../enum";
+} from "../../myEnum";
 
 const GatewayPage = () => {
   return (

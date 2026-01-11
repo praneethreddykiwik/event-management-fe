@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
   const onClickTaskMonitor = () => {

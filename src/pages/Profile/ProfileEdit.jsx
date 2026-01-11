@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
-import { PROFILE_DATA } from "../../enum/ProfileText";
+import { PROFILE_DATA } from "../../myEnum/ProfileText";
 
 const ProfileEdit = () => {
   return (

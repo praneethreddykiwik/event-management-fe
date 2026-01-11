@@ -22,7 +22,7 @@ import { usersSelector } from "../../redux/users/users.slice";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const Events = () => {
   const dispatch = useDispatch();

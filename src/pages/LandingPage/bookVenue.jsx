@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import {
   StyledHeading,
   StyledParagraphSmallGray,

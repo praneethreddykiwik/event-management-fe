@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import { Button } from "../../components/Buttons/Button";
 import {
   StyledAnchor,
@@ -9,7 +9,7 @@ import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
 import useTenant from "../../hooks/useTenant.hook";
-import { Conditions, Policy, Terms } from "../../enum/RegistrationPage.Enum";
+import { Conditions, Policy, Terms } from "../../myEnum/RegistrationPage.Enum";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";

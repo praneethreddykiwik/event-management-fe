@@ -5,7 +5,7 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import { useState } from "react";
 import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";

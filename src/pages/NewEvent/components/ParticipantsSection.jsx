@@ -21,7 +21,7 @@ import participant4 from "../../../assets/participant4.jpg";
 import participant5 from "../../../assets/participant5.jpg";
 import participant6 from "../../../assets/participant6.jpg";
 
-import * as enums from "../../../enum";
+import * as enums from "../../../myEnum";
 
 const ParticipantsSection = () => {
   const participants = [

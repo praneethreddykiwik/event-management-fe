@@ -4,7 +4,7 @@ import customer3 from "../../assets/landingPage/experience-img1.jpg";
 import customer4 from "../../assets/landingPage/customer4.jpg";
 import customer5 from "../../assets/landingPage/customer5.jpg";
 import customer6 from "../../assets/landingPage/customer6.jpg";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const DemoComment = [
   {

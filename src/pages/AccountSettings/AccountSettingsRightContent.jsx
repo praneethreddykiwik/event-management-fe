@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import google from "../../assets/Logo/Google.svg.webp";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import {
   Action,
   ActionSpan,

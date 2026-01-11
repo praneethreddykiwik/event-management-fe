@@ -1,4 +1,4 @@
-import { Continue } from "../enum/RegistrationPage.Enum";
+import { Continue } from "../myEnum/RegistrationPage.Enum";
 import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../components/Buttons/Button";
@@ -36,24 +36,24 @@ const RegistrationForm = ({ onCreateUser }) => {
   };
 
   const onSubmit = async () => {
-  const isValid = validateFields();
-  if (!isValid) return;
+    const isValid = validateFields();
+    if (!isValid) return;
 
-  const reqPayload = createUserInputs.reduce((acu, cur) => {
-    return { ...acu, [cur.name]: cur.value };
-  }, {});
+    const reqPayload = createUserInputs.reduce((acu, cur) => {
+      return { ...acu, [cur.name]: cur.value };
+    }, {});
 
-  const payload = {
-    navigate,
-    reqPayload: { ...reqPayload, tenantId },
-  };
+    const payload = {
+      navigate,
+      reqPayload: { ...reqPayload, tenantId },
+    };
 
-  try {
-    await onCreateUser(payload);
-    dispatch(updateAllRegInputs(registrationMetaData));
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+      await onCreateUser(payload);
+      dispatch(updateAllRegInputs(registrationMetaData));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onChange = (e) => {

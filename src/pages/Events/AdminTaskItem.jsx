@@ -8,7 +8,7 @@ import { Card } from "../../components/Cards/Cards";
 import { Button } from "../../components/Buttons/Button";
 import { paths } from "../../constants/paths";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import GaugeChart from "../../components/Charts/GuageChart";
 
 const AdminTaskItem = ({ data }) => {

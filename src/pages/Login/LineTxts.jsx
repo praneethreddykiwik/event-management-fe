@@ -1,7 +1,7 @@
 /** @format */
 
 import styled from "styled-components";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 
 const LineTxts = () => {
   return (

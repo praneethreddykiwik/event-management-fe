@@ -1,6 +1,6 @@
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
-import * as enums from "../../enum";
+import * as enums from "../../myEnum";
 import {
   StyledHeadingBig,
   StyledAnchor,
