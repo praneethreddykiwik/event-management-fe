@@ -1,15 +1,16 @@
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
-import PaymentSuccessfull from "./PaymentSuccessfull";
+// import PaymentSuccessfull from "./PaymentSuccessfull";
 import Details from "./Details";
 import payment_img from "../../assets/payment_images/payment_img.jpg";
+import PaymentSuccessfull2 from "./PaymentSuccessfull2";
 
-const rightMainCard = () => {
+const RightMainCard2 = () => {
   return (
     <>
       <RightCard>
         <EventImage src={payment_img} alt="Event" />
-        <PaymentSuccessfull />
+        <PaymentSuccessfull2 />
         <Details />
         <ButtonGroup>
           <DownloadCard>
@@ -44,7 +45,7 @@ const rightMainCard = () => {
     </>
   );
 };
-export default rightMainCard;
+export default RightMainCard2;
 
 const Stylespan = styled.span``;
 
