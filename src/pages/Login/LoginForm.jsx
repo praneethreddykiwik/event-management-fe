@@ -168,6 +168,6 @@ const AccountSignIn = styled(StyledParagraphSmallGray)`
 `;
 const SignInAnchor = styled(StyledAnchor)`
   font-size: 12px;
-  text-decoratoin: none;
+  text-decoration: none;
 `;
 export default LoginForm;
