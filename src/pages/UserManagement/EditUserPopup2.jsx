@@ -3,14 +3,13 @@ import PopupModal from "../../components/PopupModal/PopupModal";
 import { Button } from "../../components/Buttons/Button";
 import {
   updateUserAction,
-  fetchManagersAction,
   registrationAction,
   fetchAllUsersAction,
 } from "../../redux/users/users.actions";
 import { useDispatch } from "react-redux";
 import RegistrationForm from "../../Forms/RegistrationForm";
 
-const EditUserPopup = ({ onClose, modalDetails }) => {
+const EditUserPopup2 = ({ onClose, modalDetails }) => {
   const dispatch = useDispatch();
 
   const onCreateUser = async (payload) => {
@@ -23,7 +22,6 @@ const EditUserPopup = ({ onClose, modalDetails }) => {
     await dispatch(fetchAllUsersAction());
     onClose();
   };
-
 
   return (
     <PopupModal
@@ -44,7 +42,7 @@ const EditUserPopup = ({ onClose, modalDetails }) => {
   );
 };
 
-export default EditUserPopup;
+export default EditUserPopup2;
 
 const StyledGap = styled.div`
   height: 28px;

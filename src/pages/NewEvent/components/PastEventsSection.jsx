@@ -12,7 +12,7 @@ import {
 } from "../NewEvent.styles";
 
 import Controls from "./Controls";
-import { EVENT_TEXT } from "../../../enum/EventText";
+import * as enums from "../../../myEnum";
 
 const PastEventsSection = () => {
   return (
@@ -22,7 +22,7 @@ const PastEventsSection = () => {
           <TopRow>
             <LeftGroup>
               <StyledMediumHeadingWhite left small>
-                {EVENT_TEXT.PAST_EVENTS}
+                {enums.PAST_EVENTS}
               </StyledMediumHeadingWhite>
               <ShareIconWhite className="material-symbols-outlined">
                 share
@@ -35,11 +35,11 @@ const PastEventsSection = () => {
           </TopRow>
 
           <StyledHeadingBigWhite left style={{ whiteSpace: "pre-line" }}>
-            {EVENT_TEXT.PAST_EVENT_LOCATION}
+            {enums.PAST_EVENT_LOCATION}
           </StyledHeadingBigWhite>
 
           <StyledParagraphBoldWhite left>
-            {EVENT_TEXT.PAST_EVENT_DATE}
+            {enums.PAST_EVENT_DATE}
           </StyledParagraphBoldWhite>
         </OverlayText>
       </VideoThumbnail>

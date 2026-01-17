@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../myEnum";
 import Conference_image from "../../assets/ControlPage_img/conference_image.jpg";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
+import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
+import control_img from "../../assets/ControlPage_img/control_img.jpeg";
 
 const VenueCard = () => {
+  const SIDE_IMAGES = [control_img, control_img2];
+
   return (
     <VenueWrapper>
       <VenueCard2>
@@ -12,27 +16,27 @@ const VenueCard = () => {
         <Avatar src={Control_avtar} alt="User" />
 
         <WhiteCard>
-          <UserName>{HALLS_DASHBOARD.USER_NAME}</UserName>
+          <UserName>{enums.USER_NAME}</UserName>
 
           <Icons>
             <Span1
               className="material-icons-outlined"
               style={{ fontSize: "22px" }}
             >
-              {HALLS_DASHBOARD.CHAT_ICON}
+              {enums.CHAT_ICON}
             </Span1>
             <Span2
               className="material-icons-outlined"
               style={{ fontSize: "20px" }}
             >
-              {HALLS_DASHBOARD.CALL_ICON}
+              {enums.CALL_ICON}
             </Span2>
           </Icons>
         </WhiteCard>
       </VenueCard2>
 
       <SideImages>
-        {HALLS_DASHBOARD.SIDE_IMAGES.map((img, i) => (
+        {SIDE_IMAGES.map((img, i) => (
           <SmallPic key={i} src={img} alt={`side-${i}`} />
         ))}
       </SideImages>

@@ -1,4 +1,4 @@
-import { SignUpLine } from "../../enum/RegistrationPage.Enum";
+import { SignUpLine } from "../../myEnum/RegistrationPage.Enum";
 import { LineTxt, SignUpWith, SignWithEmail } from "./styled.RegistrationPage";
 
 const LineTxts = () => {

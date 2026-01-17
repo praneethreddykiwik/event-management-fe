@@ -44,10 +44,10 @@ const tasksSlice = createSlice({
         state.declineTaskLoading = false;
         state.declineTaskError = null;
       })
-      .addCase(actions.declineTasksAction.rejected, (state) => {
+      .addCase(actions.declineTasksAction.rejected, (state, action) => {
         state.authUser = null;
         state.declineTaskLoading = false;
-        state.declineTaskError = actions.payload || "Failed to decline task";
+        state.declineTaskError = action.payload || "Failed to decline task";
       });
 
     builder

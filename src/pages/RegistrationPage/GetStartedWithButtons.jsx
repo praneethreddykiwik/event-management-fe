@@ -1,7 +1,7 @@
 import AppleImg from "../../assets/Logos/Apple-logo.jpeg";
 import GoogleImg from "../../assets/Logos/Google-logo.jpeg";
 
-import { Apple, Google, SignInText } from "../../enum/RegistrationPage.Enum";
+import { Apple, Google, SignInText } from "../../myEnum/RegistrationPage.Enum";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 
 import {

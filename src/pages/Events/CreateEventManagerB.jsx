@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
-import { ADMIN_COMMON } from "../../enum/Admin.common";
+import * as enums from "../../myEnum";
 
 const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
   const onClickTaskMonitor = () => {
@@ -11,13 +11,13 @@ const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
     <CreateEventButtons>
       <CreateButton>
         <Button type="icon" icon="add" onClick={onCreateEvent}>
-          {ADMIN_COMMON.CREATE_BUTTON}
+          {enums.CREATE_BUTTON}
         </Button>
       </CreateButton>
 
       <ManageButton>
         <Button onClick={onClickTaskMonitor} type="icon" icon="group">
-          {ADMIN_COMMON.MANAGE_BUTTON}
+          {enums.MANAGE_BUTTON}
         </Button>
       </ManageButton>
     </CreateEventButtons>

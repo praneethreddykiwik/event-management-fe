@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../myEnum";
 import {
   StyledHeading,
   StyledParagraphSmallGray,
@@ -23,8 +23,8 @@ const BookVenue = () => {
   return (
     <LandingPageLayout flexDirection="column">
       <StyledContainer>
-        <StyledHead>{BOOKCOMPONENT_TXT.BOOK_HEADING}</StyledHead>
-        <StyledPara>{BOOKCOMPONENT_TXT.BOOK_PARA}</StyledPara>
+        <StyledHead>{enums.BOOK_HEADING}</StyledHead>
+        <StyledPara>{enums.BOOK_PARA}</StyledPara>
       </StyledContainer>
       <StyledInputContainer>
         <Input
@@ -33,10 +33,10 @@ const BookVenue = () => {
           onChange={handlEmailChange}
           value={email}
         />
-        <StyledBtn type="base">{BOOKCOMPONENT_TXT.BOOK_BTN}</StyledBtn>
+        <StyledBtn type="base">{enums.BOOK_BTN}</StyledBtn>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>{BOOKCOMPONENT_TXT.BOOK_POLICY}</StyledPolicyTxt>
+        <StyledPolicyTxt>{enums.BOOK_POLICY}</StyledPolicyTxt>
       </StyledPolicy>
     </LandingPageLayout>
   );

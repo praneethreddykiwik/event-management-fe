@@ -5,7 +5,7 @@ import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
-import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
+import * as enums from "../../myEnum";
 import { useState } from "react";
 import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
@@ -29,8 +29,8 @@ const TaskItem = ({ task = {}, onEdit }) => {
           <Title>{task.taskTitle}</Title>
           <EventName>{task.taskDescription}</EventName>
           <TaskAssignee>
-            {E_M_DASHBOARD_COMMON.TASKASSIGNEE} {task.taskAssignedToUid}
-            {E_M_DASHBOARD_COMMON.TASKDUE} {task.taskDueAt}
+            {enums.TASKASSIGNEE} {task.taskAssignedToUid}
+            {enums.TASKDUE} {task.taskDueAt}
           </TaskAssignee>
         </Taskcard>
       </Left>
