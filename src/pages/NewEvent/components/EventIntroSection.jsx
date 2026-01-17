@@ -4,6 +4,8 @@ import { EVENT_TEXT } from "../../../enum/EventText";
 import speaker1 from "../../../assets/speaker1.jpg";
 import speaker2 from "../../../assets/speaker2.jpg";
 import Carousel from "../../../components/Carousel/Carousel";
+import { Button } from "../../../components/Buttons/Button";
+import { Icon } from "../../../components/Icons/Icons";
 
 import {
   StyledHeading,
@@ -42,14 +44,23 @@ const EventIntroSection = () => {
       <RightContent>
         <TopRow>
           <NewEventTxt>{e.label}</NewEventTxt>
-          <ShareIcon className="material-symbols-outlined">share</ShareIcon>
+          {/* <ShareIcon className="material-symbols-outlined">share</ShareIcon> */}
+          <Icon variant="share" sx={{ color: "#062e70" }} />
         </TopRow>
 
         <HeadingTight>{e.title}</HeadingTight>
         <DateText>{e.date}</DateText>
 
         <ButtonsRow>
-          <Button>{e.watchLive}</Button>
+          {/* <Button>{e.watchLive}</Button> */}
+          <Button
+            sx={{
+              width: "120px",
+              color: "white",
+            }}
+          >
+            {e.watchLive}
+          </Button>
           <AttendLink>{e.attendText}</AttendLink>
         </ButtonsRow>
       </RightContent>
@@ -86,7 +97,6 @@ export const RightContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: -10px;
 `;
 
 export const TopRow = styled.div`
@@ -95,10 +105,10 @@ export const TopRow = styled.div`
   gap: 10px;
 `;
 
-export const ShareIcon = styled.span`
-  cursor: pointer;
-  color: #062e70;
-`;
+// export const ShareIcon = styled.span`
+//   cursor: pointer;
+//   color: #062e70;
+// `;
 
 export const NewEventTxt = styled(StyledParagraphSmallGray)`
   font-weight: 600;
@@ -119,12 +129,13 @@ export const ButtonsRow = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 10px;
+  align-items: center;
 `;
 
-export const Button = styled(StyledBaseButton)`
-  color: white;
-  width: 120px;
-`;
+// export const Button = styled(StyledBaseButton)`
+//   color: white;
+//   width: 120px;
+// `;
 
 export const AttendLink = styled(StyledAnchorSmall)`
   color: #33b133 !important;

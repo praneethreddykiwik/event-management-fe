@@ -8,8 +8,8 @@ import styled from "styled-components";
  * close-small
  */
 
-export const Icon = ({ variant, onClick }) => (
-  <StyledIcon className="material-symbols-outlined" onClick={onClick}>
+export const Icon = ({ variant, onClick, sx}) => (
+  <StyledIcon className="material-symbols-outlined" onClick={onClick} sx ={sx}>
     {variant}
   </StyledIcon>
 );
@@ -17,4 +17,5 @@ export const Icon = ({ variant, onClick }) => (
 const StyledIcon = styled.span`
   cursor: pointer;
   font-size: 20px;
+   ${({ sx }) => ({ ...sx })}
 `;
