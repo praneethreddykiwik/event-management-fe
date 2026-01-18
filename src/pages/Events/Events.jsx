@@ -22,7 +22,7 @@ import { usersSelector } from "../../redux/users/users.slice";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
-import { ADMIN_COMMON } from "../../enum/Admin.common";
+import * as enums from "../../myEnum";
 
 const Events = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Events = () => {
   const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
-  console.log("Events", events);
+  // console.log("Events", events);
   const { eventManagers } = useSelector(usersSelector);
   // console.log("usersSelector", eventManagers);
   const navigate = useNavigate();
@@ -68,8 +68,8 @@ const Events = () => {
 
         <TaskMainCard>
           <Tasktxt>
-            <TaskEvents>{ADMIN_COMMON.UPCOMING_EV}</TaskEvents>
-            <TaskMonitor>{ADMIN_COMMON.MONITOR_EV}</TaskMonitor>
+            <TaskEvents>{enums.UPCOMING_EV}</TaskEvents>
+            <TaskMonitor>{enums.MONITOR_EV}</TaskMonitor>
           </Tasktxt>
           <TaskList>
             {events.map((event, index) => (

@@ -1,4 +1,4 @@
-import { BADGE_TYPES } from "../../enum/common";
+import { BADGE_TYPES } from "../../constants/badges";
 import { StyledBadge } from "../Styled/Badge.styled";
 
 const Badge = ({ children, type }) => {

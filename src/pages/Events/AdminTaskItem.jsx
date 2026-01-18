@@ -8,7 +8,7 @@ import { Card } from "../../components/Cards/Cards";
 import { Button } from "../../components/Buttons/Button";
 import { paths } from "../../constants/paths";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import { ADMIN_COMMON } from "../../enum/Admin.common";
+import * as enums from "../../myEnum";
 import GaugeChart from "../../components/Charts/GuageChart";
 
 const AdminTaskItem = ({ data }) => {
@@ -16,8 +16,12 @@ const AdminTaskItem = ({ data }) => {
 
   const navigate = useNavigateWithQuery();
 
-  const onClickViewDetails = () => {
-    navigate(paths.eventsDetails);
+  const onClickViewDetails = (data) => {
+    navigate(paths.eventsDetails, {
+      state: {
+        event: data,
+      },
+    });
   };
   const valueData = Math.floor(Math.random() * 101);
   return (
@@ -31,15 +35,15 @@ const AdminTaskItem = ({ data }) => {
           <EventName>{data.eventName}</EventName>
           <TaskDate>Scheduled At: {data.scheduledAt}</TaskDate>
           <TaskAssignee>
-            {ADMIN_COMMON.EVENT_MANAGER}: {data.firstName}
+            {enums.EVENT_MANAGER}: {data.firstName}
           </TaskAssignee>
         </Taskcard>
       </Left>
 
       <BadgeButton>
         <Badge type={data.type}>{data.statusLabel}</Badge>
-        <Button onClick={onClickViewDetails} type="no-border" small>
-          {ADMIN_COMMON.ADMIN_DETAILS}
+        <Button onClick={() => onClickViewDetails(data)} type="secondary">
+          {enums.ADMIN_DETAILS}
         </Button>
       </BadgeButton>
       <GaugeChart

@@ -1,23 +1,27 @@
 /** @format */
 import styled from "styled-components";
 import logoImg from "../../assets/Logo/eventz-logo.png";
+import Helm_logo from "../../assets/Logos/Helm_logo.svg";
+
 import {
   StyledHeading,
   StyledHeadingBig,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
-import { LOGIN_COMMON } from "../../enum/Login.Common.jsx";
+import * as enums from "../../myEnum";
 
 const WelcomeTxts = ({ logo = logoImg }) => {
   return (
     <>
-      <LogoEventz>
+      {/* <LogoEventz>
         <Logo src={logo} alt="eventz logo" />
         <EventzTxt>{LOGIN_COMMON.EVENTZ}</EventzTxt>
-      </LogoEventz>
+      </LogoEventz> */}
+      <LogoBox>
+        <LogoImage src={Helm_logo} alt="logo" />
+      </LogoBox>
       <WelcomeTxt>
-        <WelcomeTextBig>{LOGIN_COMMON.WELCOME_TEXT}</WelcomeTextBig>
-        <SignUpTxt>{LOGIN_COMMON.SIGN_UP_TXT}</SignUpTxt>
+        <SignUpTxt>{enums.SIGN_UP_TXT}</SignUpTxt>
       </WelcomeTxt>
     </>
   );
@@ -54,4 +58,18 @@ export const SignUpTxt = styled(StyledParagraphSmallGray)`
   @media (max-width: 768px) {
     display: none;
   }
+`;
+const LogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+`;
+
+const LogoImage = styled.img`
+  width: 146px;
+  height: 60px;
+  border-radius: 8px;
+  margin-top: -40px;
+  margin-bottom: -25px;
 `;

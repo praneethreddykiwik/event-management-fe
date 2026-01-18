@@ -1,8 +1,7 @@
-import React from "react";
 import OrderSummary from "./OrderSummary";
-import RightMainCard from "./RightMainCard";
-import PromoCode from "./PromoCode";
 import styled from "styled-components";
+import RightMainCard2 from "./RightMainCard2";
+import PromoCode2 from "./PromoCode2";
 
 const PaymentSuccess = () => {
   return (
@@ -10,10 +9,10 @@ const PaymentSuccess = () => {
       <Container>
         <LeftCard>
           <OrderSummary />
-          <PromoCode />
+          <PromoCode2 />
         </LeftCard>
 
-        <RightMainCard />
+        <RightMainCard2 />
       </Container>
     </StyledPage>
   );
@@ -49,5 +48,3 @@ const LeftCard = styled.div`
   height: 740px;
   box-sizing: border-box;
 `;
-
-

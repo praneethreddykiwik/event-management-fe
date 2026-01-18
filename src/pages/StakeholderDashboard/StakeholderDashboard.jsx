@@ -1,31 +1,31 @@
 /** @format */
 
-import styled from 'styled-components';
-import { Button } from '../../components/Buttons/Button';
+import styled from "styled-components";
+import { Button } from "../../components/Buttons/Button";
 
-import Badge from '../../components/Badge/Badge.component';
-import { BADGE_TYPES } from '../../enum/common';
+import Badge from "../../components/Badge/Badge.component";
 
 import {
   StyledHeading,
   StyledSemiHeading,
   StyledParagraphSmallGray,
   StyledParagraphSmall,
-} from '../../components/Styled/Typography.styled';
+} from "../../components/Styled/Typography.styled";
+import { BADGE_TYPES } from "../../constants/badges";
 
 const TASKS = [
   {
     id: 1,
-    title: 'Provide catering for 200 attendees',
-    eventName: 'Annual Conference 2025',
-    eventDate: 'March 15, 2025',
+    title: "Provide catering for 200 attendees",
+    eventName: "Annual Conference 2025",
+    eventDate: "March 15, 2025",
     status: BADGE_TYPES.PENDING,
   },
   {
     id: 2,
-    title: 'Set up audio equipment',
-    eventName: 'Product Launch Event',
-    eventDate: 'April 20, 2025',
+    title: "Set up audio equipment",
+    eventName: "Product Launch Event",
+    eventDate: "April 20, 2025",
     status: BADGE_TYPES.ACCEPTED,
   },
 ];

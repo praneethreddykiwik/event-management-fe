@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { InputPassword } from "./Inputs.styled";
-import EyeIcon from "../../assets/Logos/SeePassWord.svg";
-import CloseEyeIcon from "../../assets/Logos/ClosePassword.svg";
+import EyeIcon from "../../assets/Logos/SeePassword.svg";
+import CloseEyeIcon from "../../assets/Logos/ClosePassWord.svg";
 import { useState } from "react";
 import { InputLayout } from "./InputLayout";
 

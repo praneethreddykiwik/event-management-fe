@@ -3,14 +3,14 @@ import qatar from "../../assets/landingPage/Qatar-Airways-Symbol.png";
 import saleForce from "../../assets/landingPage/salesForce.png";
 import standard from "../../assets/landingPage/standard_chartered.png";
 import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
-import { TRUSTEDCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../myEnum";
 import styled from "styled-components";
 import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 
 const TrustedBy = () => {
   return (
     <StylesTrustedLayout flexDirection="column">
-      <StyledSemiHeading>{TRUSTEDCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
+      <StyledSemiHeading>{enums.JOIN_HEADING_2}</StyledSemiHeading>
       <StyledContainerImg>
         <StyledIconContainer>
           <StyledIconFirst src={standard} />

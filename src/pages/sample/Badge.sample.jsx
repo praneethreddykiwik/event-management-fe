@@ -1,5 +1,5 @@
 import Badge from "../../components/Badge/Badge.component";
-import { BADGE_TYPES } from "../../enum/common";
+import { BADGE_TYPES } from "../../constants/badges";
 
 const SampleBadge = () => {
   return (

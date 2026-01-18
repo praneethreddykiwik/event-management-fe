@@ -1,20 +1,16 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-// import E_logo from "../../assets/Header_images/E_logo.jpg";
-import Helm_logo from "../../assets/Logos/Helm_logo.svg"
-import { FOOTER_CONTENT } from "../../enum/accountsettings.common";
+import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 import styled from "styled-components";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
 import { footerLinks, socialLinks } from "./Footer.helper";
-// import SocialIcons from "./SocialIcons";
+import * as enums from "../../myEnum";
 
 const Footer = () => {
-  
   const { authStatus } = useSelector(authSelector);
   const isLoggedIn = authStatus === "authenticated";
-  
-  if(!isLoggedIn){
+
+  if (!isLoggedIn) {
     return null;
   }
 
@@ -39,27 +35,27 @@ const Footer = () => {
           <Logo>
             <LogoImage src={Helm_logo} alt="logo" />
           </Logo>
-          <Description>{FOOTER_CONTENT.DESCRIPTION_TEXT}</Description>
+          <Description>{enums.DESCRIPTION_TEXT}</Description>
         </LogoSection>
       </FooterGrid>
 
       <ContactWrapper>
         <ContactRow>
-          <ContactTitle>{FOOTER_CONTENT.CONTACT_US}</ContactTitle>
+          <ContactTitle>{enums.CONTACT_US}</ContactTitle>
 
           <ContactItem>
             <Icon className="material-symbols-outlined">call</Icon>
-            {FOOTER_CONTENT.CONTACT_PHONE}
+            {enums.CONTACT_PHONE}
           </ContactItem>
 
           <ContactItem>
             <Icon className="material-symbols-outlined">mail</Icon>
-            {FOOTER_CONTENT.EMAIL_ID}
+            {enums.EMAIL_ID}
           </ContactItem>
 
           <ContactItem maxWidth>
             <Icon className="material-symbols-outlined">location_on</Icon>
-            {FOOTER_CONTENT.LOCATION}
+            {enums.LOCATION}
           </ContactItem>
 
           <SocialWrapper>
@@ -74,16 +70,17 @@ const Footer = () => {
               </SocialLink>
             ))}
           </SocialWrapper>
-
         </ContactRow>
       </ContactWrapper>
 
       <BottomBar>
-        <BottomText>{'\u00A9'} {currentYear} {FOOTER_CONTENT.ALL_RIGHTS_RESERVED}</BottomText>
+        <BottomText>
+          {"\u00A9"} {currentYear} {enums.ALL_RIGHTS_RESERVED}
+        </BottomText>
 
         <BottomLinks>
-          <NavLink to="/privacy">{FOOTER_CONTENT.PRIVACY_POLICY}</NavLink>
-          <NavLink to="/terms">{FOOTER_CONTENT.TERMS_CONDITIONS}</NavLink>
+          <NavLink to="/privacy">{enums.PRIVACY_POLICY}</NavLink>
+          <NavLink to="/terms">{enums.TERMS_CONDITIONS}</NavLink>
         </BottomLinks>
       </BottomBar>
     </FooterContainer>

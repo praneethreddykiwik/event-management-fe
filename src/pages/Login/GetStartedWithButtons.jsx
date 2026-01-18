@@ -3,20 +3,20 @@
 import styled from "styled-components";
 import apple from "../../assets/Logo/Apple.svg";
 import google from "../../assets/Logo/Google.svg.webp";
-import { LOGIN_COMMON } from "../../enum/Login.Common";
+import * as enums from "../../myEnum";
 import { StyledParagraph } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <GetStarted>{LOGIN_COMMON.STARTED_WITH}</GetStarted>
-      <SignInTxtM>{LOGIN_COMMON.SIGN_IN_TEXT}</SignInTxtM>
+      <GetStarted>{enums.STARTED_WITH}</GetStarted>
+      <SignInTxtM>{enums.SIGN_IN_TEXT}</SignInTxtM>
       <ContinueSignIn>
         <Button type="outlined" image={apple}>
-          {LOGIN_COMMON.APPLE}
+          {enums.APPLE}
         </Button>
         <Button type="outlined" image={google}>
-          {LOGIN_COMMON.GOOGLE}
+          {enums.GOOGLE}
         </Button>
       </ContinueSignIn>
     </GetStartedWithButtonsWrapper>

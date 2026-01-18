@@ -1,6 +1,6 @@
 import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
 import getStarted_img from "../../assets/landingPage/get_started.jpg";
-import { GETSTARTED_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../myEnum";
 import {
   StyledHeadingBig,
   StyledAnchor,
@@ -19,18 +19,19 @@ const GetStarted = () => {
     <StyledGetStartedLayout>
       <StyledChildContainer>
         <StyledContent>
-          <StyledHeadingBig left>
-            {GETSTARTED_TXT.MAIN_HEADING}
-          </StyledHeadingBig>
+          <StyledHeadingBig left>{enums.MAIN_HEADING}</StyledHeadingBig>
           <StyledContentParagraph>
-            {GETSTARTED_TXT.MAIN_PARAGRAPH}
+            {enums.MAIN_PARAGRAPH}
           </StyledContentParagraph>
           <StyledContentBtn>
-            <StyledGetStartedBtn onClick={() => navigate("/registration")}>
-              {GETSTARTED_TXT.START_BTN}
-            </StyledGetStartedBtn>
+            <StyledBaseButton
+              onClick={() => navigate("/registration")}
+              className="!w-[120px]"
+            >
+              {enums.START_BTN}
+            </StyledBaseButton>
             <StyledLink>
-              {GETSTARTED_TXT.OUTLINE_BTN}
+              {enums.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />
             </StyledLink>
           </StyledContentBtn>
@@ -45,7 +46,7 @@ const GetStarted = () => {
 };
 
 const StyledGetStartedBtn = styled(StyledBaseButton)`
-  width: 120px;
+  // width: 120px;
 `;
 
 const StyledLink = styled(StyledAnchor)`
