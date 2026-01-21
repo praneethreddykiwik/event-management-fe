@@ -1,14 +1,14 @@
-import venue_hall from "../../../assets/landingPage/venue.jpg";
-import forward_arrow from "../../../assets/landingPage/arrow_forward.svg";
-import { FINDINSIPRATION_TXT } from "../../../enum/landingPage.common.jsx";
+import venue_hall from "../../assets/landingPage/venue.jpg";
+import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
+import { FINDINSIPRATION_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledSemiHeading,
   StyledParagraphSmallGray,
   StyledAnchor,
-} from "../../../components/Styled/Typography.styled.jsx";
+} from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 
-import { LandingPageLayout } from "../../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 
 const FindInspiration = () => {
   return (
@@ -42,7 +42,7 @@ const StyledIcon = styled.img`
   margin-top: 1.2px;
 `;
 
-const StyledFindInspirationLayout = styled(LandingPageLayout)`
+const StyledFindInspirationLayout = styled(HomePageLayout)`
   @media (max-width: 768px) {
     background-color: #f1faff;
   }

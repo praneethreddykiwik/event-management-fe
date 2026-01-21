@@ -1,15 +1,15 @@
-import experienceImg1 from "../../../assets/landingPage/experience-img1.jpg";
-import experienceImg2 from "../../../assets/landingPage/experience-img2.jpg";
-import experienceImg3 from "../../../assets/landingPage/experience-img3.jpg";
-import { EXPERIENCECOMPONET_TXT } from "../../../enum/landingPage.common.jsx";
+import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
+import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
+import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
+import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common.jsx";
 
 import styled from "styled-components";
-import { LandingPageLayout } from "../../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import {
   StyledHeading,
   StyledParagraphSmall,
   StyledParagraphBold,
-} from "../../../components/Styled/Typography.styled";
+} from "../../components/Styled/Typography.styled";
 
 const Experience = () => {
   return (
@@ -55,7 +55,7 @@ const Experience = () => {
   );
 };
 
-const StyledExperienceLayout = styled(LandingPageLayout)`
+const StyledExperienceLayout = styled(HomePageLayout)`
   background-color: #f1faff;
 
   @media (max-width: 768px) {

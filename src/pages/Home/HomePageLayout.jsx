@@ -9,7 +9,7 @@ export const StyledFlexComponent = styled.div`
 `;
 
 // landing page common compontent
-export const LandingPageLayout = styled(StyledFlexComponent)`
+export const HomePageLayout = styled(StyledFlexComponent)`
   background-color: ${({ sx }) => sx?.background || "#ffffffff"};
   padding: 40px 10px;
 `;

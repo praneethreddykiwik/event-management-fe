@@ -1,21 +1,21 @@
 // images
-import customer1 from "../../../assets/landingPage/customer1.jpg";
-import customer2 from "../../../assets/landingPage/customer2.jpg";
-import customer3 from "../../../assets/landingPage/experience-img1.jpg";
-import customer4 from "../../../assets/landingPage/customer4.jpg";
-import customer5 from "../../../assets/landingPage/customer5.jpg";
-import customer6 from "../../../assets/landingPage/customer6.jpg";
+import customer1 from "../../assets/landingPage/customer1.jpg";
+import customer2 from "../../assets/landingPage/customer2.jpg";
+import customer3 from "../../assets/landingPage/experience-img1.jpg";
+import customer4 from "../../assets/landingPage/customer4.jpg";
+import customer5 from "../../assets/landingPage/customer5.jpg";
+import customer6 from "../../assets/landingPage/customer6.jpg";
 
 // text component
-import { CUSTOMERCOMPONET_TXT } from "../../../enum/landingPage.common.jsx";
+import { CUSTOMERCOMPONET_TXT } from "../../enum/landingPage.common.jsx";
 
 import styled from "styled-components";
 
-import { LandingPageLayout } from "../../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 
-import Carousel from "../../../components/Carousel/Carousel.jsx";
+import Carousel from "../../components/Carousel/Carousel.jsx";
 
-import { StyledHeading } from "../../../components/Styled/Typography.styled.jsx";
+import { StyledHeading } from "../../components/Styled/Typography.styled.jsx";
 
 import CommentCard from "./customerCommentCard.jsx";
 import DemoComment from "./helper.customer.jsx";
@@ -67,7 +67,7 @@ const CustomerCarouselWrapper = styled.div`
   }
 `;
 
-const StyledCustomerLayout = styled(LandingPageLayout)`
+const StyledCustomerLayout = styled(HomePageLayout)`
   background-color: ${({ theme }) => theme.colors.black};
   height: 400px;
   overflow: hidden;

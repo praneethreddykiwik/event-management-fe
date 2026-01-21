@@ -1,16 +1,16 @@
-import forward_arrow from "../../../assets/landingPage/arrow_forward.svg";
-import getStarted_img from "../../../assets/landingPage/get_started.jpg";
-import { GETSTARTED_TXT } from "../../../enum/landingPage.common.jsx";
+import forward_arrow from "../../assets/landingPage/arrow_forward.svg";
+import getStarted_img from "../../assets/landingPage/get_started.jpg";
+import { GETSTARTED_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledHeadingBig,
   StyledAnchor,
   StyledParagraphSmallGray,
-} from "../../../components/Styled/Typography.styled.jsx";
+} from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
-import getStarted_imgMi from "../../../assets/landingPage/get_startedMi.jpg";
-import { LandingPageLayout } from "../../../layout/landingPage/landingPageLayout.jsx";
-import { StyledBaseButton } from "../../../components/Styled/Buttons.styled.jsx";
-import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery.jsx";
+import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
+import { HomePageLayout } from "./HomePageLayout.jsx";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
 
 const GetStarted = () => {
   const navigate = useNavigateWithQuery();
@@ -54,7 +54,7 @@ const StyledLink = styled(StyledAnchor)`
   text-decoration: none;
 `;
 
-const StyledGetStartedLayout = styled(LandingPageLayout)`
+const StyledGetStartedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
   gap: 20px;
 

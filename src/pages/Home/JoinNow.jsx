@@ -2,7 +2,7 @@ import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
 import { JOINCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import {
   StyledParagraphSmallGray,
   StyledSemiHeading,
@@ -13,7 +13,7 @@ import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 const JoinNow = () => {
   return (
-    <LandingPageLayout flexDirection="column">
+    <HomePageLayout flexDirection="column">
       <StyledContainerOne>
         <StyledContainerOneImg src={joinNowOne} />
         <StyledContainerOneImg src={joinNowTwo} />
@@ -26,7 +26,7 @@ const JoinNow = () => {
         <StyledSemiHeading>{JOINCOMPONENT_TXT.JOIN_HEADING}</StyledSemiHeading>
         <StyledJoinBtn>{JOINCOMPONENT_TXT.JOIN_BTN}</StyledJoinBtn>
       </StyledContainerTwo>
-    </LandingPageLayout>
+    </HomePageLayout>
   );
 };
 

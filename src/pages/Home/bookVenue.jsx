@@ -1,17 +1,15 @@
 import { useState } from "react";
+
+import styled from "styled-components";
+
+import { Input } from "../../components/Inputs/Input.jsx";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import { BOOKCOMPONENT_TXT } from "../../enum/landingPage.common.jsx";
 import {
   StyledHeading,
   StyledParagraphSmallGray,
-  StyledParagraphGray,
 } from "../../components/Styled/Typography.styled.jsx";
-
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
-
-import styled from "styled-components";
-import { Input } from "../../components/Inputs/Input.jsx";
-import { Button } from "../../components/Buttons/Button";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 const BookVenue = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +19,7 @@ const BookVenue = () => {
   };
 
   return (
-    <LandingPageLayout flexDirection="column">
+    <HomePageLayout flexDirection="column">
       <StyledContainer>
         <StyledHead>{BOOKCOMPONENT_TXT.BOOK_HEADING}</StyledHead>
         <StyledPara>{BOOKCOMPONENT_TXT.BOOK_PARA}</StyledPara>
@@ -38,7 +36,7 @@ const BookVenue = () => {
       <StyledPolicy>
         <StyledPolicyTxt>{BOOKCOMPONENT_TXT.BOOK_POLICY}</StyledPolicyTxt>
       </StyledPolicy>
-    </LandingPageLayout>
+    </HomePageLayout>
   );
 };
 
