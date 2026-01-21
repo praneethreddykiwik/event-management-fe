@@ -7,7 +7,7 @@ import { Button } from "../../../components/Buttons/Button";
 import Badge from "../../../components/Badge/Badge.component";
 import PopupModal from "../../../components/PopupModal/PopupModal";
 import { useState } from "react";
-import { MANAGE_EVENT_MANAGER } from "../../../enum/common";
+import * as enums from "../../../myEnum";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { useDispatch, useSelector } from "react-redux";
 import EditUserPopup from "../../../components/users/EditUserPopup";
@@ -38,15 +38,15 @@ const det = {
 };
 
 const TABLE_HEADERS = [
-  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_NAME, flex: 2 },
-  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_EMAIL, flex: 3 },
-  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_MOBILE, flex: 2 },
+  { label: enums.MANAGE_EVENT_MANAGER_NAME, flex: 2 },
+  { label: enums.MANAGE_EVENT_MANAGER_EMAIL, flex: 3 },
+  { label: enums.MANAGE_EVENT_MANAGER_MOBILE, flex: 2 },
   {
-    label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ASSIGN_EVENTS,
+    label: enums.MANAGE_EVENT_MANAGER_ASSIGN_EVENTS,
     flex: 2.2,
   },
-  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_STATUS, flex: 2 },
-  { label: MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
+  { label: enums.MANAGE_EVENT_MANAGER_STATUS, flex: 2 },
+  { label: enums.MANAGE_EVENT_MANAGER_ACTIONS, flex: 1 },
 ];
 
 const ManagersPopupModal = ({ onClose }) => {
@@ -87,8 +87,8 @@ const ManagersPopupModal = ({ onClose }) => {
   return (
     <PopupModal
       onClose={onClose}
-      title={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_TITLE}
-      subtitle={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_SUBTITLE}
+      title={enums.MANAGE_EVENT_MANAGER_TITLE}
+      subtitle={enums.MANAGE_EVENT_MANAGER_SUBTITLE}
       width="800px"
     >
       <StyledActionRow>
@@ -127,10 +127,8 @@ const ManagersPopupModal = ({ onClose }) => {
               {showDeleteConfirm && (
                 <PopupModal
                   onClose={() => setShowDeleteConfirm(false)}
-                  title={MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE}
-                  subtitle={
-                    MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_CONFIRMATION
-                  }
+                  title={enums.MANAGE_EVENT_MANAGER_DELETE}
+                  subtitle={enums.MANAGE_EVENT_MANAGER_CONFIRMATION}
                   width="400px"
                 >
                   <DeletePopup>
@@ -138,7 +136,7 @@ const ManagersPopupModal = ({ onClose }) => {
                       type="secondary"
                       onClick={() => setShowDeleteConfirm(false)}
                     >
-                      {MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE_NO}
+                      {enums.MANAGE_EVENT_MANAGER_DELETE_NO}
                     </Button>
 
                     <Button
@@ -149,7 +147,7 @@ const ManagersPopupModal = ({ onClose }) => {
                         setSelectedUserUid(null);
                       }}
                     >
-                      {MANAGE_EVENT_MANAGER.MANAGE_EVENT_MANAGER_DELETE_YES}
+                      {enums.MANAGE_EVENT_MANAGER_DELETE_YES}
                     </Button>
                   </DeletePopup>
                 </PopupModal>

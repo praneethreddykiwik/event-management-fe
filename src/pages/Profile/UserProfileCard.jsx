@@ -4,7 +4,7 @@ import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { Button } from "../../components/Buttons/Button";
 import { StyledMediumHeading } from "../../components/Styled/Typography.styled";
 
-import { PROFILE_DATA } from "../../enum/ProfileText";
+import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { ActivityData } from "./profile.helper";
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +51,10 @@ const UserProfileCard = () => {
 
         <StyleJoinedDate>
           {PROFILE_DATA.JOINED_LABEL} {PROFILE_DATA.JOINED_DATE}
-          <StyleHelpIconCircle className="material-icons" onClick={()=>navigate("/get-in-touch")}>
+          <StyleHelpIconCircle
+            className="material-icons"
+            onClick={() => navigate("/get-in-touch")}
+          >
             {PROFILE_DATA.HELP_ICON}
           </StyleHelpIconCircle>
         </StyleJoinedDate>

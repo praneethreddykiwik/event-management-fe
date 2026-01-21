@@ -9,7 +9,6 @@ import UserManagementItem from "../../pages/UserManagement/UserManagementItem";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
-  
 import PopupModal from "../../components/PopupModal/PopupModal";
 import { Button } from "../../components/Buttons/Button";
 
@@ -20,10 +19,11 @@ import {
   fetchAllUsersAction,
 } from "../../redux/users/users.actions";
 // import EditUserPoEditpup from "../../components/users/EditUserPopup";
-import EditUserPopup from "./EditUserPopUp";
+// import EditUserPopup from "./EditUserPopUp";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector } from "../../redux/users/users.slice";
+import EditUserPopup2 from "./EditUserPopup2";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -59,10 +59,12 @@ const UserManagement = () => {
   return (
     <BlueBackHOC>
       <PageWrapper>
-        <StyledHeading left>User Management</StyledHeading>        
-          <StyledButtonContainer right>
-            <StyledButton onClick={() => navigate("/registration")}>Create User </StyledButton>
-          </StyledButtonContainer>
+        <StyledHeading left>User Management</StyledHeading>
+        <StyledButtonContainer right>
+          <StyledButton onClick={() => navigate("/registration")}>
+            Create User{" "}
+          </StyledButton>
+        </StyledButtonContainer>
 
         {allUsers?.length > 0 &&
           allUsers.map((user) => (
@@ -79,7 +81,7 @@ const UserManagement = () => {
 
         {/* EDIT MODAL */}
         {openEdit && (
-          <EditUserPopup
+          <EditUserPopup2
             onClose={() => setOpenEdit(false)}
             modalDetails={{
               title: "Edit User",

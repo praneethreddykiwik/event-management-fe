@@ -1,16 +1,21 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../myEnum";
 
 const FourCardsContainer = () => {
+  const devices = [
+    { title: "Door Lock", status: "Locked", active: true },
+    { title: "Projector", status: "Inactive", active: false },
+    { title: "Camera", status: "Active", active: true },
+    { title: "AC", status: "Powersavingmode", active: false },
+  ];
+
   return (
     <DeviceRow>
-      {HALLS_DASHBOARD.DEVICES.map((dev, i) => (
+      {devices.map((dev, i) => (
         <DeviceCard key={i} $active={dev.active}>
           <TopRow>
             <Icon>
-              <Span className="material-icons">
-                {HALLS_DASHBOARD.WIFI_ICON}
-              </Span>
+              <Span className="material-icons">{enums.WIFI_ICON}</Span>
             </Icon>
 
             <Toggle $active={dev.active}>

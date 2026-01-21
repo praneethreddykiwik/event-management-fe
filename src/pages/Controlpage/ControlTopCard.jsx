@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../myEnum";
 
 const Topcard2 = () => {
   return (
@@ -8,16 +8,14 @@ const Topcard2 = () => {
         <HeaderRow>
           <Stdiv style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <ControlIcon className="material-icons">
-              {HALLS_DASHBOARD.CONTROL_ICON}
+              {enums.CONTROL_ICON}
             </ControlIcon>
-            <StyleHeader>{HALLS_DASHBOARD.CONTROLHEADER}</StyleHeader>
+            <StyleHeader>{enums.CONTROLHEADER}</StyleHeader>
           </Stdiv>
 
           <StyleRHeader2>
-            {HALLS_DASHBOARD.CONTROLHEADER2}
-            <Stylespan className="material-icons">
-              {HALLS_DASHBOARD.DOWN_ICON}
-            </Stylespan>
+            {enums.CONTROLHEADER2}
+            <Stylespan className="material-icons">{enums.DOWN_ICON}</Stylespan>
           </StyleRHeader2>
         </HeaderRow>
       </Topcard>

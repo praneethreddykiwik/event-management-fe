@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../myEnum";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
 
 const LastBox = () => {
@@ -7,28 +7,24 @@ const LastBox = () => {
     <HeaderWrapper>
       <HeaderContainer>
         <LeftSection>
-          <Lstspan className="material-icons">
-            {HALLS_DASHBOARD.COTTAGE_ICON}
-          </Lstspan>
-          <Header3>{HALLS_DASHBOARD.HEADER_CROS}</Header3>
+          <Lstspan className="material-icons">{enums.COTTAGE_ICON}</Lstspan>
+          <Header3>{enums.HEADER_CROS}</Header3>
         </LeftSection>
 
         <NavSection>
-          <NavItem $active>{HALLS_DASHBOARD.HALLS2}</NavItem>
-          <NavItem>{HALLS_DASHBOARD.DEVICE}</NavItem>
-          <NavItem>{HALLS_DASHBOARD.ANALYTICS}</NavItem>
+          <NavItem $active>{enums.HALLS2}</NavItem>
+          <NavItem>{enums.DEVICE}</NavItem>
+          <NavItem>{enums.ANALYTICS}</NavItem>
         </NavSection>
 
         <RightSection>
           <ProfileBox>
             <ProfileImg src={Control_avtar} />
             <ProfileInfo>
-              <Ltspan className="name">{HALLS_DASHBOARD.HENRY}</Ltspan>
-              <Ltspan className="role">{HALLS_DASHBOARD.BUILD_MANAGER}</Ltspan>
+              <Ltspan className="name">{enums.HENRY}</Ltspan>
+              <Ltspan className="role">{enums.BUILD_MANAGER}</Ltspan>
             </ProfileInfo>
-            <ArrowIcon className="material-icons">
-              {HALLS_DASHBOARD.KEYBOARD}
-            </ArrowIcon>
+            <ArrowIcon className="material-icons">{enums.KEYBOARD}</ArrowIcon>
           </ProfileBox>
         </RightSection>
       </HeaderContainer>

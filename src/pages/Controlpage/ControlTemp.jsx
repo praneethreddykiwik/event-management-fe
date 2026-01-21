@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
 
 const Temp = () => {
+  const MODES = ["Hot", "Eco", "Fan", "Cold"];
   return (
     <>
       <ModeRow>
-        {HALLS_DASHBOARD.MODES.map((mode, index) => (
+        {MODES.map((mode, index) => (
           <ModeBtn key={index} $active={index === 3}>
             <Stspan3 className="material-icons">
               {index === 0 && "brightness_high"}

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { PAYMENT_PAGE } from "../../enum/Payment.common";
+import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 
-const PaymentSuccessfull = () => {
+const PaymentSuccessfull2 = () => {
   return (
     <>
       <VenueCard>
@@ -27,7 +27,7 @@ const PaymentSuccessfull = () => {
   );
 };
 
-export default PaymentSuccessfull;
+export default PaymentSuccessfull2;
 
 const Span = styled.span``;
 

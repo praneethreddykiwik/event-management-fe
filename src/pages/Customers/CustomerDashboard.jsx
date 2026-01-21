@@ -17,7 +17,7 @@ import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { Section } from "../../HOC/SectionsHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import CustomerItem from "./CustomerItem";
-import { E_M_DASHBOARD_COMMON } from "../../Enum/EMDashboard.common";
+import * as enums from "../../myEnum";
 
 const CustomerDashboard = () => {
   const dispatch = useDispatch();
@@ -44,8 +44,7 @@ const CustomerDashboard = () => {
                 <TaskOverview>{event.eventName}</TaskOverview>
                 <TaskMonitor>{event.eventVenue}</TaskMonitor>
                 <TaskAssignee>
-                  {E_M_DASHBOARD_COMMON.TASKASSIGNEE}{" "}
-                  {event.eventAssignedToFirstName}{" "}
+                  {enums.TASKASSIGNEE} {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
                 </TaskAssignee>
                 {/* <TaskAssignee>

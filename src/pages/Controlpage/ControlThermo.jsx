@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { HALLS_DASHBOARD } from "../../enum/control_common";
+import * as enums from "../../myEnum";
 
 const Thermo = () => {
   return (
     <ThermoWrapper>
       <ThermoProgress />
-      <CenterTemp>{HALLS_DASHBOARD.CENT_VALUE}</CenterTemp>
-      <UnitText>{HALLS_DASHBOARD.UNIT_VALUE}</UnitText>
+      <CenterTemp>{enums.CENT_VALUE}</CenterTemp>
+      <UnitText>{enums.UNIT_VALUE}</UnitText>
     </ThermoWrapper>
   );
 };

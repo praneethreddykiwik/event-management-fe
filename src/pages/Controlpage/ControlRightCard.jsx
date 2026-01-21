@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LastUsersBox from "./CntrlLastUsers.jsx";
-import { HALLS_DASHBOARD } from "../../enum/control_common.jsx";
+import * as enums from "../../myEnum";
 import Thermo from "./ControlThermo.jsx";
 import Temp from "./ControlTemp.jsx";
 
@@ -10,11 +10,11 @@ const RightCardContainer = () => {
 
   return (
     <RightSidebar>
-      <Time>{HALLS_DASHBOARD.TIME}</Time>
+      <Time>{enums.TIME}</Time>
       <Divider />
 
       <ThermoHeader>
-        <ThermoTitle>{HALLS_DASHBOARD.THERMOVALUE}</ThermoTitle>
+        <ThermoTitle>{enums.THERMOVALUE}</ThermoTitle>
 
         <ThermoToggle
           role="switch"

@@ -1,7 +1,7 @@
 import experienceImg1 from "../../assets/landingPage/experience-img1.jpg";
 import experienceImg2 from "../../assets/landingPage/experience-img2.jpg";
 import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
-import { EXPERIENCECOMPONET_TXT } from "../../enum/landingPage.common.jsx";
+import * as enums from "../../myEnum";
 
 import styled from "styled-components";
 import { HomePageLayout } from "./HomePageLayout.jsx";
@@ -19,33 +19,25 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING1}</Heading>
-            <StyledParagraph>
-              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA1}
-            </StyledParagraph>
+            <Heading>{enums.EXPERIENCE_HEADING1}</Heading>
+            <StyledParagraph>{enums.EXPERIENCE_PARA1}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING2} </Heading>
-            <StyledParagraph>
-              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA2}
-            </StyledParagraph>
+            <Heading>{enums.EXPERIENCE_HEADING2} </Heading>
+            <StyledParagraph>{enums.EXPERIENCE_PARA2}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
         </StyledSubContainerOne>
         {/* main sub two */}
         <StyledSubContainerTwo>
-          <StyledBigHeading>
-            {EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING3}
-          </StyledBigHeading>
+          <StyledBigHeading>{enums.EXPERIENCE_HEADING3}</StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{EXPERIENCECOMPONET_TXT.EXPERIENCE_HEADING4} </Heading>
-            <StyledParagraph>
-              {EXPERIENCECOMPONET_TXT.EXPERIENCE_PARA3}
-            </StyledParagraph>
+            <Heading>{enums.EXPERIENCE_HEADING4} </Heading>
+            <StyledParagraph>{enums.EXPERIENCE_PARA3}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
