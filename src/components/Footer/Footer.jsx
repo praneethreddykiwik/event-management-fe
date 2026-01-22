@@ -18,71 +18,73 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <FooterGrid>
-        {Object.entries(footerLinks).map(([section, links]) => (
-          <Column key={section}>
-            <Title>{section}</Title>
+      <FooterInner>
+        <FooterGrid>
+          {Object.entries(footerLinks).map(([section, links]) => (
+            <Column key={section}>
+              <Title>{section}</Title>
 
-            {links.map((item) => (
-              <LinkStyled key={item.to}>
-                <NavLink to={item.to}>{item.label}</NavLink>
-              </LinkStyled>
-            ))}
-          </Column>
-        ))}
+              {links.map((item) => (
+                <LinkStyled key={item.to}>
+                  <NavLink to={item.to}>{item.label}</NavLink>
+                </LinkStyled>
+              ))}
+            </Column>
+          ))}
 
-        <LogoSection>
-          <Logo>
-            <LogoImage src={Helm_logo} alt="logo" />
-          </Logo>
-          <Description>{enums.DESCRIPTION_TEXT}</Description>
-        </LogoSection>
-      </FooterGrid>
+          <LogoSection>
+            <Logo>
+              <LogoImage src={Helm_logo} alt="logo" />
+            </Logo>
+            <Description>{enums.DESCRIPTION_TEXT}</Description>
+          </LogoSection>
+        </FooterGrid>
 
-      <ContactWrapper>
-        <ContactRow>
-          <ContactTitle>{enums.CONTACT_US}</ContactTitle>
+        <ContactWrapper>
+          <ContactRow>
+            <ContactTitle>{enums.CONTACT_US}</ContactTitle>
 
-          <ContactItem>
-            <Icon className="material-symbols-outlined">call</Icon>
-            {enums.CONTACT_PHONE}
-          </ContactItem>
+            <ContactItem>
+              <Icon className="material-symbols-outlined">call</Icon>
+              {enums.CONTACT_PHONE}
+            </ContactItem>
 
-          <ContactItem>
-            <Icon className="material-symbols-outlined">mail</Icon>
-            {enums.EMAIL_ID}
-          </ContactItem>
+            <ContactItem>
+              <Icon className="material-symbols-outlined">mail</Icon>
+              {enums.EMAIL_ID}
+            </ContactItem>
 
-          <ContactItem maxWidth>
-            <Icon className="material-symbols-outlined">location_on</Icon>
-            {enums.LOCATION}
-          </ContactItem>
+            <ContactItem maxWidth>
+              <Icon className="material-symbols-outlined">location_on</Icon>
+              {enums.LOCATION}
+            </ContactItem>
 
-          <SocialWrapper>
-            {socialLinks.map((social) => (
-              <SocialLink
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </SocialLink>
-            ))}
-          </SocialWrapper>
-        </ContactRow>
-      </ContactWrapper>
+            <SocialWrapper>
+              {socialLinks.map((social) => (
+                <SocialLink
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {social.name}
+                </SocialLink>
+              ))}
+            </SocialWrapper>
+          </ContactRow>
+        </ContactWrapper>
 
-      <BottomBar>
-        <BottomText>
-          {"\u00A9"} {currentYear} {enums.ALL_RIGHTS_RESERVED}
-        </BottomText>
+        <BottomBar>
+          <BottomText>
+            {"\u00A9"} {currentYear} {enums.ALL_RIGHTS_RESERVED}
+          </BottomText>
 
-        <BottomLinks>
-          <NavLink to="/privacy">{enums.PRIVACY_POLICY}</NavLink>
-          <NavLink to="/terms">{enums.TERMS_CONDITIONS}</NavLink>
-        </BottomLinks>
-      </BottomBar>
+          <BottomLinks>
+            <NavLink to="/privacy">{enums.PRIVACY_POLICY}</NavLink>
+            <NavLink to="/terms">{enums.TERMS_CONDITIONS}</NavLink>
+          </BottomLinks>
+        </BottomBar>
+      </FooterInner>
     </FooterContainer>
   );
 };
@@ -92,8 +94,14 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   background: #131212;
   color: #fff;
-  padding: 70px 120px 25px;
+  width: 100%;
   text-align: left;
+`;
+
+const FooterInner = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 0 25px;
 
   @media (max-width: 1024px) {
     padding: 50px;
@@ -149,13 +157,16 @@ const LinkStyled = styled.article`
 
 const LogoSection = styled.section`
   max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   text-align: right;
 `;
 
 const Logo = styled.div`
-  font-size: 3rem;
-  font-weight: bold;
-  margin: 0 0 12px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
 `;
 
 const Description = styled.p`
@@ -169,8 +180,7 @@ const ContactWrapper = styled.section`
 
 const ContactRow = styled.section`
   display: flex;
-  justify-content: space-around;
-  gap: 60px;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 40px;
 
