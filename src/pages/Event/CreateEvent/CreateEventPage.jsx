@@ -11,8 +11,9 @@ import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
 import { Venue } from "../../../components/Venue/Venue";
-import { tasksMetadata } from "../../../constants/metadata/tasks.metadata";
+import { eventsMetadata } from "../../../constants/metadata/events.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
+import { toast } from "react-toastify";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,39 @@ const CreateEventPage = () => {
     dispatch(createEventsDispatch(payload));
   };
 
+  const onChooseVenue = (event) => {
+    dispatch(
+      updateAllEventInputs(
+        eventMetaData(eventManagers).map((inp) => {
+          switch (inp.name) {
+            case "eventName":
+              return { ...inp, value: event.title };
+
+            case "eventDescription":
+              return { ...inp, value: event.description };
+
+            case "venue":
+              return { ...inp, value: event.venue };
+
+            case "eventDate":
+              return { ...inp, value: event.eventDate };
+
+            case "eventTime":
+              return {
+                ...inp,
+                value: event.eventTime,
+              };
+
+            default:
+              return inp;
+          }
+        })
+      )
+    );
+    toast.success("Selected event details are added in the input fields");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <BlueBackHOC>
       <EventsPageContainer>
@@ -39,8 +73,13 @@ const CreateEventPage = () => {
       </EventsPageContainer>
 
       <StyledSuggestions>
-        {tasksMetadata.map((el) => (
-          <Venue venueDetails={el} btnText="Choose" onClick={() => {}} />
+        {eventsMetadata.map((el) => (
+          <Venue
+            key={el.title}
+            venueDetails={el}
+            btnText="Choose"
+            onClick={() => onChooseVenue(el)}
+          />
         ))}
       </StyledSuggestions>
     </BlueBackHOC>
