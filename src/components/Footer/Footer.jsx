@@ -75,7 +75,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <BottomBar>
           <BottomText>
-            © {currentYear} {enums.ALL_RIGHTS_RESERVED}
+            {"\u00A9"} {currentYear} {enums.ALL_RIGHTS_RESERVED}
           </BottomText>
 
           <BottomLinks>
@@ -194,9 +194,6 @@ const ContactRow = styled.div`
   flex-wrap: wrap;
   margin-bottom: 40px;
 
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
 `;
 
 const ContactTitle = styled.h4`
