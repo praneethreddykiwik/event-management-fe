@@ -1,45 +1,43 @@
 import { NavLink } from "react-router-dom";
-import Helm_logo from "../../assets/Logos/Helm_logo.svg";
-import styled from "styled-components";
-import { authSelector } from "../../redux/auth/auth.slice";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+import HelmLogo from "../../assets/Logos/Helm_logo.svg";
+import { authSelector } from "../../redux/auth/auth.slice";
 import { footerLinks, socialLinks } from "./Footer.helper";
 import * as enums from "../../myEnum";
 
 const Footer = () => {
   const { authStatus } = useSelector(authSelector);
-  const isLoggedIn = authStatus === "authenticated";
-
-  if (!isLoggedIn) {
-    return null;
-  }
+  if (authStatus !== "authenticated") return null;
 
   const currentYear = new Date().getFullYear();
 
   return (
     <FooterContainer>
       <FooterInner>
+        {/* Top Grid */}
         <FooterGrid>
           {Object.entries(footerLinks).map(([section, links]) => (
             <Column key={section}>
               <Title>{section}</Title>
-
-              {links.map((item) => (
-                <LinkStyled key={item.to}>
-                  <NavLink to={item.to}>{item.label}</NavLink>
-                </LinkStyled>
+              {links.map(({ to, label }) => (
+                <FooterLink key={to}>
+                  <NavLink to={to}>{label}</NavLink>
+                </FooterLink>
               ))}
             </Column>
           ))}
 
           <LogoSection>
             <Logo>
-              <LogoImage src={Helm_logo} alt="logo" />
+              <LogoImage src={HelmLogo} alt="Helm Events Logo" />
             </Logo>
             <Description>{enums.DESCRIPTION_TEXT}</Description>
           </LogoSection>
         </FooterGrid>
 
+        {/* Contact Section */}
         <ContactWrapper>
           <ContactRow>
             <ContactTitle>{enums.CONTACT_US}</ContactTitle>
@@ -60,23 +58,24 @@ const Footer = () => {
             </ContactItem>
 
             <SocialWrapper>
-              {socialLinks.map((social) => (
+              {socialLinks.map(({ name, url }) => (
                 <SocialLink
-                  key={social.name}
-                  href={social.url}
+                  key={name}
+                  href={url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {social.name}
+                  {name}
                 </SocialLink>
               ))}
             </SocialWrapper>
           </ContactRow>
         </ContactWrapper>
 
+        {/* Bottom Bar */}
         <BottomBar>
           <BottomText>
-            {"\u00A9"} {currentYear} {enums.ALL_RIGHTS_RESERVED}
+            © {currentYear} {enums.ALL_RIGHTS_RESERVED}
           </BottomText>
 
           <BottomLinks>
@@ -89,26 +88,26 @@ const Footer = () => {
   );
 };
 
-/* ------------------------ Styled Components ------------------------ */
+/*  Layout  */
 
 const FooterContainer = styled.footer`
+  width: 100%;
   background: #131212;
   color: #fff;
-  width: 100%;
-  text-align: left;
 `;
 
 const FooterInner = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 70px 0 25px;
+  padding: 70px 24px 25px;
+  text-align: left;
 
   @media (max-width: 1024px) {
-    padding: 50px;
+    padding: 50px 24px;
   }
 
   @media (max-width: 540px) {
-    padding: 25px;
+    padding: 25px 16px;
   }
 `;
 
@@ -130,6 +129,8 @@ const FooterGrid = styled.div`
   }
 `;
 
+/*  Columns  */
+
 const Column = styled.section`
   display: flex;
   flex-direction: column;
@@ -137,17 +138,17 @@ const Column = styled.section`
 `;
 
 const Title = styled.h4`
-  font-size: 1.2rem;
-  margin: 0 0 8px;
-  font-weight: normal;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
 `;
 
-const LinkStyled = styled.article`
+const FooterLink = styled.article`
   a {
     font-size: 14px;
     color: #b8b8b8;
     text-decoration: none;
-    transition: 0.2s;
+    transition: color 0.2s;
 
     &:hover {
       color: #fff;
@@ -155,18 +156,24 @@ const LinkStyled = styled.article`
   }
 `;
 
+/* ================= Logo ================= */
+
 const LogoSection = styled.section`
-  max-width: 280px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
+  max-width: 280px;
 `;
 
 const Logo = styled.div`
-  display: flex;
-  justify-content: flex-end;
   margin-bottom: 12px;
+`;
+
+const LogoImage = styled.img`
+  width: 146px;
+  height: 80px;
+  border-radius: 8px;
 `;
 
 const Description = styled.p`
@@ -174,53 +181,66 @@ const Description = styled.p`
   line-height: 1.5;
 `;
 
+/* ================= Contact ================= */
+
 const ContactWrapper = styled.section`
   margin-top: 40px;
 `;
 
-const ContactRow = styled.section`
+const ContactRow = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 40px;
 
-  @media (max-width: 1024px) {
-    justify-content: space-between;
-  }
-
   @media (max-width: 500px) {
     flex-direction: column;
-    gap: 20px;
   }
 `;
 
 const ContactTitle = styled.h4`
-  color: #fff;
-  font-weight: normal;
-  margin: 0;
+  font-weight: 400;
 `;
 
 const ContactItem = styled.article`
   display: flex;
   gap: 10px;
   color: #b8b8b8;
-  line-height: 1.4;
   max-width: ${({ maxWidth }) => (maxWidth ? "280px" : "auto")};
 `;
 
 const Icon = styled.i`
+  font-size: 22px;
   color: #fff;
-  font-size: 24px;
-  margin-top: 2px;
 `;
+
+/* ================= Social ================= */
+
+const SocialWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const SocialLink = styled.a`
+  font-size: 14px;
+  font-weight: 500;
+  color: #b8b8b8;
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+  }
+`;
+
+/* ================= Bottom Bar ================= */
 
 const BottomBar = styled.section`
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #333;
   padding-top: 40px;
+  border-top: 1px solid #333;
   font-size: 0.9rem;
-  color: #b8b8b8;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -247,33 +267,5 @@ const BottomLinks = styled.nav`
   }
 `;
 
-const LogoImage = styled.img`
-  // width: 64px;
-  // height: 64px;
-  // border-radius: 8px;
-  width: 146px;
-  height: 80px;
-  border-radius: 8px;
-`;
-
-const SocialWrapper = styled.div`
-  display: inline-flex;
-  gap: 16px;
-  align-items: flex-start;
-  vertical-align: top;
-`;
-
-const SocialLink = styled.a`
-  font-size: 14px;
-  font-weight: 500;
-  color: #b8b8b8;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-`;
 
 export default Footer;
