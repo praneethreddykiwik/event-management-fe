@@ -66,7 +66,7 @@ const CreateEvent = ({ onCreateEvent }) => {
       navigate,
       reqPayload: {
         ...reqPayload,
-        assigned_to_uid: reqPayload.assignedEventManager,
+        assignedToUid: reqPayload.assignedEventManager,
         tenantUid,
         scheduledAt,
         status: "pending",
