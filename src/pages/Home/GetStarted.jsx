@@ -45,14 +45,11 @@ const GetStarted = () => {
   );
 };
 
-const StyledGetStartedBtn = styled(StyledBaseButton)`
-  // width: 120px;
-`;
-
 const StyledLink = styled(StyledAnchor)`
   color: ${({ theme }) => theme.colors.primary};
   font: ${({ theme }) => theme.typography["button-text"]};
   text-decoration: none;
+  display: flex;
 `;
 
 const StyledGetStartedLayout = styled(HomePageLayout)`

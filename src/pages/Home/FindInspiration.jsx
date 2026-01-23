@@ -95,6 +95,7 @@ const StyledContent = styled(StyledParagraphSmallGray)`
 const StyledBtnContainer = styled.div`
   display: flex;
   align-items: left;
+  margin-top: 25px;
 `;
 
 export default FindInspiration;

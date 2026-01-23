@@ -87,7 +87,6 @@ const StyledExperience = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,7 +141,6 @@ const Heading = styled(StyledParagraphBold)`
 
 const StyledParagraph = styled(StyledParagraphSmall)`
   text-align: left;
-  margin-top: -10px;
   margin-bottom: 15px;
   word-wrap: break-word;
   font-size: 13px;
@@ -150,7 +148,8 @@ const StyledParagraph = styled(StyledParagraphSmall)`
 
 const StyledHr = styled.hr`
   width: 100%;
-  margin-top: -5px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 `;
 
 //image stylings
