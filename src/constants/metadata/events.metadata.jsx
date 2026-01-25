@@ -32,7 +32,7 @@ export const eventsMetadata = [
       "Coordinate with vendors to complete stage, lighting, and audio setup as per event design.",
     venue: "Chennai",
     eventDate: "2026-01-30",
-    eventTime: "9:00",
+    eventTime: "09:00",
     image: venueImg3,
     available: true,
   },

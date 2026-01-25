@@ -12,6 +12,7 @@ import { StyledHr } from "../../../components/Styled/Common.styled";
 
 import { Venue } from "../../../components/Venue/Venue";
 import { eventsMetadata } from "../../../constants/metadata/events.metadata";
+import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { toast } from "react-toastify";
 
@@ -32,32 +33,7 @@ const CreateEventPage = () => {
 
   const onChooseVenue = (event) => {
     dispatch(
-      updateAllEventInputs(
-        eventMetaData(eventManagers).map((inp) => {
-          switch (inp.name) {
-            case "eventName":
-              return { ...inp, value: event.title };
-
-            case "eventDescription":
-              return { ...inp, value: event.description };
-
-            case "venue":
-              return { ...inp, value: event.venue };
-
-            case "eventDate":
-              return { ...inp, value: event.eventDate };
-
-            case "eventTime":
-              return {
-                ...inp,
-                value: event.eventTime,
-              };
-
-            default:
-              return inp;
-          }
-        })
-      )
+      updateAllEventInputs(generateEventDataToEdit(eventManagers, event))
     );
     toast.success("Selected event details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
