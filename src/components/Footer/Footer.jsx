@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import HelmLogo from "../../assets/Logos/Helm_logo.svg";
 import { authSelector } from "../../redux/auth/auth.slice";
-import { footerLinks, socialLinks } from "./Footer.helper";
+import { contactDetails, footerLinks, socialLinks } from "./Footer.helper";
 import * as enums from "../../myEnum";
 
 const Footer = () => {
@@ -42,30 +42,27 @@ const Footer = () => {
           <ContactRow>
             <ContactTitle>{enums.CONTACT_US}</ContactTitle>
 
-            <ContactItem>
-              <Icon className="material-symbols-outlined">call</Icon>
-              {enums.CONTACT_PHONE}
-            </ContactItem>
+            {contactDetails.map(({ id, icon, valueKey, maxWidth }) => (
+              <ContactItem key={id} maxWidth={maxWidth}>
+                <Icon className="material-symbols-outlined">{icon}</Icon>
 
-            <ContactItem>
-              <Icon className="material-symbols-outlined">mail</Icon>
-              {enums.EMAIL_ID}
-            </ContactItem>
-
-            <ContactItem maxWidth>
-              <Icon className="material-symbols-outlined">location_on</Icon>
-              {enums.LOCATION}
-            </ContactItem>
+                {id === "email" ? (
+                  <a href={`mailto:${enums[valueKey]}`}>{enums[valueKey]}</a>
+                ) : (
+                  <span>{enums[valueKey]}</span>
+                )}
+              </ContactItem>
+            ))}
 
             <SocialWrapper>
-              {socialLinks.map(({ name, url }) => (
+              {socialLinks.map((social) => (
                 <SocialLink
-                  key={name}
-                  href={url}
+                  key={social.name}
+                  href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {name}
+                  {social.name}
                 </SocialLink>
               ))}
             </SocialWrapper>
@@ -163,7 +160,7 @@ const LogoSection = styled.section`
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  max-width: 280px;
+  width: 280px;
 `;
 
 const Logo = styled.div`
@@ -193,7 +190,6 @@ const ContactRow = styled.div`
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 40px;
-
 `;
 
 const ContactTitle = styled.h4`
@@ -263,6 +259,5 @@ const BottomLinks = styled.nav`
     }
   }
 `;
-
 
 export default Footer;
