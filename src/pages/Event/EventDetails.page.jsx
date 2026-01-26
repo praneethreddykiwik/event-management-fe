@@ -250,7 +250,7 @@ const StyledEventBodyContainerLeft = styled.div`
   border-radius: 10px;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
 `;
 
 const StyledEventBodyHeader = styled(StyledSemiHeading)`
@@ -282,7 +282,7 @@ const StyledEventBodyContainerRightTop = styled.div`
   /* gap: 20px; */
   padding: 25px;
   border-radius: 10px;
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
 `;
 
 const StyledEventBodyContainerRightBototm = styled.div`
@@ -293,7 +293,7 @@ const StyledEventBodyContainerRightBototm = styled.div`
   height: 50%;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
   /* border: 1px solid pink; */
 `;
 

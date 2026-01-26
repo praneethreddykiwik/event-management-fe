@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
+import { StyledParagraphBold } from "../../components/Styled/Typography.styled";
 
 const Topcard2 = () => {
   return (
@@ -10,13 +12,13 @@ const Topcard2 = () => {
             <ControlIcon className="material-icons">
               {enums.CONTROL_ICON}
             </ControlIcon>
-            <StyleHeader>{enums.CONTROLHEADER}</StyleHeader>
+            <StyledParagraphBold>{enums.CONTROLHEADER}</StyledParagraphBold>
           </Stdiv>
 
-          <StyleRHeader2>
+          <StyledParagraphBold>
             {enums.CONTROLHEADER2}
             <Stylespan className="material-icons">{enums.DOWN_ICON}</Stylespan>
-          </StyleRHeader2>
+          </StyledParagraphBold>
         </HeaderRow>
       </Topcard>
     </>
@@ -42,24 +44,7 @@ const Stdiv = styled.div``;
 
 const ControlIcon = styled.span`
   font-size: 26px;
-  color: #222;
-`;
-
-const StyleHeader = styled.h2`
-  font-size: 22px;
-  font-weight: 600;
-  color: #111;
-  margin: 0;
-`;
-
-const StyleRHeader2 = styled.h2`
-  font-size: 15px;
-  font-weight: 600;
-  color: #111;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  color: ${({theme})=>theme.color.black};;
 `;
 
 const Stylespan = styled.span`

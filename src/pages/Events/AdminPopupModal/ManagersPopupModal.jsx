@@ -21,6 +21,7 @@ import {
   generateRegDataToEdit,
   registrationMetaData,
 } from "../../../redux/farms/metadata/reg.metadata";
+import { theme } from "../../../theme/theme";
 
 const det = {
   add: {
@@ -209,7 +210,7 @@ const StyledPopupHeaderRow = styled.div`
 const StyledPopupCol = styled(StyledSemiHeading)`
   flex: ${({ flex }) => flex};
   text-align: left;
-  font-size: 12px;
+  font-size: ${theme.light.typography["caption"]["font-size"]};
 `;
 const StyledPopupData = styled(StyledParagraphSmallVisible)`
   flex: ${({ flex }) => flex};

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
+import { StyledAnchor,StyledParagraphBold } from "../../components/Styled/Typography.styled";
 
 const UsageBox = () => {
   const chartUrl =
@@ -9,7 +11,7 @@ const UsageBox = () => {
     <>
       <UsageBox2>
         <BoxHeader>
-          <StyleHeader2>{enums.HISTORY_HEADER}</StyleHeader2>
+          <StyledParagraphBold>{enums.HISTORY_HEADER}</StyledParagraphBold>
           <InfoIcon>
             <Styledspan className="material-symbols-rounded">
               {enums.INFO_ICON}
@@ -30,8 +32,8 @@ const Styledspan = styled.span`
 
 const UsageBox2 = styled.div`
   flex: 0 0 260px;
-  background: #ffffffff;
-  padding: 16px 16px 12px;
+  background: ${theme.light.colors.white};
+  padding:16px 16px 12px;
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   margin-bottom: 0px;
@@ -41,14 +43,6 @@ const UsageBox2 = styled.div`
 const BoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-`;
-
-const StyleHeader2 = styled.h3`
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0;
 `;
 
 const InfoIcon = styled.div`
@@ -58,7 +52,5 @@ const InfoIcon = styled.div`
 
 const Chartimg = styled.img`
   margin-top: 35px;
-  width: 100%;
-  border-radius: 10px;
   height: 220px;
 `;

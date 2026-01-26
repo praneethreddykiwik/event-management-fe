@@ -9,6 +9,7 @@ import {
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});
@@ -96,7 +97,7 @@ const CreateEventModal = ({ onClose }) => {
               </Row>
             ) : (
               renderField(field)
-            )
+            ),
           )}
         </Form>
 
@@ -137,7 +138,7 @@ const Box = styled.div`
   width: min(600px, 95vw);
   max-height: 90vh;
   overflow-y: auto;
-  background: white;
+  background: ${theme.light.colors.white};
   border-radius: 16px;
   padding: 22px 26px;
   scrollbar-width: thin;
@@ -181,12 +182,12 @@ const Actions = styled.div`
 const CancelB = styled.div`
   button {
     background-color: #eeeeee;
-    color: #000000;
+    color: ${theme.light.colors.black};
   }
 `;
 
 const CreateB = styled.div`
   button {
-    color: white;
+    color: ${theme.light.colors.white};
   }
 `;

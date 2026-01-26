@@ -4,6 +4,8 @@ import LastUsersBox from "./CntrlLastUsers.jsx";
 import * as enums from "../../myEnum";
 import Thermo from "./ControlThermo.jsx";
 import Temp from "./ControlTemp.jsx";
+import { theme } from "../../theme/theme.jsx";
+import { StyledParagraphGray } from "../../components/Styled/Typography.styled.jsx";
 
 const RightCardContainer = () => {
   const [active, setActive] = useState(false);
@@ -14,7 +16,7 @@ const RightCardContainer = () => {
       <Divider />
 
       <ThermoHeader>
-        <ThermoTitle>{enums.THERMOVALUE}</ThermoTitle>
+        <StyledParagraphGray>{enums.THERMOVALUE}</StyledParagraphGray>
 
         <ThermoToggle
           role="switch"
@@ -29,7 +31,6 @@ const RightCardContainer = () => {
           }}
         />
       </ThermoHeader>
-
       <Thermo />
       <Temp />
       <LastUsersBox />
@@ -45,7 +46,7 @@ const RightSidebar = styled.div`
   background: #191827;
   border-radius: 24px;
   padding: 28px 24px;
-  color: #fff;
+  color: ${theme.light.colors.white};
 
   display: flex;
   flex-direction: column;
@@ -71,12 +72,6 @@ const ThermoHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const ThermoTitle = styled.p`
-  font-size: 17px;
-  opacity: 0.9;
-  margin: 0;
 `;
 
 const ThermoToggle = styled.div`

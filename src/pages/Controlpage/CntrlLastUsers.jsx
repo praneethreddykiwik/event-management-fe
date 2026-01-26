@@ -4,6 +4,7 @@ import Avt1 from "../../assets/ControlPage_img/Avt1.jpeg";
 import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
 import doorimg from "../../assets/ControlPage_img/doorimg.jpeg";
+import { theme } from "../../theme/theme";
 
 const LastUsersBox = () => {
   return (
@@ -34,7 +35,7 @@ const LastUsersBox = () => {
 export default LastUsersBox;
 
 const LastUsersBox2 = styled.div`
-  background: #ffffff;
+  background: ${theme.light.colors.white};
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -62,7 +63,7 @@ const Avtimg = styled.img`
   height: 28px;
   border-radius: 50%;
   margin-left: -8px;
-  border: 2px solid #fff;
+  border: 2px solid ${theme.light.colors.white};
 `;
 
 const UserActivity = styled.div`
@@ -87,7 +88,7 @@ const LastInfo = styled.div`
 const Header4 = styled.h4`
   margin: 0;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: ${theme.light.fontWeights.semiBold};
   color: #111;
   margin-right: 110px;
 `;

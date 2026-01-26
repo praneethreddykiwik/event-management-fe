@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
+import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 
 const Thermo = () => {
   return (
     <ThermoWrapper>
       <ThermoProgress />
       <CenterTemp>{enums.CENT_VALUE}</CenterTemp>
-      <UnitText>{enums.UNIT_VALUE}</UnitText>
+      <StyledParagraphGray>{enums.UNIT_VALUE}</StyledParagraphGray>
     </ThermoWrapper>
   );
 };
@@ -28,9 +30,4 @@ const ThermoProgress = styled.div`
 const CenterTemp = styled.h1`
   font-size: 43px;
   margin: 14px 0 0;
-`;
-
-const UnitText = styled.p`
-  font-size: 16px;
-  opacity: 0.8;
 `;

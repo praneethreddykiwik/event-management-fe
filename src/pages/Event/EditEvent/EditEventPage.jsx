@@ -16,6 +16,7 @@ import {
 } from "../../../utils/utils";
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { theme } from "../../../theme/theme";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();

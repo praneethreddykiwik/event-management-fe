@@ -50,23 +50,7 @@ const CreateEventPage = () => {
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
 `;
-
 export default CreateEventPage;
-
-const DashboardContainer = styled.div`
-  padding: 0 20px 60px 20px;
-`;
-
-const StyledBox = styled.div`
-  flex-basis: 30%;
-  flex-shrink: 0;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  gap: 160px;
-  // padding-left: 140px;
-`;
 
 const StyledSuggestions = styled.div`
   display: flex;

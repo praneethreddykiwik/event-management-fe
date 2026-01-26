@@ -14,8 +14,6 @@ import {
   StyledAnchorSmall,
 } from "../../../components/Styled/Typography.styled";
 
-import { StyledBaseButton } from "../../../components/Styled/Buttons.styled";
-
 const EventIntroSection = () => {
   const headerEvents = [
     {
@@ -48,11 +46,10 @@ const EventIntroSection = () => {
           <Icon variant="share" sx={{ color: "#062e70" }} />
         </TopRow>
 
-        <HeadingTight>{e.title}</HeadingTight>
-        <DateText>{e.date}</DateText>
+        <StyledHeading>{e.title}</StyledHeading>
+        <StyledParagraphSmallGray>{e.date}</StyledParagraphSmallGray>
 
         <ButtonsRow>
-          {/* <Button>{e.watchLive}</Button> */}
           <Button
             sx={{
               width: "120px",
@@ -105,24 +102,9 @@ export const TopRow = styled.div`
   gap: 10px;
 `;
 
-// export const ShareIcon = styled.span`
-//   cursor: pointer;
-//   color: #062e70;
-// `;
-
 export const NewEventTxt = styled(StyledParagraphSmallGray)`
   font-weight: 600;
   color: #062e70;
-`;
-
-export const HeadingTight = styled(StyledHeading)`
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-
-export const DateText = styled(StyledParagraphSmallVisible)`
-  color: #a9abaa;
-  font-size: 15px;
 `;
 
 export const ButtonsRow = styled.div`
@@ -131,11 +113,6 @@ export const ButtonsRow = styled.div`
   margin-top: 10px;
   align-items: center;
 `;
-
-// export const Button = styled(StyledBaseButton)`
-//   color: white;
-//   width: 120px;
-// `;
 
 export const AttendLink = styled(StyledAnchorSmall)`
   color: #33b133 !important;
