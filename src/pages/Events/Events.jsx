@@ -38,6 +38,15 @@ const Events = () => {
   // console.log("usersSelector", eventManagers);
   const navigate = useNavigate();
 
+  const onChooseEvent = (event) => {
+    navigate(`${paths.createEvent}`, {
+      state: {
+        mode: "edit",
+        eventData: event,
+      },
+    });
+  };
+
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -74,7 +83,11 @@ const Events = () => {
           </Tasktxt>
           <TaskList>
             {events.map((event, index) => (
-              <AdminTaskItem key={index} data={mapEventForUI(event)} />
+              <AdminTaskItem
+                key={index}
+                data={mapEventForUI(event)}
+                onChoose={() => onChooseEvent(event)}
+              />
             ))}
           </TaskList>
         </TaskMainCard>

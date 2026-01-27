@@ -11,8 +11,10 @@ import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
 import { Venue } from "../../../components/Venue/Venue";
-import { tasksMetadata } from "../../../constants/metadata/tasks.metadata";
+import { eventsMetadata } from "../../../constants/metadata/events.metadata";
+import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
+import { toast } from "react-toastify";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,14 @@ const CreateEventPage = () => {
     dispatch(createEventsDispatch(payload));
   };
 
+  const onChooseVenue = (event) => {
+    dispatch(
+      updateAllEventInputs(generateEventDataToEdit(eventManagers, event))
+    );
+    toast.success("Selected event details are added in the input fields");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <BlueBackHOC>
       <EventsPageContainer>
@@ -39,8 +49,13 @@ const CreateEventPage = () => {
       </EventsPageContainer>
 
       <StyledSuggestions>
-        {tasksMetadata.map((el) => (
-          <Venue venueDetails={el} btnText="Choose" onClick={() => {}} />
+        {eventsMetadata.map((el) => (
+          <Venue
+            key={el.title}
+            venueDetails={el}
+            btnText="Choose"
+            onClick={() => onChooseVenue(el)}
+          />
         ))}
       </StyledSuggestions>
     </BlueBackHOC>
