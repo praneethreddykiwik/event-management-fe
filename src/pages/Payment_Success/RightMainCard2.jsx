@@ -46,27 +46,27 @@ const RightMainCard2 = () => {
 };
 export default RightMainCard2;
 
-const Stylespan = styled.span``;
+const Stylespan = styled.span`
+`;
 
 const RightCard = styled.div`
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 8px 30px rgba(24, 39, 75, 0.06);
   width: 400px;
-  padding: 0 18px 26px 18px;
+  // padding: 0 18px 26px 18px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 740px;
+  height: 770px;
 `;
 
 const EventImage = styled.img`
-  width: 110%;
+  width: 900px;
   height: 180px;
   object-fit: cover;
   border-radius: 6px 6px 0px 0px;
-  margin-top: 0;
 `;
 
 const ButtonGroup = styled.div`
@@ -88,7 +88,7 @@ const DownloadCard = styled.div`
 `;
 
 const DownloadBtn = styled.button`
-  width: 80%;
+  width: 90%;
   background: linear-gradient(90deg, #16a34a, #16a34a);
   color: white;
   border: none;
@@ -117,7 +117,7 @@ const ShareBtn = styled.button`
   font-size: 14px;
   display: inline-flex;
   align-items: right;
-  padding-right: 60px;
+  padding-left: 50px;
 `;
 
 const CancelWrap = styled.div`

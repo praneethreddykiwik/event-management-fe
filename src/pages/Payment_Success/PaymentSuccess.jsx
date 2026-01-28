@@ -45,6 +45,6 @@ const LeftCard = styled.div`
   box-shadow: 0 8px 30px rgba(24, 39, 75, 0.06);
   padding: 35px;
   width: 500px;
-  height: 740px;
+  height: 770px;
   box-sizing: border-box;
 `;

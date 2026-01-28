@@ -10,6 +10,7 @@ import { Button } from "../../components/Buttons/Button";
 import { useLocation } from "react-router-dom";
 import { dateObj } from "../../utils/utils";
 import { BADGE_TYPES } from "../../constants/badges";
+import ProgressChart from "../../pages/Events/EventCards/ProgressChart";
 
 const EventDetails = () => {
   const { state } = useLocation();
@@ -128,6 +129,9 @@ const EventDetails = () => {
                 </StyledEventBodyContainerRightBototmHeader>
               </StyledEventBodyContainerRightBototm>
             </StyledEventBodyContainerRight>
+            <StyledEventBodyContainerChart>
+              <ProgressChart events={[event]} />
+            </StyledEventBodyContainerChart>
           </StyledEventBody>
         </StyledBG>
         {/* 
@@ -168,6 +172,12 @@ const StyledEventContainer = styled.div`
 `;
 
 // --------- Event Header ------------
+
+const StyledEventBodyContainerChart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const StyledEventHeader = styled(StyledFlexContainer)`
   /* border: 1px solid red; */

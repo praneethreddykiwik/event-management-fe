@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import {StyledSemiHeading, StyledParagraphBold} from "../../components/Styled/Typography.styled";
 
 const Topcard2 = () => {
   return (
@@ -45,21 +46,10 @@ const ControlIcon = styled.span`
   color: #222;
 `;
 
-const StyleHeader = styled.h2`
-  font-size: 22px;
-  font-weight: 600;
-  color: #111;
-  margin: 0;
+const StyleHeader = styled(StyledSemiHeading)`
 `;
 
-const StyleRHeader2 = styled.h2`
-  font-size: 15px;
-  font-weight: 600;
-  color: #111;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+const StyleRHeader2 = styled(StyledParagraphBold)`
 `;
 
 const Stylespan = styled.span`
