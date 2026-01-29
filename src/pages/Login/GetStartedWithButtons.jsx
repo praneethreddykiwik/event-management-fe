@@ -1,5 +1,4 @@
 /** @format */
-
 import styled from "styled-components";
 import apple from "../../assets/Logo/Apple.svg";
 import google from "../../assets/Logo/Google.svg.webp";
@@ -10,7 +9,7 @@ const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
       <GetStarted>{enums.STARTED_WITH}</GetStarted>
-      <SignInTxtM>{enums.SIGN_IN_TEXT}</SignInTxtM>
+      {/* <SignInTxtM>{enums.SIGN_IN_TEXT}</SignInTxtM> */}
       <ContinueSignIn>
         <Button type="outlined" image={apple}>
           {enums.APPLE}
@@ -25,45 +24,52 @@ const GetStartedWithButtons = () => {
 
 export default GetStartedWithButtons;
 
-export const GetStarted = styled(StyledParagraph)`
-  font-size: 18px;
-  font-weight: 420;
+const GetStarted = styled(StyledParagraph)`
+  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+
   @media (max-width: 768px) {
     display: none;
   }
 `;
-export const SignInTxtM = styled(StyledParagraph)`
-  @media (min-width: 60px) and (max-width: 768px) {
-    margin-top: 35px;
-    font-size: 22px;
-    font-weight: 350;
-  }
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
-`;
-export const GetStartedWithButtonsWrapper = styled.div`
+
+// const SignInTxtM = styled(StyledParagraph)`
+//   @media (min-width: 60px) and (max-width: 768px) {
+//     margin-top: 32px;
+//     font-size: ${({ theme }) => theme.typography["heading-h2"]["font-size"]};
+//     font-weight: ${({ theme }) => theme.fontWeights.default};
+//   }
+
+//   @media screen and (min-width: 769px) {
+//     display: none;
+//   }
+// `;
+
+const GetStartedWithButtonsWrapper = styled.div`
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   width: 100%;
-  flex-direction: column;
-`;
-export const ContinueSignIn = styled.div`
-  flex-direction: column;
-  align-items: center;
-  display: flex;
-  gap: 10px;
+  gap: 16px; 
 `;
 
-export const AppleLogo = styled.img`
-  width: 17px;
+const ContinueSignIn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; 
+`;
+
+const AppleLogo = styled.img`
+  width: 16px;
   position: relative;
-  right: 4px;
+  right: 4px; 
   bottom: 2px;
 `;
-export const GoogleLogo = styled.img`
+
+const GoogleLogo = styled.img`
   width: 20px;
   position: relative;
   right: 4px;
   bottom: 1px;
 `;
+

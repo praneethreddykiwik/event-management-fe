@@ -122,7 +122,7 @@ const UserManagement = () => {
 export default UserManagement;
 
 const PageWrapper = styled.div`
-  padding: 24px 32px;
+  padding: 32px 40px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -131,8 +131,8 @@ const PageWrapper = styled.div`
 const DeletePopup = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  padding: 20px 0;
+  gap: 16px;
+  padding: 24px 0;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -141,7 +141,9 @@ const StyledButtonContainer = styled.div`
   margin-top: -70px;
 `;
 
-export const StyledButton = styled(StyledBaseButton)`
+const StyledButton = styled(StyledBaseButton)`
   width: auto;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
 `;
+
+

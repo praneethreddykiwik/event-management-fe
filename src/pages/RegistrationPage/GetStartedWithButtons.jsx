@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import AppleImg from "../../assets/Logos/Apple-logo.jpeg";
 import GoogleImg from "../../assets/Logos/Google-logo.jpeg";
 
@@ -5,14 +6,9 @@ import { Apple, Google, SignInText } from "../../myEnum/RegistrationPage.Enum";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 
 import {
-  SignInTxtM,
-  ContinueSignIn,
-  AppleLogo,
-  GoogleLogo,
-  GetStartedWithButtonsWrapper,
-  Button,
-} from "./styled.RegistrationPage";
-
+  StyledParagraph,
+} from "../../components/Styled/Typography.styled";
+import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
@@ -38,3 +34,49 @@ const GetStartedWithButtons = () => {
 };
 
 export default GetStartedWithButtons;
+
+const SignInTxtM = styled(StyledParagraph)`
+  @media (min-width: 60px) and (max-width: 768px) {
+    margin-top: 32px;
+    font-size: ${({ theme }) => theme.typography["heading-h2"]["font-size"]};
+    font-weight: ${({ theme }) => theme.fontWeights.default};
+  }
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+
+
+const GetStartedWithButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+`;
+
+const ContinueSignIn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Button = styled(StyledOutlinedButton)`
+  width: 100%;
+  height: 50px;
+`;
+
+const AppleLogo = styled.img`
+  width: 17px;
+  position: relative;
+  right: 4px;
+  bottom: 2px;
+`;
+
+export const GoogleLogo = styled.img`
+  width: 20px;
+  position: relative;
+  right: 4px;
+  bottom: 1px;
+`;

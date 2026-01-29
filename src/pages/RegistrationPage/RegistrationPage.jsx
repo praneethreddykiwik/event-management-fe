@@ -39,9 +39,8 @@ const RegistrationPage = () => {
   );
 };
 
-export const StyledContainer = styled.div`
-  // height: 100vh;
-  background: #fff;
+const StyledContainer = styled.div`
+  background: ${({ theme }) => theme.appBackgroundColor};
   display: flex;
   justify-content: center;
 
@@ -50,20 +49,23 @@ export const StyledContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 25px;
+    margin: 24px;
   }
 `;
-export const ContainerLeft = styled.div`
+
+const ContainerLeft = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
-export const MainContainer = styled.div`
+
+const MainContainer = styled.div`
   max-width: 460px;
   align-items: center;
   display: flex;

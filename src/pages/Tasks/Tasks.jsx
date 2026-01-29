@@ -77,8 +77,8 @@ const EventManagerDashboard = () => {
           <Section key={event.eventUid}>
             <StyledTaskHeading>
               <StyledBox2>
-                <TaskOverview>{event.eventName}</TaskOverview>
-                <TaskMonitor>{event.eventVenue}</TaskMonitor>
+                <StyledMediumHeading left>{event.eventName}</StyledMediumHeading>
+                <StyledParagraphSmall left>{event.eventVenue}</StyledParagraphSmall>
               </StyledBox2>
 
               <Button
@@ -90,7 +90,7 @@ const EventManagerDashboard = () => {
                 Add Task
               </Button>
             </StyledTaskHeading>
-            <StyledHrTask />
+            <StyledHr />
 
             {event.tasks?.length ? (
               event.tasks.map((task) => (
@@ -112,37 +112,38 @@ const EventManagerDashboard = () => {
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 20px 20px 20px;
+  padding: 0 16px 16px 16px;
 `;
 
 const CardsRow = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 16px;
+  margin-bottom: 40px;
 `;
 
-const TaskOverview = styled(StyledMediumHeading)`
-  margin: 0;
-  text-align: left;
-`;
+// const TaskOverview = styled(StyledMediumHeading)`
+//   margin: 0;
+//   text-align: left;
+// `;
 
-const TaskMonitor = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
+// const TaskMonitor = styled(StyledParagraphSmall)`
+//   margin: 0;
+//   text-align: left;
+// `;
 
 const StyledTaskHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
 `;
+
 const StyledBox2 = styled.div`
   flex-basis: 50%;
 `;
 
-const StyledHrTask = styled(StyledHr)`
-  margin: 0;
-`;
+// const StyledHrTask = styled(StyledHr)`
+//   margin: 0;
+// `;
 
 export default EventManagerDashboard;

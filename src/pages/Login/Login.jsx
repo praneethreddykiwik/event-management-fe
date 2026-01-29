@@ -25,12 +25,13 @@ const Login = () => {
 
 export default Login;
 
-export const StyledContainer = styled.div`
+const StyledContainer = styled.div`
   height: 100%;
-  background: #fff;
+  background: ${({ theme }) =>
+    theme.light?.appBackgroundColor || theme.appBackgroundColor || "#fff"};
   display: flex;
   margin: auto;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
 
   @media (max-width: 768px) {
@@ -38,22 +39,23 @@ export const StyledContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 25px;
+    margin: 24px;
   }
 `;
 
-export const ContainerLeft = styled.div`
+const ContainerLeft = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
 
-export const MainContainer = styled.div`
+const MainContainer = styled.div`
   max-width: 460px;
   align-items: center;
   display: flex;

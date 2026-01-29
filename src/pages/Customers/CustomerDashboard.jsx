@@ -41,18 +41,18 @@ const CustomerDashboard = () => {
           <Section key={event.eventUid}>
             <StyledTaskHeading>
               <StyledBox2>
-                <TaskOverview>{event.eventName}</TaskOverview>
-                <TaskMonitor>{event.eventVenue}</TaskMonitor>
-                <TaskAssignee>
+                <StyledMediumHeading left>{event.eventName}</StyledMediumHeading>
+                <StyledParagraphSmall left>{event.eventVenue}</StyledParagraphSmall>
+                <StyledParagraphSmall left>
                   {enums.TASKASSIGNEE} {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
-                </TaskAssignee>
+                </StyledParagraphSmall>
                 {/* <TaskAssignee>
                   {E_M_DASHBOARD_COMMON.TASKDUE} {task.taskDueAt}
                 </TaskAssignee> */}
               </StyledBox2>
             </StyledTaskHeading>
-            <StyledHrTask />
+            <StyledHr />
             {event.tasks.length ? (
               event.tasks.map((task) => (
                 <CustomerItem task={mapTaskForUI(task)} />
@@ -70,35 +70,24 @@ const CustomerDashboard = () => {
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 20px 20px 20px;
+  padding: 0 16px 16px 16px;
 `;
 
-const TaskOverview = styled(StyledMediumHeading)`
-  margin: 0;
-  text-align: left;
-`;
+// const TaskOverview = styled(StyledMediumHeading)``;
+// const TaskMonitor = styled(StyledParagraphSmall)``;
+// const TaskAssignee = styled(StyledParagraphSmall)``;
 
-const TaskMonitor = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
-
-const TaskAssignee = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
 const StyledTaskHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
 `;
 
 const StyledBox2 = styled.div`
   flex-basis: 50%;
 `;
 
-const StyledHrTask = styled(StyledHr)`
-  margin: 0;
-`;
+const StyledHrTask = styled(StyledHr)``;
+
 
 export default CustomerDashboard;
