@@ -4,11 +4,11 @@ import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
 import * as enums from "../../myEnum";
 
 import styled from "styled-components";
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import {
   StyledHeading,
   StyledParagraphSmall,
-  StyledParagraphBold,
+  StyledParagraphBold,StyledParagraphSmallGray
 } from "../../components/Styled/Typography.styled";
 
 const Experience = () => {
@@ -19,25 +19,25 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{enums.EXPERIENCE_HEADING1}</Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA1}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING1}</Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA1}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{enums.EXPERIENCE_HEADING2} </Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA2}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING2} </Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA2}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
         </StyledSubContainerOne>
         {/* main sub two */}
         <StyledSubContainerTwo>
-          <StyledBigHeading>{enums.EXPERIENCE_HEADING3}</StyledBigHeading>
+          <StyledBigHeading left>{enums.EXPERIENCE_HEADING3}</StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{enums.EXPERIENCE_HEADING4} </Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA3}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING4} </Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA3}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
@@ -47,12 +47,8 @@ const Experience = () => {
   );
 };
 
-const StyledExperienceLayout = styled(LandingPageLayout)`
+const StyledExperienceLayout = styled(HomePageLayout)`
   background-color: #f1faff;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const StyledBodyContainer = styled.div`
@@ -87,7 +83,6 @@ const StyledExperience = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,27 +125,22 @@ const StyledAnyWhere = styled.div`
 
 // typo stylings
 const StyledBigHeading = styled(StyledHeading)`
-  text-align: left;
   margin-bottom: 50px;
   width: 75%;
 `;
 
 const Heading = styled(StyledParagraphBold)`
   margin-top: 10px;
-  text-align: left;
 `;
 
 const StyledParagraph = styled(StyledParagraphSmall)`
-  text-align: left;
-  margin-top: -10px;
   margin-bottom: 15px;
-  word-wrap: break-word;
-  font-size: 13px;
 `;
 
 const StyledHr = styled.hr`
   width: 100%;
-  margin-top: -5px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 `;
 
 //image stylings

@@ -8,7 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 
 const FindInspiration = () => {
   return (
@@ -18,7 +18,7 @@ const FindInspiration = () => {
       </StyledImageContainer>
       <StyledContainerTwo>
         <StyledSemiHeading left>{enums.FIND_HEADING}</StyledSemiHeading>
-        <StyledContent>{enums.FIND_PARAGRAPH}</StyledContent>
+        <StyledParagraphSmallGray left>{enums.FIND_PARAGRAPH}</StyledParagraphSmallGray>
         <StyledBtnContainer>
           <StyledLink>{enums.FINDOUTLINE_BTN}</StyledLink>
           <StyledIcon src={forward_arrow} />
@@ -40,14 +40,8 @@ const StyledIcon = styled.img`
   margin-top: 1.2px;
 `;
 
-const StyledFindInspirationLayout = styled(LandingPageLayout)`
-  @media (max-width: 768px) {
-    background-color: #f1faff;
-  }
+const StyledFindInspirationLayout = styled(HomePageLayout)`
 
-  @media (max-width: 510px) {
-    padding-bottom: 120px;
-  }
 `;
 
 const StyledImageContainer = styled.div`
@@ -56,45 +50,22 @@ const StyledImageContainer = styled.div`
   justify-content: center;
   margin-top: 30px;
   height: 300px;
-
-  @media (max-width: 768px) {
-    margin-top: 10px;
-  }
 `;
 
 const StyledImage = styled.img`
   width: 50%;
   height: 100%;
-
-  @media (max-width: 768px) {
-    width: 90%;
-  }
 `;
 
 const StyledContainerTwo = styled.div`
   width: 50%;
   word-wrap: break-word;
-
-  @media (max-width: 768px) {
-    margin-top: 10px;
-    width: 90%;
-    height: 200px;
-    color: ${({ theme }) => theme.colors.black};
-  }
-`;
-
-const StyledContent = styled(StyledParagraphSmallGray)`
-  text-align: left;
-
-  @media (max-width: 768px) {
-    font-weight: 600;
-    font-size: 16px;
-  }
 `;
 
 const StyledBtnContainer = styled.div`
   display: flex;
   align-items: left;
+  margin-top: 25px;
 `;
 
 export default FindInspiration;

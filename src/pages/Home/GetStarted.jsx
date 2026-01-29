@@ -8,7 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
 
@@ -20,9 +20,9 @@ const GetStarted = () => {
       <StyledChildContainer>
         <StyledContent>
           <StyledHeadingBig left>{enums.MAIN_HEADING}</StyledHeadingBig>
-          <StyledContentParagraph>
+          <StyledParagraphSmallGray left>
             {enums.MAIN_PARAGRAPH}
-          </StyledContentParagraph>
+          </StyledParagraphSmallGray>
           <StyledContentBtn>
             <StyledBaseButton
               onClick={() => navigate("/registration")}
@@ -45,27 +45,16 @@ const GetStarted = () => {
   );
 };
 
-const StyledGetStartedBtn = styled(StyledBaseButton)`
-  // width: 120px;
-`;
-
 const StyledLink = styled(StyledAnchor)`
   color: ${({ theme }) => theme.colors.primary};
   font: ${({ theme }) => theme.typography["button-text"]};
   text-decoration: none;
+  display: flex;
 `;
 
-const StyledGetStartedLayout = styled(LandingPageLayout)`
+const StyledGetStartedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
   gap: 20px;
-
-  @media (max-width: 768px) {
-    background-color: ${({ theme }) => theme.colors.white};
-    background-image: url(${getStarted_imgMi});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 `;
 
 const StyledChildContainer = styled.div`
@@ -75,32 +64,14 @@ const StyledChildContainer = styled.div`
   justify-content: center;
   align-content: center;
   align-items: center;
-
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 const StyledRightChildContainer = styled.div`
   width: 40%;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 const StyledContent = styled.div`
   width: 100%;
   padding: 10px;
   word-wrap: break-word;
-`;
-
-const StyledContentParagraph = styled(StyledParagraphSmallGray)`
-  word-wrap: break-word;
-  text-align: left;
-  font-weight: 500;
-
-  @media (max-width: 768px) {
-    color: ${({ theme }) => theme.colors.white};
-    font-size: 16px;
-  }
 `;
 
 const StyledContentBtn = styled.div`
@@ -117,13 +88,6 @@ const StyledBtnIcon = styled.img`
 
 const StyledChildContainerImg = styled.img`
   width: 100%;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-    background-image: url(${getStarted_imgMi});
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
 `;
 
 export default GetStarted;

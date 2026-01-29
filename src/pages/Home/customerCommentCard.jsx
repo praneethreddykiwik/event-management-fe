@@ -8,7 +8,7 @@ import {
 const CommentCard = ({ comment }) => {
   return (
     <StyledCommentsContainer>
-      <StyledParagraphContainer>{[comment.text]}</StyledParagraphContainer>
+      <StyledParagraphContainer left>{[comment.text]}</StyledParagraphContainer>
       <StyledProfile>
         <StyledProfileImg src={comment.image} />
         <StyledProfileName>
@@ -27,10 +27,7 @@ const StyledCommentsContainer = styled.div`
 `;
 
 const StyledParagraphContainer = styled(StyledParagraph)`
-  font: ${({ theme }) => theme.typography["body-regular"]};
   color: ${({ theme }) => theme.colors.white};
-  width: 100%;
-  text-align: left;
 `;
 
 const StyledProfile = styled.div`
@@ -57,5 +54,5 @@ const StyledProfileHead = styled(StyledParagraphBold)`
 
 const StyledAnchors = styled(StyledParagraphSmallVisible)`
   color: ${({ theme }) => theme.colors.primary};
-  margin-top: -20px;
+  margin-top: 0px;
 `;
