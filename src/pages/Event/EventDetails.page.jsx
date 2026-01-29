@@ -11,9 +11,31 @@ import { useLocation } from "react-router-dom";
 import { dateObj } from "../../utils/utils";
 import { BADGE_TYPES } from "../../constants/badges";
 
+import { useState } from "react";
+import PopupModal from "../../components/PopupModal/PopupModal";
+import { useDispatch } from "react-redux";
+import { deleteEventDispatch } from "../../redux/events/events.actions";
+import { useNavigate } from "react-router-dom";
+
 const EventDetails = () => {
   const { state } = useLocation();
   const event = state?.event;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteReason, setDeleteReason] = useState("");
+
+  const handleDeleteEvent = (payload) => {
+    dispatch(deleteEventDispatch(payload));
+  };
+  const onDelete = () => {
+    dispatch(
+      deleteEventDispatch({
+        eventUid: event.eventUid,
+      }),
+    );
+  };
 
   const { date, time } = dateObj(event.scheduledAt);
 
@@ -44,6 +66,63 @@ const EventDetails = () => {
 
   return (
     <>
+      {showDeleteConfirm && (
+        <PopupModal
+          onClose={() => setShowDeleteConfirm(false)}
+          title="Delete Event"
+          subtitle="Are you sure you want to delete this event?"
+          width="400px"
+        >
+          <input
+            type="text"
+            placeholder="Enter delete reason"
+            value={deleteReason}
+            onChange={(e) => setDeleteReason(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "12px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+            }}
+          />
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "15px",
+              padding: "20px 0",
+            }}
+          >
+            <Button
+              type="secondary"
+              onClick={() => setShowDeleteConfirm(false)}
+            >
+              No
+            </Button>
+            <Button
+              type="danger"
+              disabled={!deleteReason.trim()}
+              onClick={() => {
+                dispatch(
+                  deleteEventDispatch({
+                    eventUid: event.eventUid,
+                    tenantUid: event.tenantUid,
+                    deletedByUid: JSON.parse(localStorage.getItem("user"))?.uid,
+                    deleteReason: deleteReason.trim(),
+                  }),
+                );
+
+                setShowDeleteConfirm(false);
+                setDeleteReason(""); 
+              }}
+            >
+              Yes
+            </Button>
+          </div>
+        </PopupModal>
+      )}
       {/* <BlueBackHOC> */}
       <StyledEventContainer>
         <StyledBG>
@@ -64,7 +143,12 @@ const EventDetails = () => {
                 <Button sx={StyledButton1} type="outlined" icon="edit">
                   Edit Event
                 </Button>
-                <Button sx={StyledButton2} type="icon" icon="delete">
+                <Button
+                  sx={StyledButton2}
+                  type="icon"
+                  icon="delete"
+                  onClick={() => setShowDeleteConfirm(true)}
+                >
                   Delete Event
                 </Button>
               </StyledEventHeaderInfoCont2>

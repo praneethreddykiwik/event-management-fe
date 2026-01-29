@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createEventsApi, fetchEventsApi } from "../../api/events.api";
+import { createEventsApi, fetchEventsApi, deleteEventsApi } from "../../api/events.api";
 import { toast } from "react-toastify";
 import { paths } from "../../constants/paths";
 
@@ -30,6 +30,25 @@ export const createEventsDispatch = createAsyncThunk(
         err?.response?.data?.message ||
           err?.message ||
           "Failed to create Events"
+      );
+      return rejectWithValue(err?.response?.data || "Not authenticated");
+    }
+  }
+);
+
+export const deleteEventDispatch = createAsyncThunk(
+  "events/deleteEventDispatch",
+  async (payload, { rejectWithValue}) => {
+    try {
+
+    await deleteEventsApi(payload);
+
+      toast.success("Event deleted successfully");
+      return payload;
+
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to delete event"
       );
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
