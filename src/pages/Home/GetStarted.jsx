@@ -8,7 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
 
@@ -45,17 +45,14 @@ const GetStarted = () => {
   );
 };
 
-const StyledGetStartedBtn = styled(StyledBaseButton)`
-  // width: 120px;
-`;
-
 const StyledLink = styled(StyledAnchor)`
   color: ${({ theme }) => theme.colors.primary};
   font: ${({ theme }) => theme.typography["button-text"]};
   text-decoration: none;
+  display: flex;
 `;
 
-const StyledGetStartedLayout = styled(LandingPageLayout)`
+const StyledGetStartedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
   gap: 20px;
 
