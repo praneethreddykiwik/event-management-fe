@@ -57,5 +57,5 @@ const StyledProfileHead = styled(StyledParagraphBold)`
 
 const StyledAnchors = styled(StyledParagraphSmallVisible)`
   color: ${({ theme }) => theme.colors.primary};
-  margin-top: -20px;
+  margin-top: 0px;
 `;
