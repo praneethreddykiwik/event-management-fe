@@ -11,14 +11,14 @@ import * as enums from "../../myEnum";
 
 import styled from "styled-components";
 
-import { HomePageLayout } from "./HomePageLayout.jsx";
+import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 
 import Carousel from "../../components/Carousel/Carousel.jsx";
 
 import { StyledHeading } from "../../components/Styled/Typography.styled.jsx";
 
-import CommentCard from "./customerCommentCard.jsx";
-import DemoComment from "./helper.customer.jsx";
+import DemoComment from "../../pages/LandingPage/helper.customer.jsx";
+import CommentCard from "../../pages/LandingPage/customerCommentCard.jsx";
 
 const Customer = () => {
   const imagesOne = [customer6, customer1, customer5, customer3, customer2];
@@ -67,7 +67,7 @@ const CustomerCarouselWrapper = styled.div`
   }
 `;
 
-const StyledCustomerLayout = styled(HomePageLayout)`
+const StyledCustomerLayout = styled(LandingPageLayout)`
   background-color: ${({ theme }) => theme.colors.black};
   height: 400px;
   overflow: hidden;

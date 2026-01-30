@@ -1,8 +1,8 @@
 import joinNowOne from "../../assets/landingPage/joinNowVenue1.jpg";
 import joinNowTwo from "../../assets/landingPage/joinNowVenue2.jpg";
 import joinNowThree from "../../assets/landingPage/joinNowVenue3.jpg";
-import { HomePageLayout } from "./HomePageLayout.jsx";
 import * as enums from "../../myEnum";
+import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import {
   StyledParagraphSmallGray,
   StyledSemiHeading,
@@ -13,7 +13,7 @@ import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 const JoinNow = () => {
   return (
-    <HomePageLayout flexDirection="column">
+    <LandingPageLayout flexDirection="column">
       <StyledContainerOne>
         <StyledContainerOneImg src={joinNowOne} />
         <StyledContainerOneImg src={joinNowTwo} />
@@ -24,7 +24,7 @@ const JoinNow = () => {
         <StyledSemiHeading>{enums.JOIN_HEADING}</StyledSemiHeading>
         <StyledJoinBtn>{enums.JOIN_BTN}</StyledJoinBtn>
       </StyledContainerTwo>
-    </HomePageLayout>
+    </LandingPageLayout>
   );
 };
 

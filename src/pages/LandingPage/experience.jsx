@@ -4,7 +4,7 @@ import experienceImg3 from "../../assets/landingPage/experience-img3.jpg";
 import * as enums from "../../myEnum";
 
 import styled from "styled-components";
-import { HomePageLayout } from "./HomePageLayout.jsx";
+import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 import {
   StyledHeading,
   StyledParagraphSmall,
@@ -47,7 +47,7 @@ const Experience = () => {
   );
 };
 
-const StyledExperienceLayout = styled(HomePageLayout)`
+const StyledExperienceLayout = styled(LandingPageLayout)`
   background-color: #f1faff;
 
   @media (max-width: 768px) {
@@ -87,6 +87,7 @@ const StyledExperience = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,6 +142,7 @@ const Heading = styled(StyledParagraphBold)`
 
 const StyledParagraph = styled(StyledParagraphSmall)`
   text-align: left;
+  margin-top: -10px;
   margin-bottom: 15px;
   word-wrap: break-word;
   font-size: 13px;
@@ -148,8 +150,7 @@ const StyledParagraph = styled(StyledParagraphSmall)`
 
 const StyledHr = styled.hr`
   width: 100%;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: -5px;
 `;
 
 //image stylings

@@ -1,15 +1,17 @@
 import { useState } from "react";
-
-import styled from "styled-components";
-
-import { Input } from "../../components/Inputs/Input.jsx";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
-import { HomePageLayout } from "./HomePageLayout.jsx";
 import * as enums from "../../myEnum";
 import {
   StyledHeading,
   StyledParagraphSmallGray,
+  StyledParagraphGray,
 } from "../../components/Styled/Typography.styled.jsx";
+
+import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+
+import styled from "styled-components";
+import { Input } from "../../components/Inputs/Input.jsx";
+import { Button } from "../../components/Buttons/Button";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 const BookVenue = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +21,7 @@ const BookVenue = () => {
   };
 
   return (
-    <HomePageLayout flexDirection="column">
+    <LandingPageLayout flexDirection="column">
       <StyledContainer>
         <StyledHead>{enums.BOOK_HEADING}</StyledHead>
         <StyledPara>{enums.BOOK_PARA}</StyledPara>
@@ -36,7 +38,7 @@ const BookVenue = () => {
       <StyledPolicy>
         <StyledPolicyTxt>{enums.BOOK_POLICY}</StyledPolicyTxt>
       </StyledPolicy>
-    </HomePageLayout>
+    </LandingPageLayout>
   );
 };
 

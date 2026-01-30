@@ -5,7 +5,7 @@ import standard from "../../assets/landingPage/standard_chartered.png";
 import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
 import * as enums from "../../myEnum";
 import styled from "styled-components";
-import { HomePageLayout } from "./HomePageLayout.jsx";
+import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
 
 const TrustedBy = () => {
   return (
@@ -23,7 +23,7 @@ const TrustedBy = () => {
   );
 };
 
-const StylesTrustedLayout = styled(HomePageLayout)`
+const StylesTrustedLayout = styled(LandingPageLayout)`
   background-color: #f1faff;
 
   @media (max-width: 768px) {
