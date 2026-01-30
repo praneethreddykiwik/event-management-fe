@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 
-import {StyledParagraph} from "../../components/Styled/Typography.styled";
+import { StyledParagraph } from "../../components/Styled/Typography.styled";
 
 const LineTxts = () => {
   return (
@@ -23,9 +23,7 @@ const SignUpWith = styled(StyledParagraph)`
   width: 100%;
   padding: 8px;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
+ 
 `;
 
 const LineTxt = styled.div`
@@ -34,9 +32,6 @@ const LineTxt = styled.div`
   justify-content: center;
   width: 90%;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const LineOne = styled.div`
@@ -44,19 +39,13 @@ const LineOne = styled.div`
   border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
   width: 120px;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
+  
 `;
 
 const LineTwo = styled.div`
   color: ${({ theme }) => theme.colors.black};
   border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
   width: 120px;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const SignWithEmail = styled(StyledParagraph)`

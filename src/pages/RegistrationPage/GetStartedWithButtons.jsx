@@ -12,7 +12,7 @@ import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <SignInTxtM>{SignInText}</SignInTxtM>
+      <StyledParagraph>{SignInText}</StyledParagraph>
 
       <ContinueSignIn>
         <Button type="outlined">
@@ -36,14 +36,6 @@ const GetStartedWithButtons = () => {
 export default GetStartedWithButtons;
 
 const SignInTxtM = styled(StyledParagraph)`
-  @media (min-width: 60px) and (max-width: 768px) {
-    margin-top: 32px;
-    font-size: ${({ theme }) => theme.typography["heading-h2"]["font-size"]};
-    font-weight: ${({ theme }) => theme.fontWeights.default};
-  }
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 `;
 
 

@@ -38,29 +38,18 @@ const GatewayPage = () => {
     </Container_parent>
   );
 };
-
 export default GatewayPage;
-
 
 const ContainerImg = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
-
-  @media (max-width: 900px) {
-    height: 300px;
-  }
 `;
 
 const Container_parent = styled.div`
   display: flex;
   height: 100vh;
   font-family: "Inter", sans-serif;
-
-  @media (max-width: 900px) {
-    flex-direction: column-reverse;
-    height: auto;
-  }
 `;
 
 const Container_child1 = styled.div`
@@ -71,47 +60,20 @@ const Container_child1 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 900px) {
-    width: 100%;
-    padding: 32px 25px;
-    text-align: center;
-    align-items: center;
-  }
-
-  @media (max-width: 480px) {
-    padding: 24px 20px;
-  }
 `;
 
 const Container_child2 = styled.div`
   width: 50vw;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 `;
-
-
-
 const LogoIcon = styled.img`
   width: 80px;
-
-  @media (max-width: 480px) {
-    width: 60px;
-  }
 `;
-
 const LogoText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 60px;
   gap: 16px;
-
-  @media (max-width: 900px) {
-    margin-bottom: 35px;
-  }
 `;
 
 const TitleTxt = styled(StyledHeadingBig)`
@@ -119,14 +81,6 @@ const TitleTxt = styled(StyledHeadingBig)`
   font-weight: 700;
   line-height: 1.3;
   width: 57%;
-
-  @media (max-width: 900px) {
-    font-size: 28px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 24px;
-  }
 `;
 
 const DescriptionTxt = styled(StyledParagraph)`
@@ -135,22 +89,10 @@ const DescriptionTxt = styled(StyledParagraph)`
   width: 50%;
 `;
 
-
 const Button_section = styled.div`
   display: flex;
   gap: 50px;
   justify-content: center;
-
-  @media (max-width: 900px) {
-    gap: 25px;
-    margin-top: 40px;
-  }
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    width: 100%;
-    gap: 16px;
-  }
 `;
 
 const SkipButton = styled(StyledSecButton)`
@@ -165,13 +107,5 @@ const NextButton = styled(StyledBaseButton)`
 const StyledCstHeading = styled(StyledHeadingBig)`
   font-weight: 300;
   width: 50%;
-
-  @media (max-width: 900px) {
-    font-size: 28px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 24px;
-  }
 `;
 

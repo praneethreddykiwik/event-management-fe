@@ -75,9 +75,7 @@ const ContainerRight = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
+ 
 `;
 
 const Column1 = styled.div`

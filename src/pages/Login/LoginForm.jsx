@@ -131,10 +131,6 @@ const Reset = styled(StyledAnchor)`
   font-weight: ${({ theme }) => theme.fontWeights.default};
   font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
   color: ${({ theme }) => theme.colors.primary} !important;
-
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
 `;
 
 const CheckboxRow = styled.div`
@@ -144,9 +140,6 @@ const CheckboxRow = styled.div`
   gap: 8px;
   margin-bottom: 32px;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const AnchorParah = styled(StyledParagraphSmallGray)`
@@ -170,9 +163,7 @@ const AccountSignIn = styled(StyledParagraphSmallGray)`
   margin: 0;
   margin-top: -8px;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
+ 
 `;
 
 const SignInAnchor = styled(StyledAnchor)`

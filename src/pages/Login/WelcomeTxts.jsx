@@ -45,10 +45,6 @@ const WelcomeTxt = styled.div`
   display: flex;
   flex-direction: column;
   margin: 24px 0 4px 0;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const WelcomeTextBig = styled(StyledHeading)`
@@ -56,10 +52,6 @@ const WelcomeTextBig = styled(StyledHeading)`
 
 const SignUpTxt = styled(StyledParagraphSmallGray)`
   font-size: 13px;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const LogoBox = styled.div`

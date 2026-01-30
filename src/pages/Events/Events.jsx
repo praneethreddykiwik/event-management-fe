@@ -101,21 +101,16 @@ const AdminDashboardContainer = styled.div`
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
-<<<<<<< HEAD
   box-shadow: ${({ theme }) => theme.shadows["level-2"]};
   background: ${({ theme }) => theme.colors.white};
-=======
   box-shadow:
     rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
->>>>>>> 5e20fe9667637c8ab7ab392e6fdcf33fcc847e37
 `;
 
 const Tasktxt = styled.div`
   padding: 20px 20px 10px;
 `;
-
-
 
 const TaskList = styled.div`
   padding: 20px;
@@ -123,4 +118,5 @@ const TaskList = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
+
 export default Events;
