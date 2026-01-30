@@ -27,23 +27,9 @@ export default GetStartedWithButtons;
 const GetStarted = styled(StyledParagraph)`
   font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
-// const SignInTxtM = styled(StyledParagraph)`
-//   @media (min-width: 60px) and (max-width: 768px) {
-//     margin-top: 32px;
-//     font-size: ${({ theme }) => theme.typography["heading-h2"]["font-size"]};
-//     font-weight: ${({ theme }) => theme.fontWeights.default};
-//   }
 
-//   @media screen and (min-width: 769px) {
-//     display: none;
-//   }
-// `;
 
 const GetStartedWithButtonsWrapper = styled.div`
   display: flex;

@@ -209,7 +209,6 @@ const StyledPopupHeaderRow = styled.div`
 
 const StyledPopupCol = styled(StyledSemiHeading)`
   flex: ${({ flex }) => flex};
-
   font-size: ${({ theme }) =>
     theme.typography.caption["font-size"]};
   font-weight: ${({ theme }) =>

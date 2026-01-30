@@ -50,10 +50,6 @@ const ContainerRight = styled.div`
   padding: 8px;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const Column1 = styled.div`

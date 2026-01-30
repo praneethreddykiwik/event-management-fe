@@ -43,14 +43,6 @@ const StyledContainer = styled.div`
   background: ${({ theme }) => theme.appBackgroundColor};
   display: flex;
   justify-content: center;
-
-  @media (max-width: 768px) {
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 24px;
-  }
 `;
 
 const ContainerLeft = styled.div`
@@ -59,10 +51,6 @@ const ContainerLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 `;
 
 const MainContainer = styled.div`

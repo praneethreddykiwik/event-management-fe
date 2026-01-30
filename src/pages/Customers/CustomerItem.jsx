@@ -68,6 +68,4 @@ const BadgeButton = styled.div`
   margin: 0;
 `;
 
-
-
 export default CustomerItem;

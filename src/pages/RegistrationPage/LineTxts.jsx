@@ -28,9 +28,6 @@ const LineTxt = styled.div`
   align-items: center;
   justify-content: center;
   width: 90%;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
  const SignWithEmail = styled(StyledParagraph)`
@@ -47,7 +44,4 @@ const LineTxt = styled.div`
   font-size: ${({ theme }) => theme.typography["body-regular"]["font-size"]};
   font-weight: ${({ theme }) => theme.fontWeights.default};
   padding: 24px;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
