@@ -174,12 +174,7 @@ const ActionRow = styled.div`
   border-bottom: 1px solid #ccc;
 `;
 
-const DeclineButton = styled(StyledOutlinedButton)`
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // flex: 1;
-`;
+
 
 
 export default ManageTaskModal;
