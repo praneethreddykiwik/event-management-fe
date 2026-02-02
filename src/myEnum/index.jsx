@@ -58,7 +58,7 @@ export const AUTO_UPDATE = "Allow auto update of contents";
 export const DESCRIPTION_TEXT =
   "Specializes in seamless, end-to-end event planning that turns ideas into memorable experiences.";
 export const CONTACT_US = "Contact Us";
-export const CONTACT_PHONE = "(+91) 98765 01234";
+export const CONTACT_PHONE = "+91 8121458444";
 export const EMAIL_ID = "info@helmevents.com";
 export const LOCATION =
   "Spacion Towers, Vittal Rao Nagar, HITEC City, Hyderabad, Telangana 500081";

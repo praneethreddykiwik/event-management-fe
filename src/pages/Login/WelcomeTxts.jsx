@@ -1,6 +1,5 @@
 /** @format */
 import styled from "styled-components";
-import logoImg from "../../assets/Logo/eventz-logo.png";
 import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 
 import {
@@ -10,13 +9,9 @@ import {
 } from "../../components/Styled/Typography.styled";
 import * as enums from "../../myEnum";
 
-const WelcomeTxts = ({ logo = logoImg }) => {
+const WelcomeTxts = () => {
   return (
     <>
-      {/* <LogoEventz>
-        <Logo src={logo} alt="eventz logo" />
-        <EventzTxt>{LOGIN_COMMON.EVENTZ}</EventzTxt>
-      </LogoEventz> */}
       <LogoBox>
         <LogoImage src={Helm_logo} alt="logo" />
       </LogoBox>
@@ -59,15 +54,14 @@ export const SignUpTxt = styled(StyledParagraphSmallGray)`
     display: none;
   }
 `;
-const LogoBox = styled.div`
+export const LogoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
 `;
 
-const LogoImage = styled.img`
-  width: 146px;
+export const LogoImage = styled.img`
   height: 60px;
   border-radius: 8px;
   margin-top: -40px;

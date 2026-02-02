@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import HelmLogo from "../../assets/Logos/Helm_logo.svg";
+import HelmLogo from "../../assets/Logos/HelmGreenLogo.png";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { contactDetails, footerLinks, socialLinks } from "./Footer.helper";
 import * as enums from "../../myEnum";
@@ -12,6 +12,15 @@ const Footer = () => {
   if (authStatus !== "authenticated") return null;
 
   const currentYear = new Date().getFullYear();
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // console.log("Copied:", text);
+    } catch (err) {
+      console.error("Copy failed", err);
+    }
+  };
 
   return (
     <FooterContainer>
@@ -43,7 +52,19 @@ const Footer = () => {
             <ContactTitle>{enums.CONTACT_US}</ContactTitle>
 
             {contactDetails.map(({ id, icon, valueKey, maxWidth }) => (
-              <ContactItem key={id} maxWidth={maxWidth}>
+              <ContactItem
+                key={id}
+                maxWidth={maxWidth}
+                onClick={
+                  id === "phone"
+                    ? () => copyToClipboard(enums[valueKey])
+                    : undefined
+                }
+                style={{
+                  cursor: id === "phone" ? "pointer" : "default",
+                }}
+                title={id === "phone" ? "Click to copy" : undefined}
+              >
                 <Icon className="material-symbols-outlined">{icon}</Icon>
 
                 {id === "email" ? (
