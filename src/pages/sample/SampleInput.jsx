@@ -78,20 +78,23 @@ const SampleInput = () => {
   );
 };
 
+
 const SampleInputContainer = styled.div`
-  margin-top: 100px;
+  margin-top: 100px; 
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px; 
   align-items: center;
 `;
 
 const FieldWrapper = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 16px; 
 `;
+
 const ErrorText = styled.div`
   color: #d32f2f;
   font-size: 13px;
-  margin-top: 6px;
+  margin-top: 8px; 
 `;
+
 export default SampleInput;

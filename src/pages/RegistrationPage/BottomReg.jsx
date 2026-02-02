@@ -18,22 +18,22 @@ export const BottomReg = () => {
   return (
     <StyledBox>
       {registrationSuccess ? (
-        <AccountSignIn>
+        <StyledParagraphSmallGray>
           Successfully registered user. You can proceed to{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
             {SignIn}
           </AnchorLinkPrimary>
-        </AccountSignIn>
+        </StyledParagraphSmallGray>
       ) : (
-        <AccountSignIn>
+        <StyledParagraphSmallGray>
           {Account}{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
             {SignIn}
           </AnchorLinkPrimary>
-        </AccountSignIn>
+        </StyledParagraphSmallGray>
       )}
 
-      <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
+      <StyledParagraphSmallGray center>{TermsConditions}</StyledParagraphSmallGray>
 
       {/* Raghavendra */}
     </StyledBox>
@@ -44,13 +44,3 @@ const StyledBox = styled.div`
   margin-top: 30px;
 `;
 
-export const AccountSignIn = styled(StyledParagraphSmallGray)`
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
-  // width: 75%;
-  text-align: center;
-  margin: 0;
-`;

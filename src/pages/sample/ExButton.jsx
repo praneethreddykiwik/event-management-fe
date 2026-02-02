@@ -30,10 +30,13 @@ const ExButton = () => {
 export default ExButton;
 
 export const ExampleButton = styled.div`
-  margin-top: 100px;
+  margin-top: 100px; 
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px; 
   align-items: center;
   text-align: center;
 `;
+
+
+
