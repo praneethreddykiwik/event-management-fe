@@ -8,7 +8,8 @@ export const StyledFlexComponent = styled.div`
   flex-direction: ${({ flexDirection }) => flexDirection || "row"};
 `;
 
-export const LandingPageLayout = styled(StyledFlexComponent)`
+// landing page common compontent
+export const HomePageLayout = styled(StyledFlexComponent)`
   background-color: ${({ sx }) => sx?.background || "#ffffffff"};
   padding: 40px 10px;
 `;

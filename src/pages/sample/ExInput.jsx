@@ -174,7 +174,7 @@ const ExampleInputs = styled.div`
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px; 
   align-items: center;
 `;
 
@@ -182,11 +182,14 @@ const ExInputWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
+
 const ShowHideIcon = styled.span`
   position: absolute;
-  right: 15px;
-  top: 9px;
+  right: 16px; 
+  top: 8px; 
   cursor: pointer;
   font-size: 18px;
 `;
+
+
 export default ExInput;

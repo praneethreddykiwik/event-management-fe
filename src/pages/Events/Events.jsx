@@ -37,6 +37,15 @@ const Events = () => {
   // console.log("usersSelector", eventManagers);
   const navigate = useNavigate();
 
+  const onChooseEvent = (event) => {
+    navigate(`${paths.createEvent}`, {
+      state: {
+        mode: "edit",
+        eventData: event,
+      },
+    });
+  };
+
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -68,12 +77,16 @@ const Events = () => {
 
         <TaskMainCard>
           <Tasktxt>
-            <TaskEvents>{enums.UPCOMING_EV}</TaskEvents>
-            <TaskMonitor>{enums.MONITOR_EV}</TaskMonitor>
+            <StyledMediumHeading left>{enums.UPCOMING_EV}</StyledMediumHeading>
+            <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Tasktxt>
           <TaskList>
             {events.map((event, index) => (
-              <AdminTaskItem key={index} data={mapEventForUI(event)} />
+              <AdminTaskItem
+                key={index}
+                data={mapEventForUI(event)}
+                onChoose={() => onChooseEvent(event)}
+              />
             ))}
           </TaskList>
         </TaskMainCard>
@@ -88,25 +101,22 @@ const AdminDashboardContainer = styled.div`
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow:
+    rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 `;
 
 const Tasktxt = styled.div`
   padding: 20px 20px 10px;
 `;
-const TaskEvents = styled(StyledMediumHeading)`
-  margin: 0;
-  text-align: left;
-`;
-const TaskMonitor = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
+
 const TaskList = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export default Events;

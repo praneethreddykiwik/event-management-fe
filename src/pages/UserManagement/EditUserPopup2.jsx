@@ -45,9 +45,11 @@ const EditUserPopup2 = ({ onClose, modalDetails }) => {
 export default EditUserPopup2;
 
 const StyledGap = styled.div`
-  height: 28px;
+  height: 32px;
 `;
 
 const StyledCMActions = styled.div`
-  margin-top: 20px;
+  margin-top: 16px;
 `;
+
+
