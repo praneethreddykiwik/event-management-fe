@@ -81,7 +81,7 @@ const meta = [
   },
 ];
 
-const SampleInputsPage = () => {
+const SampleInput = () => {
   const [inputs, setInputs] = useState(
     meta.map((f) => ({ ...f, value: '', error: null }))
   );
@@ -134,7 +134,7 @@ const SampleInputsPage = () => {
   );
 };
 
-export default SampleInputsPage;
+export default SampleInput;
 
 const Container = styled.div`
   max-width: 500px;
