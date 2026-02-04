@@ -56,12 +56,13 @@ export const NO_SEARCH_INDEX = "Don’t allow search engines to index my profile
 export const AUTO_UPDATE = "Allow auto update of contents";
 
 export const DESCRIPTION_TEXT =
-  "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.";
+  "Specializes in seamless, end-to-end event planning that turns ideas into memorable experiences.";
 export const CONTACT_US = "Contact Us";
-export const CONTACT_PHONE = "(+91) 98765 01234";
-export const EMAIL_ID = "events@email.com";
-export const LOCATION = "2118 Thornridge Cir. Syracuse, Connecticut 35624";
-export const ALL_RIGHTS_RESERVED = "2025 Events - All rights reserved";
+export const CONTACT_PHONE = "+91 8121458444";
+export const EMAIL_ID = "info@helmevents.com";
+export const LOCATION =
+  "Spacion Towers, Vittal Rao Nagar, HITEC City, Hyderabad, Telangana 500081";
+export const ALL_RIGHTS_RESERVED = "HELM Events - All rights reserved";
 export const TERMS_CONDITIONS = "Terms and Conditions";
 
 export const COMPLETED = "Completed";
