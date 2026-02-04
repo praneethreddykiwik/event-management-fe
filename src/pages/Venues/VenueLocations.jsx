@@ -29,7 +29,3 @@ const Wrapper = styled.div`
   gap: 32px;
 `;
 
-const VenueNm = styled(StyledHeadingBig)``;
-const SelectVenue = styled(StyledParagraph)``;
-const VenueTxt = styled(StyledParagraph)``;
-

@@ -122,15 +122,6 @@ const CardsRow = styled.div`
   margin-bottom: 40px;
 `;
 
-// const TaskOverview = styled(StyledMediumHeading)`
-//   margin: 0;
-//   text-align: left;
-// `;
-
-// const TaskMonitor = styled(StyledParagraphSmall)`
-//   margin: 0;
-//   text-align: left;
-// `;
 
 const StyledTaskHeading = styled.div`
   display: flex;
@@ -141,9 +132,5 @@ const StyledTaskHeading = styled.div`
 const StyledBox2 = styled.div`
   flex-basis: 50%;
 `;
-
-// const StyledHrTask = styled(StyledHr)`
-//   margin: 0;
-// `;
 
 export default EventManagerDashboard;

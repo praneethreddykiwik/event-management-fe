@@ -74,8 +74,6 @@ const ContainerRight = styled.div`
   padding: 8px;
   align-items: center;
   justify-content: center;
-
- 
 `;
 
 const Column1 = styled.div`

@@ -35,10 +35,6 @@ const GetStartedWithButtons = () => {
 
 export default GetStartedWithButtons;
 
-const SignInTxtM = styled(StyledParagraph)`
-`;
-
-
 
 const GetStartedWithButtonsWrapper = styled.div`
   display: flex;
