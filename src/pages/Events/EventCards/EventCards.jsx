@@ -3,6 +3,7 @@ import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
 import { NpmSparkLine } from "../../../components/Charts/SparkLine";
+import { mobile } from "../../../theme/media-queries";
 
 export const EventCards = ({ events, eventManagers }) => {
   return (
@@ -39,4 +40,10 @@ const StyledFlex = styled.div`
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
+
+  ${mobile`
+    flex-basis: 100%;
+    width: 100%;
+    gap: 12px;
+  `}
 `;

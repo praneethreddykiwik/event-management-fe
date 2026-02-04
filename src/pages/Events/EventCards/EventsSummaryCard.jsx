@@ -4,6 +4,7 @@ import {
   StyledParagraphSmall,
 } from "../../../components/Styled/Typography.styled";
 import { Card } from "../../../components/Cards/Cards";
+import { mobile } from "../../../theme/media-queries";
 
 const EventsSummaryCard = ({ value, label, type, chart }) => (
   <Ctn>
@@ -17,10 +18,14 @@ const EventsSummaryCard = ({ value, label, type, chart }) => (
 
 const Ctn = styled(Card)`
   flex-grow: 1;
-
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  
+  ${mobile`
+    flex-direction: column;
+    gap: 12px;
+  `}
 `;
 
 const TextBox = styled.div``;
