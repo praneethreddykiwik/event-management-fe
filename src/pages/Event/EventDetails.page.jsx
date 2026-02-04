@@ -112,8 +112,10 @@ const EventDetails = () => {
                     <StyledSpan className="material-symbols-outlined">
                       person
                     </StyledSpan>
+
                   </StyledEvenInfoCardIcon>
-                  <StyledParagraph2 left>Adnan Shaik Yousuf</StyledParagraph2>
+
+                  <StyledParagraph2 left>{event.firstName}</StyledParagraph2>
                 </StyledEvenInfoCard>
               </StyledEventBodyContainerRightTop>
               <StyledEventBodyContainerRightBototm>
@@ -123,7 +125,7 @@ const EventDetails = () => {
                       Description
                     </StyledEventBodyHeader>
                     <StyledParagraph2 left>
-                      Basic Event Description.
+                      {event.comments}
                     </StyledParagraph2>
                   </StyledEvenInfoCard2>
                 </StyledEventBodyContainerRightBototmHeader>
