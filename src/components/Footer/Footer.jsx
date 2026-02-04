@@ -13,15 +13,6 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
-  const copyToClipboard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      // console.log("Copied:", text);
-    } catch (err) {
-      console.error("Copy failed", err);
-    }
-  };
-
   return (
     <FooterContainer>
       <FooterInner>
@@ -52,21 +43,8 @@ const Footer = () => {
             <ContactTitle>{enums.CONTACT_US}</ContactTitle>
 
             {contactDetails.map(({ id, icon, valueKey, maxWidth }) => (
-              <ContactItem
-                key={id}
-                maxWidth={maxWidth}
-                onClick={
-                  id === "phone"
-                    ? () => copyToClipboard(enums[valueKey])
-                    : undefined
-                }
-                style={{
-                  cursor: id === "phone" ? "pointer" : "default",
-                }}
-                title={id === "phone" ? "Click to copy" : undefined}
-              >
+              <ContactItem key={id} maxWidth={maxWidth}>
                 <Icon className="material-symbols-outlined">{icon}</Icon>
-
                 {id === "email" ? (
                   <a href={`mailto:${enums[valueKey]}`}>{enums[valueKey]}</a>
                 ) : (
@@ -111,7 +89,7 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   width: 100%;
   background: #131212;
-  color: #fff;
+  color: #b8b8b8;
 `;
 
 const FooterInner = styled.div`
@@ -137,13 +115,10 @@ const FooterGrid = styled.div`
 
   @media (max-width: 980px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     section:last-child {
       display: none;
     }
-  }
-
-  @media (max-width: 540px) {
-    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
@@ -153,12 +128,14 @@ const Column = styled.section`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 600px) {
+    gap: 5px;
+  }
 `;
 
 const Title = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 8px;  
+  color: #FFF;
 `;
 
 const FooterLink = styled.article`
@@ -170,6 +147,9 @@ const FooterLink = styled.article`
 
     &:hover {
       color: #fff;
+    }
+    @media (max-width: 600px) {
+      font-size: 11px;
     }
   }
 `;
@@ -226,7 +206,6 @@ const ContactItem = styled.article`
 
 const Icon = styled.i`
   font-size: 22px;
-  color: #fff;
 `;
 
 /* ================= Social ================= */
@@ -234,6 +213,9 @@ const Icon = styled.i`
 const SocialWrapper = styled.div`
   display: flex;
   gap: 16px;
+  @media (max-width: 600px) {
+    margin: 0 auto;
+  }
 `;
 
 const SocialLink = styled.a`
@@ -257,7 +239,7 @@ const BottomBar = styled.section`
   font-size: 0.9rem;
 
   @media (max-width: 600px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 12px;
     text-align: center;
   }
@@ -278,6 +260,9 @@ const BottomLinks = styled.nav`
     &:hover {
       color: #fff;
     }
+  }
+  @media (max-width: 600px) {
+    justify-content: space-evenly;
   }
 `;
 
