@@ -5,6 +5,7 @@ import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
 import doorimg from "../../assets/ControlPage_img/doorimg.jpeg";
 import { theme } from "../../theme/theme";
+import {StyledMediumHeading, StyledParagraphSmallGray, StyledParagraphBold } from "../../components/Styled/Typography.styled";
 
 const LastUsersBox = () => {
   return (
@@ -39,19 +40,16 @@ const LastUsersBox2 = styled.div`
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  height: 140px;
+  width: 103%;
+  height: 150px;
 `;
 
 const LastHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
 
-const HeaderTitle = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-  color: #111;
+const HeaderTitle = styled(StyledParagraphBold)`
 `;
 
 const AvatarGroup = styled.div`
@@ -68,21 +66,22 @@ const Avtimg = styled.img`
 
 const UserActivity = styled.div`
   display: flex;
-  gap: 12px;
-  margin-top: 14px;
   align-items: center;
+  gap: 14px;
+  margin-top: 14px;
 `;
 
 const LastImg = styled.img`
-  width: 90px;
-  height: 90px;
-  border-radius: 3px;
+  width: 70px;
+  height: 80px;
+  border-radius: 4px;
   object-fit: cover;
 `;
 
 const LastInfo = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 4px;
 `;
 
 const Header4 = styled.h4`
@@ -93,16 +92,10 @@ const Header4 = styled.h4`
   margin-right: 110px;
 `;
 
-const Paragraph = styled.p`
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
+const Paragraph = styled(StyledParagraphSmallGray)`
+  margin-right: 25px;
 `;
 
-const SmallPara = styled.p`
-  margin: 0;
-  font-size: 18px;
-  color: #0c0c0cff;
-  margin-right: 70px;
-  font-weight: 550;
+const SmallPara = styled(StyledParagraphBold)`
+  margin-right: 100px;
 `;

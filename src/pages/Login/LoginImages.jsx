@@ -70,38 +70,41 @@ const ContainerRight = styled.div`
   width: 50%;
   height: 100vh;
   overflow: hidden;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 8px;
   align-items: center;
   justify-content: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
+
+ 
 `;
 
 const Column1 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: -10px;
-  gap: 10px;
+  top: -8px;
+  gap: 8px;
 `;
+
 const Column2 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 50px;
-  gap: 10px;
+  top: 32px;
+  gap: 8px;
 `;
+
 const Column3 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 50px;
-  gap: 10px;
+  bottom: 32px;
+  gap: 8px;
 `;
 
 const Img = styled.img`
   width: 100%;
   object-fit: cover;
 `;
+
+

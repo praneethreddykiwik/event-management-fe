@@ -1,10 +1,10 @@
 /** @format */
 
 import { inputValidation } from '../../components/Validations/inputValidation';
-import { Input } from '../../components/Inputs/Input';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Button } from '../../components/Buttons/Button';
+import { Inputs } from '../../components/Inputs/Inputs';
 
 const ExInput = () => {
   const [userName, setUserName] = useState('');
@@ -87,7 +87,7 @@ function handleSubmit() {
 
   return (
     <ExampleInputs>
-      <Input
+      <Inputs
         type="text"
         value={userName}
         onChange={handleUserNameChage}
@@ -97,7 +97,7 @@ function handleSubmit() {
         setError={(err) => setErrors((prev) => ({ ...prev, userName: err }))}
       />
 
-      <Input
+      <Inputs
         type="text"
         value={firstName}
         onChange={handleFirstNameChage}
@@ -107,14 +107,14 @@ function handleSubmit() {
         setError={(err) => setErrors((prev) => ({ ...prev, firstName: err }))}
       />
 
-      <Input
+      <Inputs
         type="text"
         value={secondName}
         onChange={handleSecondNameChage}
         placeholder="Second Name"
       />
 
-      <Input
+      <Inputs
         type="number"
         value={number}
         onChange={handleNumberChage}
@@ -125,7 +125,7 @@ function handleSubmit() {
       />
 
       <ExInputWrapper>
-        <Input
+        <Inputs
           type={showPassword ? 'text' : 'password'}
           value={password}
           onChange={handlePasswordChage}
@@ -141,7 +141,7 @@ function handleSubmit() {
         </ShowHideIcon>
       </ExInputWrapper>
 
-      <Input
+      <Inputs
         type="radio-group"
         name="gender"
         placeholder="Gender"
@@ -152,7 +152,7 @@ function handleSubmit() {
         error={errors.gender}
         setError={(err) => setErrors((prev) => ({ ...prev, gender: err }))}
       />
-      <Input
+      <Inputs
         type="checkbox-group"
         name="FavPlaces"
         placeholder="Favourite places"
@@ -174,7 +174,7 @@ const ExampleInputs = styled.div`
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px; 
   align-items: center;
 `;
 
@@ -182,11 +182,14 @@ const ExInputWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
+
 const ShowHideIcon = styled.span`
   position: absolute;
-  right: 15px;
-  top: 9px;
+  right: 16px; 
+  top: 8px; 
   cursor: pointer;
   font-size: 18px;
 `;
+
+
 export default ExInput;

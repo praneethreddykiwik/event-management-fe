@@ -143,11 +143,15 @@ const Box = styled.div`
   padding: 22px 26px;
   scrollbar-width: thin;
 `;
+
 const CreateEventTxt = styled(StyledMediumHeading)`
   margin: 4px 0 0;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-const CreateEventS = styled(StyledParagraphSmall)``;
+const CreateEventS = styled(StyledParagraphSmall)`
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
+`;
 
 const Top = styled.div`
   margin-bottom: 12px;

@@ -4,7 +4,7 @@ import { theme } from "../../theme/theme";
 import {
   StyledParagraphSmallVisible,
   StyledMediumHeading,
-  StyledSemiHeading,
+  StyledSemiHeading, StyledParagraphSmallGray 
 } from "../../components/Styled/Typography.styled";
 
 const FourCardsContainer = () => {
@@ -41,13 +41,14 @@ export default FourCardsContainer;
 
 const DeviceRow = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 10px;
   width: 100%;
   padding-top: 20px;
 `;
 
 const DeviceCard = styled.div`
   flex: 1;
+  height: 153px;
   background: ${({ $active }) => ($active ? "#ccf5c8" : "#ffffff")};
   border-radius: 10px;
   padding: 16px;
@@ -73,6 +74,16 @@ const Circle = styled.div`
   height: 16px;
   background: ${theme.light.colors.white};
   border-radius: 50%;
+`;
+
+const Status = styled(StyledParagraphSmallGray)`
+  margin-right: 60px;
+  margin-top: 30px;
+`;
+
+const Title = styled(StyledMediumHeading)`
+  margin: 0;
+  margin-right: 36px;
 `;
 
 const Span = styled.span``;

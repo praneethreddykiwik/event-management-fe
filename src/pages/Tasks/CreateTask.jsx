@@ -128,7 +128,7 @@ export const CreateTask = () => {
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 20px 60px 20px;
+  padding: 0 16px 40px 16px;
 `;
 
 const StyledBox = styled.div`
@@ -146,9 +146,10 @@ const StyledSuggestions = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 32px;
 
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
 `;
+

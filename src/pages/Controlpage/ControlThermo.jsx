@@ -2,6 +2,7 @@ import styled from "styled-components";
 import * as enums from "../../myEnum";
 import { theme } from "../../theme/theme";
 import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
+import {StyledHeadingBig} from "../../components/Styled/Typography.styled";
 
 const Thermo = () => {
   return (
@@ -27,7 +28,12 @@ const ThermoProgress = styled.div`
   background: conic-gradient(#ffffff 0deg 120deg, #727176 120deg 360deg);
 `;
 
-const CenterTemp = styled.h1`
-  font-size: 43px;
+const CenterTemp = styled(StyledHeadingBig)`
+  color: #eeee;
   margin: 14px 0 0;
+`;
+
+const UnitText = styled.p`
+  color: #eeee;
+  opacity: 0.8;
 `;

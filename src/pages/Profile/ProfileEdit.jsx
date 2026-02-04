@@ -62,7 +62,7 @@ const ProfileEdit = () => {
 
 export default ProfileEdit;
 
-/* ====================== STYLED COMPONENTS ====================== */
+
 
 export const StyleRightForm = styled.div`
   margin-top: 275px;

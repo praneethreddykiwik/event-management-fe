@@ -33,14 +33,21 @@ const CreateEventButtons = styled.div`
 const CreateButton = styled.div`
   button {
     span {
-      font-size: 15px;
+      font-size: ${({ theme }) =>
+        theme.typography["button-text"]["font-size"]};
+      font-weight: ${({ theme }) =>
+        theme.typography["button-text"]["font-weight"]};
+      line-height: ${({ theme }) =>
+        theme.typography["button-text"]["line-height"]};
     }
   }
 `;
+
 const ManageButton = styled.div`
   button {
     background-color: #eeeeee;
     color: ${theme.light.colors.black};
   }
 `;
+
 export default CreateEventManagerB;

@@ -41,17 +41,17 @@ const RightCardContainer = () => {
 export default RightCardContainer;
 
 const RightSidebar = styled.div`
-  flex: 0 0 290px;
+  flex: 0 0 340px;
   width: 290px;
   background: #191827;
-  border-radius: 24px;
+  border-radius: 10px;
   padding: 28px 24px;
   color: ${theme.light.colors.white};
 
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 649px;
+  height: 660px;
 `;
 
 const Divider = styled.div`
@@ -65,7 +65,6 @@ const Divider = styled.div`
 const Time = styled.h1`
   text-align: center;
   font-size: 30px;
-  margin: 0;
 `;
 
 const ThermoHeader = styled.div`

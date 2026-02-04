@@ -1,5 +1,4 @@
 /** @format */
-
 import styled from "styled-components";
 import { Card } from "../../components/Cards/Cards";
 import {
@@ -13,9 +12,9 @@ const UserManagementItem = ({ data, onEdit, onDelete }) => {
   return (
     <StyledCard>
       <Left>
-        <UserName>
+        <StyledParagraphBold>
           {data.firstName} {data.lastName || ""}
-        </UserName>
+        </StyledParagraphBold>
 
         <UserMeta>Role: {data.role}</UserMeta>
         <UserMeta>Role: {usersRoles[data.role]?.label || data.role}</UserMeta>
@@ -40,9 +39,9 @@ const StyledCard = styled(Card)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
-  background: #e1f1ff;
+  padding-left: 24px;
+  padding-right: 24px;
+  background: ${({ theme }) => theme.colors["light-blue"]};
 `;
 
 const Left = styled.div`
@@ -53,12 +52,11 @@ const Left = styled.div`
 `;
 
 const UserName = styled(StyledParagraphBold)`
-  margin: 0;
 `;
 
 const UserMeta = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors.textSecondary};
-  margin: 0;
+ 
 `;
 
 const Right = styled.div`
@@ -69,6 +67,8 @@ const Right = styled.div`
 `;
 
 const IconWrapper = styled.div`
-  color: ${({ danger }) => (danger ? "#EF4444" : "#374151")};
+  color: ${({ danger, theme }) =>
+    danger ? theme.colors.warning : theme.colors.black};
   cursor: pointer;
 `;
+
