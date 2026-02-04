@@ -25,7 +25,8 @@ export default Temp;
 const ModeRow = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 9px;
+  height: 57px;
+  width: 300px;
 `;
 
 const ModeBtn = styled.button`
@@ -34,15 +35,12 @@ const ModeBtn = styled.button`
   background: ${({ $active }) => ($active ? "#ffffff" : "#2d2c3c")};
   color: ${({ $active }) => ($active ? "#000" : "#fff")};
   border-radius: 8px;
-  border: none;
-  text-align: center;
   cursor: pointer;
   font-size: 13px;
 
   display: flex;
   flex-direction: column;
   gap: 8px;
-  align-items: center;
   justify-content: center;
 
   .material-icons {

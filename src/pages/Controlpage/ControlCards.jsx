@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import {StyledParagraphGray, StyledParagraph, StyledSemiHeading} from "../../components/Styled/Typography.styled";
 
 const CardsContainer = () => {
   return (
@@ -45,9 +46,9 @@ const InfoRow = styled.div`
   justify-content: space-between;
   gap: 16px;
   padding-left: 10px;
-  width: 100%;
+  width: 101%;
   padding: 18px 10px 0 0px;
-  height: 15%;
+  height: 16%;
 `;
 
 const InfoCard = styled.div`
@@ -66,37 +67,26 @@ const CardColumn = styled.div`
   justify-content: center;
 `;
 
-const Label = styled.p`
-  font-size: 15px;
-  color: #8a8a8a;
+const Label = styled(StyledParagraphGray)`
+  font-weight: 500;
+  margin-top: 10px;
+`;
+
+const Label1 = styled(StyledParagraphGray)`
   font-weight: 500;
 `;
 
-const Label1 = styled.p`
-  font-size: 15px;
-  color: #8a8a8a;
-  font-weight: 500;
-`;
-
-const Label2 = styled.p`
-  font-size: 14px;
+const Label2 = styled(StyledParagraph)`
   color: #8a8a8a;
   max-width: 170px;
-  margin: 0;
 `;
 
-const Value1 = styled.h3`
-  font-size: 26px;
-  margin: 0;
-  font-weight: 600;
+const Value1 = styled(StyledSemiHeading)`
   margin-bottom: 20px;
   margin-left: -60px;
 `;
 
-const Value = styled.h3`
-  font-size: 26px;
-  margin: 0;
-  font-weight: 600;
+const Value = styled(StyledSemiHeading)`
 `;
 
 const Stdiv2 = styled.div``;

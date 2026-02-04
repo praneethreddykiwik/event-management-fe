@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import {StyledMediumHeading, StyledParagraphSmallGray} from "../../components/Styled/Typography.styled";
 
 const FourCardsContainer = () => {
   const devices = [
@@ -35,15 +36,14 @@ export default FourCardsContainer;
 
 const DeviceRow = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 10px;
   width: 100%;
   padding-top: 20px;
-  gap: 8px;
 `;
 
 const DeviceCard = styled.div`
   flex: 1;
-  height: 150px;
+  height: 153px;
   background: ${({ $active }) => ($active ? "#ccf5c8" : "#ffffff")};
   border-radius: 10px;
   padding: 16px;
@@ -84,19 +84,13 @@ const Circle = styled.div`
   border-radius: 50%;
 `;
 
-const Status = styled.span`
-  font-size: 13px;
-  color: #9ca3af;
+const Status = styled(StyledParagraphSmallGray)`
   margin-right: 60px;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 
-const Title = styled.h4`
+const Title = styled(StyledMediumHeading)`
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 10px;
   margin-right: 36px;
 `;
 

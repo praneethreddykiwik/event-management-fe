@@ -165,7 +165,7 @@ export const SCAN = "Scan to activate your device and access control";
 
 export const WIFI_ICON = "wifi";
 
-export const TIME = "05 =06 AM";
+export const TIME = "05:06 AM";
 export const THERMOVALUE = "Thermostat";
 
 export const CENT_VALUE = "60°";

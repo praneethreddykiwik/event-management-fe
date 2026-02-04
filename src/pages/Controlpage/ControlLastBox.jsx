@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
+import {StyledParagraphBold} from "../../components/Styled/Typography.styled";
 
 const LastBox = () => {
   return (
@@ -57,10 +58,7 @@ const Lstspan = styled.span`
   font-size: 20px;
 `;
 
-const Header3 = styled.h3`
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
+const Header3 = styled(StyledParagraphBold)`
 `;
 
 const NavSection = styled.div`
