@@ -1,8 +1,8 @@
 import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
-import SampleBadge from "../sample/Badge.sample";
-import ExButton from "../sample/ExButton";
-import ExInput from "../sample/ExInput";
-import SampleInput from "../sample/SampleInput";
+import SampleBadge from "./Badge.sample";
+import ExButton from "./ExButton";
+import ExInput from "./ExInput";
+import SampleInput from "./SampleInput";
 
 const SamplePage = () => {
   return (
@@ -10,7 +10,6 @@ const SamplePage = () => {
       <SampleInput />
       <SampleBadge />
       <ExButton />
-      <ExInput />
       <RoleDropdown
         options={[
           { value: "public", label: "Public" },
