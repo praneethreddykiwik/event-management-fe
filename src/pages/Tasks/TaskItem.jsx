@@ -26,12 +26,12 @@ const TaskItem = ({ task = {}, onEdit }) => {
           {task.taskIcon}
         </StatusIcon>
         <Taskcard>
-          <Title>{task.taskTitle}</Title>
-          <EventName>{task.taskDescription}</EventName>
-          <TaskAssignee>
+          <StyledParagraphBold left>{task.taskTitle}</StyledParagraphBold>
+          <StyledParagraphSmall left>{task.taskDescription}</StyledParagraphSmall>
+          <StyledParagraphSmall left>
             {enums.TASKASSIGNEE} {task.taskAssignedToUid}
             {enums.TASKDUE} {task.taskDueAt}
-          </TaskAssignee>
+          </StyledParagraphSmall>
         </Taskcard>
       </Left>
       <BadgeButton>
@@ -54,50 +54,58 @@ const TaskItem = ({ task = {}, onEdit }) => {
   );
 };
 
-const TaskRow = styled(Section)`
+ const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 16px;
   background: #f3fff4;
 `;
 
 const Left = styled.div`
-  padding: 20px 0;
+  padding: 32px 0;
   display: flex;
-  gap: 10px;
+  gap: 8px;
 `;
+
 const StatusIcon = styled.span`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
 `;
+
+
 const Taskcard = styled.div`
   margin: -1px;
 `;
-const Title = styled(StyledParagraphBold)`
-  text-align: left;
-  margin: 0 0 6px 0;
-`;
-const EventName = styled(StyledParagraphSmall)`
-  margin-top: 0;
-  margin-bottom: 6px;
-  color: gray;
-  text-align: left;
-`;
-const TaskAssignee = styled(StyledParagraphSmall)`
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin: 0;
-  text-align: left;
-`;
+
+// const Title = styled(StyledParagraphBold)`
+//   text-align: left;
+//   margin: 0 0 4px 0;
+// `;
+
+// const EventName = styled(StyledParagraphSmall)`
+//   margin-top: 0;
+//   margin-bottom: 4px;
+//   color: gray;
+//   text-align: left;
+// `;
+
+// const TaskAssignee = styled(StyledParagraphSmall)`
+//   color: ${({ theme }) => theme.colors["text-gray-color"]};
+//   margin: 0;
+//   text-align: left;
+// `;
+
 const BadgeButton = styled.div`
-  // width: 30%;
-  gap: 16px;
   display: flex;
-  align-content: center;
   align-items: center;
+  align-content: center;
+  gap: 16px;
   margin: 0;
 `;
+
 const ManageButton = styled(StyledOutlinedButton)`
   background-color: #eeeeee;
 `;
+
 
 export default TaskItem;

@@ -137,16 +137,20 @@ const Box = styled.div`
   width: min(600px, 95vw);
   max-height: 90vh;
   overflow-y: auto;
-  background: white;
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 16px;
   padding: 22px 26px;
   scrollbar-width: thin;
 `;
+
 const CreateEventTxt = styled(StyledMediumHeading)`
   margin: 4px 0 0;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-const CreateEventS = styled(StyledParagraphSmall)``;
+const CreateEventS = styled(StyledParagraphSmall)`
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
+`;
 
 const Top = styled.div`
   margin-bottom: 12px;
@@ -180,13 +184,13 @@ const Actions = styled.div`
 
 const CancelB = styled.div`
   button {
-    background-color: #eeeeee;
-    color: #000000;
+    background-color: ${({ theme }) => theme.colors["light-blue"]};
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 
 const CreateB = styled.div`
   button {
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
   }
 `;

@@ -8,7 +8,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 import styled from "styled-components";
 
-import { LandingPageLayout } from "../../layout/landingPage/landingPageLayout.jsx";
+import { HomePageLayout } from "./HomePageLayout.jsx";
 
 const FindInspiration = () => {
   return (
@@ -40,7 +40,7 @@ const StyledIcon = styled.img`
   margin-top: 1.2px;
 `;
 
-const StyledFindInspirationLayout = styled(LandingPageLayout)`
+const StyledFindInspirationLayout = styled(HomePageLayout)`
   @media (max-width: 768px) {
     background-color: #f1faff;
   }
@@ -95,6 +95,7 @@ const StyledContent = styled(StyledParagraphSmallGray)`
 const StyledBtnContainer = styled.div`
   display: flex;
   align-items: left;
+  margin-top: 25px;
 `;
 
 export default FindInspiration;
