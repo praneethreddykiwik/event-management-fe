@@ -20,19 +20,13 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledJoinNowPara>{enums.JOIN_PARAGRAPH}</StyledJoinNowPara>
+        <StyledParagraphSmallGray>{enums.JOIN_PARAGRAPH}</StyledParagraphSmallGray>
         <StyledSemiHeading>{enums.JOIN_HEADING}</StyledSemiHeading>
-        <StyledJoinBtn>{enums.JOIN_BTN}</StyledJoinBtn>
+        <StyledBaseButton sx={{ width: 120 }}>{enums.JOIN_BTN}</StyledBaseButton>
       </StyledContainerTwo>
     </HomePageLayout>
   );
 };
-
-const StyledJoinBtn = styled(StyledBaseButton)`
-  width: 120px;
-`;
-
-const StyledJoinNowPara = styled(StyledParagraphSmallGray)``;
 
 const StyledContainerOne = styled.div`
   width: 100%;
@@ -40,27 +34,14 @@ const StyledContainerOne = styled.div`
   justify-content: center;
   gap: 30px;
   margin-top: 60px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-top: 0px;
-  }
 `;
 
 const StyledContainerOneImg = styled.img`
   width: 270px;
-
-  @media (max-width: 768px) {
-    width: 25%;
-  }
 `;
 
 const StyledContainerTwo = styled.div`
   margin-top: 30px;
-
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 
 export default JoinNow;

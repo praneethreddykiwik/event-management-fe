@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
-import {StyledMediumHeading, StyledParagraphSmallGray} from "../../components/Styled/Typography.styled";
+import { theme } from "../../theme/theme";
+import {
+  StyledParagraphSmallVisible,
+  StyledMediumHeading,
+  StyledSemiHeading, StyledParagraphSmallGray 
+} from "../../components/Styled/Typography.styled";
 
 const FourCardsContainer = () => {
   const devices = [
@@ -15,17 +20,17 @@ const FourCardsContainer = () => {
       {devices.map((dev, i) => (
         <DeviceCard key={i} $active={dev.active}>
           <TopRow>
-            <Icon>
-              <Span className="material-icons">{enums.WIFI_ICON}</Span>
-            </Icon>
+            <Span className="material-icons">{enums.WIFI_ICON}</Span>
 
             <Toggle $active={dev.active}>
               <Circle />
             </Toggle>
           </TopRow>
 
-          <Status>{dev.status}</Status>
-          <Title>{dev.title}</Title>
+          <StyledParagraphSmallVisible left>
+            {dev.status}
+          </StyledParagraphSmallVisible>
+          <StyledSemiHeading left>{dev.title}</StyledSemiHeading>
         </DeviceCard>
       ))}
     </DeviceRow>
@@ -48,9 +53,6 @@ const DeviceCard = styled.div`
   border-radius: 10px;
   padding: 16px;
   border: 2px solid #7cd69dff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 `;
 
 const TopRow = styled.div`
@@ -59,28 +61,18 @@ const TopRow = styled.div`
   align-items: center;
 `;
 
-const Icon = styled.div`
-  span {
-    font-size: 20px;
-    color: #111827;
-  }
-`;
-
 const Toggle = styled.div`
   width: 38px;
   height: 20px;
   border-radius: 20px;
-  background: ${({ $active }) => ($active ? "#374151" : "#c4c4c4")};
-  display: flex;
+  background: ${theme.light.colors.white};
   align-items: center;
-  padding: 2px;
-  justify-content: ${({ $active }) => ($active ? "flex-end" : "flex-start")};
 `;
 
 const Circle = styled.div`
   width: 16px;
   height: 16px;
-  background: #ffffff;
+  background: ${theme.light.colors.white};
   border-radius: 50%;
 `;
 

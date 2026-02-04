@@ -20,9 +20,9 @@ const GetStarted = () => {
       <StyledChildContainer>
         <StyledContent>
           <StyledHeadingBig left>{enums.MAIN_HEADING}</StyledHeadingBig>
-          <StyledContentParagraph>
+          <StyledParagraphSmallGray left>
             {enums.MAIN_PARAGRAPH}
-          </StyledContentParagraph>
+          </StyledParagraphSmallGray>
           <StyledContentBtn>
             <StyledBaseButton
               onClick={() => navigate("/registration")}
@@ -55,14 +55,6 @@ const StyledLink = styled(StyledAnchor)`
 const StyledGetStartedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
   gap: 20px;
-
-  @media (max-width: 768px) {
-    background-color: ${({ theme }) => theme.colors.white};
-    background-image: url(${getStarted_imgMi});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 `;
 
 const StyledChildContainer = styled.div`
@@ -72,32 +64,14 @@ const StyledChildContainer = styled.div`
   justify-content: center;
   align-content: center;
   align-items: center;
-
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 `;
 const StyledRightChildContainer = styled.div`
   width: 40%;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 const StyledContent = styled.div`
   width: 100%;
   padding: 10px;
   word-wrap: break-word;
-`;
-
-const StyledContentParagraph = styled(StyledParagraphSmallGray)`
-  word-wrap: break-word;
-  text-align: left;
-  font-weight: 500;
-
-  @media (max-width: 768px) {
-    color: ${({ theme }) => theme.colors.white};
-    font-size: 16px;
-  }
 `;
 
 const StyledContentBtn = styled.div`
@@ -114,13 +88,6 @@ const StyledBtnIcon = styled.img`
 
 const StyledChildContainerImg = styled.img`
   width: 100%;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-    background-image: url(${getStarted_imgMi});
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
 `;
 
 export default GetStarted;

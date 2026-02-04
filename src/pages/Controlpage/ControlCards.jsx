@@ -1,27 +1,32 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
-import {StyledParagraphGray, StyledParagraph, StyledSemiHeading} from "../../components/Styled/Typography.styled";
+import {
+  StyledSemiHeading,
+  StyledParagraphSmallVisible,
+  StyledParagraphGray,
+  StyledParagraphSmallGray,
+} from "../../components/Styled/Typography.styled";
 
 const CardsContainer = () => {
   return (
     <>
       <InfoRow>
         <InfoCard>
-          <CardColumn>
-            <Label>{enums.CURRENT}</Label>
-            <Value1>{enums.VALUE1}</Value1>
-          </CardColumn>
+          <StyledParagraphGray>{enums.CURRENT}</StyledParagraphGray>
+          <StyledSemiHeading>{enums.VALUE1}</StyledSemiHeading>
         </InfoCard>
 
         <InfoCard>
           <InfoCardInner>
             <Stdiv2>
-              <Label1>{enums.TEMPERATURE}</Label1>
-              <Value>{enums.DEGREE}</Value>
+              <StyledParagraphGray>{enums.TEMPERATURE}</StyledParagraphGray>
+              <StyledSemiHeading>{enums.DEGREE}</StyledSemiHeading>
             </Stdiv2>
 
             <TempToggle>
-              <TempPercent>{enums.DEGREE}</TempPercent>
+              <StyledParagraphSmallVisible>
+                {enums.DEGREE}
+              </StyledParagraphSmallVisible>
               <TempSwitch>
                 <SSspan className="thumb" />
               </TempSwitch>
@@ -31,7 +36,7 @@ const CardsContainer = () => {
 
         <InfoCard>
           <InfoCardInner>
-            <Label2>{enums.SCAN}</Label2>
+            <StyledParagraphSmallGray>{enums.SCAN}</StyledParagraphSmallGray>
             <QRCode src="https://quickchart.io/qr?text=device&size=150" />
           </InfoCardInner>
         </InfoCard>
@@ -43,50 +48,16 @@ export default CardsContainer;
 
 const InfoRow = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 16px;
-  padding-left: 10px;
-  width: 101%;
-  padding: 18px 10px 0 0px;
-  height: 16%;
+  height: 15%;
 `;
 
 const InfoCard = styled.div`
   flex: 1;
-  background: #d5d5d5ff;
+  background: ${({ theme }) => theme.colors["gray-disabled"]};
   border-radius: 9px;
   border: 1px solid #85bbbcff;
   padding: 14px 16px;
-  display: flex;
-  align-items: center;
-`;
-
-const CardColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Label = styled(StyledParagraphGray)`
-  font-weight: 500;
-  margin-top: 10px;
-`;
-
-const Label1 = styled(StyledParagraphGray)`
-  font-weight: 500;
-`;
-
-const Label2 = styled(StyledParagraph)`
-  color: #8a8a8a;
-  max-width: 170px;
-`;
-
-const Value1 = styled(StyledSemiHeading)`
-  margin-bottom: 20px;
-  margin-left: -60px;
-`;
-
-const Value = styled(StyledSemiHeading)`
 `;
 
 const Stdiv2 = styled.div``;

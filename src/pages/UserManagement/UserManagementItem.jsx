@@ -6,6 +6,7 @@ import {
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
 import { Icon } from "../../components/Icons/Icons";
+import { usersRoles } from "../../constants/statuses";
 
 const UserManagementItem = ({ data, onEdit, onDelete }) => {
   return (
@@ -16,9 +17,7 @@ const UserManagementItem = ({ data, onEdit, onDelete }) => {
         </StyledParagraphBold>
 
         <UserMeta>Role: {data.role}</UserMeta>
-        <UserMeta>
-          Mobile: {data.mobile !== "0" ? data.mobile : "Not provided"}
-        </UserMeta>
+        <UserMeta>Role: {usersRoles[data.role]?.label || data.role}</UserMeta>
       </Left>
 
       <Right>

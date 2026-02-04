@@ -18,6 +18,7 @@ import {
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
 import { paths } from "../../../constants/paths";
+import { theme } from "../../../theme/theme";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -131,10 +132,6 @@ export const InputBox = styled.div`
 
 export default CreateEvent;
 
-const DashboardContainer = styled.div`
-  padding: 0 20px 60px 20px;
-`;
-
 const StyledBox = styled.div`
   flex-basis: 40%;
   flex-shrink: 0;
@@ -143,16 +140,4 @@ const StyledBox = styled.div`
 const StyledFlex = styled.div`
   display: flex;
   gap: 60px;
-  // padding-left: 140px;
-`;
-
-const StyledSuggestions = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 20px;
-
-  .venue-ctn {
-    flex: 0 0 calc((100% - 180px) / 3);
-  }
 `;

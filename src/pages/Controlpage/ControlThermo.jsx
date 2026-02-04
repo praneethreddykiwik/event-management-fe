@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
+import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 import {StyledHeadingBig} from "../../components/Styled/Typography.styled";
 
 const Thermo = () => {
@@ -7,7 +9,7 @@ const Thermo = () => {
     <ThermoWrapper>
       <ThermoProgress />
       <CenterTemp>{enums.CENT_VALUE}</CenterTemp>
-      <UnitText>{enums.UNIT_VALUE}</UnitText>
+      <StyledParagraphGray>{enums.UNIT_VALUE}</StyledParagraphGray>
     </ThermoWrapper>
   );
 };

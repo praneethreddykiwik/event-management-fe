@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../theme/theme";
 
 const Temp = () => {
   const MODES = ["Hot", "Eco", "Fan", "Cold"];
@@ -32,8 +33,10 @@ const ModeRow = styled.div`
 const ModeBtn = styled.button`
   width: 23%;
   padding: 10px 0;
-  background: ${({ $active }) => ($active ? "#ffffff" : "#2d2c3c")};
-  color: ${({ $active }) => ($active ? "#000" : "#fff")};
+  background: ${({ $active }) =>
+    $active ? theme.light.colors.white : "#2d2c3c"};
+  color: ${({ $active }) =>
+    $active ? theme.light.colors.black : theme.light.colors.white};
   border-radius: 8px;
   cursor: pointer;
   font-size: 13px;
@@ -51,6 +54,6 @@ const ModeBtn = styled.button`
 const Stspan3 = styled.span``;
 
 const Span = styled.span`
-  font-size: 14px;
-  font-weight: 500;
+  font-size: ${theme.light.typography["body-small"]["font-size"]};
+  font-weight: ${theme.light.fontWeights.medium};
 `;

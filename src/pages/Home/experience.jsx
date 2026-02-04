@@ -8,7 +8,7 @@ import { HomePageLayout } from "./HomePageLayout.jsx";
 import {
   StyledHeading,
   StyledParagraphSmall,
-  StyledParagraphBold,
+  StyledParagraphBold,StyledParagraphSmallGray
 } from "../../components/Styled/Typography.styled";
 
 const Experience = () => {
@@ -19,25 +19,25 @@ const Experience = () => {
         <StyledSubContainerOne>
           {/* sub 1 */}
           <StyledExperience>
-            <Heading>{enums.EXPERIENCE_HEADING1}</Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA1}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING1}</Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA1}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg1} />
           </StyledExperience>
           {/* sub 2 */}
           <StyledConnection>
-            <Heading>{enums.EXPERIENCE_HEADING2} </Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA2}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING2} </Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA2}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg3} />
           </StyledConnection>
         </StyledSubContainerOne>
         {/* main sub two */}
         <StyledSubContainerTwo>
-          <StyledBigHeading>{enums.EXPERIENCE_HEADING3}</StyledBigHeading>
+          <StyledBigHeading left>{enums.EXPERIENCE_HEADING3}</StyledBigHeading>
           <StyledAnyWhere>
-            <Heading>{enums.EXPERIENCE_HEADING4} </Heading>
-            <StyledParagraph>{enums.EXPERIENCE_PARA3}</StyledParagraph>
+            <Heading left>{enums.EXPERIENCE_HEADING4} </Heading>
+            <StyledParagraph left>{enums.EXPERIENCE_PARA3}</StyledParagraph>
             <StyledHr />
             <StyledImageOne src={experienceImg2} />
           </StyledAnyWhere>
@@ -49,10 +49,6 @@ const Experience = () => {
 
 const StyledExperienceLayout = styled(HomePageLayout)`
   background-color: #f1faff;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const StyledBodyContainer = styled.div`
@@ -129,21 +125,16 @@ const StyledAnyWhere = styled.div`
 
 // typo stylings
 const StyledBigHeading = styled(StyledHeading)`
-  text-align: left;
   margin-bottom: 50px;
   width: 75%;
 `;
 
 const Heading = styled(StyledParagraphBold)`
   margin-top: 10px;
-  text-align: left;
 `;
 
 const StyledParagraph = styled(StyledParagraphSmall)`
-  text-align: left;
   margin-bottom: 15px;
-  word-wrap: break-word;
-  font-size: 13px;
 `;
 
 const StyledHr = styled.hr`
