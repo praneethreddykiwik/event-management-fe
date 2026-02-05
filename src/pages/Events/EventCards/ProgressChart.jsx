@@ -64,7 +64,7 @@ const ProgressChart = ({ events }) => {
   const valueFormatter = (item) => `${item.value}`;
 
   return (
-    <Box sx={{ width: "50%" }}>
+    <Box sx={boxStyles} >
       <PieChart
         height={300}
         width={300}
@@ -85,4 +85,5 @@ const ProgressChart = ({ events }) => {
   );
 };
 
+const boxStyles = { width: "50%", whiteSpace: "nowrap"};
 export default ProgressChart;

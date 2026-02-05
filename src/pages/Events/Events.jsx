@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
 
 const Events = () => {
   const dispatch = useDispatch();

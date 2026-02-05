@@ -21,8 +21,8 @@ const BookVenue = () => {
   return (
     <HomePageLayout flexDirection="column">
       <StyledContainer>
-        <StyledHead>{enums.BOOK_HEADING}</StyledHead>
-        <StyledPara>{enums.BOOK_PARA}</StyledPara>
+        <StyledHeading left>{enums.BOOK_HEADING}</StyledHeading>
+        <StyledParagraphSmallGray left>{enums.BOOK_PARA}</StyledParagraphSmallGray>
       </StyledContainer>
       <StyledInputContainer>
         <Input
@@ -31,61 +31,22 @@ const BookVenue = () => {
           onChange={handlEmailChange}
           value={email}
         />
-        <StyledBtn type="base">{enums.BOOK_BTN}</StyledBtn>
+        <StyledBaseButton>{enums.BOOK_BTN}</StyledBaseButton>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>{enums.BOOK_POLICY}</StyledPolicyTxt>
+        <StyledParagraphSmallGray left>{enums.BOOK_POLICY}</StyledParagraphSmallGray>
       </StyledPolicy>
     </HomePageLayout>
   );
 };
 
-const StyledBtn = styled(StyledBaseButton)`
-  min-width: 250px;
-`;
-
 const StyledPolicy = styled.div`
   width: 50%;
   margin-top: 20px;
-
-  @media (max-width: 767px) {
-    width: 100%;
-  }
-`;
-
-const StyledPolicyTxt = styled(StyledParagraphSmallGray)`
-  text-align: left;
-
-  @media (max-width: 767px) {
-    text-align: center;
-  }
 `;
 
 const StyledContainer = styled.div`
   width: 50%;
-
-  @media (max-width: 767px) {
-    width: 90%;
-    margin-top: 80px;
-  }
-`;
-
-const StyledHead = styled(StyledHeading)`
-  text-align: left;
-
-  @media (max-width: 767px) {
-    text-align: center;
-  }
-`;
-
-const StyledPara = styled(StyledParagraphSmallGray)`
-  text-align: left;
-  /* color: ${({ theme }) => theme.colors["inactive-color"]}; */
-  color: #88898bff;
-
-  @media (max-width: 767px) {
-    text-align: center;
-  }
 `;
 
 const StyledInputContainer = styled.div`
@@ -94,11 +55,6 @@ const StyledInputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-
-  @media (max-width: 767px) {
-    width: 90%;
-    flex-direction: column;
-  }
 `;
 
 export default BookVenue;

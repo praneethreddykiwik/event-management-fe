@@ -1,14 +1,21 @@
 import React from "react";
+import {
+  StyledHeading,
+  StyledParagraphSmallGray,
+} from "../../components/Styled/Typography.styled";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
+import { theme } from "../../theme/theme";
 
 const ProfileEdit = () => {
   return (
     <StyleRightForm>
-      <StyleProfileTitle>{PROFILE_DATA.PROFILE}</StyleProfileTitle>
-      <StyleProfileSubtitle>{PROFILE_DATA.EVENTS_PROFILE}</StyleProfileSubtitle>
+      <StyledHeading left>{PROFILE_DATA.PROFILE}</StyledHeading>
+      <StyledParagraphSmallGray left>
+        {PROFILE_DATA.EVENTS_PROFILE}
+      </StyledParagraphSmallGray>
 
       <StyleProfileImageLarge src={Speaker1} alt="profile" />
 
@@ -19,8 +26,13 @@ const ProfileEdit = () => {
 
       <StyleFlextable>
         <StyleDescribetext>
-          <StyleLabels>{PROFILE_DATA.EMAIL}</StyleLabels>
-          {PROFILE_DATA.EMAIL_LOG}
+          <StyledParagraphSmallGray left>
+            {PROFILE_DATA.EMAIL}
+          </StyledParagraphSmallGray>
+          <StyledParagraphSmallGray left>
+            {" "}
+            {PROFILE_DATA.EMAIL_LOG}{" "}
+          </StyledParagraphSmallGray>
         </StyleDescribetext>
 
         <StyleEmailRow>
@@ -33,8 +45,13 @@ const ProfileEdit = () => {
 
       <StylePasswordRow>
         <StyleDescribetext>
-          <StyleLabels>{PROFILE_DATA.PASSWORD}</StyleLabels>
-          {PROFILE_DATA.PASSWORD_LOG}
+          <StyledParagraphSmallGray left>
+            {PROFILE_DATA.PASSWORD}
+          </StyledParagraphSmallGray>
+          <StyledParagraphSmallGray left>
+            {" "}
+            {PROFILE_DATA.PASSWORD_LOG}
+          </StyledParagraphSmallGray>
         </StyleDescribetext>
 
         <StyledOutlinedButton>{PROFILE_DATA.CHANGE_BTN}</StyledOutlinedButton>
@@ -48,31 +65,12 @@ export default ProfileEdit;
 
 
 export const StyleRightForm = styled.div`
-  margin-top: 249px;
+  margin-top: 275px;
   flex: 1;
   text-align: left;
-  background: white;
+  background: ${theme.light.colors.white};
   padding: 20px;
-  border-radius: 1px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 1200px) {
-    margin-top: 180px;
-  }
-
-  @media (max-width: 900px) {
-    margin-top: 30px;
-    width: 100%;
-  }
-`;
-
-export const StyleProfileTitle = styled.h2`
-  margin: 10px 30px;
-`;
-
-export const StyleProfileSubtitle = styled.p`
-  margin: 10px 30px;
-  color: #666;
 `;
 
 export const StyleProfileImageLarge = styled.img`
@@ -85,19 +83,8 @@ export const StyleProfileImageLarge = styled.img`
 export const StyleNameRow = styled.div`
   display: flex;
   gap: 120px;
-  margin-bottom: 20px;
   border-bottom: 1px solid #8c8c8c;
   padding: 60px 20px 20px 20px;
-
-  @media (max-width: 1200px) {
-    gap: 40px;
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    gap: 20px;
-    padding: 30px 10px;
-  }
 `;
 
 export const StyleInputBox = styled.input`
@@ -108,29 +95,13 @@ export const StyleInputBox = styled.input`
 `;
 
 export const StyleFlextable = styled.label`
-  color: #8c8c8c;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid #8c8c8c;
   padding: 40px 20px;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
 `;
-
-export const StyleLabels = styled.div``;
 
 export const StyleDescribetext = styled.div`
   width: 70%;
-  color: #8c8c8c;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 `;
 
 export const StylePasswordRow = styled.div`
@@ -138,24 +109,11 @@ export const StylePasswordRow = styled.div`
   gap: 20px;
   padding: 40px 20px;
   border-bottom: 1px solid #a9a7a7ff;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    padding: 20px 10px;
-  }
 `;
 
 export const StyleEmailRow = styled.div`
   position: relative;
   width: 490px;
-
-  @media (max-width: 1200px) {
-    width: 350px;
-  }
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 `;
 
 export const StyleEditIconEmail = styled.span`

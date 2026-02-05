@@ -77,23 +77,6 @@ const Taskcard = styled.div`
   margin: -1px;
 `;
 
-// const Title = styled(StyledParagraphBold)`
-//   text-align: left;
-//   margin: 0 0 4px 0;
-// `;
-
-// const EventName = styled(StyledParagraphSmall)`
-//   margin-top: 0;
-//   margin-bottom: 4px;
-//   color: gray;
-//   text-align: left;
-// `;
-
-// const TaskAssignee = styled(StyledParagraphSmall)`
-//   color: ${({ theme }) => theme.colors["text-gray-color"]};
-//   margin: 0;
-//   text-align: left;
-// `;
 
 const BadgeButton = styled.div`
   display: flex;
