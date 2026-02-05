@@ -1,31 +1,18 @@
 import React, { useState } from "react";
 import google from "../../assets/Logo/Google.svg.webp";
 import * as enums from "../../myEnum";
-import {
-  Action,
-  ActionSpan,
-  RowLink,
-  Section,
-  SectionHeader,
-  StyledAccButton,
-  StyledButtonContainer,
-  StyledRightContent,
-  SubText,
-  TextLink,
-  Title,
-  UpgrateOptions,
-  GoogleLogo,
-} from "../../components/Styled/AccountSettings.styled";
+import styled from "styled-components";
+import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import { Input } from "../../components/Inputs/Input";
 import { StyledHr } from "../../components/Styled/Common.styled";
-import { StyledHeading } from "../../components/Styled/Typography.styled";
+import { StyledHeading, StyledParagraphBold, StyledParagraphSmallGray} from "../../components/Styled/Typography.styled";
 
 const AccountSettingsRightContent = () => {
   const [upgradeOptions, setUpgradeOptions] = useState([]);
 
   function handleCheckBoxChage(data) {
     setUpgradeOptions((prev) =>
-      data.checked ? [...prev, data.item] : prev.filter((v) => v !== data.item)
+      data.checked ? [...prev, data.item] : prev.filter((v) => v !== data.item),
     );
   }
   return (
@@ -35,18 +22,18 @@ const AccountSettingsRightContent = () => {
 
       <Section medium>
         <SectionHeader>
-          <Title>{enums.LINKED_ACCOUNTS}</Title>
+          <StyledParagraphBold>{enums.LINKED_ACCOUNTS}</StyledParagraphBold>
           <Action>+ Add</Action>
         </SectionHeader>
         <RowLink>
           <GoogleLogo src={google} alt="google" />
-          <TextLink>Google</TextLink>
+          <StyledParagraphSmallGray>Google</StyledParagraphSmallGray>
         </RowLink>
       </Section>
 
       <Section small>
         <SectionHeader>
-          <Title>{enums.EMAIL_PREFERENCE}</Title>
+          <StyledParagraphBold>{enums.EMAIL_PREFERENCE}</StyledParagraphBold>
           <Action>
             <ActionSpan
               className="material-symbols-outlined"
@@ -56,14 +43,14 @@ const AccountSettingsRightContent = () => {
             </ActionSpan>
           </Action>
         </SectionHeader>
-        <SubText left>{enums.EMAIL_PREFERENCE}</SubText>
+        <StyledParagraphSmallGray left>{enums.EMAIL_PREFERENCE}</StyledParagraphSmallGray>
       </Section>
 
       <Section small>
         <SectionHeader>
-          <Title>{enums.BACKUP_AND_RESTORE}</Title>
+          <StyledParagraphBold>{enums.BACKUP_AND_RESTORE}</StyledParagraphBold>
         </SectionHeader>
-        <SubText left>{enums.BACKUP}</SubText>
+        <StyledParagraphSmallGray left>{enums.BACKUP}</StyledParagraphSmallGray>
       </Section>
       <StyledButtonContainer left>
         <StyledAccButton>Upgrade now </StyledAccButton>
@@ -91,3 +78,69 @@ const AccountSettingsRightContent = () => {
 };
 
 export default AccountSettingsRightContent;
+
+const textAlign = ({ left, right }) =>
+  left ? "left" : right ? "right" : "center";
+
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
+
+const StyledRightContent = styled.div`
+  flex: 1;
+  padding-top: 10px;
+  border-bottom: 1px solid #eee;
+  padding: 0 40px;
+`;
+
+const Section = styled.div`
+  margin-top: ${marginTop}px;
+  margin-bottom: 50px;
+`;
+
+const SectionHeader = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+;
+
+const Action = styled.button`
+  color: #060058;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 25px;
+  cursor: pointer;
+`;
+
+const ActionSpan = styled.span`
+  transform: rotate(45deg);
+  margin-right: 10px;
+`;
+
+const RowLink = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  //  background: red;
+
+`;
+
+const GoogleLogo = styled.img`
+  width: 20px;
+  position: relative;
+  right: 4px;
+  bottom: 1px;
+`;
+
+const StyledButtonContainer = styled.div`
+  margin: 10px 0 25px 0;
+  text-align: ${textAlign};
+`;
+
+const StyledAccButton = styled(StyledBaseButton)`
+  width: auto;
+  color: ${({ theme }) => theme.colors["white"]};
+`;
+
+const UpgrateOptions = styled.div`
+  margin: 40px 0;
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
+`;

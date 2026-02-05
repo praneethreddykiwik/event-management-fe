@@ -46,92 +46,96 @@ const RightMainCard2 = () => {
 };
 export default RightMainCard2;
 
-const Stylespan = styled.span``;
+const Stylespan = styled.span`
+`;
 
 const RightCard = styled.div`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   box-shadow: 0 8px 30px rgba(24, 39, 75, 0.06);
   width: 400px;
-  padding: 0 18px 26px 18px;
+  padding: 12px 12px 40px 12px; 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 740px;
+  height: 770px;
 `;
 
 const EventImage = styled.img`
-  width: 110%;
+  width: 900px;
   height: 180px;
   object-fit: cover;
   border-radius: 6px 6px 0px 0px;
-  margin-top: 0;
 `;
 
 const ButtonGroup = styled.div`
   width: calc(100% - 24px);
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px; 
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 16px; 
 `;
 
 const DownloadCard = styled.div`
   flex: 0 0 260px;
   background: transparent;
-  padding: 25px;
+  padding: 16px; 
   display: flex;
-  padding-right: 10px;
+  padding-right: 8px; 
   margin-right: -70px;
 `;
 
 const DownloadBtn = styled.button`
   width: 80%;
-  background: linear-gradient(90deg, #16a34a, #16a34a);
-  color: white;
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primary});
+  color: ${({ theme }) => theme.colors.white};
   border: none;
-  padding: 12px 18px;
+  padding: 8px 12px; 
   border-radius: 28px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   box-shadow: 0 10px 26px rgba(16, 185, 129, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 const ShareLink = styled.div`
-  color: #16a34a;
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
 `;
 
 const ShareBtn = styled.button`
   background: transparent;
   border: none;
-  color: #16a34a;
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
   display: inline-flex;
   align-items: right;
-  padding-right: 60px;
+  padding-right: 40px; 
 `;
 
 const CancelWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 40px; 
 `;
 
 const CancelBtn = styled.button`
   background: none;
   border: none;
-  color: #16a34a;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
 `;

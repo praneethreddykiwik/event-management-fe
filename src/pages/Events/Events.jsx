@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
 
 const Events = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,11 @@ const Events = () => {
       },
     });
   };
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -77,8 +82,8 @@ const Events = () => {
 
         <TaskMainCard>
           <Tasktxt>
-            <TaskEvents>{enums.UPCOMING_EV}</TaskEvents>
-            <TaskMonitor>{enums.MONITOR_EV}</TaskMonitor>
+            <StyledMediumHeading left>{enums.UPCOMING_EV}</StyledMediumHeading>
+            <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Tasktxt>
           <TaskList>
             {events.map((event, index) => (
@@ -101,6 +106,11 @@ const AdminDashboardContainer = styled.div`
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
+<<<<<<< HEAD
+=======
+  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
+  background: ${({ theme }) => theme.colors.white};
+>>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
   box-shadow:
     rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -109,18 +119,12 @@ const TaskMainCard = styled.div`
 const Tasktxt = styled.div`
   padding: 20px 20px 10px;
 `;
-const TaskEvents = styled(StyledMediumHeading)`
-  margin: 0;
-  text-align: left;
-`;
-const TaskMonitor = styled(StyledParagraphSmall)`
-  margin: 0;
-  text-align: left;
-`;
+
 const TaskList = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export default Events;

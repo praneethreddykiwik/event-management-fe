@@ -12,7 +12,7 @@ import Home from "./pages/Home/Home";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import PlayerCard from "./components/PlayerCard/PlayerCard";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import SamplePage from "./pages/SamplePages/Sample.page.jsx";
+import SamplePage from "./pages/sample/Sample.page.jsx";
 import StakeholderDashboard from "./pages/StakeholderDashboard/StakeholderDashboard.jsx";
 import Tasks from "./pages/Tasks/Tasks.jsx";
 import Login from "./pages/Login/Login";

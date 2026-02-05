@@ -2,7 +2,14 @@ import styled from "styled-components";
 import {
   StyledBaseButton,
   StyledOutlinedButton,
+  
 } from "../../components/Styled/Buttons.styled";
+import {
+  StyledMediumHeading,
+  StyledParagraphBold,
+  StyledParagraph,
+  StyledParagraphSmall,
+} from "../../components/Styled/Typography.styled";
 import { Icon } from "../../components/Icons/Icons";
 import { formatDateTime } from "../../utils/utils";
 import { useDispatch } from "react-redux";
@@ -58,21 +65,33 @@ const ManageTaskModal = ({ onClose, task }) => {
       <Overlay>
         <ModalContainer>
           <ModalHeader>
-            <HeaderText>
-              <Title>Event: {task.eventName}</Title>
-              <Subtitle>{task.venue}</Subtitle>
-            </HeaderText>
+           <HeaderText>
+            <StyledMediumHeading left>
+              Event: {task.eventName}
+            </StyledMediumHeading>
+
+            <StyledParagraphSmall left>
+              {task.venue}
+            </StyledParagraphSmall>
+          </HeaderText>
             <Icon variant="close" onClick={onClose} />
           </ModalHeader>
 
           <Section>
-            <SectionTitle>Task Summary</SectionTitle>
+            <StyledMediumHeading left>
+            Task Summary
+          </StyledMediumHeading>
 
             <SummaryGrid>
               {eventSummaryData.map((item, index) => (
                 <SummaryItem key={index}>
-                  <Label>{item.label}</Label>
-                  <Value>{item.value}</Value>
+                    <StyledParagraphBold className="label">
+                  {item.label}
+                </StyledParagraphBold>
+
+                <StyledParagraph className="value">
+                  {item.value}
+                </StyledParagraph>
                 </SummaryItem>
               ))}
             </SummaryGrid>
@@ -105,10 +124,10 @@ const Overlay = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  background: #fff;
+  background: ${({ theme }) => theme.appBackgroundColor};
   width: 620px;
   border-radius: 14px;
-  padding: 24px;
+  padding: 32px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 `;
 
@@ -116,78 +135,46 @@ const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 `;
 
 const HeaderText = styled.div``;
-
-const Title = styled.h3`
-  margin: 0;
-  font-size: 20px;
-`;
-
-const Subtitle = styled.p`
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: #6b7280;
-`;
 
 const Section = styled.div`
   border: 1px solid #e5e7eb;
   box-shadow: 0 0 4px 0px #e5e7eb;
   border-radius: 12px;
   padding: 16px;
-  margin-bottom: 20px;
-`;
-
-const SectionTitle = styled.h4`
-  margin: 0;
-  font-size: 16px;
+  margin-bottom: 32px;
 `;
 
 const SummaryGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px 24px;
-  margin-top: 14px;
+  margin-top: 16px;
 `;
 
-const SummaryItem = styled.div``;
+const SummaryItem = styled.div`
+  .label {
+    color: ${({ theme }) => theme.colors["text-gray-color"]};
+  }
 
-const Label = styled.p`
-  margin: 0;
-  color: #86868d;
-  font-size: 12px;
-`;
-
-const Value = styled.p`
-  margin: 4px 0 0;
-  font-size: 12px;
-  font-weight: 500;
+  .value {
+    margin-bottom: 4px;
+  }
 `;
 
 const ActionRow = styled.div`
   display: flex;
-  gap: 14px;
-  margin-bottom: 24px;
-  padding: 15px 0;
+  gap: 8px;
+  margin-bottom: 40px;
+  padding: 24px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 `;
 
-const AcceptButton = styled(StyledBaseButton)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  color: #fff;
-`;
 
-const DeclineButton = styled(StyledOutlinedButton)`
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // flex: 1;
-`;
+
 
 export default ManageTaskModal;

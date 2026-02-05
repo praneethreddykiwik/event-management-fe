@@ -67,7 +67,11 @@ const BASE_EVENT_METADATA = [
   },
   {
     type: "textarea",
+<<<<<<< HEAD
     name: "eventDescription",
+=======
+    name: "comments",
+>>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
     value: "",
     placeholder: "Provide your event details...",
     label: "Event Description",
@@ -93,7 +97,11 @@ export const eventMetaData = (eventManagers = []) => {
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
   const valueMap = {
     eventName: event.title,
+<<<<<<< HEAD
     eventDescription: event.description,
+=======
+    eventDescription: event.comments,
+>>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
     eventDate: event.eventDate,
     eventTime: event.eventTime,
     venue: event.venue,

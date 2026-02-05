@@ -12,6 +12,13 @@ import speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
 import speaker3 from "../../assets/FeaturedEvents-Imgs/Speaker3.jpeg";
 import speaker4 from "../../assets/FeaturedEvents-Imgs/Speaker4.jpeg";
 
+import {
+  StyledParagraph,
+  StyledSemiHeading,
+  StyledParagraphGray,
+  StyledParagraphBold,
+} from "../../components/Styled/Typography.styled";
+
 const events = [
   {
     img: carImage1,
@@ -98,7 +105,7 @@ const FeaturedEvents = () => {
   return (
     <Section>
       <Header>
-        <h2>Featured Event Managers</h2>
+        <StyledSemiHeading left>Featured Event</StyledSemiHeading>
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>
@@ -128,8 +135,8 @@ const FeaturedEvents = () => {
                 {isCenter && (
                   <>
                     <ImgText>
-                      <p>{event.title}</p>
-                      <h2>{event.name}</h2>
+                      <StyledParagraphGray>{event.title}</StyledParagraphGray>
+                      <StyledParagraph>{event.name}</StyledParagraph>
                     </ImgText>
 
                     <Overlay>
@@ -150,12 +157,12 @@ const FeaturedEvents = () => {
                           </StyledHostAvatars>
                         </Hosts>
 
-                        <BottomText>Winning in Today’s Economy</BottomText>
+                        <StyledParagraphBold left>
+                          Winning in Today’s Economy
+                        </StyledParagraphBold>
                       </OverlayLeft>
 
-                      <StyledSubscribeBtn>
-                        <Button>Subscribe</Button>
-                      </StyledSubscribeBtn>
+                      <Button sx={{ width: 120 }}> Subscribe</Button>
                     </Overlay>
                   </>
                 )}
@@ -185,10 +192,6 @@ const StyledHostAvatars = styled.div`
   display: flex;
   margin-left: 20px;
   gap: 5px;
-`;
-
-const StyledSubscribeBtn = styled.div`
-  width: 120px;
 `;
 
 const Section = styled.section`
@@ -226,7 +229,7 @@ const Arrows = styled.div`
     height: 40px;
     border-radius: 50%;
     border: 1px solid #ddd;
-    background: white;
+    background: ${({ theme }) => theme.colors.white};
     cursor: pointer;
     font-size: 20px;
     display: grid;
@@ -373,11 +376,4 @@ const Avatars = styled.div`
   img:nth-child(4) {
     left: 48px;
   }
-`;
-
-const BottomText = styled.div`
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 500;
-  margin-right: auto;
 `;

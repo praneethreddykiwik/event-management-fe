@@ -26,58 +26,54 @@ const PromoCode2 = () => {
   );
 };
 export default PromoCode2;
-
 const Styledb = styled.b`
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
 `;
 
 const Button = styled.button`
-  background-color: #16a34a;
-  color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
-  padding: 10px 16px;
+  padding: 8px 16px; // spacing-2 spacing-3
   border-radius: 20px;
   cursor: pointer;
 `;
 
 const Promo = styled.div`
   text-align: center;
-  margin-top: 40px;
-  color: #16a34a;
+  margin-top: 40px; // spacing-6
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const PromoTitle = styled.h4`
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  margin-bottom: 8px; // spacing-2
 `;
 
 const PromoInput = styled.div`
   display: inline-flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px; // spacing-2
+  margin-top: 16px; // spacing-3
 `;
 
 const PromoField = styled.input`
-  border: 1px solid #bdc0c4ff;
-  padding: 10px 12px;
+  border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
+  padding: 8px 16px; // spacing-2 spacing-3
   border-radius: 4px;
   outline: none;
   width: 190px;
-  background: #fbfdff;
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 const Terms = styled.p`
-  font-size: 13px;
-  text-align: center;
-  color: #6b7280;
-  margin-top: 22px;
-  margin: 30px;
-  line-height: 1.45;
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  line-height: ${({ theme }) => theme.typography["body-small"]["line-height"]};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   text-align: justify;
-  margin-top: 60px;
+  margin: 40px 0 0 0; // spacing-6
 `;
 
 const HighlightText = styled.span`
-  color: #1f4bd8;
+  color: ${({ theme }) => theme.colors["active-color"]};
   text-decoration: underline;
 `;

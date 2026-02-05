@@ -2,10 +2,10 @@ import * as enums from "../../../myEnum";
 import Carousel from "../../../components/Carousel/Carousel";
 import styled from "styled-components";
 import {
-  StyledParagraphGray,
   StyledSemiHeading,
   StyledParagraphSmallGray,
-  StyledParagraphSmallVisible,
+  StyledParagraphBold,
+  StyledParagraph,
 } from "../../../components/Styled/Typography.styled";
 
 const AboutAndNextEventSection = () => {
@@ -28,8 +28,8 @@ const AboutAndNextEventSection = () => {
 
   const carouselList = eventList.map((e) => (
     <YellowCard bg={e.bgColor}>
-      <SmallTitle>{e.title}</SmallTitle>
-      <MainTitle>{e.name}</MainTitle>
+      <StyledParagraphBold left>{e.title}</StyledParagraphBold>
+      <MainTitle left>{e.name}</MainTitle>
       <Row>
         <span className="material-symbols-outlined">location_on</span>
         <LocText>{e.location}</LocText>
@@ -38,7 +38,7 @@ const AboutAndNextEventSection = () => {
       <RowSpaceBetween>
         <div className="left-group">
           <span className="material-symbols-outlined">notifications</span>
-          <DateText>{e.date}</DateText>
+          <StyledParagraph>{e.date}</StyledParagraph>
         </div>
 
         <span className="material-symbols-outlined">podcasts</span>
@@ -63,7 +63,9 @@ const AboutAndNextEventSection = () => {
           </LocationRow>
         </AboutHeaderRow>
 
-        <AboutParagraph>{enums.ABOUT_DESCRIPTION}</AboutParagraph>
+        <StyledParagraphSmallGray left>
+          {enums.ABOUT_DESCRIPTION}
+        </StyledParagraphSmallGray>
       </AboutLeft>
 
       <RightNextEvent>
@@ -77,25 +79,14 @@ export default AboutAndNextEventSection;
 
 export const SecondContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   gap: 30px;
   padding: 20px 38px;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.white};
   width: 100%;
-  box-sizing: border-box;
-  align-items: stretch;
-  overflow: visible;
-  border-radius: 0 0 5px 5px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 
 export const AboutLeft = styled.div`
   flex: 1;
-  min-width: 0;
 `;
 
 export const AboutHeaderRow = styled.div`
@@ -137,13 +128,6 @@ export const ShowLocationText = styled.span`
   color: #0541a8;
 `;
 
-export const AboutParagraph = styled(StyledParagraphGray)`
-  color: #a9abaa;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-`;
-
 export const RightNextEvent = styled.div`
   flex: 1;
 `;
@@ -152,62 +136,33 @@ export const RightNextEvent = styled.div`
 
 export const YellowCard = styled.div`
   width: 100%;
-  max-width: 355px;
+  max-width: 80%;
   background: ${(p) => p.bg};
 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
   padding: 20px 24px;
 
   color: white;
-  box-sizing: border-box;
-  overflow: hidden;
-`;
-
-export const SmallTitle = styled(StyledParagraphSmallGray)`
-  color: black;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left;
 `;
 
 export const MainTitle = styled(StyledSemiHeading)`
   color: white;
-  margin: 0;
-  font-size: 20px;
-  line-height: 26px;
-  width: 100%;
-  text-align: left;
 `;
 
 export const Row = styled.div`
   display: flex;
-  align-items: center;
   gap: 8px;
-  margin: 0;
 `;
 
-export const LocText = styled(StyledParagraphSmallVisible)`
+export const LocText = styled(StyledParagraphSmallGray)`
   margin: 0;
   color: white;
-  font-size: 14px;
-  text-align: left;
-`;
-
-export const DateText = styled(StyledParagraphSmallVisible)`
-  margin: 0;
-  color: black;
-  font-size: 15px;
-  font-weight: 500;
-  text-align: left;
 `;
 
 export const RowSpaceBetween = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-top: 8px;
@@ -219,10 +174,6 @@ export const RowSpaceBetween = styled.div`
   }
 
   span.material-symbols-outlined {
-    color: black !important;
-  }
-
-  p {
     color: black !important;
   }
 `;

@@ -3,6 +3,8 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 
+import { StyledParagraph } from "../../components/Styled/Typography.styled";
+
 const LineTxts = () => {
   return (
     <>
@@ -17,47 +19,41 @@ const LineTxts = () => {
 };
 export default LineTxts;
 
-export const SignUpWith = styled.p`
+const SignUpWith = styled(StyledParagraph)`
   width: 100%;
-  font-size: 12px;
-  font-weight: 350;
-  padding: 10px;
-  @media (max-width: 768px) {
-    display: none;
-  }
+  padding: 8px;
+
+ 
 `;
 
-export const LineTxt = styled.div`
+const LineTxt = styled.div`
   display: flex;
-  align-content: center;
   align-items: center;
   justify-content: center;
   width: 90%;
-  @media (max-width: 768px) {
-    display: none;
-  }
+
 `;
-export const LineOne = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
+
+const LineOne = styled.div`
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
   width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
+
+  
 `;
-export const LineTwo = styled.div`
-  color: black;
-  border: 0.1px solid #7e827f;
+
+const LineTwo = styled.div`
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
   width: 120px;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
-export const SignWithEmail = styled.p`
-  font-size: 16px;
-  font-weight: 350;
-  padding: 10px;
+
+const SignWithEmail = styled(StyledParagraph)`
+  padding: 8px;
   @media screen and (min-width: 769px) {
     display: none;
   }
 `;
+
+
+

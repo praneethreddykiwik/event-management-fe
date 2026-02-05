@@ -10,6 +10,7 @@ import { Button } from "../../components/Buttons/Button";
 import { useLocation } from "react-router-dom";
 import { dateObj } from "../../utils/utils";
 import { BADGE_TYPES } from "../../constants/badges";
+import ProgressChart from "../../pages/Events/EventCards/ProgressChart";
 
 import { useState } from "react";
 import PopupModal from "../../components/PopupModal/PopupModal";
@@ -195,8 +196,10 @@ const EventDetails = () => {
                     <StyledSpan className="material-symbols-outlined">
                       person
                     </StyledSpan>
+
                   </StyledEvenInfoCardIcon>
-                  <StyledParagraph2 left>Adnan Shaik Yousuf</StyledParagraph2>
+
+                  <StyledParagraph2 left>{event.firstName}</StyledParagraph2>
                 </StyledEvenInfoCard>
               </StyledEventBodyContainerRightTop>
               <StyledEventBodyContainerRightBototm>
@@ -206,12 +209,15 @@ const EventDetails = () => {
                       Description
                     </StyledEventBodyHeader>
                     <StyledParagraph2 left>
-                      Basic Event Description.
+                      {event.comments}
                     </StyledParagraph2>
                   </StyledEvenInfoCard2>
                 </StyledEventBodyContainerRightBototmHeader>
               </StyledEventBodyContainerRightBototm>
             </StyledEventBodyContainerRight>
+            <StyledEventBodyContainerChart>
+              <ProgressChart events={[event]} />
+            </StyledEventBodyContainerChart>
           </StyledEventBody>
         </StyledBG>
         {/* 
@@ -252,6 +258,12 @@ const StyledEventContainer = styled.div`
 `;
 
 // --------- Event Header ------------
+
+const StyledEventBodyContainerChart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const StyledEventHeader = styled(StyledFlexContainer)`
   /* border: 1px solid red; */
@@ -334,7 +346,7 @@ const StyledEventBodyContainerLeft = styled.div`
   border-radius: 10px;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
 `;
 
 const StyledEventBodyHeader = styled(StyledSemiHeading)`
@@ -366,7 +378,7 @@ const StyledEventBodyContainerRightTop = styled.div`
   /* gap: 20px; */
   padding: 25px;
   border-radius: 10px;
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
 `;
 
 const StyledEventBodyContainerRightBototm = styled.div`
@@ -377,7 +389,7 @@ const StyledEventBodyContainerRightBototm = styled.div`
   height: 50%;
   padding: 15px 35px;
   /* padding: ${({ theme }) => `${theme.spacings["spacing-6"]}`}; */
-  border: ${({ theme }) => theme.borders["border-gray-lite"]};
+  border: ${({ theme }) => theme.borders["border-gray"]};
   /* border: 1px solid pink; */
 `;
 
