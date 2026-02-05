@@ -126,6 +126,10 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const DeletePopup = styled.div`
@@ -133,12 +137,24 @@ const DeletePopup = styled.div`
   justify-content: flex-end;
   gap: 15px;
   padding: 20px 0;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-top: -70px;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    justify-content: flex-start;
+  }
 `;
 
 export const StyledButton = styled(StyledBaseButton)`
