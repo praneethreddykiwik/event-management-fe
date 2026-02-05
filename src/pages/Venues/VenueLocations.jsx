@@ -10,10 +10,10 @@ import {
 const VenueLocations = () => {
   return (
     <Wrapper>
-      <VenueTxt>
-        <VenueNm>Venues Near Me</VenueNm>
-        <SelectVenue>Select a venue and click view to see location</SelectVenue>
-      </VenueTxt>
+      <StyledParagraph>
+        <StyledHeadingBig>Venues Near Me</StyledHeadingBig>
+        <StyledParagraph>Select a venue and click view to see location</StyledParagraph>
+      </StyledParagraph>
 
       <VenueList />
     </Wrapper>
@@ -23,14 +23,9 @@ const VenueLocations = () => {
 export default VenueLocations;
 
 const Wrapper = styled.div`
-  padding: 40px 60px;
+  padding: 40px 40px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 32px;
 `;
 
-const VenueNm = styled(StyledHeadingBig)``;
-const SelectVenue = styled(StyledParagraph)``;
-const VenueTxt = styled(StyledParagraph)`
-  margin: 0;
-`;

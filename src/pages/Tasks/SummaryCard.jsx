@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 import {
   StyledMediumHeading,
@@ -20,11 +18,13 @@ const Value = styled(StyledMediumHeading)`
   color: ${({ theme, type }) =>
     type
       ? theme.badgeColors[`badge-${type}-primary`]
-      : theme.colors.textPrimary};
+      : theme.colors.black};
 `;
 
 const Label = styled(StyledParagraphSmall)`
   text-align: left;
-  margin-top: 10px;
+  margin-top: 16px;
 `;
+
+
 export default SummaryCard;

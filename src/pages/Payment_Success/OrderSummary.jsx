@@ -64,13 +64,13 @@ const OrderSummary = () => {
 export default OrderSummary;
 
 const Card = styled.div`
-  width: 102.3%;
+  width: 117%;
   border: 1px solid #e5e7eb;
-  padding: 30px;
+  padding: 40px;
   border-radius: 0px;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.white};
   margin-left: -35px;
-  padding-bottom: 10px;
+  padding-bottom: 16px;
   margin-top: 4px;
 `;
 
@@ -80,14 +80,14 @@ const BadgeIcon = styled.span`
   justify-content: center;
   background: rgba(16, 185, 129, 0.12);
   border-radius: 999px;
-  padding: 6px;
+  padding: 8px;
   color: #16a34a;
 `;
 
 const Divider2 = styled.hr`
   border: none;
   border-top: 1px solid #a0a0a0ff;
-  margin: 14px 42px;
+  margin: 8px 42px;
 `;
 
 const Stylespan = styled.span``;
@@ -117,7 +117,7 @@ const Stylespan3 = styled.span`
 const StyledHeading = styled.h3`
   text-align: center;
   color: #4a2c95ff;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   font-weight: 600;
   font-size: 18px;
 `;
@@ -125,7 +125,7 @@ const StyledHeading = styled.h3`
 const StyledPara = styled.p`
   text-align: center;
   color: #191c21ff;
-  margin: 0 0 14px 0;
+  margin: 0 0 24px 0;
   font-size: 16px;
   font-weight: 500;
 `;
@@ -133,7 +133,7 @@ const StyledPara = styled.p`
 const Divider = styled.hr`
   border: transparent;
   border-top: 1px solid #bdc0c4ff;
-  margin: 4px 0 14px 0;
+  margin: 4px 0 24px 0;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
 `;
 
@@ -156,7 +156,7 @@ const StRow = styled.div`
 
 const InsuranceRow = styled(StRow)`
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 `;
 
 const TotalRow = styled(StRow)`
@@ -170,11 +170,11 @@ const InfoButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   border-radius: 6px;
 
   &:hover {
-    // background: rgba(229, 231, 240, 0.03);
+    // optional hover styling
   }
 `;
 
@@ -192,8 +192,9 @@ const ToggleSwitch = styled.div`
     top: 2px;
     width: 18px;
     height: 18px;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.white};
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
   }
 `;
+

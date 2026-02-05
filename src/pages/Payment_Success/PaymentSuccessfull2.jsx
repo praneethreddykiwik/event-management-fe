@@ -32,10 +32,10 @@ export default PaymentSuccessfull2;
 const Span = styled.span``;
 
 const VenueCard = styled.div`
-  width: calc(100% - 40px);
-  background: #fff;
+  width: calc(100% - 32px); 
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 3px;
-  padding: 14px;
+  padding: 16px; // spacing-3
   margin-top: -44px;
   box-shadow: 0 8px 22px rgba(13, 14, 18, 0.06);
   text-align: center;
@@ -43,21 +43,21 @@ const VenueCard = styled.div`
 `;
 
 const VenueTitle = styled.h3`
-  margin: 0px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
+  margin: 0;
+  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  color: ${({ theme }) => theme.colors.textPrimary || "#111827"};
 `;
 
 const VenueAddress = styled.p`
-  margin: 6px 0 0 60px;
-  font-size: 13px;
-  color: #6b7280;
+  margin: 6px 0 0 40px; 
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  color: ${({ theme }) => theme.colors.textSecondary || "#6b7280"};
   text-align: left;
 `;
 
 const SuccessWrapper = styled.div`
-  margin-top: 14px;
+  margin-top: 8px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,10 +74,10 @@ const BadgeIcon = styled.div`
 `;
 
 const PaymentTitle = styled.h3`
-  margin-top: 12px;
+  margin: 0 0 16px 0; 
   font-size: 22px;
-  font-weight: 600;
-  color: #111827;
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  color: ${({ theme }) => theme.colors.textPrimary || "#111827"};
   padding-bottom: 1px;
-  margin: 0 0 14px 0;
+  
 `;

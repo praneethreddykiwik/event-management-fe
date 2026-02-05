@@ -31,9 +31,6 @@ const Ctn = styled(Card)`
 const TextBox = styled.div``;
 
 const StyledValue = styled(StyledMediumHeading)`
-  width: 100%;
-  text-align: left;
-  margin: 0;
   color: ${({ theme, type }) =>
     type
       ? theme.badgeColors[`badge-${type}-primary`]
@@ -47,8 +44,6 @@ const ChartWrap = styled.div`
 `;
 
 const StyledLabel = styled(StyledParagraphSmall)`
-  width: 100%;
-  text-align: left;
   margin-top: 10px;
 `;
 export default EventsSummaryCard;

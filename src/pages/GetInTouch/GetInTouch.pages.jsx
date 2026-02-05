@@ -77,7 +77,7 @@ const StyledPage = styled.div`
   padding: 0px 100px 60px;
 `;
 
-const StyledContainer = styled.div`
+ const StyledContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -89,7 +89,7 @@ const StyledContainer = styled.div`
   gap: 30px;
 `;
 
-const StyledBox = styled.div`
+ const StyledBox = styled.div`
   flex: 1;
 `;
 
@@ -100,7 +100,7 @@ const StyledHeader = styled.div`
 
 const StyledCardsGrid = styled.div`
   display: grid;
-  padding: 0px 20px;
+  padding: 0 ${({ theme }) => theme.spacings["spacing-5"]};
   grid-template-columns: repeat(2, 1fr);
   gap: 25px 30px;
   margin-top: 30px;
@@ -121,14 +121,14 @@ const StyledLink = styled(StyledAnchor)`
   color: #21146bff;
 `;
 
-const StyledImageBox = styled.div`
+ const StyledImageBox = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
   padding: 20px;
 `;
 
-const StyledImage = styled.img`
+ const StyledImage = styled.img`
   width: 100%;
   max-width: 380px;
 `;

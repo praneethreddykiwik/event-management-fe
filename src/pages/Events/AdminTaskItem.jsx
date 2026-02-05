@@ -68,6 +68,7 @@ const StyledCard = styled(Card)`
     padding: 12px;
   `}
 `;
+
 const Left = styled.div`
   display: flex;
   gap: 10px;
@@ -75,24 +76,43 @@ const Left = styled.div`
 
 const StatusIcon = styled.span`
   font-size: 20px;
-  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
+  color: ${({ theme, type }) =>
+    theme.badgeColors[`badge-${type}-primary`]};
 `;
+
 const Taskcard = styled.div`
   justify-items: left;
   margin: -1px;
 `;
+
 const EventName = styled(StyledParagraphBold)`
-  margin-top: 0;
   margin-bottom: 5px;
+  
 `;
+
 const TaskAssignee = styled(StyledParagraphSmall)`
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
   margin: 0;
+
+  font-size: ${({ theme }) =>
+    theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) =>
+    theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) =>
+    theme.typography["body-small"]["line-height"]};
 `;
+
 const TaskDate = styled(StyledParagraphSmall)`
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin: 0;
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
+
+  font-size: ${({ theme }) =>
+    theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) =>
+    theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) =>
+    theme.typography["body-small"]["line-height"]};
 `;
+
 const BadgeButton = styled.div`
   width: 25%;
   gap: 15px;

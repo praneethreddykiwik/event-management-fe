@@ -198,7 +198,8 @@ const StyledPopupRow = styled.div`
   display: flex;
   align-items: center;
   padding: 14px 0px;
-  border-bottom: ${({ header }) => (header ? "none" : "1px solid #e5e7eb")};
+  border-bottom: ${({ header, theme }) =>
+    header ? "none" : theme.borders["border-gray"]};
 `;
 
 const StyledPopupHeaderRow = styled.div`
@@ -212,9 +213,16 @@ const StyledPopupCol = styled(StyledSemiHeading)`
   text-align: left;
   font-size: ${theme.light.typography["caption"]["font-size"]};
 `;
+
 const StyledPopupData = styled(StyledParagraphSmallVisible)`
   flex: ${({ flex }) => flex};
-  text-align: left;
+  font-size: ${({ theme }) =>
+    theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) =>
+    theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) =>
+    theme.typography["body-small"]["line-height"]};
+  color: ${({ theme }) => theme.color};
 `;
 
 const StyledPopupActions = styled.div`
@@ -222,12 +230,11 @@ const StyledPopupActions = styled.div`
   gap: 16px;
   margin-left: 50px;
   flex: 1;
-  display: flex;
   justify-content: center;
 `;
 
 const StyledDividerline = styled.div`
   width: 100%;
   height: 1px;
-  background: #e5e7eb;
+  background: ${({ theme }) => theme.colors["gray-disabled"]};
 `;
