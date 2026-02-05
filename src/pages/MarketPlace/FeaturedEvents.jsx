@@ -195,6 +195,11 @@ const Section = styled.section`
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const Header = styled.div`
@@ -248,6 +253,9 @@ const CarouselViewport = styled.div`
   width: ${SIDE_WIDTH * 4 + CENTER_WIDTH}px;
   margin: 0 auto;
   overflow: hidden;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const CarouselTrack = styled.div`
@@ -281,6 +289,10 @@ const EventCard = styled.div`
       filter: grayscale(0%) !important;
     }
   `}
+
+  @media (max-width: 576px) {
+    width: 30%;
+  }
 `;
 
 const RoleLabel = styled.div`
