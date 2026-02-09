@@ -6,29 +6,34 @@ import {
 import { Card } from "../../../components/Cards/Cards";
 import { mobile } from "../../../theme/media-queries";
 
-const EventsSummaryCard = ({ value, label, type, chart }) => (
-  <Ctn>
-    <TextBox>
+const EventsSummaryCard = ({ value, label, type, chart, inline }) => (
+  <Ctn $inline={inline}>
+    <TextBox $inline={inline}>
       <StyledValue type={type}>{value || 0}</StyledValue>
       <StyledLabel>{label}</StyledLabel>
     </TextBox>
-    {chart ? <ChartWrap>{chart}</ChartWrap> : null}
+
+    {chart ? <ChartWrap $inline={inline}>{chart}</ChartWrap> : null}
   </Ctn>
 );
 
 const Ctn = styled(Card)`
   flex-grow: 1;
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  
+
   ${mobile`
-    flex-direction: column;
+    flex-direction: ${({ $inline }) =>
+      $inline ? "row" : "column"};
+    align-items: center;
     gap: 12px;
   `}
 `;
 
-const TextBox = styled.div``;
+
+const TextBox = styled.div`
+  text-align: ${({ $inline }) => ($inline ? "left" : "center")};
+`;
 
 const StyledValue = styled(StyledMediumHeading)`
   color: ${({ theme, type }) =>
@@ -38,9 +43,12 @@ const StyledValue = styled(StyledMediumHeading)`
 `;
 
 const ChartWrap = styled.div`
-  // width: 60px;
-  // height: 60px;
-  // flex: 0 0 64px;
+  ${({ $inline }) =>
+    $inline &&
+    `
+      margin-left: 8px;
+      flex-shrink: 0;
+    `}
 `;
 
 const StyledLabel = styled(StyledParagraphSmall)`

@@ -129,9 +129,7 @@ const BadgeButton = styled.div`
 
 const GaugeWrapper = styled.div`
   ${mobile`
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    display: none;
   `}
 `;
 export default AdminTaskItem;

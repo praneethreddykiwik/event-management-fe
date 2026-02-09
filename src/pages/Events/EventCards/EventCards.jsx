@@ -19,6 +19,7 @@ export const EventCards = ({ events, eventManagers }) => {
           label="Completion Rate"
           value="87%"
           chart={<NpmSparkLine />}
+          inline
         />
       </StyledFlex>
       <ProgressChart events={events} />
