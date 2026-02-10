@@ -22,13 +22,6 @@ export default NewEvent;
 
 export const PageWrapper = styled.div`
   background-color: #e8f4ff;
-  min-height: 768px;
-  padding-left: 120px;
-  padding-right: 120px;
-  padding-bottom: 60px;
+  padding: 0 120px 60px;
 
-  @media (max-width: 768px) {
-    padding: 16px;
-    padding-bottom: 40px;
-  }
 `;

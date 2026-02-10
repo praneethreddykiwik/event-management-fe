@@ -64,7 +64,7 @@ const OrderSummary = () => {
 export default OrderSummary;
 
 const Card = styled.div`
-  width: 102.3%;
+  width: 117%;
   border: 1px solid #e5e7eb;
   padding: 40px;
   border-radius: 0px;

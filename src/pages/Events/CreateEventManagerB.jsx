@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
 import * as enums from "../../myEnum";
+import { theme } from "../../theme/theme";
 
 const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
   const onClickTaskMonitor = () => {
@@ -44,8 +45,8 @@ const CreateButton = styled.div`
 
 const ManageButton = styled.div`
   button {
-    background-color: ${({ theme }) => theme.colors["light-blue"]};
-    color: ${({ theme }) => theme.colors.black};
+    background-color: #eeeeee;
+    color: ${theme.light.colors.black};
   }
 `;
 

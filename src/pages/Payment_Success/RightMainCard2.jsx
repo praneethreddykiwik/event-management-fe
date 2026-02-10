@@ -46,7 +46,8 @@ const RightMainCard2 = () => {
 };
 export default RightMainCard2;
 
-const Stylespan = styled.span``;
+const Stylespan = styled.span`
+`;
 
 const RightCard = styled.div`
   background: ${({ theme }) => theme.colors.white};
@@ -58,15 +59,14 @@ const RightCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 740px;
+  height: 770px;
 `;
 
 const EventImage = styled.img`
-  width: 110%;
+  width: 900px;
   height: 180px;
   object-fit: cover;
-  border-radius: 6px 6px 0 0;
-  margin-top: 0;
+  border-radius: 6px 6px 0px 0px;
 `;
 
 const ButtonGroup = styled.div`

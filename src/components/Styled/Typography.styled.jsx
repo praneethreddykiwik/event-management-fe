@@ -5,7 +5,8 @@ import styled from "styled-components";
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
 
-const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
+const marginBottom = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
 
 // headings
 export const StyledHeadingMaxBig = styled.p`
@@ -50,6 +51,7 @@ export const StyledMediumHeading = styled.p`
   font-weight: 600;
   line-height: 23.4px;
   margin-top: ${marginTop}px;
+  margin-bottom: ${marginBottom}px;
   text-align: ${textAlign};
 `;
 

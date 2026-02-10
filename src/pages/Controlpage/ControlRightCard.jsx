@@ -4,6 +4,8 @@ import LastUsersBox from "./CntrlLastUsers.jsx";
 import * as enums from "../../myEnum";
 import Thermo from "./ControlThermo.jsx";
 import Temp from "./ControlTemp.jsx";
+import { theme } from "../../theme/theme.jsx";
+import { StyledParagraphGray } from "../../components/Styled/Typography.styled.jsx";
 
 const RightCardContainer = () => {
   const [active, setActive] = useState(false);
@@ -14,7 +16,7 @@ const RightCardContainer = () => {
       <Divider />
 
       <ThermoHeader>
-        <ThermoTitle>{enums.THERMOVALUE}</ThermoTitle>
+        <StyledParagraphGray>{enums.THERMOVALUE}</StyledParagraphGray>
 
         <ThermoToggle
           role="switch"
@@ -29,7 +31,6 @@ const RightCardContainer = () => {
           }}
         />
       </ThermoHeader>
-
       <Thermo />
       <Temp />
       <LastUsersBox />
@@ -40,17 +41,17 @@ const RightCardContainer = () => {
 export default RightCardContainer;
 
 const RightSidebar = styled.div`
-  flex: 0 0 290px;
+  flex: 0 0 340px;
   width: 290px;
   background: #191827;
-  border-radius: 24px;
+  border-radius: 10px;
   padding: 28px 24px;
-  color: #fff;
+  color: ${theme.light.colors.white};
 
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 649px;
+  height: 660px;
 `;
 
 const Divider = styled.div`
@@ -64,19 +65,12 @@ const Divider = styled.div`
 const Time = styled.h1`
   text-align: center;
   font-size: 30px;
-  margin: 0;
 `;
 
 const ThermoHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const ThermoTitle = styled.p`
-  font-size: 17px;
-  opacity: 0.9;
-  margin: 0;
 `;
 
 const ThermoToggle = styled.div`

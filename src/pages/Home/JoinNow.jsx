@@ -22,9 +22,9 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledJoinNowPara>{enums.JOIN_PARAGRAPH}</StyledJoinNowPara>
+        <StyledParagraphSmallGray>{enums.JOIN_PARAGRAPH}</StyledParagraphSmallGray>
         <StyledSemiHeading>{enums.JOIN_HEADING}</StyledSemiHeading>
-        <StyledJoinBtn>{enums.JOIN_BTN}</StyledJoinBtn>
+        <StyledBaseButton sx={{ width: 120 }}>{enums.JOIN_BTN}</StyledBaseButton>
       </StyledContainerTwo>
     </HomePageLayout>
   );

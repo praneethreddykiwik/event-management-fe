@@ -153,10 +153,6 @@ const AnchorParah = styled(StyledParagraphSmallGray)`
 const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
   width: 75%;
   margin: 0;
-
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
 `;
 
 const AccountSignIn = styled(StyledParagraphSmallGray)`

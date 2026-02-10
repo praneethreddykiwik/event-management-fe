@@ -23,8 +23,8 @@ const BookVenue = () => {
   return (
     <HomePageLayout flexDirection="column">
       <StyledContainer>
-        <StyledHead>{enums.BOOK_HEADING}</StyledHead>
-        <StyledPara>{enums.BOOK_PARA}</StyledPara>
+        <StyledHeading left>{enums.BOOK_HEADING}</StyledHeading>
+        <StyledParagraphSmallGray left>{enums.BOOK_PARA}</StyledParagraphSmallGray>
       </StyledContainer>
       <StyledInputContainer>
         <Input
@@ -33,10 +33,10 @@ const BookVenue = () => {
           onChange={handlEmailChange}
           value={email}
         />
-        <StyledBtn type="base">{enums.BOOK_BTN}</StyledBtn>
+        <StyledBaseButton>{enums.BOOK_BTN}</StyledBaseButton>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledPolicyTxt>{enums.BOOK_POLICY}</StyledPolicyTxt>
+        <StyledParagraphSmallGray left>{enums.BOOK_POLICY}</StyledParagraphSmallGray>
       </StyledPolicy>
     </HomePageLayout>
   );

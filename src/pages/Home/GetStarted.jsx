@@ -22,9 +22,9 @@ const GetStarted = () => {
       <StyledChildContainer>
         <StyledContent>
           <StyledHeadingBig left>{enums.MAIN_HEADING}</StyledHeadingBig>
-          <StyledContentParagraph>
+          <StyledParagraphSmallGray left>
             {enums.MAIN_PARAGRAPH}
-          </StyledContentParagraph>
+          </StyledParagraphSmallGray>
           <StyledContentBtn>
             <StyledBaseButton
               onClick={() => navigate("/registration")}

@@ -16,6 +16,7 @@ import {
 } from "../../../utils/utils";
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { theme } from "../../../theme/theme";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -66,7 +67,7 @@ const CreateEvent = ({ onCreateEvent }) => {
       navigate,
       reqPayload: {
         ...reqPayload,
-        assigned_to_uid: reqPayload.assignedEventManager,
+        assignedToUid: reqPayload.assignedEventManager,
         tenantUid,
         scheduledAt,
         status: "pending",

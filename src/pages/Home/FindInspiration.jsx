@@ -19,7 +19,7 @@ const FindInspiration = () => {
       </StyledImageContainer>
       <StyledContainerTwo>
         <StyledSemiHeading left>{enums.FIND_HEADING}</StyledSemiHeading>
-        <StyledContent>{enums.FIND_PARAGRAPH}</StyledContent>
+        <StyledParagraphSmallGray left>{enums.FIND_PARAGRAPH}</StyledParagraphSmallGray>
         <StyledBtnContainer>
           <StyledLink>{enums.FINDOUTLINE_BTN}</StyledLink>
           <StyledIcon src={forward_arrow} />
