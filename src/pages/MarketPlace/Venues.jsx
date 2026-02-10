@@ -3,6 +3,7 @@ import { Venue } from "../../components/Venue/Venue";
 import {
   StyledHeading,
   StyledAnchorSmall,
+  StyledSemiHeading,
 } from "../../components/Styled/Typography.styled";
 import venueImg1 from "../../assets/venue_imgs/venueImg1.jpeg";
 import venueImg2 from "../../assets/venue_imgs/venueImg2.jpg";
@@ -10,6 +11,8 @@ import venueImg3 from "../../assets/venue_imgs/venueImg3.jpeg";
 import venueImg4 from "../../assets/venue_imgs/venueImg4.jpeg";
 import venueImg5 from "../../assets/venue_imgs/venueImg5.jpeg";
 import venueImg6 from "../../assets/venue_imgs/venueImg6.jpeg";
+import { Actions, Arrows, Header, ViewMore } from "./FeaturedEvents";
+import { mobile, tablet } from "../../theme/media-queries";
 
 export const Venues = () => {
   const venues = [
@@ -72,14 +75,15 @@ export const Venues = () => {
     <Wrapper>
       <Header>
         <Left>
-          <StyledHeading left>Venues</StyledHeading>
-          <StyledAnchorSmall>View more</StyledAnchorSmall>
+          <StyledSemiHeading left>Venues</StyledSemiHeading>
         </Left>
-
-        <Right>
-          <span>‹</span>
-          <span>›</span>
-        </Right>
+        <Actions>
+          <ViewMore>View more</ViewMore>
+          <Arrows>
+            <button><span class="material-symbols-outlined">chevron_left</span></button>
+            <button><span class="material-symbols-outlined">chevron_right</span></button>
+          </Arrows>
+        </Actions>
       </Header>
 
       <Grid>
@@ -94,13 +98,6 @@ export const Venues = () => {
 const Wrapper = styled.div`
   padding: 20px;
   background: #f6fbfc;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
 `;
 
 const Left = styled.div`
@@ -122,11 +119,11 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
+  ${mobile`
     grid-template-columns: revert;
-  }
+  `}
+
+  ${tablet`
+    grid-template-columns: repeat(2, 1fr);
+  `}
 `;

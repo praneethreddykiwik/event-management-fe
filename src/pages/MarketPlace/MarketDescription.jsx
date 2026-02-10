@@ -5,6 +5,7 @@ import {
 } from "../../components/Styled/Typography.styled";
 import styled from "styled-components";
 import { WELCOME, MARKET_PLACE_DESCRIPTION_TEXT } from "../../myEnum";
+import { mobile, tablet } from "../../theme/media-queries";
 
 const MarketDescription = () => {
   return (
@@ -38,10 +39,16 @@ const MainContainer = styled.main`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  ${mobile`
+    flex-direction: column-reverse;
+  `}
 `;
 
 const ArticleContent = styled.article`
   max-width: 720px;
+  ${tablet`
+    width: 100%;
+  `}
 `;
 
 const Description = styled.p`
