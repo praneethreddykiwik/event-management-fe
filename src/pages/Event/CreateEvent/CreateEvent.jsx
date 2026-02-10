@@ -19,6 +19,7 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
 import { paths } from "../../../constants/paths";
 import { theme } from "../../../theme/theme";
+import { mobile } from "../../../theme/media-queries";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -128,6 +129,10 @@ export const InputBox = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   flex-direction: row;
+
+  ${mobile(`
+    flex-direction: column;
+  `)}
 `;
 
 export default CreateEvent;
@@ -135,9 +140,18 @@ export default CreateEvent;
 const StyledBox = styled.div`
   flex-basis: 40%;
   flex-shrink: 0;
+
+   ${mobile(`
+    flex-basis: 100%;
+  `)}
 `;
 
 const StyledFlex = styled.div`
   display: flex;
   gap: 60px;
+
+   ${mobile(`
+    flex-direction: column;
+    gap: 30px;
+  `)}
 `;

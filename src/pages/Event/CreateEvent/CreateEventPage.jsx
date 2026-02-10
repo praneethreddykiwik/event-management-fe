@@ -15,6 +15,7 @@ import { eventsMetadata } from "../../../constants/metadata/events.metadata";
 import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { toast } from "react-toastify";
+import { mobile } from "../../../theme/media-queries";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const CreateEventPage = () => {
 
   const onChooseVenue = (event) => {
     dispatch(
-      updateAllEventInputs(generateEventDataToEdit(eventManagers, event))
+      updateAllEventInputs(generateEventDataToEdit(eventManagers, event)),
     );
     toast.success("Selected event details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -76,4 +77,9 @@ const StyledSuggestions = styled.div`
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
+  ${mobile(`
+    .venue-ctn {
+      flex: 0 0 100%;
+    }
+  `)}
 `;
