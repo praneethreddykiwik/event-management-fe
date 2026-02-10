@@ -24,6 +24,7 @@ import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
+import {mobile} from "../../theme/media-queries";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -127,9 +128,9 @@ const PageWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  @media (max-width: 768px) {
+  ${mobile`
     padding: 16px;
-  }
+  `}
 `;
 
 const DeletePopup = styled.div`
@@ -144,10 +145,10 @@ const StyledButtonContainer = styled.div`
   flex-direction: row-reverse;
   margin-top: -70px;
 
-  @media (max-width: 768px) {
+   ${mobile`
     margin-top: 0;
-    justify-content: flex-start;
-  }
+    justify-content: center;
+  `}
 `;
 
 const StyledButton = styled(StyledBaseButton)`

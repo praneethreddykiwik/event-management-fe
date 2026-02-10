@@ -46,11 +46,6 @@ const Events = () => {
       },
     });
   };
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -106,11 +101,8 @@ const AdminDashboardContainer = styled.div`
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
-<<<<<<< HEAD
-=======
   box-shadow: ${({ theme }) => theme.shadows["level-2"]};
   background: ${({ theme }) => theme.colors.white};
->>>>>>> 32a4d7263831747cb154cd46ec559aaaec86f2b4
   box-shadow:
     rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;

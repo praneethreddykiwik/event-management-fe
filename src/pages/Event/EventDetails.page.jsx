@@ -27,13 +27,10 @@ const EventDetails = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteReason, setDeleteReason] = useState("");
 
-  const handleDeleteEvent = (payload) => {
-    dispatch(deleteEventDispatch(payload));
-  };
   const onDelete = () => {
     dispatch(
       deleteEventDispatch({
-        eventUid: event.eventUid,
+        eventUid: event.uid,
       }),
     );
   };
@@ -108,15 +105,18 @@ const EventDetails = () => {
               onClick={() => {
                 dispatch(
                   deleteEventDispatch({
-                    eventUid: event.eventUid,
+                    eventUid: event.uid,
                     tenantUid: event.tenantUid,
                     deletedByUid: JSON.parse(localStorage.getItem("user"))?.uid,
                     deleteReason: deleteReason.trim(),
                   }),
                 );
+                setTimeout(() => {
+                  navigate(-1);
+                }, 1000);
 
                 setShowDeleteConfirm(false);
-                setDeleteReason(""); 
+                setDeleteReason("");
               }}
             >
               Yes
@@ -196,7 +196,6 @@ const EventDetails = () => {
                     <StyledSpan className="material-symbols-outlined">
                       person
                     </StyledSpan>
-
                   </StyledEvenInfoCardIcon>
 
                   <StyledParagraph2 left>{event.firstName}</StyledParagraph2>
@@ -208,9 +207,7 @@ const EventDetails = () => {
                     <StyledEventBodyHeader left>
                       Description
                     </StyledEventBodyHeader>
-                    <StyledParagraph2 left>
-                      {event.comments}
-                    </StyledParagraph2>
+                    <StyledParagraph2 left>{event.comments}</StyledParagraph2>
                   </StyledEvenInfoCard2>
                 </StyledEventBodyContainerRightBototmHeader>
               </StyledEventBodyContainerRightBototm>

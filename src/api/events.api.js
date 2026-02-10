@@ -6,6 +6,6 @@ export const createEventsApi = (payload) =>
   httpsClient.post("/events/create-event", payload);
 
 export const deleteEventsApi = (payload) =>
-  httpsClient.delete("/events/delete-Event", {
+  httpsClient.delete("/events/delete-event", {
     data: payload,
   });
