@@ -9,6 +9,7 @@ import {
 import styled from "styled-components";
 
 import { HomePageLayout } from "./HomePageLayout.jsx";
+import { mobile } from "../../theme/media-queries.jsx";
 
 const FindInspiration = () => {
   return (
@@ -41,13 +42,10 @@ const StyledIcon = styled.img`
 `;
 
 const StyledFindInspirationLayout = styled(HomePageLayout)`
-  @media (max-width: 768px) {
+  ${mobile`
     background-color: #f1faff;
-  }
-
-  @media (max-width: 510px) {
-    padding-bottom: 120px;
-  }
+    align-items: stretch;
+  `}
 `;
 
 const StyledImageContainer = styled.div`
@@ -57,44 +55,47 @@ const StyledImageContainer = styled.div`
   margin-top: 30px;
   height: 300px;
 
-  @media (max-width: 768px) {
+  ${mobile`
     margin-top: 10px;
-  }
+    height: auto;
+  `}
 `;
 
 const StyledImage = styled.img`
   width: 50%;
   height: 100%;
+  object-fit: cover;
 
-  @media (max-width: 768px) {
-    width: 90%;
-  }
+  ${mobile`
+    width: 100%;
+    height: auto;
+    
+  `}
 `;
 
 const StyledContainerTwo = styled.div`
   width: 50%;
   word-wrap: break-word;
 
-  @media (max-width: 768px) {
+  ${mobile`
     margin-top: 10px;
-    width: 90%;
-    height: 200px;
+    width: 100%;
     color: ${({ theme }) => theme.colors.black};
-  }
+  `}
 `;
 
 const StyledContent = styled(StyledParagraphSmallGray)`
   text-align: left;
 
-  @media (max-width: 768px) {
+  ${mobile`
     font-weight: 600;
     font-size: 16px;
-  }
+  `}
 `;
 
 const StyledBtnContainer = styled.div`
   display: flex;
-  align-items: left;
+  align-items: center;
   margin-top: 25px;
 `;
 

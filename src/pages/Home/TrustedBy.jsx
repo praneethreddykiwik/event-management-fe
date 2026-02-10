@@ -7,6 +7,8 @@ import * as enums from "../../myEnum";
 import styled from "styled-components";
 import { HomePageLayout } from "./HomePageLayout.jsx";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const TrustedBy = () => {
   return (
     <StylesTrustedLayout flexDirection="column">
@@ -26,9 +28,9 @@ const TrustedBy = () => {
 const StylesTrustedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
 
-  @media (max-width: 768px) {
+  ${mobile`
     background-color: ${({ theme }) => theme.colors.white};
-  }
+  `}
 `;
 
 const StyledContainerImg = styled.div`
@@ -38,9 +40,10 @@ const StyledContainerImg = styled.div`
   margin-top: 20px;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  ${mobile`
     width: 90%;
-  }
+    gap: 10px;
+  `}
 `;
 
 // Icons
@@ -48,10 +51,10 @@ const StyledIconFirst = styled.img`
   width: 60px;
   height: 80px;
 
-  @media (max-width: 768px) {
+  ${mobile`
     width: 50px;
     height: 60px;
-  }
+  `}
 `;
 const StyledIconContainer = styled.div`
   width: 120px;
@@ -61,20 +64,18 @@ const StyledIconContainer = styled.div`
   align-items: center;
   border-radius: 50%;
 
-  @media (max-width: 768px) {
+  ${mobile`
     width: 70px;
-  }
+  `}
 `;
 
 const StyledIconOnes = styled.img`
   width: 120px;
-  height: none;
-  border-radius: none;
   background-color: ${({ theme }) => theme.colors.white};
 
-  @media (max-width: 768px) {
+  ${mobile`
     width: 80px;
-  }
+  `}
   ${({ sx }) => ({ ...sx })}
 `;
 

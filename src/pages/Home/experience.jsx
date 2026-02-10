@@ -11,6 +11,8 @@ import {
   StyledParagraphBold,
 } from "../../components/Styled/Typography.styled";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const Experience = () => {
   return (
     <StyledExperienceLayout>
@@ -50,9 +52,9 @@ const Experience = () => {
 const StyledExperienceLayout = styled(HomePageLayout)`
   background-color: #f1faff;
 
-  @media (max-width: 768px) {
+  ${mobile`
     display: none;
-  }
+  `}
 `;
 
 const StyledBodyContainer = styled.div`

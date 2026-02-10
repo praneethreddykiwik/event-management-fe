@@ -12,6 +12,8 @@ import { HomePageLayout } from "./HomePageLayout.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const GetStarted = () => {
   const navigate = useNavigateWithQuery();
 
@@ -56,13 +58,16 @@ const StyledGetStartedLayout = styled(HomePageLayout)`
   background-color: #f1faff;
   gap: 20px;
 
-  @media (max-width: 768px) {
-    background-color: ${({ theme }) => theme.colors.white};
-    background-image: url(${getStarted_imgMi});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  ${mobile`
+    background:
+    linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255)),
+    url(${getStarted_imgMi});
+
+  background-size: cover;
+  background-position: center;
+
+  justify-content: center;
+  `}
 `;
 
 const StyledChildContainer = styled.div`
@@ -73,15 +78,15 @@ const StyledChildContainer = styled.div`
   align-content: center;
   align-items: center;
 
-  @media (max-width: 768px) {
-    width: 80%;
-  }
+  ${mobile`
+    width: 90%;
+  `}
 `;
 const StyledRightChildContainer = styled.div`
   width: 40%;
-  @media (max-width: 768px) {
+  ${mobile`
     display: none;
-  }
+  `}
 `;
 const StyledContent = styled.div`
   width: 100%;
@@ -94,10 +99,10 @@ const StyledContentParagraph = styled(StyledParagraphSmallGray)`
   text-align: left;
   font-weight: 500;
 
-  @media (max-width: 768px) {
-    color: ${({ theme }) => theme.colors.white};
+  ${mobile`
+    color: ${({ theme }) => theme.colors.black};
     font-size: 16px;
-  }
+  `}
 `;
 
 const StyledContentBtn = styled.div`
@@ -105,6 +110,16 @@ const StyledContentBtn = styled.div`
   gap: 30px;
   margin-top: 20px;
   align-items: center;
+
+  ${mobile`
+  background:
+  linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,)),
+  url(${getStarted_imgMi});
+
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+`}
 `;
 
 const StyledBtnIcon = styled.img`
@@ -115,12 +130,12 @@ const StyledBtnIcon = styled.img`
 const StyledChildContainerImg = styled.img`
   width: 100%;
 
-  @media (max-width: 768px) {
+  ${mobile`
     justify-content: center;
     background-image: url(${getStarted_imgMi});
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  `}
 `;
 
 export default GetStarted;

@@ -283,7 +283,7 @@ export const BOOK_HEADING =
   "Get updated when your favorite venue is open for booking.";
 export const BOOK_PARA =
   " Join our email list to resceive updates on events near you, booking and appointment availabilty tips on great event planning, management and more.";
-export const BOOK_BTN = "Notify when available";
+export const BOOK_BTN = "Get more information";
 export const BOOK_POLICY =
   "*Please refer to our Privacy Policy for more details.";
 

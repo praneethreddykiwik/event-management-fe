@@ -11,6 +11,8 @@ import {
 import styled from "styled-components";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const JoinNow = () => {
   return (
     <HomePageLayout flexDirection="column">
@@ -30,6 +32,10 @@ const JoinNow = () => {
 
 const StyledJoinBtn = styled(StyledBaseButton)`
   width: 120px;
+
+  ${mobile`
+    width: 180px;
+  `}
 `;
 
 const StyledJoinNowPara = styled(StyledParagraphSmallGray)``;
@@ -41,26 +47,26 @@ const StyledContainerOne = styled.div`
   gap: 30px;
   margin-top: 60px;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  ${mobile`
     margin-top: 0px;
-  }
+    gap: 10px
+  `}
 `;
 
 const StyledContainerOneImg = styled.img`
   width: 270px;
 
-  @media (max-width: 768px) {
-    width: 25%;
-  }
+  ${mobile`
+    width: 30%;
+  `}
 `;
 
 const StyledContainerTwo = styled.div`
   margin-top: 30px;
 
-  @media (max-width: 768px) {
+  ${mobile`
     width: 80%;
-  }
+  `}
 `;
 
 export default JoinNow;
