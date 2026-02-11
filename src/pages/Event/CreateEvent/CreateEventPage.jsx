@@ -65,8 +65,12 @@ const CreateEventPage = () => {
 
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
+  
+ 
+  ${mobile`
+    padding: 15px;
+  `}
 `;
-export default CreateEventPage;
 
 const StyledSuggestions = styled.div`
   display: flex;
@@ -77,9 +81,16 @@ const StyledSuggestions = styled.div`
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
-  ${mobile(`
+  
+  ${mobile`
+    flex-direction: column;
+    gap: 20px;
+
     .venue-ctn {
       flex: 0 0 100%;
     }
-  `)}
+  `}
+  
 `;
+
+export default CreateEventPage;
