@@ -9,7 +9,7 @@ export const paths = {
   tasks: "/tasks",
   createTask: "/tasks/create",
   registration: "/registration",
-
+  twoFactorAuth: "/two-factor-auth",
   eventsDetails: "/events/event-details",
   createEvent: "/events/create-event",
 
