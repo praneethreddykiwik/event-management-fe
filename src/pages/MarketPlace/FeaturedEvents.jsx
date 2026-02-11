@@ -30,8 +30,8 @@ const events = [
   { img: carImg4, role: "SPEAKER", name: "Angelina" },
 ];
 
-const SIDE_WIDTH = 150;
-const CENTER_WIDTH = 450;
+const SIDE_WIDTH = 116;
+const CENTER_WIDTH = 460;
 const GAP = 0;
 const VISIBLE_COUNT = 5;
 
@@ -171,7 +171,7 @@ const StyledHostAvatars = styled.div`
 
 const Section = styled.section`
   max-width: 1200px;
-  margin: 0 auto;
+  // margin: 0 auto;
   padding: 0 20px;
 
   @media (max-width: 1024px) {
@@ -232,7 +232,7 @@ export const Arrows = styled.div`
 `;
 
 const CarouselViewport = styled.div`
-  width: ${SIDE_WIDTH * 4 + CENTER_WIDTH}px;
+  width: ${SIDE_WIDTH * 6 + CENTER_WIDTH}px;
   margin: 0 auto;
   overflow: hidden;
   @media (max-width: 1024px) {
