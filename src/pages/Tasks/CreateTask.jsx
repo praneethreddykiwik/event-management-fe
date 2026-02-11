@@ -3,6 +3,7 @@ import {
   StyledHeading,
   StyledHeadingBig,
 } from "../../components/Styled/Typography.styled";
+import { mobile } from "../../theme/media-queries";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledHr } from "../../components/Styled/Common.styled";
@@ -129,17 +130,34 @@ export const CreateTask = () => {
 
 const DashboardContainer = styled.div`
   padding: 0 16px 40px 16px;
+
+  ${mobile`
+    padding: 0 12px 24px 12px;
+  `}
 `;
+
 
 const StyledBox = styled.div`
   flex-basis: 50%;
   flex-shrink: 0;
+
+  ${mobile`
+    flex-basis: 100%;
+  `}
 `;
+
 
 const StyledFlex = styled.div`
   display: flex;
   gap: 160px;
   padding-left: 140px;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    padding-left: 0;
+  `}
 `;
 
 const StyledSuggestions = styled.div`
@@ -147,9 +165,17 @@ const StyledSuggestions = styled.div`
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 32px;
-
+  
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
+
+  ${mobile`
+    gap: 16px;
+
+    .venue-ctn {
+      flex: 0 0 100%;
+    }
+  `}
 `;
 
