@@ -120,7 +120,6 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
 
 const PageWrapper = styled.div`
   padding: 32px 40px;
@@ -156,4 +155,4 @@ const StyledButton = styled(StyledBaseButton)`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-
+export default UserManagement;
