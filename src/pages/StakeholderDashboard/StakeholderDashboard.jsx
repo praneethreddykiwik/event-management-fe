@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
+import { mobile } from "../../theme/media-queries"; 
 
 import Badge from "../../components/Badge/Badge.component";
 
@@ -105,6 +106,11 @@ const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.color["light-blue"]};
   padding: 80px;
   padding-top: 32px;
+
+  ${mobile`
+    padding: 26px;
+    padding-top: 16px;
+  `}
 `;
 
 const Container = styled.div`
@@ -112,10 +118,18 @@ const Container = styled.div`
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  ${mobile`
+    padding: 14px;
+  `}
 `;
 
 const Header = styled.div`
   margin-bottom: 20px;
+
+  ${mobile`
+    padding: 0px;
+  `}
 `;
 
 const Card = styled.div`
@@ -123,6 +137,10 @@ const Card = styled.div`
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;
+
+  ${mobile`
+    padding: 12px;
+  `}
 `;
 
 const CardHeader = styled.div`
@@ -148,6 +166,11 @@ const ActionsRow = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 12px;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 8px;
+  `}
 `;
 
 const ButtonWrapper = styled.div`
