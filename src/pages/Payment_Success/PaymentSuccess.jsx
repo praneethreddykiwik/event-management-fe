@@ -2,6 +2,7 @@ import OrderSummary from "./OrderSummary";
 import styled from "styled-components";
 import RightMainCard2 from "./RightMainCard2";
 import PromoCode2 from "./PromoCode2";
+import { mobile } from "../../theme/media-queries";
 
 const PaymentSuccess = () => {
   return (
@@ -37,6 +38,12 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 12px;
+  `}
 `;
 
 const LeftCard = styled.div`
@@ -47,5 +54,11 @@ const LeftCard = styled.div`
   width: 500px;
   height: 770px;
   box-sizing: border-box;
+
+   ${mobile`
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  `}
 `;
 

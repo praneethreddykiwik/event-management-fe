@@ -1,5 +1,7 @@
+import { StyledParagraphSmallGray } from "../../components/Styled/Typography.styled";
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
+import { mobile } from "../../theme/media-queries";
 
 const PromoCode2 = () => {
   return (
@@ -34,46 +36,54 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
   border: none;
-  padding: 8px 16px; // spacing-2 spacing-3
+  padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
 `;
 
 const Promo = styled.div`
   text-align: center;
-  margin-top: 40px; // spacing-6
+  margin-top: 40px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 
 const PromoTitle = styled.h4`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  margin-bottom: 8px; // spacing-2
+  margin-bottom: 8px;
 `;
 
 const PromoInput = styled.div`
   display: inline-flex;
-  gap: 8px; // spacing-2
-  margin-top: 16px; // spacing-3
+  gap: 8px; 
+  margin-top: 16px; 
+
+  ${mobile`
+    flex-direction: column;
+    width: 100%;
+  `}
 `;
 
 const PromoField = styled.input`
   border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
-  padding: 8px 16px; // spacing-2 spacing-3
+  padding: 8px 16px; 
   border-radius: 4px;
   outline: none;
   width: 190px;
   background: ${({ theme }) => theme.colors.white};
+
+  ${mobile`
+    flex-direction: column;
+    width: 100%;
+  `}
 `;
 
-const Terms = styled.p`
-  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+const Terms = styled(StyledParagraphSmallGray)`
   line-height: ${({ theme }) => theme.typography["body-small"]["line-height"]};
-  color: ${({ theme }) => theme.colors["text-gray-color"]};
   text-align: justify;
-  margin: 40px 0 0 0; // spacing-6
+  margin: 30px 0 0 0;
 `;
 
 const HighlightText = styled.span`
-  color: ${({ theme }) => theme.colors["active-color"]};
+  color: ${({ theme }) =>  theme.colors.lightBlue || "#2e1d5aff;"};
   text-decoration: underline;
 `;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import payment_img from "../../assets/payment_images/payment_img.jpg";
 import PaymentSuccessfull2 from "./PaymentSuccessfull2";
 import Details2 from "./Details2";
+import { StyledNoBorderButton } from "../../components/Styled/Buttons.styled";
+import { mobile } from "../../theme/media-queries";
 
 const RightMainCard2 = () => {
   return (
@@ -28,11 +30,10 @@ const RightMainCard2 = () => {
             <ShareBtn>
               <Stylespan
                 className="material-icons"
-                style={{ fontSize: "18px", marginRight: "4px" }}
               >
                 {PAYMENT_PAGE.SHARE_I}
               </Stylespan>
-              <Stylespan>{PAYMENT_PAGE.SHARE_TEXT}</Stylespan>
+              <Stylespan className="hide-on-mobile">{PAYMENT_PAGE.SHARE_TEXT}</Stylespan>
             </ShareBtn>
           </ShareLink>
         </ButtonGroup>
@@ -47,6 +48,20 @@ const RightMainCard2 = () => {
 export default RightMainCard2;
 
 const Stylespan = styled.span`
+
+  &.hide-on-mobile {
+    ${mobile`
+      display: none;
+    `}
+  }
+
+  &.material-icons {
+    font-size: 18px;
+
+    ${mobile`
+      font-size: 26px;
+    `}
+  }
 `;
 
 const RightCard = styled.div`
@@ -54,12 +69,16 @@ const RightCard = styled.div`
   border-radius: 5px;
   box-shadow: 0 8px 30px rgba(24, 39, 75, 0.06);
   width: 400px;
-  padding: 12px 12px 40px 12px; 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 770px;
+
+  ${mobile`
+    width: 100%;
+    height: auto;
+  `}
 `;
 
 const EventImage = styled.img`
@@ -67,6 +86,10 @@ const EventImage = styled.img`
   height: 180px;
   object-fit: cover;
   border-radius: 6px 6px 0px 0px;
+
+  ${mobile`
+    height: 140px;
+  `}
 `;
 
 const ButtonGroup = styled.div`
@@ -76,6 +99,11 @@ const ButtonGroup = styled.div`
   gap: 12px; 
   justify-content: center;
   margin-top: 16px; 
+
+  ${mobile`
+    flex-direction:row;
+    gap: 10px;
+  `}
 `;
 
 const DownloadCard = styled.div`
@@ -84,44 +112,40 @@ const DownloadCard = styled.div`
   padding: 16px; 
   display: flex;
   padding-right: 8px; 
-  margin-right: -70px;
+  margin-right: -40px;
+
+  ${mobile`
+    flex: 1;
+    display: flex;
+  `}
 `;
 
-const DownloadBtn = styled.button`
+const DownloadBtn = styled(StyledNoBorderButton)`
   width: 80%;
   background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primary});
   color: ${({ theme }) => theme.colors.white};
-  border: none;
-  padding: 8px 12px; 
-  border-radius: 28px;
-  cursor: pointer;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  box-shadow: 0 10px 26px rgba(16, 185, 129, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 const ShareLink = styled.div`
   color: ${({ theme }) => theme.colors.primary};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  cursor: pointer;
 `;
 
 const ShareBtn = styled.button`
-  background: transparent;
-  border: none;
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
+  padding-right: 40px;
   font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
   display: inline-flex;
-  align-items: right;
-  padding-right: 40px; 
+  align-items: center;
+  gap: 6px;
+
+   ${mobile`
+    text: disable;
+  `}
 `;
 
 const CancelWrap = styled.div`
@@ -138,4 +162,5 @@ const CancelBtn = styled.button`
   cursor: pointer;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  margin-bottom: 20px;
 `;
