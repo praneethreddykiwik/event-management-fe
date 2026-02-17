@@ -327,3 +327,5 @@ export const LOGO_TEXT = "eventz";
 export const NAV_HOME = "Home";
 export const NAV_EVENTS = "Events";
 export const NAV_VENUES = "Venues";
+
+export const EVENT_VENUE = "Venue";
