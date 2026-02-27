@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
 import * as enums from "../../myEnum";
 import { theme } from "../../theme/theme";
+import { mobile } from "../../theme/media-queries";
 
 const CreateEventManagerB = ({ onCreateEvent, setOpenManagersPopup }) => {
   const onClickTaskMonitor = () => {
@@ -28,6 +29,12 @@ const CreateEventButtons = styled.div`
   display: flex;
   padding: 20px 0;
   gap: 10px;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0;
+  `}
 `;
 
 const CreateButton = styled.div`

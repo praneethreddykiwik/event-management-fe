@@ -10,6 +10,7 @@ import { paths } from "../../constants/paths";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import * as enums from "../../myEnum";
 import GaugeChart from "../../components/Charts/GuageChart";
+import { mobile } from "../../theme/media-queries";
 
 const AdminTaskItem = ({ data }) => {
   console.log("my data", data);
@@ -46,10 +47,12 @@ const AdminTaskItem = ({ data }) => {
           {enums.ADMIN_DETAILS}
         </Button>
       </BadgeButton>
-      <GaugeChart
-        value={valueData}
-        fill={valueData <= 30 ? "red" : valueData <= 70 ? "orange" : "green"}
-      />
+      <GaugeWrapper>
+        <GaugeChart
+          value={valueData}
+          fill={valueData <= 30 ? "red" : valueData <= 70 ? "orange" : "green"}
+        />
+      </GaugeWrapper>
     </StyledCard>
   );
 };
@@ -59,6 +62,11 @@ const StyledCard = styled(Card)`
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
+  ${mobile`
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  `}
 `;
 
 const Left = styled.div`
@@ -111,6 +119,17 @@ const BadgeButton = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+
+  ${mobile`
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  `}
 `;
 
+const GaugeWrapper = styled.div`
+  ${mobile`
+    display: none;
+  `}
+`;
 export default AdminTaskItem;
