@@ -19,6 +19,7 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
 import { paths } from "../../../constants/paths";
 import { theme } from "../../../theme/theme";
+import { mobile } from "../../../theme/media-queries";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -118,7 +119,7 @@ const CreateEvent = ({ onCreateEvent }) => {
 export const Form = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   gap: 16px;
 `;
@@ -128,16 +129,33 @@ export const InputBox = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   flex-direction: row;
-`;
 
-export default CreateEvent;
+  ${mobile(`
+    flex-direction: column;
+    width:100%;
+  `)}
+`;
 
 const StyledBox = styled.div`
   flex-basis: 40%;
   flex-shrink: 0;
+
+   ${mobile`
+    flex: 0 0 100%;
+  `}}
 `;
 
 const StyledFlex = styled.div`
   display: flex;
   gap: 60px;
+  margin-top: 20px;
+
+   ${mobile`
+    flex-direction: column;
+    gap: 30px;
+  `}
+
+   }
 `;
+
+export default CreateEvent;
