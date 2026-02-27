@@ -3,6 +3,8 @@ import {
   StyledHeading,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
+
+import { mobile } from "../../theme/media-queries";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
@@ -64,59 +66,96 @@ export default ProfileEdit;
 
 
 
-export const StyleRightForm = styled.div`
+const StyleRightForm = styled.div`
   margin-top: 275px;
   flex: 1;
   text-align: left;
   background: ${theme.light.colors.white};
   padding: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+  ${mobile`
+    margin-top: 0px;
+    padding: 15px;
+  `}
 `;
 
-export const StyleProfileImageLarge = styled.img`
+const StyleProfileImageLarge = styled.img`
   width: 110px;
   height: 110px;
   margin: 10px 30px;
   border-radius: 50%;
+
+  ${mobile`
+    width: 80px;
+    height: 80px;
+    margin: 10px auto;
+    display: block;
+  `}
 `;
 
-export const StyleNameRow = styled.div`
+const StyleNameRow = styled.div`
   display: flex;
   gap: 120px;
   border-bottom: 1px solid #8c8c8c;
   padding: 60px 20px 20px 20px;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 10px;
+  `}
 `;
 
-export const StyleInputBox = styled.input`
+const StyleInputBox = styled.input`
   width: 100%;
   padding: 10px 1px 10px 10px;
   border-radius: 24px;
   border: 2px solid #ccc;
 `;
 
-export const StyleFlextable = styled.label`
+const StyleFlextable = styled.label`
   display: flex;
   border-bottom: 1px solid #8c8c8c;
   padding: 40px 20px;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 10px;
+  `}
 `;
 
-export const StyleDescribetext = styled.div`
+const StyleDescribetext = styled.div`
   width: 70%;
+
+  ${mobile`
+    width: 100%;
+  `}
 `;
 
-export const StylePasswordRow = styled.div`
+const StylePasswordRow = styled.div`
   display: flex;
   gap: 20px;
   padding: 40px 20px;
   border-bottom: 1px solid #a9a7a7ff;
+
+  ${mobile`
+    flex-direction: column;
+    padding: 20px 10px;
+  `}
 `;
 
-export const StyleEmailRow = styled.div`
+const StyleEmailRow = styled.div`
   position: relative;
   width: 490px;
+
+  ${mobile`
+    width: 100%;
+  `}
 `;
 
-export const StyleEditIconEmail = styled.span`
+const StyleEditIconEmail = styled.span`
   position: absolute;
   right: 10px;
   top: 50%;
