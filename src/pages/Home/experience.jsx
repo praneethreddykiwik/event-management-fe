@@ -11,6 +11,8 @@ import {
   StyledParagraphBold,StyledParagraphSmallGray
 } from "../../components/Styled/Typography.styled";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const Experience = () => {
   return (
     <StyledExperienceLayout>
@@ -49,6 +51,10 @@ const Experience = () => {
 
 const StyledExperienceLayout = styled(HomePageLayout)`
   background-color: #f1faff;
+
+  ${mobile`
+    display: none;
+  `}
 `;
 
 const StyledBodyContainer = styled.div`

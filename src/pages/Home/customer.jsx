@@ -20,6 +20,8 @@ import { StyledHeading } from "../../components/Styled/Typography.styled.jsx";
 import CommentCard from "./customerCommentCard.jsx";
 import DemoComment from "./helper.customer.jsx";
 
+import { mobile } from "../../theme/media-queries.jsx";
+
 const Customer = () => {
   const imagesOne = [customer6, customer1, customer5, customer3, customer2];
   const imagesTwo = [customer3, customer4, customer5, customer1, customer6];
@@ -57,7 +59,8 @@ const Customer = () => {
 
 const CustomerCarouselWrapper = styled.div`
   position: relative;
-  overflow: visible;
+  overflow: hidden;
+  width: 100%;
   z-index: 1;
 
   .material-symbols-outlined {
@@ -71,11 +74,27 @@ const StyledCustomerLayout = styled(HomePageLayout)`
   background-color: ${({ theme }) => theme.colors.black};
   height: 400px;
   overflow: hidden;
+
+  ${mobile`
+    flex-direction: column-reverse;
+    height: auto;
+    overflow: visible;
+    justify-content: flex-start;
+  `}
 `;
 
 const StyledSubContainerOne = styled.div`
   width: 40%;
   overflow: hidden;
+
+  ${mobile`
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+    overflow: visible;
+  `}
 `;
 
 const StyledImgOne = styled.div`
@@ -84,16 +103,30 @@ const StyledImgOne = styled.div`
   background-image: ${(params) => "url(" + params.src + ")"};
   background-position: center;
   background-size: cover;
+
+  ${mobile`
+    width: 70px;
+    height: 70px;
+  `}
 `;
 
 const StyledSubContainerTwo = styled.div`
   display: flex;
   gap: 15px;
+
+  ${mobile`
+    width: 100%;
+    flex-direction: column;
+    gap: 25px;
+  `}
 `;
 
 const StyledHead = styled(StyledHeading)`
   color: ${({ theme }) => theme.colors.primary};
 
+  ${mobile`
+    display: none;
+  `}
 `;
 
 const StyledImageOne = styled.div`
@@ -102,6 +135,12 @@ const StyledImageOne = styled.div`
   gap: 15px;
   width: 100%;
   overflow: hidden;
+
+  ${mobile`
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  `}
 `;
 
 const StyledImageTwo = styled.div`
@@ -112,10 +151,22 @@ const StyledImageTwo = styled.div`
   gap: 15px;
   height: 100%;
   margin-top: 75px;
+
+  ${mobile`
+    flex-direction: row;
+    margin-top: 0%;
+  `}
 `;
 
 const StyledHeadM = styled(StyledHeading)`
   display: none;
+
+  ${mobile`
+    display: flex;
+    color: ${({ theme }) => theme.colors["inactive-color"]};
+    justify-content: center;
+    padding: 20px;
+  `}
 `;
 
 export default Customer;
