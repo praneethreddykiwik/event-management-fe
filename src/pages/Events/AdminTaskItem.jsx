@@ -3,6 +3,7 @@ import Badge from "../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
+  StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import { Card } from "../../components/Cards/Cards";
 import { Button } from "../../components/Buttons/Button";
@@ -34,10 +35,13 @@ const AdminTaskItem = ({ data }) => {
 
         <Taskcard>
           <EventName>{data.eventName}</EventName>
-          <TaskDate>Scheduled At: {data.scheduledAt}</TaskDate>
-          <TaskAssignee>
-            {enums.EVENT_MANAGER}: {data.firstName}
-          </TaskAssignee>
+          <TaskDate><TaskcardTitle>Scheduled At:</TaskcardTitle> {data.scheduledAt}</TaskDate>
+          <TaskInfo>
+            <TaskcardTitle>{enums.EVENT_VENUE}:</TaskcardTitle> {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
+          </TaskInfo>
+          <TaskInfo>
+            <TaskcardTitle>{enums.EVENT_MANAGER}:</TaskcardTitle> {data.firstName}
+          </TaskInfo>
         </Taskcard>
       </Left>
 
@@ -82,7 +86,12 @@ const StatusIcon = styled.span`
 
 const Taskcard = styled.div`
   justify-items: left;
-  margin: -1px;
+  margin-top: -2px;
+`;
+
+const TaskcardTitle = styled(StyledParagraphSmallGray)`
+  display: inline;
+  font-weight: bold;
 `;
 
 const EventName = styled(StyledParagraphBold)`
@@ -90,7 +99,7 @@ const EventName = styled(StyledParagraphBold)`
   
 `;
 
-const TaskAssignee = styled(StyledParagraphSmall)`
+const TaskInfo = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors["text-gray-color"]};
   margin: 0;
 
