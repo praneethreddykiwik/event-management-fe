@@ -2,9 +2,9 @@ import styled from "styled-components";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from "../../../components/Styled/Typography.styled";
-import { Card } from "../../../components/Cards/Cards";
-import { mobile } from "../../../theme/media-queries";
+} from "../../../../components/Styled/Typography.styled";
+import { Card } from "../../../../components/Cards/Cards";
+import { mobile } from "../../../../theme/media-queries";
 
 const EventsSummaryCard = ({ value, label, type, chart, inline }) => (
   <Ctn $inline={inline}>
@@ -23,13 +23,11 @@ const Ctn = styled(Card)`
   justify-content: space-between;
 
   ${mobile`
-    flex-direction: ${({ $inline }) =>
-      $inline ? "row" : "column"};
+    flex-direction: ${({ $inline }) => ($inline ? "row" : "column")};
     align-items: center;
     gap: 12px;
   `}
 `;
-
 
 const TextBox = styled.div`
   text-align: ${({ $inline }) => ($inline ? "left" : "center")};

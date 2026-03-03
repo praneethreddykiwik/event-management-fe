@@ -2,8 +2,8 @@ import styled from "styled-components";
 import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
-import { NpmSparkLine } from "../../../components/Charts/SparkLine";
-import { mobile } from "../../../theme/media-queries";
+import { mobile } from "../../../../theme/media-queries";
+import { NpmSparkLine } from "../../../../components/Charts/SparkLine";
 
 export const EventCards = ({ events, eventManagers }) => {
   return (

@@ -77,7 +77,7 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
           Pages <ArrowIcon $open={openDropdown === "pages"} />
           <Dropdown $open={openDropdown === "pages"}>
             <RBACHOC perm="admin:panel">
-              <DropdownItem onClick={() => navigate(paths.events)}>
+              <DropdownItem onClick={() => navigate(paths.eventsDashboard)}>
                 <ItemIcon>event</ItemIcon>
                 Admin Dashboard
               </DropdownItem>
@@ -125,7 +125,6 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
     </MenuBox>
   );
 };
-
 
 const MenuBox = styled.div`
   display: flex;

@@ -6,6 +6,10 @@ const initialState = {
   tasksLoading: false, // idle | loading | authenticated | unauthenticated
   tasksError: null,
 
+  tasksByEvent: [],
+  tasksByEventsLoading: false, // idle | loading | authenticated | unauthenticated
+  tasksByEventsError: null,
+
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
@@ -20,6 +24,20 @@ const tasksSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder
+      .addCase(actions.fetchTasksApiAction.pending, (state) => {
+        state.tasksByEventsLoading = true;
+      })
+      .addCase(actions.fetchTasksApiAction.fulfilled, (state, action) => {
+        state.tasksByEvent = action.payload?.details;
+        state.tasksByEventsLoading = false;
+        state.tasksByEventsError = null;
+      })
+      .addCase(actions.fetchTasksApiAction.rejected, (state) => {
+        state.authUser = null;
+        state.tasksByEventsLoading = false;
+        state.tasksByEventsError = "Error";
+      });
     builder
       .addCase(actions.fetchEventsAndTasksAction.pending, (state) => {
         state.tasksLoading = true;

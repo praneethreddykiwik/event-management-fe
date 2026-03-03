@@ -92,8 +92,8 @@ export const eventMetaData = (eventManagers = []) => {
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
   const valueMap = {
-    eventName: event.title,
-    eventDescription: event.comments,
+    eventName: event.eventName,
+    comments: event.comments,
     eventDate: event.eventDate,
     eventTime: event.eventTime,
     venue: event.venue,

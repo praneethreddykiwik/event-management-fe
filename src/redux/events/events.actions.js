@@ -14,7 +14,7 @@ export const fetchEventsDispatch = createAsyncThunk(
       toast.error("Failed to fetch Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
-  }
+  },
 );
 
 export const createEventsDispatch = createAsyncThunk(
@@ -23,15 +23,15 @@ export const createEventsDispatch = createAsyncThunk(
     try {
       const res = await createEventsApi(payload.reqPayload);
       toast.success("created Events successfully");
-      payload.navigate(paths.events);
+      payload.navigate(paths.eventsDashboard);
       return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||
           err?.message ||
-          "Failed to create Events"
+          "Failed to create Events",
       );
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
-  }
+  },
 );

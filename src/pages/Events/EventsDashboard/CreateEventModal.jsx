@@ -1,15 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { eventFormConfig } from "./eventFormConfig";
-import { Input } from "../../components/Inputs/Input";
-import RoleDropdown from "../../components/RoleDropdown/RoleDropdown";
-import { Button } from "../../components/Buttons/Button";
+import { Input } from "../../../components/Inputs/Input";
+import RoleDropdown from "../../../components/RoleDropdown/RoleDropdown";
+import { Button } from "../../../components/Buttons/Button";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from "../../components/Styled/Typography.styled";
-import * as enums from "../../myEnum";
-import { theme } from "../../theme/theme";
+} from "../../../components/Styled/Typography.styled";
+import * as enums from "../../../myEnum";
+import { theme } from "../../../theme/theme";
 
 const CreateEventModal = ({ onClose }) => {
   const [form, setForm] = useState({});
@@ -102,9 +102,9 @@ const CreateEventModal = ({ onClose }) => {
         </Form>
 
         <Actions>
-          <CreateB>
-            <Button onClick={handleCreate}>{enums.CREATE_BUTTON}</Button>
-          </CreateB>
+          <Button onClick={handleCreate} whiteText>
+            {enums.CREATE_BUTTON}
+          </Button>
 
           <CancelB>
             <Button onClick={onClose}>{enums.CANCEL_BUTTON}</Button>
@@ -187,11 +187,5 @@ const CancelB = styled.div`
   button {
     background-color: #eeeeee;
     color: ${theme.light.colors.black};
-  }
-`;
-
-const CreateB = styled.div`
-  button {
-    color: ${theme.light.colors.white};
   }
 `;

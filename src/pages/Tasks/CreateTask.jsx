@@ -27,6 +27,7 @@ import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
+import { fetchVendorsAction } from "../../redux/users/users.actions";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
@@ -42,15 +43,14 @@ export const CreateTask = () => {
 
   useEffect(() => {
     if (!vendors.length) {
-      navigate(paths.tasks);
-      return;
+      dispatch(fetchVendorsAction());
     }
     if (isEditMode) {
       dispatch(updateAllTaskInputs(generateTaskDataToEdit(vendors, taskData)));
     } else if (isAddMode) {
       dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
     }
-  }, []);
+  }, [vendors]); // need to refactor this dependency
 
   const onSubmit = (payloadParams) => {
     if (isEditMode) {
@@ -83,14 +83,15 @@ export const CreateTask = () => {
 
   const onClickSuggestion = (selectedTask) => {
     dispatch(
-      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask))
+      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask)),
     );
     toast.success("Selected task details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goBack = () => {
-    navigate(paths.tasks);
+    // navigate(paths.tasks);
+    window.history.back();
   };
 
   return (
@@ -100,15 +101,15 @@ export const CreateTask = () => {
           {isEditMode
             ? "Edit Task"
             : isAddMode
-            ? "Add task to Event"
-            : "Create Task"}
+              ? "Add task to Event"
+              : "Create Task"}
         </StyledHeading>
         <StyledHr />
         <StyledFlex>
           <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
-              Please choose from one of the below Events
+              Please choose from one of the below Task
             </StyledHeadingBig>
             <Button onClick={goBack}>Go Back</Button>
           </StyledBox>
@@ -136,7 +137,6 @@ const DashboardContainer = styled.div`
   `}
 `;
 
-
 const StyledBox = styled.div`
   flex-basis: 50%;
   flex-shrink: 0;
@@ -145,7 +145,6 @@ const StyledBox = styled.div`
     flex-basis: 100%;
   `}
 `;
-
 
 const StyledFlex = styled.div`
   display: flex;
@@ -165,7 +164,7 @@ const StyledSuggestions = styled.div`
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 32px;
-  
+
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
@@ -178,4 +177,3 @@ const StyledSuggestions = styled.div`
     }
   `}
 `;
-

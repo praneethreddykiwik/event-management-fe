@@ -1,17 +1,18 @@
 import styled from "styled-components";
-import Badge from "../../components/Badge/Badge.component";
+import Badge from "../../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
   StyledParagraphSmallGray,
-} from "../../components/Styled/Typography.styled";
-import { Card } from "../../components/Cards/Cards";
-import { Button } from "../../components/Buttons/Button";
-import { paths } from "../../constants/paths";
-import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import * as enums from "../../myEnum";
-import GaugeChart from "../../components/Charts/GuageChart";
-import { mobile } from "../../theme/media-queries";
+} from "../../../components/Styled/Typography.styled";
+import { Card } from "../../../components/Cards/Cards";
+import { Button } from "../../../components/Buttons/Button";
+import { paths } from "../../../constants/paths";
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import * as enums from "../../../myEnum";
+import GaugeChart from "../../../components/Charts/GuageChart";
+import { mobile } from "../../../theme/media-queries";
+import { formatDateTime } from "../../../utils/utils";
 
 const AdminTaskItem = ({ data }) => {
   console.log("my data", data);
@@ -35,13 +36,16 @@ const AdminTaskItem = ({ data }) => {
 
         <Taskcard>
           <EventName>{data.eventName}</EventName>
-          <TaskDate><TaskcardTitle>Scheduled At:</TaskcardTitle> {data.scheduledAt}</TaskDate>
-          <TaskInfo>
-            <TaskcardTitle>{enums.EVENT_VENUE}:</TaskcardTitle> {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
-          </TaskInfo>
-          <TaskInfo>
-            <TaskcardTitle>{enums.EVENT_MANAGER}:</TaskcardTitle> {data.firstName}
-          </TaskInfo>
+          <StyledParagraphSmallGray>
+            Scheduled At: {formatDateTime(data.scheduledAt)}
+          </StyledParagraphSmallGray>
+          <StyledParagraphSmallGray>
+            {enums.EVENT_VENUE}:{" "}
+            {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
+          </StyledParagraphSmallGray>{" "}
+          <StyledParagraphSmallGray>
+            {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}
+          </StyledParagraphSmallGray>{" "}
         </Taskcard>
       </Left>
 
@@ -66,6 +70,7 @@ const StyledCard = styled(Card)`
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
+  align-items: center;
   ${mobile`
     flex-direction: column;
     gap: 10px;
@@ -80,8 +85,7 @@ const Left = styled.div`
 
 const StatusIcon = styled.span`
   font-size: 20px;
-  color: ${({ theme, type }) =>
-    theme.badgeColors[`badge-${type}-primary`]};
+  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
 `;
 
 const Taskcard = styled.div`
@@ -89,37 +93,8 @@ const Taskcard = styled.div`
   margin-top: -2px;
 `;
 
-const TaskcardTitle = styled(StyledParagraphSmallGray)`
-  display: inline;
-  font-weight: bold;
-`;
-
 const EventName = styled(StyledParagraphBold)`
   margin-bottom: 5px;
-  
-`;
-
-const TaskInfo = styled(StyledParagraphSmall)`
-  color: ${({ theme }) => theme.colors["text-gray-color"]};
-  margin: 0;
-
-  font-size: ${({ theme }) =>
-    theme.typography["body-small"]["font-size"]};
-  font-weight: ${({ theme }) =>
-    theme.typography["body-small"]["font-weight"]};
-  line-height: ${({ theme }) =>
-    theme.typography["body-small"]["line-height"]};
-`;
-
-const TaskDate = styled(StyledParagraphSmall)`
-  color: ${({ theme }) => theme.colors["text-gray-color"]};
-
-  font-size: ${({ theme }) =>
-    theme.typography["body-small"]["font-size"]};
-  font-weight: ${({ theme }) =>
-    theme.typography["body-small"]["font-weight"]};
-  line-height: ${({ theme }) =>
-    theme.typography["body-small"]["line-height"]};
 `;
 
 const BadgeButton = styled.div`

@@ -81,7 +81,8 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   const goBack = () => {
-    navigate(paths.events);
+    // navigate(paths.eventsDashboard);
+    window.history.back();
   };
 
   return (
@@ -107,7 +108,7 @@ const CreateEvent = ({ onCreateEvent }) => {
         </InputBox>
         <StyledBox>
           <StyledHeadingBig left>
-            Please choose from one of the below Tasks
+            Please choose from one of the below Events
           </StyledHeadingBig>
           <Button onClick={goBack}>Go Back</Button>
         </StyledBox>

@@ -23,10 +23,16 @@ const CreateEventPage = () => {
   const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
-    dispatch(fetchManagersAction());
-    const eventMetaDataFull = eventMetaData(eventManagers);
-    dispatch(updateAllEventInputs(eventMetaDataFull));
+    initialCalls();
   }, []);
+
+  const initialCalls = async () => {
+    const callback = (eventManagers) => {
+      const eventMetaDataFull = eventMetaData(eventManagers);
+      dispatch(updateAllEventInputs(eventMetaDataFull));
+    };
+    dispatch(fetchManagersAction({ callback }));
+  };
 
   const onCreateEvent = (payload) => {
     dispatch(createEventsDispatch(payload));
@@ -65,8 +71,7 @@ const CreateEventPage = () => {
 
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
-  
- 
+
   ${mobile`
     padding: 15px;
   `}
@@ -81,7 +86,7 @@ const StyledSuggestions = styled.div`
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
-  
+
   ${mobile`
     flex-direction: column;
     gap: 20px;
@@ -90,7 +95,6 @@ const StyledSuggestions = styled.div`
       flex: 0 0 100%;
     }
   `}
-  
 `;
 
 export default CreateEventPage;

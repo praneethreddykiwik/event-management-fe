@@ -13,10 +13,11 @@ export const formatScheduleDate = (date, hour, minute) => {
   let scheduledAt = new Date(
     `${date}T${hour.toString().padStart(2, "0")}:${minute
       .toString()
-      .padStart(2, "0")}:00`
+      .padStart(2, "0")}:00`,
   );
   return scheduledAt.toISOString();
 };
+
 export const dateObj = (iso) => {
   const myNewDate = new Date(iso);
 

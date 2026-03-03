@@ -2,26 +2,26 @@ import styled from "styled-components";
 import {
   StyledParagraphSmallVisible,
   StyledSemiHeading,
-} from "../../../components/Styled/Typography.styled";
-import { Button } from "../../../components/Buttons/Button";
-import Badge from "../../../components/Badge/Badge.component";
-import PopupModal from "../../../components/PopupModal/PopupModal";
+} from "../../../../components/Styled/Typography.styled";
+import { Button } from "../../../../components/Buttons/Button";
+import Badge from "../../../../components/Badge/Badge.component";
+import PopupModal from "../../../../components/PopupModal/PopupModal";
 import { useState } from "react";
-import * as enums from "../../../myEnum";
-import { usersSelector } from "../../../redux/users/users.slice";
+import * as enums from "../../../../myEnum";
+import { usersSelector } from "../../../../redux/users/users.slice";
 import { useDispatch, useSelector } from "react-redux";
-import EditUserPopup from "../../../components/users/EditUserPopup";
-import { Icon } from "../../../components/Icons/Icons";
+import EditUserPopup from "../../../../components/users/EditUserPopup";
+import { Icon } from "../../../../components/Icons/Icons";
 import {
   deleteUserAction,
   fetchManagersAction,
-} from "../../../redux/users/users.actions";
-import { updateAllRegInputs } from "../../../redux/farms/farms.slice";
+} from "../../../../redux/users/users.actions";
+import { updateAllRegInputs } from "../../../../redux/farms/farms.slice";
 import {
   generateRegDataToEdit,
   registrationMetaData,
-} from "../../../redux/farms/metadata/reg.metadata";
-import { theme } from "../../../theme/theme";
+} from "../../../../redux/farms/metadata/reg.metadata";
+import { theme } from "../../../../theme/theme";
 
 const det = {
   add: {
@@ -216,12 +216,9 @@ const StyledPopupCol = styled(StyledSemiHeading)`
 
 const StyledPopupData = styled(StyledParagraphSmallVisible)`
   flex: ${({ flex }) => flex};
-  font-size: ${({ theme }) =>
-    theme.typography["body-small"]["font-size"]};
-  font-weight: ${({ theme }) =>
-    theme.typography["body-small"]["font-weight"]};
-  line-height: ${({ theme }) =>
-    theme.typography["body-small"]["line-height"]};
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) => theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) => theme.typography["body-small"]["line-height"]};
   color: ${({ theme }) => theme.color};
 `;
 

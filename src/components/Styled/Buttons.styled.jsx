@@ -44,6 +44,14 @@ export const StyledBaseButton = styled.button`
   }
 `;
 
+export const StyledDeleteBtn = styled(StyledBaseButton)`
+  background-color: #d63a2f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+`;
+
 export const StyledOutlinedButton = styled.button`
   height: ${height};
 
