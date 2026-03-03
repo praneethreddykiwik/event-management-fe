@@ -18,12 +18,12 @@ import { mobile } from "../../theme/media-queries.jsx";
 const GetStarted = () => {
   const navigate = useNavigateWithQuery();
 
-  const onClick = async () => {
-    await axios.post(
-      "https://ww9v3wwhmp.ap-south-1.awsapprunner.com/health",
-      {},
-    );
-  };
+  // const onClick = async () => {
+  //   await axios.post(
+  //     "https://ww9v3wwhmp.ap-south-1.awsapprunner.com/health",
+  //     {},
+  //   );
+  // };
 
   return (
     <StyledGetStartedLayout>
@@ -35,8 +35,8 @@ const GetStarted = () => {
           </StyledParagraphSmallGray>
           <StyledContentBtn>
             <StyledBaseButton
-              onClick={onClick}
-              // onClick={() => navigate("/registration")}
+              // onClick={onClick}
+              onClick={() => navigate("/registration")}
               className="!w-[120px]"
             >
               {enums.START_BTN}

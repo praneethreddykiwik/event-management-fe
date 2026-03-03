@@ -37,7 +37,6 @@ export const TasksList = () => {
   };
 
   const onEdit = (task) => {
-    debugger;
     navigate(`${paths.createTask}`, {
       state: {
         eventUid: event.uid,

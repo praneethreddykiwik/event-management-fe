@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { authSelector } from "../../redux/auth/auth.slice";
 import { StyledParagraphSmallGray } from "../../components/Styled/Typography.styled";
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
@@ -33,7 +32,9 @@ export const BottomReg = () => {
         </StyledParagraphSmallGray>
       )}
 
-      <StyledParagraphSmallGray center>{TermsConditions}</StyledParagraphSmallGray>
+      <StyledParagraphSmallGray center>
+        {TermsConditions}
+      </StyledParagraphSmallGray>
 
       {/* Raghavendra */}
     </StyledBox>
@@ -43,4 +44,3 @@ export const BottomReg = () => {
 const StyledBox = styled.div`
   margin-top: 30px;
 `;
-

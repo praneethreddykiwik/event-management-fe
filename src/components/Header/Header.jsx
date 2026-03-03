@@ -25,6 +25,7 @@ const Header = () => {
   const [menuOpen] = useState(false);
 
   const goLogin = () => navigate(paths.login);
+  const goRegister = () => navigate(paths.registration);
 
   const onClickMenu = (item) => {
     if (item.label === "Logout") {
@@ -50,7 +51,12 @@ const Header = () => {
         <Icon aria-label="Language">language</Icon>
 
         {!isLoggedIn ? (
-          <Button onClick={goLogin}>Login</Button>
+          <>
+            <Button type="secondary" onClick={goRegister}>
+              Register
+            </Button>
+            <Button onClick={goLogin}>Login</Button>
+          </>
         ) : (
           <>
             <Icon aria-label="Notifications">notifications</Icon>
