@@ -35,6 +35,7 @@ const authSlice = createSlice({
         state.authError = null;
       })
       .addCase(actions.bootstrapAuthAction.fulfilled, (state, action) => {
+        debugger;
         state.authUser = action.payload;
         const role = action.payload.role;
 
@@ -54,7 +55,8 @@ const authSlice = createSlice({
         state.authError = null;
       })
       .addCase(actions.loginAction.fulfilled, (state, action) => {
-        state.authUser = action.payload;
+        debugger;
+        // state.authUser = action.payload;
         state.authStatus = "authenticated";
       })
       .addCase(actions.loginAction.rejected, (state, action) => {
