@@ -27,16 +27,22 @@ import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 import VenueLocations from "./pages/Venues/VenueLocations";
 import { RBACRoute } from "./RBAC/RBACRoute.jsx";
+import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
 
   const unAuthenticatedRoutes = (
     <>
-      <Route path={"/"} element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path={"/get-in-touch"} element={<GetInTouch />} />
+      <Route
+      path={paths.twoFactorAuth}
+      element={<TwoFactorAuthPage />}
+    />
+
+      <Route path="/get-in-touch" element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path="*" element={<Login />} />
     </>
@@ -45,17 +51,18 @@ const AppRoutes = () => {
   const authenticatedRoutes = (
     <>
       {/* base */}
-      <Route path={"/"} element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path={"/Gateway"} element={<GatewayPage />} />
-      <Route path={"/get-in-touch"} element={<GetInTouch />} />
-      <Route path={"/paymentSuccess"} element={<PaymentSuccess />} />
-      <Route path={"/controlpage"} element={<Controlpage />} />
-      <Route path={"/profile"} element={<Profile />} />
-      <Route path={"/samplePage"} element={<SamplePage />} />
-      <Route path={"/Subscriptions"} element={<Subscriptions />} />
-      <Route path={"/player-card"} element={<PlayerCard />} />
+      <Route path="/Gateway" element={<GatewayPage />} />
+      <Route path="/get-in-touch" element={<GetInTouch />} />
+      <Route path="/paymentSuccess" element={<PaymentSuccess />} />
+      <Route path="/controlpage" element={<Controlpage />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/samplePage" element={<SamplePage />} />
+      <Route path="/Subscriptions" element={<Subscriptions />} />
+      <Route path="/player-card" element={<PlayerCard />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
+      <Route path={"/TwoFactorAuth"} element={<TwoFactorAuthPage />} />
 
       {/* Admin */}
       <Route
@@ -66,6 +73,7 @@ const AppRoutes = () => {
           </RBACRoute>
         }
       />
+
       <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
 
       {/* Profile */}
@@ -86,9 +94,8 @@ const AppRoutes = () => {
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
 
-      <Route path="*" element={<Home />} />
-
       <Route path={paths.venues} element={<VenueLocations />} />
+
       <Route
         path={paths.userManagement}
         element={
@@ -97,14 +104,17 @@ const AppRoutes = () => {
           </RBACRoute>
         }
       />
+
+      <Route path="*" element={<Home />} />
     </>
   );
 
   const isLoggedIn = authStatus === "authenticated";
-  console.log("abdul isLoggedIn", isLoggedIn);
 
   return (
-    <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>
+    <Routes>
+      {isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}
+    </Routes>
   );
 };
 
