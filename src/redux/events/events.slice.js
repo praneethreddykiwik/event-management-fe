@@ -8,6 +8,8 @@ const initialState = {
 
   createEventLoading: false,
   createEventError: null,
+
+  currentEvent: {},
 };
 
 const eventsSlice = createSlice({
@@ -16,6 +18,9 @@ const eventsSlice = createSlice({
   reducers: {
     updateTenantId(state, action) {
       state.tenantId = action.payload;
+    },
+    updateCurrentEvent(state, action) {
+      state.currentEvent = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -52,5 +57,6 @@ const eventsSlice = createSlice({
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError, updateTenantId } = eventsSlice.actions;
+export const { clearAuthError, updateTenantId, updateCurrentEvent } =
+  eventsSlice.actions;
 export default eventsSlice.reducer;

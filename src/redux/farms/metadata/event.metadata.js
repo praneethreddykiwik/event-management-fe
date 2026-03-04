@@ -1,4 +1,5 @@
 import { validationList } from "../../../constants/validations.constants";
+import { isoToInputDateTime } from "../../../utils/utils";
 
 const halfSize = "calc(50% - 8px)";
 
@@ -91,19 +92,30 @@ export const eventMetaData = (eventManagers = []) => {
 };
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+  const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
+  const { date: eventDateVal = "", time: eventTimeVal = "" } =
+    isoToInputDateTime(scheduled || "");
+
   const valueMap = {
-    eventName: event.eventName,
-    comments: event.comments,
-    eventDate: event.eventDate,
-    eventTime: event.eventTime,
+    eventName: event.title || event.eventName,
+    comments: event.comments || event.eventDescription || "",
+    eventDate: event.eventDate || eventDateVal,
+    eventTime: event.eventTime || eventTimeVal,
     venue: event.venue,
     eventType: event.eventType,
     expectedAttendees: event.expectedAttendees,
-    assignedEventManager: event.assignedEventManager,
+    // event uses assignedToUid in API, map to form's assignedEventManager
+    assignedEventManager:
+      event.assignedEventManager || event.assignedToUid || "",
   };
 
-  return eventMetaData(eventManagers).map((el) => ({
+  const finalData = eventMetaData(eventManagers).map((el) => ({
     ...el,
     value: valueMap[el.name] ?? "",
+    initialValue: valueMap[el.name] ?? "",
   }));
+
+  //debugger;
+
+  return finalData;
 };

@@ -75,6 +75,7 @@ const AppRoutes = () => {
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
       <Route path={paths.createEvent} element={<CreateEventPage />} />
+      <Route path={paths.editEvent} element={<CreateEventPage />} />
 
       {/* Tasks */}
       <Route path={paths.tasks} element={<Tasks />} />

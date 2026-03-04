@@ -25,14 +25,11 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
 import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
-import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import { paths } from "../../constants/paths";
 import { fetchVendorsAction } from "../../redux/users/users.actions";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
   const { vendors } = useSelector(usersSelector);

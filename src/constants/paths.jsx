@@ -10,6 +10,7 @@ export const paths = {
 
   eventsDetails: "/events/event-details",
   createEvent: "/events/create-event",
+  editEvent: "/events/edit-event",
 
   vendor: "/vendor",
   customer: "/customer",

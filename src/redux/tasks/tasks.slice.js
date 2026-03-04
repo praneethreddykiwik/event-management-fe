@@ -13,6 +13,10 @@ const initialState = {
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
+
+  editTaskLoading: false,
+  editTask: false,
+  editTaskError: "",
 };
 
 const tasksSlice = createSlice({
