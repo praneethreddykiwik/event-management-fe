@@ -14,6 +14,7 @@ import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";
 import { useState } from "react";
+// import { desktop, laptop, tablet } from "../../theme/media-queries";
 
 const LoginForm = () => {
   const navigate = useNavigateWithQuery();
@@ -90,14 +91,6 @@ const LoginForm = () => {
           {enums.REGISTER}
         </AnchorLinkPrimary>
       </AccountSignIn>
-      <TermsConditionsTxt>{enums.BY_USING_OUR_APPS_PP}</TermsConditionsTxt>
-
-      <CheckboxRow>
-        <AnchorParah>
-          {Terms} <SignInAnchor>{Conditions}</SignInAnchor> and{" "}
-          <SignInAnchor>{Policy}</SignInAnchor>
-        </AnchorParah>
-      </CheckboxRow>
     </Form>
   );
 };
@@ -118,12 +111,7 @@ const InputBox = styled.div`
 `;
 
 const ForgotPassword = styled(StyledParagraphSmallGray)`
-  margin-top: 4px;
-  margin-bottom: 16px;
-
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
+  margin-bottom: 10px;
 `;
 
 const Reset = styled(StyledAnchor)`
@@ -133,35 +121,9 @@ const Reset = styled(StyledAnchor)`
   color: ${({ theme }) => theme.colors.primary} !important;
 `;
 
-const CheckboxRow = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 32px;
-`;
-
-const AnchorParah = styled(StyledParagraphSmallGray)`
-  margin: 0 auto;
-  margin-top: 32px;
-  font-size: ${({ theme }) => theme.typography.caption["font-size"]};
-  letter-spacing: 0;
-  line-height: ${({ theme }) => theme.typography.caption["line-height"]};
-`;
-
-const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
-  width: 75%;
-  margin: 0;
-`;
-
 const AccountSignIn = styled(StyledParagraphSmallGray)`
   margin: 0;
   margin-top: -8px;
-`;
-
-const SignInAnchor = styled(StyledAnchor)`
-  font-size: ${({ theme }) => theme.typography.caption["font-size"]};
-  text-decoration: none;
 `;
 
 export default LoginForm;

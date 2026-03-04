@@ -8,6 +8,7 @@ import {
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import * as enums from "../../myEnum";
+import { mobile } from "../../theme/media-queries";
 
 const WelcomeTxts = () => {
   return (
@@ -24,16 +25,6 @@ const WelcomeTxts = () => {
 
 export default WelcomeTxts;
 
-const LogoEventz = styled.div`
-  justify-content: center;
-  display: flex;
-`;
-
-const Logo = styled.img`
-  width: 60px;
-  height: 60px;
-`;
-
 
 
 const WelcomeTxt = styled.div`
@@ -42,16 +33,18 @@ const WelcomeTxt = styled.div`
   margin: 24px 0 4px 0;
 `;
 
-const WelcomeTextBig = styled(StyledHeading)`
-`;
 
 const SignUpTxt = styled(StyledParagraphSmallGray)`
   font-size: 13px;
+  ${mobile`
+      display:none;
+    `}
 `;
 export const LogoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 20px;
   cursor: pointer;
 `;
 

@@ -308,10 +308,10 @@ export const BY_USING_OUR_TERMS = "By using our app you agree to the";
 export const CONDITIONS = "Terms of Use";
 export const POLICY = "Privacy Policy";
 export const BY_USING_OUR_APPS_PP =
-  "By using our app you agree to the Terms of Use Privacy Policy";
+  "By using our app you agree to the Terms of Use and Privacy Policy";
 export const CONTINUE = "Continue";
 export const ACCOUNT = "Already have an account?";
-export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
+export const DONT_HAVE_ACCOUNT_TEXT = "New user?";
 export const SIGN_IN = "Sign in";
 
 export const WELCOME = "Welcome to Market Place.";

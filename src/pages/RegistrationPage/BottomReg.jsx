@@ -32,11 +32,7 @@ export const BottomReg = () => {
         </StyledParagraphSmallGray>
       )}
 
-      <StyledParagraphSmallGray center>
-        {TermsConditions}
-      </StyledParagraphSmallGray>
-
-      {/* Raghavendra */}
+      <StyledParagraphSmallGray center>{TermsConditions}</StyledParagraphSmallGray>
     </StyledBox>
   );
 };

@@ -12,7 +12,7 @@ import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <StyledParagraph>{SignInText}</StyledParagraph>
+      <SignInTxtM>{SignInText}</SignInTxtM>
 
       <ContinueSignIn>
         <Button type="outlined">
@@ -42,7 +42,11 @@ const GetStartedWithButtonsWrapper = styled.div`
   width: 100%;
   gap: 16px;
 `;
-
+const SignInTxtM = styled(StyledParagraph)`
+  font-size: ${({ theme }) => theme.typography['heading-h3']['font-size']};
+  font-weight: ${({ theme }) => theme.fontWeights.default};
+  margin-top: 20px;
+`;
 const ContinueSignIn = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,7 +66,7 @@ const AppleLogo = styled.img`
   bottom: 2px;
 `;
 
-export const GoogleLogo = styled.img`
+const GoogleLogo = styled.img`
   width: 20px;
   position: relative;
   right: 4px;
