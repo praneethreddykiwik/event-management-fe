@@ -8,6 +8,7 @@ import {
   ButtonContent,
   ButtonImage,
   StyledNoBorderButton,
+  StyledDeleteBtn,
 } from "../Styled/Buttons.styled";
 
 export const Button = ({
@@ -57,6 +58,13 @@ export const Button = ({
         <StyledTransparentButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledTransparentButton>
+      );
+
+    case "delete":
+      return (
+        <StyledDeleteBtn sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledDeleteBtn>
       );
 
     case "icon":

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
+import { StyledParagraphGray } from "../../components/Styled/Typography.styled";
 
 const PaymentSuccessfull2 = () => {
   return (
@@ -8,7 +9,7 @@ const PaymentSuccessfull2 = () => {
       <VenueCard>
         <VenueTitle>{PAYMENT_PAGE.VENUE_TEXT}</VenueTitle>
 
-        <VenueAddress>{PAYMENT_PAGE.VENUE_ADDRESS}</VenueAddress>
+        <StyledParagraphGray>{PAYMENT_PAGE.VENUE_ADDRESS}</StyledParagraphGray>
 
         <SuccessWrapper>
           <BadgeIcon>
@@ -35,7 +36,7 @@ const VenueCard = styled.div`
   width: calc(100% - 32px); 
   background: ${({ theme }) => theme.colors.white};
   border-radius: 3px;
-  padding: 16px; // spacing-3
+  padding: 16px;
   margin-top: -44px;
   box-shadow: 0 8px 22px rgba(13, 14, 18, 0.06);
   text-align: center;
@@ -47,13 +48,6 @@ const VenueTitle = styled.h3`
   font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   color: ${({ theme }) => theme.colors.textPrimary || "#111827"};
-`;
-
-const VenueAddress = styled.p`
-  margin: 6px 0 0 40px; 
-  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
-  color: ${({ theme }) => theme.colors.textSecondary || "#6b7280"};
-  text-align: left;
 `;
 
 const SuccessWrapper = styled.div`
@@ -79,5 +73,4 @@ const PaymentTitle = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   color: ${({ theme }) => theme.colors.textPrimary || "#111827"};
   padding-bottom: 1px;
-  
 `;

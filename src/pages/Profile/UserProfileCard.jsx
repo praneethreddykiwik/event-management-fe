@@ -8,7 +8,7 @@ import {
   StyledParagraph,
   StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
-
+import { mobile } from "../../theme/media-queries";
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { ActivityData } from "./profile.helper";
 import { useNavigate } from "react-router-dom";
@@ -69,7 +69,7 @@ const UserProfileCard = () => {
 
 export default UserProfileCard;
 
-export const StyleLeftCard = styled.div`
+const StyleLeftCard = styled.div`
   width: 300px;
   max-width: 100%;
   background: ${theme.light.colors.white};
@@ -77,20 +77,37 @@ export const StyleLeftCard = styled.div`
   margin-top: 70px;
   border-radius: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+  ${mobile`
+    width: 100%;
+    margin-top: 20px;
+    padding: 18px 14px;
+  `}
 `;
 
-export const StyleProfileImageContainer = styled.div`
+const StyleProfileImageContainer = styled.div`
   position: relative;
   display: inline-block;
+
+  ${mobile`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  `}
 `;
 
-export const StyleProfileImage = styled.img`
+const StyleProfileImage = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
+
+  ${mobile`
+    width: 65px;
+    height: 65px;
+  `}
 `;
 
-export const StyleEditIconCircle = styled.div`
+const StyleEditIconCircle = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -106,55 +123,75 @@ export const StyleEditIconCircle = styled.div`
   }
 `;
 
-export const StyleUserLocation = styled.p`
+const StyleUserLocation = styled.p`
   margin-bottom: 20px;
   color: #666;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
+
+  ${mobile`
+    font-size: 14px;
+    text-align: center;
+  `}
 `;
 
-export const StyleEditProfileWrapper = styled.div`
+const StyleEditProfileWrapper = styled.div`
   button {
     width: 230px;
   }
+
+  ${mobile`
+    button {
+      width: 100%;
+    }
+  `}
 `;
 
-export const StyleActivitiesBox = styled.div`
+const StyleActivitiesBox = styled.div`
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 12px;
   margin-top: 10px;
+
+  ${mobile`
+    padding: 12px;
+  `}
 `;
 
-export const StyleActivityRow = styled.div`
+const StyleActivityRow = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 9px;
   color: ${({ theme }) => theme.colors["inactive-color"]};
+
+  ${mobile`
+    font-size: 14px;
+  `}
 `;
 
-{
-  /* export const StyleViewMoreButton = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-`; */
-}
-
-export const StyleJoinedDate = styled.p`
+const StyleJoinedDate = styled.p`
   margin-top: 40px;
   font-size: ${theme.light.typography["body-small"]["font-size"]};
   color: ${({ theme }) => theme.colors["inactive-color"]};
   display: flex;
   justify-content: center;
   gap: 6px;
- 
+
+  ${mobile`
+    margin-top: 25px;
+    font-size: 13px;
+    text-align: center;
+  `}
 `;
 
-export const StyleHelpIconCircle = styled.span`
+const StyleHelpIconCircle = styled.span`
   font-size: 18px;
+
+  ${mobile`
+    font-size: 16px;
+  `}
 `;
 
-export const StyleSpan = styled.span``;
+const StyleSpan = styled.span``;

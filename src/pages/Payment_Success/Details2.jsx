@@ -1,3 +1,4 @@
+import { StyledParagraph, StyledParagraphSmall } from "../../components/Styled/Typography.styled";
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
 
@@ -64,9 +65,8 @@ const DashedDivider = styled.hr`
   margin: 8px 0;
 `;
 
-const Value = styled.span`
+const Value = styled(StyledParagraph)`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-  color: #111827;
   font-size: 13px;
 `;
 
@@ -81,7 +81,7 @@ const StRow = styled.div`
   margin: 8px 0;
 `;
 
-const Stylespan = styled.span`
+const Stylespan = styled(StyledParagraphSmall)`
   color: #697991ff;
   font-size: 13px;
 `;

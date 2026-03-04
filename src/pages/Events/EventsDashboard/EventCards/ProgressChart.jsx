@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
+import { StyledSemiHeading } from "../../../../components/Styled/Typography.styled";
 
 const ProgressChart = ({ events }) => {
   const data = React.useMemo(() => {
@@ -64,7 +64,7 @@ const ProgressChart = ({ events }) => {
   const valueFormatter = (item) => `${item.value}`;
 
   return (
-    <Box sx={boxStyles} >
+    <Box sx={boxStyles}>
       <PieChart
         height={300}
         width={300}
@@ -85,5 +85,5 @@ const ProgressChart = ({ events }) => {
   );
 };
 
-const boxStyles = { width: "50%", whiteSpace: "nowrap"};
+const boxStyles = { width: "50%", whiteSpace: "nowrap" };
 export default ProgressChart;

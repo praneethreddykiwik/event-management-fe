@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import GatewayPage from "./pages/GatewayPage/GatewayPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import GetInTouch from "./pages/GetInTouch/GetInTouch.pages";
@@ -18,8 +18,8 @@ import Tasks from "./pages/Tasks/Tasks.jsx";
 import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
-import Event from "./pages/Event/EventDetails.page.jsx";
-import Events from "./pages/Events/Events.jsx";
+import Event from "./pages/Events/EventDetails/EventDetails.page.jsx";
+import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
@@ -59,10 +59,10 @@ const AppRoutes = () => {
 
       {/* Admin */}
       <Route
-        path={paths.events}
+        path={paths.eventsDashboard}
         element={
           <RBACRoute perm="admin:panel">
-            <Events />
+            <EventsDashboard />
           </RBACRoute>
         }
       />
@@ -75,6 +75,7 @@ const AppRoutes = () => {
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
       <Route path={paths.createEvent} element={<CreateEventPage />} />
+      <Route path={paths.editEvent} element={<CreateEventPage />} />
 
       {/* Tasks */}
       <Route path={paths.tasks} element={<Tasks />} />
@@ -101,7 +102,6 @@ const AppRoutes = () => {
   );
 
   const isLoggedIn = authStatus === "authenticated";
-  console.log("abdul isLoggedIn", isLoggedIn);
 
   return (
     <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>

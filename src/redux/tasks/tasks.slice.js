@@ -6,20 +6,38 @@ const initialState = {
   tasksLoading: false, // idle | loading | authenticated | unauthenticated
   tasksError: null,
 
+  tasksByEvent: [],
+  tasksByEventsLoading: false, // idle | loading | authenticated | unauthenticated
+  tasksByEventsError: null,
+
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
+
+  editTaskLoading: false,
+  editTask: false,
+  editTaskError: "",
 };
 
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {
-    updateTenantId(state, action) {
-      state.tenantId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
+    builder
+      .addCase(actions.fetchTasksApiAction.pending, (state) => {
+        state.tasksByEventsLoading = true;
+      })
+      .addCase(actions.fetchTasksApiAction.fulfilled, (state, action) => {
+        state.tasksByEvent = action.payload?.details;
+        state.tasksByEventsLoading = false;
+        state.tasksByEventsError = null;
+      })
+      .addCase(actions.fetchTasksApiAction.rejected, (state) => {
+        state.authUser = null;
+        state.tasksByEventsLoading = false;
+        state.tasksByEventsError = "Error";
+      });
     builder
       .addCase(actions.fetchEventsAndTasksAction.pending, (state) => {
         state.tasksLoading = true;
@@ -68,5 +86,5 @@ const tasksSlice = createSlice({
 });
 
 export const tasksSelector = (st) => st.tasks;
-export const { clearAuthError, updateTenantId } = tasksSlice.actions;
+export const { clearAuthError } = tasksSlice.actions;
 export default tasksSlice.reducer;

@@ -6,6 +6,7 @@ import HelmLogo from "../../assets/Logos/HelmGreenLogo.png";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { contactDetails, footerLinks, socialLinks } from "./Footer.helper";
 import * as enums from "../../myEnum";
+import { laptop, mobile, tablet } from "../../theme/media-queries";
 
 const Footer = () => {
   const { authStatus } = useSelector(authSelector);
@@ -90,6 +91,10 @@ const FooterContainer = styled.footer`
   width: 100%;
   background: #131212;
   color: #b8b8b8;
+
+  ${mobile`
+    padding-bottom: 80px;
+  `}
 `;
 
 const FooterInner = styled.div`
@@ -98,13 +103,12 @@ const FooterInner = styled.div`
   padding: 70px 24px 25px;
   text-align: left;
 
-  @media (max-width: 1024px) {
+  ${laptop`
     padding: 50px 24px;
-  }
-
-  @media (max-width: 540px) {
+  `}
+  ${mobile`
     padding: 25px 16px;
-  }
+  `}
 `;
 
 const FooterGrid = styled.div`
@@ -113,13 +117,21 @@ const FooterGrid = styled.div`
   gap: 60px;
   padding-bottom: 20px;
 
-  @media (max-width: 980px) {
+  ${mobile`
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     section:last-child {
       display: none;
     }
-  }
+  `}
+
+  ${tablet`
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    section:last-child {
+      display: none;
+    }
+  `}
 `;
 
 /*  Columns  */
@@ -128,14 +140,14 @@ const Column = styled.section`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  @media (max-width: 600px) {
+  ${mobile`
     gap: 5px;
-  }
+  `}
 `;
 
 const Title = styled.h4`
-  margin-bottom: 8px;  
-  color: #FFF;
+  margin-bottom: 8px;
+  color: #fff;
 `;
 
 const FooterLink = styled.article`
@@ -148,9 +160,9 @@ const FooterLink = styled.article`
     &:hover {
       color: #fff;
     }
-    @media (max-width: 600px) {
+    ${mobile`
       font-size: 11px;
-    }
+    `}
   }
 `;
 
@@ -213,9 +225,9 @@ const Icon = styled.i`
 const SocialWrapper = styled.div`
   display: flex;
   gap: 16px;
-  @media (max-width: 600px) {
+  ${mobile`
     margin: 0 auto;
-  }
+  `}
 `;
 
 const SocialLink = styled.a`
@@ -238,11 +250,11 @@ const BottomBar = styled.section`
   border-top: 1px solid #333;
   font-size: 0.9rem;
 
-  @media (max-width: 600px) {
+  ${mobile`
     flex-direction: column-reverse;
     gap: 12px;
     text-align: center;
-  }
+  `}
 `;
 
 const BottomText = styled.p`
@@ -261,9 +273,9 @@ const BottomLinks = styled.nav`
       color: #fff;
     }
   }
-  @media (max-width: 600px) {
+  ${mobile`
     justify-content: space-evenly;
-  }
+  `}
 `;
 
 export default Footer;

@@ -12,7 +12,7 @@ export const bootstrapAuthAction = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
-  }
+  },
 );
 
 export const loginAction = createAsyncThunk(
@@ -22,12 +22,13 @@ export const loginAction = createAsyncThunk(
     try {
       const res = await loginApi(payload.reqPayload);
       await dispatch(bootstrapAuthAction());
+      toast.success("Login successful");
       return res.data;
     } catch (err) {
       toast.error("Login failed");
       return rejectWithValue(err?.response?.data || "Login failed");
     }
-  }
+  },
 );
 
 export const logoutAction = createAsyncThunk(
@@ -40,5 +41,5 @@ export const logoutAction = createAsyncThunk(
       toast.error("Logout Failed!");
       return rejectWithValue(err?.response?.data || "Logout failed");
     }
-  }
+  },
 );

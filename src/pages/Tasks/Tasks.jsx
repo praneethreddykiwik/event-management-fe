@@ -52,7 +52,7 @@ const EventManagerDashboard = () => {
         taskData: {
           title: task.taskTitle,
           description: task.taskDescription,
-          priority: task.taskPriority,
+          priority: task.priority,
           dueAt: task.taskDueAt,
           assignedToUid: task.taskAssignedToUid,
         },
@@ -77,8 +77,12 @@ const EventManagerDashboard = () => {
           <Section key={event.eventUid}>
             <StyledTaskHeading>
               <StyledBox2>
-                <StyledMediumHeading left>{event.eventName}</StyledMediumHeading>
-                <StyledParagraphSmall left>{event.eventVenue}</StyledParagraphSmall>
+                <StyledMediumHeading left>
+                  {event.eventName}
+                </StyledMediumHeading>
+                <StyledParagraphSmall left>
+                  {event.eventVenue}
+                </StyledParagraphSmall>
               </StyledBox2>
 
               <Button
@@ -121,7 +125,6 @@ const CardsRow = styled.div`
   gap: 16px;
   margin-bottom: 40px;
 `;
-
 
 const StyledTaskHeading = styled.div`
   display: flex;

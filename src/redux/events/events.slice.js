@@ -11,6 +11,9 @@ const initialState = {
 
   deleteEventLoading: false,
   deleteEventError: null,
+  currentEvent: {},
+  assignEventLoading: false,
+  assignEventError: null,
 };
 
 const eventsSlice = createSlice({
@@ -19,6 +22,9 @@ const eventsSlice = createSlice({
   reducers: {
     updateTenantId(state, action) {
       state.tenantId = action.payload;
+    },
+    updateCurrentEvent(state, action) {
+      state.currentEvent = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -49,7 +55,22 @@ const eventsSlice = createSlice({
       })
       .addCase(actions.createEventsDispatch.rejected, (state) => {
         state.createEventLoading = false;
-        state.createEventError = "Something went wrong while creating Event.";
+        state.createEventError =
+          "Something went wrong while creating the Event.";
+      });
+    builder
+      .addCase(actions.assignEventAction.pending, (state) => {
+        state.assignEventLoading = true;
+      })
+      .addCase(actions.assignEventAction.fulfilled, (state) => {
+        // const newEvent = action.payload.details;
+        // state.events = [newEvent, ...state.events];
+        state.assignEventLoading = false;
+      })
+      .addCase(actions.assignEventAction.rejected, (state) => {
+        state.assignEventLoading = false;
+        state.assignEventError =
+          "Something went wrong while assigning the Event.";
       });
 
     builder
@@ -57,10 +78,8 @@ const eventsSlice = createSlice({
         state.deleteEventLoading = true;
       })
       .addCase(actions.deleteEventDispatch.fulfilled, (state, action) => {
-        const {eventUid} = action.payload;
-        state.events = state.events.filter(
-          (event) => event.uid !== eventUid,
-        );
+        const { eventUid } = action.payload;
+        state.events = state.events.filter((event) => event.uid !== eventUid);
         state.deleteEventLoading = false;
       })
       .addCase(actions.deleteEventDispatch.rejected, (state) => {
@@ -71,5 +90,6 @@ const eventsSlice = createSlice({
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError, updateTenantId } = eventsSlice.actions;
+export const { clearAuthError, updateTenantId, updateCurrentEvent } =
+  eventsSlice.actions;
 export default eventsSlice.reducer;

@@ -10,11 +10,11 @@ import { paths } from "../../constants/paths";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import * as enums from "../../myEnum";
 import GaugeChart from "../../components/Charts/GuageChart";
+import { dateObj } from "../../utils/utils";
 
 const AdminTaskItem = ({ data }) => {
-  console.log("my data", data);
-
   const navigate = useNavigateWithQuery();
+  const { date, time } = dateObj(data.scheduledAt);
 
   const onClickViewDetails = (data) => {
     navigate(paths.eventsDetails, {
@@ -33,7 +33,9 @@ const AdminTaskItem = ({ data }) => {
 
         <Taskcard>
           <EventName>{data.eventName}</EventName>
-          <TaskDate>Scheduled At: {data.scheduledAt}</TaskDate>
+          <TaskDate>
+            Scheduled at: {date}, {time}
+          </TaskDate>
           <TaskAssignee>
             {enums.EVENT_MANAGER}: {data.firstName}
           </TaskAssignee>
@@ -68,8 +70,7 @@ const Left = styled.div`
 
 const StatusIcon = styled.span`
   font-size: 20px;
-  color: ${({ theme, type }) =>
-    theme.badgeColors[`badge-${type}-primary`]};
+  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
 `;
 
 const Taskcard = styled.div`
@@ -79,30 +80,23 @@ const Taskcard = styled.div`
 
 const EventName = styled(StyledParagraphBold)`
   margin-bottom: 5px;
-  
 `;
 
 const TaskAssignee = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors["text-gray-color"]};
   margin: 0;
 
-  font-size: ${({ theme }) =>
-    theme.typography["body-small"]["font-size"]};
-  font-weight: ${({ theme }) =>
-    theme.typography["body-small"]["font-weight"]};
-  line-height: ${({ theme }) =>
-    theme.typography["body-small"]["line-height"]};
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) => theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) => theme.typography["body-small"]["line-height"]};
 `;
 
 const TaskDate = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors["text-gray-color"]};
 
-  font-size: ${({ theme }) =>
-    theme.typography["body-small"]["font-size"]};
-  font-weight: ${({ theme }) =>
-    theme.typography["body-small"]["font-weight"]};
-  line-height: ${({ theme }) =>
-    theme.typography["body-small"]["line-height"]};
+  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
+  font-weight: ${({ theme }) => theme.typography["body-small"]["font-weight"]};
+  line-height: ${({ theme }) => theme.typography["body-small"]["line-height"]};
 `;
 
 const BadgeButton = styled.div`

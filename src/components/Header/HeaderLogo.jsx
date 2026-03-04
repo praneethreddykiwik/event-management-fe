@@ -3,6 +3,7 @@ import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 import { paths } from "../../constants/paths";
 import styled from "styled-components";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { mobile } from "../../theme/media-queries";
 
 export const HeaderLogo = () => {
   const navigate = useNavigateWithQuery();
@@ -28,6 +29,12 @@ const LogoImage = styled.img`
   border-radius: 8px;
   margin-top: -40px;
   margin-bottom: -25px;
+
+  ${mobile`
+    margin: 0;
+    width: auto;
+    height: 48px;
+    `}
 `;
 
 const LogoSVG = styled.img`

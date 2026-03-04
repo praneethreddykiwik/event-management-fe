@@ -2,7 +2,8 @@ import styled from "styled-components";
 import ProgressChart from "./ProgressChart";
 import EventsSummaryCard from "./EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
-import { NpmSparkLine } from "../../../components/Charts/SparkLine";
+import { mobile } from "../../../../theme/media-queries";
+import { NpmSparkLine } from "../../../../components/Charts/SparkLine";
 
 export const EventCards = ({ events, eventManagers }) => {
   return (
@@ -18,6 +19,7 @@ export const EventCards = ({ events, eventManagers }) => {
           label="Completion Rate"
           value="87%"
           chart={<NpmSparkLine />}
+          inline
         />
       </StyledFlex>
       <ProgressChart events={events} />
@@ -39,4 +41,10 @@ const StyledFlex = styled.div`
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
+
+  ${mobile`
+    flex-basis: 100%;
+    width: 100%;
+    gap: 12px;
+  `}
 `;

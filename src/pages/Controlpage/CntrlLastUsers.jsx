@@ -5,13 +5,13 @@ import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
 import doorimg from "../../assets/ControlPage_img/doorimg.jpeg";
 import { theme } from "../../theme/theme";
-import {StyledMediumHeading, StyledParagraphSmallGray, StyledParagraphBold } from "../../components/Styled/Typography.styled";
+import {StyledParagraphSmallGray, StyledParagraphBold } from "../../components/Styled/Typography.styled";
 
 const LastUsersBox = () => {
   return (
     <LastUsersBox2>
       <LastHeader>
-        <HeaderTitle>{enums.LAST_HEAD}</HeaderTitle>
+        <StyledParagraphBold>{enums.LAST_HEAD}</StyledParagraphBold>
 
         <AvatarGroup>
           <Avtimg src={Avt1} />
@@ -24,7 +24,7 @@ const LastUsersBox = () => {
         <LastImg src={doorimg} />
 
         <LastInfo>
-          <Header4>{enums.HALLS}</Header4>
+          <StyledParagraphBold left>{enums.HALLS}</StyledParagraphBold>
           <Paragraph>{enums.BACK_DOOR}</Paragraph>
           <SmallPara>{enums.D_TIME}</SmallPara>
         </LastInfo>
@@ -47,9 +47,6 @@ const LastUsersBox2 = styled.div`
 const LastHeader = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const HeaderTitle = styled(StyledParagraphBold)`
 `;
 
 const AvatarGroup = styled.div`
@@ -82,14 +79,6 @@ const LastInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`;
-
-const Header4 = styled.h4`
-  margin: 0;
-  font-size: 16px;
-  font-weight: ${theme.light.fontWeights.semiBold};
-  color: #111;
-  margin-right: 110px;
 `;
 
 const Paragraph = styled(StyledParagraphSmallGray)`

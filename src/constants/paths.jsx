@@ -3,19 +3,20 @@ export const paths = {
   login: "/login",
   newsFeed: "/news-feed",
   accountSettings: "/account-settings",
-  events: "/events",
+  eventsDashboard: "/events-dashboard",
   tasks: "/tasks",
   createTask: "/tasks/create",
   registration: "/registration",
 
   eventsDetails: "/events/event-details",
   createEvent: "/events/create-event",
+  editEvent: "/events/edit-event",
 
   vendor: "/vendor",
   customer: "/customer",
   userManagement: "/user/management",
   marketPlace: "/market-place",
-  getInTouch : "/get-in-touch",
+  getInTouch: "/get-in-touch",
 
   venues: "/venues",
 };
