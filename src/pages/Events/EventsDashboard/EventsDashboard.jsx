@@ -45,7 +45,6 @@ const EventsDashboard = () => {
       },
     });
   };
-
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,

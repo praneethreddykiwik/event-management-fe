@@ -7,6 +7,9 @@ import { BADGE_TYPES } from "../../../constants/badges";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTenant from "../../../hooks/useTenant.hook";
 import { paths } from "../../../constants/paths";
+import { useDispatch } from "react-redux";
+import { deleteEventDispatch } from "../../../redux/events/events.actions";
+import { useState } from "react";
 
 export const TitleBox = () => {
   const { state } = useLocation();
@@ -14,6 +17,7 @@ export const TitleBox = () => {
   const tenantId = useTenant();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onClickEdit = () => {
     navigate(`${paths.createEvent}?tenantId=${tenantId}`, {
@@ -23,6 +27,9 @@ export const TitleBox = () => {
       },
     });
   };
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteReason, setDeleteReason] = useState("");
 
   return (
     <StyledCtn>
@@ -39,7 +46,26 @@ export const TitleBox = () => {
         <Button type="outlined" icon="edit" onClick={onClickEdit}>
           Edit Event
         </Button>
-        <Button type="delete" icon="delete">
+        <Button
+          type="delete"
+          icon="delete"
+          onClick={() => {
+            dispatch(
+              deleteEventDispatch({
+                eventUid: event.uid,
+                tenantUid: event.tenantUid,
+                deletedByUid: JSON.parse(localStorage.getItem("user"))?.uid,
+                deleteReason: deleteReason.trim(),
+              }),
+            );
+            setTimeout(() => {
+              navigate(-1);
+            }, 1000);
+
+            setShowDeleteConfirm(false);
+            setDeleteReason("");
+          }}
+        >
           Delete Event
         </Button>
       </StyledBtnCtn>

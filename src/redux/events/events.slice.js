@@ -9,6 +9,8 @@ const initialState = {
   createEventLoading: false,
   createEventError: null,
 
+  deleteEventLoading: false,
+  deleteEventError: null,
   currentEvent: {},
   assignEventLoading: false,
   assignEventError: null,
@@ -69,6 +71,20 @@ const eventsSlice = createSlice({
         state.assignEventLoading = false;
         state.assignEventError =
           "Something went wrong while assigning the Event.";
+      });
+
+    builder
+      .addCase(actions.deleteEventDispatch.pending, (state) => {
+        state.deleteEventLoading = true;
+      })
+      .addCase(actions.deleteEventDispatch.fulfilled, (state, action) => {
+        const { eventUid } = action.payload;
+        state.events = state.events.filter((event) => event.uid !== eventUid);
+        state.deleteEventLoading = false;
+      })
+      .addCase(actions.deleteEventDispatch.rejected, (state) => {
+        state.deleteEventLoading = false;
+        state.deleteEventError = "Something went wrong while deleting Event.";
       });
   },
 });

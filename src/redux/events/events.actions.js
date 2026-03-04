@@ -4,6 +4,7 @@ import {
   fetchEventsApi,
   updateEventsApi,
   assignEventApi,
+  deleteEventsApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
 
@@ -87,6 +88,25 @@ export const assignEventAction = createAsyncThunk(
           "Failed to assign Event",
       );
       return rejectWithValue(err?.response?.data || "Something went wrong!");
+    }
+  },
+);
+
+export const deleteEventDispatch = createAsyncThunk(
+  "events/deleteEventDispatch",
+  async (payload, { rejectWithValue }) => {
+    try {
+      await deleteEventsApi(payload);
+
+      toast.success("Event deleted successfully");
+      return payload;
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to delete event",
+      );
+      return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
 );

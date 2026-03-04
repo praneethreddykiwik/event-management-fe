@@ -14,15 +14,217 @@
 // import { paths } from "../../constants/paths";
 // import useTenant from "../../hooks/useTenant.hook";
 
+<<<<<<< HEAD
+import { useState } from "react";
+import PopupModal from "../../components/PopupModal/PopupModal";
+import { useDispatch } from "react-redux";
+import { deleteEventDispatch } from "../../redux/events/events.actions";
+import { useNavigate } from "react-router-dom";
+
+const EventDetails = () => {
+  const { state } = useLocation();
+  const event = state?.event;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteReason, setDeleteReason] = useState("");
+
+  const onDelete = () => {
+    dispatch(
+      deleteEventDispatch({
+        eventUid: event.uid,
+      }),
+    );
+  };
+=======
 // const EventDetails = () => {
 //   const { state } = useLocation();
 //   const event = state?.event;
 //   const tenantId = useTenant();
+>>>>>>> origin/develop
 
 //   const navigate = useNavigate();
 
 //   const { date, time } = dateObj(event.scheduledAt);
 
+<<<<<<< HEAD
+  return (
+    <>
+      {showDeleteConfirm && (
+        <PopupModal
+          onClose={() => setShowDeleteConfirm(false)}
+          title="Delete Event"
+          subtitle="Are you sure you want to delete this event?"
+          width="400px"
+        >
+          <input
+            type="text"
+            placeholder="Enter delete reason"
+            value={deleteReason}
+            onChange={(e) => setDeleteReason(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "12px",
+              borderRadius: "6px",
+              border: "1px solid #ccc",
+            }}
+          />
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "15px",
+              padding: "20px 0",
+            }}
+          >
+            <Button
+              type="secondary"
+              onClick={() => setShowDeleteConfirm(false)}
+            >
+              No
+            </Button>
+            <Button
+              type="danger"
+              disabled={!deleteReason.trim()}
+              onClick={() => {
+                dispatch(
+                  deleteEventDispatch({
+                    eventUid: event.uid,
+                    tenantUid: event.tenantUid,
+                    deletedByUid: JSON.parse(localStorage.getItem("user"))?.uid,
+                    deleteReason: deleteReason.trim(),
+                  }),
+                );
+                setTimeout(() => {
+                  navigate(-1);
+                }, 1000);
+
+                setShowDeleteConfirm(false);
+                setDeleteReason("");
+              }}
+            >
+              Yes
+            </Button>
+          </div>
+        </PopupModal>
+      )}
+      {/* <BlueBackHOC> */}
+      <StyledEventContainer>
+        <StyledBG>
+          <StyledEventHeader>
+            <StyledEventHeaderInfo>
+              <StyledEventHeaderInfoCont1>
+                <StyledEventHeaderInfoCont1Top>
+                  <StyledHeading>{event.eventName}</StyledHeading>
+                  <StyledBadge type={event.type}>{event.eventType}</StyledBadge>
+                </StyledEventHeaderInfoCont1Top>
+                <StyledEventHeaderInfoCont1Bottom>
+                  <StyledBadge type={BADGE_TYPES.ACCEPTED}>
+                    {BADGE_TYPES.CORPORATE}
+                  </StyledBadge>
+                </StyledEventHeaderInfoCont1Bottom>
+              </StyledEventHeaderInfoCont1>
+              <StyledEventHeaderInfoCont2>
+                <Button sx={StyledButton1} type="outlined" icon="edit">
+                  Edit Event
+                </Button>
+                <Button
+                  sx={StyledButton2}
+                  type="icon"
+                  icon="delete"
+                  onClick={() => setShowDeleteConfirm(true)}
+                >
+                  Delete Event
+                </Button>
+              </StyledEventHeaderInfoCont2>
+            </StyledEventHeaderInfo>
+          </StyledEventHeader>
+
+          {/* Event Body */}
+          <StyledEventBody>
+            <StyledEventBodyContainerLeft>
+              <StyledEventBodyContainerLeftHeading left>
+                Event Details
+              </StyledEventBodyContainerLeftHeading>
+              <StyledEventBodyContainerLeftContent>
+                <StyledEvenInfo>
+                  {EventDetailsMap(event, date, time).map((curItem) => (
+                    <>
+                      <StyledEvenInfoCard>
+                        <StyledEvenInfoCardIcon>
+                          <span className="material-symbols-outlined">
+                            {curItem.Icon}
+                          </span>
+                        </StyledEvenInfoCardIcon>
+                        <StyledEvenInfoCardInfo>
+                          <StyledParagraph1 left>
+                            {curItem.Type}
+                          </StyledParagraph1>
+                          <StyledParagraph2 left>
+                            {curItem.Info}
+                          </StyledParagraph2>
+                        </StyledEvenInfoCardInfo>
+                      </StyledEvenInfoCard>
+                    </>
+                  ))}
+                </StyledEvenInfo>
+              </StyledEventBodyContainerLeftContent>
+            </StyledEventBodyContainerLeft>
+            <StyledEventBodyContainerRight>
+              <StyledEventBodyContainerRightTop>
+                <StyledEventBodyHeader left>
+                  Assigned Manager
+                </StyledEventBodyHeader>
+                <StyledEvenInfoCard>
+                  <StyledEvenInfoCardIcon>
+                    <StyledSpan className="material-symbols-outlined">
+                      person
+                    </StyledSpan>
+                  </StyledEvenInfoCardIcon>
+
+                  <StyledParagraph2 left>{event.firstName}</StyledParagraph2>
+                </StyledEvenInfoCard>
+              </StyledEventBodyContainerRightTop>
+              <StyledEventBodyContainerRightBototm>
+                <StyledEventBodyContainerRightBototmHeader>
+                  <StyledEvenInfoCard2>
+                    <StyledEventBodyHeader left>
+                      Description
+                    </StyledEventBodyHeader>
+                    <StyledParagraph2 left>{event.comments}</StyledParagraph2>
+                  </StyledEvenInfoCard2>
+                </StyledEventBodyContainerRightBototmHeader>
+              </StyledEventBodyContainerRightBototm>
+            </StyledEventBodyContainerRight>
+            <StyledEventBodyContainerChart>
+              <ProgressChart events={[event]} />
+            </StyledEventBodyContainerChart>
+          </StyledEventBody>
+        </StyledBG>
+        {/* 
+        
+        1. Container 1: HEADER
+          a. Left Container (Heading):
+            i. Event Name - Heading 1
+            ii. status Badge
+            iii. Event Type (Badge)
+          b. Right Container (Button)
+            i. Edit Event Button
+            i. Delete Event Button
+        2. Container 2: BODY
+          a. Left container.
+            i. Heading
+            ii. Date, TIme, Venue, Expected Attendes
+          b. Right container.
+            i. Right Top Container.
+              a. Assigned Manager
+            ii. Right Botton Container.
+              a. Description.
+        */}
+=======
 //   const onClickEdit = () => {
 //     navigate(`${paths.createEvent}?tenantId=${tenantId}`, {
 //       state: {
@@ -152,6 +354,7 @@
 //           </StyledEventBody>
 //         </StyledBG>
 //         {/*
+>>>>>>> origin/develop
 
 //         1. Container 1: HEADER
 //           a. Left Container (Heading):
