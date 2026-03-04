@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
-import { eventMetaData } from "../../../redux/farms/metadata/event.metadata";
+import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
 import CreateEvent from "./CreateEvent";
 import styled from "styled-components";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
@@ -28,48 +28,22 @@ const CreateEventPage = () => {
 
   const { eventManagers } = useSelector(usersSelector);
   const isEditMode = location?.state?.mode === "edit";
-  const isAddMode = location?.state?.mode === "add";
   const eventData = location?.state?.eventData;
 
-  // Fetch managers once
   useEffect(() => {
-    dispatch(fetchManagersAction());
-  }, [dispatch]);
-
-  // Handle Add / Edit mode once (guarded to avoid infinite runs)
-  const initializedRef = useRef(false);
-  useEffect(() => {
-    if (initializedRef.current) return;
-    if (!eventManagers?.length) return;
-
-    if (isEditMode && eventData) {
-      dispatch(
-        updateAllEventInputs(generateEventDataToEdit(eventManagers, eventData)),
-      );
-      // debugger;
-    } else {
-      const eventMetaDataFull = eventMetaData(eventManagers);
+    const callback = (eventManagers) => {
+      const eventMetaDataFull = isEditMode
+        ? generateEventDataToEdit(eventManagers, eventData)
+        : generateNewEventsInputs(eventManagers);
       dispatch(updateAllEventInputs(eventMetaDataFull));
-    }
-
-    initializedRef.current = true;
-  }, [eventManagers, isEditMode, isAddMode, eventData, dispatch]);
-
-  // // Dont need initial this call
-  // const initialCalls = async () => {
-  //   const callback = (eventManagers) => {
-  //     const eventMetaDataFull = eventMetaData(eventManagers);
-  //     dispatch(updateAllEventInputs(eventMetaDataFull));
-  //   };
-  //   dispatch(fetchManagersAction({ callback }));
-  // }
+    };
+    dispatch(fetchManagersAction({ callback }));
+  }, []);
 
   const onCreateEvent = (payload) => {
     if (isEditMode) {
-      delete payload.isEditMode;
       dispatch(updateEventDispatch(payload));
     } else {
-      delete payload.isEditMode;
       dispatch(createEventsDispatch(payload));
     }
   };

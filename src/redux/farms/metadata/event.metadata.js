@@ -64,7 +64,7 @@ const BASE_EVENT_METADATA = [
   },
   {
     type: "dropdown",
-    name: "assignedEventManager",
+    name: "assignedToUid",
     value: "",
     placeholder: "Assign Event Manager",
     options: [],
@@ -73,9 +73,9 @@ const BASE_EVENT_METADATA = [
   },
 ];
 
-export const eventMetaData = (eventManagers = []) => {
+export const generateNewEventsInputs = (eventManagers = []) => {
   return BASE_EVENT_METADATA.map((el) => {
-    if (el.name === "assignedEventManager") {
+    if (el.name === "assignedToUid") {
       return {
         ...el,
         options: eventManagers.map((manager) => ({
@@ -90,29 +90,25 @@ export const eventMetaData = (eventManagers = []) => {
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
   const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
-  const { date: eventDateVal = "", time: eventTimeVal = "" } =
-    isoToInputDateTime(scheduled || "");
+  const { date: eventDate, time: eventTime } = isoToInputDateTime(
+    scheduled || "",
+  );
 
   const valueMap = {
-    eventName: event.title || event.eventName,
-    comments: event.comments || event.eventDescription || "",
-    eventDate: event.eventDate || eventDateVal,
-    eventTime: event.eventTime || eventTimeVal,
+    eventName: event.eventName,
+    comments: event.comments,
+    eventDate,
+    eventTime,
     venue: event.venue,
     eventType: event.eventType,
     expectedAttendees: event.expectedAttendees,
-    // event uses assignedToUid in API, map to form's assignedEventManager
-    assignedEventManager:
-      event.assignedEventManager || event.assignedToUid || "",
+    assignedToUid: event.assignedToUid,
   };
 
-  const finalData = eventMetaData(eventManagers).map((el) => ({
+  const finalData = generateNewEventsInputs(eventManagers).map((el) => ({
     ...el,
     value: valueMap[el.name] ?? "",
-    initialValue: valueMap[el.name] ?? "",
   }));
-
-  //debugger;
 
   return finalData;
 };

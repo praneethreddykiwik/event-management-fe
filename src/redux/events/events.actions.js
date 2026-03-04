@@ -31,7 +31,7 @@ export const createEventsDispatch = createAsyncThunk(
   async (payload, { rejectWithValue, dispatch, getState }) => {
     try {
       const res = await createEventsApi(payload.reqPayload);
-      toast.success("created Events successfully");
+      toast.success("Created Events successfully");
       payload.navigate(paths.eventsDashboard);
 
       // clear inputs once event is created
@@ -55,11 +55,8 @@ export const updateEventDispatch = createAsyncThunk(
   "events/updateEventDispatch",
   async (payload, { rejectWithValue }) => {
     try {
-      const updateEventPayload = { ...payload };
-      delete updateEventPayload.navigate;
-
-      const res = await updateEventsApi(updateEventPayload);
-      toast.success("updated Event successfully");
+      const res = await updateEventsApi(payload.reqPayload);
+      toast.success("Updated Event successfully");
 
       payload.navigate(paths.events);
       return res.data;

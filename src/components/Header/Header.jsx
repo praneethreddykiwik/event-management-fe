@@ -20,7 +20,7 @@ const Header = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { authStatus, username } = useSelector(authSelector);
+  const { authStatus, firstName } = useSelector(authSelector);
 
   const isLoggedIn = authStatus === "authenticated";
   const [menuOpen] = useState(false);
@@ -61,7 +61,7 @@ const Header = () => {
         ) : (
           <>
             <Icon aria-label="Notifications">notifications</Icon>
-            <StyledParagraph>{username}</StyledParagraph>
+            <StyledParagraph>{firstName}</StyledParagraph>
             <AvatarBox>
               <Avatar items={userProfileMeta} onClick={onClickMenu} />
             </AvatarBox>

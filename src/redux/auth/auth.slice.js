@@ -16,6 +16,8 @@ const initialState = {
   tenantId: "",
   tenantUid: "",
   sessionID: "",
+  firstName: "",
+  lastName: "",
 
   // RBAC
   roles: ["manager"],
@@ -58,6 +60,8 @@ const authSlice = createSlice({
         state.tenantId = action.payload.tenantId;
         state.tenantUid = action.payload.tenantUid;
         state.sessionID = action.payload.sessionID;
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
       })
       .addCase(actions.bootstrapAuthAction.rejected, (state) => {
         state.authUser = null;
@@ -71,7 +75,6 @@ const authSlice = createSlice({
         state.authError = null;
       })
       .addCase(actions.loginAction.fulfilled, (state, action) => {
-        // state.authUser = action.payload;
         state.authStatus = "authenticated";
       })
       .addCase(actions.loginAction.rejected, (state, action) => {

@@ -50,7 +50,7 @@ export const isoToInputDateTime = (iso) => {
   return { date: `${yyyy}-${mm}-${dd}`, time: `${hh}:${min}` };
 };
 
-export const returnScheduledAt = (date, time) => {
+export const modifyTimeToISO = (date, time) => {
   const { hour, minute } = extractHoursAndMinutes(time);
   const formatedTime = formatScheduleDate(date, hour, minute);
   return formatedTime;
