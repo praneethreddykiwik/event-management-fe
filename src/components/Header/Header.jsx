@@ -14,12 +14,14 @@ import { logoutAction } from "../../redux/auth/auth.actions";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 import { mobile } from "../../theme/media-queries";
+import { StyledParagraph } from "../Styled/Typography.styled";
 
 const Header = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { authStatus } = useSelector(authSelector);
+  const { authStatus, username } = useSelector(authSelector);
+  console.log("abdul username", username);
 
   const isLoggedIn = authStatus === "authenticated";
   const [menuOpen] = useState(false);
@@ -60,19 +62,13 @@ const Header = () => {
         ) : (
           <>
             <Icon aria-label="Notifications">notifications</Icon>
+            <StyledParagraph>{username}</StyledParagraph>
             <AvatarBox>
               <Avatar items={userProfileMeta} onClick={onClickMenu} />
             </AvatarBox>
           </>
         )}
       </RightBox>
-
-      {/* RIGHT ICONS (Mobile only) */}
-      {/* <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
-        <Icon aria-label={menuOpen ? "Close menu" : "Open menu"}>
-          {menuOpen ? "close" : "menu"}
-        </Icon>
-      </Hamburger> */}
     </Navbar>
   );
 };
