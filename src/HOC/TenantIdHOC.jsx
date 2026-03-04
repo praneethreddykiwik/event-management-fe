@@ -1,16 +1,22 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateTenantId } from "../redux/auth/auth.slice";
 
 export const TenantIdHOC = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!searchParams.has("tenantId")) {
+    let tenantId = searchParams.get("tenantId");
+    if (!tenantId) {
+      tenantId = "helm";
       const next = new URLSearchParams(searchParams);
-      next.set("tenantId", "helm");
+      next.set("tenantId", tenantId);
       setSearchParams(next, { replace: true });
     }
-  }, [searchParams, setSearchParams]);
+    dispatch(updateTenantId(tenantId));
+  }, [searchParams, setSearchParams, dispatch]);
 
   return <>{children}</>;
 };

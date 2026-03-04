@@ -1,3 +1,4 @@
+import { EVENT_TYPE_OPTIONS } from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
@@ -12,15 +13,19 @@ const BASE_EVENT_METADATA = [
     validations: [validationList.REQUIRED],
   },
   {
+    type: "textarea",
+    name: "comments",
+    value: "",
+    placeholder: "Provide your event details...",
+    label: "Event Description",
+    validations: [validationList.REQUIRED],
+  },
+  {
     type: "dropdown",
     name: "eventType",
     value: "",
     placeholder: "Event Type",
-    options: [
-      { value: "public", label: "Public" },
-      { value: "private", label: "Private" },
-      { value: "corporate", label: "Corporate" },
-    ],
+    options: EVENT_TYPE_OPTIONS,
     label: "Event Type",
     validations: [validationList.REQUIRED],
   },
@@ -63,14 +68,6 @@ const BASE_EVENT_METADATA = [
     placeholder: "Assign Event Manager",
     options: [],
     label: "Assign Event Manager",
-    validations: [validationList.REQUIRED],
-  },
-  {
-    type: "textarea",
-    name: "comments",
-    value: "",
-    placeholder: "Provide your event details...",
-    label: "Event Description",
     validations: [validationList.REQUIRED],
   },
 ];

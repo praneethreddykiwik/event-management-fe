@@ -14,7 +14,7 @@ import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
 } from "../../redux/farms/metadata/task.metadata";
-import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
+// import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
 import { Venue } from "../../components/Venue/Venue";
 import { toast } from "react-toastify";
 import {
@@ -28,6 +28,7 @@ import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
 import { fetchVendorsAction } from "../../redux/users/users.actions";
+import { tasksMetadata } from "../../constants/tasks.constants";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
