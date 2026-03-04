@@ -15,6 +15,8 @@ import { dateObj, returnScheduledAt } from "../../../utils/utils";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
 import { mobile } from "../../../theme/media-queries";
+import { eventMetaData } from "../../../redux/farms/metadata/event.metadata";
+import { usersSelector } from "../../../redux/users/users.slice";
 
 import { useLocation } from "react-router-dom";
 import { updateCurrentEvent } from "../../../redux/events/events.slice";
@@ -26,6 +28,7 @@ const CreateEvent = ({ onCreateEvent }) => {
   const { createEventInputs } = useSelector(formsSelector);
   // const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
+  const { eventManagers } = useSelector(usersSelector);
 
   const { tenantUid } = authUser;
 
@@ -196,30 +199,29 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   const goBack = () => {
-    // navigate(paths.eventsDashboard);
     window.history.back();
+  };
+
+  const clearHandler = () => {
+    const eventMetaDataFull = eventMetaData(eventManagers);
+    dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
   return (
     <Form>
-      {/* <InputBox>
-        {createEventInputs.map((inp) => (
-          <Inputs key={inp.name} {...inp} onChange={onChange} />
-        ))}
-        <Button whiteText onClick={onSubmit}>
-          {Continue}
-        </Button>
-      </InputBox> */}
-
       <StyledFlex>
-        {/* <TaskForm onCreateTask={onSubmit} /> */}
         <InputBox>
           {createEventInputs.map((inp) => (
             <Inputs key={inp.name} {...inp} onChange={onChange} />
           ))}
-          <Button whiteText onClick={onSubmit}>
-            {Continue}
-          </Button>
+          <StyledFlex2>
+            <Button whiteText onClick={clearHandler} type="secondary">
+              Clear
+            </Button>
+            <Button whiteText onClick={onSubmit}>
+              {Continue}
+            </Button>
+          </StyledFlex2>
         </InputBox>
         <StyledBox>
           <StyledHeadingBig left>
@@ -269,7 +271,18 @@ const StyledFlex = styled.div`
   ${mobile`
     flex-direction: column;
     gap: 30px;
-  `}
+    `}
+`;
+const StyledFlex2 = styled.div`
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  flex-grow: 1;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 30px;
+    `}
 `;
 
 export default CreateEvent;

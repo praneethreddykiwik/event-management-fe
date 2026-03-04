@@ -102,7 +102,6 @@ const AppRoutes = () => {
   );
 
   const isLoggedIn = authStatus === "authenticated";
-  console.log("abdul isLoggedIn", isLoggedIn);
 
   return (
     <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>

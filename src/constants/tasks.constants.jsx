@@ -1,9 +1,9 @@
-import venueImg1 from "../../assets/venue_imgs/venueImg1.jpeg";
-import venueImg2 from "../../assets/venue_imgs/venueImg2.jpg";
-import venueImg3 from "../../assets/venue_imgs/venueImg3.jpeg";
-import venueImg4 from "../../assets/venue_imgs/venueImg4.jpeg";
-import venueImg5 from "../../assets/venue_imgs/venueImg5.jpeg";
-import venueImg6 from "../../assets/venue_imgs/venueImg6.jpeg";
+import venueImg1 from "../assets/venue_imgs/venueImg1.jpeg";
+import venueImg2 from "../assets/venue_imgs/venueImg2.jpg";
+import venueImg3 from "../assets/venue_imgs/venueImg3.jpeg";
+import venueImg4 from "../assets/venue_imgs/venueImg4.jpeg";
+import venueImg5 from "../assets/venue_imgs/venueImg5.jpeg";
+import venueImg6 from "../assets/venue_imgs/venueImg6.jpeg";
 
 export const tasksMetadata = [
   // Tech Innovators Summit

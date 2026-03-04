@@ -7,3 +7,6 @@ export const createEventsApi = (payload) =>
 
 export const updateEventsApi = (payload) =>
   httpsClient.put("/events/update-event", payload);
+
+export const assignEventApi = (payload) =>
+  httpsClient.post("/events/assign-event", payload);

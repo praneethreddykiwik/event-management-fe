@@ -91,6 +91,10 @@ const FooterContainer = styled.footer`
   width: 100%;
   background: #131212;
   color: #b8b8b8;
+
+  ${mobile`
+    padding-bottom: 80px;
+  `}
 `;
 
 const FooterInner = styled.div`

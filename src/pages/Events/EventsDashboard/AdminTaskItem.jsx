@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Badge from "../../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
-  StyledParagraphSmall,
   StyledParagraphSmallGray,
 } from "../../../components/Styled/Typography.styled";
 import { Card } from "../../../components/Cards/Cards";
@@ -13,11 +12,15 @@ import * as enums from "../../../myEnum";
 import GaugeChart from "../../../components/Charts/GuageChart";
 import { mobile } from "../../../theme/media-queries";
 import { formatDateTime } from "../../../utils/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { assignEventAction } from "../../../redux/events/events.actions";
+import { authSelector } from "../../../redux/auth/auth.slice";
 
 const AdminTaskItem = ({ data }) => {
-  console.log("my data", data);
-
   const navigate = useNavigateWithQuery();
+  const dispatch = useDispatch();
+
+  const { authUser } = useSelector(authSelector);
 
   const onClickViewDetails = (data) => {
     navigate(paths.eventsDetails, {
@@ -26,7 +29,17 @@ const AdminTaskItem = ({ data }) => {
       },
     });
   };
+
+  const assignToMeHandler = () => {
+    const reqPayload = {
+      eventUid: data.uid,
+      assignedToUid: authUser.uid,
+    };
+    dispatch(assignEventAction({ reqPayload }));
+  };
+
   const valueData = Math.floor(Math.random() * 101);
+
   return (
     <StyledCard>
       <Left>
@@ -44,7 +57,10 @@ const AdminTaskItem = ({ data }) => {
             {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
           </StyledParagraphSmallGray>{" "}
           <StyledParagraphSmallGray>
-            {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}
+            {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}{" "}
+            <Button type="transparent" onClick={assignToMeHandler}>
+              Assign to me
+            </Button>
           </StyledParagraphSmallGray>{" "}
         </Taskcard>
       </Left>

@@ -22,11 +22,7 @@ const initialState = {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {
-    updateTenantId(state, action) {
-      state.tenantId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(actions.fetchTasksApiAction.pending, (state) => {
@@ -90,5 +86,5 @@ const tasksSlice = createSlice({
 });
 
 export const tasksSelector = (st) => st.tasks;
-export const { clearAuthError, updateTenantId } = tasksSlice.actions;
+export const { clearAuthError } = tasksSlice.actions;
 export default tasksSlice.reducer;

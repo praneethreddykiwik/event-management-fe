@@ -10,6 +10,8 @@ const initialState = {
   createEventError: null,
 
   currentEvent: {},
+  assignEventLoading: false,
+  assignEventError: null,
 };
 
 const eventsSlice = createSlice({
@@ -51,7 +53,22 @@ const eventsSlice = createSlice({
       })
       .addCase(actions.createEventsDispatch.rejected, (state) => {
         state.createEventLoading = false;
-        state.createEventError = "Something went wrong while creating Event.";
+        state.createEventError =
+          "Something went wrong while creating the Event.";
+      });
+    builder
+      .addCase(actions.assignEventAction.pending, (state) => {
+        state.assignEventLoading = true;
+      })
+      .addCase(actions.assignEventAction.fulfilled, (state) => {
+        // const newEvent = action.payload.details;
+        // state.events = [newEvent, ...state.events];
+        state.assignEventLoading = false;
+      })
+      .addCase(actions.assignEventAction.rejected, (state) => {
+        state.assignEventLoading = false;
+        state.assignEventError =
+          "Something went wrong while assigning the Event.";
       });
   },
 });
