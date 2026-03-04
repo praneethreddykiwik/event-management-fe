@@ -21,7 +21,6 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const { authStatus, username } = useSelector(authSelector);
-  console.log("abdul username", username);
 
   const isLoggedIn = authStatus === "authenticated";
   const [menuOpen] = useState(false);
