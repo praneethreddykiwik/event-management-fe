@@ -17,15 +17,17 @@ import {
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
-import { paths } from "../../../constants/paths";
-import { theme } from "../../../theme/theme";
 import { mobile } from "../../../theme/media-queries";
+import { eventMetaData } from "../../../redux/farms/metadata/event.metadata";
+import { usersSelector } from "../../../redux/users/users.slice";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
+
   const { createEventInputs } = useSelector(formsSelector);
   const { authUser } = useSelector(authSelector);
+  const { eventManagers } = useSelector(usersSelector);
 
   const validateFields = () => {
     let isValid = true;
@@ -81,30 +83,29 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   const goBack = () => {
-    // navigate(paths.eventsDashboard);
     window.history.back();
+  };
+
+  const clearHandler = () => {
+    const eventMetaDataFull = eventMetaData(eventManagers);
+    dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
   return (
     <Form>
-      {/* <InputBox>
-        {createEventInputs.map((inp) => (
-          <Inputs key={inp.name} {...inp} onChange={onChange} />
-        ))}
-        <Button whiteText onClick={onSubmit}>
-          {Continue}
-        </Button>
-      </InputBox> */}
-
       <StyledFlex>
-        {/* <TaskForm onCreateTask={onSubmit} /> */}
         <InputBox>
           {createEventInputs.map((inp) => (
             <Inputs key={inp.name} {...inp} onChange={onChange} />
           ))}
-          <Button whiteText onClick={onSubmit}>
-            {Continue}
-          </Button>
+          <StyledFlex2>
+            <Button whiteText onClick={clearHandler} type="secondary">
+              Clear
+            </Button>
+            <Button whiteText onClick={onSubmit}>
+              {Continue}
+            </Button>
+          </StyledFlex2>
         </InputBox>
         <StyledBox>
           <StyledHeadingBig left>
@@ -154,8 +155,19 @@ const StyledFlex = styled.div`
    ${mobile`
     flex-direction: column;
     gap: 30px;
-  `}
+    `}
+   }
+`;
+const StyledFlex2 = styled.div`
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  flex-grow: 1;
 
+   ${mobile`
+    flex-direction: column;
+    gap: 30px;
+    `}
    }
 `;
 

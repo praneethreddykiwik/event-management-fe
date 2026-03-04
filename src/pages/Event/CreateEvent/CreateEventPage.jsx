@@ -11,7 +11,7 @@ import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
 import { Venue } from "../../../components/Venue/Venue";
-import { eventsMetadata } from "../../../constants/metadata/events.metadata";
+import { eventsMetadata } from "../../../constants/events.constants";
 import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { toast } from "react-toastify";
@@ -23,16 +23,12 @@ const CreateEventPage = () => {
   const { eventManagers } = useSelector(usersSelector);
 
   useEffect(() => {
-    initialCalls();
-  }, []);
-
-  const initialCalls = async () => {
     const callback = (eventManagers) => {
       const eventMetaDataFull = eventMetaData(eventManagers);
       dispatch(updateAllEventInputs(eventMetaDataFull));
     };
     dispatch(fetchManagersAction({ callback }));
-  };
+  }, []);
 
   const onCreateEvent = (payload) => {
     dispatch(createEventsDispatch(payload));
@@ -51,7 +47,6 @@ const CreateEventPage = () => {
       <EventsPageContainer>
         <StyledHeading left>Create Event</StyledHeading>
         <StyledHr />
-
         <CreateEvent onCreateEvent={onCreateEvent} />
       </EventsPageContainer>
 
