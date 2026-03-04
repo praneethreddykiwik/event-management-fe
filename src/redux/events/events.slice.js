@@ -13,11 +13,7 @@ const initialState = {
 const eventsSlice = createSlice({
   name: "events",
   initialState,
-  reducers: {
-    updateTenantId(state, action) {
-      state.tenantId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     // Get All Events.
     builder
@@ -52,5 +48,5 @@ const eventsSlice = createSlice({
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError, updateTenantId } = eventsSlice.actions;
+export const { clearAuthError } = eventsSlice.actions;
 export default eventsSlice.reducer;

@@ -8,7 +8,6 @@ import {
 } from "../../redux/users/users.actions";
 import { useDispatch } from "react-redux";
 import RegistrationForm from "../../Forms/RegistrationForm";
-
 const EditEventPopup = ({ onClose, modalDetails }) => {
   const dispatch = useDispatch();
 
