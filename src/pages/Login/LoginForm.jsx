@@ -139,7 +139,6 @@ const CheckboxRow = styled.div`
   align-items: baseline;
   gap: 8px;
   margin-bottom: 32px;
-
 `;
 
 const AnchorParah = styled(StyledParagraphSmallGray)`
@@ -158,14 +157,11 @@ const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
 const AccountSignIn = styled(StyledParagraphSmallGray)`
   margin: 0;
   margin-top: -8px;
-
- 
 `;
 
 const SignInAnchor = styled(StyledAnchor)`
   font-size: ${({ theme }) => theme.typography.caption["font-size"]};
   text-decoration: none;
 `;
-
 
 export default LoginForm;
