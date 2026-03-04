@@ -146,8 +146,8 @@ const Column = styled.section`
 `;
 
 const Title = styled.h4`
-  margin-bottom: 8px;  
-  color: #FFF;
+  margin-bottom: 8px;
+  color: #fff;
 `;
 
 const FooterLink = styled.article`

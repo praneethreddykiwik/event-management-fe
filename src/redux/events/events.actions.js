@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  assignEventApi,
   createEventsApi,
   fetchEventsApi,
+  updateEventsApi,
+  assignEventApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
+
 import { paths } from "../../constants/paths";
 import { updateAllTaskInputs } from "../farms/farms.slice";
 import { generateAddEventInpMetadata } from "../farms/metadata/task.metadata";
@@ -44,6 +46,29 @@ export const createEventsDispatch = createAsyncThunk(
           "Failed to create Events",
       );
       return rejectWithValue(err?.response?.data || "Not authenticated");
+    }
+  },
+);
+
+export const updateEventDispatch = createAsyncThunk(
+  "events/updateEventDispatch",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const updateEventPayload = { ...payload };
+      delete updateEventPayload.navigate;
+
+      const res = await updateEventsApi(updateEventPayload);
+      toast.success("updated Event successfully");
+
+      payload.navigate(paths.events);
+      return res.data;
+    } catch (error) {
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to create Events",
+      );
+      return rejectWithValue(error?.response?.data || "Not authenticated");
     }
   },
 );

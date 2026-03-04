@@ -9,6 +9,7 @@ const initialState = {
   createEventLoading: false,
   createEventError: null,
 
+  currentEvent: {},
   assignEventLoading: false,
   assignEventError: null,
 };
@@ -16,7 +17,14 @@ const initialState = {
 const eventsSlice = createSlice({
   name: "events",
   initialState,
-  reducers: {},
+  reducers: {
+    updateTenantId(state, action) {
+      state.tenantId = action.payload;
+    },
+    updateCurrentEvent(state, action) {
+      state.currentEvent = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // Get All Events.
     builder
@@ -52,7 +60,7 @@ const eventsSlice = createSlice({
       .addCase(actions.assignEventAction.pending, (state) => {
         state.assignEventLoading = true;
       })
-      .addCase(actions.assignEventAction.fulfilled, (state, action) => {
+      .addCase(actions.assignEventAction.fulfilled, (state) => {
         // const newEvent = action.payload.details;
         // state.events = [newEvent, ...state.events];
         state.assignEventLoading = false;
@@ -66,5 +74,6 @@ const eventsSlice = createSlice({
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError } = eventsSlice.actions;
+export const { clearAuthError, updateTenantId, updateCurrentEvent } =
+  eventsSlice.actions;
 export default eventsSlice.reducer;
