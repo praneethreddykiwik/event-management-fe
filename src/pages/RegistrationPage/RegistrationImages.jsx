@@ -46,34 +46,35 @@ const ContainerRight = styled.div`
   display: flex;
   width: 50%;
   overflow: hidden;
-  gap: 8px;
-  padding: 8px;
+  gap: 10px;
+  padding: 10px;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Column1 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: -8px;
-  gap: 8px;
+  top: -10px;
+  gap: 10px;
 `;
-
 const Column2 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 32px;
-  gap: 8px;
+  top: 50px;
+  gap: 10px;
 `;
-
 const Column3 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 32px;
-  gap: 8px;
+  bottom: 50px;
+  gap: 10px;
 `;
 
 const Img = styled.img`
@@ -81,4 +82,3 @@ const Img = styled.img`
   width: 100%;
   object-fit: cover;
 `;
-

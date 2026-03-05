@@ -2,17 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { Button } from "../../components/Buttons/Button";
-import {
-  StyledMediumHeading,
-  StyledSemiHeading,
-  StyledParagraph,
-  StyledParagraphSmallVisible,
-} from "../../components/Styled/Typography.styled";
-import { mobile } from "../../theme/media-queries";
+import { StyledMediumHeading } from "../../components/Styled/Typography.styled";
+
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { ActivityData } from "./profile.helper";
 import { useNavigate } from "react-router-dom";
-import { theme } from "../../theme/theme";
 
 const UserProfileCard = () => {
   const navigate = useNavigate();
@@ -25,14 +19,12 @@ const UserProfileCard = () => {
         </StyleEditIconCircle>
       </StyleProfileImageContainer>
 
-      <StyledSemiHeading>{PROFILE_DATA.FIRSTNAME}</StyledSemiHeading>
-      <StyledParagraph>{PROFILE_DATA.LASTNAME}</StyledParagraph>
+      <StyleUserName>{PROFILE_DATA.FIRSTNAME}</StyleUserName>
+      <StyleUserRole>{PROFILE_DATA.LASTNAME}</StyleUserRole>
 
       <StyleUserLocation>
         <StyleSpan className="material-icons">location_on</StyleSpan>
-        <StyledParagraphSmallVisible>
-          {PROFILE_DATA.LOCATION}
-        </StyledParagraphSmallVisible>
+        {PROFILE_DATA.LOCATION}
       </StyleUserLocation>
 
       <StyleEditProfileWrapper>
@@ -40,9 +32,11 @@ const UserProfileCard = () => {
       </StyleEditProfileWrapper>
 
       <StyleActivitiesBox>
-        <StyledMediumHeading>
-          {PROFILE_DATA.LAST_ACTIVITIES}
-        </StyledMediumHeading>
+        <StyleHeadingside>
+          <StyledMediumHeading>
+            {PROFILE_DATA.LAST_ACTIVITIES}
+          </StyledMediumHeading>
+        </StyleHeadingside>
 
         {ActivityData.map((item, index) => (
           <StyleActivityRow key={index}>
@@ -51,7 +45,9 @@ const UserProfileCard = () => {
           </StyleActivityRow>
         ))}
 
-        <Button type="outlined">{PROFILE_DATA.VIEW_MORE}</Button>
+        <StyleViewMoreButton>
+          <Button type="outlined">{PROFILE_DATA.VIEW_MORE}</Button>
+        </StyleViewMoreButton>
 
         <StyleJoinedDate>
           {PROFILE_DATA.JOINED_LABEL} {PROFILE_DATA.JOINED_DATE}
@@ -69,45 +65,33 @@ const UserProfileCard = () => {
 
 export default UserProfileCard;
 
-const StyleLeftCard = styled.div`
+export const StyleLeftCard = styled.div`
   width: 300px;
   max-width: 100%;
-  background: ${theme.light.colors.white};
+  background: white;
   padding: 25px 20px;
   margin-top: 70px;
   border-radius: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
-  ${mobile`
+  @media (max-width: 900px) {
     width: 100%;
-    margin-top: 20px;
-    padding: 18px 14px;
-  `}
+    margin-top: 30px;
+  }
 `;
 
-const StyleProfileImageContainer = styled.div`
+export const StyleProfileImageContainer = styled.div`
   position: relative;
   display: inline-block;
-
-  ${mobile`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  `}
 `;
 
-const StyleProfileImage = styled.img`
+export const StyleProfileImage = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-
-  ${mobile`
-    width: 65px;
-    height: 65px;
-  `}
 `;
 
-const StyleEditIconCircle = styled.div`
+export const StyleEditIconCircle = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -115,83 +99,86 @@ const StyleEditIconCircle = styled.div`
   border-radius: 50%;
   padding: 6px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 
   .material-icons {
-    color: ${theme.light.colors.white};
+    color: white;
     font-size: 16px;
   }
 `;
 
-const StyleUserLocation = styled.p`
-  margin-bottom: 20px;
+export const StyleUserName = styled.h2`
+  margin-top: 10px;
+`;
+
+export const StyleUserRole = styled.p`
+  color: #777;
+`;
+
+export const StyleUserLocation = styled.p`
+  margin: 10px 0 20px;
   color: #666;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
-
-  ${mobile`
-    font-size: 14px;
-    text-align: center;
-  `}
+  text-align: center;
 `;
 
-const StyleEditProfileWrapper = styled.div`
+export const StyleEditProfileWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+
   button {
     width: 230px;
   }
-
-  ${mobile`
-    button {
-      width: 100%;
-    }
-  `}
 `;
 
-const StyleActivitiesBox = styled.div`
+export const StyleActivitiesBox = styled.div`
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 12px;
   margin-top: 10px;
-
-  ${mobile`
-    padding: 12px;
-  `}
 `;
 
-const StyleActivityRow = styled.div`
+export const StyleHeadingside = styled.div`
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+export const StyleActivityRow = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 9px;
-  color: ${({ theme }) => theme.colors["inactive-color"]};
-
-  ${mobile`
-    font-size: 14px;
-  `}
+  color: #666;
 `;
 
-const StyleJoinedDate = styled.p`
-  margin-top: 40px;
-  font-size: ${theme.light.typography["body-small"]["font-size"]};
-  color: ${({ theme }) => theme.colors["inactive-color"]};
+export const StyleViewMoreButton = styled.div`
+  margin-top: 10px;
   display: flex;
   justify-content: center;
+`;
+
+export const StyleJoinedDate = styled.p`
+  margin-top: 40px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 6px;
-
-  ${mobile`
-    margin-top: 25px;
-    font-size: 13px;
-    text-align: center;
-  `}
+  text-align: center;
 `;
 
-const StyleHelpIconCircle = styled.span`
+export const StyleHelpIconCircle = styled.span`
+  color: #19183aff;
+  background: none;
   font-size: 18px;
-
-  ${mobile`
-    font-size: 16px;
-  `}
 `;
 
-const StyleSpan = styled.span``;
+export const StyleSpan = styled.span``;

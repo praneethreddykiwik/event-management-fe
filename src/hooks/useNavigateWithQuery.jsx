@@ -9,6 +9,7 @@ const useNavigateWithQuery = () => {
   return (to, options = {}) => {
     const currentParams = new URLSearchParams(location.search);
     const nextParams = new URLSearchParams();
+
     allowedVars.forEach((key) => {
       const value = currentParams.get(key);
       if (value) {

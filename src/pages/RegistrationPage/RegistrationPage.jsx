@@ -39,21 +39,31 @@ const RegistrationPage = () => {
   );
 };
 
-const StyledContainer = styled.div`
-  background: ${({ theme }) => theme.appBackgroundColor};
+export const StyledContainer = styled.div`
+  // height: 100vh;
+  background: #fff;
   display: flex;
   justify-content: center;
-`;
 
-const ContainerLeft = styled.div`
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+  }
+`;
+export const ContainerLeft = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
-
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   max-width: 460px;
   align-items: center;
   display: flex;

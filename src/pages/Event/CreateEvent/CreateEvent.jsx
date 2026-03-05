@@ -10,32 +10,24 @@ import { Inputs } from "../../../components/Inputs/Inputs";
 import { Button } from "../../../components/Buttons/Button";
 import { Continue } from "../../../myEnum/RegistrationPage.Enum";
 import { authSelector } from "../../../redux/auth/auth.slice";
-import { modifyTimeToISO } from "../../../utils/utils";
+import {
+  extractHoursAndMinutes,
+  formatScheduleDate,
+} from "../../../utils/utils";
 
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { StyledHeadingBig } from "../../../components/Styled/Typography.styled";
-import { mobile } from "../../../theme/media-queries";
-import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
-import { usersSelector } from "../../../redux/users/users.slice";
-
-import { useLocation } from "react-router-dom";
+import { paths } from "../../../constants/paths";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
-  const location = useLocation();
-
   const { createEventInputs } = useSelector(formsSelector);
   const { authUser } = useSelector(authSelector);
-  const { eventManagers } = useSelector(usersSelector);
-
-  const { tenantUid } = authUser;
-  const isEditMode = location?.state?.mode === "edit";
-
-  const eventData = location?.state?.eventData || {};
 
   const validateFields = () => {
     let isValid = true;
+
     const newInputs = createEventInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
       if (isReq && !el.value) {
@@ -56,65 +48,64 @@ const CreateEvent = ({ onCreateEvent }) => {
 
   const onSubmit = async () => {
     const isValid = validateFields();
+
     if (!isValid) return;
 
     const reqPayload = createEventInputs.reduce((acu, cur) => {
       return { ...acu, [cur.name]: cur.value };
     }, {});
 
-    const scheduledAt = modifyTimeToISO(
-      reqPayload.eventDate,
-      reqPayload.eventTime,
-    );
+    const time = reqPayload.eventTime;
+    const date = reqPayload.eventDate;
 
-    reqPayload.tenantUid = tenantUid;
-    reqPayload.scheduledAt = scheduledAt;
-    if (isEditMode) {
-      reqPayload.eventUid = eventData.uid;
-    } else {
-      reqPayload.status = "pending";
-    }
+    const { hour, minute } = extractHoursAndMinutes(time);
+    const formatedTime = formatScheduleDate(date, hour, minute);
 
-    await onCreateEvent({ navigate, reqPayload });
+    const tenantUid = authUser.tenantUid;
+    const scheduledAt = formatedTime;
+
+    const payload = {
+      navigate,
+      reqPayload: {
+        ...reqPayload,
+        assigned_to_uid: reqPayload.assignedEventManager,
+        tenantUid,
+        scheduledAt,
+        status: "pending",
+      },
+    };
+
+    await onCreateEvent(payload);
   };
 
   const goBack = () => {
-    window.history.back();
-  };
-
-  const clearHandler = () => {
-    const eventMetaDataFull = generateNewEventsInputs(eventManagers);
-    dispatch(updateAllEventInputs(eventMetaDataFull));
-  };
-
-  const onClickBtn = () => {
-    // shahid
+    navigate(paths.events);
   };
 
   return (
     <Form>
+      {/* <InputBox>
+        {createEventInputs.map((inp) => (
+          <Inputs key={inp.name} {...inp} onChange={onChange} />
+        ))}
+        <Button whiteText onClick={onSubmit}>
+          {Continue}
+        </Button>
+      </InputBox> */}
+
       <StyledFlex>
+        {/* <TaskForm onCreateTask={onSubmit} /> */}
         <InputBox>
           {createEventInputs.map((inp) => (
-            <Inputs
-              key={inp.name}
-              {...inp}
-              onChange={onChange}
-              onClickBtn={onClickBtn}
-            />
+            <Inputs key={inp.name} {...inp} onChange={onChange} />
           ))}
-          <StyledFlex2>
-            <Button whiteText onClick={clearHandler} type="secondary">
-              Clear
-            </Button>
-            <Button whiteText onClick={onSubmit}>
-              {Continue}
-            </Button>
-          </StyledFlex2>
+          <Button whiteText onClick={onSubmit}>
+            {Continue}
+          </Button>
         </InputBox>
         <StyledBox>
           <StyledHeadingBig left>
-            Please choose from one of the below Events
+            Please choose from one of the below Tasks
           </StyledHeadingBig>
           <Button onClick={goBack}>Go Back</Button>
         </StyledBox>
@@ -126,7 +117,7 @@ const CreateEvent = ({ onCreateEvent }) => {
 export const Form = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   gap: 16px;
 `;
@@ -136,42 +127,32 @@ export const InputBox = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   flex-direction: row;
+`;
 
-  ${mobile(`
-    flex-direction: column;
-    width:100%;
-  `)}
+export default CreateEvent;
+
+const DashboardContainer = styled.div`
+  padding: 0 20px 60px 20px;
 `;
 
 const StyledBox = styled.div`
   flex-basis: 40%;
   flex-shrink: 0;
-
-  ${mobile`
-    flex: 0 0 100%;
-  `}
 `;
 
 const StyledFlex = styled.div`
   display: flex;
   gap: 60px;
-  margin-top: 20px;
-
-  ${mobile`
-    flex-direction: column;
-    gap: 30px;
-    `}
+  // padding-left: 140px;
 `;
-const StyledFlex2 = styled.div`
+
+const StyledSuggestions = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   margin-top: 20px;
-  flex-grow: 1;
 
-  ${mobile`
-    flex-direction: column;
-    gap: 30px;
-    `}
+  .venue-ctn {
+    flex: 0 0 calc((100% - 180px) / 3);
+  }
 `;
-
-export default CreateEvent;

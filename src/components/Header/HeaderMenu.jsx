@@ -7,7 +7,6 @@ import { paths } from "../../constants/paths";
 import { RBACHOC } from "../../RBAC/RBAC";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth.slice";
-import { mobile } from "../../theme/media-queries";
 
 export const HeaderMenu = ({ menuOpen, goLogin }) => {
   const navigate = useNavigateWithQuery();
@@ -58,10 +57,10 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
         </MenuItem>
       ) : null}
 
-      <MenuItem onClick={() => toggleDropdown("venues")}>
-        Market <ArrowIcon $open={openDropdown === "venues"} />
-        <Dropdown $open={openDropdown === "venues"}>
-          <DropdownItem onClick={() => navigate("/venues")}>
+      <MenuItem onClick={() => toggleDropdown('venues')}>
+        Market <ArrowIcon $open={openDropdown === 'venues'} />
+        <Dropdown $open={openDropdown === 'venues'}>
+          <DropdownItem onClick={() => navigate('/venues')}>
             <ItemIcon>map_search</ItemIcon>
             Venues Near Me
           </DropdownItem>
@@ -77,7 +76,7 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
           Pages <ArrowIcon $open={openDropdown === "pages"} />
           <Dropdown $open={openDropdown === "pages"}>
             <RBACHOC perm="admin:panel">
-              <DropdownItem onClick={() => navigate(paths.eventsDashboard)}>
+              <DropdownItem onClick={() => navigate(paths.events)}>
                 <ItemIcon>event</ItemIcon>
                 Admin Dashboard
               </DropdownItem>
@@ -107,7 +106,7 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
       ) : null}
 
       {/* MOBILE EXTRA ICONS */}
-      {/* <MobileOnlyContainer>
+      <MobileOnlyContainer>
         <Icon aria-label="Search">search</Icon>
         <Icon aria-label="Language">language</Icon>
 
@@ -121,7 +120,7 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
             </AvatarBox>
           </>
         )}
-      </MobileOnlyContainer> */}
+      </MobileOnlyContainer>
     </MenuBox>
   );
 };
@@ -131,23 +130,18 @@ const MenuBox = styled.div`
   align-items: center;
   gap: 32px;
 
-  ${mobile`
-    position: fixed;
-    bottom: 0;
+  @media (max-width: 900px) {
+    position: absolute;
+    flex-direction: column;
+    top: 70px;
     left: 0;
-    right: 0;
-
-    height: 65px;
+    width: 100%;
     background: #fff;
+    padding: 20px 0;
     border-top: 1px solid #eee;
-
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-    
-  `}
+    display: ${(props) => (props.open ? "flex" : "none")};
+    z-index: 20;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -176,9 +170,6 @@ const MenuItem = styled.div`
     left: 0;
     border-radius: 6px;
   }
-  ${mobile`
-      position: relative;
-  `}
 `;
 
 const ArrowIcon = styled.span.attrs(() => ({
@@ -190,20 +181,15 @@ const ArrowIcon = styled.span.attrs(() => ({
   align-items: center;
 `;
 
-// const MobileOnlyContainer = styled.div`
-//   display: none;
+const MobileOnlyContainer = styled.div`
+  display: none;
 
-//   ${mobile`
-//     display: flex;
-//     align-items: center;
-//     gap: 12px;
-
-//     position: absolute;
-//     right: 16px;
-//     top: 50%;
-//     transform: translateY(-50%);
-//   `}
-// `;
+  @media (max-width: 900px) {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+`;
 
 const Icon = styled.span.attrs(() => ({
   className: "material-symbols-outlined",
@@ -215,9 +201,6 @@ const Icon = styled.span.attrs(() => ({
   &:hover {
     color: #1ac468;
   }
-  ${mobile`
-      display: none;
-  `}
 `;
 
 const AvatarBox = styled.div`
@@ -237,12 +220,12 @@ const Dropdown = styled.div`
   position: absolute;
   top: 40px;
   left: 0;
-
   width: clamp(150px, 40vw, 200px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   padding: 8px 0;
+  text-align: left;
   z-index: 50;
 
   opacity: ${(props) => (props.$open ? 1 : 0)};
@@ -250,14 +233,6 @@ const Dropdown = styled.div`
   transform: ${(props) => (props.$open ? "translateY(0)" : "translateY(10px)")};
 
   transition: all 0.2s ease;
-
-  ${mobile`
-    top: auto;
-    bottom: 50px;   
-    left: 50%;
-    transform: translateX(-22%);
-    width: 200px;
-  `}
 `;
 
 const DropdownItem = styled.div`

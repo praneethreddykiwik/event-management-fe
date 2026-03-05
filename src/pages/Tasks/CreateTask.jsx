@@ -3,7 +3,6 @@ import {
   StyledHeading,
   StyledHeadingBig,
 } from "../../components/Styled/Typography.styled";
-import { mobile } from "../../theme/media-queries";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledHr } from "../../components/Styled/Common.styled";
@@ -14,6 +13,7 @@ import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
 } from "../../redux/farms/metadata/task.metadata";
+import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
 import { Venue } from "../../components/Venue/Venue";
 import { toast } from "react-toastify";
 import {
@@ -24,34 +24,37 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
 import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
-import { fetchVendorsAction } from "../../redux/users/users.actions";
-import { tasksMetadata } from "../../constants/tasks.constants";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { paths } from "../../constants/paths";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
   const { vendors } = useSelector(usersSelector);
 
   const isEditMode = location.state?.mode === "edit";
+  const isAddMode = location.state?.mode === "add";
   const taskData = location.state?.taskData;
 
   useEffect(() => {
     if (!vendors.length) {
-      dispatch(fetchVendorsAction());
+      navigate(paths.tasks);
+      return;
     }
     if (isEditMode) {
       dispatch(updateAllTaskInputs(generateTaskDataToEdit(vendors, taskData)));
-    } else {
+    } else if (isAddMode) {
       dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
     }
-  }, [vendors]); // need to refactor this dependency
+  }, []);
 
   const onSubmit = (payloadParams) => {
     if (isEditMode) {
       editTask(payloadParams);
-    } else {
+    } else if (isAddMode) {
       createTask(payloadParams);
     }
   };
@@ -79,28 +82,32 @@ export const CreateTask = () => {
 
   const onClickSuggestion = (selectedTask) => {
     dispatch(
-      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask)),
+      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask))
     );
     toast.success("Selected task details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goBack = () => {
-    window.history.back();
+    navigate(paths.tasks);
   };
 
   return (
     <BlueBackHOC>
       <DashboardContainer>
         <StyledHeading left>
-          {isEditMode ? "Edit Task" : "Create Task"}
+          {isEditMode
+            ? "Edit Task"
+            : isAddMode
+            ? "Add task to Event"
+            : "Create Task"}
         </StyledHeading>
         <StyledHr />
         <StyledFlex>
           <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
-              Please choose from one of the below Task
+              Please choose from one of the below Events
             </StyledHeadingBig>
             <Button onClick={goBack}>Go Back</Button>
           </StyledBox>
@@ -121,50 +128,27 @@ export const CreateTask = () => {
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 16px 40px 16px;
-
-  ${mobile`
-    padding: 0 12px 24px 12px;
-  `}
+  padding: 0 20px 60px 20px;
 `;
 
 const StyledBox = styled.div`
   flex-basis: 50%;
   flex-shrink: 0;
-
-  ${mobile`
-    flex-basis: 100%;
-  `}
 `;
 
 const StyledFlex = styled.div`
   display: flex;
   gap: 160px;
   padding-left: 140px;
-
-  ${mobile`
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 20px;
-    padding-left: 0;
-  `}
 `;
 
 const StyledSuggestions = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin-top: 32px;
+  margin-top: 20px;
 
   .venue-ctn {
     flex: 0 0 calc((100% - 180px) / 3);
   }
-
-  ${mobile`
-    gap: 16px;
-
-    .venue-ctn {
-      flex: 0 0 100%;
-    }
-  `}
 `;

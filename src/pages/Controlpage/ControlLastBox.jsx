@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
-import { theme } from "../../theme/theme";
-import {
-  StyledParagraphBold,
-  StyledParagraph,
-  StyledParagraphSmallVisible,
-} from "../../components/Styled/Typography.styled";
 
 const LastBox = () => {
   return (
@@ -14,7 +8,7 @@ const LastBox = () => {
       <HeaderContainer>
         <LeftSection>
           <Lstspan className="material-icons">{enums.COTTAGE_ICON}</Lstspan>
-          <StyledParagraphBold>{enums.HEADER_CROS}</StyledParagraphBold>
+          <Header3>{enums.HEADER_CROS}</Header3>
         </LeftSection>
 
         <NavSection>
@@ -27,10 +21,8 @@ const LastBox = () => {
           <ProfileBox>
             <ProfileImg src={Control_avtar} />
             <ProfileInfo>
-              <StyledParagraph className="name">{enums.HENRY}</StyledParagraph>
-              <StyledParagraphSmallVisible className="role">
-                {enums.BUILD_MANAGER}
-              </StyledParagraphSmallVisible>
+              <Ltspan className="name">{enums.HENRY}</Ltspan>
+              <Ltspan className="role">{enums.BUILD_MANAGER}</Ltspan>
             </ProfileInfo>
             <ArrowIcon className="material-icons">{enums.KEYBOARD}</ArrowIcon>
           </ProfileBox>
@@ -43,7 +35,6 @@ export default LastBox;
 
 const HeaderWrapper = styled.div`
   padding: 3px;
-  // background:red;
 `;
 
 const HeaderContainer = styled.div`
@@ -53,7 +44,7 @@ const HeaderContainer = styled.div`
   padding: 5px 10px;
   border-radius: 50px;
   border: 1.5px solid #b4dbe9ff;
-  background: ${theme.light.colors.white};
+  background: #ffffff;
 `;
 
 const LeftSection = styled.div`
@@ -66,6 +57,12 @@ const Lstspan = styled.span`
   font-size: 20px;
 `;
 
+const Header3 = styled.h3`
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+`;
+
 const NavSection = styled.div`
   display: flex;
   align-items: center;
@@ -74,11 +71,8 @@ const NavSection = styled.div`
 
 const NavItem = styled.span`
   font-size: 16px;
-  font-weight: ${({ $active }) =>
-    $active
-      ? theme.light.fontWeights.semiBold
-      : theme.light.fontWeights.default};
-  color: ${({ $active }) => ($active ? theme.light.colors.black : "#9a9a9a")};
+  font-weight: ${({ $active }) => ($active ? "600" : "400")};
+  color: ${({ $active }) => ($active ? "#000" : "#9a9a9a")};
   cursor: pointer;
   position: relative;
 
@@ -124,7 +118,7 @@ const ProfileInfo = styled.div`
 
   .name {
     font-size: 14px;
-    font-weight: ${theme.light.fontWeights.semiBold};
+    font-weight: 600;
   }
 
   .role {
@@ -132,6 +126,8 @@ const ProfileInfo = styled.div`
     color: #96b3e2ff;
   }
 `;
+
+const Ltspan = styled.span``;
 
 const ArrowIcon = styled.span`
   font-size: 22px;

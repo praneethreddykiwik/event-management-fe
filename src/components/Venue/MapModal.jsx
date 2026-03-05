@@ -1,4 +1,6 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 const MapModal = ({ mapUrl, onClose }) => {
   if (!mapUrl) return null;
@@ -12,7 +14,7 @@ const MapModal = ({ mapUrl, onClose }) => {
           src={mapUrl}
           width="100%"
           height="100%"
-          style={{ border: 0, borderRadius: "12px" }}
+          style={{ border: 0, borderRadius: '12px' }}
           loading="lazy"
         />
       </ModalBox>

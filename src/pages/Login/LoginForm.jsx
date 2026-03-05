@@ -109,59 +109,65 @@ const Form = styled.div`
   width: 100%;
   gap: 16px;
 `;
-
 const InputBox = styled.div`
   width: 100%;
   display: flex;
+  gap: 20px;
   flex-direction: column;
-  gap: 16px;
 `;
 
 const ForgotPassword = styled(StyledParagraphSmallGray)`
-  margin-top: 4px;
-  margin-bottom: 16px;
-
+  margin-top: 3px;
+  margin-bottom: 15px;
   @media screen and (min-width: 769px) {
     display: none;
   }
 `;
-
 const Reset = styled(StyledAnchor)`
   text-decoration: none;
-  font-weight: ${({ theme }) => theme.fontWeights.default};
-  font-size: ${({ theme }) => theme.typography["body-small"]["font-size"]};
-  color: ${({ theme }) => theme.colors.primary} !important;
+  font-weight: 400;
+  font-size: 14px;
+  color: #26c867 !important;
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
 `;
-
 const CheckboxRow = styled.div`
   width: 100%;
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 30px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const AnchorParah = styled(StyledParagraphSmallGray)`
   margin: 0 auto;
-  margin-top: 32px;
-  font-size: ${({ theme }) => theme.typography.caption["font-size"]};
+  font-size: 12px;
   letter-spacing: 0;
-  line-height: ${({ theme }) => theme.typography.caption["line-height"]};
+  line-height: 16px;
+  margin-top: 30px;
 `;
 
 const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
   width: 75%;
   margin: 0;
-`;
 
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+`;
 const AccountSignIn = styled(StyledParagraphSmallGray)`
   margin: 0;
   margin-top: -8px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
-
 const SignInAnchor = styled(StyledAnchor)`
-  font-size: ${({ theme }) => theme.typography.caption["font-size"]};
-  text-decoration: none;
+  font-size: 12px;
+  text-decoratoin: none;
 `;
-
 export default LoginForm;

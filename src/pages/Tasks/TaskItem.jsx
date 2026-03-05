@@ -11,8 +11,6 @@ import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
-import { mobile } from "../../theme/media-queries";
-import { formatDateTime } from "../../utils/utils";
 
 const TaskItem = ({ task = {}, onEdit }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
@@ -28,28 +26,16 @@ const TaskItem = ({ task = {}, onEdit }) => {
           {task.taskIcon}
         </StatusIcon>
         <Taskcard>
-          <StyledParagraphBold left>{task.taskTitle}</StyledParagraphBold>
-          <StyledParagraphSmall left>
-            Desc: {task.taskDescription}
-          </StyledParagraphSmall>
-          <StyledParagraphSmall left>
-            {enums.TASK_ASSIGNEE} {task.taskAssignedToFirstName}
-          </StyledParagraphSmall>
-          <StyledParagraphSmall left>
-            {enums.TASKDUE} {formatDateTime(task.taskDueAt)}
-          </StyledParagraphSmall>
-          <StyledParagraphSmall left>
-            Task Created At: {formatDateTime(task.taskCreatedAt)}
-          </StyledParagraphSmall>
+          <Title>{task.taskTitle}</Title>
+          <EventName>{task.taskDescription}</EventName>
+          <TaskAssignee>
+            {enums.TASKASSIGNEE} {task.taskAssignedToUid}
+            {enums.TASKDUE} {task.taskDueAt}
+          </TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
-        <StyledFlex2>
-          <Badge type={task.type}>{task.taskStatus}</Badge>
-          <Icon variant="alternate_email" />
-          <Icon variant="chat" />
-          <Button type="inline-delete">Delete</Button>
-        </StyledFlex2>
+        <Badge type={task.type}>{task.taskStatus}</Badge>
         <Button type="no-border" onClick={() => onOpen()} small>
           Details
         </Button>
@@ -62,6 +48,7 @@ const TaskItem = ({ task = {}, onEdit }) => {
         <Button onClick={() => onEdit(task)} icon="edit" type="no-border" small>
           Edit
         </Button>
+        {/* <Icon variant="edit" /> */}
       </BadgeButton>
     </TaskRow>
   );
@@ -70,51 +57,47 @@ const TaskItem = ({ task = {}, onEdit }) => {
 const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 15px;
   background: #f3fff4;
-
-  ${mobile`
-    flex-direction: column;
-    margin: 20px 0;
-  `}
 `;
 
 const Left = styled.div`
-  padding: 32px 0;
+  padding: 20px 0;
   display: flex;
-  gap: 8px;
-  justify-content: space-between;
-
-  ${mobile`
-    padding: 16px 0;
-    flex-direction: row-reverse;
-  `}
+  gap: 10px;
 `;
-
 const StatusIcon = styled.span`
-  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
+  font-size: 20px;
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
 `;
-
 const Taskcard = styled.div`
   margin: -1px;
 `;
-
-const BadgeButton = styled.div`
-  display: flex;
-  align-items: center;
-  align-content: center;
-  gap: 16px;
-  margin: 0;
-  flex-wrap: wrap;
-  padding: 16px 0;
-  flex-basis: 30%;
+const Title = styled(StyledParagraphBold)`
+  text-align: left;
+  margin: 0 0 6px 0;
 `;
-
-const StyledFlex2 = styled.div`
+const EventName = styled(StyledParagraphSmall)`
+  margin-top: 0;
+  margin-bottom: 6px;
+  color: gray;
+  text-align: left;
+`;
+const TaskAssignee = styled(StyledParagraphSmall)`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin: 0;
+  text-align: left;
+`;
+const BadgeButton = styled.div`
+  // width: 30%;
+  gap: 16px;
   display: flex;
-  gap: 18px;
+  align-content: center;
   align-items: center;
+  margin: 0;
+`;
+const ManageButton = styled(StyledOutlinedButton)`
+  background-color: #eeeeee;
 `;
 
 export default TaskItem;

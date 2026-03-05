@@ -1,32 +1,26 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
-import {
-  StyledSemiHeading,
-  StyledParagraphSmallVisible,
-  StyledParagraphGray,
-  StyledParagraphSmallGray,
-} from "../../components/Styled/Typography.styled";
 
 const CardsContainer = () => {
   return (
     <>
       <InfoRow>
         <InfoCard>
-          <StyledParagraphGray>{enums.CURRENT}</StyledParagraphGray>
-          <StyledSemiHeading>{enums.VALUE1}</StyledSemiHeading>
+          <CardColumn>
+            <Label>{enums.CURRENT}</Label>
+            <Value1>{enums.VALUE1}</Value1>
+          </CardColumn>
         </InfoCard>
 
         <InfoCard>
           <InfoCardInner>
             <Stdiv2>
-              <StyledParagraphGray>{enums.TEMPERATURE}</StyledParagraphGray>
-              <StyledSemiHeading>{enums.DEGREE}</StyledSemiHeading>
+              <Label1>{enums.TEMPERATURE}</Label1>
+              <Value>{enums.DEGREE}</Value>
             </Stdiv2>
 
             <TempToggle>
-              <StyledParagraphSmallVisible>
-                {enums.DEGREE}
-              </StyledParagraphSmallVisible>
+              <TempPercent>{enums.DEGREE}</TempPercent>
               <TempSwitch>
                 <SSspan className="thumb" />
               </TempSwitch>
@@ -36,7 +30,7 @@ const CardsContainer = () => {
 
         <InfoCard>
           <InfoCardInner>
-            <StyledParagraphSmallGray>{enums.SCAN}</StyledParagraphSmallGray>
+            <Label2>{enums.SCAN}</Label2>
             <QRCode src="https://quickchart.io/qr?text=device&size=150" />
           </InfoCardInner>
         </InfoCard>
@@ -48,16 +42,61 @@ export default CardsContainer;
 
 const InfoRow = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 16px;
+  padding-left: 10px;
+  width: 100%;
+  padding: 18px 10px 0 0px;
   height: 15%;
 `;
 
 const InfoCard = styled.div`
   flex: 1;
-  background: ${({ theme }) => theme.colors["gray-disabled"]};
+  background: #d5d5d5ff;
   border-radius: 9px;
   border: 1px solid #85bbbcff;
   padding: 14px 16px;
+  display: flex;
+  align-items: center;
+`;
+
+const CardColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Label = styled.p`
+  font-size: 15px;
+  color: #8a8a8a;
+  font-weight: 500;
+`;
+
+const Label1 = styled.p`
+  font-size: 15px;
+  color: #8a8a8a;
+  font-weight: 500;
+`;
+
+const Label2 = styled.p`
+  font-size: 14px;
+  color: #8a8a8a;
+  max-width: 170px;
+  margin: 0;
+`;
+
+const Value1 = styled.h3`
+  font-size: 26px;
+  margin: 0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-left: -60px;
+`;
+
+const Value = styled.h3`
+  font-size: 26px;
+  margin: 0;
+  font-weight: 600;
 `;
 
 const Stdiv2 = styled.div``;

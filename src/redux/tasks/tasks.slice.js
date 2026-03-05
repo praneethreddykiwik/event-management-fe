@@ -3,50 +3,29 @@ import * as actions from "./tasks.actions";
 
 const initialState = {
   tasks: [],
-  taskCountObj: {},
-  tasksLoading: false,
+  tasksLoading: false, // idle | loading | authenticated | unauthenticated
   tasksError: null,
-
-  tasksByEvent: [],
-  tasksByEventsLoading: false,
-  tasksByEventsError: null,
 
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
-
-  editTaskLoading: false,
-  editTask: false,
-  editTaskError: "",
 };
 
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {},
+  reducers: {
+    updateTenantId(state, action) {
+      state.tenantId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
-    builder
-      .addCase(actions.fetchTasksApiAction.pending, (state) => {
-        state.tasksByEventsLoading = true;
-      })
-      .addCase(actions.fetchTasksApiAction.fulfilled, (state, action) => {
-        state.tasksByEvent = action.payload?.details;
-        state.tasksByEventsLoading = false;
-        state.tasksByEventsError = null;
-      })
-      .addCase(actions.fetchTasksApiAction.rejected, (state) => {
-        state.authUser = null;
-        state.tasksByEventsLoading = false;
-        state.tasksByEventsError = "Error";
-      });
     builder
       .addCase(actions.fetchEventsAndTasksAction.pending, (state) => {
         state.tasksLoading = true;
       })
       .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
-        const res = action.payload?.details || {};
-        state.tasks = res.data;
-        state.taskCountObj = res.countObj;
+        state.tasks = action.payload?.details;
         state.tasksLoading = false;
         state.tasksError = null;
       })
@@ -89,5 +68,5 @@ const tasksSlice = createSlice({
 });
 
 export const tasksSelector = (st) => st.tasks;
-export const { clearAuthError } = tasksSlice.actions;
+export const { clearAuthError, updateTenantId } = tasksSlice.actions;
 export default tasksSlice.reducer;

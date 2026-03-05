@@ -1,19 +1,22 @@
-import styled from "styled-components";
-import Helm_logo from "../../assets/Logos/Helm_logo.svg";
-import { LogoBox, LogoImage } from "../Login/WelcomeTxts";
-const WelcomeTxts = () => {
+import logoImg from "../../assets/Logos/eventz-logo.png";
+import { StyledHeading } from "../../components/Styled/Typography.styled";
+import { EVENTZ } from "../../myEnum/RegistrationPage.Enum";
+import { LogoEventz, Logo, EventzTxt } from "./styled.RegistrationPage";
+
+const WelcomeTxts = ({ logo = logoImg }) => {
   return (
     <div>
-      <LogoBox>
-        <LogoHelm src={Helm_logo} alt="logo" />
-      </LogoBox>
+      <LogoEventz>
+        <Logo src={logoImg} alt="eventz logo" />
+        <EventzTxt>{EVENTZ}</EventzTxt>
+      </LogoEventz>
+
+      {/* <WelcomeTxt>
+        <StyledHeading>{WelcomeText}</StyledHeading>
+        <SignUpTxt>{SignUpText}</SignUpTxt>
+      </WelcomeTxt> */}
     </div>
   );
 };
 
 export default WelcomeTxts;
-
-const LogoHelm = styled(LogoImage)`
-  margin-top: 0px;
-  margin-bottom: 0px;
-`;

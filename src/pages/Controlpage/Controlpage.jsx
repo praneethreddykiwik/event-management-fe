@@ -8,7 +8,6 @@ import RightCardContainer from "./ControlRightCard";
 import Topcard2 from "./ControlTopCard";
 import VenueCard from "./ControlWithImages";
 import UsageBox from "./ControlGraph";
-import { theme } from "../../theme/theme";
 
 const ControlDashboard = () => {
   return (
@@ -16,14 +15,14 @@ const ControlDashboard = () => {
       <Wrapper>
         <Topcard2 />
         <BodySection>
-          <LeftContent>
+           <LeftContent> 
             <TopRow>
               <VenueCard />
               <UsageBox />
             </TopRow>
             <CardsContainer />
             <FourCardsContainer />
-          </LeftContent>
+          </LeftContent> 
           <RightCardContainer />
         </BodySection>
         <LastBox />
@@ -37,7 +36,7 @@ export default ControlDashboard;
 const Page = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: #e9f5ff;
+  background: #e9f5ff; 
   display: flex;
   justify-content: center;
   /* align-items: flex-start; */
@@ -45,20 +44,23 @@ const Page = styled.div`
   font-family: "Inter", sans-serif;
 `;
 
+
 const Wrapper = styled.div`
   width: 90%;
   max-width: 1300px;
   margin: 0 auto;
-  background: ${theme.light.colors.white};
+  background: #ffffff;
   border-radius: 2px;
   padding: 24px 24px 28px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+
 `;
 
 const BodySection = styled.div`
   width: 100%;
   display: flex;
   gap: 26px;
+
 `;
 
 const LeftContent = styled.div`
@@ -66,11 +68,15 @@ const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
 `;
+
 
 const TopRow = styled.div`
   display: flex;
   gap: 18px;
   width: 100%;
   padding-left: 0;
+
 `;
+

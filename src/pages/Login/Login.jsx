@@ -1,3 +1,4 @@
+/** @format */
 import LoginImages from "./LoginImages";
 import WelcomeTxts from "./WelcomeTxts";
 import GetStartedWithButtons from "./GetStartedWithButtons";
@@ -24,25 +25,35 @@ const Login = () => {
 
 export default Login;
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   height: 100%;
-  background: ${({ theme }) =>
-    theme.light?.appBackgroundColor || theme.appBackgroundColor || "#fff"};
+  background: #fff;
   display: flex;
   margin: auto;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+  }
 `;
 
-const ContainerLeft = styled.div`
+export const ContainerLeft = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   max-width: 460px;
   align-items: center;
   display: flex;

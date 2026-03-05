@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../theme/theme";
 
 const Temp = () => {
   const MODES = ["Hot", "Eco", "Fan", "Cold"];
@@ -26,24 +25,24 @@ export default Temp;
 const ModeRow = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 57px;
-  width: 300px;
+  gap: 9px;
 `;
 
 const ModeBtn = styled.button`
   width: 23%;
   padding: 10px 0;
-  background: ${({ $active }) =>
-    $active ? theme.light.colors.white : "#2d2c3c"};
-  color: ${({ $active }) =>
-    $active ? theme.light.colors.black : theme.light.colors.white};
+  background: ${({ $active }) => ($active ? "#ffffff" : "#2d2c3c")};
+  color: ${({ $active }) => ($active ? "#000" : "#fff")};
   border-radius: 8px;
+  border: none;
+  text-align: center;
   cursor: pointer;
   font-size: 13px;
 
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
   justify-content: center;
 
   .material-icons {
@@ -54,6 +53,6 @@ const ModeBtn = styled.button`
 const Stspan3 = styled.span``;
 
 const Span = styled.span`
-  font-size: ${theme.light.typography["body-small"]["font-size"]};
-  font-weight: ${theme.light.fontWeights.medium};
+  font-size: 14px;
+  font-weight: 500;
 `;

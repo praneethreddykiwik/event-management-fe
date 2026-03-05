@@ -114,7 +114,6 @@ export const generateTaskDataToEdit = (vendors, data) => {
         })),
       };
     }
-    const finalOutput = { ...input, value: data[el] };
-    return finalOutput;
+    return { ...input, value: data[el] };
   });
 };

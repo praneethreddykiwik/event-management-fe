@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import {
-  StyledHeading,
-  StyledParagraphBold,
-  StyledParagraphSmallGray,StyledParagraphGray
-  
-} from "../../components/Styled/Typography.styled";
-import {
   ButtonWrapper,
   Cards,
   ChoosePlan,
+  ChoosePlanTxt,
   Discount,
   Feature,
   Features,
+  Header,
   MobileCTA,
   MobileDot,
   MobileLine,
@@ -26,6 +22,7 @@ import {
   ToggleKnob,
   ToggleRow,
   ToggleSwitch,
+  Message,
   PlanDivider,
   SpanButton,
 } from "./Subscriptions.styled";
@@ -71,21 +68,23 @@ const Subscriptions = () => {
   return (
     <StyledContainer>
       <ChoosePlan>
-          <StyledHeading>{enums.CHOOSE_PLAN}</StyledHeading>
-          <StyledParagraphGray>{enums.ENJOY_MESSAGE}</StyledParagraphGray>
+        <Header>
+          <ChoosePlanTxt>{enums.CHOOSE_PLAN}</ChoosePlanTxt>
+          <Message>{enums.ENJOY_MESSAGE}</Message>
 
           <ToggleRow>
-            <StyledParagraphBold className={!yearly ? "active" : ""}>
+            <SpanButton className={!yearly ? "active" : ""}>
               {enums.MONTH}
-            </StyledParagraphBold>
+            </SpanButton>
             <ToggleSwitch onClick={() => setYearly((v) => !v)}>
               <ToggleKnob $move={yearly} />
             </ToggleSwitch>
-            <StyledParagraphBold className={yearly ? "active" : ""}>
+            <SpanButton className={yearly ? "active" : ""}>
               {enums.YEAR}
-            </StyledParagraphBold>
+            </SpanButton>
             <Discount>{enums.DISCOUNT}</Discount>
           </ToggleRow>
+        </Header>
 
         <Cards role="radiogroup" aria-label="Pricing plans">
           {Object.entries(priceMonthly).map(([key, price]) => (
@@ -103,9 +102,7 @@ const Subscriptions = () => {
             >
               <TitleRow>
                 <MobileDot $selected={selected === key} />
-                <StyledParagraphGray>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </StyledParagraphGray>
+                <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
               </TitleRow>
 
               <Price>
@@ -147,7 +144,6 @@ const Subscriptions = () => {
             {enums.AGREE} <a href="#">{enums.BY_USING_OUR_TERMS}</a> {enums.AND}{" "}
             <a href="#">{enums.PRIVACY}</a>
           </SpanButton>
-          
         </TermsRow>
 
         <MobileCTA>

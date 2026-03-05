@@ -1,3 +1,5 @@
+/** @format */
+
 import styled from "styled-components";
 import Badge from "../../components/Badge/Badge.component";
 import {
@@ -16,9 +18,9 @@ const CustomerItem = ({ task = {} }) => {
         <Taskcard>
           <Title>{task.taskTitle}</Title>
           <EventName>{task.taskDescription}</EventName>
-          <StyledParagraphSmall left>
+          <TaskAssignee>
             {/* {E_M_DASHBOARD_COMMON.TASKDUE} {task.taskDueAt} */}
-          </StyledParagraphSmall>
+          </TaskAssignee>
         </Taskcard>
       </Left>
       <BadgeButton>
@@ -31,13 +33,13 @@ const CustomerItem = ({ task = {} }) => {
 const TaskRow = styled(Section)`
   display: flex;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 15px;
 `;
 
 const Left = styled.div`
-  padding: 32px 0;
+  padding: 20px 0;
   display: flex;
-  gap: 8px;
+  gap: 10px;
 `;
 
 const StatusIcon = styled.span`
@@ -50,21 +52,28 @@ const Taskcard = styled.div`
 `;
 
 const Title = styled(StyledParagraphBold)`
-  margin: 0 0 4px 0;
+  text-align: left;
+  margin: 0 0 6px 0;
 `;
 
 const EventName = styled(StyledParagraphSmall)`
-  margin-bottom: 4px;
+  margin-top: 0;
+  margin-bottom: 6px;
   color: gray;
+  text-align: left;
 `;
 
-const TaskAssignee = styled(StyledParagraphSmall)``;
+const TaskAssignee = styled(StyledParagraphSmall)`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin: 0;
+  text-align: left;
+`;
 
 const BadgeButton = styled.div`
+  gap: 6px;
   display: flex;
-  align-items: center;
   align-content: center;
-  gap: 4px;
+  align-items: center;
   margin: 0;
 `;
 

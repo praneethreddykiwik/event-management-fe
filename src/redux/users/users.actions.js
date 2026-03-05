@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createUserApi,
-  getEventManagersApi,
   getUsersApi,
   updateUserApi,
   userDeleteApi,
@@ -11,26 +10,22 @@ import { toast } from "react-toastify";
 
 export const fetchManagersAction = createAsyncThunk(
   "users/fetchManagersAction",
-  async (payload, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue, getState }) => {
     const store = getState();
     const { tenantId } = store.auth;
     try {
       const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
-      const res = await getEventManagersApi(query);
-
-      if (payload?.callback) {
-        payload.callback(res.data.details);
-      }
+      const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||
           err?.message ||
-          "Failed to fetch managers",
+          "Failed to fetch managers"
       );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
-  },
+  }
 );
 
 export const fetchAllUsersAction = createAsyncThunk(
@@ -44,11 +39,13 @@ export const fetchAllUsersAction = createAsyncThunk(
       return res.data;
     } catch (err) {
       toast.error(
-        err?.response?.data?.message || err?.message || "Failed to fetch Users",
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch Users"
       );
       return rejectWithValue(err?.response?.data || "Fetch users failed");
     }
-  },
+  }
 );
 
 export const fetchVendorsAction = createAsyncThunk(
@@ -65,11 +62,11 @@ export const fetchVendorsAction = createAsyncThunk(
       toast.error(
         err?.response?.data?.message ||
           err?.message ||
-          "Failed to fetch managers",
+          "Failed to fetch managers"
       );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
-  },
+  }
 );
 
 export const registrationAction = createAsyncThunk(
@@ -82,11 +79,11 @@ export const registrationAction = createAsyncThunk(
       return res.data; // user object (or any success response)
     } catch (err) {
       toast.error(
-        err?.response?.data?.message || err?.message || "Registration failed",
+        err?.response?.data?.message || err?.message || "Registration failed"
       );
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
-  },
+  }
 );
 
 // shahid
@@ -100,11 +97,11 @@ export const deleteUserAction = createAsyncThunk(
       return res.data;
     } catch (err) {
       toast.error(
-        err?.response?.data?.message || err?.message || "Failed to delete user",
+        err?.response?.data?.message || err?.message || "Failed to delete user"
       );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
-  },
+  }
 );
 
 export const updateUserAction = createAsyncThunk(
@@ -117,9 +114,9 @@ export const updateUserAction = createAsyncThunk(
       return res.data;
     } catch (err) {
       toast.error(
-        err?.response?.data?.message || err?.message || "Failed to update user",
+        err?.response?.data?.message || err?.message || "Failed to update user"
       );
       return rejectWithValue(err?.response?.data || "Login failed");
     }
-  },
+  }
 );

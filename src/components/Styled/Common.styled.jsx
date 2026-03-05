@@ -1,5 +1,6 @@
+/** @format */
+
 import styled from "styled-components";
-import { mobile } from "../../theme/media-queries";
 
 export const StyledHeader = styled.header`
   width: 100%;
@@ -25,10 +26,9 @@ export const StyledFlexContainer = styled.div`
 export const StyledHr = styled.hr`
   border: none;
   border-bottom: 1px solid #dfdfdf;
-  margin: 0 0px 40px 0px;
+  margin: 0 -20px 40px -20px;
   width: 100%;
-
-  ${mobile`
-      margin: 0 0px 20px 0px;
-  `}
+  @media (max-width: 768px) {
+    margin: 0 -20px;
+  }
 `;

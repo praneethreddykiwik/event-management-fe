@@ -1,21 +1,16 @@
-import {
-  StyledHeading,
-  StyledParagraphGray,
-  StyledParagraphSmallGray,
-} from "../../components/Styled/Typography.styled";
+import { StyledHeading } from "../../components/Styled/Typography.styled";
 import styled from "styled-components";
 import { WELCOME, MARKET_PLACE_DESCRIPTION_TEXT } from "../../myEnum";
-import { mobile, tablet } from "../../theme/media-queries";
 
 const MarketDescription = () => {
   return (
     <PageSection>
       <MainContainer>
         <ArticleContent>
-          <StyledHeading left>{WELCOME}</StyledHeading>
-          <StyledParagraphSmallGray left>
-            {MARKET_PLACE_DESCRIPTION_TEXT}
-          </StyledParagraphSmallGray>
+          <HeadingWrapper>
+            <StyledHeading>{WELCOME}</StyledHeading>
+          </HeadingWrapper>
+          <Description>{MARKET_PLACE_DESCRIPTION_TEXT}</Description>
         </ArticleContent>
 
         <AsideSearch>
@@ -39,16 +34,21 @@ const MainContainer = styled.main`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  ${mobile`
-    flex-direction: column-reverse;
-  `}
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const ArticleContent = styled.article`
   max-width: 720px;
-  ${tablet`
-    width: 100%;
-  `}
+`;
+
+const HeadingWrapper = styled.div`
+
+  ${StyledHeading} {
+    font-weight: 700;
+    text-align: left; 
 `;
 
 const Description = styled.p`
@@ -57,26 +57,41 @@ const Description = styled.p`
   line-height: 1.5;
   text-align: left;
   margin-top: 4px;
+
+  @media (max-width: 900px) {
+    text-align: left; /* keep description left too */
+  }
 `;
 
 const AsideSearch = styled.aside`
   position: relative;
-  width: 100%;
+  width: 240px;
+
+  @media (max-width: 900px) {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const SearchInput = styled.input`
   width: 80%;
-  padding: 15px 19px 8px 44px;
+  padding: 12px 14px 8px 24px;
   border-radius: 20px;
   border: 1px solid #d1d5db;
   font-size: 12px;
   outline: none;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: #ffffff;
+
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;
 
 const Icon = styled.i`
   position: absolute;
-  left: 60px;
+  left: 10px;
   top: 55%;
   transform: translateY(-50%);
   color: #22c55e;

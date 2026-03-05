@@ -1,10 +1,11 @@
+/** @format */
+
 import styled from "styled-components";
 
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
 
-const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
-const marginBottom = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
 
 // headings
 export const StyledHeadingMaxBig = styled.p`
@@ -14,7 +15,7 @@ export const StyledHeadingMaxBig = styled.p`
   // line-height: 52px;
   letter-spacing: -0.144px;
   margin: 36px 0;
-  text-align: ${textAlign};
+  text-align: ${({ left, right }) => textAlign({ left, right })};
 `;
 export const StyledHeadingBig = styled.p`
   //   color: ${({ theme, gradient }) => (gradient ? null : theme.color)};
@@ -24,7 +25,7 @@ export const StyledHeadingBig = styled.p`
   line-height: 52px;
   letter-spacing: -0.144px;
   margin: 20px 0;
-  text-align: ${textAlign};
+  text-align: ${({ left, right }) => textAlign({ left, right })};
 `;
 
 export const StyledHeading = styled.p`
@@ -49,7 +50,6 @@ export const StyledMediumHeading = styled.p`
   font-weight: 600;
   line-height: 23.4px;
   margin-top: ${marginTop}px;
-  margin-bottom: ${marginBottom}px;
   text-align: ${textAlign};
 `;
 
@@ -145,8 +145,8 @@ export const StyledGrayLink = styled.span`
   }
 `;
 
-export const StyledAnchorSmall = styled.a`
-  color: ${({ theme }) => theme.commonAnchorColor || "#22c55e"};
+export const StyledAnchorSmall = styled.p`
+  color: ${({ theme }) => theme.commonAnchorColor};
   font-size: 14px;
   font-weight: 400;
   line-height: 18.2px;
@@ -154,8 +154,7 @@ export const StyledAnchorSmall = styled.a`
   cursor: pointer;
 
   &:hover {
-    text-decoration-color: ${({ theme }) =>
-      theme.commonAnchorColor || "#22c55e"};
+    text-decoration-color: ${({ theme }) => theme.commonAnchorColor};
     text-decoration: underline;
     text-decoration-style: solid;
   }

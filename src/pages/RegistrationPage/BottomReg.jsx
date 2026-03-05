@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { authSelector } from "../../redux/auth/auth.slice";
 import { StyledParagraphSmallGray } from "../../components/Styled/Typography.styled";
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
@@ -17,24 +18,22 @@ export const BottomReg = () => {
   return (
     <StyledBox>
       {registrationSuccess ? (
-        <StyledParagraphSmallGray>
+        <AccountSignIn>
           Successfully registered user. You can proceed to{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
             {SignIn}
           </AnchorLinkPrimary>
-        </StyledParagraphSmallGray>
+        </AccountSignIn>
       ) : (
-        <StyledParagraphSmallGray>
+        <AccountSignIn>
           {Account}{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
             {SignIn}
           </AnchorLinkPrimary>
-        </StyledParagraphSmallGray>
+        </AccountSignIn>
       )}
 
-      <StyledParagraphSmallGray center>
-        {TermsConditions}
-      </StyledParagraphSmallGray>
+      <TermsConditionsTxt>{TermsConditions}</TermsConditionsTxt>
 
       {/* Raghavendra */}
     </StyledBox>
@@ -43,4 +42,15 @@ export const BottomReg = () => {
 
 const StyledBox = styled.div`
   margin-top: 30px;
+`;
+
+export const AccountSignIn = styled(StyledParagraphSmallGray)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+export const TermsConditionsTxt = styled(StyledParagraphSmallGray)`
+  // width: 75%;
+  text-align: center;
+  margin: 0;
 `;

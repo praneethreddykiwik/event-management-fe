@@ -1,4 +1,6 @@
-import { taskStatuses, eventStatuses } from "../constants/statuses";
+/** @format */
+
+import { taskStatuses, eventStatuses } from '../constants/statuses';
 
 export const mapTaskForUI = (task) => {
   const status = taskStatuses[task.taskStatus] || taskStatuses.not_started;

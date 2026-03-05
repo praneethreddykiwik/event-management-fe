@@ -1,7 +1,7 @@
+/** @format */
+
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
-import { Icon } from "../../components/Icons/Icons";
-import { mobile } from "../../theme/media-queries"; 
 
 import Badge from "../../components/Badge/Badge.component";
 
@@ -36,10 +36,15 @@ const StakeholderDashboard = () => {
       <Container>
         {/* Header */}
         <Header>
-          <StyledHeading left>Task Assignments</StyledHeading>
-          <StyledParagraphSmallGray left>
-            View and respond to your task assignments
-          </StyledParagraphSmallGray>
+          <TitleWrapper>
+            <StyledHeading left>Task Assignments</StyledHeading>
+          </TitleWrapper>
+
+          <SubtitleWrapper>
+            <StyledParagraphSmallGray left>
+              View and respond to your task assignments
+            </StyledParagraphSmallGray>
+          </SubtitleWrapper>
         </Header>
 
         {/* Task Cards */}
@@ -47,7 +52,9 @@ const StakeholderDashboard = () => {
           <Card key={task.id}>
             <CardHeader>
               <TaskTextWrapper>
-                <StyledSemiHeading left>{task.title}</StyledSemiHeading>
+                <TaskTitle>
+                  <StyledSemiHeading left>{task.title}</StyledSemiHeading>
+                </TaskTitle>
 
                 <StyledParagraphSmall left>
                   {task.eventName}
@@ -58,22 +65,24 @@ const StakeholderDashboard = () => {
                 </StyledParagraphSmallGray>
               </TaskTextWrapper>
 
-              <Badge type={task.status}>{task.status}</Badge>
+              <CompactBadge>
+                <Badge type={task.status}>{task.status}</Badge>
+              </CompactBadge>
             </CardHeader>
 
             {/* Pending Actions */}
             {task.status === BADGE_TYPES.PENDING && (
               <ActionsRow>
                 <ButtonWrapper>
-                  <Button type="icon" icon="check" sx={{ width: "100%" }}>
-                    Accept
-                  </Button>
+                  <AcceptButton>
+                    <Button type="icon" icon="check">
+                      Accept
+                    </Button>
+                  </AcceptButton>
                 </ButtonWrapper>
 
                 <ButtonWrapper>
-                  <Button type="outlined" sx={{ width: "100%" }}>
-                    Decline
-                  </Button>
+                  <Button type="outlined">Decline</Button>
                 </ButtonWrapper>
               </ActionsRow>
             )}
@@ -81,11 +90,7 @@ const StakeholderDashboard = () => {
             {/* Accepted State */}
             {task.status === BADGE_TYPES.ACCEPTED && (
               <AcceptedText>
-                {/* <span className="material-symbols-outlined">check_circle</span> */}
-                <Icon
-                  variant="check_circle"
-                  sx={{ fontSize: "18px", color: "#16a34a" }}
-                />
+                <span className="material-symbols-outlined">check_circle</span>
                 <StyledParagraphSmall>
                   You've accepted this assignment
                 </StyledParagraphSmall>
@@ -103,33 +108,39 @@ export default StakeholderDashboard;
 /* ===================== STYLES ===================== */
 
 const PageWrapper = styled.div`
-  background-color: ${({ theme }) => theme.color["light-blue"]};
+  background-color: #f5f5f5;
+  min-height: 100%;
   padding: 80px;
   padding-top: 32px;
-
-  ${mobile`
-    padding: 26px;
-    padding-top: 16px;
-  `}
 `;
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.colors.white};
+  background: #ffffff;
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-
-  ${mobile`
-    padding: 14px;
-  `}
 `;
 
 const Header = styled.div`
   margin-bottom: 20px;
+`;
 
-  ${mobile`
-    padding: 0px;
-  `}
+const TitleWrapper = styled.div`
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  p {
+    font-size: 26px;
+    margin: 0;
+    line-height: 32px;
+  }
+`;
+
+const SubtitleWrapper = styled.div`
+  p {
+    margin: 0;
+    line-height: 18px;
+  }
 `;
 
 const Card = styled.div`
@@ -137,15 +148,16 @@ const Card = styled.div`
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;
-
-  ${mobile`
-    padding: 12px;
-  `}
 `;
 
 const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const CompactBadge = styled.div`
+  display: inline-flex;
+  align-self: flex-start;
 `;
 
 const TaskTextWrapper = styled.div`
@@ -162,23 +174,35 @@ const TaskTextWrapper = styled.div`
   }
 `;
 
+const TaskTitle = styled.div`
+  p {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0;
+    font-weight: 500;
+  }
+`;
+
 const ActionsRow = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 12px;
-
-  ${mobile`
-    flex-direction: column;
-    gap: 8px;
-  `}
 `;
 
 const ButtonWrapper = styled.div`
   flex: 1;
 `;
 
+const AcceptButton = styled.div``;
+
 const AcceptedText = styled.div`
   margin-top: 10px;
   display: flex;
+  align-items: center;
   gap: 6px;
+  color: #16a34a;
+
+  .material-symbols-outlined {
+    font-size: 18px;
+  }
 `;

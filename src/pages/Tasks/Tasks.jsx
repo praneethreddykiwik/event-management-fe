@@ -20,23 +20,18 @@ import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
 import { fetchVendorsAction } from "../../redux/users/users.actions";
-import { usersSelector } from "../../redux/users/users.slice";
-import { mobile } from "../../theme/media-queries";
 
 const EventManagerDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
-  const { tasks, taskCountObj } = useSelector(tasksSelector);
-  const { vendors } = useSelector(usersSelector);
+  const { tasks } = useSelector(tasksSelector);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
-    if (!vendors.length) {
-      dispatch(fetchVendorsAction());
-    }
+    dispatch(fetchVendorsAction());
   }, []);
 
   const onAddTask = (event) => {
@@ -57,7 +52,7 @@ const EventManagerDashboard = () => {
         taskData: {
           title: task.taskTitle,
           description: task.taskDescription,
-          priority: task.priority,
+          priority: task.taskPriority,
           dueAt: task.taskDueAt,
           assignedToUid: task.taskAssignedToUid,
         },
@@ -65,27 +60,26 @@ const EventManagerDashboard = () => {
     });
   };
 
-  console.log("abdul tasks", tasks);
-
   return (
     <BlueBackHOC>
       <DashboardContainer>
         <StyledHeading left>Tasks</StyledHeading>
         <StyledHr />
 
-        <SummaryCard taskCountObj={taskCountObj} />
+        <CardsRow>
+          <SummaryCard label="Total Tasks" value={tasks.length} />
+          <SummaryCard type="completed" label="Completed" value="1" />
+          <SummaryCard type="inprogress" label="In Progress" value="2" />
+          <SummaryCard type="pending" label="Pending" value="1" />
+        </CardsRow>
 
         {tasks.map((event) => (
           <Section key={event.eventUid}>
             <StyledTaskHeading>
-              <StyledTitleText>
-                <StyledMediumHeading left>
-                  {event.eventName}
-                </StyledMediumHeading>
-                <StyledParagraphSmall left>
-                  {event.eventVenue}
-                </StyledParagraphSmall>
-              </StyledTitleText>
+              <StyledBox2>
+                <TaskOverview>{event.eventName}</TaskOverview>
+                <TaskMonitor>{event.eventVenue}</TaskMonitor>
+              </StyledBox2>
 
               <Button
                 icon="add"
@@ -96,7 +90,7 @@ const EventManagerDashboard = () => {
                 Add Task
               </Button>
             </StyledTaskHeading>
-            <StyledHr />
+            <StyledHrTask />
 
             {event.tasks?.length ? (
               event.tasks.map((task) => (
@@ -118,23 +112,37 @@ const EventManagerDashboard = () => {
 };
 
 const DashboardContainer = styled.div`
-  padding: 0 16px 16px 16px;
+  padding: 0 20px 20px 20px;
+`;
+
+const CardsRow = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+`;
+
+const TaskOverview = styled(StyledMediumHeading)`
+  margin: 0;
+  text-align: left;
+`;
+
+const TaskMonitor = styled(StyledParagraphSmall)`
+  margin: 0;
+  text-align: left;
 `;
 
 const StyledTaskHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
-
-  ${mobile`
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 18px;
-  `}
+  margin-bottom: 14px;
+`;
+const StyledBox2 = styled.div`
+  flex-basis: 50%;
 `;
 
-const StyledTitleText = styled.div`
-  flex-basis: 50%;
+const StyledHrTask = styled(StyledHr)`
+  margin: 0;
 `;
 
 export default EventManagerDashboard;

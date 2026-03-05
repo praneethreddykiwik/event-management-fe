@@ -1,144 +1,97 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { Inputs } from "../../components/Inputs/Inputs";
-import { Button } from "../../components/Buttons/Button";
+/** @format */
 
-const meta = [
+import styled from 'styled-components';
+import { Input } from '../../components/Inputs/Input';
+
+const myInputs = [
   {
-    type: "text",
-    name: "username",
-    label: "Username",
-    placeholder: "Enter username",
-    validations: ["required"],
+    type: 'text',
+    placeholder: 'Username',
+    name: 'username',
+    disabled: false,
+    value: '',
+    isError: false,
+    validations: ['required', { type: 'min-length', value: 3 }],
+    errorMessage: 'Username is required and should be at least 3 chars',
   },
   {
-    type: "email",
-    name: "email",
-    label: "Email",
-    placeholder: "Enter email",
-    validations: ["required"],
+    type: 'text',
+    placeholder: 'First Name',
+    name: 'firstName',
+    disabled: false,
+    value: '',
+    isError: false,
+    validations: ['required'],
+    errorMessage: 'First name is required',
   },
   {
-    type: "password",
-    name: "password",
-    label: "Password",
-    placeholder: "Enter password",
-    validations: ["required"],
+    type: 'text',
+    placeholder: 'Last Name',
+    name: 'secondName',
+    disabled: false,
+    value: '',
+    isError: false,
+    validations: [],
+    errorMessage: 'Something Went Wrong!',
   },
   {
-    type: "date",
-    name: "dob",
-    label: "Date of Birth",
-    validations: ["required"],
+    type: 'password',
+    placeholder: 'Password',
+    name: 'password',
+    disabled: false,
+    value: '',
+    isError: false,
+    validations: ['required', { type: 'min-length', value: 6 }],
+    errorMessage: 'Password required (min 6 chars)',
   },
   {
-    type: "time",
-    name: "loginTime",
-    label: "Preferred Login Time",
+    type: 'radio-group',
+    placeholder: 'Gender',
+    name: 'gender',
+    disabled: false,
+    value: '',
+    isError: false,
+    validations: ['required'],
+    errorMessage: 'Please select your gender',
+    list: ['Male', 'Female', 'Other'],
   },
   {
-    type: "datetime-local",
-    name: "meeting",
-    label: "Meeting Date & Time",
-  },
-  {
-    type: "dropdown",
-    name: "eventType",
-    label: "Event Type",
-    options: [
-      { value: "public", label: "Public" },
-      { value: "private", label: "Private" },
-      { value: "corporate", label: "Corporate" },
-    ],
-    validations: ["required"],
-  },
-  {
-    type: "radio-group",
-    name: "gender",
-    placeholder: "Gender",
-    list: ["Male", "Female", "Other"],
-    validations: ["required"],
-  },
-  {
-    type: "checkbox-group",
-    name: "skills",
-    placeholder: "Skills",
-    list: ["React", "Node", "Mongo", "Redis"],
-    validations: ["required"],
-  },
-  {
-    type: "checkbox",
-    name: "agree",
-    list: ["I agree to the terms & conditions"],
-    validations: ["required"],
-  },
-  {
-    type: "textarea",
-    name: "bio",
-    label: "Bio",
-    placeholder: "Tell something about yourself",
+    type: 'checkbox-group',
+    placeholder: 'Favourite places',
+    name: 'favPlaces',
+    disabled: false,
+    value: [],
+    isError: false,
+    validations: ['required'],
+    errorMessage: 'Choose at least one place',
+    list: ['Hyderabad', 'Dubai', 'Some other area'],
   },
 ];
 
 const SampleInput = () => {
-  const [inputs, setInputs] = useState(
-    meta.map((f) => ({ ...f, value: "", error: null })),
-  );
-
-  const onChange = (e) => {
-    const { name, type, value, checked } = e.target;
-    const finalValue = type === "checkbox" ? checked : value;
-
-    setInputs((prev) =>
-      prev.map((field) =>
-        field.name === name
-          ? { ...field, value: finalValue, error: null }
-          : field,
-      ),
-    );
-  };
-
-  const onSubmit = () => {
-    let hasError = false;
-
-    const updated = inputs.map((f) => {
-      if (f.validations?.includes("required") && !f.value) {
-        hasError = true;
-        return { ...f, error: "This field is required" };
-      }
-      return f;
-    });
-
-    setInputs(updated);
-
-    if (!hasError) {
-      const payload = updated.reduce(
-        (acc, cur) => ({ ...acc, [cur.name]: cur.value }),
-        {},
-      );
-
-      console.log("FORM DATA", payload);
-      alert("Form valid — check console");
-    }
-  };
-
   return (
-    <Container>
-      {inputs.map((field) => (
-        <Inputs key={field.name} {...field} onChange={onChange} />
+    <SampleInputContainer>
+      {myInputs.map((metadata) => (
+        <Input {...metadata} />
       ))}
-
-      <Button onClick={onSubmit}>Submit</Button>
-    </Container>
+    </SampleInputContainer>
   );
 };
 
-export default SampleInput;
-
-const Container = styled.div`
-  max-width: 500px;
-  margin: 40px auto;
+const SampleInputContainer = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
+  align-items: center;
 `;
+
+const FieldWrapper = styled.div`
+  margin-bottom: 16px;
+`;
+const ErrorText = styled.div`
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 6px;
+`;
+export default SampleInput;

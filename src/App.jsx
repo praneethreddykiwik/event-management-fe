@@ -12,7 +12,6 @@ import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppRoutes from "./Routes";
-import { toastGlobalProps } from "./utils/toast.utils";
 
 function App() {
   const theme = useTheme();
@@ -33,7 +32,12 @@ function App() {
         <GlobalSpinner loading={isLoading}>
           <Header />
           <AppRoutes />
-          <ToastContainer {...toastGlobalProps} />
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            closeOnClick
+          />
           <Footer />
         </GlobalSpinner>
       </TenantIdHOC>

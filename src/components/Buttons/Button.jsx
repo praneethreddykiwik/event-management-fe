@@ -1,4 +1,4 @@
-import { Icon } from "../Icons/Icons";
+/** @format */
 import {
   StyledBaseButton,
   StyledIconButton,
@@ -8,9 +8,7 @@ import {
   ButtonContent,
   ButtonImage,
   StyledNoBorderButton,
-  StyledDeleteBtn,
 } from "../Styled/Buttons.styled";
-import { InlineDeleteButton } from "./InlineDeleteButton";
 
 export const Button = ({
   type,
@@ -22,59 +20,63 @@ export const Button = ({
   whiteText,
   disabled,
   small,
-  className,
 }) => {
-  const props = {
-    sx,
-    onClick,
-    small,
-    $whiteText: whiteText,
-    disabled,
-    className,
-  };
-
   const renderContent = () => (
     <ButtonContent>
-      {icon && <Icon variant={icon} />}
+      {icon && <span className="material-symbols-outlined">{icon}</span>}
+
       {image && <ButtonImage src={image} alt="button-icon" />}
-      {children && <span className="input-text">{children}</span>}
+
+      {children && <span>{children}</span>}
     </ButtonContent>
   );
 
   switch (type) {
     case "outlined":
       return (
-        <StyledOutlinedButton {...props}>
+        <StyledOutlinedButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledOutlinedButton>
       );
     case "no-border":
       return (
-        <StyledNoBorderButton {...props}>
+        <StyledNoBorderButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledNoBorderButton>
       );
 
     case "secondary":
-      return <StyledSecButton {...props}>{renderContent()}</StyledSecButton>;
+      return (
+        <StyledSecButton sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledSecButton>
+      );
 
     case "transparent":
       return (
-        <StyledTransparentButton {...props}>
+        <StyledTransparentButton sx={sx} onClick={onClick} small={small}>
           {renderContent()}
         </StyledTransparentButton>
       );
 
-    case "delete":
-      return <StyledDeleteBtn {...props}>{renderContent()}</StyledDeleteBtn>;
-
-    case "inline-delete":
-      return <InlineDeleteButton {...props}>{children}</InlineDeleteButton>;
-
     case "icon":
-      return <StyledIconButton {...props}>{renderContent()}</StyledIconButton>;
+      return (
+        <StyledIconButton sx={sx} onClick={onClick} small={small}>
+          {renderContent()}
+        </StyledIconButton>
+      );
 
     default:
-      return <StyledBaseButton {...props}>{renderContent()}</StyledBaseButton>;
+      return (
+        <StyledBaseButton
+          sx={sx}
+          $whiteText={whiteText}
+          onClick={onClick}
+          small={small}
+          disabled={disabled}
+        >
+          {renderContent()}
+        </StyledBaseButton>
+      );
   }
 };
