@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Badge from "../../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
+  StyledParagraphSmall,
   StyledParagraphSmallGray,
 } from "../../../components/Styled/Typography.styled";
 import { Card } from "../../../components/Cards/Cards";
@@ -53,10 +54,10 @@ const AdminTaskItem = ({ data }) => {
           <StyledAmdinContent>
             Scheduled At: {formatDateTime(data.scheduledAt)}
           </StyledAmdinContent>
-          <StyledAmdinContent>
+          <StyledParagraphSmall left>
             {enums.EVENT_VENUE}:{" "}
             {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
-          </StyledAmdinContent>{" "}
+          </StyledParagraphSmall>{" "}
           <StyledAmdinContents>
             {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}{" "}
             <StyledAssignBtnAdminsUp>
@@ -94,26 +95,26 @@ const AdminTaskItem = ({ data }) => {
   );
 };
 
-const StyledAssignBtnAdminDown = styled(StyledParagraphSmallGray)`
+const StyledAssignBtnAdminDown = styled.div`
   display: none;
   ${mobile`    
     display:flex;
   `}
 `;
 
-const StyledAssignBtnAdminsUp = styled(StyledParagraphSmallGray)`
+const StyledAssignBtnAdminsUp = styled.div`
   ${mobile`    
    display:none;
   `}
 `;
 
-const StyledAmdinContent = styled(StyledParagraphSmallGray)`
+const StyledAmdinContent = styled(StyledParagraphSmall)`
   ${mobile`
     font-size:12px;
   `}
 `;
 
-const StyledAmdinContents = styled(StyledParagraphSmallGray)`
+const StyledAmdinContents = styled(StyledParagraphSmall)`
   display: flex;
   align-items: center;
   ${mobile`
@@ -146,10 +147,14 @@ const StyledCard = styled(Card)`
 const Left = styled.div`
   display: flex;
   gap: 10px;
+
+  ${mobile`
+    padding: 16px 0;
+  `}
 `;
 
 const StatusIcon = styled.span`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
 `;
 
@@ -169,11 +174,11 @@ const BadgeButton = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: auto;
-
+  padding: 16px 0;
+  flex-basis: 30%;
   ${mobile`
     width: 100%;
-    margin-left: 0;
-    justify-content: flex-start;
+    margin-top:-20px;
   `}
 `;
 
