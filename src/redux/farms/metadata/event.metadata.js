@@ -1,5 +1,6 @@
 import { EVENT_TYPE_OPTIONS } from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
+import { isoToInputDateTime } from "../../../utils/utils";
 
 const halfSize = "calc(50% - 8px)";
 
@@ -63,7 +64,7 @@ const BASE_EVENT_METADATA = [
   },
   {
     type: "dropdown",
-    name: "assignedEventManager",
+    name: "assignedToUid",
     value: "",
     placeholder: "Assign Event Manager",
     options: [],
@@ -72,9 +73,9 @@ const BASE_EVENT_METADATA = [
   },
 ];
 
-export const eventMetaData = (eventManagers = []) => {
+export const generateNewEventsInputs = (eventManagers = []) => {
   return BASE_EVENT_METADATA.map((el) => {
-    if (el.name === "assignedEventManager") {
+    if (el.name === "assignedToUid") {
       return {
         ...el,
         options: eventManagers.map((manager) => ({
@@ -88,19 +89,26 @@ export const eventMetaData = (eventManagers = []) => {
 };
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+  const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
+  const { date: eventDate, time: eventTime } = isoToInputDateTime(
+    scheduled || "",
+  );
+
   const valueMap = {
     eventName: event.eventName,
     comments: event.comments,
-    eventDate: event.eventDate,
-    eventTime: event.eventTime,
+    eventDate,
+    eventTime,
     venue: event.venue,
     eventType: event.eventType,
     expectedAttendees: event.expectedAttendees,
-    assignedEventManager: event.assignedEventManager,
+    assignedToUid: event.assignedToUid,
   };
 
-  return eventMetaData(eventManagers).map((el) => ({
+  const finalData = generateNewEventsInputs(eventManagers).map((el) => ({
     ...el,
     value: valueMap[el.name] ?? "",
   }));
+
+  return finalData;
 };

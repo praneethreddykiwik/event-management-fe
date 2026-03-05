@@ -18,7 +18,7 @@ export const fetchManagersAction = createAsyncThunk(
       const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
       const res = await getEventManagersApi(query);
 
-      if (payload.callback) {
+      if (payload?.callback) {
         payload.callback(res.data.details);
       }
       return res.data;

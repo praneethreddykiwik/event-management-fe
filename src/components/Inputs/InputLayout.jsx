@@ -4,10 +4,13 @@ import {
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
 
+
 export const InputLayout = ({ label, error, width, ...props }) => {
+
+
   return (
     <StyledCtn style={{ flexBasis: width || "100%" }}>
-      {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
+      {label ? <StyledParagraphSmall>{label} </StyledParagraphSmall> : null}
       {props.children}
       {error ? <StyledParagraphError>{error}</StyledParagraphError> : null}
     </StyledCtn>
