@@ -13,16 +13,20 @@ import { userProfileMeta } from "../../metadata/userProfileMetadata";
 import { logoutAction } from "../../redux/auth/auth.actions";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
+import { mobile } from "../../theme/media-queries";
+import { StyledParagraph } from "../Styled/Typography.styled";
+
 const Header = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { authStatus } = useSelector(authSelector);
+  const { authStatus, firstName } = useSelector(authSelector);
 
   const isLoggedIn = authStatus === "authenticated";
   const [menuOpen] = useState(false);
 
   const goLogin = () => navigate(paths.login);
+  const goRegister = () => navigate(paths.registration);
 
   const onClickMenu = (item) => {
     if (item.label === "Logout") {
@@ -48,23 +52,22 @@ const Header = () => {
         <Icon aria-label="Language">language</Icon>
 
         {!isLoggedIn ? (
-          <Button onClick={goLogin}>Login</Button>
+          <>
+            <Button type="secondary" onClick={goRegister}>
+              Register
+            </Button>
+            <Button onClick={goLogin}>Login</Button>
+          </>
         ) : (
           <>
             <Icon aria-label="Notifications">notifications</Icon>
+            <StyledParagraph>{firstName}</StyledParagraph>
             <AvatarBox>
               <Avatar items={userProfileMeta} onClick={onClickMenu} />
             </AvatarBox>
           </>
         )}
       </RightBox>
-
-      {/* RIGHT ICONS (Mobile only) */}
-      {/* <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
-        <Icon aria-label={menuOpen ? "Close menu" : "Open menu"}>
-          {menuOpen ? "close" : "menu"}
-        </Icon>
-      </Hamburger> */}
     </Navbar>
   );
 };
@@ -80,19 +83,15 @@ const Navbar = styled.header`
   align-items: center;
   position: relative;
 
-  @media (max-width: 768px) {
+  ${mobile`
     padding: 12px 20px;
-  }
+  `}
 `;
 
 const RightBox = styled.div`
   display: flex;
   align-items: center;
   gap: 22px;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
 `;
 
 const AvatarBox = styled.div`
@@ -112,9 +111,9 @@ const Hamburger = styled.div`
   display: none;
   cursor: pointer;
 
-  @media (max-width: 900px) {
+  ${mobile`
     display: block;
-  }
+  `}
 `;
 
 const Icon = styled.span.attrs(() => ({
@@ -127,4 +126,7 @@ const Icon = styled.span.attrs(() => ({
   &:hover {
     color: #1ac468;
   }
+  ${mobile`
+    display: none;
+  `}
 `;

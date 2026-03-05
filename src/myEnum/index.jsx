@@ -56,12 +56,13 @@ export const NO_SEARCH_INDEX = "Don’t allow search engines to index my profile
 export const AUTO_UPDATE = "Allow auto update of contents";
 
 export const DESCRIPTION_TEXT =
-  "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.";
+  "Specializes in seamless, end-to-end event planning that turns ideas into memorable experiences.";
 export const CONTACT_US = "Contact Us";
-export const CONTACT_PHONE = "(+91) 98765 01234";
-export const EMAIL_ID = "events@email.com";
-export const LOCATION = "2118 Thornridge Cir. Syracuse, Connecticut 35624";
-export const ALL_RIGHTS_RESERVED = "2025 Events - All rights reserved";
+export const CONTACT_PHONE = "+91 8121458444";
+export const EMAIL_ID = "info@helmevents.com";
+export const LOCATION =
+  "Spacion Towers, Vittal Rao Nagar, HITEC City, Hyderabad, Telangana 500081";
+export const ALL_RIGHTS_RESERVED = "HELM Events - All rights reserved";
 export const TERMS_CONDITIONS = "Terms and Conditions";
 
 export const COMPLETED = "Completed";
@@ -165,7 +166,7 @@ export const SCAN = "Scan to activate your device and access control";
 
 export const WIFI_ICON = "wifi";
 
-export const TIME = "05 =06 AM";
+export const TIME = "05:06 AM";
 export const THERMOVALUE = "Thermostat";
 
 export const CENT_VALUE = "60°";
@@ -190,8 +191,8 @@ export const ANALYTICS = "Analytics";
 
 export const TASKOV = "Task Overview";
 export const TASKM = "Monitor and manage all assigned tasks";
-export const TASKASSIGNEE = "Assigned to: ";
-export const TASKDUE = "• Due: ";
+export const TASK_ASSIGNEE = "Assigned to: ";
+export const TASKDUE = "Due: ";
 export const MANAGE_B = "Manage";
 
 export const NEW_EVENT = "New Event";
@@ -283,7 +284,7 @@ export const BOOK_HEADING =
   "Get updated when your favorite venue is open for booking.";
 export const BOOK_PARA =
   " Join our email list to resceive updates on events near you, booking and appointment availabilty tips on great event planning, management and more.";
-export const BOOK_BTN = "Notify when available";
+export const BOOK_BTN = "Get more information";
 export const BOOK_POLICY =
   "*Please refer to our Privacy Policy for more details.";
 
@@ -326,3 +327,5 @@ export const LOGO_TEXT = "eventz";
 export const NAV_HOME = "Home";
 export const NAV_EVENTS = "Events";
 export const NAV_VENUES = "Venues";
+
+export const EVENT_VENUE = "Venue";

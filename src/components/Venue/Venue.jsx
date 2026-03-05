@@ -3,8 +3,10 @@ import {
   StyledParagraphSmall,
   StyledParagraph,
   StyledSemiHeading,
+  StyledAnchorSmall,
 } from "../Styled/Typography.styled";
 import { Button } from "../Buttons/Button";
+import { Icon } from "../Icons/Icons";
 
 export const Venue = ({ venueDetails, btnText, onClick }) => {
   return (
@@ -15,7 +17,16 @@ export const Venue = ({ venueDetails, btnText, onClick }) => {
       </ImageWrapper>
 
       <TextBlock>
-        <Address left>{venueDetails.address || "None"}</Address>
+        <Address
+          left
+          title={venueDetails.location}
+          href={venueDetails.location}
+          target="_blank"
+        >
+          {" "}
+          <Icon variant="location_on" />
+          <span className="location">{venueDetails.location || "None"}</span>
+        </Address>
         <VenueName left>{venueDetails.title}</VenueName>
         <VenueDesc left>{venueDetails.description}</VenueDesc>
       </TextBlock>
@@ -37,7 +48,6 @@ const StyledVenue = styled.div`
   background: #ffffff;
   border-radius: 6px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  // width: 330px;
   padding: 20px;
 
   display: flex;
@@ -50,7 +60,6 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 210px;
-  // padding: 8px;
   box-sizing: border-box;
 `;
 
@@ -87,19 +96,19 @@ const TextBlock = styled.div`
   margin-bottom: 24px;
 `;
 
-const Address = styled(StyledParagraphSmall)`
+const Address = styled(StyledAnchorSmall)`
   color: #22c55e;
   margin: 0;
+  width: 99%;
 
   display: flex;
   align-items: center;
   gap: 6px;
 
-  &::before {
-    content: "location_on";
-    font-family: "Material Symbols Outlined";
-    font-size: 18px;
-    line-height: 1;
+  .location {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 

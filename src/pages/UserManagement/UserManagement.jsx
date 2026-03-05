@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import { details } from "../../Mock";
@@ -24,6 +22,7 @@ import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
+import { mobile } from "../../theme/media-queries";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -119,29 +118,38 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
-
 const PageWrapper = styled.div`
-  padding: 24px 32px;
+  padding: 32px 40px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  ${mobile`
+    padding: 16px;
+  `}
 `;
 
 const DeletePopup = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  padding: 20px 0;
+  gap: 16px;
+  padding: 24px 0;
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-top: -70px;
+
+  ${mobile`
+    margin-top: 0;
+    justify-content: center;
+  `}
 `;
 
-export const StyledButton = styled(StyledBaseButton)`
+const StyledButton = styled(StyledBaseButton)`
   width: auto;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
 `;
+
+export default UserManagement;

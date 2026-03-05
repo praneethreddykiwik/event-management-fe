@@ -26,22 +26,22 @@ export const Container_parent = styled.div`
 
 export const Container_child1 = styled.div`
   width: 50vw;
-  background: #f5fbff;
-  padding: 60px 50px;
+  background: ${({ theme }) => theme.colors.lightBlue || "#f5fbff"};
+  padding: 40px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 
   @media (max-width: 900px) {
     width: 100%;
-    padding: 40px 25px;
+    padding: 32px 25px;
     text-align: center;
     align-items: center;
   }
 
   @media (max-width: 480px) {
-    padding: 30px 20px;
+    padding: 24px 20px;
   }
 `;
 
@@ -56,8 +56,8 @@ export const Container_child2 = styled.div`
 export const LogoRow = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
-  gap: 10px;
+  margin-bottom: 32px;
+  gap: 8px;
 `;
 
 export const LogoIcon = styled.img`
@@ -73,7 +73,7 @@ export const LogoText = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 60px;
-  gap: 12px;
+  gap: 16px;
 
   @media (max-width: 900px) {
     margin-bottom: 35px;
@@ -95,10 +95,11 @@ export const TitleTxt = styled(StyledHeadingBig)`
     font-size: 24px;
   }
 `;
+
 export const DescriptionTxt = styled(StyledParagraph)`
   font-size: 15px;
-  color: #555;
-  margin: 25px 0 45px;
+  color: ${({ theme }) => theme.colors["text-gray-color"] || "#555"};
+  margin: 32px 0 40px;
   width: 50%;
 `;
 
@@ -116,7 +117,7 @@ export const Button_section = styled.div`
   @media (max-width: 480px) {
     flex-direction: column;
     width: 100%;
-    gap: 15px;
+    gap: 16px;
   }
 `;
 
@@ -126,12 +127,13 @@ export const SkipButton = styled(StyledSecButton)`
 
 export const NextButton = styled(StyledBaseButton)`
   width: 250px;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const StyledCstHeading = styled(StyledHeadingBig)`
   font-weight: 300;
- width: 50%;
+  width: 50%;
+
   @media (max-width: 900px) {
     font-size: 28px;
   }
@@ -140,3 +142,4 @@ export const StyledCstHeading = styled(StyledHeadingBig)`
     font-size: 24px;
   }
 `;
+
