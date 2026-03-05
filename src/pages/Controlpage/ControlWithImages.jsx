@@ -4,6 +4,8 @@ import Conference_image from "../../assets/ControlPage_img/conference_image.jpg"
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
 import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
 import control_img from "../../assets/ControlPage_img/control_img.jpeg";
+import { theme } from "../../theme/theme";
+import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
 
 const VenueCard = () => {
   const SIDE_IMAGES = [control_img, control_img2];
@@ -16,7 +18,7 @@ const VenueCard = () => {
         <Avatar src={Control_avtar} alt="User" />
 
         <WhiteCard>
-          <UserName>{enums.USER_NAME}</UserName>
+          <StyledSemiHeading>{enums.USER_NAME}</StyledSemiHeading>
 
           <Icons>
             <Span1
@@ -49,16 +51,12 @@ const VenueWrapper = styled.div`
   display: flex;
   gap: 16px;
   width: 100%;
-
-  @media (max-width: 576px) {
-    flex-direction: column;
-  }
 `;
 
 const VenueCard2 = styled.div`
   position: relative;
   flex: 1;
-  background: #ffffff;
+  background: ${theme.light.colors.white};
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -68,10 +66,6 @@ const VenueImg = styled.img`
   width: 100%;
   height: 240px;
   object-fit: cover;
-
-  @media (max-width: 576px) {
-    height: 200px;
-  }
 `;
 
 const Avatar = styled.img`
@@ -84,13 +78,13 @@ const Avatar = styled.img`
   left: 20px;
   bottom: 30px; /* THIS makes avatar overlap */
 
-  border: 4px solid #ffffff;
-  background: #fff;
+  border: 4px solid ${theme.light.colors.white};
+  background: ${theme.light.colors.white};
 `;
 
 const WhiteCard = styled.div`
-  background: #ffffff;
-  padding: 22px 20px 20px 96px; /* left padding to fit avatar */
+  background: ${theme.light.colors.white};
+  padding: 22px 20px 20px 120px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -101,14 +95,6 @@ const WhiteCard = styled.div`
 const Span1 = styled.span``;
 
 const Span2 = styled.span``;
-
-const UserName = styled.h3`
-  margin: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  flex: 1;
-`;
 
 const Icons = styled.div`
   display: flex;
@@ -122,11 +108,6 @@ const SideImages = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  @media (max-width: 576px) {
-    width: 100%;
-    flex-direction: row;
-  }
 `;
 
 const SmallPic = styled.img`
@@ -134,8 +115,4 @@ const SmallPic = styled.img`
   height: 100px;
   border-radius: 5px;
   object-fit: cover;
-
-  @media (max-width: 576px) {
-    height: 80px;
-  }
 `;

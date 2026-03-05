@@ -1,23 +1,21 @@
-import styled from "styled-components";
 import {
+  StyledAnchorSmall,
   StyledParagraphError,
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
+import { StyledInputLayout } from "./Inputs.styled";
 
-export const InputLayout = ({ label, error, width, ...props }) => {
+export const InputLayout = ({ label, error, width, helperText, ...props }) => {
   return (
-    <StyledCtn style={{ flexBasis: width || "100%" }}>
+    <StyledInputLayout style={{ flexBasis: width || "100%" }}>
       {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
       {props.children}
+      {helperText ? (
+        <StyledAnchorSmall target="_blank" href={helperText} left>
+          {helperText}
+        </StyledAnchorSmall>
+      ) : null}
       {error ? <StyledParagraphError>{error}</StyledParagraphError> : null}
-    </StyledCtn>
+    </StyledInputLayout>
   );
 };
-
-const StyledCtn = styled.div`
-  position: relative;
-  p {
-    text-align: left;
-    margin-left: 20px;
-  }
-`;

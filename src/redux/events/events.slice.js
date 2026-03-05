@@ -8,6 +8,12 @@ const initialState = {
 
   createEventLoading: false,
   createEventError: null,
+
+  deleteEventLoading: false,
+  deleteEventError: null,
+  currentEvent: {},
+  assignEventLoading: false,
+  assignEventError: null,
 };
 
 const eventsSlice = createSlice({
@@ -46,7 +52,36 @@ const eventsSlice = createSlice({
       })
       .addCase(actions.createEventsDispatch.rejected, (state) => {
         state.createEventLoading = false;
-        state.createEventError = "Something went wrong while creating Event.";
+        state.createEventError =
+          "Something went wrong while creating the Event.";
+      });
+    builder
+      .addCase(actions.assignEventAction.pending, (state) => {
+        state.assignEventLoading = true;
+      })
+      .addCase(actions.assignEventAction.fulfilled, (state) => {
+        // const newEvent = action.payload.details;
+        // state.events = [newEvent, ...state.events];
+        state.assignEventLoading = false;
+      })
+      .addCase(actions.assignEventAction.rejected, (state) => {
+        state.assignEventLoading = false;
+        state.assignEventError =
+          "Something went wrong while assigning the Event.";
+      });
+
+    builder
+      .addCase(actions.deleteEventDispatch.pending, (state) => {
+        state.deleteEventLoading = true;
+      })
+      .addCase(actions.deleteEventDispatch.fulfilled, (state, action) => {
+        const { eventUid } = action.payload;
+        state.events = state.events.filter((event) => event.uid !== eventUid);
+        state.deleteEventLoading = false;
+      })
+      .addCase(actions.deleteEventDispatch.rejected, (state) => {
+        state.deleteEventLoading = false;
+        state.deleteEventError = "Something went wrong while deleting Event.";
       });
   },
 });
