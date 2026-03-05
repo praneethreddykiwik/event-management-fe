@@ -1,6 +1,5 @@
-/** @format */
-import { InputLayout } from './InputLayout';
-import { InputDefault } from './Inputs.styled';
+import { InputLayout } from "./InputLayout";
+import { InputDefault } from "./Inputs.styled";
 
 export const DateTimeLocal = ({
   name,
@@ -18,7 +17,7 @@ export const DateTimeLocal = ({
         name={name}
         type="datetime-local"
         placeholder={placeholder}
-        value={value || ''}
+        value={value || ""}
         onChange={(e) =>
           onChange({
             target: { name, value: e.target.value },

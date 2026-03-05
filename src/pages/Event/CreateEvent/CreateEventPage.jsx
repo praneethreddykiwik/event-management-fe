@@ -88,21 +88,6 @@ const EventsPageContainer = styled.div`
   `}
 `;
 
-const DashboardContainer = styled.div`
-  padding: 0 20px 60px 20px;
-`;
-
-const StyledBox = styled.div`
-  flex-basis: 30%;
-  flex-shrink: 0;
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  gap: 160px;
-  // padding-left: 140px;
-`;
-
 const StyledSuggestions = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -110,7 +95,9 @@ const StyledSuggestions = styled.div`
   margin-top: 20px;
 
   .venue-ctn {
-    flex: 0 0 calc((100% - 180px) / 3);
+    // flex: 0 0 calc((100% - 180px) / 3);
+    width: 31%;
+    flex-grow: 1;
   }
 
   ${mobile`
@@ -118,7 +105,9 @@ const StyledSuggestions = styled.div`
     gap: 20px;
 
     .venue-ctn {
-      flex: 0 0 100%;
+      // flex: 0 0 100%;
+      width: 100%;
+      flex-grow: 1;
     }
   `}
 `;

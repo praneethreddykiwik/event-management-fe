@@ -1,6 +1,7 @@
 import moment from "moment";
 
 export const formatDateTime = (input) => {
+  if (!input) return "";
   return moment(input).format("DD MMM YYYY hh:mmA");
 };
 
@@ -54,4 +55,46 @@ export const modifyTimeToISO = (date, time) => {
   const { hour, minute } = extractHoursAndMinutes(time);
   const formatedTime = formatScheduleDate(date, hour, minute);
   return formatedTime;
+};
+
+export const snakeToCamel = (str) =>
+  str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+
+export const camelToWords = (str) => {
+  const result = str.replace(/([A-Z])/g, " $1");
+  return result.charAt(0).toUpperCase() + result.slice(1);
+};
+
+export const getStatusColor = (key, taskCountObj) => {
+  const total = taskCountObj.totalTaskCount || 0;
+  const count = taskCountObj[key] || 0;
+
+  if (key === "totalTaskCount") return "#000";
+
+  if (total === 0) return "#000";
+
+  const ratio = count / total;
+
+  // GOOD (green)
+  if (key === "completed") {
+    if (ratio >= 0.6) return "#0cc657";
+    if (ratio >= 0.3) return "#edab27";
+    return "#d83232";
+  }
+
+  // BAD statuses
+  if (["cancelled", "deleted"].includes(key)) {
+    if (ratio < 0.05) return "#0cc657";
+    if (ratio < 0.1) return "#edab27";
+    return "#d83232";
+  }
+
+  // Pending-like statuses
+  if (["notStarted", "assigned", "inProgress"].includes(key)) {
+    if (ratio <= 0.15) return "#0cc657";
+    if (ratio <= 0.35) return "#edab27";
+    return "#d83232";
+  }
+
+  return "#000";
 };

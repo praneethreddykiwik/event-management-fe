@@ -1,4 +1,3 @@
-/** @format */
 import styled from "styled-components";
 import apple from "../../assets/Logo/Apple.svg";
 import google from "../../assets/Logo/Google.svg.webp";
@@ -29,26 +28,24 @@ const GetStarted = styled(StyledParagraph)`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
 `;
 
-
-
 const GetStartedWithButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 16px; 
+  gap: 16px;
 `;
 
 const ContinueSignIn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px; 
+  gap: 8px;
 `;
 
 const AppleLogo = styled.img`
   width: 16px;
   position: relative;
-  right: 4px; 
+  right: 4px;
   bottom: 2px;
 `;
 
@@ -58,4 +55,3 @@ const GoogleLogo = styled.img`
   right: 4px;
   bottom: 1px;
 `;
-

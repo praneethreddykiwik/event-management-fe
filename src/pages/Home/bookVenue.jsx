@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styled from "styled-components";
 
-import { Input } from "../../components/Inputs/Input.jsx";
+import { Inputs } from "../../components/Inputs/Inputs.jsx";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import { HomePageLayout } from "./HomePageLayout.jsx";
 import * as enums from "../../myEnum";
@@ -24,10 +24,12 @@ const BookVenue = () => {
     <HomePageLayout flexDirection="column">
       <StyledContainer>
         <StyledHeading left>{enums.BOOK_HEADING}</StyledHeading>
-        <StyledParagraphSmallGray left>{enums.BOOK_PARA}</StyledParagraphSmallGray>
+        <StyledParagraphSmallGray left>
+          {enums.BOOK_PARA}
+        </StyledParagraphSmallGray>
       </StyledContainer>
       <StyledInputContainer>
-        <Input
+        <Inputs
           type={"email"}
           placeholder={"email address"}
           onChange={handlEmailChange}
@@ -36,7 +38,9 @@ const BookVenue = () => {
         <StyledBaseButton>{enums.BOOK_BTN}</StyledBaseButton>
       </StyledInputContainer>
       <StyledPolicy>
-        <StyledParagraphSmallGray left>{enums.BOOK_POLICY}</StyledParagraphSmallGray>
+        <StyledParagraphSmallGray left>
+          {enums.BOOK_POLICY}
+        </StyledParagraphSmallGray>
       </StyledPolicy>
     </HomePageLayout>
   );
@@ -45,7 +49,7 @@ const BookVenue = () => {
 const StyledBtn = styled(StyledBaseButton)`
   min-width: 250px;
 
-   ${mobile`
+  ${mobile`
     width: 100%;
   `}
 `;

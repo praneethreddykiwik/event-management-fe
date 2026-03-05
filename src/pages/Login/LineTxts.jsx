@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 
@@ -22,8 +20,6 @@ export default LineTxts;
 const SignUpWith = styled(StyledParagraph)`
   width: 100%;
   padding: 8px;
-
- 
 `;
 
 const LineTxt = styled.div`
@@ -31,15 +27,12 @@ const LineTxt = styled.div`
   align-items: center;
   justify-content: center;
   width: 90%;
-
 `;
 
 const LineOne = styled.div`
   color: ${({ theme }) => theme.colors.black};
   border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
   width: 120px;
-
-  
 `;
 
 const LineTwo = styled.div`
@@ -54,6 +47,3 @@ const SignWithEmail = styled(StyledParagraph)`
     display: none;
   }
 `;
-
-
-

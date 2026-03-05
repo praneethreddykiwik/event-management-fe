@@ -71,10 +71,9 @@ const authSlice = createSlice({
     // login
     builder
       .addCase(actions.loginAction.pending, (state) => {
-        // state.authStatus = "loading";
         state.authError = null;
       })
-      .addCase(actions.loginAction.fulfilled, (state, action) => {
+      .addCase(actions.loginAction.fulfilled, (state) => {
         state.authStatus = "authenticated";
       })
       .addCase(actions.loginAction.rejected, (state, action) => {

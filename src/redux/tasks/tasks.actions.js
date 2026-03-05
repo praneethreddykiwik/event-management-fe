@@ -80,6 +80,7 @@ export const createTaskAction = createAsyncThunk(
     try {
       const res = await createTasksApi(payload.reqPayload);
       toast.success("Task created successfully");
+      window.history.back();
       return res.data;
     } catch (err) {
       toast.error(err?.response?.data?.message || "Failed to create Task");
@@ -94,6 +95,7 @@ export const editTaskAction = createAsyncThunk(
     try {
       const res = await editTasksApi(payload.reqPayload);
       toast.success("Task edited successfully");
+      window.history.back();
       return res.data;
     } catch (err) {
       toast.error(err?.response?.data?.message || "Failed to edit Task");
