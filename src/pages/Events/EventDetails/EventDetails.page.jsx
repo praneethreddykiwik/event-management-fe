@@ -6,6 +6,7 @@ import { DetailsBox } from "./DetailsBox";
 import { TasksList } from "./TasksList";
 import { TitleBox } from "./TitleBox";
 import { SecondBoxCol } from "./CardsBox";
+import { mobile } from "../../../theme/media-queries";
 
 const EventDetails = () => {
   const { state } = useLocation();
@@ -36,6 +37,10 @@ const StyledEventBody = styled.div`
 const StyledBG = styled.div`
   padding: 40px 50px;
   min-height: 80vh;
+
+  ${mobile`
+    padding: 20px 20px;
+    `}
 `;
 
 export default EventDetails;

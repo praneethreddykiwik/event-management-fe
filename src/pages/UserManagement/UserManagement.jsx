@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import { details } from "../../Mock";
@@ -24,7 +22,7 @@ import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
-import {mobile} from "../../theme/media-queries";
+import { mobile } from "../../theme/media-queries";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -120,7 +118,6 @@ const UserManagement = () => {
   );
 };
 
-
 const PageWrapper = styled.div`
   padding: 32px 40px;
   display: flex;
@@ -144,7 +141,7 @@ const StyledButtonContainer = styled.div`
   flex-direction: row-reverse;
   margin-top: -70px;
 
-   ${mobile`
+  ${mobile`
     margin-top: 0;
     justify-content: center;
   `}

@@ -1,4 +1,3 @@
-/** @format */
 import styled from "styled-components";
 import { Card } from "../../components/Cards/Cards";
 import {
@@ -51,12 +50,10 @@ const Left = styled.div`
   align-items: flex-start;
 `;
 
-const UserName = styled(StyledParagraphBold)`
-`;
+const UserName = styled(StyledParagraphBold)``;
 
 const UserMeta = styled(StyledParagraphSmall)`
   color: ${({ theme }) => theme.colors.textSecondary};
- 
 `;
 
 const Right = styled.div`
@@ -71,4 +68,3 @@ const IconWrapper = styled.div`
     danger ? theme.colors.warning : theme.colors.black};
   cursor: pointer;
 `;
-

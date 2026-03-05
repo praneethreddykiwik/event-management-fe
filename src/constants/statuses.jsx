@@ -1,5 +1,3 @@
-/** @format */
-
 export const taskStatuses = {
   completed: {
     badgeColor: "completed",

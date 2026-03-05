@@ -50,7 +50,6 @@ export const InputSelectOptions = styled.option`
 
 export const InputNumber = styled(InputDefault)``;
 export const InputPassword = styled(InputDefault)``;
-// export const InputSelect = styled(InputDefault)``;
 
 export const InputCheckbox = styled.input`
   border-radius: 4px;
@@ -62,4 +61,18 @@ export const InputRadio = styled.input`
   accent-color: #27c14a;
   border-radius: 50%;
   cursor: pointer;
+`;
+
+export const StyledInputLayout = styled.div`
+  position: relative;
+  text-align: left;
+
+  a {
+    margin-left: 20px;
+  }
+
+  p {
+    text-align: left;
+    margin-left: 20px;
+  }
 `;

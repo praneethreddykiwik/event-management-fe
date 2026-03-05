@@ -47,14 +47,6 @@ const BASE_EVENT_METADATA = [
     width: halfSize,
   },
   {
-    type: "text",
-    name: "venue",
-    value: "",
-    placeholder: "e.g. Some Good Place",
-    label: "Venue",
-    validations: [validationList.REQUIRED],
-  },
-  {
     type: "number",
     name: "expectedAttendees",
     value: "",
@@ -70,6 +62,18 @@ const BASE_EVENT_METADATA = [
     options: [],
     label: "Assign Event Manager",
     validations: [validationList.REQUIRED],
+  },
+  {
+    type: "text",
+    name: "venue",
+    value: "",
+    placeholder: "e.g. Some Good Place",
+    label: "Venue",
+    validations: [validationList.REQUIRED],
+    withButton: {
+      btnText: "Choose Location",
+      btnIcon: "location_on",
+    },
   },
 ];
 
@@ -103,12 +107,17 @@ export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
     eventType: event.eventType,
     expectedAttendees: event.expectedAttendees,
     assignedToUid: event.assignedToUid,
+    location: event.location,
   };
 
-  const finalData = generateNewEventsInputs(eventManagers).map((el) => ({
-    ...el,
-    value: valueMap[el.name] ?? "",
-  }));
+  const finalData = generateNewEventsInputs(eventManagers).map((el) => {
+    const k = {
+      ...el,
+      value: valueMap[el.name] ?? "",
+    };
+    if (el.name === "venue") k.helperText = valueMap.location;
+    return k;
+  });
 
   return finalData;
 };

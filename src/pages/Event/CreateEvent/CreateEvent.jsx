@@ -19,23 +19,20 @@ import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.met
 import { usersSelector } from "../../../redux/users/users.slice";
 
 import { useLocation } from "react-router-dom";
-import { updateCurrentEvent } from "../../../redux/events/events.slice";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const location = useLocation();
+
   const { createEventInputs } = useSelector(formsSelector);
-  // const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
   const { eventManagers } = useSelector(usersSelector);
 
   const { tenantUid } = authUser;
-
   const isEditMode = location?.state?.mode === "edit";
 
   const eventData = location?.state?.eventData || {};
-  dispatch(updateCurrentEvent(eventData));
 
   const validateFields = () => {
     let isValid = true;
@@ -90,14 +87,21 @@ const CreateEvent = ({ onCreateEvent }) => {
     dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
-  console.log("abdul event inps", createEventInputs);
+  const onClickBtn = () => {
+    // shahid
+  };
 
   return (
     <Form>
       <StyledFlex>
         <InputBox>
           {createEventInputs.map((inp) => (
-            <Inputs key={inp.name} {...inp} onChange={onChange} />
+            <Inputs
+              key={inp.name}
+              {...inp}
+              onChange={onChange}
+              onClickBtn={onClickBtn}
+            />
           ))}
           <StyledFlex2>
             <Button whiteText onClick={clearHandler} type="secondary">

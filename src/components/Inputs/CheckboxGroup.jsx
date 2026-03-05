@@ -1,7 +1,6 @@
-/** @format */
-import { InputLayout } from './InputLayout';
-import { InputCheckbox } from './Inputs.styled';
-import styled from 'styled-components';
+import { InputLayout } from "./InputLayout";
+import { InputCheckbox } from "./Inputs.styled";
+import styled from "styled-components";
 
 export const CheckboxGroup = ({
   name,
@@ -13,7 +12,7 @@ export const CheckboxGroup = ({
   error,
 }) => {
   const makeId = (item) =>
-    `${name}-${String(item).toLowerCase().replace(/\s+/g, '-')}`;
+    `${name}-${String(item).toLowerCase().replace(/\s+/g, "-")}`;
 
   const toggle = (item, checked) => {
     let next = Array.isArray(value) ? [...value] : [];

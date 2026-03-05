@@ -1,4 +1,3 @@
-/** @format */
 import styled from "styled-components";
 import Helm_logo from "../../assets/Logos/Helm_logo.svg";
 
@@ -34,16 +33,13 @@ const Logo = styled.img`
   height: 60px;
 `;
 
-
-
 const WelcomeTxt = styled.div`
   display: flex;
   flex-direction: column;
   margin: 24px 0 4px 0;
 `;
 
-const WelcomeTextBig = styled(StyledHeading)`
-`;
+const WelcomeTextBig = styled(StyledHeading)``;
 
 const SignUpTxt = styled(StyledParagraphSmallGray)`
   font-size: 13px;
@@ -61,5 +57,3 @@ export const LogoImage = styled.img`
   margin-top: -40px;
   margin-bottom: -25px;
 `;
-
-
