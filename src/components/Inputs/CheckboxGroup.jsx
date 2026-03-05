@@ -10,6 +10,7 @@ export const CheckboxGroup = ({
   onChange,
   disabled,
   error,
+  validations,
 }) => {
   const makeId = (item) =>
     `${name}-${String(item).toLowerCase().replace(/\s+/g, "-")}`;
@@ -26,7 +27,7 @@ export const CheckboxGroup = ({
   };
 
   return (
-    <InputLayout label={placeholder} error={error}>
+    <InputLayout label={placeholder} error={error} validations={validations}>
       <Group>
         {list.map((item) => {
           const id = makeId(item);

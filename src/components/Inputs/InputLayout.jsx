@@ -4,21 +4,13 @@ import {
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
 import { StyledInputLayout } from "./Inputs.styled";
+import { validationList } from "../../constants/validations.constants";
 
-<<<<<<< HEAD
-
-export const InputLayout = ({ label, error, width, ...props }) => {
-
-
-  return (
-    <StyledCtn style={{ flexBasis: width || "100%" }}>
-      {label ? <StyledParagraphSmall>{label} </StyledParagraphSmall> : null}
-=======
 export const InputLayout = ({ label, error, width, helperText, ...props }) => {
+  const isRequired = props.validations?.includes(validationList.REQUIRED);
   return (
     <StyledInputLayout style={{ flexBasis: width || "100%" }}>
-      {label ? <StyledParagraphSmall>{label}</StyledParagraphSmall> : null}
->>>>>>> 0f622fe8252655418a97eab39802edf16ffa27db
+      {label ? <StyledParagraphSmall>{label}{isRequired && " *"}</StyledParagraphSmall> : null}
       {props.children}
       {helperText ? (
         <StyledAnchorSmall target="_blank" href={helperText} left>

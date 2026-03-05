@@ -9,9 +9,10 @@ export const Checkbox = ({
   disabled,
   list = [],
   error,
+  validations,
 }) => {
   return (
-    <InputLayout error={error}>
+    <InputLayout error={error} validations={validations}>
       <Row>
         <InputCheckbox
           id={name}
