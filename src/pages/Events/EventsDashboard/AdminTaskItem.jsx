@@ -15,6 +15,7 @@ import { formatDateTime } from "../../../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { assignEventAction } from "../../../redux/events/events.actions";
 import { authSelector } from "../../../redux/auth/auth.slice";
+import { Icon } from "../../../components/Icons/Icons";
 
 const AdminTaskItem = ({ data }) => {
   const navigate = useNavigateWithQuery();
@@ -49,24 +50,36 @@ const AdminTaskItem = ({ data }) => {
 
         <Taskcard>
           <EventName>{data.eventName}</EventName>
-          <StyledParagraphSmallGray>
+          <StyledAmdinContent>
             Scheduled At: {formatDateTime(data.scheduledAt)}
-          </StyledParagraphSmallGray>
-          <StyledParagraphSmallGray>
+          </StyledAmdinContent>
+          <StyledAmdinContent>
             {enums.EVENT_VENUE}:{" "}
             {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
-          </StyledParagraphSmallGray>{" "}
-          <StyledParagraphSmallGray>
+          </StyledAmdinContent>{" "}
+          <StyledAmdinContents>
             {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}{" "}
-            <Button type="transparent" onClick={assignToMeHandler}>
-              Assign to me
-            </Button>
-          </StyledParagraphSmallGray>{" "}
+            <StyledAssignBtnAdminsUp>
+              <Button type="transparent" onClick={assignToMeHandler}>
+                Assign to me
+              </Button>
+            </StyledAssignBtnAdminsUp>
+          </StyledAmdinContents>{" "}
         </Taskcard>
       </Left>
 
       <BadgeButton>
-        <Badge type={data.type}>{data.statusLabel}</Badge>
+        <StyledFlex2>
+          <Badge type={data.type}>{data.statusLabel}</Badge>
+          <Icon variant="alternate_email" />
+          <Icon variant="chat" />
+          <Button type="inline-delete">Delete</Button>
+        </StyledFlex2>
+        <StyledAssignBtnAdminDown>
+          <Button type="transparent" onClick={assignToMeHandler}>
+            Assign to me
+          </Button>
+        </StyledAssignBtnAdminDown>
         <Button onClick={() => onClickViewDetails(data)} type="secondary">
           {enums.ADMIN_DETAILS}
         </Button>
@@ -80,6 +93,42 @@ const AdminTaskItem = ({ data }) => {
     </StyledCard>
   );
 };
+
+const StyledAssignBtnAdminDown = styled(StyledParagraphSmallGray)`
+  display: none;
+  ${mobile`    
+    display:flex;
+  `}
+`;
+
+const StyledAssignBtnAdminsUp = styled(StyledParagraphSmallGray)`
+  ${mobile`    
+   display:none;
+  `}
+`;
+
+const StyledAmdinContent = styled(StyledParagraphSmallGray)`
+  ${mobile`
+    font-size:12px;
+  `}
+`;
+
+const StyledAmdinContents = styled(StyledParagraphSmallGray)`
+  display: flex;
+  align-items: center;
+  ${mobile`
+    font-size:12px;
+     white-space: nowrap;
+  `}
+`;
+const StyledFlex2 = styled.div`
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  ${mobile`
+     gap: 12px;
+  `}
+`;
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -117,6 +166,7 @@ const BadgeButton = styled.div`
   width: 25%;
   gap: 15px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-left: auto;
 
@@ -128,6 +178,8 @@ const BadgeButton = styled.div`
 `;
 
 const GaugeWrapper = styled.div`
+  display: flex;
+  margin-left: 20px;
   ${mobile`
     display: none;
   `}
