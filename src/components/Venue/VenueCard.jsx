@@ -1,9 +1,7 @@
-/** @format */
-
-import { useState } from 'react';
-import styled from 'styled-components';
-import VenueLocationMap from './VenueLocationMap';
-import { Button } from '../Buttons/Button';
+import { useState } from "react";
+import styled from "styled-components";
+import VenueLocationMap from "./VenueLocationMap";
+import { Button } from "../Buttons/Button";
 
 const VenueCard = ({ venue, onView }) => {
   const [showMap, setShowMap] = useState(false);

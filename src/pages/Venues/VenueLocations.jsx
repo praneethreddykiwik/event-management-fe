@@ -1,18 +1,18 @@
-/** @format */
-
-import styled from 'styled-components';
-import VenueList from '../../components/Venue/VenueList';
+import styled from "styled-components";
+import VenueList from "../../components/Venue/VenueList";
 import {
   StyledHeadingBig,
   StyledParagraph,
-} from '../../components/Styled/Typography.styled';
+} from "../../components/Styled/Typography.styled";
 
 const VenueLocations = () => {
   return (
     <Wrapper>
       <StyledParagraph>
         <StyledHeadingBig>Venues Near Me</StyledHeadingBig>
-        <StyledParagraph>Select a venue and click view to see location</StyledParagraph>
+        <StyledParagraph>
+          Select a venue and click view to see location
+        </StyledParagraph>
       </StyledParagraph>
 
       <VenueList />
@@ -28,4 +28,3 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 32px;
 `;
-

@@ -7,7 +7,6 @@ import {
   StyledParagraphSmall,
 } from "../../../components/Styled/Typography.styled";
 import CreateEventButtons from "./CreateEventManagerB";
-import CreateEventModal from "./CreateEventModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import useTenant from "../../../hooks/useTenant.hook";
@@ -29,12 +28,9 @@ const EventsDashboard = () => {
   const tenantId = useTenant();
 
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const { events } = useSelector(eventsSelector);
-  // console.log("Events", events);
   const { eventManagers } = useSelector(usersSelector);
-  // console.log("usersSelector", eventManagers);
   const navigate = useNavigate();
 
   const onChooseEvent = (event) => {
@@ -45,7 +41,6 @@ const EventsDashboard = () => {
       },
     });
   };
-
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -70,7 +65,6 @@ const EventsDashboard = () => {
           setOpenManagersPopup={setOpenManagersPopup}
         />
 
-        {open && <CreateEventModal onClose={() => setOpen(false)} />}
         {openManagersPopup && (
           <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
         )}

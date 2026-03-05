@@ -3,16 +3,21 @@ import * as actions from "./tasks.actions";
 
 const initialState = {
   tasks: [],
-  tasksLoading: false, // idle | loading | authenticated | unauthenticated
+  taskCountObj: {},
+  tasksLoading: false,
   tasksError: null,
 
   tasksByEvent: [],
-  tasksByEventsLoading: false, // idle | loading | authenticated | unauthenticated
+  tasksByEventsLoading: false,
   tasksByEventsError: null,
 
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
+
+  editTaskLoading: false,
+  editTask: false,
+  editTaskError: "",
 };
 
 const tasksSlice = createSlice({
@@ -39,7 +44,9 @@ const tasksSlice = createSlice({
         state.tasksLoading = true;
       })
       .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
-        state.tasks = action.payload?.details;
+        const res = action.payload?.details || {};
+        state.tasks = res.data;
+        state.taskCountObj = res.countObj;
         state.tasksLoading = false;
         state.tasksError = null;
       })

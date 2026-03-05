@@ -14,7 +14,6 @@ import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
 } from "../../redux/farms/metadata/task.metadata";
-// import { tasksMetadata } from "../../constants/metadata/tasks.metadata";
 import { Venue } from "../../components/Venue/Venue";
 import { toast } from "react-toastify";
 import {
@@ -25,21 +24,17 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
 import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
-import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
-import { paths } from "../../constants/paths";
 import { fetchVendorsAction } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
   const { vendors } = useSelector(usersSelector);
 
   const isEditMode = location.state?.mode === "edit";
-  const isAddMode = location.state?.mode === "add";
   const taskData = location.state?.taskData;
 
   useEffect(() => {
@@ -48,7 +43,7 @@ export const CreateTask = () => {
     }
     if (isEditMode) {
       dispatch(updateAllTaskInputs(generateTaskDataToEdit(vendors, taskData)));
-    } else if (isAddMode) {
+    } else {
       dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
     }
   }, [vendors]); // need to refactor this dependency
@@ -56,7 +51,7 @@ export const CreateTask = () => {
   const onSubmit = (payloadParams) => {
     if (isEditMode) {
       editTask(payloadParams);
-    } else if (isAddMode) {
+    } else {
       createTask(payloadParams);
     }
   };
@@ -91,7 +86,6 @@ export const CreateTask = () => {
   };
 
   const goBack = () => {
-    // navigate(paths.tasks);
     window.history.back();
   };
 
@@ -99,11 +93,7 @@ export const CreateTask = () => {
     <BlueBackHOC>
       <DashboardContainer>
         <StyledHeading left>
-          {isEditMode
-            ? "Edit Task"
-            : isAddMode
-              ? "Add task to Event"
-              : "Create Task"}
+          {isEditMode ? "Edit Task" : "Create Task"}
         </StyledHeading>
         <StyledHr />
         <StyledFlex>

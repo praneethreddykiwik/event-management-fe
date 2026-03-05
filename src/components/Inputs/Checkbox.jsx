@@ -1,7 +1,6 @@
-/** @format */
-import { InputLayout } from './InputLayout';
-import { InputCheckbox } from './Inputs.styled';
-import styled from 'styled-components';
+import { InputLayout } from "./InputLayout";
+import { InputCheckbox } from "./Inputs.styled";
+import styled from "styled-components";
 
 export const Checkbox = ({
   name,

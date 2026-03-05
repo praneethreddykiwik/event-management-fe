@@ -1,5 +1,6 @@
 import { EVENT_TYPE_OPTIONS } from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
+import { isoToInputDateTime } from "../../../utils/utils";
 
 const halfSize = "calc(50% - 8px)";
 
@@ -46,14 +47,6 @@ const BASE_EVENT_METADATA = [
     width: halfSize,
   },
   {
-    type: "text",
-    name: "venue",
-    value: "",
-    placeholder: "e.g. Some Good Place",
-    label: "Venue",
-    validations: [validationList.REQUIRED],
-  },
-  {
     type: "number",
     name: "expectedAttendees",
     value: "",
@@ -63,18 +56,30 @@ const BASE_EVENT_METADATA = [
   },
   {
     type: "dropdown",
-    name: "assignedEventManager",
+    name: "assignedToUid",
     value: "",
     placeholder: "Assign Event Manager",
     options: [],
     label: "Assign Event Manager",
     validations: [validationList.REQUIRED],
   },
+  {
+    type: "text",
+    name: "venue",
+    value: "",
+    placeholder: "e.g. Some Good Place",
+    label: "Venue",
+    validations: [validationList.REQUIRED],
+    withButton: {
+      btnText: "Choose Location",
+      btnIcon: "location_on",
+    },
+  },
 ];
 
-export const eventMetaData = (eventManagers = []) => {
+export const generateNewEventsInputs = (eventManagers = []) => {
   return BASE_EVENT_METADATA.map((el) => {
-    if (el.name === "assignedEventManager") {
+    if (el.name === "assignedToUid") {
       return {
         ...el,
         options: eventManagers.map((manager) => ({
@@ -88,19 +93,31 @@ export const eventMetaData = (eventManagers = []) => {
 };
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+  const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
+  const { date: eventDate, time: eventTime } = isoToInputDateTime(
+    scheduled || "",
+  );
+
   const valueMap = {
     eventName: event.eventName,
     comments: event.comments,
-    eventDate: event.eventDate,
-    eventTime: event.eventTime,
+    eventDate,
+    eventTime,
     venue: event.venue,
     eventType: event.eventType,
     expectedAttendees: event.expectedAttendees,
-    assignedEventManager: event.assignedEventManager,
+    assignedToUid: event.assignedToUid,
+    location: event.location,
   };
 
-  return eventMetaData(eventManagers).map((el) => ({
-    ...el,
-    value: valueMap[el.name] ?? "",
-  }));
+  const finalData = generateNewEventsInputs(eventManagers).map((el) => {
+    const k = {
+      ...el,
+      value: valueMap[el.name] ?? "",
+    };
+    if (el.name === "venue") k.helperText = valueMap.location;
+    return k;
+  });
+
+  return finalData;
 };

@@ -1,4 +1,3 @@
-/** @format */
 import LoginImages from "./LoginImages";
 import WelcomeTxts from "./WelcomeTxts";
 import GetStartedWithButtons from "./GetStartedWithButtons";
@@ -41,7 +40,6 @@ const ContainerLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 `;
 
 const MainContainer = styled.div`

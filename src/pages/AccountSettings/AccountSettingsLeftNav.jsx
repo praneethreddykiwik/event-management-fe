@@ -6,7 +6,8 @@ import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmallGray,
-  StyledSemiHeading,StyledParagraphSmallVisible
+  StyledSemiHeading,
+  StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
 
 const AccountSettingsLeftNav = () => {
@@ -46,23 +47,25 @@ const AccountSettingsLeftNav = () => {
 
       <StyledSemiHeadingGray>{enums.MY_ACCOUNT}</StyledSemiHeadingGray>
       <Nav>
-          {menuItems.map((item) => (
-            <Item
-              key={item.label}
-              active={active === item.label}
-              onClick={() => setActive(item.label)}
-            >
-              <span className="material-symbols-outlined">{item.icon}</span>
-              {item.label}
-            </Item>
-          ))}
+        {menuItems.map((item) => (
+          <Item
+            key={item.label}
+            active={active === item.label}
+            onClick={() => setActive(item.label)}
+          >
+            <span className="material-symbols-outlined">{item.icon}</span>
+            {item.label}
+          </Item>
+        ))}
       </Nav>
       <SidebarModal show={showModal}>
         <CloseButton onClick={() => setShowModal(false)}>
           <span class="material-symbols-outlined">close_small</span>
         </CloseButton>
         <ModalImage src={modalImg} alt="Modal" />
-        <StyledParagraphSmallVisible>{enums.MODAL_TEXT}</StyledParagraphSmallVisible>
+        <StyledParagraphSmallVisible>
+          {enums.MODAL_TEXT}
+        </StyledParagraphSmallVisible>
         <StyledAccButton type="base">Invite Friends</StyledAccButton>
       </SidebarModal>
     </StyledLeftNav>
@@ -70,9 +73,6 @@ const AccountSettingsLeftNav = () => {
 };
 
 export default AccountSettingsLeftNav;
-
-const textAlign = ({ left, right }) =>
-  left ? "left" : right ? "right" : "center";
 
 const StyledLeftNav = styled.div`
   width: 240px;

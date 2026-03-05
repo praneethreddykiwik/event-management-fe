@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 import {
   StyledHeading,
@@ -41,10 +39,14 @@ const CustomerDashboard = () => {
           <Section key={event.eventUid}>
             <StyledTaskHeading>
               <StyledBox2>
-                <StyledMediumHeading left>{event.eventName}</StyledMediumHeading>
-                <StyledParagraphSmall left>{event.eventVenue}</StyledParagraphSmall>
+                <StyledMediumHeading left>
+                  {event.eventName}
+                </StyledMediumHeading>
                 <StyledParagraphSmall left>
-                  {enums.TASKASSIGNEE} {event.eventAssignedToFirstName}{" "}
+                  {event.eventVenue}
+                </StyledParagraphSmall>
+                <StyledParagraphSmall left>
+                  {enums.TASK_ASSIGNEE} {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
                 </StyledParagraphSmall>
                 {/* <TaskAssignee>
@@ -88,6 +90,5 @@ const StyledBox2 = styled.div`
 `;
 
 const StyledHrTask = styled(StyledHr)``;
-
 
 export default CustomerDashboard;

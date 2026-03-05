@@ -191,8 +191,8 @@ export const ANALYTICS = "Analytics";
 
 export const TASKOV = "Task Overview";
 export const TASKM = "Monitor and manage all assigned tasks";
-export const TASKASSIGNEE = "Assigned to: ";
-export const TASKDUE = "• Due: ";
+export const TASK_ASSIGNEE = "Assigned to: ";
+export const TASKDUE = "Due: ";
 export const MANAGE_B = "Manage";
 
 export const NEW_EVENT = "New Event";

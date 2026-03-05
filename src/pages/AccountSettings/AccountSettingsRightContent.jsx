@@ -3,9 +3,13 @@ import google from "../../assets/Logo/Google.svg.webp";
 import * as enums from "../../myEnum";
 import styled from "styled-components";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
-import { Input } from "../../components/Inputs/Input";
 import { StyledHr } from "../../components/Styled/Common.styled";
-import { StyledHeading, StyledParagraphBold, StyledParagraphSmallGray} from "../../components/Styled/Typography.styled";
+import {
+  StyledHeading,
+  StyledParagraphBold,
+  StyledParagraphSmallGray,
+} from "../../components/Styled/Typography.styled";
+import Input from "@mui/material/Input";
 
 const AccountSettingsRightContent = () => {
   const [upgradeOptions, setUpgradeOptions] = useState([]);
@@ -43,7 +47,9 @@ const AccountSettingsRightContent = () => {
             </ActionSpan>
           </Action>
         </SectionHeader>
-        <StyledParagraphSmallGray left>{enums.EMAIL_PREFERENCE}</StyledParagraphSmallGray>
+        <StyledParagraphSmallGray left>
+          {enums.EMAIL_PREFERENCE}
+        </StyledParagraphSmallGray>
       </Section>
 
       <Section small>
@@ -100,8 +106,6 @@ const SectionHeader = styled.div`
   display: flex;
   margin-bottom: 10px;
 `;
-;
-
 const Action = styled.button`
   color: #060058;
   font-size: 14px;
@@ -120,7 +124,6 @@ const RowLink = styled.div`
   align-items: center;
   gap: 10px;
   //  background: red;
-
 `;
 
 const GoogleLogo = styled.img`
