@@ -14,12 +14,14 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
 `;
 
+// refactor
 export const StyledFlexContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  gap: 10px;
+  align-items: ${({ align }) => align || "center"};
+  justify-content: ${({ justify }) => justify || "center"};
+  gap: ${({ gap }) => gap || "10px"};
+  flex-direction: ${({ direction }) => direction || "row"};
+  flex-wrap: ${({ wrap }) => wrap || "nowrap"};
 `;
 
 export const StyledHr = styled.hr`
