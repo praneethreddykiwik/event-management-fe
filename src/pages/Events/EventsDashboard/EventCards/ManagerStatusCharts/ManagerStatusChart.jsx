@@ -8,7 +8,7 @@ const xLabels = ["Managers"];
 
 const ManagerStatusChart = () => {
   return (
-    <Box sx={{ width: "100%", height: 120 }}>
+    <Box sx={{ width: "100%", height: 150 }}>
       <BarChart
         series={[
           { data: activeData, label: "Active Managers", id: "active" },

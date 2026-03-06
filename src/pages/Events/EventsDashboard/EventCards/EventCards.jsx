@@ -33,6 +33,9 @@ const CardsRow = styled.div`
   gap: 15px;
   justify-content: space-between;
   margin-bottom: 20px;
+  ${mobile`
+      margin-top: 15px;
+  `}
 `;
 
 const StyledFlex = styled.div`
