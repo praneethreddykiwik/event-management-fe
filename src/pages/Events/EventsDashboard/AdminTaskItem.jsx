@@ -17,11 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { assignEventAction } from "../../../redux/events/events.actions";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
+import { deleteEventDispatch } from "../../../redux/events/events.actions";
 
 const AdminTaskItem = ({ data }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
-
   const { authUser } = useSelector(authSelector);
 
   const onClickViewDetails = (data) => {
@@ -38,6 +38,18 @@ const AdminTaskItem = ({ data }) => {
       assignedToUid: authUser.uid,
     };
     dispatch(assignEventAction({ reqPayload }));
+  };
+
+  const onClickDelete = () => {
+    dispatch(
+      deleteEventDispatch({
+        eventUid: data.uid,
+        tenantUid: data.tenantUid,
+        deletedByUid: data.deletedByUid,
+        deleteReason: "",
+      }),
+    );
+    navigate(paths.eventsDashboard);
   };
 
   const valueData = Math.floor(Math.random() * 101);
@@ -74,7 +86,9 @@ const AdminTaskItem = ({ data }) => {
           <Badge type={data.type}>{data.statusLabel}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
-          <Button type="inline-delete">Delete</Button>
+          <Button type="inline-delete" icon="delete" onClick={onClickDelete}>
+            Delete Event
+          </Button>
         </StyledFlex2>
         <StyledAssignBtnAdminDown>
           <Button type="transparent" onClick={assignToMeHandler}>
@@ -98,11 +112,13 @@ const AdminTaskItem = ({ data }) => {
 const StyledAssignBtnAdminDown = styled.div`
   display: none;
   ${mobile`    
+    margin-right: 100%;
     display:flex;
   `}
 `;
 
 const StyledAssignBtnAdminsUp = styled.div`
+  display: flex;
   ${mobile`    
    display:none;
   `}
@@ -119,9 +135,9 @@ const StyledAmdinContents = styled(StyledParagraphSmall)`
   align-items: center;
   ${mobile`
     font-size:12px;
-     white-space: nowrap;
   `}
 `;
+
 const StyledFlex2 = styled.div`
   display: flex;
   gap: 18px;
@@ -137,6 +153,7 @@ const StyledCard = styled(Card)`
   padding-left: 15px;
   padding-right: 15px;
   align-items: center;
+
   ${mobile`
     flex-direction: column;
     gap: 10px;
@@ -145,17 +162,23 @@ const StyledCard = styled(Card)`
 `;
 
 const Left = styled.div`
-  display: flex;
   gap: 10px;
-
+  margin-right: auto;
+  display: flex;
   ${mobile`
+    justify-content: space-between;
+    width: 100%;
     padding: 16px 0;
+    flex-direction: row-reverse;
   `}
 `;
 
 const StatusIcon = styled.span`
   font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
+  ${mobile`
+ 
+  `}
 `;
 
 const Taskcard = styled.div`
@@ -165,6 +188,7 @@ const Taskcard = styled.div`
 
 const EventName = styled(StyledParagraphBold)`
   margin-bottom: 5px;
+  text-align: left;
 `;
 
 const BadgeButton = styled.div`
@@ -172,7 +196,7 @@ const BadgeButton = styled.div`
   gap: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin-left: auto;
   padding: 16px 0;
   flex-basis: 30%;
@@ -185,8 +209,10 @@ const BadgeButton = styled.div`
 const GaugeWrapper = styled.div`
   display: flex;
   margin-left: 20px;
+
   ${mobile`
     display: none;
   `}
 `;
+
 export default AdminTaskItem;
