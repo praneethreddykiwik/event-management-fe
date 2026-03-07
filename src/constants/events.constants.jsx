@@ -154,3 +154,14 @@ export const EVENT_TYPE_OPTIONS = [
   { value: "SOCIAL_GATHERING", label: "Social Gathering" },
   { value: "GOVERNMENT_EVENT", label: "Government Event" },
 ];
+
+export const EVENT_STATUS = [
+  { value: "pending", label: "Pending" },
+  { value: "assigned", label: "Assigned" },
+  { value: "accepted", label: "Accepted" },
+  { value: "ready", label: "Ready" },
+  { value: "in_progress", label: "In Progress" },
+  { value: "completed", label: "Completed" },
+  { value: "declined", label: "Declined" },
+  { value: "cancelled", label: "Cancelled" },
+];
