@@ -61,8 +61,13 @@ export const TasksList = () => {
           Create Task
         </Button>
       </StyledHead>
+      {/* eventName */}
       {tasksByEvent.map((task) => (
-        <TaskItem task={mapTaskForUI(task)} onEdit={(tsk) => onEdit(tsk)} /> // need to refactor the location of task item component
+        // need to refactor the location of task item component
+        <TaskItem
+          task={mapTaskForUI(task, event)}
+          onEdit={(tsk) => onEdit(tsk)}
+        />
       ))}
     </StyledCtn>
   );

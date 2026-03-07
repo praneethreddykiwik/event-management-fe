@@ -2,8 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { StyledSemiHeading } from "../../../../components/Styled/Typography.styled";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const ProgressChart = ({ events }) => {
+  const isMobile = useMediaQuery("(max-width:480px)");
   const data = React.useMemo(() => {
     const eventStatuses = {
       pending: {
@@ -66,12 +68,12 @@ const ProgressChart = ({ events }) => {
   return (
     <Box sx={boxStyles}>
       <PieChart
-        height={300}
-        width={300}
+        height={isMobile ? 220 : 300}
+        width={isMobile ? 220 : 300}
         series={[
           {
             data,
-            innerRadius: 50,
+            innerRadius: 35,
             arcLabel: (params) => params.label ?? "",
             arcLabelMinAngle: 20,
             valueFormatter,

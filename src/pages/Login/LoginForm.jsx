@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
+import { CONTINUE } from "../../myEnum/RegistrationPage.Enum";
 import { Button } from "../../components/Buttons/Button";
 import {
   StyledAnchor,
@@ -9,7 +10,7 @@ import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/auth/auth.actions";
 import useTenant from "../../hooks/useTenant.hook";
-import { Conditions, Policy, Terms } from "../../myEnum/RegistrationPage.Enum";
+import { CONDITIONS, POLICY, TERMS } from "../../myEnum/RegistrationPage.Enum";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";
@@ -83,7 +84,7 @@ const LoginForm = () => {
         <Reset>{enums.RESET}</Reset>
       </ForgotPassword>
 
-      <Button onClick={onSubmit}>{enums.CONTINUE}</Button>
+      <Button onClick={onSubmit}>{CONTINUE}</Button>
       <AccountSignIn>
         {enums.DONT_HAVE_ACCOUNT_TEXT}
         <AnchorLinkPrimary onClick={() => navigate("/registration")}>
@@ -94,8 +95,8 @@ const LoginForm = () => {
 
       <CheckboxRow>
         <AnchorParah>
-          {Terms} <SignInAnchor>{Conditions}</SignInAnchor> and{" "}
-          <SignInAnchor>{Policy}</SignInAnchor>
+          {TERMS} <SignInAnchor>{CONDITIONS}</SignInAnchor> and{" "}
+          <SignInAnchor>{POLICY}</SignInAnchor>
         </AnchorParah>
       </CheckboxRow>
     </Form>

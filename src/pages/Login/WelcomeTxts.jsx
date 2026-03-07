@@ -6,7 +6,7 @@ import {
   StyledHeadingBig,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
-import * as enums from "../../myEnum";
+import { SIGN_UP_TXT } from "../../myEnum/RegistrationPage.Enum";
 
 const WelcomeTxts = () => {
   return (
@@ -15,7 +15,7 @@ const WelcomeTxts = () => {
         <LogoImage src={Helm_logo} alt="logo" />
       </LogoBox>
       <WelcomeTxt>
-        <SignUpTxt>{enums.SIGN_UP_TXT}</SignUpTxt>
+        <SignUpTxt>{SIGN_UP_TXT}</SignUpTxt>
       </WelcomeTxt>
     </>
   );

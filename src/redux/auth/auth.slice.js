@@ -34,7 +34,8 @@ const authSlice = createSlice({
       state.authError = null;
     },
     updateTenantId(state, action) {
-      state.tenantId = action.payload; // this will get triggered when url gets a tenantId
+      // this will get triggered when url gets a tenantId
+      state.tenantId = action.payload;
     },
   },
   extraReducers: (builder) => {
