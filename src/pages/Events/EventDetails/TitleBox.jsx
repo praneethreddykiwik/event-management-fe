@@ -8,7 +8,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { paths } from "../../../constants/paths";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
-import { useState } from "react";
 import { authSelector } from "../../../redux/auth/auth.slice";
 
 export const TitleBox = () => {
@@ -29,8 +28,17 @@ export const TitleBox = () => {
     });
   };
 
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [deleteReason, setDeleteReason] = useState("");
+  const onClickTitleDelete = () => {
+    dispatch(
+      deleteEventDispatch({
+        eventUid: event.uid,
+        tenantUid: event.tenantUid,
+        deletedByUid: event.deletedByUid,
+        deleteReason: "",
+      }),
+    );
+    navigate(paths.eventsDashboard);
+  };
 
   return (
     <StyledCtn>
@@ -47,26 +55,7 @@ export const TitleBox = () => {
         <Button type="outlined" icon="edit" onClick={onClickEdit}>
           Edit Event
         </Button>
-        <Button
-          type="delete"
-          icon="delete"
-          onClick={() => {
-            dispatch(
-              deleteEventDispatch({
-                eventUid: event.uid,
-                tenantUid: event.tenantUid,
-                deletedByUid: JSON.parse(localStorage.getItem("user"))?.uid,
-                deleteReason: deleteReason.trim(),
-              }),
-            );
-            setTimeout(() => {
-              navigate(-1);
-            }, 1000);
-
-            setShowDeleteConfirm(false);
-            setDeleteReason("");
-          }}
-        >
+        <Button type="delete" icon="delete" onClick={onClickTitleDelete}>
           Delete Event
         </Button>
       </StyledBtnCtn>
