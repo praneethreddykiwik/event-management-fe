@@ -12,6 +12,7 @@ import rightImage1 from "./reg-assets/REG_right1.jpg";
 import rightImage2 from "./reg-assets/REG_right2.jpg";
 import rightImage3 from "./reg-assets/REG_right3.jpg";
 import rightImage4 from "./reg-assets/REG_right4.jpg";
+import { mobile } from "../../theme/media-queries";
 
 const RegistrationImages = () => {
   const leftImages = [leftImage1, leftImage2, leftImage3, leftImage4];
@@ -50,6 +51,9 @@ const ContainerRight = styled.div`
   padding: 8px;
   align-items: center;
   justify-content: center;
+   ${mobile`
+     display:none;
+   `}
 `;
 
 const Column1 = styled.div`

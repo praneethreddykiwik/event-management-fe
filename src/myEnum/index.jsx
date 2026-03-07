@@ -304,15 +304,15 @@ export const FORGOT_PASS = "Forgot Password? ";
 export const RESET = "Reset";
 export const NEW_USER = "New User?";
 export const REGISTER = "Register";
-// export const BY_USING_OUR_TERMS = "By using our app you agree to the";
-// export const CONDITIONS = "Terms of Use";
-// export const POLICY = "Privacy Policy";
-// export const BY_USING_OUR_APPS_PP =
-  // "By using our app you agree to the Terms of Use Privacy Policy";
-// export const CONTINUE = "Continue";
-// export const ACCOUNT = "Already have an account?";
-export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
-// export const SIGN_IN = "Sign in";
+export const BY_USING_OUR_TERMS = "By using our app you agree to the";
+export const CONDITIONS = "Terms of Use";
+export const POLICY = "Privacy Policy";
+export const BY_USING_OUR_APPS_PP =
+  "By using our app you agree to the Terms of Use and Privacy Policy";
+export const CONTINUE = "Continue";
+export const ACCOUNT = "Already have an account?";
+export const DONT_HAVE_ACCOUNT_TEXT = "New user?";
+export const SIGN_IN = "Sign in";
 
 export const WELCOME = "Welcome to Market Place.";
 export const MARKET_PLACE_DESCRIPTION_TEXT =

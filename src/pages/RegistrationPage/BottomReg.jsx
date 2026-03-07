@@ -5,7 +5,7 @@ import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import {
   ACCOUNT,
-  SIGN_IN ,
+  SIGN_IN,
   TERMS_CONDITIONS,
 } from "../../myEnum/RegistrationPage.Enum";
 import { usersSelector } from "../../redux/users/users.slice";
@@ -20,14 +20,14 @@ export const BottomReg = () => {
         <StyledParagraphSmallGray>
           Successfully registered user. You can proceed to{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
-            {SIGN_IN }
+            {SIGN_IN}
           </AnchorLinkPrimary>
         </StyledParagraphSmallGray>
       ) : (
         <StyledParagraphSmallGray>
           {ACCOUNT}{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
-            {SIGN_IN }
+            {SIGN_IN}
           </AnchorLinkPrimary>
         </StyledParagraphSmallGray>
       )}
@@ -35,8 +35,6 @@ export const BottomReg = () => {
       <StyledParagraphSmallGray center>
         {TERMS_CONDITIONS}
       </StyledParagraphSmallGray>
-
-      {/* Raghavendra */}
     </StyledBox>
   );
 };
