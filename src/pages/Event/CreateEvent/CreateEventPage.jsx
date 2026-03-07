@@ -32,11 +32,29 @@ const CreateEventPage = () => {
 
   useEffect(() => {
     const callback = (eventManagers) => {
-      const eventMetaDataFull = isEditMode
+      let eventMetaDataFull = isEditMode
         ? generateEventDataToEdit(eventManagers, eventData)
         : generateNewEventsInputs(eventManagers);
+
+      const venueName = location?.state?.venueName;
+      const venueUrl = location?.state?.venueUrl;
+
+      if (venueName) {
+        eventMetaDataFull = eventMetaDataFull.map((input) => {
+          if (input.name === "venue") {
+            return {
+              ...input,
+              value: venueName,
+              helperText: venueUrl,
+            };
+          }
+          return input;
+        });
+      }
+
       dispatch(updateAllEventInputs(eventMetaDataFull));
     };
+
     dispatch(fetchManagersAction({ callback }));
   }, []);
 

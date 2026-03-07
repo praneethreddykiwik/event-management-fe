@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
 import VenueLocationMap from "./VenueLocationMap";
 import { Button } from "../Buttons/Button";
 
-const VenueCard = ({ venue, onView }) => {
-  const [showMap, setShowMap] = useState(false);
+const VenueCard = ({ venue, onView, onSelect }) => {
+  // const [showMap] = useState(false);
 
   return (
     <Card>
@@ -30,7 +30,10 @@ const VenueCard = ({ venue, onView }) => {
       </ContentRow>
 
       <Button onClick={onView}>View Location</Button>
-      {showMap && <VenueLocationMap mapUrl={venue.map} />}
+      {/* {showMap && <VenueLocationMap mapUrl={venue.map} />} */}
+      <Button type="secondary" onClick={() => onSelect(venue)}>
+        Select Location
+      </Button>
     </Card>
   );
 };
