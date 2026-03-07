@@ -14,12 +14,13 @@ export const Password = ({
   label,
   name,
   confirmPassword,
+  validations,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
-      <InputLayout label={label} error={error}>
+      <InputLayout label={label} error={error} validations= {validations}> 
         <InputPassword
           name={name}
           value={value}

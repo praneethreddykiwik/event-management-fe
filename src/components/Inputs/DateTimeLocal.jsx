@@ -9,9 +9,10 @@ export const DateTimeLocal = ({
   disabled,
   error,
   width,
+  validations,
 }) => {
   return (
-    <InputLayout error={error} width={width}>
+    <InputLayout error={error} width={width} validations={validations}>
       <InputDefault
         id={name}
         name={name}
