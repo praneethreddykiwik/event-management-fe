@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 import { Inputs } from "../../../components/Inputs/Inputs";
 import { Button } from "../../../components/Buttons/Button";
-import { Continue } from "../../../myEnum/RegistrationPage.Enum";
+import { CONTINUE } from "../../../myEnum/RegistrationPage.Enum";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { modifyTimeToISO } from "../../../utils/utils";
 
@@ -108,7 +108,7 @@ const CreateEvent = ({ onCreateEvent }) => {
               Clear
             </Button>
             <Button whiteText onClick={onSubmit}>
-              {Continue}
+              {CONTINUE}
             </Button>
           </StyledFlex2>
         </InputBox>

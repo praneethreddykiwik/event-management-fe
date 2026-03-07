@@ -2,7 +2,7 @@ import styled from "styled-components";
 import AppleImg from "../../assets/Logos/Apple-logo.jpeg";
 import GoogleImg from "../../assets/Logos/Google-logo.jpeg";
 
-import { Apple, Google, SignInText } from "../../myEnum/RegistrationPage.Enum";
+import { APPLE, GOOGLE, SIGN_IN_TEXT } from "../../myEnum/RegistrationPage.Enum";
 import { StyledFlexContainer } from "../../components/Styled/Common.styled";
 
 import {
@@ -12,20 +12,20 @@ import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <StyledParagraph>{SignInText}</StyledParagraph>
+      <StyledParagraph>{SIGN_IN_TEXT}</StyledParagraph>
 
       <ContinueSignIn>
         <Button type="outlined">
           <StyledFlexContainer>
             <AppleLogo src={AppleImg} alt="Apple" />
-            {Apple}
+            {APPLE}
           </StyledFlexContainer>
         </Button>
 
         <Button type="outlined">
           <StyledFlexContainer>
             <GoogleLogo src={GoogleImg} alt="Google" />
-            {Google}
+            {GOOGLE}
           </StyledFlexContainer>
         </Button>
       </ContinueSignIn>

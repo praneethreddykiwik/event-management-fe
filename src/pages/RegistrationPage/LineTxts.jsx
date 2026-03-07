@@ -1,4 +1,4 @@
-import { SignUpLine } from "../../myEnum/RegistrationPage.Enum";
+import { SIGN_UP_LINE } from "../../myEnum/RegistrationPage.Enum";
 // import { LineTxt, SignUpWith, SignWithEmail } from "./styled.RegistrationPage";
 
 import styled from "styled-components";
@@ -11,7 +11,7 @@ const LineTxts = () => {
   return (
     <>
       <LineTxt>
-        <SignUpWith>{SignUpLine}</SignUpWith>
+        <SignUpWith>{SIGN_UP_LINE}</SignUpWith>
       </LineTxt>
 
       {/* Mobile view */}

@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import apple from "../../assets/Logo/Apple.svg";
 import google from "../../assets/Logo/Google.svg.webp";
-import * as enums from "../../myEnum";
+import { STARTED_WITH, APPLE, GOOGLE } from "../../myEnum/RegistrationPage.Enum";
 import { StyledParagraph } from "../../components/Styled/Typography.styled";
 import { Button } from "../../components/Buttons/Button";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <GetStarted>{enums.STARTED_WITH}</GetStarted>
+      <GetStarted>{STARTED_WITH}</GetStarted>
       {/* <SignInTxtM>{enums.SIGN_IN_TEXT}</SignInTxtM> */}
       <ContinueSignIn>
         <Button type="outlined" image={apple}>
-          {enums.APPLE}
+          {APPLE}
         </Button>
         <Button type="outlined" image={google}>
-          {enums.GOOGLE}
+          {GOOGLE}
         </Button>
       </ContinueSignIn>
     </GetStartedWithButtonsWrapper>

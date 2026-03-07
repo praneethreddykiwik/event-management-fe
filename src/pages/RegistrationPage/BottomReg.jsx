@@ -4,9 +4,9 @@ import { StyledParagraphSmallGray } from "../../components/Styled/Typography.sty
 import { AnchorLinkPrimary } from "../../components/Styled/Links.styles";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import {
-  Account,
-  SignIn,
-  TermsConditions,
+  ACCOUNT,
+  SIGN_IN ,
+  TERMS_CONDITIONS,
 } from "../../myEnum/RegistrationPage.Enum";
 import { usersSelector } from "../../redux/users/users.slice";
 
@@ -20,20 +20,20 @@ export const BottomReg = () => {
         <StyledParagraphSmallGray>
           Successfully registered user. You can proceed to{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
-            {SignIn}
+            {SIGN_IN }
           </AnchorLinkPrimary>
         </StyledParagraphSmallGray>
       ) : (
         <StyledParagraphSmallGray>
-          {Account}{" "}
+          {ACCOUNT}{" "}
           <AnchorLinkPrimary onClick={() => navigate("/login")}>
-            {SignIn}
+            {SIGN_IN }
           </AnchorLinkPrimary>
         </StyledParagraphSmallGray>
       )}
 
       <StyledParagraphSmallGray center>
-        {TermsConditions}
+        {TERMS_CONDITIONS}
       </StyledParagraphSmallGray>
 
       {/* Raghavendra */}

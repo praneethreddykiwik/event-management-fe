@@ -290,29 +290,29 @@ export const BOOK_POLICY =
 
 export const JOIN_HEADING_2 = "Trusted By";
 
-export const EVENTZ = "eventz";
-export const WELCOME_TEXT = "Welcome to Eventz";
-export const SIGN_UP_TXT =
-  "Sign Up now to get access to 1000+ Events, Schedule a venue for an upcoming events or get in touch with a planner.";
-export const STARTED_WITH = "Get started with";
-export const SIGN_IN_TEXT = "Sign in with";
-export const APPLE = "Continue with Apple";
-export const GOOGLE = "Continue with Google";
-export const SIGN_UP_LINE = "Or Sign Up with";
+// export const EVENTZ = "eventz";
+// export const WELCOME_TEXT = "Welcome to Eventz";
+// export const SIGN_UP_TXT =
+//   "Sign Up now to get access to 1000+ Events, Schedule a venue for an upcoming events or get in touch with a planner.";
+// export const STARTED_WITH = "Get started with";
+// export const SIGN_IN_TEXT = "Sign in with";
+// export const APPLE = "Continue with Apple";
+// export const GOOGLE = "Continue with Google";
+// export const SIGN_UP_LINE = "Or Sign Up with";
 export const SIGN_IN_EMAIL = "Or Sign in with Email";
 export const FORGOT_PASS = "Forgot Password? ";
 export const RESET = "Reset";
 export const NEW_USER = "New User?";
 export const REGISTER = "Register";
-export const BY_USING_OUR_TERMS = "By using our app you agree to the";
-export const CONDITIONS = "Terms of Use";
-export const POLICY = "Privacy Policy";
-export const BY_USING_OUR_APPS_PP =
-  "By using our app you agree to the Terms of Use Privacy Policy";
-export const CONTINUE = "Continue";
-export const ACCOUNT = "Already have an account?";
+// export const BY_USING_OUR_TERMS = "By using our app you agree to the";
+// export const CONDITIONS = "Terms of Use";
+// export const POLICY = "Privacy Policy";
+// export const BY_USING_OUR_APPS_PP =
+  // "By using our app you agree to the Terms of Use Privacy Policy";
+// export const CONTINUE = "Continue";
+// export const ACCOUNT = "Already have an account?";
 export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
-export const SIGN_IN = "Sign in";
+// export const SIGN_IN = "Sign in";
 
 export const WELCOME = "Welcome to Market Place.";
 export const MARKET_PLACE_DESCRIPTION_TEXT =
