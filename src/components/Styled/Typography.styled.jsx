@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { turncateStyles } from "./utils.styled";
 
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
@@ -51,6 +52,8 @@ export const StyledMediumHeading = styled.p`
   margin-top: ${marginTop}px;
   margin-bottom: ${marginBottom}px;
   text-align: ${textAlign};
+
+  ${({ turncate }) => (turncate ? turncateStyles : ``)}
 `;
 
 // Paragraphs
@@ -67,7 +70,7 @@ export const StyledParagraph = styled.p`
 export const StyledParagraphBold = styled.p`
   color: ${({ theme }) => theme.color};
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 22.4px;
   text-align: ${textAlign};
 `;

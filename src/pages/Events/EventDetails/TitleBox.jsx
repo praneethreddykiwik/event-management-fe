@@ -5,19 +5,20 @@ import { Button } from "../../../components/Buttons/Button";
 import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { BADGE_TYPES } from "../../../constants/badges";
 import { useLocation, useNavigate } from "react-router-dom";
-import useTenant from "../../../hooks/useTenant.hook";
 import { paths } from "../../../constants/paths";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { useState } from "react";
+import { authSelector } from "../../../redux/auth/auth.slice";
 
 export const TitleBox = () => {
   const { state } = useLocation();
   const event = state?.event;
-  const tenantId = useTenant();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { tenantId } = useSelector(authSelector);
 
   const onClickEdit = () => {
     navigate(`${paths.createEvent}?tenantId=${tenantId}`, {

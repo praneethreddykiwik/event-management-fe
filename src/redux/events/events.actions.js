@@ -37,7 +37,6 @@ export const createEventsDispatch = createAsyncThunk(
       // clear inputs once event is created
       const state = getState();
       const vendors = state.users.vendors;
-      debugger;
       dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
       return res.data;
     } catch (err) {

@@ -3,8 +3,6 @@ import SummaryCard from "./SummaryCard";
 import TaskItem from "./TaskItem";
 import {
   StyledHeading,
-  StyledMediumHeading,
-  StyledParagraphSmall,
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import { useEffect } from "react";
@@ -14,14 +12,12 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import { tasksSelector } from "../../redux/tasks/tasks.slice";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
-import { Section } from "../../HOC/SectionsHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
-import { Button } from "../../components/Buttons/Button";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
 import { fetchVendorsAction } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
-import { mobile } from "../../theme/media-queries";
+import { EventSection } from "./EventSection";
 
 const EventManagerDashboard = () => {
   const dispatch = useDispatch();
@@ -65,43 +61,19 @@ const EventManagerDashboard = () => {
     });
   };
 
-  console.log("abdul tasks", tasks);
-
   return (
     <BlueBackHOC>
       <DashboardContainer>
         <StyledHeading left>Tasks</StyledHeading>
         <StyledHr />
-
         <SummaryCard taskCountObj={taskCountObj} />
 
         {tasks.map((event) => (
-          <Section key={event.eventUid}>
-            <StyledTaskHeading>
-              <StyledTitleText>
-                <StyledMediumHeading left>
-                  {event.eventName}
-                </StyledMediumHeading>
-                <StyledParagraphSmall left>
-                  {event.eventVenue}
-                </StyledParagraphSmall>
-              </StyledTitleText>
-
-              <Button
-                icon="add"
-                sx={{ width: "180px" }}
-                whiteText
-                onClick={() => onAddTask(event)}
-              >
-                Add Task
-              </Button>
-            </StyledTaskHeading>
-            <StyledHr />
-
+          <EventSection event={event} onAddTask={onAddTask}>
             {event.tasks?.length ? (
               event.tasks.map((task) => (
                 <TaskItem
-                  task={mapTaskForUI(task)}
+                  task={mapTaskForUI(task, event)}
                   onEdit={(tsk) => onEdit(tsk, event)}
                 />
               ))
@@ -110,7 +82,7 @@ const EventManagerDashboard = () => {
                 No tasks added yet
               </StyledParagraphSmallGray>
             )}
-          </Section>
+          </EventSection>
         ))}
       </DashboardContainer>
     </BlueBackHOC>
@@ -119,22 +91,6 @@ const EventManagerDashboard = () => {
 
 const DashboardContainer = styled.div`
   padding: 0 16px 16px 16px;
-`;
-
-const StyledTaskHeading = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-
-  ${mobile`
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 18px;
-  `}
-`;
-
-const StyledTitleText = styled.div`
-  flex-basis: 50%;
 `;
 
 export default EventManagerDashboard;
