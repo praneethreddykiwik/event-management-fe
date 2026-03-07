@@ -9,6 +9,7 @@ export const mapTaskForUI = (task, event) => {
     taskStatus: status.status,
     taskIcon: status.icon,
     eventName: event?.eventName,
+    taskAssignedTo: task.taskAssignedTo,
   };
 };
 

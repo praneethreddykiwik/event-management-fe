@@ -12,7 +12,7 @@ import { authSelector } from "../../../redux/auth/auth.slice";
 
 export const TitleBox = () => {
   const { state } = useLocation();
-  const event = state?.event;
+  const event = state?.event || {};
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

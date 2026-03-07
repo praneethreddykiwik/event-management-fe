@@ -33,7 +33,7 @@ const ManageTaskModal = ({ onClose, task }) => {
     },
     { label: "Task Created At", value: formatDateTime(task.taskCreatedAt) },
     { label: "Venue", value: task.eventVenue || task.venue },
-    { label: "Assigned By", value: task.taskAssignedToUid },
+    { label: "Assigned To", value: task.taskAssignedTo }, // checkHere
     { label: "Status", value: task.taskStatus },
   ];
 
@@ -75,7 +75,7 @@ const ManageTaskModal = ({ onClose, task }) => {
             <StyledParagraph left>Event: {task.eventName}</StyledParagraph>
 
             <StyledParagraphSmall left>
-              Assigned To: {task.firstName} {task.lastName}
+              Assigned To: {task.taskAssignedTo}
             </StyledParagraphSmall>
           </HeaderText>
           <Icon variant="close" onClick={onClose} />
