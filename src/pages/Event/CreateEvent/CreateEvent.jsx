@@ -19,6 +19,7 @@ import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.met
 import { usersSelector } from "../../../redux/users/users.slice";
 
 import { useLocation } from "react-router-dom";
+import { paths } from "../../../constants/paths";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -26,6 +27,7 @@ const CreateEvent = ({ onCreateEvent }) => {
   const location = useLocation();
 
   const { createEventInputs } = useSelector(formsSelector);
+
   const { authUser } = useSelector(authSelector);
   const { eventManagers } = useSelector(usersSelector);
 
@@ -66,9 +68,9 @@ const CreateEvent = ({ onCreateEvent }) => {
       reqPayload.eventDate,
       reqPayload.eventTime,
     );
-
     reqPayload.tenantUid = tenantUid;
     reqPayload.scheduledAt = scheduledAt;
+
     if (isEditMode) {
       reqPayload.eventUid = eventData.uid;
     } else {
@@ -87,9 +89,15 @@ const CreateEvent = ({ onCreateEvent }) => {
     dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
-  const onClickBtn = () => {
+  const onClickHelperText = () => {
+    navigate(paths.venues);
+  };
+
+  const clearHelperText = () => {
     // shahid
   };
+
+  console.log("abdul createEventInputs", createEventInputs);
 
   return (
     <Form>
@@ -100,7 +108,8 @@ const CreateEvent = ({ onCreateEvent }) => {
               key={inp.name}
               {...inp}
               onChange={onChange}
-              onClickBtn={onClickBtn}
+              onClickHelperText={onClickHelperText}
+              clearHelperText={clearHelperText}
             />
           ))}
           <StyledFlex2>

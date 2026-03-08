@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import VenueList from "../../components/Venue/VenueList";
+import VenueSuggestions from "../../components/Venue/VenueSuggestions";
 import {
   StyledHeadingBig,
   StyledParagraph,
 } from "../../components/Styled/Typography.styled";
 
-const VenueLocations = () => {
+const Venues = () => {
   return (
     <Wrapper>
       <StyledParagraph>
@@ -15,12 +15,12 @@ const VenueLocations = () => {
         </StyledParagraph>
       </StyledParagraph>
 
-      <VenueList />
+      <VenueSuggestions />
     </Wrapper>
   );
 };
 
-export default VenueLocations;
+export default Venues;
 
 const Wrapper = styled.div`
   padding: 40px 40px;
