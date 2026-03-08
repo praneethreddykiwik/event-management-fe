@@ -14,7 +14,7 @@ import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
 } from "../../redux/farms/metadata/task.metadata";
-import { Venue } from "../../components/Venue/Venue";
+import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
 import { toast } from "react-toastify";
 import {
   createTaskAction,
@@ -108,7 +108,7 @@ export const CreateTask = () => {
 
         <StyledSuggestions>
           {tasksMetadata.map((el) => (
-            <Venue
+            <VenueSuggestion
               venueDetails={el}
               btnText="Choose"
               onClick={onClickSuggestion}

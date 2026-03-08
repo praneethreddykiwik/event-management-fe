@@ -25,7 +25,7 @@ import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
-import VenueLocations from "./pages/Venues/VenueLocations";
+import Venues from "./pages/Venues/Venues.jsx";
 import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 
@@ -37,10 +37,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route
-      path={paths.twoFactorAuth}
-      element={<TwoFactorAuthPage />}
-    />
+      <Route path={paths.twoFactorAuth} element={<TwoFactorAuthPage />} />
 
       <Route path="/get-in-touch" element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
@@ -95,7 +92,7 @@ const AppRoutes = () => {
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
 
-      <Route path={paths.venues} element={<VenueLocations />} />
+      <Route path={paths.venues} element={<Venues />} />
 
       <Route
         path={paths.userManagement}
@@ -113,9 +110,7 @@ const AppRoutes = () => {
   const isLoggedIn = authStatus === "authenticated";
 
   return (
-    <Routes>
-      {isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}
-    </Routes>
+    <Routes>{isLoggedIn ? authenticatedRoutes : unAuthenticatedRoutes}</Routes>
   );
 };
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Venue } from "../../components/Venue/Venue";
+import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
 import {
   StyledHeading,
   StyledAnchorSmall,
@@ -80,15 +80,19 @@ export const Venues = () => {
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>
-            <button><span class="material-symbols-outlined">chevron_left</span></button>
-            <button><span class="material-symbols-outlined">chevron_right</span></button>
+            <button>
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button>
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
           </Arrows>
         </Actions>
       </Header>
 
       <Grid>
         {venues.map((venue, index) => (
-          <Venue key={index} venueDetails={venue} />
+          <VenueSuggestion key={index} venueDetails={venue} />
         ))}
       </Grid>
     </Wrapper>

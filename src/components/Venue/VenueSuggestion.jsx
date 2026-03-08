@@ -8,7 +8,7 @@ import {
 import { Button } from "../Buttons/Button";
 import { Icon } from "../Icons/Icons";
 
-export const Venue = ({ venueDetails, btnText, onClick }) => {
+export const VenueSuggestion = ({ venueDetails, btnText, onClick }) => {
   return (
     <StyledVenue className="venue-ctn">
       <ImageWrapper>

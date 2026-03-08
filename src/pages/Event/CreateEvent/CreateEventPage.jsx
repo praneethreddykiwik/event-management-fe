@@ -13,7 +13,7 @@ import { usersSelector } from "../../../redux/users/users.slice";
 import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 
-import { Venue } from "../../../components/Venue/Venue";
+import { VenueSuggestion } from "../../../components/Venue/VenueSuggestion";
 import { eventsMetadata } from "../../../constants/events.constants";
 import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
@@ -33,24 +33,8 @@ const CreateEventPage = () => {
   useEffect(() => {
     const callback = (eventManagers) => {
       let eventMetaDataFull = isEditMode
-        ? generateEventDataToEdit(eventManagers, eventData)
-        : generateNewEventsInputs(eventManagers);
-
-      const venueName = location?.state?.venueName;
-      const venueUrl = location?.state?.venueUrl;
-
-      if (venueName) {
-        eventMetaDataFull = eventMetaDataFull.map((input) => {
-          if (input.name === "venue") {
-            return {
-              ...input,
-              value: venueName,
-              helperText: venueUrl,
-            };
-          }
-          return input;
-        });
-      }
+        ? generateEventDataToEdit(eventManagers, location, eventData)
+        : generateNewEventsInputs(eventManagers, location);
 
       dispatch(updateAllEventInputs(eventMetaDataFull));
     };
@@ -86,7 +70,8 @@ const CreateEventPage = () => {
 
       <StyledSuggestions>
         {eventsMetadata.map((el) => (
-          <Venue
+          // refactor
+          <VenueSuggestion
             key={el.title}
             venueDetails={el}
             btnText="Choose"
@@ -113,7 +98,6 @@ const StyledSuggestions = styled.div`
   margin-top: 20px;
 
   .venue-ctn {
-    // flex: 0 0 calc((100% - 180px) / 3);
     width: 31%;
     flex-grow: 1;
   }
@@ -123,7 +107,6 @@ const StyledSuggestions = styled.div`
     gap: 20px;
 
     .venue-ctn {
-      // flex: 0 0 100%;
       width: 100%;
       flex-grow: 1;
     }

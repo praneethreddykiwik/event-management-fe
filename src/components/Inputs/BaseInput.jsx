@@ -14,20 +14,21 @@ export const BaseInput = ({
   error,
   width,
   withButton,
-  onClickBtn,
+  onClickHelperText,
   helperText,
   validations,
+  clearHelperText,
 }) => {
   const layoutProps = {
     label,
     error,
     width,
     helperText,
+    clearHelperText,
     validations,
   };
   return (
-    <InputLayout {...layoutProps} >
-
+    <InputLayout {...layoutProps}>
       <StyledCtn withButton={withButton}>
         <InputDefault
           name={name}
@@ -43,7 +44,7 @@ export const BaseInput = ({
             className="withButton"
             icon={withButton.btnIcon}
             whiteText
-            onClick={onClickBtn}
+            onClick={onClickHelperText}
           >
             {withButton.btnText}
           </Button>

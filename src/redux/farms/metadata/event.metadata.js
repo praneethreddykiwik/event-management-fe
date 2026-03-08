@@ -77,17 +77,30 @@ const BASE_EVENT_METADATA = [
   },
 ];
 
-export const generateNewEventsInputs = (eventManagers = []) => {
+const generateEventManagersOptions = (manager) => ({
+  value: manager.uid,
+  label: `${manager.firstName} ${manager.lastName}`,
+});
+
+export const generateNewEventsInputs = (eventManagers = [], location) => {
   return BASE_EVENT_METADATA.map((el) => {
     if (el.name === "assignedToUid") {
       return {
         ...el,
-        options: eventManagers.map((manager) => ({
-          value: manager.uid,
-          label: `${manager.firstName} ${manager.lastName}`,
-        })),
+        options: eventManagers.map(generateEventManagersOptions),
       };
     }
+
+    if (el.name === "venue") {
+      const venueName = location?.state?.venueName || "";
+      const venueUrl = location?.state?.venueUrl || "";
+      return {
+        ...el,
+        value: venueName,
+        helperText: venueUrl,
+      };
+    }
+
     return { ...el, error: null };
   });
 };
