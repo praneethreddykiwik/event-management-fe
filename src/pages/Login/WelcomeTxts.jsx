@@ -7,7 +7,6 @@ import {
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import { SIGN_UP_TXT } from "../../myEnum/RegistrationPage.Enum";
-import * as enums from "../../myEnum";
 import { mobile } from "../../theme/media-queries";
 
 const WelcomeTxts = () => {
@@ -30,7 +29,6 @@ const WelcomeTxt = styled.div`
   flex-direction: column;
   margin: 24px 0 4px 0;
 `;
-
 
 const SignUpTxt = styled(StyledParagraphSmallGray)`
   font-size: 13px;
