@@ -1,4 +1,7 @@
-import { EVENT_TYPE_OPTIONS } from "../../../constants/events.constants";
+import {
+  EVENT_TYPE_OPTIONS,
+  EVENT_STATUS,
+} from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
 import { isoToInputDateTime } from "../../../utils/utils";
 
@@ -64,6 +67,14 @@ const BASE_EVENT_METADATA = [
     validations: [validationList.REQUIRED],
   },
   {
+    type: "dropdown",
+    name: "status",
+    value: "",
+    placeholder: "Status",
+    options: EVENT_STATUS,
+    label: "Status",
+  },
+  {
     type: "text",
     name: "venue",
     value: "",
@@ -108,6 +119,7 @@ export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
     expectedAttendees: event.expectedAttendees,
     assignedToUid: event.assignedToUid,
     location: event.location,
+    status: event.status,
   };
 
   const finalData = generateNewEventsInputs(eventManagers).map((el) => {
