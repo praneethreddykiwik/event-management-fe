@@ -52,7 +52,7 @@ const CreateEventPage = () => {
 
   const onChooseVenue = (event) => {
     dispatch(
-      updateAllEventInputs(generateEventDataToEdit(eventManagers, event)),
+      updateAllEventInputs(generateEventDataToEdit(eventManagers, null, event)),
     );
     toast.success("Selected event details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });

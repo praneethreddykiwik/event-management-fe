@@ -90,14 +90,12 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   const onClickHelperText = () => {
-    navigate(paths.venues);
+    navigate(paths.venues, { replace: true });
   };
 
   const clearHelperText = () => {
     // shahid
   };
-
-  console.log("abdul createEventInputs", createEventInputs);
 
   return (
     <Form>

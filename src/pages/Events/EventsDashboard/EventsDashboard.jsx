@@ -51,6 +51,10 @@ const EventsDashboard = () => {
     dispatch(fetchEventsDispatch());
   }, []);
 
+  const onCreateEvent = () => {
+    navigate(`${paths.createEvent}?tenantId=${tenantId}`);
+  };
+
   return (
     <BlueBackHOC>
       <AdminDashboardContainer>
@@ -60,9 +64,7 @@ const EventsDashboard = () => {
         <EventCards events={events} eventManagers={eventManagers} />
 
         <CreateEventButtons
-          onCreateEvent={() =>
-            navigate(`${paths.createEvent}?tenantId=${tenantId}`)
-          }
+          onCreateEvent={onCreateEvent}
           setOpenManagersPopup={setOpenManagersPopup}
         />
 

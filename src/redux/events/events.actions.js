@@ -57,7 +57,7 @@ export const updateEventDispatch = createAsyncThunk(
       const res = await updateEventsApi(payload.reqPayload);
       toast.success("Updated Event successfully");
 
-      payload.navigate(paths.events);
+      payload.navigate(paths.eventsDashboard);
       return res.data;
     } catch (error) {
       toast.error(
