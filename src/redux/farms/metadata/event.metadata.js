@@ -116,7 +116,11 @@ export const generateNewEventsInputs = (eventManagers = [], location) => {
   });
 };
 
-export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+export const generateEventDataToEdit = (
+  eventManagers = [],
+  location,
+  event = {},
+) => {
   const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
   const { date: eventDate, time: eventTime } = isoToInputDateTime(
     scheduled || "",
