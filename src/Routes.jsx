@@ -25,9 +25,9 @@ import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
-import Venues from "./pages/Venues/Venues.jsx";
 import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
+import Venues from "./pages/Venues/Venues.page.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);

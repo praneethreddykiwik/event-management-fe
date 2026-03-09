@@ -98,45 +98,35 @@ const CreateEvent = ({ onCreateEvent }) => {
   };
 
   return (
-    <Form>
-      <StyledFlex>
-        <InputBox>
-          {createEventInputs.map((inp) => (
-            <Inputs
-              key={inp.name}
-              {...inp}
-              onChange={onChange}
-              onClickHelperText={onClickHelperText}
-              clearHelperText={clearHelperText}
-            />
-          ))}
-          <StyledFlex2>
-            <Button whiteText onClick={clearHandler} type="secondary">
-              Clear
-            </Button>
-            <Button whiteText onClick={onSubmit}>
-              {CONTINUE}
-            </Button>
-          </StyledFlex2>
-        </InputBox>
-        <StyledBox>
-          <StyledHeadingBig left>
-            Please choose from one of the below Events
-          </StyledHeadingBig>
-          <Button onClick={goBack}>Go Back</Button>
-        </StyledBox>
-      </StyledFlex>
-    </Form>
+    <StyledFlex>
+      <InputBox>
+        {createEventInputs.map((inp) => (
+          <Inputs
+            key={inp.name}
+            {...inp}
+            onChange={onChange}
+            onClickHelperText={onClickHelperText}
+            clearHelperText={clearHelperText}
+          />
+        ))}
+        <StyledFlex2>
+          <Button whiteText onClick={clearHandler} type="secondary">
+            Clear
+          </Button>
+          <Button whiteText onClick={onSubmit}>
+            {CONTINUE}
+          </Button>
+        </StyledFlex2>
+      </InputBox>
+      <StyledBox>
+        <StyledHeadingBig left>
+          Please choose from one of the below Events
+        </StyledHeadingBig>
+        <Button onClick={goBack}>Go Back</Button>
+      </StyledBox>
+    </StyledFlex>
   );
 };
-
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  gap: 16px;
-`;
 
 export const InputBox = styled.div`
   display: flex;

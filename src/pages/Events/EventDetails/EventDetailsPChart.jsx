@@ -1,11 +1,9 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { StyledSemiHeading } from "../../../../components/Styled/Typography.styled";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import styled from "styled-components";
+import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 
-const ProgressChart = ({ events }) => {
-  const isMobile = useMediaQuery("(max-width:480px)");
+const EventDetailsPChart = ({ events }) => {
   const data = React.useMemo(() => {
     const eventStatuses = {
       pending: {
@@ -68,9 +66,9 @@ const ProgressChart = ({ events }) => {
   return (
     <StyledCtn sx={boxStyles}>
       <PieChart
-        className="pie-chart"
-        height={isMobile ? 220 : 300}
-        width={isMobile ? 220 : 300}
+        className="event-details-p-chart"
+        // height={isMobile ? 220 : 300}
+        // width={isMobile ? 220 : 300}
         series={[
           {
             data,
@@ -89,8 +87,13 @@ const ProgressChart = ({ events }) => {
 };
 
 const StyledCtn = styled.div`
-  white-space: "nowrap";
+  height: 400px;
+
+  .event-details-p-chart {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const boxStyles = { width: "50%", whiteSpace: "nowrap" };
-export default ProgressChart;
+export default EventDetailsPChart;

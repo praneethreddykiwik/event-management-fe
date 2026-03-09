@@ -1,7 +1,8 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
-import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
+import {
+  formsSelector,
+  updateAllEventInputs,
+} from "../../../redux/farms/farms.slice";
 import CreateEvent from "./CreateEvent";
 import styled from "styled-components";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
@@ -16,30 +17,27 @@ import { StyledHr } from "../../../components/Styled/Common.styled";
 import { VenueSuggestion } from "../../../components/Venue/VenueSuggestion";
 import { eventsMetadata } from "../../../constants/events.constants";
 import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
-import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { toast } from "react-toastify";
 import { mobile } from "../../../theme/media-queries";
 
 import { useLocation } from "react-router-dom";
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { paths } from "../../../constants/paths";
+import { useEffect } from "react";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigateWithQuery();
 
   const { eventManagers } = useSelector(usersSelector);
   const isEditMode = location?.state?.mode === "edit";
-  const eventData = location?.state?.eventData;
+  const { createEventInputs } = useSelector(formsSelector);
 
   useEffect(() => {
-    const callback = (eventManagers) => {
-      let eventMetaDataFull = isEditMode
-        ? generateEventDataToEdit(eventManagers, location, eventData)
-        : generateNewEventsInputs(eventManagers, location);
-
-      dispatch(updateAllEventInputs(eventMetaDataFull));
-    };
-
-    dispatch(fetchManagersAction({ callback }));
+    if (!eventManagers.length || !createEventInputs.length) {
+      navigate(paths.eventsDashboard);
+    }
   }, []);
 
   const onCreateEvent = (payload) => {
@@ -50,9 +48,9 @@ const CreateEventPage = () => {
     }
   };
 
-  const onChooseVenue = (event) => {
+  const onChooseVenueSuggestion = (event) => {
     dispatch(
-      updateAllEventInputs(generateEventDataToEdit(eventManagers, null, event)),
+      updateAllEventInputs(generateEventDataToEdit(eventManagers, event)),
     );
     toast.success("Selected event details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -75,7 +73,7 @@ const CreateEventPage = () => {
             key={el.title}
             venueDetails={el}
             btnText="Choose"
-            onClick={() => onChooseVenue(el)}
+            onClick={() => onChooseVenueSuggestion(el)}
           />
         ))}
       </StyledSuggestions>

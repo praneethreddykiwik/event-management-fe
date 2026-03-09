@@ -10,7 +10,6 @@ import {
   StyledNoBorderButton,
   StyledDeleteBtn,
 } from "../Styled/Buttons.styled";
-import { InlineDeleteButton } from "./InlineDeleteButton";
 
 export const Button = ({
   type,
@@ -68,11 +67,11 @@ export const Button = ({
     case "delete":
       return <StyledDeleteBtn {...props}>{renderContent()}</StyledDeleteBtn>;
 
-    case "inline-delete":
-      return <InlineDeleteButton {...props}>{children}</InlineDeleteButton>;
-
     case "icon":
       return <StyledIconButton {...props}>{renderContent()}</StyledIconButton>;
+
+    case "primary":
+      return <StyledBaseButton {...props}>{renderContent()}</StyledBaseButton>;
 
     default:
       return <StyledBaseButton {...props}>{renderContent()}</StyledBaseButton>;
