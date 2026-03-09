@@ -1,5 +1,4 @@
 import {
-  StyledAnchorSmall,
   StyledParagraphError,
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
@@ -14,6 +13,7 @@ export const InputLayout = ({
   width,
   helperText,
   clearHelperText,
+  onClickHelperText,
   ...props
 }) => {
   const onCopy = () => {
@@ -37,9 +37,13 @@ export const InputLayout = ({
       {props.children}
       {helperText ? (
         <HelperTextCtn>
-          <StyledAnchorSmall target="_blank" href={helperText} left>
+          <StyledATagLoc
+            href={helperText}
+            left
+            onClick={() => onClickHelperText(helperText)}
+          >
             {helperText}
-          </StyledAnchorSmall>
+          </StyledATagLoc>
           <Icon
             variant="content_copy"
             className="content_copy"
@@ -68,4 +72,13 @@ const HelperTextCtn = styled.div`
   .cancel {
     // color: red;
   }
+`;
+
+const StyledATagLoc = styled(StyledParagraphSmall)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
+  margin: 0px !important;
+  cursor: pointer;
 `;

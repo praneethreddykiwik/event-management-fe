@@ -89,8 +89,12 @@ const CreateEvent = ({ onCreateEvent }) => {
     dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
-  const onClickHelperText = () => {
+  const onClickHelperBtn = () => {
     navigate(paths.venues, { replace: true });
+  };
+
+  const onClickHelperText = (data) => {
+    window.open(data);
   };
 
   const clearHelperText = () => {
@@ -105,6 +109,7 @@ const CreateEvent = ({ onCreateEvent }) => {
             key={inp.name}
             {...inp}
             onChange={onChange}
+            onClickHelperBtn={onClickHelperBtn}
             onClickHelperText={onClickHelperText}
             clearHelperText={clearHelperText}
           />
@@ -133,19 +138,21 @@ export const InputBox = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   flex-direction: row;
+  flex-basis: 60%;
 
   ${mobile(`
     flex-direction: column;
     width:100%;
+    flex-basis: 100%;
   `)}
 `;
 
 const StyledBox = styled.div`
   flex-basis: 40%;
-  flex-shrink: 0;
 
   ${mobile`
     flex: 0 0 100%;
+    flex-basis: 100%;
   `}
 `;
 

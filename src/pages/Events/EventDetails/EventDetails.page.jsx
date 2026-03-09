@@ -31,7 +31,7 @@ const StyledEventBody = styled.div`
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  height: 400px;
+  margin-bottom: 40px;
   margin-top: ${({ theme }) => `${theme.spacings["spacing-6"]}`};
 
   > div {

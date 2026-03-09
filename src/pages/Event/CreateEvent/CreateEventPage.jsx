@@ -24,6 +24,7 @@ import { useLocation } from "react-router-dom";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { paths } from "../../../constants/paths";
 import { useEffect } from "react";
+import { fetchManagersAction } from "../../../redux/users/users.actions";
 
 const CreateEventPage = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const CreateEventPage = () => {
     if (!eventManagers.length || !createEventInputs.length) {
       navigate(paths.eventsDashboard);
     }
+    dispatch(fetchManagersAction());
   }, []);
 
   const onCreateEvent = (payload) => {

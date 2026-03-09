@@ -23,6 +23,7 @@ import {
 } from "../../../../redux/farms/metadata/reg.metadata";
 import { theme } from "../../../../theme/theme";
 import { mobile } from "../../../../theme/media-queries";
+import { InlineButton } from "../../../../components/Buttons/InlineButton/InlineButton";
 
 const det = {
   add: {
@@ -127,13 +128,20 @@ const ManagersPopupModal = ({ onClose }) => {
                 <StyledPopupActions>
                   <Icon variant="edit" onClick={() => onEdit(item)} />
 
-                  <Button
+                  {/* <Button
                     type="inline-delete"
                     icon="delete"
                     onClick={() => onDelete(item.uid)}
                   >
                     Delete Event
-                  </Button>
+                  </Button> */}
+                  <InlineButton
+                    onClick={() => onDelete(item.uid)}
+                    type="delete"
+                    icon="delete"
+                  >
+                    Delete User
+                  </InlineButton>
                 </StyledPopupActions>
               </StyledPopupRow>
             ))}
