@@ -1,4 +1,7 @@
-import { EVENT_TYPE_OPTIONS } from "../../../constants/events.constants";
+import {
+  EVENT_TYPE_OPTIONS,
+  EVENT_STATUS,
+} from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
 import { isoToInputDateTime } from "../../../utils/utils";
 
@@ -64,6 +67,14 @@ const BASE_EVENT_METADATA = [
     validations: [validationList.REQUIRED],
   },
   {
+    type: "dropdown",
+    name: "status",
+    value: "",
+    placeholder: "Status",
+    options: EVENT_STATUS,
+    label: "Status",
+  },
+  {
     type: "text",
     name: "venue",
     value: "",
@@ -77,22 +88,39 @@ const BASE_EVENT_METADATA = [
   },
 ];
 
-export const generateNewEventsInputs = (eventManagers = []) => {
+const generateEventManagersOptions = (manager) => ({
+  value: manager.uid,
+  label: `${manager.firstName} ${manager.lastName}`,
+});
+
+export const generateNewEventsInputs = (eventManagers = [], location) => {
   return BASE_EVENT_METADATA.map((el) => {
     if (el.name === "assignedToUid") {
       return {
         ...el,
-        options: eventManagers.map((manager) => ({
-          value: manager.uid,
-          label: `${manager.firstName} ${manager.lastName}`,
-        })),
+        options: eventManagers.map(generateEventManagersOptions),
       };
     }
+
+    if (el.name === "venue") {
+      const venueName = location?.state?.venueName || "";
+      const venueUrl = location?.state?.venueUrl || "";
+      return {
+        ...el,
+        value: venueName,
+        helperText: venueUrl,
+      };
+    }
+
     return { ...el, error: null };
   });
 };
 
-export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+export const generateEventDataToEdit = (
+  eventManagers = [],
+  location,
+  event = {},
+) => {
   const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
   const { date: eventDate, time: eventTime } = isoToInputDateTime(
     scheduled || "",
@@ -108,6 +136,7 @@ export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
     expectedAttendees: event.expectedAttendees,
     assignedToUid: event.assignedToUid,
     location: event.location,
+    status: event.status,
   };
 
   const finalData = generateNewEventsInputs(eventManagers).map((el) => {

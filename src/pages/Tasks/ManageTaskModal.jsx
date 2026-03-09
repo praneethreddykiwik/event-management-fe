@@ -1,10 +1,5 @@
 import styled from "styled-components";
 import {
-  StyledBaseButton,
-  StyledOutlinedButton,
-  
-} from "../../components/Styled/Buttons.styled";
-import {
   StyledMediumHeading,
   StyledParagraphBold,
   StyledParagraph,
@@ -12,24 +7,33 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { Icon } from "../../components/Icons/Icons";
 import { formatDateTime } from "../../utils/utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   acceptTasksAction,
   declineTasksAction,
 } from "../../redux/tasks/tasks.actions";
-import useTenant from "../../hooks/useTenant.hook";
 import { Button } from "../../components/Buttons/Button";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { mobile } from "../../theme/media-queries";
 
 const ManageTaskModal = ({ onClose, task }) => {
   const dispatch = useDispatch();
-  const tenantId = useTenant();
+  const { tenantId, uid } = useSelector(authSelector);
+
+  const loggesinUserIsTaskOwner = task.taskAssignedToUid === uid;
+  console.log("abdul task", task);
+  // eventVenue
 
   const eventSummaryData = [
     { label: "Task Name", value: task.taskTitle },
-    { label: "Task Description", value: task.taskDescription },
+    {
+      label: "Task Description",
+      value: task.taskDescription,
+      sx: { flexGrow: "1" },
+    },
     { label: "Task Created At", value: formatDateTime(task.taskCreatedAt) },
-    { label: "Venue", value: task.eventVenue },
-    { label: "Assigned By", value: task.taskAssignedToUid },
+    { label: "Venue", value: task.eventVenue || task.venue },
+    { label: "Assigned To", value: task.taskAssignedTo }, // checkHere
     { label: "Status", value: task.taskStatus },
   ];
 
@@ -48,67 +52,70 @@ const ManageTaskModal = ({ onClose, task }) => {
 
   const onDecline = () => {
     onClose();
-    // const payload = {
-    //   taskUid: task.taskUid,
-    //   tenantId,
-    // };
+    const payload = {
+      taskUid: task.taskUid,
+      tenantId,
+    };
 
-    // dispatch(declineTasksAction(payload)).then((res) => {
-    //   if (!res.error) {
-    //     onClose();
-    //   }
-    // });
+    dispatch(declineTasksAction(payload)).then((res) => {
+      if (!res.error) {
+        onClose();
+      }
+    });
   };
 
   return (
-    <>
-      <Overlay>
-        <ModalContainer>
-          <ModalHeader>
-           <HeaderText>
-            <StyledMediumHeading left>
-              Event: {task.eventName}
+    <Overlay>
+      <ModalContainer>
+        <ModalHeader>
+          <HeaderText>
+            <StyledMediumHeading left turncate>
+              Task: {task.taskTitle}
             </StyledMediumHeading>
+            <StyledParagraph left>Event: {task.eventName}</StyledParagraph>
 
             <StyledParagraphSmall left>
-              {task.venue}
+              Assigned To: {task.taskAssignedTo}
             </StyledParagraphSmall>
           </HeaderText>
-            <Icon variant="close" onClick={onClose} />
-          </ModalHeader>
+          <Icon variant="close" onClick={onClose} />
+        </ModalHeader>
 
-          <Section>
-            <StyledMediumHeading left>
-            Task Summary
-          </StyledMediumHeading>
+        <Section>
+          <StyledMediumHeading left>Task Summary</StyledMediumHeading>
 
-            <SummaryGrid>
-              {eventSummaryData.map((item, index) => (
-                <SummaryItem key={index}>
-                    <StyledParagraphBold className="label">
+          <SummaryGrid>
+            {eventSummaryData.map((item) => (
+              <SummaryItem key={item.label} style={item.sx}>
+                <StyledParagraphBold className="label" left>
                   {item.label}
                 </StyledParagraphBold>
 
-                <StyledParagraph className="value">
+                <StyledParagraph className="value" left>
                   {item.value}
                 </StyledParagraph>
-                </SummaryItem>
-              ))}
-            </SummaryGrid>
-          </Section>
+              </SummaryItem>
+            ))}
+          </SummaryGrid>
+        </Section>
 
-          <ActionRow>
-            {/* <AcceptButton onClick={onAccept}>
-              <span className="material-symbols-outlined">check_small</span>{" "}
-              Accept Task
-            </AcceptButton> */}
-            <Button onClick={onDecline} icon="close_small">
-              Close
+        <ActionRow>
+          {!loggesinUserIsTaskOwner ? (
+            <Button onClick={onDecline} icon="close_small" type="delete">
+              Decline
             </Button>
-          </ActionRow>
-        </ModalContainer>
-      </Overlay>
-    </>
+          ) : null}
+          <Button onClick={onAccept} icon="close_small">
+            Accept
+          </Button>
+        </ActionRow>
+        <ActionRow>
+          <Button onClick={onClose} icon="close_small" type="outlined">
+            Close
+          </Button>
+        </ActionRow>
+      </ModalContainer>
+    </Overlay>
   );
 };
 
@@ -129,33 +136,45 @@ const ModalContainer = styled.div`
   border-radius: 14px;
   padding: 32px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+
+  ${mobile`
+    padding: 16px;
+    `}
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 32px;
 `;
 
-const HeaderText = styled.div``;
+const HeaderText = styled.div`
+  width: 100%;
+`;
 
 const Section = styled.div`
   border: 1px solid #e5e7eb;
   box-shadow: 0 0 4px 0px #e5e7eb;
   border-radius: 12px;
   padding: 16px;
-  margin-bottom: 32px;
+  max-height: 60vh;
+  overflow: auto;
 `;
 
 const SummaryGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 24px;
+  display: flex;
   margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const SummaryItem = styled.div`
+  flex-basis: 50%;
+  padding: 16px;
+
   .label {
     color: ${({ theme }) => theme.colors["text-gray-color"]};
   }
@@ -163,18 +182,16 @@ const SummaryItem = styled.div`
   .value {
     margin-bottom: 4px;
   }
+
+  ${mobile`
+      flex-basis: 100%;
+      padding: 10px;
+    `}
 `;
 
 const ActionRow = styled.div`
   display: flex;
   gap: 8px;
-  margin-bottom: 40px;
-  padding: 24px 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
 `;
-
-
-
 
 export default ManageTaskModal;

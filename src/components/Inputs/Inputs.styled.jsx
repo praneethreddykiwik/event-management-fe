@@ -67,10 +67,6 @@ export const StyledInputLayout = styled.div`
   position: relative;
   text-align: left;
 
-  a {
-    margin-left: 20px;
-  }
-
   p {
     text-align: left;
     margin-left: 20px;

@@ -1,21 +1,15 @@
-import { SignUpLine } from "../../myEnum/RegistrationPage.Enum";
+import { SIGN_UP_LINE } from "../../myEnum/RegistrationPage.Enum";
 // import { LineTxt, SignUpWith, SignWithEmail } from "./styled.RegistrationPage";
 
 import styled from "styled-components";
-
-import {
-  StyledParagraph,
-} from "../../components/Styled/Typography.styled";
+import { StyledParagraph } from "../../components/Styled/Typography.styled";
 
 const LineTxts = () => {
   return (
     <>
       <LineTxt>
-        <SignUpWith>{SignUpLine}</SignUpWith>
+        <SignUpWith>{SIGN_UP_LINE}</SignUpWith>
       </LineTxt>
-
-      {/* Mobile view */}
-      <SignWithEmail>Or Sign Up with Email</SignWithEmail>
     </>
   );
 };
@@ -30,16 +24,7 @@ const LineTxt = styled.div`
   width: 90%;
 `;
 
- const SignWithEmail = styled(StyledParagraph)`
-  font-size: ${({ theme }) => theme.typography["body-regular"]["font-size"]};
-  font-weight: ${({ theme }) => theme.fontWeights.default};
-  padding: 8px;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
- const SignUpWith = styled(StyledParagraph)`
+const SignUpWith = styled(StyledParagraph)`
   width: 100%;
   font-size: ${({ theme }) => theme.typography["body-regular"]["font-size"]};
   font-weight: ${({ theme }) => theme.fontWeights.default};

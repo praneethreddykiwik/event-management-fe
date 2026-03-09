@@ -10,9 +10,10 @@ export const TextArea = ({
   disabled,
   error,
   rows = 4,
+  validations,
 }) => {
   return (
-    <InputLayout label={label} error={error}>
+    <InputLayout label={label} error={error} validations={validations}>
       <TextAreaDefault
         as="textarea"
         id={name}

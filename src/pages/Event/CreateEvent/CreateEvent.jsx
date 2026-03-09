@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 import { Inputs } from "../../../components/Inputs/Inputs";
 import { Button } from "../../../components/Buttons/Button";
-import { Continue } from "../../../myEnum/RegistrationPage.Enum";
+import { CONTINUE } from "../../../myEnum/RegistrationPage.Enum";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { modifyTimeToISO } from "../../../utils/utils";
 
@@ -19,6 +19,7 @@ import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.met
 import { usersSelector } from "../../../redux/users/users.slice";
 
 import { useLocation } from "react-router-dom";
+import { paths } from "../../../constants/paths";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -26,6 +27,7 @@ const CreateEvent = ({ onCreateEvent }) => {
   const location = useLocation();
 
   const { createEventInputs } = useSelector(formsSelector);
+
   const { authUser } = useSelector(authSelector);
   const { eventManagers } = useSelector(usersSelector);
 
@@ -66,9 +68,9 @@ const CreateEvent = ({ onCreateEvent }) => {
       reqPayload.eventDate,
       reqPayload.eventTime,
     );
-
     reqPayload.tenantUid = tenantUid;
     reqPayload.scheduledAt = scheduledAt;
+
     if (isEditMode) {
       reqPayload.eventUid = eventData.uid;
     } else {
@@ -87,7 +89,11 @@ const CreateEvent = ({ onCreateEvent }) => {
     dispatch(updateAllEventInputs(eventMetaDataFull));
   };
 
-  const onClickBtn = () => {
+  const onClickHelperText = () => {
+    navigate(paths.venues, { replace: true });
+  };
+
+  const clearHelperText = () => {
     // shahid
   };
 
@@ -100,7 +106,8 @@ const CreateEvent = ({ onCreateEvent }) => {
               key={inp.name}
               {...inp}
               onChange={onChange}
-              onClickBtn={onClickBtn}
+              onClickHelperText={onClickHelperText}
+              clearHelperText={clearHelperText}
             />
           ))}
           <StyledFlex2>
@@ -108,7 +115,7 @@ const CreateEvent = ({ onCreateEvent }) => {
               Clear
             </Button>
             <Button whiteText onClick={onSubmit}>
-              {Continue}
+              {CONTINUE}
             </Button>
           </StyledFlex2>
         </InputBox>

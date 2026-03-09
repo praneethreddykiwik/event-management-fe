@@ -8,9 +8,9 @@ import styled from "styled-components";
  * close-small
  */
 
-export const Icon = ({ variant, onClick, sx }) => (
+export const Icon = ({ variant, onClick, sx, className }) => (
   <StyledIcon
-    className="material-symbols-outlined common-icon"
+    className={`material-symbols-outlined common-icon ${className}`}
     onClick={onClick}
     sx={sx}
   >

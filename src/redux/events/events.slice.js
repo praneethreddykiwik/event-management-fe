@@ -59,9 +59,17 @@ const eventsSlice = createSlice({
       .addCase(actions.assignEventAction.pending, (state) => {
         state.assignEventLoading = true;
       })
-      .addCase(actions.assignEventAction.fulfilled, (state) => {
-        // const newEvent = action.payload.details;
-        // state.events = [newEvent, ...state.events];
+      .addCase(actions.assignEventAction.fulfilled, (state, action) => {
+        const payload = action.payload.reqPayload;
+
+        const event = state.events.find(
+          (currentEvent) => currentEvent.uid === payload.eventUid,
+        );
+
+        if (event) {
+          event.assignedToUid = payload.assignedToUid;
+          event.userName = payload.userName;
+        }
         state.assignEventLoading = false;
       })
       .addCase(actions.assignEventAction.rejected, (state) => {

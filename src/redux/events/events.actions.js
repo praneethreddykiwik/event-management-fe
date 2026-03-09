@@ -37,7 +37,6 @@ export const createEventsDispatch = createAsyncThunk(
       // clear inputs once event is created
       const state = getState();
       const vendors = state.users.vendors;
-      debugger;
       dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
       return res.data;
     } catch (err) {
@@ -58,7 +57,7 @@ export const updateEventDispatch = createAsyncThunk(
       const res = await updateEventsApi(payload.reqPayload);
       toast.success("Updated Event successfully");
 
-      payload.navigate(paths.events);
+      payload.navigate(paths.eventsDashboard);
       return res.data;
     } catch (error) {
       toast.error(
@@ -77,6 +76,8 @@ export const assignEventAction = createAsyncThunk(
     try {
       const res = await assignEventApi(payload.reqPayload);
       toast.success("Assign Event successfully");
+      res.data.reqPayload = payload.reqPayload;
+      debugger;
       return res.data;
     } catch (err) {
       toast.error(

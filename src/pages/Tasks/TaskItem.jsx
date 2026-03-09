@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Badge from "../../components/Badge/Badge.component";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
@@ -33,7 +32,7 @@ const TaskItem = ({ task = {}, onEdit }) => {
             Desc: {task.taskDescription}
           </StyledParagraphSmall>
           <StyledParagraphSmall left>
-            {enums.TASK_ASSIGNEE} {task.taskAssignedToFirstName}
+            Assigned To: {task.taskAssignedTo}
           </StyledParagraphSmall>
           <StyledParagraphSmall left>
             {enums.TASKDUE} {formatDateTime(task.taskDueAt)}
@@ -80,7 +79,7 @@ const TaskRow = styled(Section)`
 `;
 
 const Left = styled.div`
-  padding: 32px 0;
+  padding: 16px 0;
   display: flex;
   gap: 8px;
   justify-content: space-between;
@@ -97,7 +96,9 @@ const StatusIcon = styled.span`
 `;
 
 const Taskcard = styled.div`
-  margin: -1px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;
 
 const BadgeButton = styled.div`

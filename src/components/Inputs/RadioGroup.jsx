@@ -10,9 +10,10 @@ export const RadioGroup = ({
   onChange,
   disabled,
   error,
+  validations,
 }) => {
   return (
-    <InputLayout label={placeholder} error={error}>
+    <InputLayout label={placeholder} error={error} validations={validations}>
       <Group>
         {list.map((item) => {
           const id = `${name}-${item}`;

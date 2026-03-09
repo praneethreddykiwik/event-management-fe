@@ -14,14 +14,18 @@ export const BaseInput = ({
   error,
   width,
   withButton,
-  onClickBtn,
+  onClickHelperText,
   helperText,
+  validations,
+  clearHelperText,
 }) => {
   const layoutProps = {
     label,
     error,
     width,
     helperText,
+    clearHelperText,
+    validations,
   };
   return (
     <InputLayout {...layoutProps}>
@@ -40,7 +44,7 @@ export const BaseInput = ({
             className="withButton"
             icon={withButton.btnIcon}
             whiteText
-            onClick={onClickBtn}
+            onClick={onClickHelperText}
           >
             {withButton.btnText}
           </Button>

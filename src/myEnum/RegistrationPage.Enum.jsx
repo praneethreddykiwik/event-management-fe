@@ -1,21 +1,24 @@
-export const EVENTZ = "eventz";
-export const WelcomeText = "Welcome to Eventz";
-export const SignUpText = "Sign Up now to get access to 1000+ Events, schedule a venue or get in touch with a planner.";
 
-export const StartedWith = "Get started with";
-export const SignInText = "Quickly Sign-Up with";
+export const SIGN_UP_TXT = "Sign Up now to get access to 1000+ Events, schedule a venue or get in touch with a planner.";
 
-export const Apple = "Continue with Apple";
-export const Google = "Continue with Google";
+export const STARTED_WITH = "Get started with";
+export const SIGN_IN_TEXT = "Quickly Sign-Up with";
 
-export const SignUpLine = "Or Sign Up with";
+export const APPLE = "Continue with Apple";
+export const GOOGLE= "Continue with Google";
 
-export const Terms = "By using our app you agree to the";
-export const Conditions = "Terms of Use";
-export const Policy = "Privacy Policy";
+export const SIGN_UP_LINE = "Or Sign Up with";
+export const SIGN_IN_EMAIL = "Or Sign in with Email";
 
-export const Continue = "Continue";
-export const Account = "Already have an account?";
-export const SignIn = "Sign in";
+export const TERMS = "By using our app you agree to the";
+export const CONDITIONS = "Terms of Use";
+export const POLICY = "Privacy Policy";
 
-export const TermsConditions = "By using our app you agree to the Terms of Use and Privacy Policy";
+export const CONTINUE = "Continue";
+export const ACCOUNT = "Already have an account?";
+export const SIGN_IN = "Sign in";
+
+export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
+export const REGISTER = "Register";
+
+export const TERMS_CONDITIONS = "By using our app you agree to the Terms of Use and Privacy Policy";

@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 export const DetailsBox = () => {
   const { state } = useLocation();
-  const event = state?.event;
+  const event = state?.event || {};
   const eventDetailsMap = (event, date, time) => {
     return [
       {

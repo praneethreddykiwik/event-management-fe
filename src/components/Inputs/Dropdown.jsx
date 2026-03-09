@@ -10,13 +10,14 @@ const Dropdown = ({
   onChange,
   placeholder,
   error,
+  validations,
 }) => {
   const extractValue = useMemo(() => {
     return options.find((fn) => fn.value === value);
   }, [options, value]);
 
   return (
-    <InputLayout label={label} error={error}>
+    <InputLayout label={label} error={error} validations= {validations}>
       <Select
         name={name}
         options={options}

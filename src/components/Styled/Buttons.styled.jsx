@@ -5,7 +5,7 @@ const height = ({ small }) => (small ? "28px" : "40px");
 const padding = ({ small }) => (small ? "0px 20px;" : "6px 20px;");
 
 const responsiveStyles = `
-    max-height: 30px;
+    max-height: 36px;
     padding-top: 0;
     padding-bottom: 0;
 `;

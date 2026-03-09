@@ -1,4 +1,4 @@
-import { Continue } from "../myEnum/RegistrationPage.Enum";
+import { CONTINUE } from "../myEnum/RegistrationPage.Enum";
 import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../components/Buttons/Button";
@@ -70,7 +70,7 @@ const RegistrationForm = ({ onCreateUser }) => {
       </InputBox>
 
       <Button whiteText onClick={onSubmit}>
-        {Continue}
+        {CONTINUE}
       </Button>
     </Form>
   );

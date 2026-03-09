@@ -10,9 +10,10 @@ export const DateInput = ({
   disabled,
   error,
   width,
+  validations,
 }) => {
   return (
-    <InputLayout label={label} error={error} width={width}>
+    <InputLayout label={label} error={error} width={width} validations={validations}>
       <InputDefault
         id={name}
         name={name}

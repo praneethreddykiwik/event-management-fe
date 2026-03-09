@@ -64,6 +64,7 @@ const SlideArea = styled.div`
 
 const StyledInlineDeleteBtn = styled(StyledBaseButton)`
   background-color: #d63a2f;
+  color: white;
   display: flex;
   align-items: center;
   gap: 8px;

@@ -9,7 +9,6 @@ import {
 import CreateEventButtons from "./CreateEventManagerB";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
-import useTenant from "../../../hooks/useTenant.hook";
 import { roles } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../../redux/events/events.actions";
@@ -22,15 +21,16 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "../../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
 import * as enums from "../../../myEnum";
+import { authSelector } from "../../../redux/auth/auth.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
-  const tenantId = useTenant();
 
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
 
   const { events } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
+  const { tenantId } = useSelector(authSelector);
   const navigate = useNavigate();
 
   const onChooseEvent = (event) => {
@@ -41,6 +41,7 @@ const EventsDashboard = () => {
       },
     });
   };
+
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -49,6 +50,10 @@ const EventsDashboard = () => {
 
     dispatch(fetchEventsDispatch());
   }, []);
+
+  const onCreateEvent = () => {
+    navigate(`${paths.createEvent}?tenantId=${tenantId}`);
+  };
 
   return (
     <BlueBackHOC>
@@ -59,9 +64,7 @@ const EventsDashboard = () => {
         <EventCards events={events} eventManagers={eventManagers} />
 
         <CreateEventButtons
-          onCreateEvent={() =>
-            navigate(`${paths.createEvent}?tenantId=${tenantId}`)
-          }
+          onCreateEvent={onCreateEvent}
           setOpenManagersPopup={setOpenManagersPopup}
         />
 
@@ -75,9 +78,9 @@ const EventsDashboard = () => {
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Tasktxt>
           <TaskList>
-            {events.map((event, index) => (
+            {events.map((event) => (
               <AdminTaskItem
-                key={index}
+                key={event.uid}
                 data={mapEventForUI(event)}
                 onChoose={() => onChooseEvent(event)}
               />
