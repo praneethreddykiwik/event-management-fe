@@ -1,18 +1,7 @@
+import { TASKS_OPTIONS } from "../../../constants/tasks.constants";
 import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
-
-// const req = {
-//   tenantUid: "tenant_123",
-//   eventUid: "event_456",
-//   title: "Prepare meeting agenda", //
-//   description: "Description of the task",
-//   priority: "Task priority",
-//   dueAt: "dueAt",
-//   assignedToUid: "Assigned bh whom",
-//   createdByUid: "user_123",
-//   updatedByUid: "user_123",
-// };
 
 export const taskMetaData = [
   {
@@ -48,6 +37,15 @@ export const taskMetaData = [
     label: "Priority",
     error: null,
     validations: [validationList.REQUIRED],
+  },
+  {
+    type: "dropdown",
+    name: "status",
+    value: "",
+    options: TASKS_OPTIONS,
+    placeholder: "Task status",
+    label: "Status",
+    error: null,
   },
   {
     type: "date",
@@ -98,6 +96,7 @@ export const generateTaskDataToEdit = (vendors, data) => {
     "title",
     "description",
     "priority",
+    "status",
     "dueAt",
     "assignedToUid",
   ];

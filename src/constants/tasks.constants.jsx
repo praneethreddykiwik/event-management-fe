@@ -102,3 +102,13 @@ export const tasksMetadata = [
     available: true,
   },
 ];
+
+export const TASKS_OPTIONS = [
+  { value: "not_started", label: "Not started" },
+  { value: "assigned", label: "Assigned" },
+  { value: "in_progress", label: "In progress" },
+  { value: "completed", label: "Completed" },
+  { value: "cancelled", label: "Cancelled" },
+  { value: "deleted", label: "Deleted" },
+];
+// 'not_started'::text, 'assigned'::text, 'in_progress'::text, 'completed'::text, 'cancelled'::text, 'deleted'::text])))

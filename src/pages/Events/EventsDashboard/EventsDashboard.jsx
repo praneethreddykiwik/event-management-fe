@@ -41,6 +41,7 @@ const EventsDashboard = () => {
       },
     });
   };
+
   useEffect(() => {
     const payload = {
       query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
@@ -75,9 +76,9 @@ const EventsDashboard = () => {
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Tasktxt>
           <TaskList>
-            {events.map((event, index) => (
+            {events.map((event) => (
               <AdminTaskItem
-                key={index}
+                key={event.uid}
                 data={mapEventForUI(event)}
                 onChoose={() => onChooseEvent(event)}
               />

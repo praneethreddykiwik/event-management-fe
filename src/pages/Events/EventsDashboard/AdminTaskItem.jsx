@@ -36,6 +36,7 @@ const AdminTaskItem = ({ data }) => {
     const reqPayload = {
       eventUid: data.uid,
       assignedToUid: authUser.uid,
+      userName: authUser.username,
     };
     dispatch(assignEventAction({ reqPayload }));
   };
@@ -71,7 +72,7 @@ const AdminTaskItem = ({ data }) => {
             {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
           </StyledParagraphSmall>{" "}
           <StyledAmdinContents>
-            {enums.EVENT_MANAGER}: {data.firstName} {data.lastName}{" "}
+            {enums.EVENT_MANAGER}: {data.userName}{" "}
             <StyledAssignBtnAdminsUp>
               <Button type="transparent" onClick={assignToMeHandler}>
                 Assign to me
