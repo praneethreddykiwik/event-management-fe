@@ -1,7 +1,6 @@
 import { SIGN_UP_LINE } from "../../myEnum/RegistrationPage.Enum";
 // import { LineTxt, SignUpWith, SignWithEmail } from "./styled.RegistrationPage";
 
-import { SignUpLine } from "../../myEnum/RegistrationPage.Enum";
 import styled from "styled-components";
 import { StyledParagraph } from "../../components/Styled/Typography.styled";
 
