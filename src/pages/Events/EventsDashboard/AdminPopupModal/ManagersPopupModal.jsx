@@ -55,9 +55,6 @@ const ManagersPopupModal = ({ onClose }) => {
   const [open, setOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState({});
 
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [selectedUserUid, setSelectedUserUid] = useState(null);
-
   const onClickAddManager = () => {
     setModalDetails(det.add);
     setOpen(true);
@@ -68,11 +65,6 @@ const ManagersPopupModal = ({ onClose }) => {
     const payload = { uid };
     await dispatch(deleteUserAction(payload));
     await dispatch(fetchManagersAction());
-  };
-
-  const onClickDeleteIcon = (uid) => {
-    setSelectedUserUid(uid);
-    setShowDeleteConfirm(true);
   };
 
   const onEdit = (user) => {
@@ -135,45 +127,19 @@ const ManagersPopupModal = ({ onClose }) => {
                 <StyledPopupActions>
                   <Icon variant="edit" onClick={() => onEdit(item)} />
 
-                  <Icon
-                    variant="delete"
-                    onClick={() => onClickDeleteIcon(item.uid)}
-                  />
+                  <Button
+                    type="inline-delete"
+                    icon="delete"
+                    onClick={() => onDelete(item.uid)}
+                  >
+                    Delete Event
+                  </Button>
                 </StyledPopupActions>
               </StyledPopupRow>
             ))}
           </StyledTableBody>
         </StyledTableContainer>
       </StyledTableWrapper>
-
-      {showDeleteConfirm && (
-        <PopupModal
-          onClose={() => setShowDeleteConfirm(false)}
-          title={enums.MANAGE_EVENT_MANAGER_DELETE}
-          subtitle={enums.MANAGE_EVENT_MANAGER_CONFIRMATION}
-          width="400px"
-        >
-          <DeletePopup>
-            <Button
-              type="secondary"
-              onClick={() => setShowDeleteConfirm(false)}
-            >
-              {enums.MANAGE_EVENT_MANAGER_DELETE_NO}
-            </Button>
-
-            <Button
-              type="danger"
-              onClick={async () => {
-                await onDelete(selectedUserUid);
-                setShowDeleteConfirm(false);
-                setSelectedUserUid(null);
-              }}
-            >
-              {enums.MANAGE_EVENT_MANAGER_DELETE_YES}
-            </Button>
-          </DeletePopup>
-        </PopupModal>
-      )}
     </PopupModal>
   );
 };
@@ -191,14 +157,14 @@ const StyledActionRow = styled.div`
   display: flex;
   width: fit-content;
   margin-left: auto;
-  
+
   ${mobile} {
-  button{  
-    display: flex;
-    width: fit-content;
-    margin-right: auto;
-    width: 100%;
-  }
+    button {
+      display: flex;
+      width: fit-content;
+      margin-right: auto;
+      width: 100%;
+    }
   }
 `;
 
