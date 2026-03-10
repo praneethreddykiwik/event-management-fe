@@ -30,11 +30,7 @@
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
-<<<<<<< HEAD
-    "styled-components": "^6.3.8"
-=======
     "styled-components": "^6.1.19"
->>>>>>> 0f622fe8252655418a97eab39802edf16ffa27db
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -42,11 +38,7 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
-<<<<<<< HEAD
-    "autoprefixer": "^10.4.24",
-=======
     "autoprefixer": "^10.4.23",
->>>>>>> 0f622fe8252655418a97eab39802edf16ffa27db
     "baseline-browser-mapping": "^2.9.0",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
