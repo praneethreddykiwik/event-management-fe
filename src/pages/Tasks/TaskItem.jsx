@@ -12,6 +12,7 @@ import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
 import { mobile } from "../../theme/media-queries";
 import { formatDateTime } from "../../utils/utils";
+import { InlineButton } from "../../components/Buttons/InlineButton/InlineButton";
 
 const TaskItem = ({ task = {}, onEdit }) => {
   const [showManageEvent, setShowManageEvent] = useState(false);
@@ -47,7 +48,9 @@ const TaskItem = ({ task = {}, onEdit }) => {
           <Badge type={task.type}>{task.taskStatus}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
-          <Button type="inline-delete">Delete</Button>
+          <InlineButton type="delete" icon="delete" onClick={() => {}}>
+            Delete Event
+          </InlineButton>
         </StyledFlex2>
         <Button type="no-border" onClick={() => onOpen()} small>
           Details

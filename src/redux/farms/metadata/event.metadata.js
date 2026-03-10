@@ -93,7 +93,7 @@ const generateEventManagersOptions = (manager) => ({
   label: `${manager.firstName} ${manager.lastName}`,
 });
 
-export const generateNewEventsInputs = (eventManagers = [], location) => {
+export const generateNewEventsInputs = (eventManagers = []) => {
   return BASE_EVENT_METADATA.map((el) => {
     if (el.name === "assignedToUid") {
       return {
@@ -102,25 +102,11 @@ export const generateNewEventsInputs = (eventManagers = [], location) => {
       };
     }
 
-    if (el.name === "venue") {
-      const venueName = location?.state?.venueName || "";
-      const venueUrl = location?.state?.venueUrl || "";
-      return {
-        ...el,
-        value: venueName,
-        helperText: venueUrl,
-      };
-    }
-
     return { ...el, error: null };
   });
 };
 
-export const generateEventDataToEdit = (
-  eventManagers = [],
-  location,
-  event = {},
-) => {
+export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
   const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
   const { date: eventDate, time: eventTime } = isoToInputDateTime(
     scheduled || "",

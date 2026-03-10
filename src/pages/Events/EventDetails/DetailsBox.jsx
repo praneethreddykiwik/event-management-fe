@@ -60,11 +60,10 @@ export const DetailsBox = () => {
 };
 
 const StyledCtn = styled.div`
-  width: 30%;
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   border-radius: 10px;
-  padding: 15px 35px;
+  padding: 14px 24px;
   border: ${({ theme }) => theme.borders["border-gray"]};
 `;
 

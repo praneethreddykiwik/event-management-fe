@@ -18,6 +18,7 @@ import { assignEventAction } from "../../../redux/events/events.actions";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
+import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
 
 const AdminTaskItem = ({ data }) => {
   const navigate = useNavigateWithQuery();
@@ -87,9 +88,9 @@ const AdminTaskItem = ({ data }) => {
           <Badge type={data.type}>{data.statusLabel}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
-          <Button type="inline-delete" icon="delete" onClick={onClickDelete}>
+          <InlineButton type="delete" icon="delete" onClick={onClickDelete}>
             Delete Event
-          </Button>
+          </InlineButton>
         </StyledFlex2>
         <StyledAssignBtnAdminDown>
           <Button type="transparent" onClick={assignToMeHandler}>

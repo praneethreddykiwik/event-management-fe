@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import { StyledBaseButton } from "../Styled/Buttons.styled";
+import { useEffect, useRef, useState } from "react";
+import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
-import { Icon } from "../Icons/Icons";
+import { Button } from "../Button";
 
-export const InlineDeleteButton = ({ onClick, small, sx, children }) => {
+export const InlineButton = ({ onClick, small, children, type, icon }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -17,28 +17,41 @@ export const InlineDeleteButton = ({ onClick, small, sx, children }) => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
+  const iconColors = {
+    primary: "#26c867",
+    secondary: "black",
+    delete: "#d63a2f",
+  };
+
+  const iconColor = iconColors[type] || "black";
+
   return (
-    <DeleteWrap ref={containerRef}>
-      <IconBtn onClick={() => setOpen((v) => !v)}>
-        <Icon variant="delete" sx={{ color: "#d83232" }} />
+    <Ctn ref={containerRef}>
+      <IconBtn onClick={() => setOpen((k) => !k)}>
+        <Icon variant={icon} sx={{ color: iconColor }} />
       </IconBtn>
 
       <SlideArea $open={open}>
-        <StyledInlineDeleteBtn sx={sx} onClick={onClick} small={small}>
+        <Button
+          onClick={onClick}
+          small={small}
+          sx={{ height: "25px", padding: "0 20px" }}
+          type={type}
+          whiteText
+        >
           {children}
-        </StyledInlineDeleteBtn>
+        </Button>
       </SlideArea>
-    </DeleteWrap>
+    </Ctn>
   );
 };
 
-const DeleteWrap = styled.div`
+const Ctn = styled.div`
   display: inline-flex;
   align-items: center;
 `;
@@ -61,14 +74,4 @@ const SlideArea = styled.div`
   margin-left: ${({ $open }) => ($open ? "8px" : "0px")};
 
   transition: all 0.25s ease;
-`;
-
-const StyledInlineDeleteBtn = styled(StyledBaseButton)`
-  background-color: #d63a2f;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  height: 25px;
 `;

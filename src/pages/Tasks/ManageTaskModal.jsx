@@ -21,8 +21,6 @@ const ManageTaskModal = ({ onClose, task }) => {
   const { tenantId, uid } = useSelector(authSelector);
 
   const loggesinUserIsTaskOwner = task.taskAssignedToUid === uid;
-  console.log("abdul task", task);
-  // eventVenue
 
   const eventSummaryData = [
     { label: "Task Name", value: task.taskTitle },

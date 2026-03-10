@@ -17,11 +17,13 @@ import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { StyledHr } from "../../../components/Styled/Common.styled";
 import { mapEventForUI } from "../../../helpers/Dashboard.helper";
 import { usersSelector } from "../../../redux/users/users.slice";
-import { useNavigate } from "react-router-dom";
 import { paths } from "../../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
 import * as enums from "../../../myEnum";
 import { authSelector } from "../../../redux/auth/auth.slice";
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
+import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ const EventsDashboard = () => {
   const { events } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { tenantId } = useSelector(authSelector);
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
 
   const onChooseEvent = (event) => {
     navigate(`${paths.createEvent}`, {
@@ -44,15 +46,16 @@ const EventsDashboard = () => {
 
   useEffect(() => {
     const payload = {
-      query: `?tenantId=${tenantId}&role=${roles.eventManager}`,
+      query: `?tenantId=${tenantId}&role=${roles.eventManager}`, // checkHere
     };
     dispatch(fetchManagersAction(payload));
-
     dispatch(fetchEventsDispatch());
   }, []);
 
   const onCreateEvent = () => {
-    navigate(`${paths.createEvent}?tenantId=${tenantId}`);
+    const createEventInputs = generateNewEventsInputs(eventManagers);
+    dispatch(updateAllEventInputs(createEventInputs));
+    navigate(`${paths.createEvent}`);
   };
 
   return (
