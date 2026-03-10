@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { DetailsBox } from "./DetailsBox";
 import { TasksList } from "./TasksList";
@@ -7,10 +6,11 @@ import { TitleBox } from "./TitleBox";
 import { SecondBoxCol } from "./CardsBox";
 import { mobile } from "../../../theme/media-queries";
 import EventDetailsPChart from "./EventDetailsPChart";
+import { useSelector } from "react-redux";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 const EventDetails = () => {
-  const { state } = useLocation();
-  const event = state?.event;
+  const { currentEvent: event } = useSelector(eventsSelector);
 
   return (
     <BlueBackHOC>

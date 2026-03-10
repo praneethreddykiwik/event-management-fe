@@ -4,11 +4,11 @@ import {
   StyledSemiHeading,
 } from "../../../components/Styled/Typography.styled";
 import { dateObj } from "../../../utils/utils";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const DetailsBox = () => {
-  const { state } = useLocation();
-  const event = state?.event || {};
+  const { currentEvent: event } = useSelector(eventsSelector);
   const eventDetailsMap = (event, date, time) => {
     return [
       {

@@ -3,12 +3,12 @@ import {
   StyledParagraph,
   StyledSemiHeading,
 } from "../../../components/Styled/Typography.styled";
-import { useLocation } from "react-router-dom";
 import { Icon } from "../../../components/Icons/Icons";
+import { useSelector } from "react-redux";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const SecondBoxCol = () => {
-  const { state } = useLocation();
-  const event = state?.event;
+  const { currentEvent: event } = useSelector(eventsSelector);
 
   return (
     <StyledCtn>

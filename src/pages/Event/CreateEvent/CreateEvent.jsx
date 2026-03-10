@@ -20,6 +20,7 @@ import { usersSelector } from "../../../redux/users/users.slice";
 
 import { useLocation } from "react-router-dom";
 import { paths } from "../../../constants/paths";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 const CreateEvent = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
@@ -34,7 +35,7 @@ const CreateEvent = ({ onCreateEvent }) => {
   const { tenantUid } = authUser;
   const isEditMode = location?.state?.mode === "edit";
 
-  const eventData = location?.state?.eventData || {};
+  const { currentEvent } = useSelector(eventsSelector);
 
   const validateFields = () => {
     let isValid = true;
@@ -72,7 +73,7 @@ const CreateEvent = ({ onCreateEvent }) => {
     reqPayload.scheduledAt = scheduledAt;
 
     if (isEditMode) {
-      reqPayload.eventUid = eventData.uid;
+      reqPayload.eventUid = currentEvent.uid;
     } else {
       reqPayload.status = "pending";
     }

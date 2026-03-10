@@ -19,6 +19,7 @@ import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
+import { setCurrentEvent } from "../../../redux/events/events.slice";
 
 const AdminTaskItem = ({ data }) => {
   const navigate = useNavigateWithQuery();
@@ -26,11 +27,8 @@ const AdminTaskItem = ({ data }) => {
   const { authUser } = useSelector(authSelector);
 
   const onClickViewDetails = (data) => {
-    navigate(paths.eventsDetails, {
-      state: {
-        event: data,
-      },
-    });
+    dispatch(setCurrentEvent(data));
+    navigate(paths.eventsDetails);
   };
 
   const assignToMeHandler = () => {
