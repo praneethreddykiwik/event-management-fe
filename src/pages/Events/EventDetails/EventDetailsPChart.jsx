@@ -2,10 +2,15 @@ import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import styled from "styled-components";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
+import { useSelector } from "react-redux";
+import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 
 const EventDetailsPChart = ({ events }) => {
+
+  const {tasksByEvent} = useSelector(tasksSelector);
+  
   const data = React.useMemo(() => {
-    const eventStatuses = {
+    const tasksStatuses = {
       pending: {
         label: "Pending",
         value: 0,
@@ -51,15 +56,16 @@ const EventDetailsPChart = ({ events }) => {
         value: 0,
       },
     };
-    const eventCount = events.reduce((acu, event) => {
+    const taskCount = tasksByEvent.reduce((acu, task) => {
       const obj = { ...acu };
-      obj[event.status].value++;
-
+      debugger;
+      obj[task.taskStatus].value++;
+      // debugger;
       return obj;
-    }, eventStatuses);
+    }, tasksStatuses);
 
-    return Object.values(eventCount);
-  }, [events]);
+    return Object.values(taskCount);
+  }, [tasksByEvent]);
 
   const valueFormatter = (item) => `${item.value}`;
 
@@ -80,7 +86,7 @@ const EventDetailsPChart = ({ events }) => {
         ]}
       />
       <StyledSemiHeading id="input-item-number" left>
-        Events Progress
+        Task Progress
       </StyledSemiHeading>
     </StyledCtn>
   );
