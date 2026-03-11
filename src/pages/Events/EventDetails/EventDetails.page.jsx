@@ -11,6 +11,7 @@ import { eventsSelector } from "../../../redux/events/events.slice";
 
 const EventDetails = () => {
   const { currentEvent: event } = useSelector(eventsSelector);
+  console.log("event at eventdetails page: ", event);
 
   return (
     <BlueBackHOC>

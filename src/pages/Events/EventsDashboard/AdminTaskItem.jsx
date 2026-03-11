@@ -14,7 +14,10 @@ import GaugeChart from "../../../components/Charts/GuageChart";
 import { mobile } from "../../../theme/media-queries";
 import { formatDateTime } from "../../../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
-import { assignEventAction } from "../../../redux/events/events.actions";
+import {
+  assignEventAction,
+  fetchEventsDispatch,
+} from "../../../redux/events/events.actions";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
@@ -40,8 +43,8 @@ const AdminTaskItem = ({ data }) => {
     dispatch(assignEventAction({ reqPayload }));
   };
 
-  const onClickDelete = () => {
-    dispatch(
+  const onClickDelete = async () => {
+    await dispatch(
       deleteEventDispatch({
         eventUid: data.uid,
         tenantUid: data.tenantUid,
@@ -49,7 +52,7 @@ const AdminTaskItem = ({ data }) => {
         deleteReason: "",
       }),
     );
-    navigate(paths.eventsDashboard);
+    dispatch(fetchEventsDispatch());
   };
 
   const valueData = Math.floor(Math.random() * 101);
