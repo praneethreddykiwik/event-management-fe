@@ -31,6 +31,7 @@ const tasksSlice = createSlice({
       })
       .addCase(actions.fetchTasksApiAction.fulfilled, (state, action) => {
         state.tasksByEvent = action.payload?.details;
+        console.log("TasksByEvent: ", state.tasksByEvent);
         state.tasksByEventsLoading = false;
         state.tasksByEventsError = null;
       })

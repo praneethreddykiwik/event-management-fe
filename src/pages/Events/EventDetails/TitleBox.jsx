@@ -4,30 +4,27 @@ import Badge from "../../../components/Badge/Badge.component";
 import { Button } from "../../../components/Buttons/Button";
 import { StyledHeading } from "../../../components/Styled/Typography.styled";
 import { BADGE_TYPES } from "../../../constants/badges";
-import { useLocation } from "react-router-dom";
 import { paths } from "../../../constants/paths";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
-import { authSelector } from "../../../redux/auth/auth.slice";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.metadata";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const TitleBox = () => {
-  const { state } = useLocation();
-  const event = state?.event || {};
+  const { currentEvent: event } = useSelector(eventsSelector);
 
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { tenantId } = useSelector(authSelector);
   const { eventManagers } = useSelector(usersSelector);
 
   const onClickEdit = () => {
     const createEventInputs = generateEventDataToEdit(eventManagers, event);
     dispatch(updateAllEventInputs(createEventInputs));
-    navigate(`${paths.createEvent}?tenantId=${tenantId}`, {
+    navigate(`${paths.createEvent}`, {
       state: {
         mode: "edit",
       },

@@ -2,30 +2,25 @@ import styled from "styled-components";
 import { Button } from "../../../components/Buttons/Button";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { paths } from "../../../constants/paths";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTasksApiAction } from "../../../redux/tasks/tasks.actions";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 import TaskItem from "../../Tasks/TaskItem";
 import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
-import {
-  StyledHeading,
-  StyledSemiHeading,
-} from "../../../components/Styled/Typography.styled";
+import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const TasksList = () => {
-  const { state } = useLocation();
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { tasksByEvent } = useSelector(tasksSelector);
+  const { currentEvent: event } = useSelector(eventsSelector);
 
   useEffect(() => {
     const query = `eventUid=${event.uid}`;
     dispatch(fetchTasksApiAction({ query }));
   }, []);
-
-  const event = state?.event;
 
   const createTaskHandler = () => {
     navigate(`${paths.createTask}`, {
