@@ -50,7 +50,7 @@ const RegistrationForm = ({ onCreateUser }) => {
 
     try {
       await onCreateUser(payload);
-      dispatch(updateAllRegInputs(registrationMetaData));
+      // dispatch(updateAllRegInputs(registrationMetaData));
     } catch (error) {
       console.error(error);
     }

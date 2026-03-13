@@ -6,9 +6,8 @@ import { useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 
 const EventDetailsPChart = ({ events }) => {
+  const { tasksByEvent } = useSelector(tasksSelector);
 
-  const {tasksByEvent} = useSelector(tasksSelector);
-  
   const data = React.useMemo(() => {
     const tasksStatuses = {
       pending: {
@@ -58,9 +57,7 @@ const EventDetailsPChart = ({ events }) => {
     };
     const taskCount = tasksByEvent.reduce((acu, task) => {
       const obj = { ...acu };
-      debugger;
       obj[task.taskStatus].value++;
-      // debugger;
       return obj;
     }, tasksStatuses);
 

@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Button } from "../Buttons/Button";
-import Avatar from "../Avatar/Avatar";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { useEffect, useRef, useState } from "react";
 import { paths } from "../../constants/paths";
@@ -9,7 +7,7 @@ import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { mobile } from "../../theme/media-queries";
 
-export const HeaderMenu = ({ menuOpen, goLogin }) => {
+export const HeaderMenu = ({ menuOpen }) => {
   const navigate = useNavigateWithQuery();
   const { authStatus } = useSelector(authSelector);
 
@@ -86,10 +84,18 @@ export const HeaderMenu = ({ menuOpen, goLogin }) => {
               <ItemIcon>checklist_rtl</ItemIcon>
               Tasks
             </DropdownItem>
-            <DropdownItem onClick={() => navigate(paths.vendor)}>
-              <ItemIcon>storefront</ItemIcon>
-              Vendor
-            </DropdownItem>
+            <RBACHOC perm="vendor:panel">
+              <DropdownItem onClick={() => navigate(paths.vendor)}>
+                <ItemIcon>storefront</ItemIcon>
+                Vendor
+              </DropdownItem>
+            </RBACHOC>
+            <RBACHOC perm="supervisor:panel">
+              <DropdownItem onClick={() => navigate(paths.supervisor)}>
+                <ItemIcon>storefront</ItemIcon>
+                Supervisor
+              </DropdownItem>
+            </RBACHOC>
             <RBACHOC perm="customer:panel">
               <DropdownItem onClick={() => navigate(paths.customer)}>
                 <ItemIcon>emoji_people</ItemIcon>

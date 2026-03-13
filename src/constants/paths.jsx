@@ -13,6 +13,7 @@ export const paths = {
   editEvent: "/events/edit-event",
 
   vendor: "/vendor",
+  supervisor: "/supervisor",
   customer: "/customer",
   userManagement: "/user/management",
   marketPlace: "/market-place",

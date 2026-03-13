@@ -13,11 +13,11 @@ const Dropdown = ({
   validations,
 }) => {
   const extractValue = useMemo(() => {
-    return options.find((fn) => fn.value === value);
+    return options.find((fn) => fn.value === value) || {};
   }, [options, value]);
 
   return (
-    <InputLayout label={label} error={error} validations= {validations}>
+    <InputLayout label={label} error={error} validations={validations}>
       <Select
         name={name}
         options={options}
@@ -95,8 +95,8 @@ const customStyles = {
     backgroundColor: state.isSelected
       ? "#26C867"
       : state.isFocused
-      ? "#f6fff1ff"
-      : "transparent",
+        ? "#f6fff1ff"
+        : "transparent",
 
     color: state.isSelected ? "#fff" : state.isFocused ? "#26C867" : "#000000",
 

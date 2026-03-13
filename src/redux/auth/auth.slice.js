@@ -20,7 +20,6 @@ const initialState = {
   lastName: "",
 
   // RBAC
-  roles: ["manager"],
   permissions: [],
   isAuthReady: false,
 };

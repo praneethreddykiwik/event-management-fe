@@ -1,3 +1,4 @@
+import { StyledParagraph } from "../Styled/Typography.styled";
 import { InputLayout } from "./InputLayout";
 import { InputCheckbox } from "./Inputs.styled";
 import styled from "styled-components";
@@ -9,6 +10,7 @@ export const Checkbox = ({
   disabled,
   list = [],
   error,
+  origin,
   validations,
 }) => {
   return (
@@ -19,10 +21,19 @@ export const Checkbox = ({
           name={name}
           type="checkbox"
           checked={!!value}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => {
+            const k = {
+              target: { name: e.target.name, value: e.target.checked },
+            };
+            onChange(k);
+          }}
           disabled={disabled}
         />
-        <span>{list[0]}</span>
+        {origin === "inputForm" ? (
+          <StyledInputLabel>{list[0]}</StyledInputLabel>
+        ) : (
+          <span>{list[0]}</span>
+        )}
       </Row>
     </InputLayout>
   );
@@ -33,4 +44,11 @@ const Row = styled.label`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+`;
+
+const StyledInputLabel = styled(StyledParagraph)`
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

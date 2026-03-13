@@ -29,7 +29,7 @@ const AdminTaskItem = ({ data }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
 
-  const onClickViewDetails = (data) => {
+  const onClickViewDetails = () => {
     dispatch(setCurrentEvent(data));
     navigate(paths.eventsDetails);
   };
@@ -98,7 +98,7 @@ const AdminTaskItem = ({ data }) => {
             Assign to me
           </Button>
         </StyledAssignBtnAdminDown>
-        <Button onClick={() => onClickViewDetails(data)} type="secondary">
+        <Button onClick={onClickViewDetails} type="secondary">
           {enums.ADMIN_DETAILS}
         </Button>
       </BadgeButton>

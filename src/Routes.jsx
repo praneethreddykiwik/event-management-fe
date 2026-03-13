@@ -91,6 +91,7 @@ const AppRoutes = () => {
 
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
+      <Route path={paths.supervisor} element={<StakeholderDashboard />} />
 
       <Route path={paths.venues} element={<Venues />} />
 

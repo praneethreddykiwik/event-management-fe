@@ -5,16 +5,15 @@ import { Button } from "../components/Buttons/Button";
 import { useDispatch, useSelector } from "react-redux";
 import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
 import { validationList } from "../constants/validations.constants";
-import {
-  formsSelector,
-  updateAllTaskInputs,
-  updateTaskInputs,
-} from "../redux/farms/farms.slice";
+import { formsSelector, updateAllTaskInputs } from "../redux/farms/farms.slice";
+import { usersSelector } from "../redux/users/users.slice";
+import { generateOptions } from "../redux/farms/metadata/task.metadata";
 
 const TaskForm = ({ onCreateTask }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { createTaskInputs } = useSelector(formsSelector);
+  const { vendors, supervisors } = useSelector(usersSelector);
 
   const validateFields = () => {
     let isValid = true;
@@ -50,7 +49,18 @@ const TaskForm = ({ onCreateTask }) => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    dispatch(updateTaskInputs({ name, value }));
+    const state = createTaskInputs.map((inp) => {
+      const el = { ...inp };
+      if (name === "assineeType" && el.name === "assignedToUid") {
+        el.options = generateOptions(value ? supervisors : vendors);
+      }
+      if (el.name === name) {
+        return { ...el, value, error: null };
+      }
+      return el;
+    });
+
+    dispatch(updateAllTaskInputs(state));
   };
 
   return (
@@ -71,8 +81,9 @@ export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   gap: 16px;
+  flex-basis: 100%;
+  padding-left: 40px;
 `;
 
 export const InputBox = styled.div`

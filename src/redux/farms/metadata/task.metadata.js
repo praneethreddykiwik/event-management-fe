@@ -58,15 +58,19 @@ export const taskMetaData = [
     width: halfSize,
   },
   {
+    type: "checkbox",
+    name: "assineeType",
+    placeholder: "Select assignee type: ",
+    list: ["Select assignee type: Vendor / Supervisour"],
+    origin: "inputForm",
+    error: null,
+    validations: [validationList.REQUIRED],
+  },
+  {
     type: "dropdown",
     name: "assignedToUid",
     placeholder: "Assign to",
-    options: [
-      { value: "admin", label: "Admin" },
-      { value: "event_manager", label: "Event Manager" },
-      { value: "vendor", label: "Vendor" },
-      { value: "customer", label: "Customer" },
-    ],
+    options: [],
     value: "",
     label: "Assign to Vendor",
     error: null,
@@ -116,4 +120,28 @@ export const generateTaskDataToEdit = (vendors, data) => {
     const finalOutput = { ...input, value: data[el] };
     return finalOutput;
   });
+};
+export const generateTaskDataToEdit2 = (vendors, data, inputs) => {
+  const allowedFields = [
+    "title",
+    "description",
+    "priority",
+    "status",
+    "dueAt",
+    "assineeType",
+    "assignedToUid",
+  ];
+
+  return allowedFields.map((el) => {
+    const input = inputs.find((fn) => fn.name === el);
+    const finalOutput = { ...input, value: data[el] };
+    return finalOutput;
+  });
+};
+
+export const generateOptions = (users) => {
+  return users.map((user) => ({
+    value: user.uid,
+    label: `${user.firstName} ${user.lastName}`,
+  }));
 };
