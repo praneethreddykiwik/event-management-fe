@@ -37,7 +37,6 @@ export const CreateTask = () => {
 
   const { authUser } = useSelector(authSelector);
   const { vendors, supervisors } = useSelector(usersSelector);
-  const { role } = useSelector(authSelector);
   const { createTaskInputs } = useSelector(formsSelector);
 
   const isEditMode = location.state?.mode === "edit";
@@ -47,7 +46,7 @@ export const CreateTask = () => {
     const callback = (data) => {
       const { supervisors, vendors } = data;
 
-      const users = role === "supervisors" ? supervisors : vendors;
+      const users = authUser?.role === "supervisors" ? supervisors : vendors;
       if (isEditMode) {
         dispatch(updateAllTaskInputs(generateTaskDataToEdit(users, taskData)));
       } else {

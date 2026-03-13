@@ -28,7 +28,7 @@ const EventManagerDashboard = () => {
   const { vendors, supervisors } = useSelector(usersSelector);
 
   useEffect(() => {
-    const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
+    const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
     if (!vendors.length || !supervisors.length) {
       dispatch(fetchVendorsAndSupervisors());

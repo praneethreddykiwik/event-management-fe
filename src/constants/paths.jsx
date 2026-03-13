@@ -21,3 +21,11 @@ export const paths = {
 
   venues: "/venues",
 };
+
+export const pathsAccordingToRole = {
+  admin: paths.eventsDashboard,
+  event_manager: paths.tasks,
+  vendor: paths.vendor,
+  supervisor: paths.supervisor,
+  customer: paths.customer,
+};

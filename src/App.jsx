@@ -18,6 +18,7 @@ function App() {
   const theme = useTheme();
 
   const dispatch = useDispatch();
+
   const { authStatus } = useSelector(authSelector);
 
   useEffect(() => {

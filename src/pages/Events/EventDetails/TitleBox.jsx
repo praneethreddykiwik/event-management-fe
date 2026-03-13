@@ -14,7 +14,7 @@ import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const TitleBox = () => {
-  const { currentEvent: event } = useSelector(eventsSelector);
+  const { eventDetails: event } = useSelector(eventsSelector);
 
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();

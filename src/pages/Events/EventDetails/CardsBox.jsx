@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const SecondBoxCol = () => {
-  const { currentEvent: event } = useSelector(eventsSelector);
+  const { eventDetails: event } = useSelector(eventsSelector);
 
   return (
     <StyledCtn>

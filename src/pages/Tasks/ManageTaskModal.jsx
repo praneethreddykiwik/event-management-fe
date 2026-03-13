@@ -18,9 +18,9 @@ import { mobile } from "../../theme/media-queries";
 
 const ManageTaskModal = ({ onClose, task }) => {
   const dispatch = useDispatch();
-  const { tenantId, uid } = useSelector(authSelector);
+  const { authUser } = useSelector(authSelector);
 
-  const loggesinUserIsTaskOwner = task.taskAssignedToUid === uid;
+  const loggesinUserIsTaskOwner = task.taskAssignedToUid === authUser?.uid;
 
   const eventSummaryData = [
     { label: "Task Name", value: task.taskTitle },
@@ -38,7 +38,7 @@ const ManageTaskModal = ({ onClose, task }) => {
   const onAccept = () => {
     const payload = {
       taskUid: task.taskUid,
-      tenantId,
+      tenantId: authUser?.tenantId,
     };
 
     dispatch(acceptTasksAction(payload)).then((res) => {
@@ -52,7 +52,7 @@ const ManageTaskModal = ({ onClose, task }) => {
     onClose();
     const payload = {
       taskUid: task.taskUid,
-      tenantId,
+      tenantId: authUser?.tenantId,
     };
 
     dispatch(declineTasksAction(payload)).then((res) => {

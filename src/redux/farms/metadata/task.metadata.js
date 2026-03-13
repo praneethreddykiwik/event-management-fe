@@ -1,7 +1,7 @@
 import { TASKS_OPTIONS } from "../../../constants/tasks.constants";
 import { validationList } from "../../../constants/validations.constants";
 
-const halfSize = "calc(50% - 8px)";
+// const halfSize = "calc(50% - 8px)";
 
 export const taskMetaData = [
   {
@@ -55,16 +55,15 @@ export const taskMetaData = [
     label: "Due Date",
     error: null,
     validations: [validationList.REQUIRED],
-    width: halfSize,
+    // width: halfSize,
   },
   {
     type: "checkbox",
     name: "assineeType",
     placeholder: "Select assignee type: ",
-    list: ["Select assignee type: Vendor / Supervisour"],
+    list: ["Assign to Supervisors"],
     origin: "inputForm",
     error: null,
-    validations: [validationList.REQUIRED],
   },
   {
     type: "dropdown",
@@ -72,7 +71,7 @@ export const taskMetaData = [
     placeholder: "Assign to",
     options: [],
     value: "",
-    label: "Assign to Vendor",
+    label: "Assign to Vendor/Supervisors",
     error: null,
     validations: [validationList.REQUIRED],
   },
@@ -121,6 +120,7 @@ export const generateTaskDataToEdit = (vendors, data) => {
     return finalOutput;
   });
 };
+
 export const generateTaskDataToEdit2 = (vendors, data, inputs) => {
   const allowedFields = [
     "title",

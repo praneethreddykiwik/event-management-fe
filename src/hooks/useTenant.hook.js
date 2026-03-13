@@ -5,19 +5,20 @@ import { authSelector, updateTenantId } from "../redux/auth/auth.slice";
 
 const useTenant = () => {
   const dispatch = useDispatch();
-  const { tenantId: tenantIdRedux } = useSelector(authSelector);
+  const { authUser } = useSelector(authSelector);
 
   const [searchParams] = useSearchParams();
 
   const tenantId = useMemo(() => {
     const val = searchParams.get("tenantId");
 
+    const tenantIdRedux = authUser?.tenantId;
     if (tenantIdRedux !== val) {
       dispatch(updateTenantId(val));
     }
 
     return val;
-  }, [searchParams]);
+  }, [searchParams, dispatch, authUser]);
 
   return tenantId;
 };

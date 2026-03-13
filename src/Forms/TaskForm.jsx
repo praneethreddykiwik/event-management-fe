@@ -8,6 +8,7 @@ import { validationList } from "../constants/validations.constants";
 import { formsSelector, updateAllTaskInputs } from "../redux/farms/farms.slice";
 import { usersSelector } from "../redux/users/users.slice";
 import { generateOptions } from "../redux/farms/metadata/task.metadata";
+import { mobile } from "../theme/media-queries";
 
 const TaskForm = ({ onCreateTask }) => {
   const navigate = useNavigateWithQuery();
@@ -84,6 +85,10 @@ export const Form = styled.div`
   gap: 16px;
   flex-basis: 100%;
   padding-left: 40px;
+
+  ${mobile`
+    padding-left: 0px;
+    `}
 `;
 
 export const InputBox = styled.div`

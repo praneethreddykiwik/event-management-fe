@@ -9,7 +9,10 @@ export const TenantIdHOC = ({ children }) => {
 
   useEffect(() => {
     let tenantId = searchParams.get("tenantId");
-    if (!tenantId) {
+    const qparams = new URLSearchParams(window.location.search);
+    const tenantId2 = qparams.get("tenantId");
+
+    if (!tenantId && !tenantId2) {
       tenantId = "helm";
       const next = new URLSearchParams(searchParams);
       next.set("tenantId", tenantId);

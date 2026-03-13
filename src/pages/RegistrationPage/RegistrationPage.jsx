@@ -17,10 +17,10 @@ import { paths } from "../../constants/paths";
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();
-  const { role } = useSelector(authSelector);
+  const { authUser } = useSelector(authSelector);
 
   useEffect(() => {
-    const dat = generateRegInputsAccordingToRole(role);
+    const dat = generateRegInputsAccordingToRole(authUser?.role);
     dispatch(updateAllRegInputs(dat));
   }, []);
 

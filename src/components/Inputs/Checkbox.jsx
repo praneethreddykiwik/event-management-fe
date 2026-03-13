@@ -44,6 +44,7 @@ const Row = styled.label`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  padding: 8px 10px;
 `;
 
 const StyledInputLabel = styled(StyledParagraph)`
@@ -51,4 +52,5 @@ const StyledInputLabel = styled(StyledParagraph)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: 10px !important;
 `;

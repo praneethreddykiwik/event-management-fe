@@ -5,7 +5,7 @@ import { StyledSemiHeading } from "../../../components/Styled/Typography.styled"
 import { useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 
-const EventDetailsPChart = ({ events }) => {
+const EventDetailsPChart = () => {
   const { tasksByEvent } = useSelector(tasksSelector);
 
   const data = React.useMemo(() => {

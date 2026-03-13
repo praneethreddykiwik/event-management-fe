@@ -6,8 +6,8 @@ const Badge = ({ children, type }) => {
     type === BADGE_TYPES.COMPLETED || type === BADGE_TYPES.ACTIVE
       ? BADGE_TYPES.COMPLETED
       : type === BADGE_TYPES.PENDING || type === BADGE_TYPES.INACTIVE
-      ? BADGE_TYPES.PENDING
-      : type;
+        ? BADGE_TYPES.PENDING
+        : type;
 
   return <StyledBadge type={type}>{children}</StyledBadge>;
 };

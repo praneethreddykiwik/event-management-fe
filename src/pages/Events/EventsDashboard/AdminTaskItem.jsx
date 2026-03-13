@@ -3,12 +3,10 @@ import Badge from "../../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-  StyledParagraphSmallGray,
 } from "../../../components/Styled/Typography.styled";
 import { Card } from "../../../components/Cards/Cards";
 import { Button } from "../../../components/Buttons/Button";
 import { paths } from "../../../constants/paths";
-import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import * as enums from "../../../myEnum";
 import GaugeChart from "../../../components/Charts/GuageChart";
 import { mobile } from "../../../theme/media-queries";
@@ -22,23 +20,22 @@ import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
-import { setCurrentEvent } from "../../../redux/events/events.slice";
+import { useNavigate } from "react-router-dom";
 
-const AdminTaskItem = ({ data }) => {
-  const navigate = useNavigateWithQuery();
+const AdminTaskItem = ({ event }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
 
   const onClickViewDetails = () => {
-    dispatch(setCurrentEvent(data));
-    navigate(paths.eventsDetails);
+    navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
   };
 
   const assignToMeHandler = () => {
     const reqPayload = {
-      eventUid: data.uid,
-      assignedToUid: authUser.uid,
-      userName: authUser.username,
+      eventUid: event.uid,
+      assignedToUid: authUser?.uid,
+      userName: authUser?.username,
     };
     dispatch(assignEventAction({ reqPayload }));
   };
@@ -46,9 +43,9 @@ const AdminTaskItem = ({ data }) => {
   const onClickDelete = async () => {
     await dispatch(
       deleteEventDispatch({
-        eventUid: data.uid,
-        tenantUid: data.tenantUid,
-        deletedByUid: data.deletedByUid,
+        eventUid: event.uid,
+        tenantUid: event.tenantUid,
+        deletedByUid: event.deletedByUid,
         deleteReason: "",
       }),
     );
@@ -56,29 +53,34 @@ const AdminTaskItem = ({ data }) => {
   };
 
   const valueData = Math.floor(Math.random() * 101);
+  const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
   return (
     <StyledCard>
       <Left>
-        <StatusIcon type={data.type} className="material-symbols-outlined">
-          {data.statusIcon}
+        <StatusIcon type={event.type} className="material-symbols-outlined">
+          {event.statusIcon}
         </StatusIcon>
 
         <Taskcard>
-          <EventName>{data.eventName}</EventName>
+          <EventName>{event.eventName}</EventName>
           <StyledAmdinContent>
-            Scheduled At: {formatDateTime(data.scheduledAt)}
+            Scheduled At: {formatDateTime(event.scheduledAt)}
           </StyledAmdinContent>
           <StyledParagraphSmall left>
             {enums.EVENT_VENUE}:{" "}
-            {data.venue?.charAt(0).toUpperCase() + data.venue?.slice(1)}
+            {event.venue?.charAt(0).toUpperCase() + event.venue?.slice(1)}
           </StyledParagraphSmall>{" "}
           <StyledAmdinContents>
-            {enums.EVENT_MANAGER}: {data.userName}{" "}
+            {enums.EVENT_MANAGER}: <StyledBold>{event.userName}</StyledBold>
             <StyledAssignBtnAdminsUp>
-              <Button type="transparent" onClick={assignToMeHandler}>
-                Assign to me
-              </Button>
+              {isAssignedToMe ? (
+                <StyledT>Assigned To Me</StyledT>
+              ) : (
+                <StyledBtn type="primary" onClick={assignToMeHandler}>
+                  Assign to me
+                </StyledBtn>
+              )}
             </StyledAssignBtnAdminsUp>
           </StyledAmdinContents>{" "}
         </Taskcard>
@@ -86,20 +88,15 @@ const AdminTaskItem = ({ data }) => {
 
       <BadgeButton>
         <StyledFlex2>
-          <Badge type={data.type}>{data.statusLabel}</Badge>
+          <Badge type={event.type}>{event.statusLabel}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
           <InlineButton type="delete" icon="delete" onClick={onClickDelete}>
             Delete Event
           </InlineButton>
         </StyledFlex2>
-        <StyledAssignBtnAdminDown>
-          <Button type="transparent" onClick={assignToMeHandler}>
-            Assign to me
-          </Button>
-        </StyledAssignBtnAdminDown>
         <Button onClick={onClickViewDetails} type="secondary">
-          {enums.ADMIN_DETAILS}
+          View Details
         </Button>
       </BadgeButton>
       <GaugeWrapper>
@@ -111,14 +108,6 @@ const AdminTaskItem = ({ data }) => {
     </StyledCard>
   );
 };
-
-const StyledAssignBtnAdminDown = styled.div`
-  display: none;
-  ${mobile`    
-    margin-right: 100%;
-    display:flex;
-  `}
-`;
 
 const StyledAssignBtnAdminsUp = styled.div`
   display: flex;
@@ -216,6 +205,27 @@ const GaugeWrapper = styled.div`
   ${mobile`
     display: none;
   `}
+`;
+
+const StyledBold = styled.span`
+  font-weight: bold;
+  margin-left: 4px;
+`;
+
+const StyledT = styled.span`
+  color: #26c867;
+  margin-left: 8px;
+`;
+
+const StyledBtn = styled(Button)`
+  height: 20px;
+  padding: 0px 20px;
+  color: white;
+  margin-left: 8px;
+
+  span {
+    font-size: 12px;
+  }
 `;
 
 export default AdminTaskItem;
