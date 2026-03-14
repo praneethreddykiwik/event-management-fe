@@ -13,7 +13,6 @@ export const bootstrapAuthAction = createAsyncThunk(
 
       if (navigate) {
         const role = res.data?.details?.role;
-        debugger;
         navigate(pathsAccordingToRole[role] || paths.home);
       }
 

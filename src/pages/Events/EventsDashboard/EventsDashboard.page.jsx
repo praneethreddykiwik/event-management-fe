@@ -55,7 +55,6 @@ const EventsDashboard = () => {
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
-    debugger;
     dispatch(updateAllEventInputs(createEventInputs));
     navigate(`${paths.createEvent}`);
   };
