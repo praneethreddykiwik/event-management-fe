@@ -35,32 +35,6 @@ const ManageTaskModal = ({ onClose, task }) => {
     { label: "Status", value: task.taskStatus },
   ];
 
-  const onAccept = () => {
-    const payload = {
-      taskUid: task.taskUid,
-      tenantId: authUser?.tenantId,
-    };
-
-    dispatch(acceptTasksAction(payload)).then((res) => {
-      if (!res.error) {
-        onClose();
-      }
-    });
-  };
-
-  const onDecline = () => {
-    onClose();
-    const payload = {
-      taskUid: task.taskUid,
-      tenantId: authUser?.tenantId,
-    };
-
-    dispatch(declineTasksAction(payload)).then((res) => {
-      if (!res.error) {
-        onClose();
-      }
-    });
-  };
 
   return (
     <Overlay>
@@ -97,16 +71,6 @@ const ManageTaskModal = ({ onClose, task }) => {
           </SummaryGrid>
         </Section>
 
-        <ActionRow>
-          {!loggesinUserIsTaskOwner ? (
-            <Button onClick={onDecline} icon="close_small" type="delete">
-              Decline
-            </Button>
-          ) : null}
-          <Button onClick={onAccept} icon="close_small">
-            Accept
-          </Button>
-        </ActionRow>
         <ActionRow>
           <Button onClick={onClose} icon="close_small" type="outlined">
             Close
