@@ -19,7 +19,7 @@ import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Events/EventDetails/EventDetails.page.jsx";
-import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.jsx";
+import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.page.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
@@ -91,6 +91,7 @@ const AppRoutes = () => {
 
       {/* Vendor */}
       <Route path={paths.vendor} element={<StakeholderDashboard />} />
+      <Route path={paths.supervisor} element={<StakeholderDashboard />} />
 
       <Route path={paths.venues} element={<Venues />} />
 

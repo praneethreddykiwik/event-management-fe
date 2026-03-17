@@ -3,8 +3,11 @@ export const PERMS = {
   TASK_EDIT: "task:edit",
   EVENT_VIEW: "event:view",
   EVENT_EDIT: "event:edit",
+
   ADMIN_PANEL: "admin:panel",
   CUSTOMER_PANEL: "customer:panel",
+  SUPERVISOR_PANEL: "supervisor:panel",
+  VENDOR_PANEL: "VENDOR:panel",
 };
 
 export const ROLE_PERMISSIONS = {
@@ -16,5 +19,6 @@ export const ROLE_PERMISSIONS = {
     PERMS.TASK_EDIT,
   ],
   vendor: [PERMS.EVENT_VIEW],
+  supervisor: [PERMS.EVENT_VIEW],
   customer: [PERMS.CUSTOMER_PANEL],
 };

@@ -107,3 +107,22 @@ export const deleteEventDispatch = createAsyncThunk(
     }
   },
 );
+
+export const fetchEventDetailsAction = createAsyncThunk(
+  "events/fetchEventDetailsAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const query = `eventUid=${payload.eventUid}`;
+      const res = await fetchEventsApi(query);
+
+      return res.data.details[0];
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch event details",
+      );
+      return rejectWithValue(err?.response?.data || "Something went wrong!");
+    }
+  },
+);

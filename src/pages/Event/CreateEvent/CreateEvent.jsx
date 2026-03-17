@@ -32,10 +32,10 @@ const CreateEvent = ({ onCreateEvent }) => {
   const { authUser } = useSelector(authSelector);
   const { eventManagers } = useSelector(usersSelector);
 
-  const { tenantUid } = authUser;
+  const tenantUid = authUser?.tenantUid;
   const isEditMode = location?.state?.mode === "edit";
 
-  const { currentEvent } = useSelector(eventsSelector);
+  const { eventDetails } = useSelector(eventsSelector);
 
   const validateFields = () => {
     let isValid = true;
@@ -73,7 +73,7 @@ const CreateEvent = ({ onCreateEvent }) => {
     reqPayload.scheduledAt = scheduledAt;
 
     if (isEditMode) {
-      reqPayload.eventUid = currentEvent.uid;
+      reqPayload.eventUid = eventDetails.uid;
     } else {
       reqPayload.status = "pending";
     }

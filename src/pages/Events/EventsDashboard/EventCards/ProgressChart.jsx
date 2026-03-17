@@ -56,7 +56,6 @@ const ProgressChart = ({ events }) => {
     const eventCount = events.reduce((acu, event) => {
       const obj = { ...acu };
       obj[event.status].value++;
-      // debugger;
       return obj;
     }, eventStatuses);
 

@@ -6,12 +6,33 @@ import { TitleBox } from "./TitleBox";
 import { SecondBoxCol } from "./CardsBox";
 import { mobile } from "../../../theme/media-queries";
 import EventDetailsPChart from "./EventDetailsPChart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { eventsSelector } from "../../../redux/events/events.slice";
+import { useEffect } from "react";
+import { fetchTasksApiAction } from "../../../redux/tasks/tasks.actions";
+import { fetchEventDetailsAction } from "../../../redux/events/events.actions";
+import { useSearchParams } from "react-router-dom";
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { paths } from "../../../constants/paths";
 
 const EventDetails = () => {
-  const { currentEvent: event } = useSelector(eventsSelector);
+  const dispatch = useDispatch();
+  const navigate = useNavigateWithQuery();
+  const [searchParams] = useSearchParams();
+
+  const { eventDetails: event } = useSelector(eventsSelector);
   console.log("event at eventdetails page: ", event);
+
+  useEffect(() => {
+    const eventUid = searchParams.get("eventUid");
+    if (!eventUid) {
+      return navigate(paths.eventsDashboard);
+    }
+    dispatch(fetchEventDetailsAction({ eventUid: eventUid }));
+
+    const query = `eventUid=${eventUid}`;
+    dispatch(fetchTasksApiAction({ query }));
+  }, []);
 
   return (
     <BlueBackHOC>
@@ -20,7 +41,7 @@ const EventDetails = () => {
         <StyledEventBody>
           <DetailsBox />
           <SecondBoxCol />
-          <EventDetailsPChart events={[event]} />
+          <EventDetailsPChart />
         </StyledEventBody>
         <TasksList />
       </StyledBG>

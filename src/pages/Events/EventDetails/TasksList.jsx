@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../../components/Buttons/Button";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { paths } from "../../../constants/paths";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTasksApiAction } from "../../../redux/tasks/tasks.actions";
+import { useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 import TaskItem from "../../Tasks/TaskItem";
 import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
@@ -13,14 +11,9 @@ import { eventsSelector } from "../../../redux/events/events.slice";
 
 export const TasksList = () => {
   const navigate = useNavigateWithQuery();
-  const dispatch = useDispatch();
-  const { tasksByEvent } = useSelector(tasksSelector);
-  const { currentEvent: event } = useSelector(eventsSelector);
 
-  useEffect(() => {
-    const query = `eventUid=${event.uid}`;
-    dispatch(fetchTasksApiAction({ query }));
-  }, []);
+  const { tasksByEvent } = useSelector(tasksSelector);
+  const { eventDetails: event } = useSelector(eventsSelector);
 
   const createTaskHandler = () => {
     navigate(`${paths.createTask}`, {

@@ -116,5 +116,6 @@ export const usersRoles = {
   admin: { label: "Admin" },
   event_manager: { label: "Event Manager" },
   vendor: { label: "Vendor" },
+  supervisor: { label: "Supervisor" },
   customer: { label: "Customer" },
 };

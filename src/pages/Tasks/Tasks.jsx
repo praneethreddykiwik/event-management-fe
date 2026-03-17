@@ -15,7 +15,7 @@ import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
-import { fetchVendorsAction } from "../../redux/users/users.actions";
+import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { EventSection } from "./EventSection";
 
@@ -25,13 +25,13 @@ const EventManagerDashboard = () => {
 
   const { authUser } = useSelector(authSelector);
   const { tasks, taskCountObj } = useSelector(tasksSelector);
-  const { vendors } = useSelector(usersSelector);
+  const { vendors, supervisors } = useSelector(usersSelector);
 
   useEffect(() => {
-    const query = `assignedToUid=${authUser.uid}&tenantUid=${authUser.tenantUid}`;
+    const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
-    if (!vendors.length) {
-      dispatch(fetchVendorsAction());
+    if (!vendors.length || !supervisors.length) {
+      dispatch(fetchVendorsAndSupervisors());
     }
   }, []);
 

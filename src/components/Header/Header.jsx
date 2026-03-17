@@ -14,13 +14,16 @@ import { logoutAction } from "../../redux/auth/auth.actions";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 import { mobile } from "../../theme/media-queries";
-import { StyledParagraph } from "../Styled/Typography.styled";
+import {
+  StyledParagraph,
+  StyledParagraphSmall,
+} from "../Styled/Typography.styled";
 
 const Header = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { authStatus, firstName } = useSelector(authSelector);
+  const { authStatus, authUser } = useSelector(authSelector);
 
   const isLoggedIn = authStatus === "authenticated";
   const [menuOpen] = useState(false);
@@ -61,7 +64,10 @@ const Header = () => {
         ) : (
           <>
             <Icon aria-label="Notifications">notifications</Icon>
-            <StyledParagraph>{firstName}</StyledParagraph>
+            <StyledName>
+              <StyledParagraph>{authUser.firstName}</StyledParagraph>
+              <StyledRole>{authUser.role}</StyledRole>
+            </StyledName>
             <AvatarBox>
               <Avatar items={userProfileMeta} onClick={onClickMenu} />
             </AvatarBox>
@@ -107,13 +113,18 @@ const AvatarBox = styled.div`
   }
 `;
 
-const Hamburger = styled.div`
-  display: none;
-  cursor: pointer;
+const StyledName = styled.div`
+  position: relative;
 
-  ${mobile`
-    display: block;
-  `}
+  // ${mobile`
+  //   display: block;
+  // `}
+`;
+
+const StyledRole = styled(StyledParagraphSmall)`
+  position: absolute;
+  left: 0;
+  bottom: -16px;
 `;
 
 const Icon = styled.span.attrs(() => ({

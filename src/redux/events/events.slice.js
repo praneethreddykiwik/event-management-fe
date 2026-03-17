@@ -11,9 +11,12 @@ const initialState = {
 
   deleteEventLoading: false,
   deleteEventError: null,
-  currentEvent: {},
   assignEventLoading: false,
   assignEventError: null,
+
+  eventDetailsLoading: false,
+  eventDetailsError: null,
+  eventDetails: {}, // for event-details page
 };
 
 const eventsSlice = createSlice({
@@ -23,8 +26,8 @@ const eventsSlice = createSlice({
     updateTenantId(state, action) {
       state.tenantId = action.payload;
     },
-    setCurrentEvent(state, action) {
-      state.currentEvent = action.payload;
+    SetEventDetails(state, action) {
+      state.eventDetails = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -66,7 +69,7 @@ const eventsSlice = createSlice({
         const payload = action.payload.reqPayload;
 
         const event = state.events.find(
-          (currentEvent) => currentEvent.uid === payload.eventUid,
+          (eventDetails) => eventDetails.uid === payload.eventUid,
         );
 
         if (event) {
@@ -94,10 +97,24 @@ const eventsSlice = createSlice({
         state.deleteEventLoading = false;
         state.deleteEventError = "Something went wrong while deleting Event.";
       });
+
+    builder
+      .addCase(actions.fetchEventDetailsAction.pending, (state) => {
+        state.eventDetailsLoading = true;
+      })
+      .addCase(actions.fetchEventDetailsAction.fulfilled, (state, action) => {
+        state.eventDetails = action.payload;
+        state.eventDetailsLoading = false;
+      })
+      .addCase(actions.fetchEventDetailsAction.rejected, (state) => {
+        state.eventDetailsLoading = false;
+        state.eventDetailsError =
+          "Something went wrong while fetching Event details.";
+      });
   },
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError, updateTenantId, setCurrentEvent } =
+export const { clearAuthError, updateTenantId, SetEventDetails } =
   eventsSlice.actions;
 export default eventsSlice.reducer;

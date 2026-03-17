@@ -8,7 +8,7 @@ export const RBACRoute = ({ perm, children }) => {
   const ready = useSelector(selectIsAuthReady);
   const perms = useSelector(selectPermissions);
 
-  if (!ready) return null; // or a loader
+  if (!ready) return null; // loader
   if (!perms.includes(perm))
     return <Navigate to={`/?tenantId=${tenantId}`} replace />;
 

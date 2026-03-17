@@ -1,7 +1,7 @@
 import { TASKS_OPTIONS } from "../../../constants/tasks.constants";
 import { validationList } from "../../../constants/validations.constants";
 
-const halfSize = "calc(50% - 8px)";
+// const halfSize = "calc(50% - 8px)";
 
 export const taskMetaData = [
   {
@@ -55,20 +55,23 @@ export const taskMetaData = [
     label: "Due Date",
     error: null,
     validations: [validationList.REQUIRED],
-    width: halfSize,
+    // width: halfSize,
+  },
+  {
+    type: "checkbox",
+    name: "assineeType",
+    placeholder: "Select assignee type: ",
+    list: ["Assign to Supervisors"],
+    origin: "inputForm",
+    error: null,
   },
   {
     type: "dropdown",
     name: "assignedToUid",
     placeholder: "Assign to",
-    options: [
-      { value: "admin", label: "Admin" },
-      { value: "event_manager", label: "Event Manager" },
-      { value: "vendor", label: "Vendor" },
-      { value: "customer", label: "Customer" },
-    ],
+    options: [],
     value: "",
-    label: "Assign to Vendor",
+    label: "Assign to Vendor/Supervisors",
     error: null,
     validations: [validationList.REQUIRED],
   },
@@ -116,4 +119,29 @@ export const generateTaskDataToEdit = (vendors, data) => {
     const finalOutput = { ...input, value: data[el] };
     return finalOutput;
   });
+};
+
+export const generateTaskDataToEdit2 = (vendors, data, inputs) => {
+  const allowedFields = [
+    "title",
+    "description",
+    "priority",
+    "status",
+    "dueAt",
+    "assineeType",
+    "assignedToUid",
+  ];
+
+  return allowedFields.map((el) => {
+    const input = inputs.find((fn) => fn.name === el);
+    const finalOutput = { ...input, value: data[el] };
+    return finalOutput;
+  });
+};
+
+export const generateOptions = (users) => {
+  return users.map((user) => ({
+    value: user.uid,
+    label: `${user.firstName} ${user.lastName}`,
+  }));
 };

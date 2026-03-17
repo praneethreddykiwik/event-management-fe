@@ -1,6 +1,7 @@
 import { httpsClient } from "./client/httpsClient";
 
-export const fetchEventsApi = () => httpsClient.get("/events");
+export const fetchEventsApi = (query) =>
+  httpsClient.get("/events?" + (query || ""));
 
 export const createEventsApi = (payload) =>
   httpsClient.post("/events/create-event", payload);

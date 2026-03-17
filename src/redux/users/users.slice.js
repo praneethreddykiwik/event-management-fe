@@ -10,6 +10,10 @@ const initialState = {
   vendors: [],
   vendorsError: false,
 
+  supervisorsLoading: false,
+  supervisors: [],
+  supervisorsError: false,
+
   registrationError: null,
   registrationSuccess: false,
   registrationLoading: false,
@@ -17,10 +21,10 @@ const initialState = {
   updateUserError: null,
   updateUserSuccess: false,
   updateUserLoading: false,
-  
-  allUsersLoading:false,
-  allUsers:[],
-  allUsersError:null,
+
+  allUsersLoading: false,
+  allUsers: [],
+  allUsersError: null,
 };
 
 const usersSlice = createSlice({
@@ -71,6 +75,46 @@ const usersSlice = createSlice({
       })
       .addCase(actions.fetchVendorsAction.rejected, (state) => {
         state.vendorsError = "Something went wrong";
+        state.vendorsLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchSupervisorsAction.pending, (state) => {
+        state.supervisorsLoading = true;
+      })
+      .addCase(actions.fetchSupervisorsAction.fulfilled, (state, action) => {
+        state.supervisors = action.payload?.details;
+        state.supervisorsLoading = false;
+        state.supervisorsError = null;
+      })
+      .addCase(actions.fetchSupervisorsAction.rejected, (state) => {
+        state.supervisorsError = "Something went wrong";
+        state.supervisorsLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchVendorsAndSupervisors.pending, (state) => {
+        state.supervisorsLoading = true;
+        state.vendorsLoading = true;
+      })
+      .addCase(
+        actions.fetchVendorsAndSupervisors.fulfilled,
+        (state, action) => {
+          state.supervisors = action.payload.supervisors;
+          state.vendors = action.payload.vendors;
+
+          state.supervisorsLoading = false;
+          state.vendorsLoading = false;
+
+          state.supervisorsError = null;
+          state.vendorsError = null;
+        },
+      )
+      .addCase(actions.fetchVendorsAndSupervisors.rejected, (state) => {
+        state.supervisorsError = "Something went wrong";
+        state.vendorsError = "Something went wrong";
+
+        state.supervisorsLoading = false;
         state.vendorsLoading = false;
       });
 

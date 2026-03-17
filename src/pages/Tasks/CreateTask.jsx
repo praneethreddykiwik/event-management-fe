@@ -9,10 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import TaskForm from "../../Forms/TaskForm";
-import { updateAllTaskInputs } from "../../redux/farms/farms.slice";
+import {
+  formsSelector,
+  updateAllTaskInputs,
+} from "../../redux/farms/farms.slice";
 import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
+  generateTaskDataToEdit2,
 } from "../../redux/farms/metadata/task.metadata";
 import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
 import { toast } from "react-toastify";
@@ -24,7 +28,7 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
 import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
-import { fetchVendorsAction } from "../../redux/users/users.actions";
+import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
 
 export const CreateTask = () => {
@@ -32,21 +36,27 @@ export const CreateTask = () => {
   const location = useLocation();
 
   const { authUser } = useSelector(authSelector);
-  const { vendors } = useSelector(usersSelector);
+  const { vendors, supervisors } = useSelector(usersSelector);
+  const { createTaskInputs } = useSelector(formsSelector);
 
   const isEditMode = location.state?.mode === "edit";
   const taskData = location.state?.taskData;
 
   useEffect(() => {
-    if (!vendors.length) {
-      dispatch(fetchVendorsAction());
+    const callback = (data) => {
+      const { supervisors, vendors } = data;
+
+      const users = authUser?.role === "supervisors" ? supervisors : vendors;
+      if (isEditMode) {
+        dispatch(updateAllTaskInputs(generateTaskDataToEdit(users, taskData)));
+      } else {
+        dispatch(updateAllTaskInputs(generateAddEventInpMetadata(users)));
+      }
+    };
+    if (!vendors.length || !supervisors.length) {
+      dispatch(fetchVendorsAndSupervisors({ callback }));
     }
-    if (isEditMode) {
-      dispatch(updateAllTaskInputs(generateTaskDataToEdit(vendors, taskData)));
-    } else {
-      dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
-    }
-  }, [vendors]); // need to refactor this dependency
+  }, []);
 
   const onSubmit = (payloadParams) => {
     if (isEditMode) {
@@ -79,7 +89,9 @@ export const CreateTask = () => {
 
   const onClickSuggestion = (selectedTask) => {
     dispatch(
-      updateAllTaskInputs(generateTaskDataToEdit(vendors, selectedTask)),
+      updateAllTaskInputs(
+        generateTaskDataToEdit2(vendors, selectedTask, createTaskInputs),
+      ),
     );
     toast.success("Selected task details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -129,8 +141,8 @@ const DashboardContainer = styled.div`
 `;
 
 const StyledBox = styled.div`
-  flex-basis: 50%;
-  flex-shrink: 0;
+  // flex-basis: 50%;
+  // flex-shrink: 0;
 
   ${mobile`
     flex-basis: 100%;
@@ -139,8 +151,8 @@ const StyledBox = styled.div`
 
 const StyledFlex = styled.div`
   display: flex;
-  gap: 160px;
-  padding-left: 140px;
+  gap: 100px;
+  // padding-left: 140px;
 
   ${mobile`
     flex-direction: column;

@@ -32,9 +32,10 @@ const EventsDashboard = () => {
 
   const { events } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
-  const { tenantId } = useSelector(authSelector);
+  const { authUser } = useSelector(authSelector);
   const navigate = useNavigateWithQuery();
 
+  // adnan
   const onChooseEvent = (event) => {
     navigate(`${paths.createEvent}`, {
       state: {
@@ -46,7 +47,7 @@ const EventsDashboard = () => {
 
   useEffect(() => {
     const payload = {
-      query: `?tenantId=${tenantId}&role=${roles.eventManager}`, // checkHere
+      query: `?tenantId=${authUser?.tenantId}&role=${roles.eventManager}`, // checkHere
     };
     dispatch(fetchManagersAction(payload));
     dispatch(fetchEventsDispatch());
@@ -61,7 +62,7 @@ const EventsDashboard = () => {
   return (
     <BlueBackHOC>
       <AdminDashboardContainer>
-        <StyledHeading left>Events</StyledHeading>
+        <StyledHeading left>Admin Dashboard</StyledHeading>
         <StyledHr />
 
         <EventCards events={events} eventManagers={eventManagers} />
@@ -77,16 +78,12 @@ const EventsDashboard = () => {
 
         <TaskMainCard>
           <Tasktxt>
-            <StyledMediumHeading left>{enums.UPCOMING_EV}</StyledMediumHeading>
+            <StyledMediumHeading left>Events</StyledMediumHeading>
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Tasktxt>
           <TaskList>
             {events.map((event) => (
-              <AdminTaskItem
-                key={event.uid}
-                data={mapEventForUI(event)}
-                onChoose={() => onChooseEvent(event)}
-              />
+              <AdminTaskItem event={mapEventForUI(event)} />
             ))}
           </TaskList>
         </TaskMainCard>
