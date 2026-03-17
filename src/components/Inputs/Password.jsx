@@ -65,7 +65,7 @@ export const Password = ({
   );
 };
 
-export const ShowHideIcon = styled.span`
+const ShowHideIcon = styled.span`
   cursor: pointer;
   right: 12px;
   top: 27px;
