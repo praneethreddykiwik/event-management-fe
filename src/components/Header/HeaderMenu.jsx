@@ -48,7 +48,7 @@ export const HeaderMenu = ({ menuOpen }) => {
               <ItemIcon>event_note</ItemIcon>
               Current Events
             </DropdownItem>
-            <DropdownItem onClick={() => navigate("/")}>
+            <DropdownItem onClick={() => navigate("/events/create-event")}>
               <ItemIcon>add_ad</ItemIcon>
               Create Event
             </DropdownItem>
