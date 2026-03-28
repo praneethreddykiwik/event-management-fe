@@ -9,6 +9,7 @@ import { RadioGroup } from "./RadioGroup";
 import { CheckboxGroup } from "./CheckboxGroup";
 import { Checkbox } from "./Checkbox";
 import { DateTimeLocal } from "./DateTimeLocal";
+import { MobileInput } from "./MobileInput";
 
 export const Inputs = (props) => {
   const { type } = props;
@@ -43,6 +44,9 @@ export const Inputs = (props) => {
 
     case "textarea":
       return <TextArea {...props} />;
+
+    case "tel":
+      return <MobileInput {...props} isPhone />;
 
     case "checkbox":
       return <Checkbox {...props} />;
