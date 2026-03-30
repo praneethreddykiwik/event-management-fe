@@ -46,16 +46,19 @@ export const CreateTask = () => {
     const callback = (data) => {
       const { supervisors, vendors } = data;
 
-      const users = authUser?.role === "supervisors" ? supervisors : vendors;
+      const users =
+        authUser?.role === "supervisors" ? supervisors : vendors;
+
       if (isEditMode) {
         dispatch(updateAllTaskInputs(generateTaskDataToEdit(users, taskData)));
       } else {
         dispatch(updateAllTaskInputs(generateAddEventInpMetadata(users)));
       }
     };
-    if (!vendors.length || !supervisors.length) {
-      dispatch(fetchVendorsAndSupervisors({ callback }));
-    }
+
+    //Always call this to reset form
+    dispatch(fetchVendorsAndSupervisors({ callback }));
+
   }, []);
 
   const onSubmit = (payloadParams) => {
