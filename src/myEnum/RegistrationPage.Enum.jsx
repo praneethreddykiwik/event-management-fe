@@ -8,6 +8,7 @@ export const APPLE = "Continue with Apple";
 export const GOOGLE= "Continue with Google";
 
 export const SIGN_UP_LINE = "Or Sign Up with";
+export const SIGN_IN_EMAIL = "Or Sign in with Email";
 
 export const TERMS = "By using our app you agree to the";
 export const CONDITIONS = "Terms of Use";
@@ -17,7 +18,7 @@ export const CONTINUE = "Continue";
 export const ACCOUNT = "Already have an account?";
 export const SIGN_IN = "Sign in";
 
-export const TERMS_CONDITIONS = "By using our app you agree to the Terms of Use and Privacy Policy";
+export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
+export const REGISTER = "Register";
 
-// snakeCase = EVENT_MANAGER
-// camelCase = eventManager
+export const TERMS_CONDITIONS = "By using our app you agree to the Terms of Use and Privacy Policy";

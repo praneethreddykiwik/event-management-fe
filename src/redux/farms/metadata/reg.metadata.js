@@ -50,7 +50,7 @@ export const registrationMetaData = [
     width: halfSize,
   },
   {
-    type: "number",
+    type: "tel",
     name: "mobile",
     value: "",
     placeholder: "Enter your mobile",
