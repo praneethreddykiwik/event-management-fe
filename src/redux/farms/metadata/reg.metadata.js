@@ -79,13 +79,14 @@ export const registrationMetaData = [
     validations: [validationList.REQUIRED],
   },
   {
-    type: "password",
+    type: "setPassword",
     name: "confirmPassword",
     value: "",
     placeholder: "Confirm Password",
     label: "Confirm Password",
     error: null,
     validations: [validationList.REQUIRED],
+
   },
 ];
 
