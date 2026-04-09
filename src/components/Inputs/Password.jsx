@@ -24,9 +24,7 @@ export const Password = ({
         name={confirmPassword ? "confirmPassword" : name}
         value={value}
         onChange={onChange}
-        placeholder={
-          confirmPassword ? "Confirm Password" : placeholder || "Password"
-        }
+        placeholder={confirmPassword ? "Confirm Password" : placeholder}
         required
         disabled={disabled}
         type={showPassword ? "text" : "password"}
