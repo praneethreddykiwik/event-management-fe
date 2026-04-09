@@ -31,6 +31,21 @@ const RegistrationForm = ({ onCreateUser }) => {
       return { ...el, error: "" };
     });
 
+    // check password match if both fields exist
+    const pwdIndex = newInputs.findIndex((i) => i.name === "password");
+    const confirmIndex = newInputs.findIndex((i) => i.name === "confirmPassword");
+    if (pwdIndex !== -1 && confirmIndex !== -1) {
+      const pwd = newInputs[pwdIndex].value || "";
+      const cpwd = newInputs[confirmIndex].value || "";
+      if (pwd !== cpwd) {
+        isValid = false;
+        newInputs[confirmIndex] = {
+          ...newInputs[confirmIndex],
+          error: "Passwords do not match",
+        };
+      }
+    }
+
     dispatch(updateAllRegInputs(newInputs));
     return isValid;
   };
