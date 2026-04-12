@@ -22,6 +22,21 @@ export const InlineButton = ({ onClick, small, children, type, icon }) => {
     };
   }, []);
 
+  const onClickMainButton = () => {
+    setOpen(false);
+    onClick();
+  };
+
+  const onFirstClick = () => {
+    const action = !open;
+    if (action) {
+      setTimeout(() => {
+        setOpen(false);
+      }, 3000);
+    }
+    setOpen(action);
+  };
+
   const iconColors = {
     primary: "#26c867",
     secondary: "black",
@@ -32,13 +47,14 @@ export const InlineButton = ({ onClick, small, children, type, icon }) => {
 
   return (
     <Ctn ref={containerRef}>
-      <IconBtn onClick={() => setOpen((k) => !k)}>
+      {/* <IconBtn onClick={() => setOpen((k) => !k)}> */}
+      <IconBtn onClick={onFirstClick}>
         <Icon variant={icon} sx={{ color: iconColor }} />
       </IconBtn>
 
       <SlideArea $open={open}>
         <Button
-          onClick={onClick}
+          onClick={onClickMainButton}
           small={small}
           sx={{ height: "25px", padding: "0 20px" }}
           type={type}

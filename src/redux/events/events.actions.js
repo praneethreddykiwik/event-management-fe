@@ -14,9 +14,9 @@ import { generateAddEventInpMetadata } from "../farms/metadata/task.metadata";
 
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
-  async (_, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetchEventsApi();
+      const res = await fetchEventsApi(payload.query);
       return res.data; // user object
     } catch (err) {
       // error toast
@@ -112,10 +112,10 @@ export const fetchEventDetailsAction = createAsyncThunk(
   "events/fetchEventDetailsAction",
   async (payload, { rejectWithValue }) => {
     try {
-      const query = `eventUid=${payload.eventUid}`;
+      const query = `?eventUid=${payload.eventUid}`;
       const res = await fetchEventsApi(query);
 
-      return res.data.details[0];
+      return res.data.details?.events[0];
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||
@@ -123,6 +123,29 @@ export const fetchEventDetailsAction = createAsyncThunk(
           "Failed to fetch event details",
       );
       return rejectWithValue(err?.response?.data || "Something went wrong!");
+    }
+  },
+);
+
+export const eventsFilterAction = createAsyncThunk(
+  "auth/eventsFilterAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const query = `?status=${payload
+        .filter((fl) => fl.selected)
+        .map((m) => m.value)
+        .join(",")}`;
+      const res = await fetchEventsApi(query);
+      const k = {
+        events: res.data.details?.events,
+        statusCounts: res.data.details?.statusCounts,
+        selectedEventFilters: payload,
+      };
+      return k;
+    } catch (err) {
+      // error toast
+      toast.error("Failed to fetch Events");
+      return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
 );

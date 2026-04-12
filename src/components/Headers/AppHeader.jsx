@@ -18,8 +18,9 @@ import {
   StyledParagraph,
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
+import { camelToWords } from "../../utils/utils";
 
-const Header = () => {
+const AppHeader = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
@@ -66,7 +67,7 @@ const Header = () => {
             <Icon aria-label="Notifications">notifications</Icon>
             <StyledName>
               <StyledParagraph>{authUser.firstName}</StyledParagraph>
-              <StyledRole>{authUser.role}</StyledRole>
+              <StyledRole>{camelToWords(authUser.role)}</StyledRole>
             </StyledName>
             <AvatarBox>
               <Avatar items={userProfileMeta} onClick={onClickMenu} />
@@ -78,7 +79,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AppHeader;
 
 const Navbar = styled.header`
   padding: 12px 40px;

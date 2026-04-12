@@ -1,6 +1,5 @@
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "./components/Header/Header";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
@@ -13,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppRoutes from "./Routes";
 import { toastGlobalProps } from "./utils/toast.utils";
+import AppHeader from "./components/Headers/AppHeader";
 
 function App() {
   const theme = useTheme();
@@ -32,7 +32,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <TenantIdHOC>
         <GlobalSpinner loading={isLoading}>
-          <Header />
+          <AppHeader />
           <AppRoutes />
           <ToastContainer {...toastGlobalProps} />
           <Footer />

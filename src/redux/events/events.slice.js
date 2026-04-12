@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./events.actions";
+import { INITIAL_FILTERS } from "../../constants/events.constants";
 
 const initialState = {
   events: [],
-  eventsLoading: false, // idle | loading | authenticated | unauthenticated
+  eventsLoading: false,
   eventsError: null,
+
+  eventsStatusCounts: {},
+  selectedEventFilters: [...INITIAL_FILTERS],
 
   createEventLoading: false,
   createEventError: null,
@@ -26,8 +30,11 @@ const eventsSlice = createSlice({
     updateTenantId(state, action) {
       state.tenantId = action.payload;
     },
-    SetEventDetails(state, action) {
+    setEventDetails(state, action) {
       state.eventDetails = action.payload;
+    },
+    setSelectedEventFilters(state, action) {
+      state.selectedEventFilters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -37,7 +44,8 @@ const eventsSlice = createSlice({
         state.eventsLoading = true;
       })
       .addCase(actions.fetchEventsDispatch.fulfilled, (state, action) => {
-        state.events = action.payload?.details;
+        state.events = action.payload?.details?.events;
+        state.eventsStatusCounts = action.payload?.details?.statusCounts;
         state.eventsLoading = false;
       })
       .addCase(actions.fetchEventsDispatch.rejected, (state) => {
@@ -111,10 +119,31 @@ const eventsSlice = createSlice({
         state.eventDetailsError =
           "Something went wrong while fetching Event details.";
       });
+
+    builder
+      .addCase(actions.eventsFilterAction.pending, (state) => {
+        state.eventsLoading = true;
+      })
+      .addCase(actions.eventsFilterAction.fulfilled, (state, action) => {
+        state.events = action.payload?.events;
+        // state.eventsStatusCounts = action.payload?.details?.statusCounts;
+        state.eventsLoading = false;
+
+        state.selectedEventFilters = action.payload.selectedEventFilters;
+      })
+      .addCase(actions.eventsFilterAction.rejected, (state) => {
+        state.authUser = null;
+        state.eventsLoading = false;
+        state.eventsError = "Error";
+      });
   },
 });
 
 export const eventsSelector = (st) => st.events;
-export const { clearAuthError, updateTenantId, SetEventDetails } =
-  eventsSlice.actions;
+export const {
+  clearAuthError,
+  updateTenantId,
+  setEventDetails,
+  setSelectedEventFilters,
+} = eventsSlice.actions;
 export default eventsSlice.reducer;

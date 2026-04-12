@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
-  StyledHeading,
   StyledMediumHeading,
   StyledParagraphSmall,
+  StyledParagraphSmallGray,
 } from "../../../components/Styled/Typography.styled";
 import CreateEventButtons from "./CreateEventManagerB";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,6 @@ import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../../redux/events/events.actions";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
-import { StyledHr } from "../../../components/Styled/Common.styled";
 import { mapEventForUI } from "../../../helpers/Dashboard.helper";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { paths } from "../../../constants/paths";
@@ -24,6 +23,9 @@ import { authSelector } from "../../../redux/auth/auth.slice";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
+import { PageHeader } from "../../../components/Headers/PageHeader";
+import { EventsFilterCards } from "./EventsFilterCards";
+import { INITIAL_FILTERS } from "../../../constants/events.constants";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -35,22 +37,15 @@ const EventsDashboard = () => {
   const { authUser } = useSelector(authSelector);
   const navigate = useNavigateWithQuery();
 
-  // adnan
-  const onChooseEvent = (event) => {
-    navigate(`${paths.createEvent}`, {
-      state: {
-        mode: "edit",
-        eventData: event,
-      },
-    });
-  };
-
   useEffect(() => {
     const payload = {
       query: `?tenantId=${authUser?.tenantId}&role=${roles.eventManager}`, // checkHere
     };
     dispatch(fetchManagersAction(payload));
-    dispatch(fetchEventsDispatch());
+    const query = `?status=${INITIAL_FILTERS.filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",")}`;
+    dispatch(fetchEventsDispatch({ query }));
   }, []);
 
   const onCreateEvent = () => {
@@ -62,8 +57,7 @@ const EventsDashboard = () => {
   return (
     <BlueBackHOC>
       <AdminDashboardContainer>
-        <StyledHeading left>Events</StyledHeading>
-        <StyledHr />
+        <PageHeader title>Events</PageHeader>
 
         <EventCards events={events} eventManagers={eventManagers} />
 
@@ -76,15 +70,30 @@ const EventsDashboard = () => {
           <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
         )}
 
+        <Tasktxt>
+          <StyledMediumHeading left>Filters</StyledMediumHeading>
+          <StyledParagraphSmall left>
+            Click to select below filters
+          </StyledParagraphSmall>
+        </Tasktxt>
+        <EventsFilterCards />
+
         <TaskMainCard>
-          <Tasktxt>
+          <Tasktxt2>
             <StyledMediumHeading left>Events</StyledMediumHeading>
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
-          </Tasktxt>
+          </Tasktxt2>
+
           <TaskList>
-            {events.map((event) => (
-              <AdminTaskItem event={mapEventForUI(event)} />
-            ))}
+            {!events.length ? (
+              <StyledParagraphSmallGray>
+                No Events available
+              </StyledParagraphSmallGray>
+            ) : (
+              events.map((event) => (
+                <AdminTaskItem event={mapEventForUI(event)} />
+              ))
+            )}
           </TaskList>
         </TaskMainCard>
       </AdminDashboardContainer>
@@ -106,6 +115,9 @@ const TaskMainCard = styled.div`
 `;
 
 const Tasktxt = styled.div`
+  padding: 20px 0px 20px 8px;
+`;
+const Tasktxt2 = styled.div`
   padding: 20px 20px 10px;
 `;
 

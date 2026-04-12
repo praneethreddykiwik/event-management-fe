@@ -1,16 +1,11 @@
 import styled from "styled-components";
-import SummaryCard from "./SummaryCard";
 import TaskItem from "./TaskItem";
-import {
-  StyledHeading,
-  StyledParagraphSmallGray,
-} from "../../components/Styled/Typography.styled";
+import { StyledParagraphSmallGray } from "../../components/Styled/Typography.styled";
 import { useEffect } from "react";
 import { fetchEventsAndTasksAction } from "../../redux/tasks/tasks.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { tasksSelector } from "../../redux/tasks/tasks.slice";
-import { StyledHr } from "../../components/Styled/Common.styled";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
@@ -18,8 +13,11 @@ import { paths } from "../../constants/paths";
 import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { EventSection } from "./EventSection";
+import { PageHeader } from "../../components/Headers/PageHeader";
+import { getStatusColor } from "../../utils/utils";
+import FilterCard from "../../components/Cards/FilterCard";
 
-const EventManagerDashboard = () => {
+const Tasks = () => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
 
@@ -64,9 +62,18 @@ const EventManagerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>Tasks</StyledHeading>
-        <StyledHr />
-        <SummaryCard taskCountObj={taskCountObj} />
+        <PageHeader title>Tasks</PageHeader>
+
+        {/* Filter cards */}
+        <CardsRow>
+          {Object.keys(taskCountObj).map((key) => (
+            <FilterCard
+              objKey={key}
+              value={taskCountObj[key]}
+              color={getStatusColor(key, taskCountObj)}
+            />
+          ))}
+        </CardsRow>
 
         {tasks.map((event) => (
           <EventSection event={event} onAddTask={onAddTask}>
@@ -93,4 +100,11 @@ const DashboardContainer = styled.div`
   padding: 0 16px 16px 16px;
 `;
 
-export default EventManagerDashboard;
+const CardsRow = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+`;
+
+export default Tasks;

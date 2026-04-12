@@ -21,11 +21,13 @@ import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
+import { eventsSelector } from "../../../redux/events/events.slice";
 
 const AdminTaskItem = ({ event }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
+  const { selectedEventFilters } = useSelector(eventsSelector);
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -49,7 +51,13 @@ const AdminTaskItem = ({ event }) => {
         deleteReason: "",
       }),
     );
-    dispatch(fetchEventsDispatch());
+
+    const query = selectedEventFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+
+    dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
   };
 
   const valueData = Math.floor(Math.random() * 101);

@@ -22,7 +22,7 @@ export const EventCards = ({ events, eventManagers }) => {
           inline
         />
       </StyledFlex>
-      <ProgressChart events={events} />
+      <ProgressChart />
     </CardsRow>
   );
 };

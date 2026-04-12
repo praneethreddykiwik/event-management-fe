@@ -66,7 +66,7 @@ export const camelToWords = (str) => {
 };
 
 export const getStatusColor = (key, taskCountObj) => {
-  const total = taskCountObj.totalTaskCount || 0;
+  const total = taskCountObj.totalTaskCount || taskCountObj.total || 0;
   const count = taskCountObj[key] || 0;
 
   if (key === "totalTaskCount") return "#000";

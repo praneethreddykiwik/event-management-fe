@@ -102,8 +102,6 @@ const CreateEventForm = ({ onCreateEvent }) => {
     // shahid
   };
 
-  console.log("abdul createEventInputs", createEventInputs);
-
   return (
     <StyledFlex>
       <InputBox>

@@ -166,3 +166,15 @@ export const EVENT_STATUSES = [
   { value: "cancelled", label: "Cancelled" },
   { value: "deleted", label: "Deleted" },
 ];
+
+export const INITIAL_FILTERS = [
+  { value: "pending", selected: true },
+  { value: "assigned", selected: true },
+  { value: "accepted", selected: true },
+  { value: "ready", selected: true },
+  { value: "in_progress", selected: true },
+  { value: "completed", selected: true },
+  { value: "declined", selected: true },
+  { value: "cancelled", selected: true },
+  { value: "deleted", selected: false },
+];
