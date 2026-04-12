@@ -23,21 +23,23 @@ export const TitleBox = () => {
   const { eventManagers } = useSelector(usersSelector);
 
   const onClickEdit = () => {
-    if (!eventManagers.length) {
-      const callback = (eventManagersRes) => {
-        const createEventInputs = generateEventDataToEdit(
-          eventManagersRes,
-          event,
-        );
-        dispatch(updateAllEventInputs(createEventInputs));
+    const callback = (eventManagersRes) => {
+      const createEventInputs = generateEventDataToEdit(
+        eventManagersRes,
+        event,
+      );
+      dispatch(updateAllEventInputs(createEventInputs));
 
-        navigate(`${paths.createEvent}?eventUid=${event.uid}`, {
-          state: {
-            mode: "edit",
-          },
-        });
-      };
+      navigate(`${paths.createEvent}?eventUid=${event.uid}`, {
+        state: {
+          mode: "edit",
+        },
+      });
+    };
+    if (!eventManagers.length) {
       dispatch(fetchManagersAction({ callback }));
+    } else {
+      callback(eventManagers);
     }
   };
 
