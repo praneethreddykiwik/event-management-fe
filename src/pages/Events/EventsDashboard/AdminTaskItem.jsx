@@ -20,10 +20,10 @@ import { authSelector } from "../../../redux/auth/auth.slice";
 import { Icon } from "../../../components/Icons/Icons";
 import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
-import { useNavigate } from "react-router-dom";
+import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 
 const AdminTaskItem = ({ event }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
 

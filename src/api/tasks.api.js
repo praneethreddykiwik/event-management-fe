@@ -13,3 +13,6 @@ export const declineTasksApi = (data) =>
 
 export const acceptTasksApi = (data) =>
   httpsClient.put("/tasks/accept-task", data);
+
+export const deleteTasksApi = (data) =>
+  httpsClient.post("/tasks/delete-task", data);

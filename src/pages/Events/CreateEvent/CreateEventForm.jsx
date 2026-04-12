@@ -22,7 +22,7 @@ import { useLocation } from "react-router-dom";
 import { paths } from "../../../constants/paths";
 import { eventsSelector } from "../../../redux/events/events.slice";
 
-const CreateEvent = ({ onCreateEvent }) => {
+const CreateEventForm = ({ onCreateEvent }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -102,6 +102,8 @@ const CreateEvent = ({ onCreateEvent }) => {
     // shahid
   };
 
+  console.log("abdul createEventInputs", createEventInputs);
+
   return (
     <StyledFlex>
       <InputBox>
@@ -179,4 +181,4 @@ const StyledFlex2 = styled.div`
     `}
 `;
 
-export default CreateEvent;
+export default CreateEventForm;

@@ -62,7 +62,7 @@ const EventsDashboard = () => {
   return (
     <BlueBackHOC>
       <AdminDashboardContainer>
-        <StyledHeading left>Admin Dashboard</StyledHeading>
+        <StyledHeading left>Events</StyledHeading>
         <StyledHr />
 
         <EventCards events={events} eventManagers={eventManagers} />

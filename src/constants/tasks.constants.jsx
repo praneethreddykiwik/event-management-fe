@@ -12,7 +12,8 @@ export const tasksMetadata = [
     description:
       "Confirm and lock the final list of keynote and panel speakers including session topics.",
     priority: "high",
-    // dueAt: "2026-01-05T17:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg1,
     available: true,
   },
@@ -21,7 +22,8 @@ export const tasksMetadata = [
     description:
       "Ensure the convention center booking is finalized and advance payment is completed.",
     priority: "high",
-    // dueAt: "2026-01-06T12:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg2,
     available: true,
   },
@@ -30,7 +32,8 @@ export const tasksMetadata = [
     description:
       "Coordinate with vendors to complete stage, lighting, and audio setup as per event design.",
     priority: "high",
-    // dueAt: "2026-01-10T09:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg3,
     available: true,
   },
@@ -39,7 +42,8 @@ export const tasksMetadata = [
     description:
       "Send formal invitations and registration links to all conference delegates.",
     priority: "medium",
-    // dueAt: "2026-01-08T18:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg4,
     available: true,
   },
@@ -50,7 +54,8 @@ export const tasksMetadata = [
     description:
       "Finalize agreement and session details with the primary keynote speaker.",
     priority: "high",
-    // dueAt: "2026-01-12T14:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg5,
     available: true,
   },
@@ -59,7 +64,8 @@ export const tasksMetadata = [
     description:
       "Create the full conference agenda including session timing and speakers.",
     priority: "high",
-    // dueAt: "2026-01-14T16:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg6,
     available: true,
   },
@@ -68,7 +74,8 @@ export const tasksMetadata = [
     description:
       "Book hotels and transport for all visiting speakers and VIP guests.",
     priority: "medium",
-    // dueAt: "2026-01-15T11:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg2,
     available: true,
   },
@@ -79,7 +86,8 @@ export const tasksMetadata = [
     description:
       "Compile performance metrics and financials into the executive presentation deck.",
     priority: "high",
-    // dueAt: "2026-01-18T10:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg4,
     available: true,
   },
@@ -88,7 +96,8 @@ export const tasksMetadata = [
     description:
       "Install branding materials, banners, LED screens, and podium graphics.",
     priority: "medium",
-    // dueAt: "2026-01-19T13:00:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg5,
     available: true,
   },
@@ -97,7 +106,8 @@ export const tasksMetadata = [
     description:
       "Manage employee registration, attendance tracking, and badge distribution.",
     priority: "Low",
-    // dueAt: "2026-01-20T09:30:00Z",
+    dueAt: "",
+    assineeType: false,
     image: venueImg6,
     available: true,
   },

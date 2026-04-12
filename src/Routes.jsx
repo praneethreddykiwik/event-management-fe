@@ -21,13 +21,13 @@ import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Events/EventDetails/EventDetails.page.jsx";
 import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.page.jsx";
 import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
-import CreateEventPage from "./pages/Event/CreateEvent/CreateEventPage.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 import Venues from "./pages/Venues/Venues.page.jsx";
+import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -79,8 +79,8 @@ const AppRoutes = () => {
 
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
-      <Route path={paths.createEvent} element={<CreateEventPage />} />
-      <Route path={paths.editEvent} element={<CreateEventPage />} />
+      <Route path={paths.createEvent} element={<CreateEdiEvent />} />
+      <Route path={paths.editEvent} element={<CreateEdiEvent />} />
 
       {/* Tasks */}
       <Route path={paths.tasks} element={<Tasks />} />

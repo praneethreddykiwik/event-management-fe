@@ -9,6 +9,10 @@ const roleOptions = [
   { value: "supervisor", label: "Supervisor" },
   { value: "customer", label: "Customer" },
 ];
+const lowerRoleOptions = [
+  { value: "vendor", label: "Vendor" },
+  { value: "supervisor", label: "Supervisor" },
+];
 
 export const registrationMetaData = [
   {
@@ -108,9 +112,7 @@ export const generateRegDataToEdit = (user) => {
 
 export const generateRegInputsAccordingToRole = (role) => {
   const isAdmin = role === "admin";
-  const options = isAdmin
-    ? roleOptions
-    : roleOptions.filter((fl) => fl.value !== "admin");
+  const options = isAdmin ? roleOptions : lowerRoleOptions;
 
   return registrationMetaData.map((el) => {
     if (el.name === "role") {

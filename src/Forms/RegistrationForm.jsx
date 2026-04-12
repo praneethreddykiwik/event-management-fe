@@ -11,7 +11,6 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
-import { registrationMetaData } from "../redux/farms/metadata/reg.metadata";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();

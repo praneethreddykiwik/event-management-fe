@@ -77,7 +77,7 @@ export const HeaderMenu = ({ menuOpen }) => {
             <RBACHOC perm="admin:panel">
               <DropdownItem onClick={() => navigate(paths.eventsDashboard)}>
                 <ItemIcon>event</ItemIcon>
-                Admin Dashboard
+                Events
               </DropdownItem>
             </RBACHOC>
             <DropdownItem onClick={() => navigate(paths.tasks)}>

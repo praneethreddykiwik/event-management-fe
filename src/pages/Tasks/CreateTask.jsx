@@ -16,7 +16,6 @@ import {
 import {
   generateAddEventInpMetadata,
   generateTaskDataToEdit,
-  generateTaskDataToEdit2,
 } from "../../redux/farms/metadata/task.metadata";
 import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
 import { toast } from "react-toastify";
@@ -63,13 +62,13 @@ export const CreateTask = () => {
 
   const onSubmit = (payloadParams) => {
     if (isEditMode) {
-      editTask(payloadParams);
+      editTaskHandler(payloadParams);
     } else {
-      createTask(payloadParams);
+      createTaskHandler(payloadParams);
     }
   };
 
-  const editTask = (payloadParams) => {
+  const editTaskHandler = (payloadParams) => {
     const payload = {
       ...payloadParams,
     };
@@ -80,7 +79,7 @@ export const CreateTask = () => {
     dispatch(editTaskAction(payload));
   };
 
-  const createTask = (payloadParams) => {
+  const createTaskHandler = (payloadParams) => {
     const payload = {
       ...payloadParams,
     };
@@ -91,11 +90,11 @@ export const CreateTask = () => {
   };
 
   const onClickSuggestion = (selectedTask) => {
-    dispatch(
-      updateAllTaskInputs(
-        generateTaskDataToEdit2(vendors, selectedTask, createTaskInputs),
-      ),
-    );
+    // populate Data from task suggestion
+    const k = createTaskInputs.map((inp) => {
+      return { ...inp, value: selectedTask[inp.name] || inp.value };
+    });
+    dispatch(updateAllTaskInputs(k));
     toast.success("Selected task details are added in the input fields");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

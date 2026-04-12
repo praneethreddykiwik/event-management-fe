@@ -46,6 +46,7 @@ export const taskMetaData = [
     placeholder: "Task status",
     label: "Status",
     error: null,
+    validations: [validationList.REQUIRED],
   },
   {
     type: "date",
@@ -90,7 +91,6 @@ export const generateAddEventInpMetadata = (vendors) => {
     }
     return el;
   });
-
   return dat;
 };
 
@@ -116,24 +116,6 @@ export const generateTaskDataToEdit = (vendors, data) => {
         })),
       };
     }
-    const finalOutput = { ...input, value: data[el] };
-    return finalOutput;
-  });
-};
-
-export const generateTaskDataToEdit2 = (vendors, data, inputs) => {
-  const allowedFields = [
-    "title",
-    "description",
-    "priority",
-    "status",
-    "dueAt",
-    "assineeType",
-    "assignedToUid",
-  ];
-
-  return allowedFields.map((el) => {
-    const input = inputs.find((fn) => fn.name === el);
     const finalOutput = { ...input, value: data[el] };
     return finalOutput;
   });

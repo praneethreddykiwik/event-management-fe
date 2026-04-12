@@ -31,6 +31,9 @@ const formsSlice = createSlice({
     updateAllEventInputs(state, action) {
       state.createEventInputs = action.payload;
     },
+    clearTaskInputs(state) {
+      state.createEventInputs = [];
+    },
 
     // Task Inputs
     updateTaskInputs(state, action) {
@@ -53,5 +56,6 @@ export const {
   updateAllEventInputs,
   updateTaskInputs,
   updateAllTaskInputs,
+  clearTaskInputs,
 } = formsSlice.actions;
 export default formsSlice.reducer;

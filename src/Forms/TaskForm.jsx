@@ -64,6 +64,8 @@ const TaskForm = ({ onCreateTask }) => {
     dispatch(updateAllTaskInputs(state));
   };
 
+  console.log("abdul createTaskInputs", createTaskInputs);
+
   return (
     <Form>
       <InputBox>

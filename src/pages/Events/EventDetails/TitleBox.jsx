@@ -12,6 +12,7 @@ import { generateEventDataToEdit } from "../../../redux/farms/metadata/event.met
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { eventsSelector } from "../../../redux/events/events.slice";
+import { fetchManagersAction } from "../../../redux/users/users.actions";
 
 export const TitleBox = () => {
   const { eventDetails: event } = useSelector(eventsSelector);
@@ -22,13 +23,22 @@ export const TitleBox = () => {
   const { eventManagers } = useSelector(usersSelector);
 
   const onClickEdit = () => {
-    const createEventInputs = generateEventDataToEdit(eventManagers, event);
-    dispatch(updateAllEventInputs(createEventInputs));
-    navigate(`${paths.createEvent}`, {
-      state: {
-        mode: "edit",
-      },
-    });
+    if (!eventManagers.length) {
+      const callback = (eventManagersRes) => {
+        const createEventInputs = generateEventDataToEdit(
+          eventManagersRes,
+          event,
+        );
+        dispatch(updateAllEventInputs(createEventInputs));
+
+        navigate(`${paths.createEvent}?eventUid=${event.uid}`, {
+          state: {
+            mode: "edit",
+          },
+        });
+      };
+      dispatch(fetchManagersAction({ callback }));
+    }
   };
 
   const onClickTitleDelete = () => {

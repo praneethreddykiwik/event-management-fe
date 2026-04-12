@@ -54,6 +54,11 @@ const EventDetailsPChart = () => {
         label: "Deleted",
         value: 0,
       },
+
+      not_started: {
+        label: "Not started",
+        value: 0,
+      },
     };
     const taskCount = tasksByEvent.reduce((acu, task) => {
       const obj = { ...acu };

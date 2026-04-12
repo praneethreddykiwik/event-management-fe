@@ -155,7 +155,7 @@ export const EVENT_TYPE_OPTIONS = [
   { value: "GOVERNMENT_EVENT", label: "Government Event" },
 ];
 
-export const EVENT_STATUS = [
+export const EVENT_STATUSES = [
   { value: "pending", label: "Pending" },
   { value: "assigned", label: "Assigned" },
   { value: "accepted", label: "Accepted" },
@@ -164,4 +164,5 @@ export const EVENT_STATUS = [
   { value: "completed", label: "Completed" },
   { value: "declined", label: "Declined" },
   { value: "cancelled", label: "Cancelled" },
+  { value: "deleted", label: "Deleted" },
 ];

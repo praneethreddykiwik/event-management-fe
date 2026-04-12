@@ -6,8 +6,10 @@ import {
   createTasksApi,
   editTasksApi,
   fetchTasksApi,
+  deleteTasksApi,
 } from "../../api/tasks.api";
 import { toast } from "react-toastify";
+import { clearTaskInputs } from "../farms/farms.slice";
 
 export const fetchTasksApiAction = createAsyncThunk(
   "tasks/fetchTasksApiAction",
@@ -76,9 +78,10 @@ export const acceptTasksAction = createAsyncThunk(
 
 export const createTaskAction = createAsyncThunk(
   "tasks/createTaskAction",
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, dispatch }) => {
     try {
       const res = await createTasksApi(payload.reqPayload);
+      dispatch(clearTaskInputs());
       toast.success("Task created successfully");
       window.history.back();
       return res.data;
@@ -99,6 +102,23 @@ export const editTaskAction = createAsyncThunk(
       return res.data;
     } catch (err) {
       toast.error(err?.response?.data?.message || "Failed to edit Task");
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  },
+);
+
+export const deleteTaskAction = createAsyncThunk(
+  "tasks/deleteTaskAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await deleteTasksApi(payload.reqPayload);
+      if (payload.callBack) {
+        payload.callBack();
+      }
+      toast.success("Task deleted successfully");
+      return res.data;
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Failed to delete Task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },

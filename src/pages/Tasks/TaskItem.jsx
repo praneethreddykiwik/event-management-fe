@@ -13,12 +13,41 @@ import { Icon } from "../../components/Icons/Icons";
 import { mobile } from "../../theme/media-queries";
 import { formatDateTime } from "../../utils/utils";
 import { InlineButton } from "../../components/Buttons/InlineButton/InlineButton";
+import {
+  deleteTaskAction,
+  fetchTasksApiAction,
+} from "../../redux/tasks/tasks.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { useSearchParams } from "react-router-dom";
 
 const TaskItem = ({ task = {}, onEdit }) => {
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const { authUser } = useSelector(authSelector);
+
   const [showManageEvent, setShowManageEvent] = useState(false);
 
   const onOpen = () => {
     setShowManageEvent(true);
+  };
+
+  const onDelete = () => {
+    const callBack = (a, b, c) => {
+      const eventUid = searchParams.get("eventUid");
+      // dispatch(fetchEventDetailsAction({ eventUid: eventUid }));
+
+      const query = `eventUid=${eventUid}`;
+      dispatch(fetchTasksApiAction({ query }));
+    };
+    const payload = {
+      callBack,
+      reqPayload: {
+        taskUid: task.taskUid,
+        tenantUid: authUser?.tenantUid,
+      },
+    };
+    dispatch(deleteTaskAction(payload));
   };
 
   return (
@@ -48,7 +77,7 @@ const TaskItem = ({ task = {}, onEdit }) => {
           <Badge type={task.type}>{task.taskStatus}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
-          <InlineButton type="delete" icon="delete" onClick={() => {}}>
+          <InlineButton type="delete" icon="delete" onClick={onDelete}>
             Delete Event
           </InlineButton>
         </StyledFlex2>

@@ -18,6 +18,14 @@ const initialState = {
   editTaskLoading: false,
   editTask: false,
   editTaskError: "",
+
+  acceptTaskLoading: false,
+  acceptTask: null,
+  acceptTaskError: "",
+
+  deleteTaskLoading: false,
+  deleteTask: null,
+  deleteTaskError: "",
 };
 
 const tasksSlice = createSlice({
@@ -85,6 +93,20 @@ const tasksSlice = createSlice({
       .addCase(actions.acceptTasksAction.rejected, (state, action) => {
         state.acceptTaskLoading = false;
         state.acceptTaskError = action.payload || "Failed to accept task";
+      });
+
+    builder
+      .addCase(actions.deleteTaskAction.pending, (state) => {
+        state.deleteTaskLoading = true;
+        state.deleteTaskError = null;
+      })
+      .addCase(actions.deleteTaskAction.fulfilled, (state, action) => {
+        state.deleteTaskLoading = false;
+        state.deleteTask = action.payload;
+      })
+      .addCase(actions.deleteTaskAction.rejected, (state, action) => {
+        state.acceptTaskLoading = false;
+        state.deleteTaskError = action.payload || "Failed to accept task";
       });
   },
 });

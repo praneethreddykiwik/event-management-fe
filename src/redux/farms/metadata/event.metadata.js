@@ -1,13 +1,13 @@
 import {
   EVENT_TYPE_OPTIONS,
-  EVENT_STATUS,
+  EVENT_STATUSES,
 } from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
 import { isoToInputDateTime } from "../../../utils/utils";
 
 const halfSize = "calc(50% - 8px)";
 
-const BASE_EVENT_METADATA = [
+export const BASE_EVENT_METADATA = [
   {
     type: "text",
     name: "eventName",
@@ -71,13 +71,14 @@ const BASE_EVENT_METADATA = [
     name: "status",
     value: "",
     placeholder: "Status",
-    options: EVENT_STATUS,
+    options: EVENT_STATUSES,
     label: "Status",
   },
   {
     type: "text",
     name: "venue",
     value: "",
+    helperText: "my helperText",
     placeholder: "e.g. Some Good Place",
     label: "Venue",
     validations: [validationList.REQUIRED],
@@ -113,26 +114,29 @@ export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
   );
 
   const valueMap = {
-    eventName: event.eventName,
-    comments: event.comments,
+    ...event,
     eventDate,
     eventTime,
-    venue: event.venue,
-    eventType: event.eventType,
-    expectedAttendees: event.expectedAttendees,
-    assignedToUid: event.assignedToUid,
-    location: event.location,
-    status: event.status,
   };
 
-  const finalData = generateNewEventsInputs(eventManagers).map((el) => {
+  const km = BASE_EVENT_METADATA.map((el) => {
+    const value = valueMap[el.name] ?? "";
+
+    if (el.name === "assignedToUid") {
+      return {
+        ...el,
+        options: eventManagers.map(generateEventManagersOptions),
+        value,
+      };
+    }
     const k = {
       ...el,
-      value: valueMap[el.name] ?? "",
+      value,
     };
     if (el.name === "venue") k.helperText = valueMap.location;
+
     return k;
   });
 
-  return finalData;
+  return km;
 };
