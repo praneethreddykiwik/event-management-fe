@@ -23,6 +23,7 @@ import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
+import { StyledHr } from "../../components/Styled/Common.styled";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -58,12 +59,14 @@ const UserManagement = () => {
   return (
     <BlueBackHOC>
       <PageWrapper>
+        <StickyHeader>
         <StyledHeading left>User Management</StyledHeading>
         <StyledButtonContainer right>
           <StyledButton onClick={() => navigate("/registration")}>
             Create User{" "}
           </StyledButton>
         </StyledButtonContainer>
+        </StickyHeader>
 
         {allUsers?.length > 0 &&
           allUsers.map((user) => (
@@ -117,6 +120,15 @@ const UserManagement = () => {
     </BlueBackHOC>
   );
 };
+
+const StickyHeader = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  padding-bottom: 20px;
+ 
+`;
 
 const PageWrapper = styled.div`
   padding: 32px 40px;

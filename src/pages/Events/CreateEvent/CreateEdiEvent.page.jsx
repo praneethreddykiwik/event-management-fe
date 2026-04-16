@@ -98,30 +98,52 @@ const CreateEdiEvent = () => {
   };
 
   return (
-    <BlueBackHOC>
-      <EventsPageContainer>
-        <StyledHeading left>
-          {isEditMode ? "Edit Event" : "Create Event"}
-        </StyledHeading>
-        <StyledHr />
-        <CreateEventForm onCreateEvent={onCreateEvent} />
-      </EventsPageContainer>
+   <BlueBackHOC>
 
-      <StyledSuggestions>
-        {eventsMetadata.map((el) => (
-          // refactor
-          <VenueSuggestion
-            key={el.title}
-            venueDetails={el}
-            btnText="Choose"
-            onClick={() => onChooseVenueSuggestion(el)}
-          />
-        ))}
-      </StyledSuggestions>
-    </BlueBackHOC>
+  {/* ✅ Move sticky to top level */}
+  <StickyHeader>
+    <HeaderInner>
+      <StyledHeading left>
+        {isEditMode ? "Edit Event" : "Create Event"}
+      </StyledHeading>
+    </HeaderInner>
+    <StyledHrFix />
+  </StickyHeader>
+
+  {/* All scroll content */}
+  <EventsPageContainer>
+    <CreateEventForm onCreateEvent={onCreateEvent} />
+  </EventsPageContainer>
+
+  <StyledSuggestions>
+    {eventsMetadata.map((el) => (
+      <VenueSuggestion
+        key={el.title}
+        venueDetails={el}
+        btnText="Choose"
+        onClick={() => onChooseVenueSuggestion(el)}
+      />
+    ))}
+  </StyledSuggestions>
+
+</BlueBackHOC>
   );
 };
 
+const StickyHeader = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+`;
+
+const HeaderInner = styled.div`
+  padding: 16px 0 8px 0;
+`;
+
+const StyledHrFix = styled(StyledHr)`
+  margin: 0;
+`;
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
 

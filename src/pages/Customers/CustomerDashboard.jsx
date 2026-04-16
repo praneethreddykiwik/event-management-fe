@@ -32,9 +32,10 @@ const CustomerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
+        <StickyHeader>
         <StyledHeading left>{authUser.username}</StyledHeading>
         <StyledHr />
-
+        </StickyHeader>
         {tasks.map((event) => (
           <Section key={event.eventUid}>
             <StyledTaskHeading>
@@ -71,6 +72,14 @@ const CustomerDashboard = () => {
   );
 };
 
+
+const StickyHeader = styled.div`
+position: sticky; 
+top: 0px;
+background: white; 
+ z-index: 10;
+ padding-top: 8px; 
+ ` ;
 const DashboardContainer = styled.div`
   padding: 0 16px 16px 16px;
 `;

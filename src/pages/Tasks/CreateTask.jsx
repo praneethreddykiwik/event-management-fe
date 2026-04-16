@@ -105,11 +105,18 @@ export const CreateTask = () => {
 
   return (
     <BlueBackHOC>
+      {/*Sticky Header at TOP LEVEL */}
+      <StickyHeader>
+        <HeaderInner>
+          <StyledHeading left>
+            {isEditMode ? "Edit Task" : "Create Task"}
+          </StyledHeading>
+        </HeaderInner>
+        <StyledHrFix />
+      </StickyHeader>
+
+      {/* Page Content */}
       <DashboardContainer>
-        <StyledHeading left>
-          {isEditMode ? "Edit Task" : "Create Task"}
-        </StyledHeading>
-        <StyledHr />
         <StyledFlex>
           <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
@@ -123,6 +130,7 @@ export const CreateTask = () => {
         <StyledSuggestions>
           {tasksMetadata.map((el) => (
             <VenueSuggestion
+              key={el.title}
               venueDetails={el}
               btnText="Choose"
               onClick={onClickSuggestion}
@@ -130,10 +138,24 @@ export const CreateTask = () => {
           ))}
         </StyledSuggestions>
       </DashboardContainer>
+
     </BlueBackHOC>
   );
 };
+const StickyHeader = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+`;
 
+const HeaderInner = styled.div`
+  padding: 16px 0 8px 0;
+`;
+
+const StyledHrFix = styled(StyledHr)`
+  margin: 0;
+`;
 const DashboardContainer = styled.div`
   padding: 0 16px 40px 16px;
 
