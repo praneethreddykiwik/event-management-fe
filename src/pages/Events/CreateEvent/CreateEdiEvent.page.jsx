@@ -25,6 +25,7 @@ import { paths } from "../../../constants/paths";
 import { useEffect } from "react";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import CreateEventForm from "./CreateEventForm";
+import { PageHeader } from "../../../components/Headers/PageHeader";
 
 const CreateEdiEvent = () => {
   const dispatch = useDispatch();
@@ -98,52 +99,37 @@ const CreateEdiEvent = () => {
   };
 
   return (
-   <BlueBackHOC>
+    <BlueBackHOC>
 
-  {/* ✅ Move sticky to top level */}
-  <StickyHeader>
-    <HeaderInner>
-      <StyledHeading left>
-        {isEditMode ? "Edit Event" : "Create Event"}
-      </StyledHeading>
-    </HeaderInner>
-    <StyledHrFix />
-  </StickyHeader>
 
-  {/* All scroll content */}
-  <EventsPageContainer>
-    <CreateEventForm onCreateEvent={onCreateEvent} />
-  </EventsPageContainer>
+      <PageHeader left>
+        <StyledHeading>
+          {isEditMode ? "Edit Event" : "Create Event"}
+        </StyledHeading>
+      </PageHeader>
+     
 
-  <StyledSuggestions>
-    {eventsMetadata.map((el) => (
-      <VenueSuggestion
-        key={el.title}
-        venueDetails={el}
-        btnText="Choose"
-        onClick={() => onChooseVenueSuggestion(el)}
-      />
-    ))}
-  </StyledSuggestions>
+      {/* All scroll content */}
+      <EventsPageContainer>
+        <CreateEventForm onCreateEvent={onCreateEvent} />
+      </EventsPageContainer>
 
-</BlueBackHOC>
+      <StyledSuggestions>
+        {eventsMetadata.map((el) => (
+          <VenueSuggestion
+            key={el.title}
+            venueDetails={el}
+            btnText="Choose"
+            onClick={() => onChooseVenueSuggestion(el)}
+          />
+        ))}
+      </StyledSuggestions>
+
+    </BlueBackHOC>
   );
 };
 
-const StickyHeader = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: white;
-`;
 
-const HeaderInner = styled.div`
-  padding: 16px 0 8px 0;
-`;
-
-const StyledHrFix = styled(StyledHr)`
-  margin: 0;
-`;
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
 

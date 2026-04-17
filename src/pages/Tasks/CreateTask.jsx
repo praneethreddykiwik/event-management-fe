@@ -29,6 +29,7 @@ import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
 import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
+import { PageHeader } from "../../components/Headers/PageHeader";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
@@ -105,15 +106,14 @@ export const CreateTask = () => {
 
   return (
     <BlueBackHOC>
-      {/*Sticky Header at TOP LEVEL */}
-      <StickyHeader>
-        <HeaderInner>
-          <StyledHeading left>
-            {isEditMode ? "Edit Task" : "Create Task"}
-          </StyledHeading>
-        </HeaderInner>
-        <StyledHrFix />
-      </StickyHeader>
+
+      <PageHeader left>
+        <StyledHeading>
+          {isEditMode ? "Edit Task" : "Create Task"}
+        </StyledHeading>
+      </PageHeader>
+
+
 
       {/* Page Content */}
       <DashboardContainer>
@@ -142,20 +142,7 @@ export const CreateTask = () => {
     </BlueBackHOC>
   );
 };
-const StickyHeader = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: white;
-`;
 
-const HeaderInner = styled.div`
-  padding: 16px 0 8px 0;
-`;
-
-const StyledHrFix = styled(StyledHr)`
-  margin: 0;
-`;
 const DashboardContainer = styled.div`
   padding: 0 16px 40px 16px;
 

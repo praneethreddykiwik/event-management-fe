@@ -15,15 +15,18 @@ const StyledCtn = styled.div`
   background: rgb(255, 255, 255);
   position: sticky;
   top: 0;
-  width: 100%;
+  width: calc(100% + 2px);
   height: 76px;
   display: flex;
   align-items: center;
   margin-bottom: 40px;
   z-index: 1;
-
   margin-left: -1px;
-  width: calc(100% + 2px);
+
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+  }
 
   & .page-header-hr {
     position: absolute;
