@@ -25,6 +25,21 @@ const initialState = {
   allUsersLoading: false,
   allUsers: [],
   allUsersError: null,
+
+  roleCounts: {
+    total: 0,
+    admin: 0,
+    event_manager: 0,
+    vendor: 0,
+    supervisor: 0,
+  },
+
+  selectedRoleFilters: [
+    { label: "Admin", value: "admin", selected: true },
+    { label: "Event Manager", value: "event_manager", selected: true },
+    { label: "Vendor", value: "vendor", selected: true },
+    { label: "Supervisor", value: "supervisor", selected: true },
+  ],
 };
 
 const usersSlice = createSlice({
@@ -33,6 +48,9 @@ const usersSlice = createSlice({
   reducers: {
     clearRegistrationSuccessMsg(state) {
       state.registrationSuccess = false;
+    },
+    usersFilterAction(state, action) {
+      state.selectedRoleFilters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -54,10 +72,27 @@ const usersSlice = createSlice({
       .addCase(actions.fetchAllUsersAction.pending, (state) => {
         state.allUsersLoading = true;
       })
-      .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
-        state.allUsers = action.payload?.details;
+       .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
+        const users = action.payload?.details || [];
+        state.allUsers = users;
         state.allUsersLoading = false;
         state.allUsersError = null;
+
+        const counts = {
+          total: users.length,
+          admin: 0,
+          event_manager: 0,
+          vendor: 0,
+          supervisor: 0,
+        };
+
+        users.forEach((user) => {
+          if (counts[user.role] !== undefined) {
+            counts[user.role]++;
+          }
+        });
+
+        state.roleCounts = counts;
       })
       .addCase(actions.fetchAllUsersAction.rejected, (state) => {
         state.allUsersError = "Something went wrong";
@@ -151,5 +186,5 @@ const usersSlice = createSlice({
 });
 
 export const usersSelector = (st) => st.users;
-export const { clearRegistrationSuccessMsg } = usersSlice.actions;
+export const { clearRegistrationSuccessMsg, usersFilterAction  } = usersSlice.actions;
 export default usersSlice.reducer;
