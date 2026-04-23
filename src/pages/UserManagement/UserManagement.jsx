@@ -17,16 +17,17 @@ import {
 } from "../../redux/users/users.actions";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
-import { usersSelector } from "../../redux/users/users.slice";
+import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
-import { PageHeader } from "../../components/Headers/PageHeader";
+import { UserFilterCards } from "./UserFilterCards";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { allUsers } = useSelector(usersSelector);
+  const { allUsers, selectedRoleFilters} = useSelector(usersSelector);
+  console.log("Manideep", allUsers);
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -35,6 +36,16 @@ const UserManagement = () => {
   useEffect(() => {
     dispatch(fetchAllUsersAction());
   }, []);
+
+    const filteredUsers = allUsers.filter((user) => {
+    const selectedRoles = selectedRoleFilters
+      ?.filter((f) => f.selected)
+      .map((f) => f.value);
+
+    if (!selectedRoles || selectedRoles.length === 0) return true;
+
+    return selectedRoles.includes(user.role);
+  });
 
   // EDIT USER
   const onEdit = (user) => {
@@ -55,21 +66,16 @@ const UserManagement = () => {
   return (
     <BlueBackHOC>
       <PageWrapper>
+        <StyledHeading left>User Management</StyledHeading>
+        <StyledButtonContainer right>
+          <StyledButton onClick={() => navigate("/registration")}>
+            Create User{" "}
+          </StyledButton>
+        </StyledButtonContainer>
+        <UserFilterCards />
 
-        {/*  HEADER FIX */}
-        <PageHeader>
-          <HeaderContent>
-            <StyledHeading>User Management</StyledHeading>
-
-            <StyledButton onClick={() => navigate("/registration")}>
-              Create User
-            </StyledButton>
-          </HeaderContent>
-        </PageHeader>
-
-        {/* USERS LIST */}
-        {allUsers?.length > 0 &&
-          allUsers.map((user) => (
+        {filteredUsers?.length > 0 &&
+            filteredUsers.map((user) => (
             <UserManagementItem
               key={user.uid}
               data={user}
