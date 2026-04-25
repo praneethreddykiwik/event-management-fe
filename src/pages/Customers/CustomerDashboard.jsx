@@ -16,12 +16,14 @@ import { Section } from "../../HOC/SectionsHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import CustomerItem from "./CustomerItem";
 import * as enums from "../../myEnum";
+import { PageHeader } from "../../components/Headers/PageHeader";
 
 const CustomerDashboard = () => {
   const dispatch = useDispatch();
 
   const { authUser } = useSelector(authSelector);
   const { tasks } = useSelector(tasksSelector);
+
   useEffect(() => {
     if (!authUser?.uid || !authUser?.tenantUid) return;
 
@@ -32,8 +34,11 @@ const CustomerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
-        <StyledHeading left>{authUser.username}</StyledHeading>
-        <StyledHr />
+
+        {/* ONLY CHANGE HERE */}
+        <PageHeader left>
+          <StyledHeading>{authUser.username}</StyledHeading>
+        </PageHeader>
 
         {tasks.map((event) => (
           <Section key={event.eventUid}>
@@ -42,22 +47,27 @@ const CustomerDashboard = () => {
                 <StyledMediumHeading left>
                   {event.eventName}
                 </StyledMediumHeading>
+
                 <StyledParagraphSmall left>
                   {event.eventVenue}
                 </StyledParagraphSmall>
+
                 <StyledParagraphSmall left>
-                  {enums.TASK_ASSIGNEE} {event.eventAssignedToFirstName}{" "}
+                  {enums.TASK_ASSIGNEE}{" "}
+                  {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
                 </StyledParagraphSmall>
-                {/* <TaskAssignee>
-                  {E_M_DASHBOARD_COMMON.TASKDUE} {task.taskDueAt}
-                </TaskAssignee> */}
               </StyledBox2>
             </StyledTaskHeading>
+
             <StyledHr />
+
             {event.tasks.length ? (
               event.tasks.map((task) => (
-                <CustomerItem task={mapTaskForUI(task)} />
+                <CustomerItem
+                  key={task.taskUid}
+                  task={mapTaskForUI(task)}
+                />
               ))
             ) : (
               <StyledParagraphSmallGray>
@@ -71,13 +81,11 @@ const CustomerDashboard = () => {
   );
 };
 
+export default CustomerDashboard;
+
 const DashboardContainer = styled.div`
   padding: 0 16px 16px 16px;
 `;
-
-// const TaskOverview = styled(StyledMediumHeading)``;
-// const TaskMonitor = styled(StyledParagraphSmall)``;
-// const TaskAssignee = styled(StyledParagraphSmall)``;
 
 const StyledTaskHeading = styled.div`
   display: flex;
@@ -88,7 +96,3 @@ const StyledTaskHeading = styled.div`
 const StyledBox2 = styled.div`
   flex-basis: 50%;
 `;
-
-const StyledHrTask = styled(StyledHr)``;
-
-export default CustomerDashboard;

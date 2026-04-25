@@ -29,6 +29,7 @@ import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
 import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
+import { PageHeader } from "../../components/Headers/PageHeader";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
@@ -105,11 +106,17 @@ export const CreateTask = () => {
 
   return (
     <BlueBackHOC>
-      <DashboardContainer>
-        <StyledHeading left>
+
+      <PageHeader left>
+        <StyledHeading>
           {isEditMode ? "Edit Task" : "Create Task"}
         </StyledHeading>
-        <StyledHr />
+      </PageHeader>
+
+
+
+      {/* Page Content */}
+      <DashboardContainer>
         <StyledFlex>
           <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
@@ -123,6 +130,7 @@ export const CreateTask = () => {
         <StyledSuggestions>
           {tasksMetadata.map((el) => (
             <VenueSuggestion
+              key={el.title}
               venueDetails={el}
               btnText="Choose"
               onClick={onClickSuggestion}
@@ -130,6 +138,7 @@ export const CreateTask = () => {
           ))}
         </StyledSuggestions>
       </DashboardContainer>
+
     </BlueBackHOC>
   );
 };

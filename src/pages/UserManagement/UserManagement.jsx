@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// import { details } from "../../Mock";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { StyledHeading } from "../../components/Styled/Typography.styled";
 import UserManagementItem from "../../pages/UserManagement/UserManagementItem";
@@ -10,14 +9,12 @@ import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import PopupModal from "../../components/PopupModal/PopupModal";
 import { Button } from "../../components/Buttons/Button";
 
-// redux (same pattern as your working code)
+// redux
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteUserAction,
   fetchAllUsersAction,
 } from "../../redux/users/users.actions";
-// import EditUserPoEditpup from "../../components/users/EditUserPopup";
-// import EditUserPopup from "./EditUserPopUp";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
 import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
@@ -130,6 +127,11 @@ const UserManagement = () => {
   );
 };
 
+export default UserManagement;
+
+
+// ================= STYLES =================
+
 const PageWrapper = styled.div`
   padding: 32px 40px;
   display: flex;
@@ -141,6 +143,14 @@ const PageWrapper = styled.div`
   `}
 `;
 
+const HeaderContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /*  KEY FIX */
+`;
+
 const DeletePopup = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -148,20 +158,7 @@ const DeletePopup = styled.div`
   padding: 24px 0;
 `;
 
-const StyledButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  margin-top: -70px;
-
-  ${mobile`
-    margin-top: 0;
-    justify-content: center;
-  `}
-`;
-
 const StyledButton = styled(StyledBaseButton)`
   width: auto;
   color: ${({ theme }) => theme.colors.white};
 `;
-
-export default UserManagement;

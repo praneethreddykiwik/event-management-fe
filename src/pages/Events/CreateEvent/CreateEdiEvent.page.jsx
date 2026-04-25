@@ -25,6 +25,7 @@ import { paths } from "../../../constants/paths";
 import { useEffect } from "react";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import CreateEventForm from "./CreateEventForm";
+import { PageHeader } from "../../../components/Headers/PageHeader";
 
 const CreateEdiEvent = () => {
   const dispatch = useDispatch();
@@ -99,17 +100,22 @@ const CreateEdiEvent = () => {
 
   return (
     <BlueBackHOC>
-      <EventsPageContainer>
-        <StyledHeading left>
+
+
+      <PageHeader left>
+        <StyledHeading>
           {isEditMode ? "Edit Event" : "Create Event"}
         </StyledHeading>
-        <StyledHr />
+      </PageHeader>
+     
+
+      {/* All scroll content */}
+      <EventsPageContainer>
         <CreateEventForm onCreateEvent={onCreateEvent} />
       </EventsPageContainer>
 
       <StyledSuggestions>
         {eventsMetadata.map((el) => (
-          // refactor
           <VenueSuggestion
             key={el.title}
             venueDetails={el}
@@ -118,9 +124,11 @@ const CreateEdiEvent = () => {
           />
         ))}
       </StyledSuggestions>
+
     </BlueBackHOC>
   );
 };
+
 
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;
