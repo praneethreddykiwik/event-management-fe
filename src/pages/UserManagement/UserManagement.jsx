@@ -17,17 +17,18 @@ import {
 } from "../../redux/users/users.actions";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
-import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
+import { usersSelector } from "../../redux/users/users.slice";
+
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
+import { PageHeader } from "../../components/Headers/PageHeader";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { allUsers, selectedRoleFilters} = useSelector(usersSelector);
-  console.log("Manideep", allUsers);
+  const { allUsers, selectedRoleFilters } = useSelector(usersSelector);
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -37,7 +38,7 @@ const UserManagement = () => {
     dispatch(fetchAllUsersAction());
   }, []);
 
-    const filteredUsers = allUsers.filter((user) => {
+  const filteredUsers = allUsers.filter((user) => {
     const selectedRoles = selectedRoleFilters
       ?.filter((f) => f.selected)
       .map((f) => f.value);
@@ -66,16 +67,22 @@ const UserManagement = () => {
   return (
     <BlueBackHOC>
       <PageWrapper>
-        <StyledHeading left>User Management</StyledHeading>
-        <StyledButtonContainer right>
-          <StyledButton onClick={() => navigate("/registration")}>
-            Create User{" "}
-          </StyledButton>
-        </StyledButtonContainer>
+        <PageHeader>
+          <HeaderContent>
+            <StyledHeading>User Management</StyledHeading>
+
+            <StyledButtonContainer>
+              <StyledButton onClick={() => navigate("/registration")}>
+                Create User
+              </StyledButton>
+            </StyledButtonContainer>
+          </HeaderContent>
+        </PageHeader>
+
         <UserFilterCards />
 
         {filteredUsers?.length > 0 &&
-            filteredUsers.map((user) => (
+          filteredUsers.map((user) => (
             <UserManagementItem
               key={user.uid}
               data={user}
@@ -130,7 +137,6 @@ const UserManagement = () => {
 export default UserManagement;
 
 
-// ================= STYLES =================
 
 const PageWrapper = styled.div`
   padding: 32px 40px;
@@ -148,7 +154,7 @@ const HeaderContent = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /*  KEY FIX */
+  justify-content: space-between;
 `;
 
 const DeletePopup = styled.div`
@@ -156,6 +162,11 @@ const DeletePopup = styled.div`
   justify-content: flex-end;
   gap: 16px;
   padding: 24px 0;
+`;
+
+const StyledButtonContainer = styled.div`
+margin-left: auto;
+display: flex;
 `;
 
 const StyledButton = styled(StyledBaseButton)`
