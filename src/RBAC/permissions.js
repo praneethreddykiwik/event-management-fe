@@ -1,13 +1,16 @@
 export const PERMS = {
-  TASK_CREATE: "task:create",
-  TASK_EDIT: "task:edit",
+  TASK_CREATE: "task:create", // notGetting Used
+  TASK_EDIT: "task:edit", // notGetting Used
   EVENT_VIEW: "event:view",
-  EVENT_EDIT: "event:edit",
+  EVENT_EDIT: "event:edit", // notGetting Used
+
+  TASK_VIEW: "task:view",
 
   ADMIN_PANEL: "admin:panel",
-  CUSTOMER_PANEL: "customer:panel",
+  // CUSTOMER_PANEL: "customer:panel",
+  VENDOR_PANEL: "vendor:panel",
   SUPERVISOR_PANEL: "supervisor:panel",
-  VENDOR_PANEL: "VENDOR:panel",
+  QA_PANEL: "qa:panel",
 };
 
 export const ROLE_PERMISSIONS = {
@@ -18,7 +21,8 @@ export const ROLE_PERMISSIONS = {
     PERMS.TASK_CREATE,
     PERMS.TASK_EDIT,
   ],
-  vendor: [PERMS.EVENT_VIEW],
-  supervisor: [PERMS.EVENT_VIEW],
-  customer: [PERMS.CUSTOMER_PANEL],
+  vendor: [PERMS.VENDOR_PANEL],
+  supervisor: [PERMS.SUPERVISOR_PANEL],
+  qa: [PERMS.QA_PANEL],
+  // customer: [PERMS.CUSTOMER_PANEL],
 };

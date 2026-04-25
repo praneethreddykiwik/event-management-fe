@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 import { paths } from "../../constants/paths";
 import { updateAllTaskInputs } from "../farms/farms.slice";
-import { generateAddEventInpMetadata } from "../farms/metadata/task.metadata";
+import { generateAddTaskInpMetadata } from "../farms/metadata/task.metadata";
 
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
@@ -34,10 +34,11 @@ export const createEventsDispatch = createAsyncThunk(
       toast.success("Created Events successfully");
       payload.navigate(paths.eventsDashboard);
 
-      // clear inputs once event is created
-      const state = getState();
-      const vendors = state.users.vendors;
-      dispatch(updateAllTaskInputs(generateAddEventInpMetadata(vendors)));
+      // checkHere
+      // // clear inputs once event is created
+      // const state = getState();
+      // const vendors = state.users.vendors;
+      // // dispatch(updateAllTaskInputs(generateAddTaskInpMetadata(vendors)));
       return res.data;
     } catch (err) {
       toast.error(

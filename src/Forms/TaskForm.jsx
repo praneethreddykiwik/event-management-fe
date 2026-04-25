@@ -7,7 +7,7 @@ import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
 import { validationList } from "../constants/validations.constants";
 import { formsSelector, updateAllTaskInputs } from "../redux/farms/farms.slice";
 import { usersSelector } from "../redux/users/users.slice";
-import { generateOptions } from "../redux/farms/metadata/task.metadata";
+import { generateUserOptions } from "../redux/farms/metadata/task.metadata";
 import { mobile } from "../theme/media-queries";
 
 const TaskForm = ({ onCreateTask }) => {
@@ -50,15 +50,23 @@ const TaskForm = ({ onCreateTask }) => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    const state = createTaskInputs.map((inp) => {
-      const el = { ...inp };
-      if (name === "assineeType" && el.name === "assignedToUid") {
-        el.options = generateOptions(value ? supervisors : vendors);
+    const state = createTaskInputs.map((el) => {
+      const inp = { ...el };
+
+      if (name === "assineeType" && inp.name === "assignedToUid") {
+        const isSupervisorSelected = value === "Assign to Supervisor";
+        inp.options = generateUserOptions(
+          isSupervisorSelected ? supervisors : vendors,
+        );
+        inp.label = isSupervisorSelected
+          ? "Assign to Supervisor"
+          : "Assign to Vendor";
       }
-      if (el.name === name) {
-        return { ...el, value, error: null };
+
+      if (inp.name === name) {
+        return { ...inp, value, error: null };
       }
-      return el;
+      return inp;
     });
 
     dispatch(updateAllTaskInputs(state));

@@ -13,3 +13,16 @@ export const StyledBadge = styled(StyledParagraphSmall)`
   background-color: ${({ theme, type }) =>
     theme.badgeColors[`badge-${type}-transparent`]};
 `;
+
+export const StyledBadge2 = styled(StyledParagraphSmall)`
+  color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
+  background-color: ${({ theme, type }) =>
+    theme.badgeColors[`badge-${type}-transparent`]};
+  padding: 2px 2px 2px 12px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+`;

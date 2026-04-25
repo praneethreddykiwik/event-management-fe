@@ -29,10 +29,11 @@ const Dropdown = ({
         }}
         placeholder={placeholder}
         styles={customStyles}
-        isSearchable={false}
-        components={{
-          IndicatorSeparator: () => null,
-        }}
+        isSearchable={true}
+        // isClearable
+        // components={{
+        //   IndicatorSeparator: () => null,
+        // }}
       />
     </InputLayout>
   );

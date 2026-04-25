@@ -10,7 +10,7 @@ import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import { mapTaskForUI } from "../../helpers/Dashboard.helper";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
-import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
+import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { EventSection } from "./EventSection";
 import { PageHeader } from "../../components/Headers/PageHeader";
@@ -23,13 +23,14 @@ const Tasks = () => {
 
   const { authUser } = useSelector(authSelector);
   const { tasks, taskCountObj } = useSelector(tasksSelector);
-  const { vendors, supervisors } = useSelector(usersSelector);
+  const { vendors, supervisors, qa } = useSelector(usersSelector);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
     dispatch(fetchEventsAndTasksAction(query));
-    if (!vendors.length || !supervisors.length) {
-      dispatch(fetchVendorsAndSupervisors());
+    // checkHere
+    if (!vendors.length || !supervisors.length || !qa.length) {
+      dispatch(fetchVendorsSupsQA());
     }
   }, []);
 

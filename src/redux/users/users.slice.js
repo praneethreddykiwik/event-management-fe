@@ -14,6 +14,10 @@ const initialState = {
   supervisors: [],
   supervisorsError: false,
 
+  qaLoading: false,
+  qa: [],
+  qaError: false,
+
   registrationError: null,
   registrationSuccess: false,
   registrationLoading: false,
@@ -32,6 +36,7 @@ const initialState = {
     event_manager: 0,
     vendor: 0,
     supervisor: 0,
+    qa: 0,
   },
 
   selectedRoleFilters: [
@@ -39,7 +44,10 @@ const initialState = {
     { label: "Event Manager", value: "event_manager", selected: true },
     { label: "Vendor", value: "vendor", selected: true },
     { label: "Supervisor", value: "supervisor", selected: true },
+    { label: "QA", value: "qa", selected: true },
   ],
+
+  userMgtGridView: false,
 };
 
 const usersSlice = createSlice({
@@ -51,6 +59,9 @@ const usersSlice = createSlice({
     },
     usersFilterAction(state, action) {
       state.selectedRoleFilters = action.payload;
+    },
+    setUserMgtGridView(state, action) {
+      state.userMgtGridView = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -72,7 +83,7 @@ const usersSlice = createSlice({
       .addCase(actions.fetchAllUsersAction.pending, (state) => {
         state.allUsersLoading = true;
       })
-       .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
+      .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
         const users = action.payload?.details || [];
         state.allUsers = users;
         state.allUsersLoading = false;
@@ -84,6 +95,7 @@ const usersSlice = createSlice({
           event_manager: 0,
           vendor: 0,
           supervisor: 0,
+          qa: 0,
         };
 
         users.forEach((user) => {
@@ -128,29 +140,32 @@ const usersSlice = createSlice({
       });
 
     builder
-      .addCase(actions.fetchVendorsAndSupervisors.pending, (state) => {
+      .addCase(actions.fetchVendorsSupsQA.pending, (state) => {
         state.supervisorsLoading = true;
         state.vendorsLoading = true;
+        state.qaLoading = true;
       })
-      .addCase(
-        actions.fetchVendorsAndSupervisors.fulfilled,
-        (state, action) => {
-          state.supervisors = action.payload.supervisors;
-          state.vendors = action.payload.vendors;
-
-          state.supervisorsLoading = false;
-          state.vendorsLoading = false;
-
-          state.supervisorsError = null;
-          state.vendorsError = null;
-        },
-      )
-      .addCase(actions.fetchVendorsAndSupervisors.rejected, (state) => {
-        state.supervisorsError = "Something went wrong";
-        state.vendorsError = "Something went wrong";
+      .addCase(actions.fetchVendorsSupsQA.fulfilled, (state, action) => {
+        state.supervisors = action.payload.supervisors;
+        state.vendors = action.payload.vendors;
+        state.qa = action.payload.qa;
 
         state.supervisorsLoading = false;
         state.vendorsLoading = false;
+        state.qaLoading = false;
+
+        state.supervisorsError = null;
+        state.vendorsError = null;
+        state.qaError = null;
+      })
+      .addCase(actions.fetchVendorsSupsQA.rejected, (state) => {
+        state.supervisorsError = "Something went wrong";
+        state.vendorsError = "Something went wrong";
+        state.qaError = "Something went wrong";
+
+        state.supervisorsLoading = false;
+        state.vendorsLoading = false;
+        state.qaLoading = false;
       });
 
     // registration
@@ -186,5 +201,9 @@ const usersSlice = createSlice({
 });
 
 export const usersSelector = (st) => st.users;
-export const { clearRegistrationSuccessMsg, usersFilterAction  } = usersSlice.actions;
+export const {
+  clearRegistrationSuccessMsg,
+  usersFilterAction,
+  setUserMgtGridView,
+} = usersSlice.actions;
 export default usersSlice.reducer;

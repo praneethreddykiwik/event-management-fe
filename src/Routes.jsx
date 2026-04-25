@@ -37,8 +37,6 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path={paths.twoFactorAuth} element={<TwoFactorAuthPage />} />
-
       <Route path="/get-in-touch" element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path="*" element={<Login />} />
@@ -60,6 +58,9 @@ const AppRoutes = () => {
       <Route path="/player-card" element={<PlayerCard />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path={"/TwoFactorAuth"} element={<TwoFactorAuthPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettings />} />
+      <Route path={paths.newsFeed} element={<NewEvent />} />
 
       {/* Admin */}
       <Route
@@ -71,12 +72,6 @@ const AppRoutes = () => {
         }
       />
 
-      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
-
-      {/* Profile */}
-      <Route path={paths.accountSettings} element={<AccountSettings />} />
-      <Route path={paths.newsFeed} element={<NewEvent />} />
-
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
       <Route path={paths.createEvent} element={<CreateEdiEvent />} />
@@ -87,13 +82,12 @@ const AppRoutes = () => {
       <Route path={paths.createTask} element={<CreateTask />} />
 
       {/* Customer */}
-      <Route path={paths.customer} element={<CustomerDashboard />} />
+      {/* <Route path={paths.customer} element={<CustomerDashboard />} /> */}
 
       {/* Vendor */}
-      <Route path={paths.vendor} element={<StakeholderDashboard />} />
-      {/* <Route path={paths.supervisor} element={<StakeholderDashboard />} /> */}
-      <Route path={paths.supervisor} element={<Tasks /> } />
-      
+      <Route path={paths.vendor} element={<Tasks />} />
+      <Route path={paths.supervisor} element={<Tasks />} />
+      <Route path={paths.qa} element={<Tasks />} />
 
       <Route path={paths.venues} element={<Venues />} />
 

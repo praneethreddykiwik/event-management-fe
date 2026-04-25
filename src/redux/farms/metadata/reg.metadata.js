@@ -1,18 +1,19 @@
+import { ROLES_OBJ } from "../../../constants/roles";
 import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
 
-const roleOptions = [
-  { value: "admin", label: "Admin" },
-  { value: "event_manager", label: "Event Manager" },
-  { value: "vendor", label: "Vendor" },
-  { value: "supervisor", label: "Supervisor" },
-  { value: "customer", label: "Customer" },
-];
 const lowerRoleOptions = [
   { value: "vendor", label: "Vendor" },
   { value: "supervisor", label: "Supervisor" },
+  { value: "qa", label: "QA" },
 ];
+
+const generateAdminRoleOptions = () => {
+  return Object.keys(ROLES_OBJ).map((key) => {
+    return { value: key, label: ROLES_OBJ[key].label };
+  });
+};
 
 export const registrationMetaData = [
   {
@@ -67,7 +68,7 @@ export const registrationMetaData = [
     type: "dropdown",
     name: "role",
     placeholder: "Choose role",
-    options: roleOptions,
+    options: generateAdminRoleOptions(),
     value: "",
     label: "Role",
     error: null,
@@ -90,7 +91,6 @@ export const registrationMetaData = [
     label: "Confirm Password",
     error: null,
     validations: [validationList.REQUIRED],
-
   },
 ];
 
@@ -112,7 +112,7 @@ export const generateRegDataToEdit = (user) => {
 
 export const generateRegInputsAccordingToRole = (role) => {
   const isAdmin = role === "admin";
-  const options = isAdmin ? roleOptions : lowerRoleOptions;
+  const options = isAdmin ? generateAdminRoleOptions() : lowerRoleOptions;
 
   return registrationMetaData.map((el) => {
     if (el.name === "role") {

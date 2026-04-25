@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginApi, logoutApi, meApi } from "../../api/auth.api";
 import { toast } from "react-toastify";
-import { paths, pathsAccordingToRole } from "../../constants/paths";
+import { paths } from "../../constants/paths";
+import { ROLES_OBJ } from "../../constants/roles";
 
 // Runs on app load/refresh to check if session cookie is valid
 export const bootstrapAuthAction = createAsyncThunk(
@@ -13,7 +14,7 @@ export const bootstrapAuthAction = createAsyncThunk(
 
       if (navigate) {
         const role = res.data?.details?.role;
-        navigate(pathsAccordingToRole[role] || paths.home);
+        navigate(ROLES_OBJ[role]?.routePath || paths.home);
       }
 
       return res.data.details; // user object

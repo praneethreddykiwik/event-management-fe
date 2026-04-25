@@ -9,7 +9,7 @@ import {
 import CreateEventButtons from "./CreateEventManagerB";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
-import { roles } from "../../../constants/roles";
+import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../../redux/events/events.actions";
 import { eventsSelector } from "../../../redux/events/events.slice";
@@ -39,7 +39,7 @@ const EventsDashboard = () => {
 
   useEffect(() => {
     const payload = {
-      query: `?tenantId=${authUser?.tenantId}&role=${roles.eventManager}`, // checkHere
+      query: `?tenantId=${authUser?.tenantId}&role=${ROLES.eventManager}`, // checkHere
     };
     dispatch(fetchManagersAction(payload));
     const query = `?status=${INITIAL_FILTERS.filter((fl) => fl.selected)
