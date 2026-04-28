@@ -14,18 +14,11 @@ export const paths = {
 
   vendor: "/vendor",
   supervisor: "/supervisor",
-  customer: "/customer",
+  // customer: "/customer",
+  qa: "/qa",
   userManagement: "/user/management",
   marketPlace: "/market-place",
   getInTouch: "/get-in-touch",
 
   venues: "/venues",
-};
-
-export const pathsAccordingToRole = {
-  admin: paths.eventsDashboard,
-  event_manager: paths.tasks,
-  vendor: paths.vendor,
-  supervisor: paths.supervisor,
-  customer: paths.customer,
 };

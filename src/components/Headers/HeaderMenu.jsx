@@ -32,102 +32,106 @@ export const HeaderMenu = ({ menuOpen }) => {
 
   const isLoggedIn = authStatus === "authenticated";
 
+  const data = {
+    events: {
+      label: "Events",
+      dropdownKey: "events",
+      shouldLoggedIn: true,
+      ddArr: [
+        { icon: "event", label: "Upcoming Events", path: "/" },
+        { icon: "event_note", label: "Current Events", path: "/" },
+        { icon: "add_ad", label: "Create Event", path: "/events/create-event" },
+      ],
+    },
+    market: {
+      label: "Market",
+      dropdownKey: "market",
+      shouldLoggedIn: false,
+      ddArr: [
+        { icon: "local_mall", label: "Market Place", path: paths.marketPlace },
+        { icon: "map_search", label: "Venues Near Me", path: "/venues" },
+      ],
+    },
+    pages: {
+      label: "Pages",
+      dropdownKey: "pages",
+      shouldLoggedIn: false,
+      ddArr: [
+        {
+          icon: "event",
+          label: "Events",
+          path: paths.eventsDashboard,
+          perm: "admin:panel",
+        },
+        {
+          icon: "checklist_rtl",
+          label: "Tasks",
+          path: paths.tasks,
+          perm: "task:view",
+        },
+        {
+          icon: "storefront",
+          label: "Vendor",
+          path: paths.tasks,
+          perm: "vendor:panel",
+        },
+        {
+          icon: "storefront",
+          label: "Supervisor",
+          path: paths.supervisor,
+          perm: "supervisor:panel",
+        },
+        {
+          icon: "award_star",
+          label: "QA",
+          path: paths.qa,
+          perm: "qa:panel",
+        },
+        {
+          icon: "supervised_user_circle",
+          label: "User Management",
+          path: paths.userManagement,
+          perm: "admin:panel",
+        },
+      ],
+    },
+  };
+
   return (
     <MenuBox ref={menuRef} open={menuOpen}>
       <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
 
-      {isLoggedIn ? (
-        <MenuItem onClick={() => toggleDropdown("events")}>
-          Events <ArrowIcon $open={openDropdown === "events"} />
-          <Dropdown $open={openDropdown === "events"}>
-            <DropdownItem onClick={() => navigate("/")}>
-              <ItemIcon>event</ItemIcon>
-              Upcoming Events
-            </DropdownItem>
-            <DropdownItem onClick={() => navigate("/")}>
-              <ItemIcon>event_note</ItemIcon>
-              Current Events
-            </DropdownItem>
-            <DropdownItem onClick={() => navigate("/events/create-event")}>
-              <ItemIcon>add_ad</ItemIcon>
-              Create Event
-            </DropdownItem>
-          </Dropdown>
-        </MenuItem>
-      ) : null}
+      {Object.keys(data).map((key) => {
+        const mainDat = data[key];
+        const authCheckFail = mainDat.shouldLoggedIn && !isLoggedIn;
+        if (authCheckFail) {
+          return null;
+        }
 
-      <MenuItem onClick={() => toggleDropdown("venues")}>
-        Market <ArrowIcon $open={openDropdown === "venues"} />
-        <Dropdown $open={openDropdown === "venues"}>
-          <DropdownItem onClick={() => navigate("/venues")}>
-            <ItemIcon>map_search</ItemIcon>
-            Venues Near Me
-          </DropdownItem>
-          <DropdownItem onClick={() => navigate(paths.marketPlace)}>
-            <ItemIcon>local_mall</ItemIcon>
-            Market Place
-          </DropdownItem>
-        </Dropdown>
-      </MenuItem>
-
-      {isLoggedIn ? (
-        <MenuItem onClick={() => toggleDropdown("pages")}>
-          Pages <ArrowIcon $open={openDropdown === "pages"} />
-          <Dropdown $open={openDropdown === "pages"}>
-            <RBACHOC perm="admin:panel">
-              <DropdownItem onClick={() => navigate(paths.eventsDashboard)}>
-                <ItemIcon>event</ItemIcon>
-                Events
-              </DropdownItem>
-            </RBACHOC>
-            <DropdownItem onClick={() => navigate(paths.tasks)}>
-              <ItemIcon>checklist_rtl</ItemIcon>
-              Tasks
-            </DropdownItem>
-            <RBACHOC perm="vendor:panel">
-              <DropdownItem onClick={() => navigate(paths.vendor)}>
-                <ItemIcon>storefront</ItemIcon>
-                Vendor
-              </DropdownItem>
-            </RBACHOC>
-            <RBACHOC perm="supervisor:panel">
-              <DropdownItem onClick={() => navigate(paths.supervisor)}>
-                <ItemIcon>storefront</ItemIcon>
-                Supervisor
-              </DropdownItem>
-            </RBACHOC>
-            <RBACHOC perm="customer:panel">
-              <DropdownItem onClick={() => navigate(paths.customer)}>
-                <ItemIcon>emoji_people</ItemIcon>
-                Customer
-              </DropdownItem>
-            </RBACHOC>
-            <RBACHOC perm="admin:panel">
-              <DropdownItem onClick={() => navigate(paths.userManagement)}>
-                <ItemIcon>supervised_user_circle</ItemIcon>
-                User Management
-              </DropdownItem>
-            </RBACHOC>
-          </Dropdown>
-        </MenuItem>
-      ) : null}
-
-      {/* MOBILE EXTRA ICONS */}
-      {/* <MobileOnlyContainer>
-        <Icon aria-label="Search">search</Icon>
-        <Icon aria-label="Language">language</Icon>
-
-        {!isLoggedIn ? (
-          <Button onClick={goLogin}>Login</Button>
-        ) : (
-          <>
-            <Icon aria-label="Notifications">notifications</Icon>
-            <AvatarBox>
-              <Avatar />
-            </AvatarBox>
-          </>
-        )}
-      </MobileOnlyContainer> */}
+        const dd = openDropdown === mainDat.dropdownKey;
+        return (
+          <MenuItem onClick={() => toggleDropdown(mainDat.dropdownKey)}>
+            {mainDat.label} <ArrowIcon $open={dd} />
+            <Dropdown $open={dd}>
+              {mainDat.ddArr.map((option) =>
+                option.perm ? (
+                  <RBACHOC perm={option.perm}>
+                    <DropdownItem onClick={() => navigate(option.path)}>
+                      <ItemIcon>{option.icon}</ItemIcon>
+                      {option.label}
+                    </DropdownItem>
+                  </RBACHOC>
+                ) : (
+                  <DropdownItem onClick={() => navigate(option.path)}>
+                    <ItemIcon>{option.icon}</ItemIcon>
+                    {option.label}
+                  </DropdownItem>
+                ),
+              )}
+            </Dropdown>
+          </MenuItem>
+        );
+      })}
     </MenuBox>
   );
 };
@@ -147,12 +151,10 @@ const MenuBox = styled.div`
     background: #fff;
     border-top: 1px solid #eee;
 
-    display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    
   `}
 `;
 
@@ -195,21 +197,6 @@ const ArrowIcon = styled.span.attrs(() => ({
   display: flex;
   align-items: center;
 `;
-
-// const MobileOnlyContainer = styled.div`
-//   display: none;
-
-//   ${mobile`
-//     display: flex;
-//     align-items: center;
-//     gap: 12px;
-
-//     position: absolute;
-//     right: 16px;
-//     top: 50%;
-//     transform: translateY(-50%);
-//   `}
-// `;
 
 const Icon = styled.span.attrs(() => ({
   className: "material-symbols-outlined",

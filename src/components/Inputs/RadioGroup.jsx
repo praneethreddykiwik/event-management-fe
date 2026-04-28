@@ -1,3 +1,4 @@
+import { mobile } from "../../theme/media-queries";
 import { InputLayout } from "./InputLayout";
 import { InputRadio } from "./Inputs.styled";
 import styled from "styled-components";
@@ -33,7 +34,7 @@ export const RadioGroup = ({
                 }
                 disabled={disabled}
               />
-              <span>{item}</span>
+              <MainLabel>{item}</MainLabel>
             </Row>
           );
         })}
@@ -46,6 +47,20 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  padding: 10px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 10px 20px;
+
+  flex-direction: row;
+  gap: 40px;
+  flex-wrap: wrap;
+
+  ${mobile`
+    flex-direction: column;
+    gap: 10px;
+    `}
 `;
 
 const Row = styled.label`
@@ -53,4 +68,8 @@ const Row = styled.label`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+`;
+
+const MainLabel = styled.span`
+  font-size: 14px;
 `;

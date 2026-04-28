@@ -14,7 +14,7 @@ import {
   updateAllTaskInputs,
 } from "../../redux/farms/farms.slice";
 import {
-  generateAddEventInpMetadata,
+  generateAddTaskInpMetadata,
   generateTaskDataToEdit,
 } from "../../redux/farms/metadata/task.metadata";
 import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
@@ -25,9 +25,8 @@ import {
 } from "../../redux/tasks/tasks.actions";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { useLocation } from "react-router-dom";
-import { usersSelector } from "../../redux/users/users.slice";
 import { Button } from "../../components/Buttons/Button";
-import { fetchVendorsAndSupervisors } from "../../redux/users/users.actions";
+import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
 import { PageHeader } from "../../components/Headers/PageHeader";
 
@@ -36,7 +35,6 @@ export const CreateTask = () => {
   const location = useLocation();
 
   const { authUser } = useSelector(authSelector);
-  const { vendors, supervisors } = useSelector(usersSelector);
   const { createTaskInputs } = useSelector(formsSelector);
 
   const isEditMode = location.state?.mode === "edit";
@@ -44,21 +42,26 @@ export const CreateTask = () => {
 
   useEffect(() => {
     const callback = (data) => {
-      const { supervisors, vendors } = data;
+      const { supervisors, vendors, qa } = data;
 
-      const users =
+      const vendorsOrSuprvs =
         authUser?.role === "supervisors" ? supervisors : vendors;
 
       if (isEditMode) {
-        dispatch(updateAllTaskInputs(generateTaskDataToEdit(users, taskData)));
+        dispatch(
+          updateAllTaskInputs(
+            generateTaskDataToEdit(vendorsOrSuprvs, qa, taskData),
+          ),
+        );
       } else {
-        dispatch(updateAllTaskInputs(generateAddEventInpMetadata(users)));
+        dispatch(
+          updateAllTaskInputs(generateAddTaskInpMetadata(vendorsOrSuprvs, qa)),
+        );
       }
     };
 
     //Always call this to reset form
-    dispatch(fetchVendorsAndSupervisors({ callback }));
-
+    dispatch(fetchVendorsSupsQA({ callback }));
   }, []);
 
   const onSubmit = (payloadParams) => {
@@ -86,7 +89,6 @@ export const CreateTask = () => {
     };
     payload.reqPayload.tenantUid = authUser.tenantUid;
     payload.reqPayload.eventUid = location.state.eventUid;
-
     dispatch(createTaskAction(payload));
   };
 
@@ -106,14 +108,11 @@ export const CreateTask = () => {
 
   return (
     <BlueBackHOC>
-
       <PageHeader left>
         <StyledHeading>
           {isEditMode ? "Edit Task" : "Create Task"}
         </StyledHeading>
       </PageHeader>
-
-
 
       {/* Page Content */}
       <DashboardContainer>
@@ -138,7 +137,6 @@ export const CreateTask = () => {
           ))}
         </StyledSuggestions>
       </DashboardContainer>
-
     </BlueBackHOC>
   );
 };

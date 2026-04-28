@@ -6,7 +6,7 @@ import {
   updateUserApi,
   userDeleteApi,
 } from "../../api/users.api";
-import { roles } from "../../constants/roles";
+import { ROLES } from "../../constants/roles";
 import { toast } from "react-toastify";
 import { updateAllRegInputs } from "../farms/farms.slice";
 import { generateRegInputsAccordingToRole } from "../farms/metadata/reg.metadata";
@@ -17,7 +17,7 @@ export const fetchManagersAction = createAsyncThunk(
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
+      const query = `?tenantId=${tenantId}&role=${ROLES.eventManager}`;
       const res = await getEventManagersApi(query);
       if (payload?.callback) {
         payload.callback(res.data.details);
@@ -58,7 +58,7 @@ export const fetchVendorsAction = createAsyncThunk(
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const query = `?tenantId=${tenantId}&role=${roles.vendor}`;
+      const query = `?tenantId=${tenantId}&role=${ROLES.vendor}`;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
@@ -78,7 +78,7 @@ export const fetchSupervisorsAction = createAsyncThunk(
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const query = `?tenantId=${tenantId}&role=${roles.supervisor}`;
+      const query = `?tenantId=${tenantId}&role=${ROLES.supervisor}`;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
@@ -94,28 +94,38 @@ export const fetchSupervisorsAction = createAsyncThunk(
   },
 );
 
-export const fetchVendorsAndSupervisors = createAsyncThunk(
-  "users/fetchVendorsAndSupervisors",
+export const fetchVendorsSupsQA = createAsyncThunk(
+  "users/fetchVendorsSupsQA",
   async (payload, { rejectWithValue, getState }) => {
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const supervisorQuery = `?tenantId=${tenantId}&role=${roles.supervisor}`;
-      const supervisorPromise = getUsersApi(supervisorQuery);
+      const supervisorQuery = `?tenantId=${tenantId}&role=${ROLES.supervisor},${ROLES.vendor},${ROLES.qa}`;
+      const response = await getUsersApi(supervisorQuery);
+      // const vendorQuery = `?tenantId=${tenantId}&role=${ROLES.vendor}`;
+      // const vendorPromise = getUsersApi(vendorQuery);
 
-      const vendorQuery = `?tenantId=${tenantId}&role=${roles.vendor}`;
-      const vendorPromise = getUsersApi(vendorQuery);
+      const users = response.data?.details.reduce(
+        (acu, cur) => {
+          acu[cur.role].push(cur);
+          return acu;
+        },
+        { supervisor: [], vendor: [], qa: [] },
+      );
 
-      const responses = await Promise.all([supervisorPromise, vendorPromise]);
-      const supervisors = responses[0].data.details;
-      const vendors = responses[1].data.details;
-      const res = { supervisors, vendors };
+      const res = {
+        supervisors: users.supervisor,
+        vendors: users.vendor,
+        qa: users.qa,
+      };
 
       if (payload?.callback) {
         payload.callback(res);
       }
       return res;
     } catch (err) {
+      console.log(err);
+
       toast.error(
         err?.response?.data?.message ||
           err?.message ||

@@ -8,18 +8,27 @@ import styled from "styled-components";
  * close-small
  */
 
-export const Icon = ({ variant, onClick, sx, className }) => (
+export const Icon = ({
+  variant,
+  onClick,
+  sx,
+  className,
+  children,
+  selected,
+}) => (
   <StyledIcon
     className={`material-symbols-outlined common-icon ${className}`}
     onClick={onClick}
     sx={sx}
+    $selected={selected}
   >
-    {variant}
+    {variant || children}
   </StyledIcon>
 );
 
 const StyledIcon = styled.span`
   cursor: pointer;
   font-size: 20px;
+  ${({ $selected }) => ($selected ? `text-decoration: underline;` : "")}
   ${({ sx }) => ({ ...sx })}
 `;

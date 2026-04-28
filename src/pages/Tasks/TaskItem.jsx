@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Badge from "../../components/Badge/Badge.component";
+import Badge, { Badge2 } from "../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
@@ -70,6 +70,14 @@ const TaskItem = ({ task = {}, onEdit }) => {
           <StyledParagraphSmall left>
             Task Created At: {formatDateTime(task.taskCreatedAt)}
           </StyledParagraphSmall>
+          <FlexBox>
+            <StyledParagraphSmall left>
+              QA assigned to: {task.qaAssigned}{" "}
+            </StyledParagraphSmall>
+            <Badge2 approved={task.isQaApproved}>
+              {task.isQaApproved ? "QA Approved" : "QA Not Approved"}
+            </Badge2>
+          </FlexBox>
         </Taskcard>
       </Left>
       <BadgeButton>
@@ -108,6 +116,12 @@ const TaskRow = styled(Section)`
     flex-direction: column;
     margin: 20px 0;
   `}
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
 `;
 
 const Left = styled.div`

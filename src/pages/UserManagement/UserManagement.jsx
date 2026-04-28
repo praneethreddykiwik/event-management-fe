@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
-import { StyledHeading } from "../../components/Styled/Typography.styled";
+import {
+  StyledHeading,
+  StyledParagraphBold,
+} from "../../components/Styled/Typography.styled";
 import UserManagementItem from "../../pages/UserManagement/UserManagementItem";
 import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
@@ -17,18 +20,17 @@ import {
 } from "../../redux/users/users.actions";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
-import { usersSelector } from "../../redux/users/users.slice";
-
+import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
-import { PageHeader } from "../../components/Headers/PageHeader";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { allUsers, selectedRoleFilters } = useSelector(usersSelector);
+  const { allUsers, selectedRoleFilters} = useSelector(usersSelector);
+  console.log("Manideep", allUsers);
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -60,8 +62,13 @@ const UserManagement = () => {
   // DELETE USER
   const onDelete = async () => {
     await dispatch(deleteUserAction({ uid: selectedUser.uid }));
+    dispatch(fetchAllUsersAction());
     setShowDeleteConfirm(false);
     setSelectedUser(null);
+  };
+
+  const viewClickHandler = () => {
+    dispatch(setUserMgtGridView(!userMgtGridView));
   };
 
   return (
@@ -82,7 +89,7 @@ const UserManagement = () => {
         <UserFilterCards />
 
         {filteredUsers?.length > 0 &&
-          filteredUsers.map((user) => (
+            filteredUsers.map((user) => (
             <UserManagementItem
               key={user.uid}
               data={user}
@@ -137,7 +144,6 @@ const UserManagement = () => {
 export default UserManagement;
 
 
-
 const PageWrapper = styled.div`
   padding: 32px 40px;
   display: flex;
@@ -145,10 +151,39 @@ const PageWrapper = styled.div`
   gap: 16px;
 
   ${mobile`
-    padding: 16px;
+  padding: 16px;
   `}
 `;
 
+const UsersCtn = styled.div`
+  display: flex;
+  ${({ $gridView }) =>
+    $gridView
+      ? `
+          flex-wrap: wrap;
+          flex-direction: row;
+        `
+      : `
+          flex-direction: column;
+        `};
+
+  ${mobile`
+    flex-direction: column;
+  `}
+  gap: 20px;
+`;
+
+const AlignBox = styled.div`
+  display: flex;
+  justify-content: end;
+  padding-right: 8px;
+  gap: 10px;
+  cursor: pointer;
+
+  ${mobile`
+      display: none;
+    `}
+`;
 const HeaderContent = styled.div`
   width: 100%;
   height: 100%;
@@ -162,11 +197,6 @@ const DeletePopup = styled.div`
   justify-content: flex-end;
   gap: 16px;
   padding: 24px 0;
-`;
-
-const StyledButtonContainer = styled.div`
-margin-left: auto;
-display: flex;
 `;
 
 const StyledButton = styled(StyledBaseButton)`

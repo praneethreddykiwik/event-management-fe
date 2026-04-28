@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
+import {
+  usersSelector,
+  usersFilterAction,
+} from "../../redux/users/users.slice";
 import FilterCard from "../../components/Cards/FilterCard";
 
 export const UserFilterCards = () => {
@@ -21,7 +24,7 @@ export const UserFilterCards = () => {
     }
 
     const updated = selectedRoleFilters.map((f) =>
-      f.value === key ? { ...f, selected: !f.selected } : f
+      f.value === key ? { ...f, selected: !f.selected } : f,
     );
 
     dispatch(usersFilterAction(updated));
@@ -53,6 +56,5 @@ export const UserFilterCards = () => {
 const Row = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 20px;
   flex-wrap: wrap;
 `;
