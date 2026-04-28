@@ -24,6 +24,7 @@ import { usersSelector, usersFilterAction } from "../../redux/users/users.slice"
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
+import { PageHeader } from "../../components/Headers/PageHeader";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
@@ -198,7 +199,8 @@ const DeletePopup = styled.div`
   gap: 16px;
   padding: 24px 0;
 `;
-
+const StyledButtonContainer = styled.div`
+`;
 const StyledButton = styled(StyledBaseButton)`
   width: auto;
   color: ${({ theme }) => theme.colors.white};
