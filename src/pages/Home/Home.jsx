@@ -5,12 +5,14 @@ import Customer from "./customer";
 import Experience from "./experience";
 import FindInspiration from "./FindInspiration";
 import GetStarted from "./GetStarted";
+import HeroSection from "./HeroSection";
 import JoinNow from "./JoinNow";
 import TrustedBy from "./TrustedBy";
 
 const Home = () => {
   return (
     <>
+     <HeroSection /> 
       <GetStarted />
       <FindInspiration />
       <TrustedBy />
