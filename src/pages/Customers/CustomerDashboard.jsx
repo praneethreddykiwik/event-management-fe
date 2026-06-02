@@ -22,7 +22,7 @@ const CustomerDashboard = () => {
   const dispatch = useDispatch();
 
   const { authUser } = useSelector(authSelector);
-  const { tasks } = useSelector(tasksSelector);
+  const { eventsAndTasks } = useSelector(tasksSelector);
 
   useEffect(() => {
     if (!authUser?.uid || !authUser?.tenantUid) return;
@@ -34,13 +34,12 @@ const CustomerDashboard = () => {
   return (
     <BlueBackHOC>
       <DashboardContainer>
-
         {/* ONLY CHANGE HERE */}
         <PageHeader left>
           <StyledHeading>{authUser.username}</StyledHeading>
         </PageHeader>
 
-        {tasks.map((event) => (
+        {eventsAndTasks.map((event) => (
           <Section key={event.eventUid}>
             <StyledTaskHeading>
               <StyledBox2>
@@ -53,8 +52,7 @@ const CustomerDashboard = () => {
                 </StyledParagraphSmall>
 
                 <StyledParagraphSmall left>
-                  {enums.TASK_ASSIGNEE}{" "}
-                  {event.eventAssignedToFirstName}{" "}
+                  {enums.TASK_ASSIGNEE} {event.eventAssignedToFirstName}{" "}
                   {event.eventAssignedToLastName}
                 </StyledParagraphSmall>
               </StyledBox2>
@@ -64,10 +62,7 @@ const CustomerDashboard = () => {
 
             {event.tasks.length ? (
               event.tasks.map((task) => (
-                <CustomerItem
-                  key={task.taskUid}
-                  task={mapTaskForUI(task)}
-                />
+                <CustomerItem key={task.taskUid} task={mapTaskForUI(task)} />
               ))
             ) : (
               <StyledParagraphSmallGray>

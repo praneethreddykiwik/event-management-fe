@@ -1,12 +1,13 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import Badge, { Badge2 } from "../../components/Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
 } from "../../components/Styled/Typography.styled";
 import * as enums from "../../myEnum";
-import { useState } from "react";
-import ManageTaskModal from "./ManageTaskModal";
 import { Section } from "../../HOC/SectionsHOC";
 import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
@@ -17,9 +18,8 @@ import {
   deleteTaskAction,
   fetchTasksApiAction,
 } from "../../redux/tasks/tasks.actions";
-import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth.slice";
-import { useSearchParams } from "react-router-dom";
+import ManageTaskModal from "./ManageTaskModal";
 
 const TaskItem = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const TaskItem = ({ task = {}, onEdit }) => {
           </StyledParagraphSmall>
           <FlexBox>
             <StyledParagraphSmall left>
-              QA assigned to: {task.qaAssigned}{" "}
+              QA assigned to: {task.qaAssignedTo}{" "}
             </StyledParagraphSmall>
             <Badge2 approved={task.isQaApproved}>
               {task.isQaApproved ? "QA Approved" : "QA Not Approved"}
@@ -82,11 +82,11 @@ const TaskItem = ({ task = {}, onEdit }) => {
       </Left>
       <BadgeButton>
         <StyledFlex2>
-          <Badge type={task.type}>{task.taskStatus}</Badge>
+          <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
           <Icon variant="alternate_email" />
           <Icon variant="chat" />
           <InlineButton type="delete" icon="delete" onClick={onDelete}>
-            Delete Event
+            Delete Task
           </InlineButton>
         </StyledFlex2>
         <Button type="no-border" onClick={() => onOpen()} small>

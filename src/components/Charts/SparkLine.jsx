@@ -65,7 +65,7 @@ const settings = {
   axisHighlight: { x: "line" },
 };
 
-export function NpmSparkLine() {
+export function NpmSparkLine({ color }) {
   const [weekIndex, setWeekIndex] = React.useState(null);
 
   return (
@@ -76,7 +76,7 @@ export function NpmSparkLine() {
             setWeekIndex((p) =>
               p === null
                 ? weeks.length - 1
-                : (weeks.length + p - 1) % weeks.length
+                : (weeks.length + p - 1) % weeks.length,
             );
             break;
           case "ArrowRight":
@@ -109,7 +109,8 @@ export function NpmSparkLine() {
             width={195}
             area
             showHighlight
-            color="#26C867"
+            // color="#006bd6"
+            color={color || "#26C867"}
             onHighlightedAxisChange={(axisItems) => {
               setWeekIndex(axisItems[0]?.dataIndex ?? null);
             }}

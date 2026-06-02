@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./tasks.actions";
 
 const initialState = {
-  tasks: [],
+  eventsAndTasks: [],
   taskCountObj: {},
+  kpiCounts: {},
+  priorityCounts: {},
   tasksLoading: false,
   tasksError: null,
 
-  tasksByEvent: [],
+  tasksByEvent: [], // what is this? // checkHere
   tasksByEventsLoading: false,
   tasksByEventsError: null,
 
@@ -39,7 +41,6 @@ const tasksSlice = createSlice({
       })
       .addCase(actions.fetchTasksApiAction.fulfilled, (state, action) => {
         state.tasksByEvent = action.payload?.details;
-        console.log("TasksByEvent: ", state.tasksByEvent);
         state.tasksByEventsLoading = false;
         state.tasksByEventsError = null;
       })
@@ -60,6 +61,27 @@ const tasksSlice = createSlice({
         state.tasksError = null;
       })
       .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
+        state.authUser = null;
+        state.tasksLoading = false;
+        state.tasksError = "Error";
+      });
+    builder
+      .addCase(actions.fetchQaEventsAndTasksAction.pending, (state) => {
+        state.tasksLoading = true;
+      })
+      .addCase(
+        actions.fetchQaEventsAndTasksAction.fulfilled,
+        (state, action) => {
+          const res = action.payload?.details || {};
+          state.eventsAndTasks = res.data;
+          state.taskCountObj = res.countObj;
+          state.kpiCounts = res.kpiCounts;
+          state.priorityCounts = res.priorityCounts;
+          state.tasksLoading = false;
+          state.tasksError = null;
+        },
+      )
+      .addCase(actions.fetchQaEventsAndTasksAction.rejected, (state) => {
         state.authUser = null;
         state.tasksLoading = false;
         state.tasksError = "Error";

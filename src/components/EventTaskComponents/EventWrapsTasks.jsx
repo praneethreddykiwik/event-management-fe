@@ -9,7 +9,7 @@ import {
 import { StyledHr } from "../../components/Styled/Common.styled";
 import { Button } from "../../components/Buttons/Button";
 
-export const EventSection = ({ children, event, onAddTask }) => {
+export const EventWrapsTasks = ({ children, event, onAddTask }) => {
   return (
     <Section key={event.eventUid}>
       <StyledTaskHeading>

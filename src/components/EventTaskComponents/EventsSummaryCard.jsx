@@ -2,12 +2,12 @@ import styled from "styled-components";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from "../../../../components/Styled/Typography.styled";
-import { Card } from "../../../../components/Cards/Cards";
-import { mobile } from "../../../../theme/media-queries";
+} from "../Styled/Typography.styled";
+import { Card } from "../Cards/Cards";
+import { mobile } from "../../theme/media-queries";
 
 const EventsSummaryCard = ({ value, label, type, chart, inline }) => (
-  <Ctn $inline={inline}>
+  <Ctn $inline={inline} className="events-summary-card">
     <TextBox $inline={inline}>
       <StyledValue type={type}>{value || 0}</StyledValue>
       <StyledLabel>{label}</StyledLabel>

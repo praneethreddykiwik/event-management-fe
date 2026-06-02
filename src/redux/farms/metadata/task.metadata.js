@@ -1,4 +1,4 @@
-import { TASKS_OPTIONS } from "../../../constants/tasks.constants";
+import { TASK_STATUSES } from "../../../constants/statuses";
 import { validationList } from "../../../constants/validations.constants";
 
 // const halfSize = "calc(50% - 8px)";
@@ -42,7 +42,10 @@ export const taskMetaData = [
     type: "dropdown",
     name: "status",
     value: "",
-    options: TASKS_OPTIONS,
+    options: Object.keys(TASK_STATUSES).map((key) => ({
+      value: key,
+      label: TASK_STATUSES[key].label,
+    })),
     placeholder: "Task status",
     label: "Status",
     error: null,
@@ -117,13 +120,18 @@ export const generateTaskDataToEdit = (vendorsOrSuprvs, qa, data) => {
     "priority",
     "status",
     "dueAt",
+    "assineeType",
     "assignedToUid",
+    "qaAssignedTo",
   ];
 
   return allowedFields.map((el) => {
     const input = taskMetaData.find((fn) => fn.name === el);
-    const output = { ...input, value: data[el] };
-    if (el === "assignedToUid" || el.name === "qaAssignedTo") {
+
+    const mapper = { qaAssignedTo: "qaAssignedToUid" };
+    const valueName = mapper[el] || el;
+    const output = { ...input, value: data[valueName] };
+    if (el === "assignedToUid" || el === "qaAssignedTo") {
       const opts = el.name === "assignedToUid" ? vendorsOrSuprvs : qa;
       output.options = generateUserOptions(opts);
     }

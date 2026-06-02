@@ -56,54 +56,54 @@ const EventsDashboard = () => {
 
   return (
     <BlueBackHOC>
-      <AdminDashboardContainer>
-        <PageHeader title>Events</PageHeader>
+      {/* <AdminDashboardContainer> */}
+      <PageHeader isTitle>Events</PageHeader>
 
-        <EventCards events={events} eventManagers={eventManagers} />
+      <EventCards events={events} eventManagers={eventManagers} />
 
-        <CreateEventButtons
-          onCreateEvent={onCreateEvent}
-          setOpenManagersPopup={setOpenManagersPopup}
-        />
+      <CreateEventButtons
+        onCreateEvent={onCreateEvent}
+        setOpenManagersPopup={setOpenManagersPopup}
+      />
 
-        {openManagersPopup && (
-          <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
-        )}
+      {openManagersPopup && (
+        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+      )}
 
-        <Tasktxt>
-          <StyledMediumHeading left>Filters</StyledMediumHeading>
-          <StyledParagraphSmall left>
-            Click to select below filters
-          </StyledParagraphSmall>
-        </Tasktxt>
-        <EventsFilterCards />
+      <Tasktxt>
+        <StyledMediumHeading left>Filters</StyledMediumHeading>
+        <StyledParagraphSmall left>
+          Click to select below filters
+        </StyledParagraphSmall>
+      </Tasktxt>
+      <EventsFilterCards />
 
-        <TaskMainCard>
-          <Tasktxt2>
-            <StyledMediumHeading left>Events</StyledMediumHeading>
-            <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
-          </Tasktxt2>
+      <TaskMainCard>
+        <Tasktxt2>
+          <StyledMediumHeading left>Events</StyledMediumHeading>
+          <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
+        </Tasktxt2>
 
-          <TaskList>
-            {!events.length ? (
-              <StyledParagraphSmallGray>
-                No Events available
-              </StyledParagraphSmallGray>
-            ) : (
-              events.map((event) => (
-                <AdminTaskItem event={mapEventForUI(event)} />
-              ))
-            )}
-          </TaskList>
-        </TaskMainCard>
-      </AdminDashboardContainer>
+        <TaskList>
+          {!events.length ? (
+            <StyledParagraphSmallGray>
+              No Events available
+            </StyledParagraphSmallGray>
+          ) : (
+            events.map((event) => (
+              <AdminTaskItem event={mapEventForUI(event)} />
+            ))
+          )}
+        </TaskList>
+      </TaskMainCard>
+      {/* </AdminDashboardContainer> */}
     </BlueBackHOC>
   );
 };
 
-const AdminDashboardContainer = styled.div`
-  padding: 0 20px 20px 20px;
-`;
+// const AdminDashboardContainer = styled.div`
+//   padding: 0 20px 20px 20px;
+// `;
 
 const TaskMainCard = styled.div`
   border-radius: 14px;

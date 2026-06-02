@@ -4,10 +4,10 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { paths } from "../../../constants/paths";
 import { useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
-import TaskItem from "../../Tasks/TaskItem";
 import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 import { eventsSelector } from "../../../redux/events/events.slice";
+import TaskItem from "../../../components/EventTaskComponents/TaskItem";
 
 export const TasksList = () => {
   const navigate = useNavigateWithQuery();
@@ -34,8 +34,12 @@ export const TasksList = () => {
           title: task.taskTitle,
           description: task.taskDescription,
           priority: task.priority,
+          status: task.taskStatus,
           dueAt: task.taskDueAt,
+          assineeType: task.assineeType,
           assignedToUid: task.taskAssignedToUid,
+          qaAssignedTo: task.qaAssignedTo,
+          qaAssignedToUid: task.qaAssignedToUid,
         },
       },
     });

@@ -4,67 +4,26 @@ import styled from "styled-components";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 import { useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
+import { TASK_STATUSES } from "../../../constants/statuses";
 
 const EventDetailsPChart = () => {
   const { tasksByEvent } = useSelector(tasksSelector);
 
   const data = React.useMemo(() => {
-    const tasksStatuses = {
-      pending: {
-        label: "Pending",
+    const tasksStatusesObj = {};
+    for (const key in TASK_STATUSES) {
+      const el = TASK_STATUSES[key];
+      tasksStatusesObj[key] = {
+        label: el.label,
         value: 0,
-      },
+      };
+    }
 
-      assigned: {
-        label: "Assigned",
-        value: 0,
-      },
-
-      accepted: {
-        label: "Accepted",
-        value: 0,
-      },
-
-      ready: {
-        label: "Ready",
-        value: 0,
-      },
-
-      in_progress: {
-        label: "In Progress",
-        value: 0,
-      },
-
-      completed: {
-        label: "Completed",
-        value: 0,
-      },
-
-      declined: {
-        label: "Declined",
-        value: 0,
-      },
-
-      cancelled: {
-        label: "Cancelled",
-        value: 0,
-      },
-
-      deleted: {
-        label: "Deleted",
-        value: 0,
-      },
-
-      not_started: {
-        label: "Not started",
-        value: 0,
-      },
-    };
     const taskCount = tasksByEvent.reduce((acu, task) => {
       const obj = { ...acu };
       obj[task.taskStatus].value++;
       return obj;
-    }, tasksStatuses);
+    }, tasksStatusesObj);
 
     return Object.values(taskCount);
   }, [tasksByEvent]);

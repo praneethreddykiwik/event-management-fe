@@ -48,19 +48,15 @@ export const CreateTask = () => {
         authUser?.role === "supervisors" ? supervisors : vendors;
 
       if (isEditMode) {
-        dispatch(
-          updateAllTaskInputs(
-            generateTaskDataToEdit(vendorsOrSuprvs, qa, taskData),
-          ),
-        );
+        const dat = generateTaskDataToEdit(vendorsOrSuprvs, qa, taskData);
+        dispatch(updateAllTaskInputs(dat));
       } else {
-        dispatch(
-          updateAllTaskInputs(generateAddTaskInpMetadata(vendorsOrSuprvs, qa)),
-        );
+        const dat = generateAddTaskInpMetadata(vendorsOrSuprvs, qa);
+        dispatch(updateAllTaskInputs(dat));
       }
     };
 
-    //Always call this to reset form
+    // Always call this to reset form
     dispatch(fetchVendorsSupsQA({ callback }));
   }, []);
 
@@ -178,7 +174,8 @@ const StyledSuggestions = styled.div`
   margin-top: 32px;
 
   .venue-ctn {
-    flex: 0 0 calc((100% - 180px) / 3);
+    // flex: 0 0 calc((100% - 180px) / 3);
+    flex-basis: calc(33.33% - 20px);
   }
 
   ${mobile`

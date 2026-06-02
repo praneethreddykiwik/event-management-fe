@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ProgressChart from "./ProgressChart";
-import EventsSummaryCard from "./EventsSummaryCard";
+import EventsSummaryCard from "../../../../components/EventTaskComponents/EventsSummaryCard";
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
 import { mobile } from "../../../../theme/media-queries";
 import { NpmSparkLine } from "../../../../components/Charts/SparkLine";

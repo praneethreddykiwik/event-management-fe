@@ -100,14 +100,11 @@ const CreateEdiEvent = () => {
 
   return (
     <BlueBackHOC>
-
-
       <PageHeader left>
         <StyledHeading>
           {isEditMode ? "Edit Event" : "Create Event"}
         </StyledHeading>
       </PageHeader>
-     
 
       {/* All scroll content */}
       <EventsPageContainer>
@@ -124,11 +121,9 @@ const CreateEdiEvent = () => {
           />
         ))}
       </StyledSuggestions>
-
     </BlueBackHOC>
   );
 };
-
 
 const EventsPageContainer = styled.div`
   padding: 20px 20px 40px 20px;

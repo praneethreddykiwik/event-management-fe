@@ -7,6 +7,7 @@ import {
   editTasksApi,
   fetchTasksApi,
   deleteTasksApi,
+  fetchQaEventsAndTasksApi,
 } from "../../api/tasks.api";
 import { toast } from "react-toastify";
 import { clearTaskInputs } from "../farms/farms.slice";
@@ -37,6 +38,22 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
         err?.response?.data?.message ||
           err?.message ||
           "Failed to load Events & Tasks",
+      );
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  },
+);
+export const fetchQaEventsAndTasksAction = createAsyncThunk(
+  "tasks/fetchQaEventsAndTasksAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await fetchQaEventsAndTasksApi(payload);
+      return res.data;
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to load Events & Tasks for Qa",
       );
       return rejectWithValue(err?.response?.data || "Error");
     }

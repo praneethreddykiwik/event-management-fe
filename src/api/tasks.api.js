@@ -8,6 +8,9 @@ export const editTasksApi = (data) => httpsClient.post("/tasks/edit", data);
 export const fetchEventsAndTasksApi = (query) =>
   httpsClient.get("/users/user-events-tasks?" + query);
 
+export const fetchQaEventsAndTasksApi = (query) =>
+  httpsClient.get("/tasks/qa-events-tasks?" + query);
+
 export const declineTasksApi = (data) =>
   httpsClient.put("/tasks/decline-task", data);
 

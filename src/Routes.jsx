@@ -28,6 +28,7 @@ import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 import Venues from "./pages/Venues/Venues.page.jsx";
 import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
+import QAPage from "./pages/QA/QA.page.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -87,7 +88,9 @@ const AppRoutes = () => {
       {/* Vendor */}
       <Route path={paths.vendor} element={<Tasks />} />
       <Route path={paths.supervisor} element={<Tasks />} />
-      <Route path={paths.qa} element={<Tasks />} />
+
+      {/* QA */}
+      <Route path={paths.qa} element={<QAPage />} />
 
       <Route path={paths.venues} element={<Venues />} />
 
