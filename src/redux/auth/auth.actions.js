@@ -28,13 +28,13 @@ export const loginAction = createAsyncThunk(
   "auth/loginAction",
   async (payload, { rejectWithValue, dispatch }) => {
     const navigate = payload.navigate;
-
     try {
       const res = await loginApi(payload.reqPayload);
       await dispatch(bootstrapAuthAction({ navigate }));
       toast.success("Login successful");
       return res.data;
     } catch (err) {
+      console.log("error here :", err)
       toast.error("Login failed");
       return rejectWithValue(err?.response?.data || "Login failed");
     }

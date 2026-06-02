@@ -78,7 +78,7 @@ export const assignEventAction = createAsyncThunk(
       const res = await assignEventApi(payload.reqPayload);
       toast.success("Assign Event successfully");
       res.data.reqPayload = payload.reqPayload;
-      return res.data;
+      return res.data; 
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||

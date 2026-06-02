@@ -26,6 +26,7 @@ import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.met
 import { PageHeader } from "../../../components/Headers/PageHeader";
 import { EventsFilterCards } from "./EventsFilterCards";
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
+import { generateFetchManagersReq } from "../../../models/requests/user.req.model";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -38,10 +39,11 @@ const EventsDashboard = () => {
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
-    const payload = {
-      query: `?tenantId=${authUser?.tenantId}&role=${ROLES.eventManager}`, // checkHere
-    };
-    dispatch(fetchManagersAction(payload));
+    dispatch(
+      fetchManagersAction(
+        generateFetchManagersReq(authUser?.tenantId, ROLES.eventManager),
+      ),
+    );
     const query = `?status=${INITIAL_FILTERS.filter((fl) => fl.selected)
       .map((m) => m.value)
       .join(",")}`;

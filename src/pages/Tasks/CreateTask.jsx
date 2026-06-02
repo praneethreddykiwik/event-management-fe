@@ -29,6 +29,10 @@ import { Button } from "../../components/Buttons/Button";
 import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { tasksMetadata } from "../../constants/tasks.constants";
 import { PageHeader } from "../../components/Headers/PageHeader";
+import {
+  generateCreateTaskReqPayload,
+  generateEditTaskReq,
+} from "../../models/requests/task.req.model";
 
 export const CreateTask = () => {
   const dispatch = useDispatch();
@@ -68,24 +72,31 @@ export const CreateTask = () => {
     }
   };
 
-  const editTaskHandler = (payloadParams) => {
-    const payload = {
-      ...payloadParams,
-    };
-    payload.reqPayload.tenantUid = authUser.tenantUid;
-    payload.reqPayload.eventUid = location.state.eventUid;
-    payload.reqPayload.taskUid = location.state.taskUid;
-
-    dispatch(editTaskAction(payload));
+  const editTaskHandler = ({ navigate }) => {
+    dispatch(
+      editTaskAction({
+        navigate,
+        reqPayload: generateEditTaskReq({
+          createTaskInputs,
+          tenantUid: authUser?.tenantUid,
+          eventUid: location.state?.eventUid,
+          taskUid: location.state?.taskUid,
+        }),
+      }),
+    );
   };
 
-  const createTaskHandler = (payloadParams) => {
-    const payload = {
-      ...payloadParams,
-    };
-    payload.reqPayload.tenantUid = authUser.tenantUid;
-    payload.reqPayload.eventUid = location.state.eventUid;
-    dispatch(createTaskAction(payload));
+  const createTaskHandler = ({ navigate }) => {
+    dispatch(
+      createTaskAction({
+        navigate,
+        reqPayload: generateCreateTaskReqPayload({
+          createTaskInputs,
+          tenantUid: authUser?.tenantUid,
+          eventUid: location.state?.eventUid,
+        }),
+      }),
+    );
   };
 
   const onClickSuggestion = (selectedTask) => {

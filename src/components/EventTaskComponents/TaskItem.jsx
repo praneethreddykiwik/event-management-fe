@@ -18,9 +18,10 @@ import {
   deleteTaskAction,
   fetchTasksApiAction,
 } from "../../redux/tasks/tasks.actions";
+
 import { authSelector } from "../../redux/auth/auth.slice";
 import ManageTaskModal from "./ManageTaskModal";
-
+import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 const TaskItem = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
@@ -40,14 +41,16 @@ const TaskItem = ({ task = {}, onEdit }) => {
       const query = `eventUid=${eventUid}`;
       dispatch(fetchTasksApiAction({ query }));
     };
-    const payload = {
-      callBack,
-      reqPayload: {
-        taskUid: task.taskUid,
-        tenantUid: authUser?.tenantUid,
-      },
-    };
-    dispatch(deleteTaskAction(payload));
+
+    dispatch(
+      deleteTaskAction({
+        callBack,
+        reqPayload: generateDeleteTaskReq({
+          taskUid: task.taskUid,
+          tenantUid: authUser?.tenantUid,
+        }),
+      }),
+    );
   };
 
   return (
