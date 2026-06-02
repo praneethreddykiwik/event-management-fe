@@ -329,3 +329,23 @@ export const NAV_EVENTS = "Events";
 export const NAV_VENUES = "Venues";
 
 export const EVENT_VENUE = "Venue";
+
+export const HERO_SECTION_DATA = {
+  HERO_HEADING: "Turn Event Chaos Into Seamless Success",
+
+  HERO_SUBHEADING:
+    "The Complete Event Management Platform Trusted by Industry Leaders — From Planning to Execution to Analytics, HELM Handles It All",
+
+  HERO_TAGLINE:
+    "Amateurs panic. Professionals go for HELM.",
+
+  HERO_DESCRIPTION:
+    "Whether you're managing your first conference or your hundredth festival, HELM is the all-in-one event management platform designed to eliminate chaos, reduce costs, and maximize your event's success. No more juggling spreadsheets, scattered emails, or disconnected tools. One powerful platform. Complete control. Professional results.",
+
+  HERO_PRIMARY_BTN:
+    "Start Your Free Trial",
+
+  HERO_SECONDARY_BTN:
+    "Watch Product Demo",
+};
+
