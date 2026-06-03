@@ -30,26 +30,32 @@ import Venues from "./pages/Venues/Venues.page.jsx";
 import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 import QAPage from "./pages/QA/QA.page.jsx";
 import AboutUs from "./pages/AboutUs/AboutPage.jsx";
+import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
 
   const unAuthenticatedRoutes = (
     <>
-      <Route path="/" element={<Home />} />
+      <Route path={paths.home} element={<Home />} />
+
       <Route path={paths.login} element={<Login />} />
       <Route path={paths.registration} element={<RegistrationPage />} />
-      <Route path="/get-in-touch" element={<GetInTouch />} />
+
+      <Route path={paths.getInTouch} element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path="*" element={<Login />} />
       <Route path={paths.aboutUs} element={<AboutUs />} />
+
+      <Route path="*" element={<Home />} />
     </>
   );
 
   const authenticatedRoutes = (
     <>
       {/* base */}
-      <Route path="/" element={<Home />} />
+      <Route path={paths.home} element={<Home />} />
+
       <Route path={paths.registration} element={<RegistrationPage />} />
       <Route path="/Gateway" element={<GatewayPage />} />
       <Route path="/get-in-touch" element={<GetInTouch />} />
@@ -82,7 +88,14 @@ const AppRoutes = () => {
       <Route path={paths.editEvent} element={<CreateEdiEvent />} />
 
       {/* Tasks */}
+      {/* <Route path="/tasks" element={<TasksLayout />}>
+        <Route index element={<Tasks />} />
+        <Route path="create" element={<CreateTask />} />
+        <Route path=":taskUid" element={<TaskDetails />} />
+        <Route path=":taskUid/edit" element={<CreateTask />} />
+      </Route> */}
       <Route path={paths.tasks} element={<Tasks />} />
+      <Route path={`${paths.tasks}/:taskUid`} element={<TaskDetails />} />
       <Route path={paths.createTask} element={<CreateTask />} />
 
       {/* Customer */}
@@ -106,6 +119,20 @@ const AppRoutes = () => {
           </RBACRoute>
         }
       />
+
+      <Route path={paths.getInTouch} element={<GetInTouch />} />
+      <Route path={paths.gateway} element={<GatewayPage />} />
+      <Route path={paths.paymentSuccess} element={<PaymentSuccess />} />
+      <Route path={paths.controlPage} element={<Controlpage />} />
+      <Route path={paths.profile} element={<Profile />} />
+      <Route path={paths.samplePage} element={<SamplePage />} />
+      <Route path={paths.subscriptions} element={<Subscriptions />} />
+      <Route path={paths.playerCard} element={<PlayerCard />} />
+      <Route path={paths.marketPlace} element={<MarketPlace />} />
+      <Route path={paths.twoFactorAuth} element={<TwoFactorAuthPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettings />} />
+      <Route path={paths.newsFeed} element={<NewEvent />} />
 
       <Route path="*" element={<Home />} />
     </>

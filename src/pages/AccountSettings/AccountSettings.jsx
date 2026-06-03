@@ -3,7 +3,6 @@ import styled from "styled-components";
 // import { StyledContainer, StyledContent } from '../../components/Styled/AccountSettings.styled'
 import AccountSettingsLeftNav from "./AccountSettingsLeftNav";
 import AccountSettingsRightContent from "./AccountSettingsRightContent";
-import Footer from "../../components/Footer/Footer";
 
 const AccountSettings = () => {
   return (

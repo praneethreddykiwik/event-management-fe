@@ -8,9 +8,25 @@ import {
   fetchTasksApi,
   deleteTasksApi,
   fetchQaEventsAndTasksApi,
+  fetchTaskApi,
 } from "../../api/tasks.api";
 import { toast } from "react-toastify";
 import { clearTaskInputs } from "../farms/farms.slice";
+
+export const fetchTaskAction = createAsyncThunk(
+  "tasks/fetchTaskAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await fetchTaskApi(payload.query);
+      return res.data.details[0] || {};
+    } catch (err) {
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to load Tasks",
+      );
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  },
+);
 
 export const fetchTasksApiAction = createAsyncThunk(
   "tasks/fetchTasksApiAction",

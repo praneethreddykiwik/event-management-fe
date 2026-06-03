@@ -13,10 +13,9 @@ import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { paths } from "../../constants/paths";
 import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
-import { PageHeader } from "../Headers/PageHeader";
 import { getStatusColor } from "../../utils/utils";
 import FilterCard from "../Cards/FilterCard";
-import TaskItem from "./TaskItem";
+import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 
 const EventsAndTasks = ({ isQa }) => {
@@ -58,9 +57,12 @@ const EventsAndTasks = ({ isQa }) => {
         taskData: {
           title: task.taskTitle,
           description: task.taskDescription,
-          priority: task.priority,
+          priority: task.taskPriority,
           dueAt: task.taskDueAt,
           assignedToUid: task.taskAssignedToUid,
+          status: task.taskStatus,
+          qaAssignedTo: task.qaAssignedTo,
+          qaAssignedToUid: task.qaAssignedToUid,
         },
       },
     });
@@ -83,7 +85,7 @@ const EventsAndTasks = ({ isQa }) => {
         <EventWrapsTasks event={event} onAddTask={onAddTask}>
           {event.tasks?.length ? (
             event.tasks.map((task) => (
-              <TaskItem
+              <TaskRow
                 task={mapTaskForUI(task, event)}
                 onEdit={(tsk) => onEdit(tsk, event)}
               />

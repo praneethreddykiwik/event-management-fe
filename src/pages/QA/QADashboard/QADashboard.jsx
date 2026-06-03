@@ -7,6 +7,11 @@ import { TaskProirotyChart } from "./TaskProirotyChart";
 import EventsSummaryCard from "../../../components/EventTaskComponents/EventsSummaryCard";
 import { NpmSparkLine } from "../../../components/Charts/SparkLine";
 import { usersSelector } from "../../../redux/users/users.slice";
+import {
+  conversionsChartData,
+  eventsCountChartData,
+  usersChartData,
+} from "../qa.helper";
 
 export const QADashboard = () => {
   const { eventsAndTasks, taskCountObj, kpiCounts, priorityCounts } =
@@ -30,19 +35,34 @@ export const QADashboard = () => {
         <EventsSummaryCard
           label="Users"
           value={eventManagers.length}
-          chart={<NpmSparkLine color={"#006bd6"} />}
+          chart={
+            <NpmSparkLine
+              color={"rgb(66, 84, 251)"}
+              chartData={usersChartData}
+            />
+          }
           inline
         />
         <EventsSummaryCard
           label="Conversations"
           value="3"
-          chart={<NpmSparkLine color="rgb(66, 84, 251)" />}
+          chart={
+            <NpmSparkLine
+              color="rgb(66, 84, 251)"
+              chartData={conversionsChartData}
+            />
+          }
           inline
         />
         <EventsSummaryCard
           label="Events Count"
           value={eventsAndTasks.length}
-          chart={<NpmSparkLine color="rgb(66, 84, 251)" />}
+          chart={
+            <NpmSparkLine
+              color="rgb(66, 84, 251)"
+              chartData={eventsCountChartData}
+            />
+          }
           inline
         />
         <EventsSummaryCard
