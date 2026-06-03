@@ -135,6 +135,9 @@ export const generateTaskDataToEdit = (vendorsOrSuprvs, qa, data) => {
       const opts = el.name === "assignedToUid" ? vendorsOrSuprvs : qa;
       output.options = generateUserOptions(opts);
     }
+    if (el === "qaAssignedTo") {
+      output.value = data.qaAssignedToUid;
+    }
     return output;
   });
 };

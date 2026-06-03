@@ -35,15 +35,14 @@ const AdminTaskItem = ({ event }) => {
   };
 
   const assignToMeHandler = () => {
-    dispatch(
-      assignEventAction({
-        reqPayload: generateAssignEventReq({
-          eventUid: event.uid,
-          assignedToUid: authUser?.uid,
-          userName: authUser?.username,
-        }),
+    const assigneventpayload = {
+      reqPayload: generateAssignEventReq({
+        eventUid: event.uid,
+        assignedToUid: authUser?.uid,
+        userName: authUser?.username,
       }),
-    );
+    };
+    dispatch(assignEventAction(assigneventpayload));
   };
 
   const onClickDelete = async () => {

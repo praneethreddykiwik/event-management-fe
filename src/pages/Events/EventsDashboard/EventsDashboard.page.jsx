@@ -39,11 +39,11 @@ const EventsDashboard = () => {
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
-    dispatch(
-      fetchManagersAction(
-        generateFetchManagersReq(authUser?.tenantId, ROLES.eventManager),
-      ),
+    const fetchmanagerpayload = generateFetchManagersReq(
+      authUser?.tenantId,
+      ROLES.eventManager,
     );
+    dispatch(fetchManagersAction(fetchmanagerpayload));
     const query = `?status=${INITIAL_FILTERS.filter((fl) => fl.selected)
       .map((m) => m.value)
       .join(",")}`;

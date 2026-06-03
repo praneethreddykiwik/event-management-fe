@@ -28,8 +28,7 @@ const LoginForm = () => {
   const validateFields = () => {
     let isValid = true;
     const newInputs = inputs.map((el) => {
-      console.log(el);
-      
+
       if (!el.value) {
         isValid = false;
         return { ...el, error: "Invalid input!" };
@@ -46,15 +45,14 @@ const LoginForm = () => {
     const isValid = validateFields();
     if (!isValid) return;
 
-    dispatch(
-      loginAction({
-        navigate,
-        reqPayload: generateLoginReq({
-          tenantId,
-          inputs,
-        }),
+    const loginpayload = {
+      navigate,
+      reqPayload: generateLoginReq({
+        tenantId,
+        inputs,
       }),
-    );
+    };
+    dispatch(loginAction(loginpayload));
   };
 
   const onChange = (e) => {
@@ -63,10 +61,10 @@ const LoginForm = () => {
     setInputs((prv) => {
       const dat = prv.map((el) => ({
         ...el,
-        value: name===el.name?value:el.value,
+        value: name === el.name ? value : el.value,
         error: null,
       }));
-      
+
       return dat;
     });
   };

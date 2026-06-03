@@ -1,6 +1,7 @@
 import { httpsClient } from "./client/httpsClient";
 
 export const fetchTasksApi = (query) => httpsClient.get("/tasks?" + query);
+export const fetchTaskApi = (query) => httpsClient.get("/tasks/task?" + query);
 
 export const createTasksApi = (data) => httpsClient.post("/tasks", data);
 export const editTasksApi = (data) => httpsClient.post("/tasks/edit", data);

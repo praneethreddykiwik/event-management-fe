@@ -73,30 +73,28 @@ export const CreateTask = () => {
   };
 
   const editTaskHandler = ({ navigate }) => {
-    dispatch(
-      editTaskAction({
-        navigate,
-        reqPayload: generateEditTaskReq({
-          createTaskInputs,
-          tenantUid: authUser?.tenantUid,
-          eventUid: location.state?.eventUid,
-          taskUid: location.state?.taskUid,
-        }),
+    const edittaskhandlerpayload = {
+      navigate,
+      reqPayload: generateEditTaskReq({
+        createTaskInputs,
+        tenantUid: authUser?.tenantUid,
+        eventUid: location.state?.eventUid,
+        taskUid: location.state?.taskUid,
       }),
-    );
+    };
+    dispatch(editTaskAction(edittaskhandlerpayload));
   };
 
   const createTaskHandler = ({ navigate }) => {
-    dispatch(
-      createTaskAction({
-        navigate,
-        reqPayload: generateCreateTaskReqPayload({
-          createTaskInputs,
-          tenantUid: authUser?.tenantUid,
-          eventUid: location.state?.eventUid,
-        }),
+    const createtaskpayload = {
+      navigate,
+      reqPayload: generateCreateTaskReqPayload({
+        createTaskInputs,
+        tenantUid: authUser?.tenantUid,
+        eventUid: location.state?.eventUid,
       }),
-    );
+    };
+    dispatch(createTaskAction(createtaskpayload));
   };
 
   const onClickSuggestion = (selectedTask) => {

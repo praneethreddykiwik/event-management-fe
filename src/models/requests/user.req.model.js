@@ -28,4 +28,3 @@ export const generateFetchManagersReq = (tenantId, role) => {
     query: `?tenantId=${tenantId}&role=${role}`,
   };
 };
-

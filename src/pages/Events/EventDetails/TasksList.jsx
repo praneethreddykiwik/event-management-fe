@@ -7,7 +7,7 @@ import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 import { eventsSelector } from "../../../redux/events/events.slice";
-import TaskItem from "../../../components/EventTaskComponents/TaskItem";
+import TaskRow from "../../../components/EventTaskComponents/TaskRow";
 
 export const TasksList = () => {
   const navigate = useNavigateWithQuery();
@@ -56,7 +56,7 @@ export const TasksList = () => {
       {/* eventName */}
       {tasksByEvent.map((task) => (
         // need to refactor the location of task item component
-        <TaskItem
+        <TaskRow
           task={mapTaskForUI(task, event)}
           onEdit={(tsk) => onEdit(tsk)}
         />

@@ -1,5 +1,4 @@
 export const generateLoginReq = ({ tenantId, inputs }) => {
-  console.log(inputs);
   
   const reqPayload = inputs.reduce((acc, cur) => {
     return {

@@ -1,19 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import Badge, { Badge2 } from "../../components/Badge/Badge.component";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Badge, { Badge2 } from "../Badge/Badge.component";
 import {
   StyledParagraphBold,
   StyledParagraphSmall,
-} from "../../components/Styled/Typography.styled";
+} from "../Styled/Typography.styled";
 import * as enums from "../../myEnum";
 import { Section } from "../../HOC/SectionsHOC";
-import { Button } from "../../components/Buttons/Button";
-import { Icon } from "../../components/Icons/Icons";
+import { Button } from "../Buttons/Button";
+import { Icon } from "../Icons/Icons";
 import { mobile } from "../../theme/media-queries";
 import { formatDateTime } from "../../utils/utils";
-import { InlineButton } from "../../components/Buttons/InlineButton/InlineButton";
+import { InlineButton } from "../Buttons/InlineButton/InlineButton";
 import {
   deleteTaskAction,
   fetchTasksApiAction,
@@ -24,13 +24,12 @@ import ManageTaskModal from "./ManageTaskModal";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 const TaskItem = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { authUser } = useSelector(authSelector);
 
-  const [showManageEvent, setShowManageEvent] = useState(false);
-
-  const onOpen = () => {
-    setShowManageEvent(true);
+  const viewDetailsHandler = () => {
+    navigate(`${paths.tasks}/${task.taskUid}`);
   };
 
   const onDelete = () => {
@@ -41,20 +40,18 @@ const TaskItem = ({ task = {}, onEdit }) => {
       const query = `eventUid=${eventUid}`;
       dispatch(fetchTasksApiAction({ query }));
     };
-
-    dispatch(
-      deleteTaskAction({
-        callBack,
-        reqPayload: generateDeleteTaskReq({
-          taskUid: task.taskUid,
-          tenantUid: authUser?.tenantUid,
-        }),
+    const ondeletepayload = {
+      callBack,
+      reqPayload: generateDeleteTaskReq({
+        taskUid: task.taskUid,
+        tenantUid: authUser?.tenantUid,
       }),
-    );
+    };
+    dispatch(deleteTaskAction(ondeletepayload));
   };
 
   return (
-    <TaskRow>
+    <Ctn>
       <Left>
         <StatusIcon type={task.type} className="material-symbols-outlined">
           {task.taskIcon}
@@ -92,24 +89,19 @@ const TaskItem = ({ task = {}, onEdit }) => {
             Delete Task
           </InlineButton>
         </StyledFlex2>
-        <Button type="no-border" onClick={() => onOpen()} small>
+        <Button type="no-border" onClick={viewDetailsHandler} small>
           Details
         </Button>
-        {showManageEvent && (
-          <ManageTaskModal
-            onClose={() => setShowManageEvent(false)}
-            task={task}
-          />
-        )}
+
         <Button onClick={() => onEdit(task)} icon="edit" type="no-border" small>
           Edit
         </Button>
       </BadgeButton>
-    </TaskRow>
+    </Ctn>
   );
 };
 
-const TaskRow = styled(Section)`
+const Ctn = styled(Section)`
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
@@ -167,4 +159,4 @@ const StyledFlex2 = styled.div`
   align-items: center;
 `;
 
-export default TaskItem;
+export default TaskRow;

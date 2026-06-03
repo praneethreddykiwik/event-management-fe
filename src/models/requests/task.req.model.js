@@ -22,7 +22,7 @@ export const generateCreateTaskReq = (createTaskInputs) => {
   }, {});
 };
 
-export const generateCreateTaskReqPayload= ({
+export const generateCreateTaskReqPayload = ({
   createTaskInputs,
   tenantUid,
   eventUid,
