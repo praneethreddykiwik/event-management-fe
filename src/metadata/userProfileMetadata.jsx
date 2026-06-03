@@ -17,6 +17,11 @@ export const userProfileMeta = [
     icon: "bookmark",
   },
   {
+    label: "About Us",
+    icon: "info",
+    navigate: paths.aboutUs,
+  },
+  {
     label: "Get In Touch",
     icon: "help",
     navigate: paths.getInTouch,

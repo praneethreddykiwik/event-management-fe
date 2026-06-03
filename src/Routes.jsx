@@ -29,6 +29,7 @@ import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 import Venues from "./pages/Venues/Venues.page.jsx";
 import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 import QAPage from "./pages/QA/QA.page.jsx";
+import AboutUs from "./pages/AboutUs/AboutPage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -41,6 +42,7 @@ const AppRoutes = () => {
       <Route path="/get-in-touch" element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path="*" element={<Login />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
     </>
   );
 
@@ -62,6 +64,7 @@ const AppRoutes = () => {
       <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
       <Route path={paths.accountSettings} element={<AccountSettings />} />
       <Route path={paths.newsFeed} element={<NewEvent />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
 
       {/* Admin */}
       <Route
@@ -93,6 +96,7 @@ const AppRoutes = () => {
       <Route path={paths.qa} element={<QAPage />} />
 
       <Route path={paths.venues} element={<Venues />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
 
       <Route
         path={paths.userManagement}
