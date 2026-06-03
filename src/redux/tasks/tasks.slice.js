@@ -13,6 +13,10 @@ const initialState = {
   tasksByEventsLoading: false,
   tasksByEventsError: null,
 
+  task: {},
+  taskLoading: false,
+  taskError: null,
+
   declineTaskLoading: false,
   declineTask: false,
   declineTaskError: false,
@@ -50,12 +54,26 @@ const tasksSlice = createSlice({
         state.tasksByEventsError = "Error";
       });
     builder
+      .addCase(actions.fetchTaskAction.pending, (state) => {
+        state.taskLoading = true;
+      })
+      .addCase(actions.fetchTaskAction.fulfilled, (state, action) => {
+        state.task = action.payload || {};
+        state.taskLoading = false;
+        state.taskError = null;
+      })
+      .addCase(actions.fetchTaskAction.rejected, (state, action) => {
+        state.task = {};
+        state.taskLoading = false;
+        state.taskError = action.payload || "Failed to fetch task details";
+      });
+    builder
       .addCase(actions.fetchEventsAndTasksAction.pending, (state) => {
         state.tasksLoading = true;
       })
       .addCase(actions.fetchEventsAndTasksAction.fulfilled, (state, action) => {
         const res = action.payload?.details || {};
-        state.tasks = res.data;
+        state.eventsAndTasks = res.data;
         state.taskCountObj = res.countObj;
         state.tasksLoading = false;
         state.tasksError = null;

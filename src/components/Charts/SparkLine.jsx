@@ -35,20 +35,20 @@ const sparkLineChartData = [
   },
 ];
 
-const downloads = sparkLineChartData.map((item) => item.downloads);
-const weeks = sparkLineChartData.map((item) => `${item.start} to ${item.end}`);
+// const downloads = sparkLineChartData.map((item) => item.downloads);
+// const weeks = sparkLineChartData.map((item) => `${item.start} to ${item.end}`);
 
 const settings = {
-  data: downloads,
-  baseline: "min",
-  margin: { bottom: 0, top: 5, left: 2, right: 0 },
-  xAxis: { id: "week-axis", data: weeks },
+  // data: downloads,
+  // xAxis: { id: "week-axis", data: weeks },
   yAxis: {
     domainLimit: (_, maxValue) => ({
       min: -maxValue / 6,
       max: maxValue,
     }),
   },
+  baseline: "min",
+  margin: { bottom: 0, top: 5, left: 2, right: 0 },
   sx: {
     [`& .${areaElementClasses.root}`]: { opacity: 0.2 },
     [`& .${lineElementClasses.root}`]: { strokeWidth: 3 },
@@ -65,26 +65,26 @@ const settings = {
   axisHighlight: { x: "line" },
 };
 
-export function NpmSparkLine({ color }) {
+export function NpmSparkLine({ color, chartData = sparkLineChartData }) {
   const [weekIndex, setWeekIndex] = React.useState(null);
 
   return (
     <Box
-      onKeyDown={(event) => {
-        switch (event.key) {
-          case "ArrowLeft":
-            setWeekIndex((p) =>
-              p === null
-                ? weeks.length - 1
-                : (weeks.length + p - 1) % weeks.length,
-            );
-            break;
-          case "ArrowRight":
-            setWeekIndex((p) => (p === null ? 0 : (p + 1) % weeks.length));
-            break;
-          default:
-        }
-      }}
+      // onKeyDown={(event) => {
+      //   switch (event.key) {
+      //     case "ArrowLeft":
+      //       setWeekIndex((p) =>
+      //         p === null
+      //           ? weeks.length - 1
+      //           : (weeks.length + p - 1) % weeks.length,
+      //       );
+      //       break;
+      //     case "ArrowRight":
+      //       setWeekIndex((p) => (p === null ? 0 : (p + 1) % weeks.length));
+      //       break;
+      //     default:
+      //   }
+      // }}
       onFocus={() => {
         setWeekIndex((p) => (p === null ? 0 : p));
       }}
@@ -109,7 +109,7 @@ export function NpmSparkLine({ color }) {
             width={195}
             area
             showHighlight
-            // color="#006bd6"
+            showTooltip
             color={color || "#26C867"}
             onHighlightedAxisChange={(axisItems) => {
               setWeekIndex(axisItems[0]?.dataIndex ?? null);
@@ -119,6 +119,11 @@ export function NpmSparkLine({ color }) {
                 ? []
                 : [{ axisId: "week-axis", dataIndex: weekIndex }]
             }
+            data={chartData.map((item) => item.downloads)}
+            xAxis={{
+              id: "week-axis",
+              data: chartData.map((item) => `${item.start} to ${item.end}`),
+            }}
             {...settings}
           />
         </Stack>

@@ -10,7 +10,7 @@ import { useState } from "react";
 import * as enums from "../../../../myEnum";
 import { usersSelector } from "../../../../redux/users/users.slice";
 import { useDispatch, useSelector } from "react-redux";
-import EditUserPopup from "../../../../components/users/EditUserPopup";
+import EditUserPopup from "../../../../components/popups/EditUserPopup";
 import { Icon } from "../../../../components/Icons/Icons";
 import {
   deleteUserAction,

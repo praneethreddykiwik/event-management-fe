@@ -79,7 +79,7 @@ export const StyledParagraphGray = styled.p`
   color: ${({ theme }) => theme.colors["text-gray-color"]};
   line-height: 22.4px;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: ${textAlign};
 `;
 

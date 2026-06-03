@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import HelmLogo from "../../assets/Logos/HelmGreenLogo.png";
-import { authSelector } from "../../redux/auth/auth.slice";
+import HelmLogo from "../../../assets/Logos/HelmGreenLogo.png";
+import { authSelector } from "../../../redux/auth/auth.slice";
 import { contactDetails, footerLinks, socialLinks } from "./Footer.helper";
-import * as enums from "../../myEnum";
-import { laptop, mobile, tablet } from "../../theme/media-queries";
+import * as enums from "../../../myEnum";
+import { laptop, mobile, tablet } from "../../../theme/media-queries";
 
 const Footer = () => {
   const { authStatus } = useSelector(authSelector);
