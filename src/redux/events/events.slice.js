@@ -36,7 +36,10 @@ const eventsSlice = createSlice({
     setSelectedEventFilters(state, action) {
       state.selectedEventFilters = action.payload;
     },
-  },
+    setEventsGridView: (state, action) => {
+      state.eventGridView = action.payload;
+    },
+  }, 
   extraReducers: (builder) => {
     // Get All Events.
     builder
@@ -145,5 +148,6 @@ export const {
   updateTenantId,
   setEventDetails,
   setSelectedEventFilters,
+  setEventsGridView,
 } = eventsSlice.actions;
 export default eventsSlice.reducer;
