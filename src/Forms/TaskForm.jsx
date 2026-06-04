@@ -9,6 +9,7 @@ import { formsSelector, updateAllTaskInputs } from "../redux/farms/farms.slice";
 import { usersSelector } from "../redux/users/users.slice";
 import { generateUserOptions } from "../redux/farms/metadata/task.metadata";
 import { mobile } from "../theme/media-queries";
+import { generateCreateTaskReq } from "../models/requests/task.req.model";
 
 const TaskForm = ({ onCreateTask }) => {
   const navigate = useNavigateWithQuery();
@@ -36,16 +37,10 @@ const TaskForm = ({ onCreateTask }) => {
     const isValid = validateFields();
     if (!isValid) return;
 
-    const reqPayload = createTaskInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
-
-    const payload = {
+    await onCreateTask({
       navigate,
-      reqPayload,
-    };
-
-    await onCreateTask(payload);
+      reqPayload: generateCreateTaskReq(createTaskInputs),
+    });
   };
 
   const onChange = (e) => {

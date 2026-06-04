@@ -15,6 +15,7 @@ import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 import { Inputs } from "../../components/Inputs/Inputs";
 import { loginMetaData } from "./login.helper";
 import { useState } from "react";
+import { generateLoginReq } from "../../models/requests/auth.req.model";
 // import { desktop, laptop, tablet } from "../../theme/media-queries";
 
 const LoginForm = () => {
@@ -27,6 +28,7 @@ const LoginForm = () => {
   const validateFields = () => {
     let isValid = true;
     const newInputs = inputs.map((el) => {
+
       if (!el.value) {
         isValid = false;
         return { ...el, error: "Invalid input!" };
@@ -43,19 +45,14 @@ const LoginForm = () => {
     const isValid = validateFields();
     if (!isValid) return;
 
-    const inpObj = inputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
-
-    const payload = {
+    const loginpayload = {
       navigate,
-      reqPayload: {
+      reqPayload: generateLoginReq({
         tenantId,
-        username: inpObj.username,
-        password: inpObj.password,
-      },
+        inputs,
+      }),
     };
-    dispatch(loginAction(payload));
+    dispatch(loginAction(loginpayload));
   };
 
   const onChange = (e) => {

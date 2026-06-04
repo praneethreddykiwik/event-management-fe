@@ -22,6 +22,7 @@ import { deleteEventDispatch } from "../../../redux/events/events.actions";
 import { InlineButton } from "../../../components/Buttons/InlineButton/InlineButton";
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
+import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 
 const AdminTaskItem = ({ event }) => {
   const navigate = useNavigateWithQuery();
@@ -34,12 +35,14 @@ const AdminTaskItem = ({ event }) => {
   };
 
   const assignToMeHandler = () => {
-    const reqPayload = {
-      eventUid: event.uid,
-      assignedToUid: authUser?.uid,
-      userName: authUser?.username,
+    const assigneventpayload = {
+      reqPayload: generateAssignEventReq({
+        eventUid: event.uid,
+        assignedToUid: authUser?.uid,
+        userName: authUser?.username,
+      }),
     };
-    dispatch(assignEventAction({ reqPayload }));
+    dispatch(assignEventAction(assigneventpayload));
   };
 
   const onClickDelete = async () => {

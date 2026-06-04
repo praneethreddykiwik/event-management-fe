@@ -11,6 +11,7 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
+import { generateCreateUserReq } from "../models/requests/user.req.model";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -32,7 +33,9 @@ const RegistrationForm = ({ onCreateUser }) => {
 
     // check password match if both fields exist
     const pwdIndex = newInputs.findIndex((i) => i.name === "password");
-    const confirmIndex = newInputs.findIndex((i) => i.name === "confirmPassword");
+    const confirmIndex = newInputs.findIndex(
+      (i) => i.name === "confirmPassword",
+    );
     if (pwdIndex !== -1 && confirmIndex !== -1) {
       const pwd = newInputs[pwdIndex].value || "";
       const cpwd = newInputs[confirmIndex].value || "";
@@ -52,23 +55,17 @@ const RegistrationForm = ({ onCreateUser }) => {
   const onSubmit = async () => {
     const isValid = validateFields();
     if (!isValid) return;
-
-    const reqPayload = createUserInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
-
-    const payload = {
-      navigate,
-      reqPayload: { ...reqPayload, tenantId },
-    };
-
     try {
-      await onCreateUser(payload);
+      const onsubmitpayload = {
+        navigate,
+        reqPayload: generateCreateUserReq(createUserInputs, tenantId),
+      };
+      await onCreateUser(onsubmitpayload);
       // dispatch(updateAllRegInputs(registrationMetaData));
     } catch (error) {
       console.error(error);
     }
-  };
+  }; 
 
   const onChange = (e) => {
     const { name, value } = e.target;
