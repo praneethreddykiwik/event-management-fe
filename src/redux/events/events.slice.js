@@ -21,6 +21,7 @@ const initialState = {
   eventDetailsLoading: false,
   eventDetailsError: null,
   eventDetails: {}, // for event-details page
+  eventGridView: false,
 };
 
 const eventsSlice = createSlice({
@@ -39,7 +40,7 @@ const eventsSlice = createSlice({
     setEventsGridView: (state, action) => {
       state.eventGridView = action.payload;
     },
-  }, 
+  },
   extraReducers: (builder) => {
     // Get All Events.
     builder
