@@ -40,14 +40,14 @@ const TaskItem = ({ task = {}, onEdit }) => {
       const query = `eventUid=${eventUid}`;
       dispatch(fetchTasksApiAction({ query }));
     };
-    const ondeletepayload = {
+    const onDeletePayload = {
       callBack,
       reqPayload: generateDeleteTaskReq({
         taskUid: task.taskUid,
         tenantUid: authUser?.tenantUid,
       }),
     };
-    dispatch(deleteTaskAction(ondeletepayload));
+    dispatch(deleteTaskAction(onDeletePayload));
   };
 
   return (

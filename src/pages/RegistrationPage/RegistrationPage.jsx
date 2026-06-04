@@ -25,7 +25,6 @@ const RegistrationPage = () => {
   }, []);
 
   const onCreateUser = async (payload) => {
-    console.log(payload);
     payload.navPath = paths.login;
     dispatch(registrationAction(payload));
   };

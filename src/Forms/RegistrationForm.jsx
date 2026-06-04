@@ -56,16 +56,16 @@ const RegistrationForm = ({ onCreateUser }) => {
     const isValid = validateFields();
     if (!isValid) return;
     try {
-      const onsubmitpayload = {
+      const onSubmitPayload = {
         navigate,
         reqPayload: generateCreateUserReq(createUserInputs, tenantId),
       };
-      await onCreateUser(onsubmitpayload);
+      await onCreateUser(onSubmitPayload);
       // dispatch(updateAllRegInputs(registrationMetaData));
     } catch (error) {
       console.error(error);
     }
-  }; 
+  };
 
   const onChange = (e) => {
     const { name, value } = e.target;

@@ -37,10 +37,12 @@ const TaskForm = ({ onCreateTask }) => {
     const isValid = validateFields();
     if (!isValid) return;
 
-    await onCreateTask({
+    const onCreatePayload = {
       navigate,
       reqPayload: generateCreateTaskReq(createTaskInputs),
-    });
+    };
+
+    await onCreateTask(onCreatePayload);
   };
 
   const onChange = (e) => {
