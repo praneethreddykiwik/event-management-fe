@@ -22,6 +22,11 @@ export const userProfileMeta = [
     navigate: paths.aboutUs,
   },
   {
+    label: "Why HELM",
+    icon: "star",
+    navigate: paths.whyChoose,
+  },
+  {
     label: "Get In Touch",
     icon: "help",
     navigate: paths.getInTouch,

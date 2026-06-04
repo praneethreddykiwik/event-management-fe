@@ -31,6 +31,7 @@ import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 import QAPage from "./pages/QA/QA.page.jsx";
 import AboutUs from "./pages/AboutUs/AboutPage.jsx";
 import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.jsx";
+import WhyChoose from "./pages/WhyChooseHelm/WhyChooseHelmPage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -44,8 +45,8 @@ const AppRoutes = () => {
 
       <Route path={paths.getInTouch} element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
-      <Route path="*" element={<Login />} />
       <Route path={paths.aboutUs} element={<AboutUs />} />
+      <Route path={paths.whyChoose} element={<WhyChoose />} />
 
       <Route path="*" element={<Home />} />
     </>
@@ -71,6 +72,7 @@ const AppRoutes = () => {
       <Route path={paths.accountSettings} element={<AccountSettings />} />
       <Route path={paths.newsFeed} element={<NewEvent />} />
       <Route path={paths.aboutUs} element={<AboutUs />} />
+      <Route path={paths.whyChoose} element={<WhyChoose />} />
 
       {/* Admin */}
       <Route
