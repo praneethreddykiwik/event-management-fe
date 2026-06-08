@@ -3,7 +3,14 @@ import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
 import { Button } from "../Button";
 
-export const InlineButton = ({ onClick, small, children, type, icon }) => {
+export const InlineButton = ({
+  onClick,
+  small,
+  children,
+  type,
+  icon,
+  showGridView,
+}) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -52,7 +59,7 @@ export const InlineButton = ({ onClick, small, children, type, icon }) => {
         <Icon variant={icon} sx={{ color: iconColor }} />
       </IconBtn>
 
-      <SlideArea $open={open}>
+      <SlideArea $open={open} $gridView={showGridView}>
         <Button
           onClick={onClickMainButton}
           small={small}
@@ -83,6 +90,11 @@ const SlideArea = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
+  height: ${(props) => (props.$gridView ? "20px" : "")};
+  border-radius: 50px;
+  span {
+    font-size: ${(props) => (props.$gridView ? "12px" : "")};
+  }
 
   max-width: ${({ $open }) => ($open ? "200px" : "0px")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
