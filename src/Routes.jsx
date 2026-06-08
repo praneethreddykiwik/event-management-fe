@@ -32,6 +32,7 @@ import QAPage from "./pages/QA/QA.page.jsx";
 import AboutUs from "./pages/AboutUs/AboutPage.jsx";
 import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.jsx";
 import WhyChoose from "./pages/WhyChooseHelm/WhyChooseHelmPage.jsx";
+import OurServices from "./pages/OurServicesProducts/OurServicePage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -47,6 +48,7 @@ const AppRoutes = () => {
       <Route path={paths.marketPlace} element={<MarketPlace />} />
       <Route path={paths.aboutUs} element={<AboutUs />} />
       <Route path={paths.whyChoose} element={<WhyChoose />} />
+      <Route path={paths.ourServices} element={<OurServices />} />
 
       <Route path="*" element={<Home />} />
     </>
@@ -73,6 +75,7 @@ const AppRoutes = () => {
       <Route path={paths.newsFeed} element={<NewEvent />} />
       <Route path={paths.aboutUs} element={<AboutUs />} />
       <Route path={paths.whyChoose} element={<WhyChoose />} />
+      <Route path={paths.ourServices} element={<OurServices />} />
 
       {/* Admin */}
       <Route
