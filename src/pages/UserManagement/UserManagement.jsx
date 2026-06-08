@@ -20,18 +20,21 @@ import {
 } from "../../redux/users/users.actions";
 import { updateAllRegInputs } from "../../redux/farms/farms.slice";
 import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
-import { usersSelector, usersFilterAction } from "../../redux/users/users.slice";
+import {
+  setUserMgtGridView,
+  usersSelector,
+} from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
-import { PageHeader } from "../../components/Headers/PageHeader";
+import { Icon } from "../../components/Icons/Icons";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { allUsers, selectedRoleFilters} = useSelector(usersSelector);
-  console.log("Manideep", allUsers);
+  const { allUsers, selectedRoleFilters, userMgtGridView } =
+    useSelector(usersSelector);
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -75,32 +78,36 @@ const UserManagement = () => {
   return (
     <BlueBackHOC>
       <PageWrapper>
-        <PageHeader>
-          <HeaderContent>
-            <StyledHeading>User Management</StyledHeading>
-
-            <StyledButtonContainer>
-              <StyledButton onClick={() => navigate("/registration")}>
-                Create User
-              </StyledButton>
-            </StyledButtonContainer>
-          </HeaderContent>
-        </PageHeader>
-
+        <StyledHeading left>User Management</StyledHeading>
+        <StyledButtonContainer right>
+          <StyledButton onClick={() => navigate("/registration")}>
+            Create User{" "}
+          </StyledButton>
+        </StyledButtonContainer>
         <UserFilterCards />
 
-        {filteredUsers?.length > 0 &&
+        <AlignBox onClick={viewClickHandler}>
+          <Icon selected={!userMgtGridView}>view_list</Icon>
+          <Icon selected={userMgtGridView}>grid_view</Icon>
+        </AlignBox>
+
+        <UsersCtn $gridView={userMgtGridView}>
+          {filteredUsers?.length ? (
             filteredUsers.map((user) => (
-            <UserManagementItem
-              key={user.uid}
-              data={user}
-              onEdit={() => onEdit(user)}
-              onDelete={() => {
-                setSelectedUser(user);
-                setShowDeleteConfirm(true);
-              }}
-            />
-          ))}
+              <UserManagementItem
+                key={user.uid}
+                data={user}
+                onEdit={() => onEdit(user)}
+                onDelete={() => {
+                  setSelectedUser(user);
+                  setShowDeleteConfirm(true);
+                }}
+              />
+            ))
+          ) : (
+            <StyledParagraphBold>No users available!</StyledParagraphBold>
+          )}
+        </UsersCtn>
 
         {/* EDIT MODAL */}
         {openEdit && (
@@ -144,6 +151,7 @@ const UserManagement = () => {
 
 export default UserManagement;
 
+// ================= STYLES =================
 
 const PageWrapper = styled.div`
   padding: 32px 40px;
@@ -190,7 +198,7 @@ const HeaderContent = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /*  KEY FIX */
 `;
 
 const DeletePopup = styled.div`
@@ -199,8 +207,18 @@ const DeletePopup = styled.div`
   gap: 16px;
   padding: 24px 0;
 `;
+
 const StyledButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: -70px;
+
+  ${mobile`
+    margin-top: 0;
+    justify-content: center;
+  `}
 `;
+
 const StyledButton = styled(StyledBaseButton)`
   width: auto;
   color: ${({ theme }) => theme.colors.white};
