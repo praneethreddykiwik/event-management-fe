@@ -67,72 +67,74 @@ const AdminTaskItem = ({ event, gridView }) => {
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
   return (
-    <>
-      <StyledCard showGridView={gridView}>
-        <Left>
-          <StatusIcon type={event.type} className="material-symbols-outlined">
-            {event.statusIcon}
-          </StatusIcon>
+    <StyledCard showGridView={gridView}>
+      <Left>
+        <StatusIcon type={event.type} className="material-symbols-outlined">
+          {event.statusIcon}
+        </StatusIcon>
 
-          <Taskcard>
-            <EventName>{event.eventName}</EventName>
-            <StyledAmdinContent>
-              Scheduled At: {formatDateTime(event.scheduledAt)}
-            </StyledAmdinContent>
+        <Taskcard>
+          <EventName>{event.eventName}</EventName>
+          <StyledAmdinContent>
+            Scheduled At: {formatDateTime(event.scheduledAt)}
+          </StyledAmdinContent>
+          <StyledParagraphSmall left>
+            {enums.EVENT_VENUE}:{" "}
+            {event.venue?.charAt(0).toUpperCase() + event.venue?.slice(1)}
+          </StyledParagraphSmall>
+          <StyledAmdinContents showGridView={gridView}>
             <StyledParagraphSmall left>
-              {enums.EVENT_VENUE}:{" "}
-              {event.venue?.charAt(0).toUpperCase() + event.venue?.slice(1)}
-            </StyledParagraphSmall>{" "}
-            <StyledAmdinContents>
               {enums.EVENT_MANAGER}: <StyledBold>{event.userName}</StyledBold>
-              <StyledAssignBtnAdminsUp>
-                {isAssignedToMe ? (
-                  <StyledT>Assigned To Me</StyledT>
-                ) : (
-                  <StyledBtn type="primary" onClick={assignToMeHandler}>
-                    Assign to me
-                  </StyledBtn>
-                )}
-              </StyledAssignBtnAdminsUp>
-            </StyledAmdinContents>{" "}
-          </Taskcard>
-        </Left>
+            </StyledParagraphSmall>
 
-        <BadgeButton showGridView={gridView}>
-          <StyledFlex2 showGridView={gridView}>
-            <statusbox>
-              <Badge type={event.type}>{event.statusLabel}</Badge>
-            </statusbox>
-            <StyledFlex2>
-              <Icon variant="chat" />
+            <StyledAssignBtnAdminsUp showGridView={gridView}>
+              {isAssignedToMe ? (
+                <StyledT>Assigned To Me</StyledT>
+              ) : (
+                <StyledBtn type="primary" onClick={assignToMeHandler}>
+                  Assign to me
+                </StyledBtn>
+              )}
+            </StyledAssignBtnAdminsUp>
+          </StyledAmdinContents>
+        </Taskcard>
+      </Left>
 
-              <Icon variant="alternate_email" />
-              <InlineButton
-                type="delete"
-                icon="delete"
-                onClick={onClickDelete}
-                showGridView={gridView}
-              >
-                Delete Event
-              </InlineButton>
-            </StyledFlex2>
+      <BadgeButton showGridView={gridView}>
+        <StyledFlex2 showGridView={gridView}>
+          <StyledFlex2>
+            <Badge type={event.type}>{event.statusLabel}</Badge>
           </StyledFlex2>
-          <Button onClick={onClickViewDetails} type="secondary">
-            View Details
-          </Button>
-        </BadgeButton>
-        {!gridView && (
-          <GaugeWrapper>
-            <GaugeChart
-              value={valueData}
-              fill={
-                valueData <= 30 ? "red" : valueData <= 70 ? "orange" : "green"
-              }
-            />
-          </GaugeWrapper>
-        )}
-      </StyledCard>
-    </>
+          <StyledFlex2>
+            <Icon variant="chat" />
+
+            <Icon variant="alternate_email" />
+            <InlineButton
+              type="delete"
+              icon="delete"
+              onClick={onClickDelete}
+              showGridView={gridView}
+            >
+              Delete Event
+            </InlineButton>
+          </StyledFlex2>
+        </StyledFlex2>
+        <Button onClick={onClickViewDetails} type="secondary">
+          View Details
+        </Button>
+      </BadgeButton>
+
+      {!gridView && (
+        <GaugeWrapper>
+          <GaugeChart
+            value={valueData}
+            fill={
+              valueData <= 30 ? "red" : valueData <= 70 ? "orange" : "green"
+            }
+          />
+        </GaugeWrapper>
+      )}
+    </StyledCard>
   );
 };
 
@@ -140,7 +142,7 @@ const StyledAssignBtnAdminsUp = styled.div`
   display: flex;
   ${mobile`    
    display:none;
-  `}
+  `};
 `;
 
 const StyledAmdinContent = styled(StyledParagraphSmall)`
@@ -151,7 +153,9 @@ const StyledAmdinContent = styled(StyledParagraphSmall)`
 
 const StyledAmdinContents = styled(StyledParagraphSmall)`
   display: flex;
-  align-items: center;
+  flex-direction: ${(props) => (props.showGridView ? "column" : "")};
+  align-items: start;
+  gap: 8px;
   ${mobile`
     font-size:12px;
   `}
@@ -251,8 +255,6 @@ const StyledBtn = styled(Button)`
   height: 20px;
   padding: 0px 20px;
   color: white;
-  margin-left: 8px;
-
   span {
     font-size: 12px;
   }

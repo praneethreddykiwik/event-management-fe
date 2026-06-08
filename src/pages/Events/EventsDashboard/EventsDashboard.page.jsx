@@ -67,7 +67,7 @@ const EventsDashboard = () => {
 
   return (
     <BlueBackHOC>
-       <AdminDashboardContainer> 
+       {/* <AdminDashboardContainer>  */}
       <PageHeader isTitle>Events</PageHeader>
 
       <EventCards events={events} eventManagers={eventManagers} />
@@ -100,7 +100,6 @@ const EventsDashboard = () => {
             <AlignBox onClick={viewClickHandler}>
               <Icon selected={!eventGridView}>view_list</Icon>
               <Icon selected={eventGridView}>grid_view</Icon>
-              {/* {console.log(eventGridView)}; */}
             </AlignBox>
           </Tasktxt2>
 
@@ -119,14 +118,14 @@ const EventsDashboard = () => {
             )}
           </TaskList>
         </TaskMainCard>
-      </AdminDashboardContainer>
+      {/* </AdminDashboardContainer> */}
     </BlueBackHOC> 
   );
 };
 
-const AdminDashboardContainer = styled.div`
-  padding: 0 20px 20px 20px;
-`;
+// const AdminDashboardContainer = styled.div`
+//   padding: 0 20px 20px 20px;
+// `;
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
