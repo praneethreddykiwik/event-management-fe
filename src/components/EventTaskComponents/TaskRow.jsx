@@ -22,7 +22,8 @@ import {
 import { authSelector } from "../../redux/auth/auth.slice";
 import ManageTaskModal from "./ManageTaskModal";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
-const TaskItem = ({ task = {}, onEdit }) => {
+import { paths } from "../../constants/paths";
+const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -93,9 +94,16 @@ const TaskItem = ({ task = {}, onEdit }) => {
           Details
         </Button>
 
-        <Button onClick={() => onEdit(task)} icon="edit" type="no-border" small>
-          Edit
-        </Button>
+        {task.taskStatus !== "deleted" && (
+          <Button
+            onClick={() => onEdit(task)}
+            icon="edit"
+            type="no-border"
+            small
+          >
+            Edit
+          </Button>
+        )}
       </BadgeButton>
     </Ctn>
   );
@@ -159,4 +167,4 @@ const StyledFlex2 = styled.div`
   align-items: center;
 `;
 
-// export default TaskRow;
+export default TaskRow;

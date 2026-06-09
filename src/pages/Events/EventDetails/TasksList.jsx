@@ -7,7 +7,7 @@ import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 import { eventsSelector } from "../../../redux/events/events.slice";
-// import TaskRow from "../../../components/EventTaskComponents/TaskRow";
+import TaskRow from "../../../components/EventTaskComponents/TaskRow";
 
 export const TasksList = () => {
   const navigate = useNavigateWithQuery();
