@@ -23,6 +23,8 @@ import { authSelector } from "../../redux/auth/auth.slice";
 import ManageTaskModal from "./ManageTaskModal";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
+import { toast } from "react-toastify";
+
 const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,6 +51,15 @@ const TaskRow = ({ task = {}, onEdit }) => {
       }),
     };
     dispatch(deleteTaskAction(onDeletePayload));
+  };
+
+  const handleEdit = () => {
+    if (task.taskStatus === "deleted") {
+      toast.error("This task is deleted. So you can't edit this task.");
+      return;
+    }
+
+    onEdit(task);
   };
 
   return (
@@ -94,16 +105,9 @@ const TaskRow = ({ task = {}, onEdit }) => {
           Details
         </Button>
 
-        {task.taskStatus !== "deleted" && (
-          <Button
-            onClick={() => onEdit(task)}
-            icon="edit"
-            type="no-border"
-            small
-          >
-            Edit
-          </Button>
-        )}
+        <Button onClick={handleEdit} icon="edit" type="no-border" small>
+          Edit
+        </Button>
       </BadgeButton>
     </Ctn>
   );
