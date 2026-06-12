@@ -11,6 +11,12 @@ export const AvatarC = styled.div`
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
 `;
 
 export const StyleImg = styled.img`
@@ -42,7 +48,9 @@ export const Menu = styled.div`
 
   pointer-events: ${({ open }) => (open ? "auto" : "none")};
 
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 
   z-index: 1000;
 `;
