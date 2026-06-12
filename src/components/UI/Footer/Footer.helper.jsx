@@ -1,20 +1,35 @@
 export const footerLinks = {
-  Event: [
-    { label: "Create Events", to: "/create" },
+  "Quick Links": [
+    { label: "Home", to: "/" },
+    { label: "About Us", to: "/about" },
+    { label: "Services", to: "/services" },
     { label: "Pricing", to: "/pricing" },
-    { label: "Events Mobile App", to: "/mobile-app" },
-    { label: "Virtual Event Platform", to: "/virtual" },
+    { label: "Blog", to: "/blog" },
+    { label: "Contact Us", to: "/contact-us" },
   ],
-  About: [
-    { label: "About us", to: "/about" },
-    { label: "Why us", to: "/why-us" },
-    { label: "Security", to: "/security" },
-    { label: "Testimonials", to: "/testimonials" },
+
+  "Company Info": [
+    { label: "About HELM", to: "/about" },
+    { label: "Our Team", to: "/team" },
+    { label: "Why HELM", to: "/why-helm" },
+    { label: "Careers", to: "/careers" },
+    { label: "Press", to: "/press" },
   ],
-  Help: [
-    { label: "Account", to: "/account" },
-    { label: "Support Center", to: "/support" },
-    { label: "FAQ", to: "/faq" },
+
+  Resources: [
+    { label: "Help Center", to: "/help-center" },
+    { label: "Documentation", to: "/documentation" },
+    { label: "Video Tutorials", to: "/tutorials" },
+    { label: "Integration Guides", to: "/integration-guides" },
+    { label: "API Documentation", to: "/api-docs" },
+  ],
+
+  Legal: [
+    { label: "Privacy Policy", to: "/privacy" },
+    { label: "Terms of Service", to: "/terms" },
+    { label: "Security & Compliance", to: "/security" },
+    { label: "GDPR Statement", to: "/gdpr" },
+    { label: "Contact Privacy", to: "/contact-privacy" },
   ],
 };
 
