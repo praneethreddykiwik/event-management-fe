@@ -32,6 +32,11 @@ export const userProfileMeta = [
     navigate: paths.ourServices,
   },
   {
+    label: "FAQ",
+    icon: "quiz",
+    navigate: paths.faq,
+  },
+  {
     label: "Get In Touch",
     icon: "help",
     navigate: paths.getInTouch,
