@@ -93,6 +93,11 @@ export const HeaderMenu = ({ menuOpen }) => {
           path: paths.userManagement,
           perm: "admin:panel",
         },
+        {
+          icon: "info",
+          label: "About Us",
+          path: paths.aboutUs,
+        },
       ],
     },
   };

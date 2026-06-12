@@ -24,7 +24,7 @@ const RegistrationForm = ({ onCreateUser }) => {
 
     const newInputs = createUserInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
-      if (isReq && !el.value) {
+      if (isReq && !el.value.trim()) {
         isValid = false;
         return { ...el, error: "This field is required" };
       }

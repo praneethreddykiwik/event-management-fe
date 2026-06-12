@@ -12,7 +12,10 @@ import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import { fetchEventsDispatch } from "../../../redux/events/events.actions";
-import { eventsSelector } from "../../../redux/events/events.slice";
+import {
+  eventsSelector,
+  setEventsGridView,
+} from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { mapEventForUI } from "../../../helpers/Dashboard.helper";
 import { usersSelector } from "../../../redux/users/users.slice";
@@ -27,6 +30,8 @@ import { PageHeader } from "../../../components/Headers/PageHeader";
 import { EventsFilterCards } from "./EventsFilterCards";
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { generateFetchManagersReq } from "../../../models/requests/user.req.model";
+import { Icon } from "../../../components/Icons/Icons";
+import { mobile } from "../../../theme/media-queries";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -36,6 +41,7 @@ const EventsDashboard = () => {
   const { events } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
+  const { eventGridView } = useSelector(eventsSelector);
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
@@ -55,10 +61,13 @@ const EventsDashboard = () => {
     dispatch(updateAllEventInputs(createEventInputs));
     navigate(`${paths.createEvent}`);
   };
+  const viewClickHandler = () => {
+    dispatch(setEventsGridView(!eventGridView));
+  };
 
   return (
     <BlueBackHOC>
-      {/* <AdminDashboardContainer> */}
+       {/* <AdminDashboardContainer>  */}
       <PageHeader isTitle>Events</PageHeader>
 
       <EventCards events={events} eventManagers={eventManagers} />
@@ -80,26 +89,37 @@ const EventsDashboard = () => {
       </Tasktxt>
       <EventsFilterCards />
 
-      <TaskMainCard>
-        <Tasktxt2>
-          <StyledMediumHeading left>Events</StyledMediumHeading>
-          <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
-        </Tasktxt2>
+        <TaskMainCard>
+          <Tasktxt2>
+            <Textwrapper>
+              <StyledMediumHeading left>Events</StyledMediumHeading>
+              <StyledParagraphSmall left>
+                {enums.MONITOR_EV}
+              </StyledParagraphSmall>
+            </Textwrapper>
+            <AlignBox onClick={viewClickHandler}>
+              <Icon selected={!eventGridView}>view_list</Icon>
+              <Icon selected={eventGridView}>grid_view</Icon>
+            </AlignBox>
+          </Tasktxt2>
 
-        <TaskList>
-          {!events.length ? (
-            <StyledParagraphSmallGray>
-              No Events available
-            </StyledParagraphSmallGray>
-          ) : (
-            events.map((event) => (
-              <AdminTaskItem event={mapEventForUI(event)} />
-            ))
-          )}
-        </TaskList>
-      </TaskMainCard>
+          <TaskList $gridView={eventGridView}>
+            {!events.length ? (
+              <StyledParagraphSmallGray>
+                No Events available
+              </StyledParagraphSmallGray>
+            ) : (
+              events.map((event) => (
+                <AdminTaskItem
+                  event={mapEventForUI(event)}
+                  gridView={eventGridView}
+                />
+              ))
+            )}
+          </TaskList>
+        </TaskMainCard>
       {/* </AdminDashboardContainer> */}
-    </BlueBackHOC>
+    </BlueBackHOC> 
   );
 };
 
@@ -121,13 +141,34 @@ const Tasktxt = styled.div`
 `;
 const Tasktxt2 = styled.div`
   padding: 20px 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
-
 const TaskList = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: space-evenly;
+  flex-direction: ${(props) => (props.$gridView ? "row" : "column")};
+  flex-wrap: wrap;
+  width: 100%;
+`;
+const AlignBox = styled.div`
+  display: flex;
+  justify-content: end;
+  padding-right: 8px;
+  gap: 10px;
+  cursor: pointer;
+  ${mobile`
+    display:none;
+  `}
+`;
+
+const Textwrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default EventsDashboard;

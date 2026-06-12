@@ -29,7 +29,10 @@ import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
 import Venues from "./pages/Venues/Venues.page.jsx";
 import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 import QAPage from "./pages/QA/QA.page.jsx";
-import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.jsx";
+import AboutUs from "./pages/AboutUs/AboutPage.jsx";
+import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.page.jsx";
+import WhyChoose from "./pages/WhyChooseHelm/WhyChooseHelmPage.jsx";
+import OurServices from "./pages/OurServicesProducts/OurServicePage.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -43,6 +46,9 @@ const AppRoutes = () => {
 
       <Route path={paths.getInTouch} element={<GetInTouch />} />
       <Route path={paths.marketPlace} element={<MarketPlace />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
+      <Route path={paths.whyChoose} element={<WhyChoose />} />
+      <Route path={paths.ourServices} element={<OurServices />} />
 
       <Route path="*" element={<Home />} />
     </>
@@ -54,6 +60,22 @@ const AppRoutes = () => {
       <Route path={paths.home} element={<Home />} />
 
       <Route path={paths.registration} element={<RegistrationPage />} />
+      <Route path="/Gateway" element={<GatewayPage />} />
+      <Route path="/get-in-touch" element={<GetInTouch />} />
+      <Route path="/paymentSuccess" element={<PaymentSuccess />} />
+      <Route path="/controlpage" element={<Controlpage />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/samplePage" element={<SamplePage />} />
+      <Route path="/Subscriptions" element={<Subscriptions />} />
+      <Route path="/player-card" element={<PlayerCard />} />
+      <Route path={paths.marketPlace} element={<MarketPlace />} />
+      <Route path={"/TwoFactorAuth"} element={<TwoFactorAuthPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
+      <Route path={paths.accountSettings} element={<AccountSettings />} />
+      <Route path={paths.newsFeed} element={<NewEvent />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
+      <Route path={paths.whyChoose} element={<WhyChoose />} />
+      <Route path={paths.ourServices} element={<OurServices />} />
 
       {/* Admin */}
       <Route
@@ -92,6 +114,7 @@ const AppRoutes = () => {
       <Route path={paths.qa} element={<QAPage />} />
 
       <Route path={paths.venues} element={<Venues />} />
+      <Route path={paths.aboutUs} element={<AboutUs />} />
 
       <Route
         path={paths.userManagement}

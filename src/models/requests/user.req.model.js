@@ -9,7 +9,7 @@ export const generateCreateUserReq = (createUserInputs, tenantId) => {
   const reqPayload = createUserInputs.reduce((acu, cur) => {
     return {
       ...acu,
-      [cur.name]: cur.value,
+      [cur.name]: cur.value.trim(),
     };
   }, {});
 

@@ -21,6 +21,7 @@ const initialState = {
   eventDetailsLoading: false,
   eventDetailsError: null,
   eventDetails: {}, // for event-details page
+  eventGridView: false,
 };
 
 const eventsSlice = createSlice({
@@ -35,6 +36,9 @@ const eventsSlice = createSlice({
     },
     setSelectedEventFilters(state, action) {
       state.selectedEventFilters = action.payload;
+    },
+    setEventsGridView: (state, action) => {
+      state.eventGridView = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -145,5 +149,6 @@ export const {
   updateTenantId,
   setEventDetails,
   setSelectedEventFilters,
+  setEventsGridView,
 } = eventsSlice.actions;
 export default eventsSlice.reducer;

@@ -12,6 +12,9 @@ export const paths = {
   eventsDetails: "/events/event-details",
   createEvent: "/events/create-event",
   editEvent: "/events/edit-event",
+  aboutUs: "/about-us",
+  whyChoose: "/why-choose",
+  ourServices: "/our-services",
 
   vendor: "/vendor",
   supervisor: "/supervisor",
