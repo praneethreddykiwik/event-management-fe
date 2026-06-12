@@ -30,7 +30,7 @@ import Venues from "./pages/Venues/Venues.page.jsx";
 import CreateEdiEvent from "./pages/Events/CreateEvent/CreateEdiEvent.page.jsx";
 import QAPage from "./pages/QA/QA.page.jsx";
 import AboutUs from "./pages/AboutUs/AboutPage.jsx";
-import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.jsx";
+import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.page.jsx";
 import WhyChoose from "./pages/WhyChooseHelm/WhyChooseHelmPage.jsx";
 import OurServices from "./pages/OurServicesProducts/OurServicePage.jsx";
 
