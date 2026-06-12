@@ -15,7 +15,7 @@ import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { getStatusColor } from "../../utils/utils";
 import FilterCard from "../Cards/FilterCard";
-import TaskRow from "./TaskRow";
+// import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 
 const EventsAndTasks = ({ isQa }) => {

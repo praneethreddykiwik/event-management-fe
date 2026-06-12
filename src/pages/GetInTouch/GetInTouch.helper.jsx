@@ -1,24 +1,52 @@
+import { GET_IN_TOUCH_DATA } from "../../myEnum/ContactUsText";
+
 export const cardData1 = [
   {
-    title: "Contact Support",
-    text: "Our support team typically responds within a few minutes.",
+    title: GET_IN_TOUCH_DATA.SALES_INQUIRY,
+    text: GET_IN_TOUCH_DATA.SALES_TEXT,
+    email: GET_IN_TOUCH_DATA.SALES_EMAIL,
     button: true,
   },
+
   {
-    title: "Contact Sales",
-    text: "Interested in learning more about us? Talk to the experts.",
+    title: GET_IN_TOUCH_DATA.GENERAL_INFO,
+    text: GET_IN_TOUCH_DATA.GENERAL_INFO_TEXT,
+    email: GET_IN_TOUCH_DATA.GENERAL_INFO_EMAIL,
     button: true,
   },
+
   {
-    title: "Become a Partner",
-    text: "Interested in partnering with us? Get in touch with us at",
-    email: "hello@eventz.com",
+    title: GET_IN_TOUCH_DATA.TECH_SUPPORT,
+    text: GET_IN_TOUCH_DATA.TECH_SUPPORT_TEXT,
+    email: GET_IN_TOUCH_DATA.TECH_SUPPORT_EMAIL,
     button: false,
   },
+
   {
-    title: "Inquiries",
-    text: "Need to know more about us?Get in touch with us at",
-    email: "care@eventz.com",
+    title: GET_IN_TOUCH_DATA.DEMO_TITLE,
+    text: GET_IN_TOUCH_DATA.DEMO_TEXT,
     button: false,
+  },
+];
+
+export const whyContactHelm = [
+  {
+    title: GET_IN_TOUCH_DATA.DEMO_HEADING,
+    description: GET_IN_TOUCH_DATA.DEMO_DESCRIPTION,
+  },
+
+  {
+    title: GET_IN_TOUCH_DATA.PRICING_HEADING,
+    description: GET_IN_TOUCH_DATA.PRICING_DESCRIPTION,
+  },
+
+  {
+    title: GET_IN_TOUCH_DATA.INTEGRATION_HEADING,
+    description: GET_IN_TOUCH_DATA.INTEGRATION_DESCRIPTION,
+  },
+
+  {
+    title: GET_IN_TOUCH_DATA.SUCCESS_HEADING,
+    description: GET_IN_TOUCH_DATA.SUCCESS_DESCRIPTION,
   },
 ];
