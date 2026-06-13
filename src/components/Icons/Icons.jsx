@@ -15,12 +15,14 @@ export const Icon = ({
   className,
   children,
   selected,
+  title,
 }) => (
   <StyledIcon
     className={`material-symbols-outlined common-icon ${className}`}
     onClick={onClick}
     sx={sx}
     $selected={selected}
+    title={title}
   >
     {variant || children}
   </StyledIcon>

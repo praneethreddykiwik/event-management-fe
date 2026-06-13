@@ -7,7 +7,7 @@ import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { eventsFilterAction } from "../../../redux/events/events.actions";
 
 export const EventsFilterCards = () => {
-  const { eventsStatusCounts, selectedEventFilters, eventsLoading } =
+  const { eventsStatusCounts, selectedEventFilters } =
     useSelector(eventsSelector);
 
   const dispatch = useDispatch();

@@ -11,30 +11,38 @@ const Dropdown = ({
   placeholder,
   error,
   validations,
+  preview,
+  previewComponent,
 }) => {
   const extractValue = useMemo(() => {
     return options.find((fn) => fn.value === value) || {};
   }, [options, value]);
 
+  console.log("abdul placeholder", placeholder);
+
   return (
     <InputLayout label={label} error={error} validations={validations}>
-      <Select
-        name={name}
-        options={options}
-        label={label}
-        value={extractValue}
-        onChange={(val) => {
-          const params = { target: { name, value: val.value } };
-          onChange(params);
-        }}
-        placeholder={placeholder}
-        styles={customStyles}
-        isSearchable={true}
-        // isClearable
-        // components={{
-        //   IndicatorSeparator: () => null,
-        // }}
-      />
+      {previewComponent && preview ? (
+        previewComponent
+      ) : (
+        <Select
+          name={name}
+          options={options}
+          label={label}
+          value={extractValue}
+          onChange={(val) => {
+            const params = { target: { name, value: val.value } };
+            onChange(params);
+          }}
+          placeholder={placeholder}
+          styles={customStyles}
+          isSearchable={true}
+          // isClearable
+          // components={{
+          //   IndicatorSeparator: () => null,
+          // }}
+        />
+      )}
     </InputLayout>
   );
 };
@@ -68,7 +76,8 @@ const customStyles = {
   placeholder: (base) => ({
     ...base,
     fontSize: "14px",
-    color: "#bdbdbd",
+    color: "red",
+    // color: "#bdbdbd",
   }),
 
   singleValue: (base) => ({

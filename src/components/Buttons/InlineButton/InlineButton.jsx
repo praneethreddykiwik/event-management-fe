@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
 import { Button } from "../Button";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 export const InlineButton = ({
   onClick,
@@ -59,6 +60,7 @@ export const InlineButton = ({
         <Icon variant={icon} sx={{ color: iconColor }} />
       </IconBtn>
 
+      {/* <Backdrop></Backdrop> */}
       <SlideArea $open={open} $gridView={showGridView}>
         <Button
           onClick={onClickMainButton}
@@ -77,6 +79,8 @@ export const InlineButton = ({
 const Ctn = styled.div`
   display: inline-flex;
   align-items: center;
+
+  position: relative;
 `;
 
 const IconBtn = styled.button`
@@ -102,4 +106,7 @@ const SlideArea = styled.div`
   margin-left: ${({ $open }) => ($open ? "8px" : "0px")};
 
   transition: all 0.25s ease;
+
+  position: absolute;
+  right: 0;
 `;

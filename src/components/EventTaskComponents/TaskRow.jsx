@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -24,6 +23,9 @@ import ManageTaskModal from "./ManageTaskModal";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
+import { RBACHOC } from "../../RBAC/RBAC";
+import { Inputs } from "../Inputs/Inputs";
+import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
 
 const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
@@ -32,17 +34,17 @@ const TaskRow = ({ task = {}, onEdit }) => {
   const { authUser } = useSelector(authSelector);
 
   const viewDetailsHandler = () => {
-    navigate(`${paths.tasks}/${task.taskUid}`);
+    const eventUid = searchParams.get("eventUid");
+    navigate(`${paths.tasks}/${task.taskUid}?eventUid=${eventUid}`);
   };
 
   const onDelete = () => {
-    const callBack = (a, b, c) => {
+    const callBack = () => {
       const eventUid = searchParams.get("eventUid");
-      // dispatch(fetchEventDetailsAction({ eventUid: eventUid }));
-
       const query = `eventUid=${eventUid}`;
       dispatch(fetchTasksApiAction({ query }));
     };
+
     const onDeletePayload = {
       callBack,
       reqPayload: generateDeleteTaskReq({
@@ -50,6 +52,7 @@ const TaskRow = ({ task = {}, onEdit }) => {
         tenantUid: authUser?.tenantUid,
       }),
     };
+
     dispatch(deleteTaskAction(onDeletePayload));
   };
 
@@ -95,19 +98,27 @@ const TaskRow = ({ task = {}, onEdit }) => {
       <BadgeButton>
         <StyledFlex2>
           <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
-          <Icon variant="alternate_email" />
-          <Icon variant="chat" />
-          <InlineButton type="delete" icon="delete" onClick={onDelete}>
-            Delete Task
-          </InlineButton>
+          <Icon variant="alternate_email" title="Email" />
+          <Icon variant="chat" title="Chat" />
+          <RBACHOC perm="event:edit">
+            <Icon variant="edit" title="Edit" onClick={handleEdit} />
+          </RBACHOC>
+          <RBACHOC perm="task:delete">
+            <InlineButton
+              type="delete"
+              icon="delete"
+              onClick={onDelete}
+              title="Delete"
+            >
+              Delete Task
+            </InlineButton>
+          </RBACHOC>
         </StyledFlex2>
         <Button type="no-border" onClick={viewDetailsHandler} small>
           Details
         </Button>
 
-        <Button onClick={handleEdit} icon="edit" type="no-border" small>
-          Edit
-        </Button>
+        <EditTaskStatus task={task} />
       </BadgeButton>
     </Ctn>
   );

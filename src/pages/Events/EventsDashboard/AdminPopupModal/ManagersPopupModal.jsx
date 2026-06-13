@@ -127,14 +127,6 @@ const ManagersPopupModal = ({ onClose }) => {
 
                 <StyledPopupActions>
                   <Icon variant="edit" onClick={() => onEdit(item)} />
-
-                  {/* <Button
-                    type="inline-delete"
-                    icon="delete"
-                    onClick={() => onDelete(item.uid)}
-                  >
-                    Delete Event
-                  </Button> */}
                   <InlineButton
                     onClick={() => onDelete(item.uid)}
                     type="delete"

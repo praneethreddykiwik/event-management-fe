@@ -11,8 +11,12 @@ import {
 import { Button } from "../../../components/Buttons/Button";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { useEffect, useMemo } from "react";
-import { fetchTaskAction } from "../../../redux/tasks/tasks.actions";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  deleteTaskAction,
+  fetchTaskAction,
+  fetchTasksApiAction,
+} from "../../../redux/tasks/tasks.actions";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { tasksSelector } from "../../../redux/tasks/tasks.slice";
 import { PageHeader } from "../../../components/Headers/PageHeader";
@@ -24,13 +28,18 @@ import {
   generateQASummary,
   generateTaskSummary,
 } from "./taskDetails.helper";
+import { RBACHOC } from "../../../RBAC/RBAC";
+import { generateDeleteTaskReq } from "../../../models/requests/task.req.model";
+import { authSelector } from "../../../redux/auth/auth.slice";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
   const { taskUid } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const { task } = useSelector(tasksSelector);
+  const { authUser } = useSelector(authSelector);
 
   //   {
   //     "taskUid": "d521585b-3f3f-44a2-aaef-59d85cffc54f",
@@ -76,6 +85,24 @@ export const TaskDetails = () => {
     });
   };
 
+  const onDelete = () => {
+    const callBack = () => {
+      const eventUid = searchParams.get("eventUid");
+
+      const query = `eventUid=${eventUid}`;
+      dispatch(fetchTasksApiAction({ query }));
+      window.history.back();
+    };
+    const onDeletePayload = {
+      callBack,
+      reqPayload: generateDeleteTaskReq({
+        taskUid: task.taskUid,
+        tenantUid: authUser?.tenantUid,
+      }),
+    };
+    dispatch(deleteTaskAction(onDeletePayload));
+  };
+
   return (
     <BlueBackHOC>
       <Ctn>
@@ -106,9 +133,21 @@ export const TaskDetails = () => {
           <Button onClick={backHandler} type="primary">
             Back
           </Button>
-          <Button onClick={onEdit} icon="edit" type="no-border">
-            Edit
-          </Button>
+          <RBACHOC perm="event:edit">
+            <Button onClick={onEdit} icon="edit" type="no-border">
+              Edit
+            </Button>
+          </RBACHOC>
+          <RBACHOC perm="event:edit">
+            <Button
+              onClick={onEdit}
+              onClick={onDelete}
+              icon="delete"
+              type="delete"
+            >
+              Delete
+            </Button>
+          </RBACHOC>
         </ActionRow>
       </Ctn>
     </BlueBackHOC>
