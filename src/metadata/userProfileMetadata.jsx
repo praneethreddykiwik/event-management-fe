@@ -3,7 +3,7 @@ import { paths } from "../constants/paths";
 export const userProfileMeta = [
   {
     label: "Profile",
-    highlight: true,
+    // highlight: true,
     icon: "account_circle",
     navigate: paths.accountSettings,
   },
@@ -13,8 +13,8 @@ export const userProfileMeta = [
     navigate: "/accountSetting",
   },
   {
-    label: "Bookmark",
-    icon: "bookmark",
+    label: "Bookmarks",
+    icon: "bookmarks",
   },
   {
     label: "About Us",
@@ -32,6 +32,11 @@ export const userProfileMeta = [
     navigate: paths.ourServices,
   },
   {
+    label: "FAQ",
+    icon: "quiz",
+    navigate: paths.faq,
+  },
+  {
     label: "Get In Touch",
     icon: "help",
     navigate: paths.getInTouch,
@@ -40,5 +45,6 @@ export const userProfileMeta = [
   {
     label: "Logout",
     icon: "logout",
+    highlight: true,
   },
 ];

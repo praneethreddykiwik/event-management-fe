@@ -19,7 +19,7 @@ export const leadershipTeam = [
 
   {
     name: "Abdul",
-    role: "Senior Full Stack Architect",
+    role: "Senior Architect (Full Stack)",
     description:
       "Abdul leads HELM’s technical architecture with expertise in scalable applications, system performance, and security-first engineering.",
     expertise:

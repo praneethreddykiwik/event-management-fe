@@ -67,7 +67,6 @@ const EventsDashboard = () => {
 
   return (
     <BlueBackHOC>
-       {/* <AdminDashboardContainer>  */}
       <PageHeader isTitle>Events</PageHeader>
 
       <EventCards events={events} eventManagers={eventManagers} />
@@ -89,43 +88,36 @@ const EventsDashboard = () => {
       </Tasktxt>
       <EventsFilterCards />
 
-        <TaskMainCard>
-          <Tasktxt2>
-            <Textwrapper>
-              <StyledMediumHeading left>Events</StyledMediumHeading>
-              <StyledParagraphSmall left>
-                {enums.MONITOR_EV}
-              </StyledParagraphSmall>
-            </Textwrapper>
-            <AlignBox onClick={viewClickHandler}>
-              <Icon selected={!eventGridView}>view_list</Icon>
-              <Icon selected={eventGridView}>grid_view</Icon>
-            </AlignBox>
-          </Tasktxt2>
+      <TaskMainCard>
+        <Tasktxt2>
+          <Textwrapper>
+            <StyledMediumHeading left>Events</StyledMediumHeading>
+            <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
+          </Textwrapper>
+          <AlignBox onClick={viewClickHandler}>
+            <Icon selected={!eventGridView}>view_list</Icon>
+            <Icon selected={eventGridView}>grid_view</Icon>
+          </AlignBox>
+        </Tasktxt2>
 
-          <TaskList $gridView={eventGridView}>
-            {!events.length ? (
-              <StyledParagraphSmallGray>
-                No Events available
-              </StyledParagraphSmallGray>
-            ) : (
-              events.map((event) => (
-                <AdminTaskItem
-                  event={mapEventForUI(event)}
-                  gridView={eventGridView}
-                />
-              ))
-            )}
-          </TaskList>
-        </TaskMainCard>
-      {/* </AdminDashboardContainer> */}
-    </BlueBackHOC> 
+        <TaskList $gridView={eventGridView}>
+          {!events.length ? (
+            <StyledParagraphSmallGray>
+              No Events available
+            </StyledParagraphSmallGray>
+          ) : (
+            events.map((event) => (
+              <AdminTaskItem
+                event={mapEventForUI(event)}
+                gridView={eventGridView}
+              />
+            ))
+          )}
+        </TaskList>
+      </TaskMainCard>
+    </BlueBackHOC>
   );
 };
-
-// const AdminDashboardContainer = styled.div`
-//   padding: 0 20px 20px 20px;
-// `;
 
 const TaskMainCard = styled.div`
   border-radius: 14px;

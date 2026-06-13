@@ -113,13 +113,13 @@ const FooterInner = styled.div`
 
 const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 60px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
   padding-bottom: 20px;
 
   ${mobile`
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     section:last-child {
       display: none;
     }
@@ -127,7 +127,7 @@ const FooterGrid = styled.div`
 
   ${tablet`
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 20px;
     section:last-child {
       display: none;
     }
@@ -171,9 +171,8 @@ const FooterLink = styled.article`
 const LogoSection = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-  width: 280px;
+  align-items: center;
+  text-align: center;
 `;
 
 const Logo = styled.div`
@@ -189,6 +188,7 @@ const LogoImage = styled.img`
 const Description = styled.p`
   color: #b8b8b8;
   line-height: 1.5;
+  margin-top: 10px;
 `;
 
 /* ================= Contact ================= */

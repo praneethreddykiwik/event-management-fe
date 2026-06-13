@@ -2,16 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import images from "../../assets/Get_in_touch_images/images.png";
 import { Button } from "../../components/Buttons/Button";
-import { cardData1 } from "./GetInTouch.helper";
 import { mobile } from "../../theme/media-queries";
-import {
-  GETINTOUCH,
-  PRIVACY_POLICY,
-  PRIVACY_TEXT_END,
-  PRIVACY_TEXT_START,
-  SPECIFICENQUIRY,
-} from "../../myEnum";
-
+import { cardData1 } from "../GetInTouch/GetInTouch.helper";
+import { GET_IN_TOUCH_DATA } from "../../myEnum/ContactUsText";
 import {
   StyledHeadingBig,
   StyledParagraphSmallGray,
@@ -26,12 +19,16 @@ const GetInTouch = () => {
   return (
     <StyledPage>
       <StyledContainer>
+        <StyledImageWrapper>
+          <StyledImage src={images} alt="contact illustration" />
+        </StyledImageWrapper>
         <StyledBox>
           <StyledHeader>
-            <StyledHeadingBig left>{GETINTOUCH}</StyledHeadingBig>{" "}
-            {/* typography */}
+            <StyledHeadingBig left>
+              {GET_IN_TOUCH_DATA.HERO_HEADING}
+            </StyledHeadingBig>
             <StyledParagraphSmallGray left>
-              {SPECIFICENQUIRY}
+              {GET_IN_TOUCH_DATA.HERO_SUBHEADING}
             </StyledParagraphSmallGray>
           </StyledHeader>
 
@@ -40,10 +37,8 @@ const GetInTouch = () => {
               <StyledCard key={index}>
                 <StyledMediumHeading small left>
                   {item.title}
-                </StyledMediumHeading>{" "}
-                {/*No bottom margin is avaliable*/}
+                </StyledMediumHeading>
                 <CardText left>
-                  {" "}
                   {item.text}{" "}
                   {item.email && (
                     <StyledLink href={`mailto:${item.email}`}>
@@ -56,15 +51,87 @@ const GetInTouch = () => {
             ))}
           </StyledCardsGrid>
 
-          <StyledNote>
-            {PRIVACY_TEXT_START}{" "}
-            <StyledLink href="#">{PRIVACY_POLICY}</StyledLink>{" "}
-            {PRIVACY_TEXT_END}
-          </StyledNote>
+          <StyledInfoSection>
+            <StyledMediumHeading left>
+              {GET_IN_TOUCH_DATA.CONTACT_HEADING}
+            </StyledMediumHeading>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.SALES_INQUIRY}:</strong>{" "}
+              <StyledLink href={`mailto:${GET_IN_TOUCH_DATA.SALES_EMAIL}`}>
+                {GET_IN_TOUCH_DATA.SALES_EMAIL}
+              </StyledLink>
+            </StyledParagraphSmallGray>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.GENERAL_INFO}:</strong>{" "}
+              <StyledLink
+                href={`mailto:${GET_IN_TOUCH_DATA.GENERAL_INFO_EMAIL}`}
+              >
+                {GET_IN_TOUCH_DATA.GENERAL_INFO_EMAIL}
+              </StyledLink>
+            </StyledParagraphSmallGray>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.TECH_SUPPORT}:</strong>{" "}
+              <StyledLink
+                href={`mailto:${GET_IN_TOUCH_DATA.TECH_SUPPORT_EMAIL}`}
+              >
+                {GET_IN_TOUCH_DATA.TECH_SUPPORT_EMAIL}
+              </StyledLink>
+            </StyledParagraphSmallGray>
+          </StyledInfoSection>
+
+          <StyledInfoSection>
+            <StyledMediumHeading left>
+              {GET_IN_TOUCH_DATA.CTA_HEADING}
+            </StyledMediumHeading>
+            <StyledParagraphSmallGray left>
+              {GET_IN_TOUCH_DATA.CTA_TEXT}
+            </StyledParagraphSmallGray>
+          </StyledInfoSection>
+
+          <StyledNoteDesktop>
+            {GET_IN_TOUCH_DATA.PRIVACY_TEXT_START}{" "}
+            <StyledLink href="#">{GET_IN_TOUCH_DATA.PRIVACY_POLICY}</StyledLink>{" "}
+            {GET_IN_TOUCH_DATA.PRIVACY_TEXT_END}
+          </StyledNoteDesktop>
         </StyledBox>
 
         <StyledImageBox>
-          <StyledImage src={images} alt="contact illustration" />
+          <StyledDesktopImage src={images} alt="contact illustration" />
+
+          <StyledInfoSection>
+            <StyledMediumHeading left>
+              {GET_IN_TOUCH_DATA.WHY_HELM_HEADING}
+            </StyledMediumHeading>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.DEMO_HEADING}:</strong>{" "}
+              {GET_IN_TOUCH_DATA.DEMO_DESCRIPTION}
+            </StyledParagraphSmallGray>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.PRICING_HEADING}:</strong>{" "}
+              {GET_IN_TOUCH_DATA.PRICING_DESCRIPTION}
+            </StyledParagraphSmallGray>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.INTEGRATION_HEADING}:</strong>{" "}
+              {GET_IN_TOUCH_DATA.INTEGRATION_DESCRIPTION}
+            </StyledParagraphSmallGray>
+
+            <StyledParagraphSmallGray left>
+              <strong>{GET_IN_TOUCH_DATA.SUCCESS_HEADING}:</strong>{" "}
+              {GET_IN_TOUCH_DATA.SUCCESS_DESCRIPTION}
+            </StyledParagraphSmallGray>
+          </StyledInfoSection>
+
+          <StyledNoteMobile>
+            {GET_IN_TOUCH_DATA.PRIVACY_TEXT_START}{" "}
+            <StyledLink href="#">{GET_IN_TOUCH_DATA.PRIVACY_POLICY}</StyledLink>{" "}
+            {GET_IN_TOUCH_DATA.PRIVACY_TEXT_END}
+          </StyledNoteMobile>
         </StyledImageBox>
       </StyledContainer>
     </StyledPage>
@@ -95,14 +162,29 @@ const StyledContainer = styled.div`
 
   ${mobile`
     flex-direction: column;
-    align-items: center;
-     width: 100%;
-    padding: 20px 16px;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  `}
+`;
+
+const StyledImageWrapper = styled.div`
+  display: none;
+
+  ${mobile`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    order: 1;
   `}
 `;
 
 const StyledBox = styled.div`
   flex: 1;
+
+  ${mobile`
+    order: 2;
+  `}
 `;
 
 const StyledHeader = styled.div`
@@ -110,7 +192,7 @@ const StyledHeader = styled.div`
   margin-left: 27px;
 
   ${mobile`
-    margin-left: 50px;
+    margin-left: 0;
     text-align: center;
   `}
 `;
@@ -125,6 +207,7 @@ const StyledCardsGrid = styled.div`
   ${mobile`
     grid-template-columns: 1fr;
     width: 100%;
+    padding: 0;
   `}
 `;
 
@@ -136,12 +219,16 @@ const StyledCard = styled.div`
 
   ${mobile`
     text-align: center;
-
-    button {
-      width: 100%;       
+    
+ button {
+      width: 60%;
       max-width: 260px;
       margin: 12px auto 0;
       padding: 16px;
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      align-items: center;
     }
   `}
 `;
@@ -157,34 +244,68 @@ const StyledLink = styled(StyledAnchor)`
 const StyledImageBox = styled.div`
   flex: 1;
   display: flex;
-  justify-content: flex-end;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
   ${mobile`
-    order: -1;            
-    justify-content: center;
-    padding: 10px 0;
+    width: 100%;
+    order: 3;
+    gap: 0;
+  `}
+`;
+
+const StyledDesktopImage = styled.img`
+  width: 100%;
+  max-width: 580px;
+
+  ${mobile`
+    display: none;
   `}
 `;
 
 const StyledImage = styled.img`
   width: 100%;
-  max-width: 380px;
-
-  ${mobile`
-    max-width: 220px;     
-  `}
+  max-width: 220px;
 `;
 
-const StyledNote = styled.div`
+const StyledNoteDesktop = styled.div`
   margin: 24px 0;
   text-align: center;
   color: ${({ theme }) => theme.colors["text-gray-color"]};
   font-size: 13px;
 
   ${mobile`
-    font-size: 12px;
-    padding: 0 12px;
+    display: none !important;
+  `}
+`;
+
+const StyledNoteMobile = styled.div`
+  display: none;
+  text-align: center;
+  color: ${({ theme }) => theme.colors["text-gray-color"]};
+  font-size: 12px;
+  padding: 0 12px;
+  margin: 16px 0;
+
+  ${mobile`
+    display: block !important;
+  `}
+`;
+
+const StyledInfoSection = styled.div`
+  margin-top: 30px;
+  padding: 25px;
+  background: #f8fafc;
+  border-radius: 12px;
+
+  p {
+    margin-top: 12px;
+    line-height: 1.8;
+  }
+
+  ${mobile`
+    margin-top: 16px;
   `}
 `;
 

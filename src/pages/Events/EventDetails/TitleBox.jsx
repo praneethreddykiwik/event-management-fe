@@ -13,6 +13,7 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
+import { RBACHOC } from "../../../RBAC/RBAC";
 
 export const TitleBox = () => {
   const { eventDetails: event } = useSelector(eventsSelector);
@@ -70,9 +71,11 @@ export const TitleBox = () => {
         <Button type="outlined" icon="edit" onClick={onClickEdit}>
           Edit Event
         </Button>
-        <Button type="delete" icon="delete" onClick={onClickTitleDelete}>
-          Delete Event
-        </Button>
+        <RBACHOC perm="event:delete">
+          <Button type="delete" icon="delete" onClick={onClickTitleDelete}>
+            Delete Event
+          </Button>
+        </RBACHOC>
       </StyledBtnCtn>
     </StyledCtn>
   );

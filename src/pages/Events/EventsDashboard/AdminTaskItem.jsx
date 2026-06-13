@@ -23,6 +23,7 @@ import { InlineButton } from "../../../components/Buttons/InlineButton/InlineBut
 import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
+import { RBACHOC } from "../../../RBAC/RBAC";
 
 const AdminTaskItem = ({ event, gridView }) => {
   const navigate = useNavigateWithQuery();
@@ -109,14 +110,16 @@ const AdminTaskItem = ({ event, gridView }) => {
             <Icon variant="chat" />
 
             <Icon variant="alternate_email" />
-            <InlineButton
-              type="delete"
-              icon="delete"
-              onClick={onClickDelete}
-              showGridView={gridView}
-            >
-              Delete Event
-            </InlineButton>
+            <RBACHOC perm="event:delete">
+              <InlineButton
+                type="delete"
+                icon="delete"
+                onClick={onClickDelete}
+                showGridView={gridView}
+              >
+                Delete Event
+              </InlineButton>
+            </RBACHOC>
           </StyledFlex2>
         </StyledFlex2>
         <Button onClick={onClickViewDetails} type="secondary">
@@ -218,13 +221,14 @@ const EventName = styled(StyledParagraphBold)`
 `;
 
 const BadgeButton = styled.div`
-  width: ${(props) => (props.showGridView ? "90%" : "25%")};
+  width: ${(props) => (props.showGridView ? "100%" : "25%")};
   gap: 15px;
   display: flex;
   flex-direction: column;
   align-items: left;
-  margin-left: ${(props) => (props.showGridView ? "none" : "auto")};
+  margin-left: ${(props) => (props.showGridView ? "unset" : "auto")};
   padding: 16px 0;
+  ${(props) => (props.showGridView ? "padding-bottom: 0" : "")};
   flex-basis: 30%;
   ${mobile`
     width: 100%;
