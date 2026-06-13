@@ -15,6 +15,7 @@ export const paths = {
   aboutUs: "/about-us",
   whyChoose: "/why-choose",
   ourServices: "/our-services",
+  faq: "/faq",
 
   vendor: "/vendor",
   supervisor: "/supervisor",
