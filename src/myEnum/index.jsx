@@ -56,7 +56,7 @@ export const NO_SEARCH_INDEX = "Don’t allow search engines to index my profile
 export const AUTO_UPDATE = "Allow auto update of contents";
 
 export const DESCRIPTION_TEXT =
-  "Specializes in seamless, end-to-end event planning that turns ideas into memorable experiences.";
+  "Amateurs Panic. Professionals Go for HELM.";
 export const CONTACT_US = "Contact Us";
 export const CONTACT_PHONE = "+91 8121458444";
 export const EMAIL_ID = "info@helmevents.com";
