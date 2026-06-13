@@ -11,7 +11,7 @@ import {
 
 import { ABOUT_US_DATA } from "../../myEnum/aboutsText.jsx";
 import { leadershipTeam } from "../../helpers/about.helper.jsx";
-
+import Avatar from "../../components/Avatar/Avatar.jsx";
 const AboutUs = () => {
   return (
     <StyledAboutWrapper>
@@ -98,9 +98,9 @@ const AboutUs = () => {
           {leadershipTeam.map((member, index) => (
             <StyledLeaderCard key={index}>
 
-              <StyledAvatar>
+              <Avatar name={member.name} displayInitials={true}>
                 {member.name.charAt(0)}
-              </StyledAvatar>
+              </Avatar>
 
               <StyledLeaderName>
                 {member.name}
@@ -248,19 +248,6 @@ const StyledLeaderCard = styled.div`
   border-radius: 24px;
 `;
 
-const StyledAvatar = styled.div`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-`;
 
 const StyledLeaderName = styled.h3`
   font-size: 28px;

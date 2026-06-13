@@ -46,7 +46,7 @@ const ParticipantsSection = () => {
       <ParticipantsBody>
         {participants.map((p, i) => (
           <ParticipantRow key={i}>
-            <Avatar  name={p.name} displayInitials={true}  />
+            <Avatar src={p.img} name={p.name} displayInitials={true}  />
 
             <ParticipantDetails>
               <ParticipantName>{p.name}</ParticipantName>
