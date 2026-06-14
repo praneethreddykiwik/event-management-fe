@@ -3,21 +3,10 @@ import { validationList } from "../../../constants/validations.constants";
 
 // const halfSize = "calc(50% - 8px)";
 export const generateTaskStatusOptions = (role) => {
-  let statusArray = { ...TASK_STATUSES };
-  if (role && role === "qa") {
-    statusArray = {
-      completed: {
-        badgeColor: "completed",
-        icon: "task_alt",
-        status: "Completed",
-        label: "Completed",
-        keyCamel: "completed",
-      },
-    };
-  }
-  return Object.keys(statusArray).map((key) => ({
+  return Object.keys(TASK_STATUSES).map((key) => ({
     value: key,
     label: TASK_STATUSES[key].label,
+    isDisabled: !TASK_STATUSES[key].rolePermissions.includes(role),
   }));
 };
 

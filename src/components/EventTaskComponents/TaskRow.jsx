@@ -19,7 +19,6 @@ import {
 } from "../../redux/tasks/tasks.actions";
 
 import { authSelector } from "../../redux/auth/auth.slice";
-import ManageTaskModal from "./ManageTaskModal";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";

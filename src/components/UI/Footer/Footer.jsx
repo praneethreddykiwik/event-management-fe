@@ -214,6 +214,10 @@ const ContactItem = styled.article`
   gap: 10px;
   color: #b8b8b8;
   max-width: ${({ maxWidth }) => (maxWidth ? "280px" : "auto")};
+
+  span {
+    font-size: 14px;
+  }
 `;
 
 const Icon = styled.i`

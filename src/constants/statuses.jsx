@@ -1,3 +1,5 @@
+import { ROLES } from "./roles";
+
 export const TASK_STATUSES = {
   not_started: {
     badgeColor: "notstarted",
@@ -5,6 +7,7 @@ export const TASK_STATUSES = {
     status: "Not Started",
     label: "Not Started",
     keyCamel: "notStarted",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   assigned: {
@@ -13,6 +16,7 @@ export const TASK_STATUSES = {
     status: "Assigned",
     label: "Assigned",
     keyCamel: "assigned",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   in_progress: {
@@ -21,6 +25,7 @@ export const TASK_STATUSES = {
     status: "In Progress",
     label: "In Progress",
     keyCamel: "inProgress",
+    rolePermissions: Object.values(ROLES),
   },
 
   ready_for_qa: {
@@ -29,6 +34,7 @@ export const TASK_STATUSES = {
     status: "Ready For QA",
     label: "Ready For QA",
     keyCamel: "readyForQA",
+    rolePermissions: Object.values(ROLES),
   },
 
   qa_in_progress: {
@@ -37,6 +43,7 @@ export const TASK_STATUSES = {
     status: "QA in progress",
     label: "QA in progress",
     keyCamel: "QAInProgress",
+    rolePermissions: ["event_manager", "admin", "qa"],
   },
 
   completed: {
@@ -45,6 +52,7 @@ export const TASK_STATUSES = {
     status: "Completed",
     label: "Completed",
     keyCamel: "completed",
+    rolePermissions: ["event_manager", "admin", "qa"],
   },
 
   cancelled: {
@@ -53,6 +61,7 @@ export const TASK_STATUSES = {
     status: "Cancelled",
     label: "Cancelled",
     keyCamel: "cancelled",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   deleted: {
@@ -61,6 +70,7 @@ export const TASK_STATUSES = {
     status: "Deleted",
     label: "Deleted",
     keyCamel: "deleted",
+    rolePermissions: ["event_manager", "admin"],
   },
 };
 

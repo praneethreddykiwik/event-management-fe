@@ -1,39 +1,53 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { generateTaskStatusOptions } from "../../redux/farms/metadata/task.metadata";
 import { Inputs } from "../Inputs/Inputs";
 import { Button } from "../Buttons/Button";
-import { useState } from "react";
-import { camelToWords } from "../../utils/utils";
+import styled from "styled-components";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { updateTaskStatusAction } from "../../redux/tasks/tasks.actions";
+import { tasksSelector } from "../../redux/tasks/tasks.slice";
 
 export const EditTaskStatus = ({ task }) => {
+  const dispatch = useDispatch();
+
   const { authUser } = useSelector(authSelector);
-  const handleEditStatus = () => {};
+  const { eventsAndTasks } = useSelector(tasksSelector);
 
-  const [preview, setPreview] = useState(true);
-
-  const onClickPreview = () => {
-    setPreview(false);
+  const handleEditStatus = (e) => {
+    const payload = {
+      reqPayload: {
+        tenantUid: authUser?.tenantUid,
+        taskUid: task.taskUid,
+        status: e.target.value,
+      },
+      // callback,
+    };
+    dispatch(updateTaskStatusAction(payload));
   };
 
   return (
-    <>
-      <Inputs
-        type="dropdown"
-        name="taskStatus"
-        value={task.taskStatus}
-        placeholder="TaskStatus"
-        options={generateTaskStatusOptions(authUser.role)}
-        onClick={handleEditStatus}
-        icon="edit"
-        preview={preview}
-        label={"Edit Status:"}
-        previewComponent={
-          <Button icon="edit" type="no-border" small onClick={onClickPreview}>
-            {camelToWords(task.taskStatus)}
-          </Button>
-        }
-      />
-    </>
+    <Inputs
+      type="dropdown"
+      name="taskStatus"
+      value={task?.taskStatus}
+      placeholder="TaskStatus"
+      options={generateTaskStatusOptions(authUser.role)}
+      onChange={handleEditStatus}
+      icon="edit"
+      label={"Edit Status"}
+      //   defaultMenuIsOpen
+      //   previewComponent={
+      //     <LocBtn icon="edit" type="no-border" small onClick={onClickPreview}>
+      //       {camelToWords(task?.taskStatus)}
+      //     </LocBtn>
+      //   }
+    />
   );
 };
+
+const LocBtn = styled(Button)`
+  & .input-text {
+    font-size: 12px;
+  }
+`;

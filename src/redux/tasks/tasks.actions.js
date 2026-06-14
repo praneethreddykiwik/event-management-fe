@@ -140,6 +140,27 @@ export const editTaskAction = createAsyncThunk(
   },
 );
 
+export const updateTaskStatusAction = createAsyncThunk(
+  "tasks/updateTaskStatusAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await editTasksApi(payload.reqPayload);
+      toast.success("Task Status updated successfully");
+      if (payload.callback) {
+        payload.callback(res.data);
+      }
+      // return res.data;
+      return payload.reqPayload;
+    } catch (err) {
+      debugger;
+      toast.error(
+        err?.response?.data?.message || "Failed to update Task Status",
+      );
+      return rejectWithValue(err?.response?.data || "Error");
+    }
+  },
+);
+
 export const deleteTaskAction = createAsyncThunk(
   "tasks/deleteTaskAction",
   async (payload, { rejectWithValue }) => {
