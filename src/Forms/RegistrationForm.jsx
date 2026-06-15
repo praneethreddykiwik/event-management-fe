@@ -28,6 +28,17 @@ const RegistrationForm = ({ onCreateUser }) => {
         isValid = false;
         return { ...el, error: "This field is required" };
       }
+      if (
+        el.name === "email" &&
+        el.value &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)
+      ) {
+        isValid = false;
+        return {
+          ...el,
+          error: "Please enter a valid email address",
+        };
+      }
       return { ...el, error: "" };
     });
 
