@@ -6,13 +6,11 @@ import { Button } from "../Buttons/Button";
 import styled from "styled-components";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { updateTaskStatusAction } from "../../redux/tasks/tasks.actions";
-import { tasksSelector } from "../../redux/tasks/tasks.slice";
 
 export const EditTaskStatus = ({ task }) => {
   const dispatch = useDispatch();
 
   const { authUser } = useSelector(authSelector);
-  const { eventsAndTasks } = useSelector(tasksSelector);
 
   const handleEditStatus = (e) => {
     const payload = {
@@ -36,12 +34,6 @@ export const EditTaskStatus = ({ task }) => {
       onChange={handleEditStatus}
       icon="edit"
       label={"Edit Status"}
-      //   defaultMenuIsOpen
-      //   previewComponent={
-      //     <LocBtn icon="edit" type="no-border" small onClick={onClickPreview}>
-      //       {camelToWords(task?.taskStatus)}
-      //     </LocBtn>
-      //   }
     />
   );
 };

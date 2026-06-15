@@ -143,12 +143,7 @@ export const TaskDetails = () => {
             </Button>
           </RBACHOC>
           <RBACHOC perm="event:edit">
-            <Button
-              onClick={onEdit}
-              onClick={onDelete}
-              icon="delete"
-              type="delete"
-            >
+            <Button onClick={onDelete} icon="delete" type="delete">
               Delete
             </Button>
           </RBACHOC>

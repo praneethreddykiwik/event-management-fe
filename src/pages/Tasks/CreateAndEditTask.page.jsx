@@ -14,8 +14,8 @@ import {
   updateAllTaskInputs,
 } from "../../redux/farms/farms.slice";
 import {
-  generateAddTaskInpMetadata,
-  generateTaskDataToEdit,
+  generateAddTaskInputs,
+  generateEditTaskInputs,
 } from "../../redux/farms/metadata/task.metadata";
 import { VenueSuggestion } from "../../components/Venue/VenueSuggestion";
 import { toast } from "react-toastify";
@@ -34,7 +34,7 @@ import {
   generateEditTaskReq,
 } from "../../models/requests/task.req.model";
 
-export const CreateTask = () => {
+export const CreateAndEditTask = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -52,10 +52,15 @@ export const CreateTask = () => {
         authUser?.role === "supervisors" ? supervisors : vendors;
 
       if (isEditMode) {
-        const dat = generateTaskDataToEdit(vendorsOrSuprvs, qa, taskData);
+        const dat = generateEditTaskInputs(
+          vendorsOrSuprvs,
+          qa,
+          taskData,
+          authUser?.role,
+        );
         dispatch(updateAllTaskInputs(dat));
       } else {
-        const dat = generateAddTaskInpMetadata(vendorsOrSuprvs, qa);
+        const dat = generateAddTaskInputs(vendorsOrSuprvs, qa, authUser?.role);
         dispatch(updateAllTaskInputs(dat));
       }
     };

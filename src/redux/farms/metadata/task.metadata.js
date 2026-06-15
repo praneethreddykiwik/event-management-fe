@@ -105,19 +105,23 @@ export const taskMetaData = [
 // t.qa_assigned_to_uid AS "qaAssignedTo",
 // t.is_qa_approved AS "isQaApproved",
 
-export const generateAddTaskInpMetadata = (vendorsOrSuprvs, qa) => {
+export const generateAddTaskInputs = (vendorsOrSuprvs, qa, role) => {
   const dat = taskMetaData.map((k) => {
     const el = { ...k };
     if (el.name === "assignedToUid" || el.name === "qaAssignedTo") {
       const opts = el.name === "assignedToUid" ? vendorsOrSuprvs : qa;
       el.options = generateUserOptions(opts);
     }
+
+    if (el.name === "status") {
+      el.options = generateTaskStatusOptions(role);
+    }
     return el;
   });
   return dat;
 };
 
-export const generateTaskDataToEdit = (vendorsOrSuprvs, qa, data) => {
+export const generateEditTaskInputs = (vendorsOrSuprvs, qa, data, role) => {
   const allowedFields = [
     "title",
     "description",
@@ -141,6 +145,9 @@ export const generateTaskDataToEdit = (vendorsOrSuprvs, qa, data) => {
     }
     if (el === "qaAssignedTo") {
       output.value = data.qaAssignedToUid;
+    }
+    if (el === "status") {
+      output.options = generateTaskStatusOptions(role);
     }
     return output;
   });
