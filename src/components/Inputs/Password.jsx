@@ -28,6 +28,7 @@ export const Password = ({
         required
         disabled={disabled}
         type={showPassword ? "text" : "password"}
+        $hasError={!!error}
       />
 
       <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
