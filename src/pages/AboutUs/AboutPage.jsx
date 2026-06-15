@@ -15,29 +15,20 @@ import Avatar from "../../components/Avatar/Avatar.jsx";
 const AboutUs = () => {
   return (
     <StyledAboutWrapper>
-
       {/* Hero Section */}
       <StyledHeroSection flexDirection="column">
+        <StyledTag>{ABOUT_US_DATA.ABOUT_TAG}</StyledTag>
 
-        <StyledTag>
-          {ABOUT_US_DATA.ABOUT_TAG}
-        </StyledTag>
-
-        <StyledHeroHeading>
-          {ABOUT_US_DATA.HERO_HEADING}
-        </StyledHeroHeading>
+        <StyledHeroHeading>{ABOUT_US_DATA.HERO_HEADING}</StyledHeroHeading>
 
         <StyledHeroParagraph>
           {ABOUT_US_DATA.HERO_PARAGRAPH}
         </StyledHeroParagraph>
-
       </StyledHeroSection>
 
       {/* Story Section */}
       <StyledSection>
-
         <StyledLeft>
-
           <StyledSemiHeading left>
             {ABOUT_US_DATA.STORY_HEADING}
           </StyledSemiHeading>
@@ -49,66 +40,55 @@ const AboutUs = () => {
           <StyledParagraphSmallGray left>
             {ABOUT_US_DATA.STORY_PARAGRAPH_TWO}
           </StyledParagraphSmallGray>
-
         </StyledLeft>
 
         <StyledRight>
-
           <StyledCard>
-
             <StyledCardHeading>
               {ABOUT_US_DATA.WHY_HELM_HEADING}
             </StyledCardHeading>
 
-            <StyledCardItem>
-              {ABOUT_US_DATA.WHY_HELM_ONE}
-            </StyledCardItem>
+            <StyledCardItem>{ABOUT_US_DATA.WHY_HELM_ONE}</StyledCardItem>
 
-            <StyledCardItem>
-              {ABOUT_US_DATA.WHY_HELM_TWO}
-            </StyledCardItem>
+            <StyledCardItem>{ABOUT_US_DATA.WHY_HELM_TWO}</StyledCardItem>
 
-            <StyledCardItem>
-              {ABOUT_US_DATA.WHY_HELM_THREE}
-            </StyledCardItem>
+            <StyledCardItem>{ABOUT_US_DATA.WHY_HELM_THREE}</StyledCardItem>
 
-            <StyledCardItem>
-              {ABOUT_US_DATA.WHY_HELM_FOUR}
-            </StyledCardItem>
-
+            <StyledCardItem>{ABOUT_US_DATA.WHY_HELM_FOUR}</StyledCardItem>
           </StyledCard>
-
         </StyledRight>
-
       </StyledSection>
 
       {/* Leadership Section */}
       <StyledSection flexDirection="column">
-
         <StyledSemiHeading>
           {ABOUT_US_DATA.LEADERSHIP_HEADING}
         </StyledSemiHeading>
 
-        <StyledSubText>
-          {ABOUT_US_DATA.LEADERSHIP_SUBTEXT}
-        </StyledSubText>
+        <StyledSubText>{ABOUT_US_DATA.LEADERSHIP_SUBTEXT}</StyledSubText>
 
         <StyledLeadershipGrid>
-
           {leadershipTeam.map((member, index) => (
             <StyledLeaderCard key={index}>
-
-              <Avatar name={member.name} displayInitials={true}>
+              <Avatar
+                name={member.name}
+                displayInitials={true}
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "20px",
+                  width: "70px",
+                  height: "70px",
+                  fontSize: "28px",
+                  fontWeight: "700",
+                }}
+              >
                 {member.name.charAt(0)}
               </Avatar>
 
-              <StyledLeaderName>
-                {member.name}
-              </StyledLeaderName>
+              <StyledLeaderName>{member.name}</StyledLeaderName>
 
-              <StyledLeaderRole>
-                {member.role}
-              </StyledLeaderRole>
+              <StyledLeaderRole>{member.role}</StyledLeaderRole>
 
               <StyledParagraphSmallGray left>
                 {member.description}
@@ -117,35 +97,21 @@ const AboutUs = () => {
               <StyledExpertise>
                 <strong>Expertise:</strong> {member.expertise}
               </StyledExpertise>
-
             </StyledLeaderCard>
           ))}
-
         </StyledLeadershipGrid>
-
       </StyledSection>
 
       {/* CTA */}
       <StyledCTASection>
+        <StyledCTAHeading>{ABOUT_US_DATA.CTA_HEADING}</StyledCTAHeading>
 
-        <StyledCTAHeading>
-          {ABOUT_US_DATA.CTA_HEADING}
-        </StyledCTAHeading>
-
-        <StyledCTAText>
-          {ABOUT_US_DATA.CTA_TEXT}
-        </StyledCTAText>
+        <StyledCTAText>{ABOUT_US_DATA.CTA_TEXT}</StyledCTAText>
 
         <StyledCTAButton>
-
-          <StyledAnchor>
-            {ABOUT_US_DATA.CTA_BUTTON}
-          </StyledAnchor>
-
+          <StyledAnchor>{ABOUT_US_DATA.CTA_BUTTON}</StyledAnchor>
         </StyledCTAButton>
-
       </StyledCTASection>
-
     </StyledAboutWrapper>
   );
 };
@@ -246,8 +212,8 @@ const StyledLeaderCard = styled.div`
   background: #f8fafc;
   padding: 35px;
   border-radius: 24px;
+  position: relative;
 `;
-
 
 const StyledLeaderName = styled.h3`
   font-size: 28px;

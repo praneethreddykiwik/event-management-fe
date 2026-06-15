@@ -10,6 +10,7 @@ import Speaker1 from "../../assets/Profile_images/Speaker1.png";
 import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { theme } from "../../theme/theme";
+import Avatar from "../../components/Avatar/Avatar";
 
 const ProfileEdit = () => {
   return (
@@ -19,8 +20,16 @@ const ProfileEdit = () => {
         {PROFILE_DATA.EVENTS_PROFILE}
       </StyledParagraphSmallGray>
 
-      <StyleProfileImageLarge src={Speaker1} alt="profile" />
-
+      
+      <StyleProfileImageContainer>
+      <Avatar
+        src={Speaker1}
+        alt="profile"
+        name={PROFILE_DATA.FIRSTNAME}
+        displayInitials={true}
+        size="xlarge"
+      />
+      </StyleProfileImageContainer>
       <StyleNameRow>
         <StyleInputBox placeholder="Wade" />
         <StyleInputBox placeholder="Warren" />
@@ -64,8 +73,6 @@ const ProfileEdit = () => {
 
 export default ProfileEdit;
 
-
-
 const StyleRightForm = styled.div`
   margin-top: 275px;
   flex: 1;
@@ -77,6 +84,14 @@ const StyleRightForm = styled.div`
   ${mobile`
     margin-top: 0px;
     padding: 15px;
+  `}
+`;
+const StyleProfileImageContainer = styled.div`
+  ${mobile`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   `}
 `;
 

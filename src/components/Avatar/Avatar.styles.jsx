@@ -1,13 +1,26 @@
 import styled from "styled-components";
-
+import { mobile } from "../../theme/media-queries";
 export const DropdownContainer = styled.div`
   // position: relative;
   display: inline-block;
 `;
 
 export const AvatarC = styled.div`
-  width: 42px;
-  height: 42px;
+  width: ${({ size }) => {
+    if (size === "small") return "24px";
+    if (size === "large") return "80px";
+    if (size === "xlarge") return "110px";
+    return "42px";
+  }};
+
+  height: ${({ size }) => {
+    if (size === "small") return "24px";
+    if (size === "large") return "80px";
+    if (size === "xlarge") return "110px";
+    return "42px";
+  }};
+  border: ${({ borderColor, size }) =>
+    size === "small" ? `2px solid ${borderColor || "#0084ff"}` : "none"};
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -17,11 +30,23 @@ export const AvatarC = styled.div`
   justify-content: center;
   color: white;
   font-weight: 600;
+  font-size: ${({ size }) => (size === "xlarge" ? "30px" : "")};
+
+  ${mobile`
+    width: ${({ size }) =>
+      size === "xlarge" ? "80px" : size === "large" ? "65px" : ""};
+
+    height: ${({ size }) =>
+      size === "xlarge" ? "80px" : size === "large" ? "65px" : ""};
+
+    margin: ${({ size }) => (size === "xlarge" ? "10px auto" : "")};
+  `}
 `;
 
 export const StyleImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export const Menu = styled.div`

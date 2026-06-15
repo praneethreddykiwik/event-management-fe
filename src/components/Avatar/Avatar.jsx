@@ -18,7 +18,10 @@ const Avatar = ({
   avatarImage = Speaker1,
   items = [],
   onClick,
-  openCondition = false
+  openCondition = false,
+  size,
+  borderColor,
+  style,
 }) => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
@@ -55,6 +58,9 @@ const Avatar = ({
       <AvatarC
         onClick={() => (openCondition ? setOpen(!open) : setOpen(false))}
         backgroundColor={backgroundColor}
+        size={size}
+        borderColor={borderColor}
+        style={style}
       >
         {displayInitials ? (
           <span>{initials}</span>
