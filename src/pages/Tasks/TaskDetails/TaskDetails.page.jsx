@@ -31,6 +31,7 @@ import {
 import { RBACHOC } from "../../../RBAC/RBAC";
 import { generateDeleteTaskReq } from "../../../models/requests/task.req.model";
 import { authSelector } from "../../../redux/auth/auth.slice";
+import { EditTaskStatus } from "../../../components/TaskComponents/EditTaskStatus";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,10 @@ export const TaskDetails = () => {
 
   const eventSummary = useMemo(() => generateEventSummary(task), [task]);
   const QASummary = useMemo(() => generateQASummary(task), [task]);
-  const taskSummary = useMemo(() => generateTaskSummary(task), [task]);
+  const taskSummary = useMemo(() => {
+    const statusComponent = <EditTaskStatus task={task} />;
+    return generateTaskSummary(task, statusComponent);
+  }, [task]);
 
   useEffect(() => {
     const query = `taskUid=${taskUid}`;
@@ -139,12 +143,7 @@ export const TaskDetails = () => {
             </Button>
           </RBACHOC>
           <RBACHOC perm="event:edit">
-            <Button
-              onClick={onEdit}
-              onClick={onDelete}
-              icon="delete"
-              type="delete"
-            >
+            <Button onClick={onDelete} icon="delete" type="delete">
               Delete
             </Button>
           </RBACHOC>

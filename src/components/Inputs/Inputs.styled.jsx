@@ -71,4 +71,8 @@ export const StyledInputLayout = styled.div`
     text-align: left;
     margin-left: 20px;
   }
+
+  & .backdrop {
+    opacity: 1;
+  }
 `;

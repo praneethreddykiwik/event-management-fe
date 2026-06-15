@@ -9,8 +9,7 @@ import {
 import { toast } from "react-toastify";
 
 import { paths } from "../../constants/paths";
-import { updateAllTaskInputs } from "../farms/farms.slice";
-import { generateAddTaskInpMetadata } from "../farms/metadata/task.metadata";
+// import { updateAllTaskInputs } from "../farms/farms.slice";
 
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
@@ -78,7 +77,7 @@ export const assignEventAction = createAsyncThunk(
       const res = await assignEventApi(payload.reqPayload);
       toast.success("Assign Event successfully");
       res.data.reqPayload = payload.reqPayload;
-      return res.data; 
+      return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||

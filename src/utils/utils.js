@@ -60,7 +60,7 @@ export const modifyTimeToISO = (date, time) => {
 export const snakeToCamel = (str) =>
   str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
 
-export const camelToWords = (str) => {
+export const camelToWords = (str = "") => {
   const result = str.replace(/([A-Z])/g, " $1");
   return result.charAt(0).toUpperCase() + result.slice(1);
 };

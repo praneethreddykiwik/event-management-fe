@@ -13,6 +13,8 @@ const ProgressChart = () => {
   const { eventsStatusCounts } = useSelector(eventsSelector);
   const valueFormatter = (item) => `${item.value}`;
 
+  console.log("abdul eventsStatusCounts", eventsStatusCounts);
+
   return (
     <StyledCtn sx={boxStyles}>
       <PieChart
@@ -21,10 +23,12 @@ const ProgressChart = () => {
         width={isMobile ? 220 : 300}
         series={[
           {
-            data: Object.keys(eventsStatusCounts).map((key) => ({
-              label: camelToWords(key),
-              value: eventsStatusCounts[key],
-            })),
+            data: Object.keys(eventsStatusCounts)
+              .filter((fl) => fl !== "total")
+              .map((key) => ({
+                label: camelToWords(key),
+                value: eventsStatusCounts[key],
+              })),
             innerRadius: 35,
             arcLabel: (params) => params.label ?? "",
             arcLabelMinAngle: 20,
@@ -33,7 +37,7 @@ const ProgressChart = () => {
         ]}
       />
       <StyledSemiHeading id="input-item-number" left>
-        Events Progress
+        Total Events: {eventsStatusCounts.total}
       </StyledSemiHeading>
     </StyledCtn>
   );

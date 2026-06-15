@@ -11,38 +11,32 @@ const Dropdown = ({
   placeholder,
   error,
   validations,
-  preview,
-  previewComponent,
 }) => {
   const extractValue = useMemo(() => {
     return options.find((fn) => fn.value === value) || {};
   }, [options, value]);
 
-  console.log("abdul placeholder", placeholder);
-
   return (
     <InputLayout label={label} error={error} validations={validations}>
-      {previewComponent && preview ? (
-        previewComponent
-      ) : (
-        <Select
-          name={name}
-          options={options}
-          label={label}
-          value={extractValue}
-          onChange={(val) => {
-            const params = { target: { name, value: val.value } };
-            onChange(params);
-          }}
-          placeholder={placeholder}
-          styles={customStyles}
-          isSearchable={true}
-          // isClearable
-          // components={{
-          //   IndicatorSeparator: () => null,
-          // }}
-        />
-      )}
+      <Select
+        name={name}
+        options={options}
+        label={label}
+        value={extractValue}
+        onChange={(val) => {
+          const params = { target: { name, value: val.value } };
+          onChange(params);
+        }}
+        placeholder={placeholder}
+        styles={customStyles}
+        isSearchable={true}
+        // isClearable
+        // components={{
+        //   // IndicatorSeparator: () => null,
+        //   LoadingIndicator: () => <span>Loading</span>,
+        // }}
+        // isLoading
+      />
     </InputLayout>
   );
 };
@@ -60,6 +54,7 @@ const customStyles = {
       border: `1px solid #B9B9B9`,
       boxShadow: "none",
     },
+    // backgroundColor: "red",
   }),
 
   dropdownIndicator: (base) => ({
@@ -108,7 +103,13 @@ const customStyles = {
         ? "#f6fff1ff"
         : "transparent",
 
-    color: state.isSelected ? "#fff" : state.isFocused ? "#26C867" : "#000000",
+    color: state.isSelected
+      ? "#fff"
+      : state.isFocused
+        ? "#26C867"
+        : state.isDisabled
+          ? "#b5b5b5"
+          : "#000000",
 
     "&:active": {
       // not working

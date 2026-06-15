@@ -51,7 +51,7 @@ export const generateQASummary = (task) => {
   ];
 };
 
-export const generateTaskSummary = (task) => {
+export const generateTaskSummary = (task, statusComponent) => {
   return [
     { label: "Task Name", value: task.taskTitle, sx: fullWidth },
     {
@@ -64,7 +64,8 @@ export const generateTaskSummary = (task) => {
     { label: "Task Due At", value: formatDateTime(task.taskDueAt) },
     { label: "Event Venue", value: task.eventVenue || task.venue },
     { label: "Assigned To", value: task.taskAssignedTo }, // checkHere
-    { label: "Status", value: task.taskStatus },
+    { label: "Status", component: statusComponent },
+    // { label: "Status", value: task.taskStatus },
     { label: "Priority", value: task.taskPriority },
   ];
 };

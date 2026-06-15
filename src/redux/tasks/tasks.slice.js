@@ -29,6 +29,14 @@ const initialState = {
   acceptTask: null,
   acceptTaskError: "",
 
+  createTaskALoading: false,
+  createTask: null,
+  createTaskError: null,
+
+  updateTaskStatus: null,
+  updateTaskStatusLoading: null,
+  updateTaskStatusError: null,
+
   deleteTaskLoading: false,
   deleteTask: null,
   deleteTaskError: "",
@@ -133,6 +141,66 @@ const tasksSlice = createSlice({
       .addCase(actions.acceptTasksAction.rejected, (state, action) => {
         state.acceptTaskLoading = false;
         state.acceptTaskError = action.payload || "Failed to accept task";
+      });
+
+    builder
+      .addCase(actions.createTaskAction.pending, (state) => {
+        state.createTaskALoading = true;
+        state.createTaskError = null;
+      })
+      .addCase(actions.createTaskAction.fulfilled, (state, action) => {
+        state.createTask = action.payload;
+        state.createTaskALoading = false;
+        state.createTaskError = null;
+      })
+      .addCase(actions.createTaskAction.rejected, (state, action) => {
+        state.createTaskALoading = false;
+        state.createTaskError = action.payload || "Failed to create Task";
+      });
+
+    builder
+      .addCase(actions.editTaskAction.pending, (state) => {
+        state.editTaskLoading = true;
+        state.editTaskError = null;
+      })
+      .addCase(actions.editTaskAction.fulfilled, (state, action) => {
+        state.editTask = action.payload;
+        state.editTaskLoading = false;
+        state.editTaskError = null;
+      })
+      .addCase(actions.editTaskAction.rejected, (state, action) => {
+        state.editTaskLoading = false;
+        state.editTaskError = action.payload || "Failed to create Task";
+      });
+
+    builder
+      .addCase(actions.updateTaskStatusAction.pending, (state) => {
+        state.updateTaskStatusLoading = true;
+        state.updateTaskStatusError = null;
+      })
+      .addCase(actions.updateTaskStatusAction.fulfilled, (state, action) => {
+        state.updateTaskStatus = action.payload;
+        state.updateTaskStatusLoading = false;
+        state.updateTaskStatusError = null;
+
+        const updatedTaskUid = action.payload.taskUid;
+        const newStatus = action.payload.status;
+
+        // update the status in Fe only instead of a new api call
+        for (const event of state.eventsAndTasks) {
+          const task = event.tasks?.find(
+            (task) => task.taskUid === updatedTaskUid,
+          );
+
+          if (task) {
+            task.taskStatus = newStatus;
+            break;
+          }
+        }
+      })
+      .addCase(actions.updateTaskStatusAction.rejected, (state, action) => {
+        state.updateTaskStatusLoading = false;
+        state.updateTaskStatusError = action.payload || "Failed to create Task";
       });
 
     builder

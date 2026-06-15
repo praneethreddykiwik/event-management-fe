@@ -20,7 +20,6 @@ import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Events/EventDetails/EventDetails.page.jsx";
 import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.page.jsx";
-import { CreateTask } from "./pages/Tasks/CreateTask.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
 import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
@@ -34,6 +33,7 @@ import { TaskDetails } from "./pages/Tasks/TaskDetails/TaskDetails.page.jsx";
 import WhyChoose from "./pages/WhyChooseHelm/WhyChooseHelmPage.jsx";
 import OurServices from "./pages/OurServicesProducts/OurServicePage.jsx";
 import FAQ from "./pages/FAQ/FAQPage.jsx";
+import { CreateAndEditTask } from "./pages/Tasks/CreateAndEditTask.page.jsx";
 
 const AppRoutes = () => {
   const { authStatus } = useSelector(authSelector);
@@ -104,7 +104,7 @@ const AppRoutes = () => {
       </Route> */}
       <Route path={paths.tasks} element={<Tasks />} />
       <Route path={`${paths.tasks}/:taskUid`} element={<TaskDetails />} />
-      <Route path={paths.createTask} element={<CreateTask />} />
+      <Route path={paths.createTask} element={<CreateAndEditTask />} />
 
       {/* Customer */}
       {/* <Route path={paths.customer} element={<CustomerDashboard />} /> */}
