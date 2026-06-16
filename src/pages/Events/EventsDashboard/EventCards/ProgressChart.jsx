@@ -13,8 +13,6 @@ const ProgressChart = () => {
   const { eventsStatusCounts } = useSelector(eventsSelector);
   const valueFormatter = (item) => `${item.value}`;
 
-  console.log("abdul eventsStatusCounts", eventsStatusCounts);
-
   return (
     <StyledCtn sx={boxStyles}>
       <PieChart

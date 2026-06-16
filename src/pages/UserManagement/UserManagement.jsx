@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
 import {
   StyledHeading,
   StyledParagraphBold,
 } from "../../components/Styled/Typography.styled";
 import UserManagementItem from "../../pages/UserManagement/UserManagementItem";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
 
 import PopupModal from "../../components/PopupModal/PopupModal";
@@ -80,7 +79,7 @@ const UserManagement = () => {
       <PageWrapper>
         <StyledHeading left>User Management</StyledHeading>
         <StyledButtonContainer right>
-          <StyledButton onClick={() => navigate("/registration")}>
+          <StyledButton onClick={() => navigate("/registration")} whiteText>
             Create User{" "}
           </StyledButton>
         </StyledButtonContainer>
@@ -219,7 +218,6 @@ const StyledButtonContainer = styled.div`
   `}
 `;
 
-const StyledButton = styled(StyledBaseButton)`
+const StyledButton = styled(Button)`
   width: auto;
-  color: ${({ theme }) => theme.colors.white};
 `;

@@ -127,7 +127,7 @@ const Ctn = styled(Section)`
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
-  background: #f3fff4;
+  background: ${({ theme }) => theme.colors.primaryLight};
 
   ${mobile`
     flex-direction: column;

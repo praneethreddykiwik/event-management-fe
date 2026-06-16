@@ -2,8 +2,10 @@ import logo from "../../assets/Logos/eventz-logo.png";
 import Gateway from "../../assets/gateway-images/img.jpg";
 
 import styled from "styled-components";
-import { StyledBaseButton, StyledSecButton } from "../../components/Styled/Buttons.styled";
-import { StyledHeadingBig, StyledParagraph } from "../../components/Styled/Typography.styled";
+import {
+  StyledHeadingBig,
+  StyledParagraph,
+} from "../../components/Styled/Typography.styled";
 
 import {
   EVENTZ_LOGO_TEXT,
@@ -12,6 +14,7 @@ import {
   SKIP_BUTTON_TEXT,
   NEXT_BUTTON_TEXT,
 } from "../../myEnum";
+import { Button } from "../../components/Buttons/Button";
 
 const GatewayPage = () => {
   return (
@@ -27,7 +30,7 @@ const GatewayPage = () => {
         <DescriptionTxt>{GATEAWAY_DESCRIPTION_TEXT}</DescriptionTxt>
 
         <Button_section>
-          <SkipButton>{SKIP_BUTTON_TEXT}</SkipButton>
+          <SkipButton type="secondary">{SKIP_BUTTON_TEXT}</SkipButton>
           <NextButton>{NEXT_BUTTON_TEXT}</NextButton>
         </Button_section>
       </Container_child1>
@@ -68,13 +71,6 @@ const Container_child2 = styled.div`
 const LogoIcon = styled.img`
   width: 80px;
 `;
-const LogoText = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 60px;
-  gap: 16px;
-`;
 
 const TitleTxt = styled(StyledHeadingBig)`
   font-size: 35px;
@@ -95,11 +91,11 @@ const Button_section = styled.div`
   justify-content: center;
 `;
 
-const SkipButton = styled(StyledSecButton)`
+const SkipButton = styled(Button)`
   width: 150px;
 `;
 
-const NextButton = styled(StyledBaseButton)`
+const NextButton = styled(Button)`
   width: 250px;
   color: ${({ theme }) => theme.colors.white};
 `;
@@ -109,3 +105,14 @@ const StyledCstHeading = styled(StyledHeadingBig)`
   width: 50%;
 `;
 
+const LogoText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  gap: 16px;
+
+  @media (max-width: 900px) {
+    margin-bottom: 35px;
+  }
+`;

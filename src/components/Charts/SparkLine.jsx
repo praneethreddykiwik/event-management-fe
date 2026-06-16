@@ -7,6 +7,7 @@ import {
 } from "@mui/x-charts/LineChart";
 import { chartsAxisHighlightClasses } from "@mui/x-charts/ChartsAxisHighlight";
 import Box from "@mui/material/Box";
+import { theme } from "../../theme/theme";
 
 const sparkLineChartData = [
   {
@@ -110,7 +111,7 @@ export function NpmSparkLine({ color, chartData = sparkLineChartData }) {
             area
             showHighlight
             showTooltip
-            color={color || "#26C867"}
+            color={color || theme.light.colors.primary}
             onHighlightedAxisChange={(axisItems) => {
               setWeekIndex(axisItems[0]?.dataIndex ?? null);
             }}

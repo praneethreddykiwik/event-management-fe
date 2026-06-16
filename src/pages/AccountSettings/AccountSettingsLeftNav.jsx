@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import * as enums from "../../myEnum";
 import modalImg from "../../assets/modalImg.jpg";
 import styled from "styled-components";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import {
   StyledParagraphBold,
   StyledParagraphSmallGray,
   StyledSemiHeading,
   StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
+import { Button } from "../../components/Buttons/Button";
 
 const AccountSettingsLeftNav = () => {
   const [active, setActive] = useState("Account Settings");
@@ -164,7 +164,7 @@ const ModalImage = styled.img`
   margin-bottom: 15px;
 `;
 
-const StyledAccButton = styled(StyledBaseButton)`
+const StyledAccButton = styled(Button)`
   width: auto;
   background: ${({ theme }) => theme.colors.white};
 `;

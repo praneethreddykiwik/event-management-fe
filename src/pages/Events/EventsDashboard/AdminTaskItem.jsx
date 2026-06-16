@@ -251,7 +251,7 @@ const StyledBold = styled.span`
 `;
 
 const StyledT = styled.span`
-  color: #26c867;
+  color: ${({ theme }) => theme.colors.primary};
   margin-left: 8px;
 `;
 

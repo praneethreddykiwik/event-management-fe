@@ -18,7 +18,15 @@
     "@mui/x-charts": "^8.23.0",
     "@reduxjs/toolkit": "^2.11.2",
     "@studio-freight/lenis": "^1.0.42",
+    "@tiptap/extension-highlight": "^3.26.1",
+    "@tiptap/extension-link": "^3.26.1",
+    "@tiptap/extension-mention": "^3.26.1",
+    "@tiptap/extension-placeholder": "^3.26.1",
+    "@tiptap/react": "^3.26.1",
+    "@tiptap/starter-kit": "^3.26.1",
+    "@tiptap/suggestion": "^3.26.1",
     "axios": "^1.13.2",
+    "dompurify": "^3.4.10",
     "eslint-plugin-react": "^7.37.5",
     "gsap": "^3.14.2",
     "moment": "^2.30.1",
@@ -30,7 +38,8 @@
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

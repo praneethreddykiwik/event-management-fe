@@ -4,6 +4,7 @@ import {
   StyledParagraph,
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
+import { theme } from "../../theme/theme";
 
 const RoleDropdown = ({ options, label, value, onChange, placeholder }) => {
   return (
@@ -45,9 +46,9 @@ const customStyles = {
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
-    border: "1px solid #B9B9B9",
+    border: `1px solid ${theme.light.colors.grayDisabled}`,
     "&:focus-within": {
-      border: `1px solid #B9B9B9`,
+      border: `1px solid ${theme.light.colors.grayDisabled}`,
       boxShadow: "none",
     },
   }),

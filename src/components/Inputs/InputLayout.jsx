@@ -2,7 +2,6 @@ import {
   StyledParagraphError,
   StyledParagraphSmall,
 } from "../Styled/Typography.styled";
-import { StyledInputLayout } from "./Inputs.styled";
 import { validationList } from "../../constants/validations.constants";
 import styled from "styled-components";
 import { Icon } from "../Icons/Icons";
@@ -66,7 +65,7 @@ const HelperTextCtn = styled.div`
   .content_copy {
     margin-left: auto;
     margin-right: 10px;
-    color: #26c867;
+    color: ${({ theme }) => theme.colors.primary};
   }
 
   .cancel {
@@ -81,4 +80,18 @@ const StyledATagLoc = styled(StyledParagraphSmall)`
   width: 200px;
   margin: 0px !important;
   cursor: pointer;
+`;
+
+const StyledInputLayout = styled.div`
+  position: relative;
+  text-align: left;
+
+  p {
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  & .backdrop {
+    opacity: 1;
+  }
 `;
