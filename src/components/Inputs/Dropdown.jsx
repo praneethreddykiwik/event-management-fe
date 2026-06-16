@@ -30,7 +30,7 @@ const Dropdown = ({
         placeholder={placeholder}
         styles={customStyles}
         isSearchable={true}
-        hasError={error}  
+        hasError={error}
       // isClearable
       // components={{
       //   // IndicatorSeparator: () => null,
@@ -43,28 +43,28 @@ const Dropdown = ({
 };
 
 const customStyles = {
-  control: (base, state) => (    
+  control: (base, state) => (
     {
-    ...base,
-    borderRadius: "25px",
-    paddingLeft: "12px",
-    paddingRight: "12px",
-    cursor: "pointer",
-    textAlign: "left",
-    backgroundColor: "white", 
-    border: state.selectProps.hasError ? "1px solid #e53935" : "1px solid #e3e3e3", 
-    boxShadow: "none",
-    "&:hover": {
-      borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3", 
-    },
-    "&:focus-within": {
+      ...base,
+      borderRadius: "25px",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+      cursor: "pointer",
+      textAlign: "left",
+      backgroundColor: "white",
       border: state.selectProps.hasError ? "1px solid #e53935" : "1px solid #e3e3e3",
       boxShadow: "none",
-    },
-  }),
+      "&:hover": {
+        borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
+      },
+      "&:focus-within": {
+        border: state.selectProps.hasError ? "1px solid #e53935" : "1px solid #e3e3e3",
+        boxShadow: "none",
+      },
+    }),
   dropdownIndicator: (base) => ({
     ...base,
-    color: "#666666",
+    color: "#66666",
     padding: 8,
   }),
   valueContainer: (base) => ({
@@ -99,17 +99,17 @@ const customStyles = {
     backgroundColor: state.isSelected
       ? "#26C867"
       : state.isFocused
-      ? "#f6fff1"
-      : "transparent",
+        ? "#f6fff1ff"
+        : "transparent",
     color: state.isSelected
       ? "#fff"
       : state.isFocused
-      ? "#26C867"
-      : state.isDisabled
-      ? "#b5b5b5"
-      : "#000000",
+        ? "#26C867"
+        : state.isDisabled
+          ? "#b5b5b5"
+          : "#000000",
     "&:active": {
-      backgroundColor: "#e0deff",
+      backgroundColor: "#e0deffff",
     },
   }),
 };
