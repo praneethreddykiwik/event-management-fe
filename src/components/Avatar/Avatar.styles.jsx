@@ -6,40 +6,40 @@ export const DropdownContainer = styled.div`
 `;
 
 export const AvatarC = styled.div`
-  width: ${({ size }) => {
-    if (size === "small") return "24px";
-    if (size === "large") return "80px";
-    if (size === "xlarge") return "110px";
+  width: ${({ $size }) => {
+    if ($size === "small") return "24px";
+    if ($size === "large") return "80px";
+    if ($size === "xlarge") return "110px";
     return "42px";
   }};
 
-  height: ${({ size }) => {
-    if (size === "small") return "24px";
-    if (size === "large") return "80px";
-    if (size === "xlarge") return "110px";
+  height: ${({ $size }) => {
+    if ($size === "small") return "24px";
+    if ($size === "large") return "80px";
+    if ($size === "xlarge") return "110px";
     return "42px";
   }};
-  border: ${({ borderColor, size }) =>
-    size === "small" ? `2px solid ${borderColor || "#0084ff"}` : "none"};
+  border: ${({ $borderColor, $size }) =>
+    $size === "small" ? `2px solid ${$borderColor || "#0084ff"}` : "none"};
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: ${({ size }) => (size === "xlarge" ? "30px" : "")};
+  font-size: ${({ $size }) => ($size === "xlarge" ? "30px" : "")};
 
   ${mobile`
-    width: ${({ size }) =>
-      size === "xlarge" ? "80px" : size === "large" ? "65px" : ""};
+    width: ${({ $size }) =>
+      $size === "xlarge" ? "80px" : $size === "large" ? "65px" : ""};
 
-    height: ${({ size }) =>
-      size === "xlarge" ? "80px" : size === "large" ? "65px" : ""};
+    height: ${({ $size }) =>
+      $size === "xlarge" ? "80px" : $size === "large" ? "65px" : ""};
 
-    margin: ${({ size }) => (size === "xlarge" ? "10px auto" : "")};
+    margin: ${({ $size }) => ($size === "xlarge" ? "10px auto" : "")};
   `}
 `;
 

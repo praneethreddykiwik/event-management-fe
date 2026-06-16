@@ -57,9 +57,9 @@ const Avatar = ({
     <DropdownContainer ref={menuRef}>
       <AvatarC
         onClick={() => (openCondition ? setOpen(!open) : setOpen(false))}
-        backgroundColor={backgroundColor}
-        size={size}
-        borderColor={borderColor}
+        $backgroundColor={backgroundColor}
+        $size={size}
+        $borderColor={borderColor}
         style={style}
       >
         {displayInitials ? (
