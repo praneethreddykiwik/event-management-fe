@@ -36,7 +36,7 @@ import {
 
 export const CreateAndEditTask = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const   location = useLocation();
 
   const { authUser } = useSelector(authSelector);
   const { createTaskInputs } = useSelector(formsSelector);
@@ -127,7 +127,7 @@ export const CreateAndEditTask = () => {
       {/* Page Content */}
       <DashboardContainer>
         <StyledFlex>
-          <TaskForm onCreateTask={onSubmit} />
+          <TaskForm onEditMode={isEditMode} onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
               Please choose from one of the below Task

@@ -31,37 +31,40 @@ const Dropdown = ({
         styles={customStyles}
         isSearchable={true}
         hasError={error}
-      // isClearable
-      // components={{
-      //   // IndicatorSeparator: () => null,
-      //   LoadingIndicator: () => <span>Loading</span>,
-      // }}
-      // isLoading
+        // isClearable
+        // components={{
+        //   // IndicatorSeparator: () => null,
+        //   LoadingIndicator: () => <span>Loading</span>,
+        // }}
+        // isLoading
       />
     </InputLayout>
   );
 };
 
 const customStyles = {
-  control: (base, state) => (
-    {
-      ...base,
-      borderRadius: "25px",
-      paddingLeft: "12px",
-      paddingRight: "12px",
-      cursor: "pointer",
-      textAlign: "left",
-      backgroundColor: "white",
-      border: state.selectProps.hasError ? "1px solid #e53935" : "1px solid #e3e3e3",
+  control: (base, state) => ({
+    ...base,
+    borderRadius: "25px",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    cursor: "pointer",
+    textAlign: "left",
+    backgroundColor: "white",
+    border: state.selectProps.hasError
+      ? "1px solid #e53935"
+      : "1px solid #e3e3e3",
+    boxShadow: "none",
+    "&:hover": {
+      borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
+    },
+    "&:focus-within": {
+      border: state.selectProps.hasError
+        ? "1px solid #e53935"
+        : "1px solid #e3e3e3",
       boxShadow: "none",
-      "&:hover": {
-        borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
-      },
-      "&:focus-within": {
-        border: state.selectProps.hasError ? "1px solid #e53935" : "1px solid #e3e3e3",
-        boxShadow: "none",
-      },
-    }),
+    },
+  }),
   dropdownIndicator: (base) => ({
     ...base,
     color: "#66666",
