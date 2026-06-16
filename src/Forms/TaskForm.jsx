@@ -23,7 +23,6 @@ const TaskForm = ({ onCreateTask }) => {
 
     const newInputs = createTaskInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
-      console.log(`Field: ${el.name} | Is Required: ${isReq} | Current Value: "${el.value}"`);
       if (isReq && !el.value) {
         isValid = false;
         return { ...el, error: "This field is required" };
