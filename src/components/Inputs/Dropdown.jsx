@@ -1,6 +1,7 @@
 import Select from "react-select";
 import { InputLayout } from "./InputLayout";
 import { useMemo } from "react";
+import { theme } from "../../theme/theme";
 
 const Dropdown = ({
   name,
@@ -49,9 +50,9 @@ const customStyles = {
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
-    border: "1px solid #e0e0e0",
+    border: "1px solid #e0e0e0", // checkHere
     "&:focus-within": {
-      border: `1px solid #B9B9B9`,
+      border: `1px solid ${theme.light.colors.grayDisabled}`,
       boxShadow: "none",
     },
     // backgroundColor: "red",
@@ -98,7 +99,7 @@ const customStyles = {
     cursor: "pointer",
 
     backgroundColor: state.isSelected
-      ? "#26C867"
+      ? theme.light.colors.primary
       : state.isFocused
         ? "#f6fff1ff"
         : "transparent",
@@ -106,7 +107,7 @@ const customStyles = {
     color: state.isSelected
       ? "#fff"
       : state.isFocused
-        ? "#26C867"
+        ? theme.light.colors.primary
         : state.isDisabled
           ? "#b5b5b5"
           : "#000000",

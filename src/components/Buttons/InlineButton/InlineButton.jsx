@@ -3,6 +3,7 @@ import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
 import { Button } from "../Button";
 import Backdrop from "../../UI/Backdrop/Backdrop";
+import { theme } from "../../../theme/theme";
 
 export const InlineButton = ({
   onClick,
@@ -46,9 +47,9 @@ export const InlineButton = ({
   };
 
   const iconColors = {
-    primary: "#26c867",
+    primary: theme.light.colors.primary, // checkHere
     secondary: "black",
-    delete: "#d63a2f",
+    delete: theme.light.colors.red, // checkHere
   };
 
   const iconColor = iconColors[type] || "black";

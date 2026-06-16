@@ -47,7 +47,7 @@ export const ShieldIcon = styled.div`
   height: 52px;
   border-radius: 50%;
   background: #eef0ff;
-  color: #26c867;
+  color: ${({ theme }) => theme.colors.primary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,8 +95,7 @@ export const SubTitle = styled.p`
 /* ================= OPTION CARD ================= */
 
 export const OptionCard = styled.div`
-  border: 2px solid
-    ${({ active }) => (active ? "#2ae230" : "#e5e7eb")};
+  border: 2px solid ${({ active }) => (active ? "#2ae230" : "#e5e7eb")};
   border-radius: 12px;
   padding: 14px;
   display: flex;
@@ -122,7 +121,7 @@ export const IconCircle = styled.div`
   width: 42px;
   height: 42px;
   background: #eef0ff;
-  color: #26c867;
+  color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -168,28 +167,30 @@ export const OptionSub = styled.div`
 
 /* ================= RADIO ================= */
 
-export const RadioDot = styled.div`
+export const RadioDot = styled.div(
+  ({ theme, active }) => `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid #26c867;
-  background: ${({ active }) =>
-    active ? "#26c867" : "transparent"};
+  border: 2px solid ${theme.colors.primary};
+  background: ${active ? theme.colors.primary : "transparent"};
 
   ${mobile`
     width: 14px;
     height: 14px;
   `}
-`;
+`,
+);
 
 /* ================= BUTTON ================= */
 
-export const PrimaryButton = styled.button`
+export const PrimaryButton = styled.button(
+  ({ theme }) => `
   margin-top: 10px;
   padding: 14px;
   border-radius: 30px;
   border: none;
-  background: linear-gradient(90deg, #26c867, #26c867);
+  background: linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.primary});
   color: #fff;
   font-size: 15px;
   font-weight: 600;
@@ -204,7 +205,8 @@ export const PrimaryButton = styled.button`
     padding: 12px;
     font-size: 14px;
   `}
-`;
+`,
+);
 
 /* ================= BACK ================= */
 

@@ -1,16 +1,14 @@
 import styled from "styled-components";
 import {
-  StyledMediumHeading,
   StyledParagraph,
   StyledParagraphBold,
 } from "../../../components/Styled/Typography.styled";
 import { mobile } from "../../../theme/media-queries";
+import { CommonBox } from "../../../components/Cards/Cards";
 
 export const DetailsBox = ({ dataArray = [], title, className }) => {
   return (
-    <Section className={className}>
-      <StyledMediumHeading left>{title}</StyledMediumHeading>
-
+    <CommonBox title={title} className={className}>
       <SummaryGrid>
         {dataArray.map((item) => (
           <SummaryItem key={item.label} style={item.sx}>
@@ -26,16 +24,9 @@ export const DetailsBox = ({ dataArray = [], title, className }) => {
           </SummaryItem>
         ))}
       </SummaryGrid>
-    </Section>
+    </CommonBox>
   );
 };
-
-const Section = styled.div`
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 0 4px 0px #e5e7eb;
-  border-radius: 12px;
-  padding: 16px;
-`;
 
 const SummaryGrid = styled.div`
   display: flex;

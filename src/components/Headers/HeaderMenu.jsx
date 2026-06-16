@@ -268,7 +268,7 @@ const DropdownItem = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: #e6f7e9;
+    background: ${({ theme }) => theme.colors.primaryLight};
   }
 `;
 

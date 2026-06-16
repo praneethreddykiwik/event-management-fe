@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import google from "../../assets/Logo/Google.svg.webp";
 import * as enums from "../../myEnum";
 import styled from "styled-components";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
 import { StyledHr } from "../../components/Styled/Common.styled";
 import {
   StyledHeading,
@@ -10,6 +9,7 @@ import {
   StyledParagraphSmallGray,
 } from "../../components/Styled/Typography.styled";
 import Input from "@mui/material/Input";
+import { Button } from "../../components/Buttons/Button";
 
 const AccountSettingsRightContent = () => {
   const [upgradeOptions, setUpgradeOptions] = useState([]);
@@ -59,7 +59,7 @@ const AccountSettingsRightContent = () => {
         <StyledParagraphSmallGray left>{enums.BACKUP}</StyledParagraphSmallGray>
       </Section>
       <StyledButtonContainer left>
-        <StyledAccButton>Upgrade now </StyledAccButton>
+        <StyledAccButton whiteText>Upgrade now </StyledAccButton>
       </StyledButtonContainer>
 
       <StyledHr />
@@ -138,9 +138,8 @@ const StyledButtonContainer = styled.div`
   text-align: ${textAlign};
 `;
 
-const StyledAccButton = styled(StyledBaseButton)`
+const StyledAccButton = styled(Button)`
   width: auto;
-  color: ${({ theme }) => theme.colors["white"]};
 `;
 
 const UpgrateOptions = styled.div`

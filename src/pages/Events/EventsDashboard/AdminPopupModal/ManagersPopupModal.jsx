@@ -246,5 +246,5 @@ const StyledPopupActions = styled.div`
 const StyledDividerline = styled.div`
   width: 100%;
   height: 1px;
-  background: ${({ theme }) => theme.colors["gray-disabled"]};
+  background: ${({ theme }) => theme.colors.grayDisabled};
 `;

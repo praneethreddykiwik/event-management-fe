@@ -9,7 +9,7 @@ import {
   ButtonImage,
   StyledNoBorderButton,
   StyledDeleteBtn,
-} from "../Styled/Buttons.styled";
+} from "./Buttons.styled";
 
 export const Button = ({
   type,

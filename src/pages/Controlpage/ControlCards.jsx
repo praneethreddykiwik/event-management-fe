@@ -54,7 +54,7 @@ const InfoRow = styled.div`
 
 const InfoCard = styled.div`
   flex: 1;
-  background: ${({ theme }) => theme.colors["gray-disabled"]};
+  background: ${({ theme }) => theme.colors.grayDisabled};
   border-radius: 9px;
   border: 1px solid #85bbbcff;
   padding: 14px 16px;

@@ -1,28 +1,22 @@
 import styled from "styled-components";
 import { HomePageLayout } from "./HomePageLayout.jsx";
-import {
-  StyledParagraphSmallGray,
-} from "../../components/Styled/Typography.styled.jsx";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
+import { StyledParagraphSmallGray } from "../../components/Styled/Typography.styled.jsx";
 import { mobile } from "../../theme/media-queries.jsx";
 import joinNowVenue1 from "../../assets/landingPage/joinNowVenue1.jpg";
 import * as enums from "../../myEnum";
+import { Button } from "../../components/Buttons/Button.jsx";
 
 const HeroSection = () => {
   return (
     <StyledHeroLayout flexDirection="column">
       <StyledContentContainer>
-        <StyledHeadline>
-          {enums.HERO_SECTION_DATA.HERO_HEADING}
-        </StyledHeadline>
+        <StyledHeadline>{enums.HERO_SECTION_DATA.HERO_HEADING}</StyledHeadline>
 
         <StyledSubHeading>
           {enums.HERO_SECTION_DATA.HERO_SUBHEADING}
         </StyledSubHeading>
 
-        <StyledTagline>
-          {enums.HERO_SECTION_DATA.HERO_TAGLINE}
-        </StyledTagline>
+        <StyledTagline>{enums.HERO_SECTION_DATA.HERO_TAGLINE}</StyledTagline>
 
         <StyledDescription>
           {enums.HERO_SECTION_DATA.HERO_DESCRIPTION}
@@ -33,7 +27,7 @@ const HeroSection = () => {
             {enums.HERO_SECTION_DATA.HERO_PRIMARY_BTN}
           </PrimaryButton>
 
-          <SecondaryButton>
+          <SecondaryButton type="secondary">
             {enums.HERO_SECTION_DATA.HERO_SECONDARY_BTN}
           </SecondaryButton>
         </StyledButtonContainer>
@@ -123,7 +117,7 @@ const StyledButtonContainer = styled.div`
   `}
 `;
 
-const PrimaryButton = styled(StyledBaseButton)`
+const PrimaryButton = styled(Button)`
   min-width: 220px;
 
   ${mobile`
@@ -131,16 +125,8 @@ const PrimaryButton = styled(StyledBaseButton)`
   `}
 `;
 
-const SecondaryButton = styled(StyledBaseButton)`
+const SecondaryButton = styled(Button)`
   min-width: 220px;
-  background-color: transparent;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: #fff;
-  }
 
   ${mobile`
     width: 100%;

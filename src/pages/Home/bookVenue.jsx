@@ -3,7 +3,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { Inputs } from "../../components/Inputs/Inputs.jsx";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import { HomePageLayout } from "./HomePageLayout.jsx";
 import * as enums from "../../myEnum";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 
 import { mobile } from "../../theme/media-queries.jsx";
+import { Button } from "../../components/Buttons/Button.jsx";
 
 const BookVenue = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ const BookVenue = () => {
           onChange={handlEmailChange}
           value={email}
         />
-        <StyledBaseButton>{enums.BOOK_BTN}</StyledBaseButton>
+        <Button>{enums.BOOK_BTN}</Button>
       </StyledInputContainer>
       <StyledPolicy>
         <StyledParagraphSmallGray left>
@@ -46,7 +46,7 @@ const BookVenue = () => {
   );
 };
 
-const StyledBtn = styled(StyledBaseButton)`
+const StyledBtn = styled(Button)`
   min-width: 250px;
 
   ${mobile`

@@ -49,7 +49,7 @@ const Group = styled.div`
   gap: 10px;
 
   padding: 10px 10px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid ${({ theme }) => theme.colors.borderGray};
   border-radius: 20px;
   padding: 10px 20px;
 
