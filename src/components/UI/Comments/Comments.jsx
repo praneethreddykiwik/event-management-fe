@@ -11,7 +11,6 @@ import Skeleton from "@mui/material/Skeleton";
 import { SkeletonLoaders } from "../Spinner/SkeletonLoaders";
 import DOMPurify from "dompurify";
 import { richTextStyles } from "./extraStyles";
-// import { richTextStyles } from "../../Inputs/RichTextEditor";
 
 const getInitials = (name = "") => {
   return name
