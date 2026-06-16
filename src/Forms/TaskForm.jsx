@@ -17,11 +17,13 @@ const TaskForm = ({ onCreateTask }) => {
   const { createTaskInputs } = useSelector(formsSelector);
   const { vendors, supervisors } = useSelector(usersSelector);
 
+
   const validateFields = () => {
     let isValid = true;
 
     const newInputs = createTaskInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
+      console.log(`Field: ${el.name} | Is Required: ${isReq} | Current Value: "${el.value}"`);
       if (isReq && !el.value) {
         isValid = false;
         return { ...el, error: "This field is required" };
@@ -50,7 +52,7 @@ const TaskForm = ({ onCreateTask }) => {
     const state = createTaskInputs.map((el) => {
       const inp = { ...el };
 
-      if (name === "assineeType" && inp.name === "assignedToUid") {
+      if (name === "assigneeType" && inp.name === "assignedToUid") {
         const isSupervisorSelected = value === "Assign to Supervisor";
         inp.options = generateUserOptions(
           isSupervisorSelected ? supervisors : vendors,
