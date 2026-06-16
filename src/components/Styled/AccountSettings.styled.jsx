@@ -267,7 +267,7 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
     left: 5px;
     width: 5px;
     height: 10px;
-    border: solid #26c867;
+    border: solid ${({ theme }) => theme.colors.primary};
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

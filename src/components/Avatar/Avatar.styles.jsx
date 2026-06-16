@@ -49,12 +49,13 @@ export const StyleImg = styled.img`
   object-fit: cover;
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.div(
+  ({ theme, open }) => `
   position: absolute;
   top: 55px;
   right: 0;
   width: clamp(150px, 40vw, 190px);
-  background: #fff;
+  background: ${theme.colors.white};
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 8px 0;
@@ -65,22 +66,23 @@ export const Menu = styled.div`
 
   min-height: 100px;
 
-  background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  opacity: ${({ open }) => (open ? 1 : 0)};
-  transform: ${({ open }) => (open ? "translateY(0)" : "translateY(-8px)")};
+  opacity: ${open ? 1 : 0};
+  transform: ${open ? "translateY(0)" : "translateY(-8px)"};
 
-  pointer-events: ${({ open }) => (open ? "auto" : "none")};
+  pointer-events: ${open ? "auto" : "none"};
 
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
 
   z-index: 1000;
-`;
+`,
+);
 
-export const MenuItem = styled.div`
+export const MenuItem = styled.div(
+  ({ theme, highlight }) => `
   padding: 10px 16px;
   display: flex;
   gap: 12px;
@@ -88,14 +90,15 @@ export const MenuItem = styled.div`
   cursor: pointer;
   color: #333;
 
-  background: ${({ highlight }) => (highlight ? "#e6f7e9" : "transparent")};
-  font-weight: ${({ highlight }) => (highlight ? "600" : "400")};
+  background: ${highlight ? theme.colors.primaryLight : "transparent"};
+  font-weight: ${highlight ? "600" : "400"};
 
   &:hover {
-    background: #e6f7e9;
+    background: ${theme.colors.primaryLight};
     font-weight: 600;
   }
-`;
+`,
+);
 
 export const Divider = styled.div`
   height: 1px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../../components/Buttons/Button";
 import { Icon } from "../../components/Icons/Icons";
-import { mobile } from "../../theme/media-queries"; 
+import { mobile } from "../../theme/media-queries";
 
 import Badge from "../../components/Badge/Badge.component";
 
@@ -133,7 +133,7 @@ const Header = styled.div`
 `;
 
 const Card = styled.div`
-  border: 1.5px solid #e0e0e0;
+  border: 1.5px solid ${({ theme }) => theme.colors.borderGray};
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;

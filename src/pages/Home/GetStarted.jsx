@@ -9,22 +9,13 @@ import {
 import styled from "styled-components";
 import getStarted_imgMi from "../../assets/landingPage/get_startedMi.jpg";
 import { HomePageLayout } from "./HomePageLayout.jsx";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.jsx";
-import axios from "axios";
 
 import { mobile } from "../../theme/media-queries.jsx";
+import { Button } from "../../components/Buttons/Button.jsx";
 
 const GetStarted = () => {
   const navigate = useNavigateWithQuery();
-
-  // const onClick = async () => {
-  //   await axios.post(
-  //     "https://ww9v3wwhmp.ap-south-1.awsapprunner.com/health",
-  //     {},
-  //   );
-  // };
-
   return (
     <StyledGetStartedLayout>
       <StyledChildContainer>
@@ -34,13 +25,12 @@ const GetStarted = () => {
             {enums.MAIN_PARAGRAPH}
           </StyledParagraphSmallGray>
           <StyledContentBtn>
-            <StyledBaseButton
-              // onClick={onClick}
+            <Button
               onClick={() => navigate("/registration")}
               className="!w-[120px]"
             >
               {enums.START_BTN}
-            </StyledBaseButton>
+            </Button>
             <StyledLink>
               {enums.OUTLINE_BTN}
               <StyledBtnIcon src={forward_arrow} />

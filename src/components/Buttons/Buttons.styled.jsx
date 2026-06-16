@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { mobile } from "../../theme/media-queries";
 
 const height = ({ small }) => (small ? "28px" : "40px");
@@ -28,7 +28,8 @@ export const ButtonImage = styled.img`
   ${({ sx }) => ({ ...sx })}
 `;
 
-export const StyledBaseButton = styled.button`
+export const StyledBaseButton = styled.button(
+  ({ theme }) => css`
   height: ${height};
 
   width: 100%;
@@ -37,23 +38,26 @@ export const StyledBaseButton = styled.button`
   font-size: 16px;
 
   padding: ${padding}
-  background-color: #26c867;
-  color: ${({ $whiteText }) => ($whiteText ? "#fff" : "#000")};
+  background-color: ${theme.colors.primary};
+  color: ${({ $whiteText }) => ($whiteText ? theme.colors.white : theme.colors.black)};
   min-width: 100px;
   border: none;
   cursor: pointer;
   white-space: nowrap;
   
   ${mobile`${responsiveStyles}`}
-  ${({ sx }) => ({ ...sx })} &:disabled {
+  ${({ sx }) => ({ ...sx })};
+
+   &:disabled {
     cursor: not-allowed;
     background-color: #dcdcdc;
     color: #777777;
   }
-`;
+`,
+);
 
 export const StyledDeleteBtn = styled(StyledBaseButton)`
-  background-color: #d63a2f;
+  background-color: ${({ theme }) => theme.colors.red};
   display: flex;
   align-items: center;
   gap: 8px;
@@ -61,7 +65,7 @@ export const StyledDeleteBtn = styled(StyledBaseButton)`
 `;
 
 export const StyledInlineDeleteBtn = styled(StyledBaseButton)`
-  background-color: #d63a2f;
+  background-color: ${({ theme }) => theme.colors.red};
   display: flex;
   align-items: center;
   gap: 8px;
@@ -125,7 +129,7 @@ export const StyledTransparentButton = styled.button`
 
   border-radius: 30px;
   padding: ${padding}
-  color: #26c867;
+  color: ${({ theme }) => theme.colors.primary};
   min-width: 100px;
   background-color: transparent;
   cursor: pointer;
@@ -142,7 +146,7 @@ export const StyledIconButton = styled.button`
   width: 100%;
   border-radius: 30px;
   padding: ${padding}
-  background-color: #26c867;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   min-width: 100px;
   border: none;

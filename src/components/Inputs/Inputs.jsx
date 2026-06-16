@@ -10,6 +10,7 @@ import { CheckboxGroup } from "./CheckboxGroup";
 import { Checkbox } from "./Checkbox";
 import { DateTimeLocal } from "./DateTimeLocal";
 import { MobileInput } from "./MobileInput";
+import { RichTextEditor } from "./RichTextEditor";
 
 export const Inputs = (props) => {
   const { type } = props;
@@ -44,6 +45,9 @@ export const Inputs = (props) => {
 
     case "textarea":
       return <TextArea {...props} />;
+
+    case "rich-text-editor":
+      return <RichTextEditor {...props} />;
 
     case "tel":
       return <MobileInput {...props} isPhone />;

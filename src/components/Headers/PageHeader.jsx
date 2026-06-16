@@ -38,7 +38,7 @@ const StyledCtn = styled.div`
   z-index: 1;
   margin-left: -1px;
   justify-content: space-between;
-  z-index: 0; // for dropdown's backdrop
+  z-index: 1;
 
   h1 {
     font-size: 26px;

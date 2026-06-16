@@ -3,8 +3,8 @@ import styled from "styled-components";
 import payment_img from "../../assets/payment_images/payment_img.jpg";
 import PaymentSuccessfull2 from "./PaymentSuccessfull2";
 import Details2 from "./Details2";
-import { StyledNoBorderButton } from "../../components/Styled/Buttons.styled";
 import { mobile } from "../../theme/media-queries";
+import { Button } from "../../components/Buttons/Button";
 
 const RightMainCard2 = () => {
   return (
@@ -15,7 +15,7 @@ const RightMainCard2 = () => {
         <Details2 />
         <ButtonGroup>
           <DownloadCard>
-            <DownloadBtn>
+            <DownloadBtn whiteText>
               <Stylespan
                 className="material-icons"
                 style={{ fontSize: "18px", marginRight: "6px" }}
@@ -28,12 +28,12 @@ const RightMainCard2 = () => {
 
           <ShareLink>
             <ShareBtn>
-              <Stylespan
-                className="material-icons"
-              >
+              <Stylespan className="material-icons">
                 {PAYMENT_PAGE.SHARE_I}
               </Stylespan>
-              <Stylespan className="hide-on-mobile">{PAYMENT_PAGE.SHARE_TEXT}</Stylespan>
+              <Stylespan className="hide-on-mobile">
+                {PAYMENT_PAGE.SHARE_TEXT}
+              </Stylespan>
             </ShareBtn>
           </ShareLink>
         </ButtonGroup>
@@ -48,7 +48,6 @@ const RightMainCard2 = () => {
 export default RightMainCard2;
 
 const Stylespan = styled.span`
-
   &.hide-on-mobile {
     ${mobile`
       display: none;
@@ -96,9 +95,9 @@ const ButtonGroup = styled.div`
   width: calc(100% - 24px);
   display: flex;
   align-items: center;
-  gap: 12px; 
+  gap: 12px;
   justify-content: center;
-  margin-top: 16px; 
+  margin-top: 16px;
 
   ${mobile`
     flex-direction:row;
@@ -109,9 +108,9 @@ const ButtonGroup = styled.div`
 const DownloadCard = styled.div`
   flex: 0 0 260px;
   background: transparent;
-  padding: 16px; 
+  padding: 16px;
   display: flex;
-  padding-right: 8px; 
+  padding-right: 8px;
   margin-right: -40px;
 
   ${mobile`
@@ -120,11 +119,8 @@ const DownloadCard = styled.div`
   `}
 `;
 
-const DownloadBtn = styled(StyledNoBorderButton)`
+const DownloadBtn = styled(Button)`
   width: 80%;
-  background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primary});
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +139,7 @@ const ShareBtn = styled.button`
   align-items: center;
   gap: 6px;
 
-   ${mobile`
+  ${mobile`
     text: disable;
   `}
 `;
@@ -152,7 +148,7 @@ const CancelWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 40px; 
+  margin-top: 40px;
 `;
 
 const CancelBtn = styled.button`

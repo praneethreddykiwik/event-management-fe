@@ -7,10 +7,10 @@ import {
 import { mobile } from "../../theme/media-queries";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { theme } from "../../theme/theme";
 import Avatar from "../../components/Avatar/Avatar";
+import { Button } from "../../components/Buttons/Button";
 
 const ProfileEdit = () => {
   return (
@@ -65,7 +65,7 @@ const ProfileEdit = () => {
           </StyledParagraphSmallGray>
         </StyleDescribetext>
 
-        <StyledOutlinedButton>{PROFILE_DATA.CHANGE_BTN}</StyledOutlinedButton>
+        <Button type="outlined">{PROFILE_DATA.CHANGE_BTN}</Button>
       </StylePasswordRow>
     </StyleRightForm>
   );
