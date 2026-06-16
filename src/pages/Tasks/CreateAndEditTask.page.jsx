@@ -127,7 +127,7 @@ export const CreateAndEditTask = () => {
       {/* Page Content */}
       <DashboardContainer>
         <StyledFlex>
-          <TaskForm onEditMode={isEditMode} onCreateTask={onSubmit} />
+          <TaskForm onCreateTask={onSubmit} />
           <StyledBox>
             <StyledHeadingBig left>
               Please choose from one of the below Task
