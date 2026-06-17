@@ -1,6 +1,7 @@
 import Select from "react-select";
 import { InputLayout } from "./InputLayout";
 import { useMemo } from "react";
+import { theme } from "../../theme/theme";
 
 const Dropdown = ({
   name,
@@ -100,14 +101,14 @@ const customStyles = {
     fontSize: "14px",
     cursor: "pointer",
     backgroundColor: state.isSelected
-      ? "#26C867"
+      ? theme.light.colors.primary
       : state.isFocused
         ? "#f6fff1ff"
         : "transparent",
     color: state.isSelected
       ? "#fff"
       : state.isFocused
-        ? "#26C867"
+        ? theme.light.colors.primary
         : state.isDisabled
           ? "#b5b5b5"
           : "#000000",

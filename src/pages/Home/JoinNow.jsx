@@ -9,9 +9,9 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 
 import styled from "styled-components";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled.jsx";
 
 import { mobile } from "../../theme/media-queries.jsx";
+import { Button } from "../../components/Buttons/Button.jsx";
 
 const JoinNow = () => {
   return (
@@ -22,15 +22,17 @@ const JoinNow = () => {
         <StyledContainerOneImg src={joinNowThree} />
       </StyledContainerOne>
       <StyledContainerTwo>
-        <StyledParagraphSmallGray>{enums.JOIN_PARAGRAPH}</StyledParagraphSmallGray>
+        <StyledParagraphSmallGray>
+          {enums.JOIN_PARAGRAPH}
+        </StyledParagraphSmallGray>
         <StyledSemiHeading>{enums.JOIN_HEADING}</StyledSemiHeading>
-        <StyledBaseButton sx={{ width: 120 }}>{enums.JOIN_BTN}</StyledBaseButton>
+        <Button sx={{ width: 120 }}>{enums.JOIN_BTN}</Button>
       </StyledContainerTwo>
     </HomePageLayout>
   );
 };
 
-const StyledJoinBtn = styled(StyledBaseButton)`
+const StyledJoinBtn = styled(Button)`
   width: 120px;
 
   ${mobile`

@@ -6,8 +6,7 @@ import { TitleBox } from "./TitleBox";
 import { SecondBoxCol } from "./CardsBox";
 import { mobile } from "../../../theme/media-queries";
 import EventDetailsPChart from "./EventDetailsPChart";
-import { useDispatch, useSelector } from "react-redux";
-import { eventsSelector } from "../../../redux/events/events.slice";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchTasksApiAction } from "../../../redux/tasks/tasks.actions";
 import { fetchEventDetailsAction } from "../../../redux/events/events.actions";
@@ -19,9 +18,6 @@ const EventDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
   const [searchParams] = useSearchParams();
-
-  const { eventDetails: event } = useSelector(eventsSelector);
-  console.log("event at eventdetails page: ", event);
 
   useEffect(() => {
     const eventUid = searchParams.get("eventUid");

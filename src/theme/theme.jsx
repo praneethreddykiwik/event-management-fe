@@ -66,15 +66,17 @@ const typography = {
 };
 
 const colors = {
-  // Default colors
   primary: "#26C867",
+  primaryLight: "#f3fff4",
   white: "#fff",
   black: "#000",
-  "gray-disabled": "#B9B9B9",
-  // "border-color-primary": "#41CF7A",
 
-  // Condition based colors.
+  borderGray: "#e0e0e0",
+  grayDisabled: "#B9B9B9",
+
+  red: "#d63a2f",
   warning: "#E53935",
+
   "warning-light": "#EE9A98",
   "light-blue": "#F1FAFF", // for background
   "active-color": "#FF4A4A",
@@ -124,11 +126,11 @@ const shadows = {
 };
 
 const borders = {
-  "border-disabled": `1px solid ${colors["gray-disabled"]}`,
+  "border-disabled": `1px solid ${colors.grayDisabled}`,
   "border-warning-light": `1px solid ${colors["warning-light"]}`,
   "border-warning": `1px solid ${colors.warning}`,
   "border-default": `1px solid ${colors.black}`,
-  "border-gray": `1px solid ${colors["gray-disabled"]}`,
+  "border-gray": `1px solid ${colors.grayDisabled}`,
 };
 
 const inputs = {
@@ -142,7 +144,7 @@ const inputs = {
     height: "48px",
   },
   "input-disabled": {
-    color: colors["gray-disabled"],
+    color: colors.grayDisabled,
     border: borders["border-disabled"],
   },
   "input-warning-light": {

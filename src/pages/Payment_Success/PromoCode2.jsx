@@ -54,8 +54,8 @@ const PromoTitle = styled.h4`
 
 const PromoInput = styled.div`
   display: inline-flex;
-  gap: 8px; 
-  margin-top: 16px; 
+  gap: 8px;
+  margin-top: 16px;
 
   ${mobile`
     flex-direction: column;
@@ -64,8 +64,8 @@ const PromoInput = styled.div`
 `;
 
 const PromoField = styled.input`
-  border: 1px solid ${({ theme }) => theme.colors["gray-disabled"]};
-  padding: 8px 16px; 
+  border: 1px solid ${({ theme }) => theme.colors.grayDisabled};
+  padding: 8px 16px;
   border-radius: 4px;
   outline: none;
   width: 190px;
@@ -84,6 +84,6 @@ const Terms = styled(StyledParagraphSmallGray)`
 `;
 
 const HighlightText = styled.span`
-  color: ${({ theme }) =>  theme.colors.lightBlue || "#2e1d5aff;"};
+  color: ${({ theme }) => theme.colors.lightBlue || "#2e1d5aff;"};
   text-decoration: underline;
 `;

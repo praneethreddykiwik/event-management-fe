@@ -32,6 +32,7 @@ import { RBACHOC } from "../../../RBAC/RBAC";
 import { generateDeleteTaskReq } from "../../../models/requests/task.req.model";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { EditTaskStatus } from "../../../components/TaskComponents/EditTaskStatus";
+import { TaskComments } from "./TaskComments";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
@@ -130,7 +131,11 @@ export const TaskDetails = () => {
             dataArray={QASummary}
             className="mid-box"
           />
-          <DetailsBox title="Task Summary" dataArray={taskSummary} />
+          <DetailsBox
+            title="Task Summary"
+            dataArray={taskSummary}
+            className="big-box"
+          />
         </DetailsCtn>
 
         <ActionRow>
@@ -148,6 +153,7 @@ export const TaskDetails = () => {
             </Button>
           </RBACHOC>
         </ActionRow>
+        <TaskComments taskUid={taskUid} />
       </Ctn>
     </BlueBackHOC>
   );
@@ -161,17 +167,22 @@ const ActionRow = styled.div`
   gap: 40px;
   display: flex;
   max-width: 500px;
+  margin-bottom: 40px;
 `;
 
 const DetailsCtn = styled.div`
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 
   & .mid-box {
     flex-basis: calc(50% - 18px);
     flex-grow: 1;
+  }
+
+  & .big-box {
+    background: ${({ theme }) => theme.colors.primaryLight};
   }
 `;
 
