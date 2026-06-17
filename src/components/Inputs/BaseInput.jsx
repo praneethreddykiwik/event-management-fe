@@ -22,6 +22,7 @@ export const BaseInput = ({
 }) => {
   const layoutProps = {
     label,
+    name,
     error,
     width,
     helperText,

@@ -98,8 +98,15 @@ const CreateEventForm = ({ onCreateEvent }) => {
     window.open(data);
   };
 
-  const clearHelperText = () => {
-    // shahid
+  const clearHelperText = (name) => {
+    console.log("name:", name);
+    dispatch(
+      updateEventInputs({
+        name,
+        value: "",
+        helperText: "my helperText",
+      }),
+    );
   };
 
   return (
@@ -172,6 +179,7 @@ const StyledFlex2 = styled.div`
   gap: 30px;
   margin-top: 20px;
   flex-grow: 1;
+  
 
   ${mobile`
     flex-direction: column;

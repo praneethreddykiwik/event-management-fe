@@ -13,8 +13,12 @@ export const InputLayout = ({
   helperText,
   clearHelperText,
   onClickHelperText,
+
   ...props
 }) => {
+
+  console.log(helperText,"Helper Text");
+  
   const onCopy = () => {
     const tempInput = document.createElement("input");
     tempInput.value = helperText;
@@ -23,6 +27,7 @@ export const InputLayout = ({
     document.execCommand("copy");
     document.body.removeChild(tempInput);
   };
+
 
   const isRequired = props.validations?.includes(validationList.REQUIRED);
   return (
@@ -48,12 +53,18 @@ export const InputLayout = ({
             className="content_copy"
             onClick={onCopy}
           />
-          <Icon variant="cancel" className="cancel" onClick={clearHelperText} />
+          <Icon
+            variant="cancel"
+            className="cancel"
+            onClick={() => clearHelperText(props.name) 
+            }
+          />
         </HelperTextCtn>
       ) : null}
       {error ? <StyledParagraphError>{error}</StyledParagraphError> : null}
     </StyledInputLayout>
   );
+
 };
 
 const HelperTextCtn = styled.div`
@@ -80,6 +91,7 @@ const StyledATagLoc = styled(StyledParagraphSmall)`
   width: 200px;
   margin: 0px !important;
   cursor: pointer;
+  // border: 1px solid red;
 `;
 
 const StyledInputLayout = styled.div`
