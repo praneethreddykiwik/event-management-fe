@@ -17,7 +17,6 @@ export const InputLayout = ({
   ...props
 }) => {
 
-  console.log(helperText,"Helper Text");
   
   const onCopy = () => {
     const tempInput = document.createElement("input");
@@ -91,7 +90,6 @@ const StyledATagLoc = styled(StyledParagraphSmall)`
   width: 200px;
   margin: 0px !important;
   cursor: pointer;
-  // border: 1px solid red;
 `;
 
 const StyledInputLayout = styled.div`
