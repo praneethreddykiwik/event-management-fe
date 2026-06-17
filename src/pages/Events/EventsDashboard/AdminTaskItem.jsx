@@ -27,6 +27,7 @@ import { RBACHOC } from "../../../RBAC/RBAC";
 import { InlineDropdown } from "../../../components/Buttons/InlineButton/InlineDropdown";
 import { useState } from "react";
 import { Inputs } from "../../../components/Inputs/Inputs";
+import { Menu } from "../../../components/UI/Menu/Menu";
 
 const AdminTaskItem = ({ event, gridView }) => {
   const navigate = useNavigateWithQuery();
@@ -128,7 +129,7 @@ const AdminTaskItem = ({ event, gridView }) => {
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" />
-            <InlineDropdown TITLE='Save to Bookmarks' icon="bookmark" iconColor="black" align="right">
+            <Menu title='Save to Bookmarks' icon="bookmark" iconColor="black" align="right">
               <MenuHeader>Save to Bookmarks</MenuHeader>
 
               <CheckboxListWrapper>
@@ -146,7 +147,7 @@ const AdminTaskItem = ({ event, gridView }) => {
                   />
                 ))}
               </CheckboxListWrapper>
-            </InlineDropdown>
+            </Menu>
             <Icon variant="alternate_email" />
             <RBACHOC perm="event:delete">
               <InlineButton

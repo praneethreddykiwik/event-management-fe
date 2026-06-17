@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
 
-export const InlineDropdown = ({
+export const Menu = ({
   icon,
   iconColor = "black",
-  children, // Accepts any layout (checkboxes, buttons, etc.)
-  align = "right", // Allows alignment adjustment ('left' or 'right')
+  children,
+  title,
+  align = "right",
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
