@@ -4,7 +4,6 @@ import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
 import { bootstrapAuthAction } from "./redux/auth/auth.actions";
-import GlobalSpinner from "./components/UI/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
 import { TenantIdHOC } from "./HOC/TenantIdHOC";
 import Footer from "./components/UI/Footer/Footer";
@@ -13,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AppRoutes from "./Routes";
 import { toastGlobalProps } from "./utils/toast.utils";
 import AppHeader from "./components/Headers/AppHeader";
+import GlobalSpinner from "./components/UI/Loaders/GlobalSpinner";
 
 function App() {
   const theme = useTheme();

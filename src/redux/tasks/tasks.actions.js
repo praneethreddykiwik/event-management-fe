@@ -152,7 +152,6 @@ export const updateTaskStatusAction = createAsyncThunk(
       // return res.data;
       return payload.reqPayload;
     } catch (err) {
-      debugger;
       toast.error(
         err?.response?.data?.message || "Failed to update Task Status",
       );

@@ -67,6 +67,8 @@ const AdminTaskItem = ({ event, gridView }) => {
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
+
+
   return (
     <StyledCard showGridView={gridView}>
       <Left>
@@ -108,8 +110,7 @@ const AdminTaskItem = ({ event, gridView }) => {
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" />
-
-            <Icon variant="alternate_email" />
+            <Icon variant="bookmark"/>
             <RBACHOC perm="event:delete">
               <InlineButton
                 type="delete"

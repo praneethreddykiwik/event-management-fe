@@ -12,11 +12,8 @@ export const fetchTaskComments = createAsyncThunk(
   async ({ taskUid }, { rejectWithValue }) => {
     try {
       const response = await fetchTasksCommentsApi(taskUid);
-      debugger;
       return response.data.details;
     } catch (error) {
-      debugger;
-      debugger;
       return rejectWithValue(
         error.response?.data?.message || "Failed to fetch comments",
       );
@@ -33,10 +30,8 @@ export const createTaskComment = createAsyncThunk(
         commentText,
       });
 
-      debugger;
       return response.data.details;
     } catch (error) {
-      debugger;
       return rejectWithValue(
         error.response?.data?.message || "Failed to create comment",
       );
@@ -54,10 +49,8 @@ export const updateTaskComment = createAsyncThunk(
         commentText,
       });
 
-      debugger;
       return response.data.details;
     } catch (error) {
-      debugger;
       return rejectWithValue(
         error.response?.data?.message || "Failed to update comment",
       );
@@ -76,10 +69,8 @@ export const deleteTaskComment = createAsyncThunk(
         },
       });
 
-      debugger;
       return response.data.details;
     } catch (error) {
-      debugger;
       return rejectWithValue(
         error.response?.data?.message || "Failed to delete comment",
       );
