@@ -25,6 +25,7 @@ import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
 import { Inputs } from "../Inputs/Inputs";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
+import { Menu } from "../UI/Menu/Menu";
 
 const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
@@ -60,7 +61,6 @@ const TaskRow = ({ task = {}, onEdit }) => {
       toast.error("This task is deleted. So you can't edit this task.");
       return;
     }
-
     onEdit(task);
   };
 
@@ -98,6 +98,14 @@ const TaskRow = ({ task = {}, onEdit }) => {
         <StyledFlex2>
           <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
           <Icon variant="alternate_email" title="Email" />
+          <Menu
+            title="Save to Bookmarks"
+            uid={task.taskUid}
+            icon="bookmark"
+            iconColor="black"
+            align="right"
+            type="task"
+          ></Menu>
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">
             <Icon variant="edit" title="Edit" onClick={handleEdit} />

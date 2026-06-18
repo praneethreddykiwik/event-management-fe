@@ -24,8 +24,6 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
-import { InlineDropdown } from "../../../components/Buttons/InlineButton/InlineDropdown";
-import { useState } from "react";
 import { Inputs } from "../../../components/Inputs/Inputs";
 import { Menu } from "../../../components/UI/Menu/Menu";
 
@@ -34,23 +32,6 @@ const AdminTaskItem = ({ event, gridView }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
   const { selectedEventFilters } = useSelector(eventsSelector);
-  // 1. Define your bookmarks array state (add this inside AdminTaskItem)
-  const [bookmarks, setBookmarks] = useState([
-    { id: "work", label: "Work", checked: true },
-    { id: "personal", label: "Personal", checked: false },
-    { id: "urgent", label: "Urgent", checked: false },
-  ]);
-
-  const handleToggleBookmark = (name) => {
-    console.log("boormakrs: ", bookmarks);
-    setBookmarks((prev) =>
-      prev.map((b) => ({
-        ...b,
-        checked: b.id === name ? true : false,
-      })),
-    );
-    console.log("boormakrs: 2", bookmarks);
-  };
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -129,25 +110,14 @@ const AdminTaskItem = ({ event, gridView }) => {
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" />
-            <Menu title='Save to Bookmarks' icon="bookmark" iconColor="black" align="right">
-              <MenuHeader>Save to Bookmarks</MenuHeader>
-
-              <CheckboxListWrapper>
-                {bookmarks.map((b) => (
-                  <Inputs
-                    key={b.id}
-                    type="checkbox"
-                    name={b.id}
-                    value={b.checked}
-                    list={[b.label]}
-                    onChange={(e) => {
-                      console.log("target: ", e.target);
-                      handleToggleBookmark(e.target.name);
-                    }}
-                  />
-                ))}
-              </CheckboxListWrapper>
-            </Menu>
+            <Menu
+              title="Save to Bookmarks"
+              uid={event.uid}
+              type="event"
+              icon="bookmark"
+              iconColor="black"
+              align="right"
+            ></Menu>
             <Icon variant="alternate_email" />
             <RBACHOC perm="event:delete">
               <InlineButton
@@ -331,34 +301,6 @@ const CheckboxRow = styled.label`
     cursor: pointer;
     margin: 0;
   }
-`;
-
-const CheckboxListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 4px 8px;
-
-  /* Selects each factory item container wrapper to create unified spacing */
-  & > * {
-    padding: 6px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #f1f3f4;
-    }
-  }
-`;
-
-const MenuHeader = styled.div`
-  padding: 6px 16px;
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #70757a;
-  border-bottom: 1px solid #f1f3f4;
-  margin-bottom: 4px;
-  white-space: nowrap;
 `;
 
 export default AdminTaskItem;
