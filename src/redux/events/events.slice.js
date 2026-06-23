@@ -15,6 +15,7 @@ const initialState = {
 
   deleteEventLoading: false,
   deleteEventError: null,
+
   assignEventLoading: false,
   assignEventError: null,
 
@@ -22,6 +23,9 @@ const initialState = {
   eventDetailsError: null,
   eventDetails: {}, // for event-details page
   eventGridView: false,
+
+  // search field
+  // eventsSearchVal: "",
 };
 
 const eventsSlice = createSlice({

@@ -28,17 +28,18 @@ import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
 import { PageHeader } from "../../../components/Headers/PageHeader";
 import { EventsFilterCards } from "./EventsFilterCards";
-import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { generateFetchManagersReq } from "../../../models/requests/user.req.model";
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
+import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
 
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
 
-  const { events } = useSelector(eventsSelector);
+  const { events, eventsSearchVal, selectedEventFilters } =
+    useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
   const { eventGridView } = useSelector(eventsSelector);
@@ -50,7 +51,9 @@ const EventsDashboard = () => {
       ROLES.eventManager,
     );
     dispatch(fetchManagersAction(fetchmanagerpayload));
-    const query = `?status=${INITIAL_FILTERS.filter((fl) => fl.selected)
+
+    const query = `?status=${selectedEventFilters
+      .filter((fl) => fl.selected)
       .map((m) => m.value)
       .join(",")}`;
     dispatch(fetchEventsDispatch({ query }));
@@ -61,8 +64,13 @@ const EventsDashboard = () => {
     dispatch(updateAllEventInputs(createEventInputs));
     navigate(`${paths.createEvent}`);
   };
+
   const viewClickHandler = () => {
     dispatch(setEventsGridView(!eventGridView));
+  };
+
+  const onChangeSearch = () => {
+    // add the logic
   };
 
   return (
@@ -80,12 +88,12 @@ const EventsDashboard = () => {
         <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
       )}
 
-      <Tasktxt>
-        <StyledMediumHeading left>Filters</StyledMediumHeading>
-        <StyledParagraphSmall left>
-          Click to select below filters
-        </StyledParagraphSmall>
-      </Tasktxt>
+      <FilterHeaders
+        placeholder="Search Events"
+        value={eventsSearchVal}
+        onChangeSearch={onChangeSearch}
+      />
+
       <EventsFilterCards />
 
       <TaskMainCard>
@@ -128,9 +136,6 @@ const TaskMainCard = styled.div`
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 `;
 
-const Tasktxt = styled.div`
-  padding: 20px 0px 20px 8px;
-`;
 const Tasktxt2 = styled.div`
   padding: 20px 20px 10px;
   display: flex;

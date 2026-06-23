@@ -11,6 +11,7 @@ import { Checkbox } from "./Checkbox";
 import { DateTimeLocal } from "./DateTimeLocal";
 import { MobileInput } from "./MobileInput";
 import { RichTextEditor } from "./RichTextEditor";
+import { InlineInput } from "./InlineInput";
 
 export const Inputs = (props) => {
   const { type } = props;
@@ -60,6 +61,9 @@ export const Inputs = (props) => {
 
     case "radio-group":
       return <RadioGroup {...props} />;
+
+    case "inline-input":
+      return <InlineInput {...props} />;
 
     default:
       return null;
