@@ -69,6 +69,7 @@ const AdminTaskItem = ({ event, gridView }) => {
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
+
   return (
     <StyledCard showGridView={gridView}>
       <Left>

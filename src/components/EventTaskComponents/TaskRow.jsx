@@ -64,6 +64,7 @@ const TaskRow = ({ task = {}, onEdit }) => {
     onEdit(task);
   };
 
+
   return (
     <Ctn>
       <Left>

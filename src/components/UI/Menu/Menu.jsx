@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
 import { Inputs } from "../../Inputs/Inputs";
-import { bookmarkEventApi } from "../../../api/bookmark.api";
+import {
+  bookmarkEventApi,
+  getBookmarkByEntityApi,
+} from "../../../api/bookmark.api";
 
 export const Menu = ({
   icon,
@@ -14,30 +17,43 @@ export const Menu = ({
   align = "right",
 }) => {
   const [open, setOpen] = useState(false);
-  const isInitialMount = useRef(true);
+  const [isLoadingBookmark, setIsLoadingBookmark] = useState(true);
+
   const [bookmarks, setBookmarks] = useState([
     { id: 1, label: "Work", checked: false },
     { id: 2, label: "Personal", checked: false },
     { id: 3, label: "Urgent", checked: false },
   ]);
+
   const isBookmarked = bookmarks.some((b) => b.checked);
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
+    const loadBookmark = async () => {
+      try {
+        setIsLoadingBookmark(true);
+        const query = `?entity_id=${uid}&entity_type=${type}`;
+        const res = await getBookmarkByEntityApi(query);
+        const bookmarkData = res?.data?.message;
 
-    if (!open) {
-      const selectedOption = bookmarks.find((b) => b.checked);
-      const payloadObj = {
-        entity_id: uid,
-        bookmark_name: selectedOption?.label,
-        entity_type: type,
-      };
-      bookmarkEventApi(payloadObj);
+        setBookmarks((prev) =>
+          prev.map((b) => ({
+            ...b,
+            checked: bookmarkData?.bookmark_name
+              ? b.label === bookmarkData.bookmark_name
+              : false,
+          })),
+        );
+      } catch (error) {
+        console.error("Failed to load bookmark:", error);
+      } finally {
+        setIsLoadingBookmark(false);
+      }
+    };
+
+    if (uid && type) {
+      loadBookmark();
     }
-  }, [open, bookmarks, uid, type]);
+  }, [uid, type]);
 
   const handleBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -47,45 +63,78 @@ export const Menu = ({
 
   const toggleDropdown = () => setOpen((prev) => !prev);
 
-  const handleToggleBookmark = (id) => {
+  const handleToggleBookmark = async (id) => {
+    if (isLoadingBookmark) return;
+
+    const selectedBookmark = bookmarks.find((b) => b.id === Number(id));
+    if (!selectedBookmark) return;
+
+    const willBeChecked = !selectedBookmark.checked;
+
     setBookmarks((prev) =>
       prev.map((b) => ({
         ...b,
-        checked: b.id === Number(id) ? true : false,
+        checked: b.id === Number(id) ? willBeChecked : false,
       })),
     );
+
+    try {
+      const payloadObj = {
+        entity_id: uid,
+        bookmark_name: willBeChecked ? selectedBookmark.label : null,
+        entity_type: type,
+      };
+
+      await bookmarkEventApi(payloadObj);
+    } catch (error) {
+      console.error("Failed to save bookmark:", error);
+
+      setBookmarks((prev) =>
+        prev.map((b) => ({
+          ...b,
+          checked: b.id === Number(id) ? !willBeChecked : b.checked,
+        })),
+      );
+    }
   };
 
   return (
     <Ctn tabIndex={-1} onBlur={handleBlur}>
       <IconBtn onClick={toggleDropdown} type="button">
-        <Icon variant={icon} sx={{ color: isBookmarked ? "#D4AF37" : iconColor }} />
+        <Icon
+          variant={icon}
+          sx={{ color: isBookmarked ? "#D4AF37" : iconColor }}
+        />
       </IconBtn>
 
       <DropdownMenu $open={open} $align={align}>
-        {/* If children is a function, pass close handler so children can close the menu */}
         <MenuHeader>{title}</MenuHeader>
+
         {typeof children === "function"
           ? children(() => setOpen(false))
           : children}
+
         <CheckboxListWrapper>
           {bookmarks.map((b) => (
-            <Inputs
+            <CheckboxItem
               key={b.id}
-              type="checkbox"
-              name={b.id}
-              value={b.checked}
-              list={[b.label]}
-              onChange={(e) => {
-                handleToggleBookmark(e.target.name);
-              }}
-            />
+              onClick={() => handleToggleBookmark(b.id)}
+              $checked={b.checked}
+            >
+              <StyledCheckbox
+                type="checkbox"
+                checked={b.checked}
+                onChange={() => handleToggleBookmark(b.id)}
+              />
+              <CheckboxLabel>{b.label}</CheckboxLabel>
+            </CheckboxItem>
           ))}
         </CheckboxListWrapper>
       </DropdownMenu>
     </Ctn>
   );
 };
+
 
 const Ctn = styled.div`
   display: inline-block;
@@ -143,4 +192,31 @@ const CheckboxListWrapper = styled.div`
       background-color: #f1f3f4;
     }
   }
+`;
+
+const CheckboxItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1f3f4;
+  }
+`;
+
+const StyledCheckbox = styled.input`
+  width: 16px;
+  height: 16px;
+  accent-color: #26C867;
+  cursor: pointer;
+`;
+
+const CheckboxLabel = styled.span`
+  display: flex;
+  font-size: 13px;
+  color: #3c4043;
+  user-select: none;
 `;
