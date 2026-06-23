@@ -16,10 +16,11 @@ export const Menu = ({
   const [open, setOpen] = useState(false);
   const isInitialMount = useRef(true);
   const [bookmarks, setBookmarks] = useState([
-    { id: 1, label: "Work", checked: true },
+    { id: 1, label: "Work", checked: false },
     { id: 2, label: "Personal", checked: false },
     { id: 3, label: "Urgent", checked: false },
   ]);
+  const isBookmarked = bookmarks.some((b) => b.checked);
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -28,11 +29,11 @@ export const Menu = ({
     }
 
     if (!open) {
-      const selectedOption = bookmarks.filter((b) => b.checked);
+      const selectedOption = bookmarks.find((b) => b.checked);
       const payloadObj = {
-        uid: uid,
-        bookmark: selectedOption,
-        type: type,
+        entity_id: uid,
+        bookmark_name: selectedOption?.label,
+        entity_type: type,
       };
       bookmarkEventApi(payloadObj);
     }
@@ -58,7 +59,7 @@ export const Menu = ({
   return (
     <Ctn tabIndex={-1} onBlur={handleBlur}>
       <IconBtn onClick={toggleDropdown} type="button">
-        <Icon variant={icon} sx={{ color: iconColor }} />
+        <Icon variant={icon} sx={{ color: isBookmarked ? "#D4AF37" : iconColor }} />
       </IconBtn>
 
       <DropdownMenu $open={open} $align={align}>
