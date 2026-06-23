@@ -38,7 +38,7 @@ const StyledCtn = styled.div`
       $show ? "translateX(0)" : "translateX(-10px)"};
     margin-left: ${({ $show }) => ($show ? "8px" : "0px")};
 
-    transition: all 0.5s ease-out;
+    transition: all 0.4s ease-out;
 
     ${({ $show }) => (!$show ? "padding: 0 !important" : "")};
   }

@@ -5,6 +5,7 @@ import {
   updateEventsApi,
   assignEventApi,
   deleteEventsApi,
+  filterEventsApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
 
@@ -24,7 +25,18 @@ export const fetchEventsDispatch = createAsyncThunk(
     }
   },
 );
-
+export const  filterEventsDispatch = createAsyncThunk(
+  "events/filterEventsDispatch",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const res = await filterEventsApi(payload);
+      return res.data;
+    } catch (err) {
+      toast.error("Failed to filter Events");
+      return rejectWithValue(err?.response?.data || "Failed to filter events");
+    }
+  },
+);
 export const createEventsDispatch = createAsyncThunk(
   "events/createEventsDispatch",
   async (payload, { rejectWithValue, dispatch, getState }) => {

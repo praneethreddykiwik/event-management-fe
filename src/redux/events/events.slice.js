@@ -25,7 +25,7 @@ const initialState = {
   eventGridView: false,
 
   // search field
-  // eventsSearchVal: "",
+  eventsSearchVal: "",
 };
 
 const eventsSlice = createSlice({
@@ -44,6 +44,9 @@ const eventsSlice = createSlice({
     setEventsGridView: (state, action) => {
       state.eventGridView = action.payload;
     },
+    setEventsSearchVal: (state, action) => {
+      state.eventsSearchVal = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // Get All Events.
@@ -60,6 +63,19 @@ const eventsSlice = createSlice({
         state.authUser = null;
         state.eventsLoading = false;
         state.eventsError = "Error";
+      });
+
+    builder
+      .addCase(actions.filterEventsDispatch.pending, (state) => {
+        state.eventsLoading = true;
+      })
+      .addCase(actions.filterEventsDispatch.fulfilled, (state, action) => {
+        state.events = action.payload?.details?.events;
+        state.eventsLoading = false;
+      })
+      .addCase(actions.filterEventsDispatch.rejected, (state) => {
+        state.eventsLoading = false;
+        state.eventsError = "Failed to filter events";
       });
 
     // Create Events.
@@ -154,5 +170,6 @@ export const {
   setEventDetails,
   setSelectedEventFilters,
   setEventsGridView,
+  setEventsSearchVal,
 } = eventsSlice.actions;
 export default eventsSlice.reducer;

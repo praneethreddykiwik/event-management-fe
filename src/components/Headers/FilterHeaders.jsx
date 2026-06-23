@@ -24,7 +24,7 @@ export const FilterHeaders = ({
         placeholder={placeholder}
         icon="search"
         value={value}
-        onchange={onChangeSearch}
+        onChange={onChangeSearch}
       />
     </Tasktxt>
   );

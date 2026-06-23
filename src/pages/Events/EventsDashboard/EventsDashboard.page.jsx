@@ -14,10 +14,12 @@ import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import {
   eventsFilterAction,
   fetchEventsDispatch,
+  filterEventsDispatch,
 } from "../../../redux/events/events.actions";
 import {
   eventsSelector,
   setEventsGridView,
+  setEventsSearchVal,
 } from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { usersSelector } from "../../../redux/users/users.slice";
@@ -85,8 +87,12 @@ const EventsDashboard = () => {
     dispatch(setEventsGridView(!eventGridView));
   };
 
-  const onChangeSearch = () => {
-    // add the logic
+  const onChangeSearch = (e) => {
+    const value = e.target.value;
+    dispatch(setEventsSearchVal(value));
+    if (value.trim()) {
+      dispatch(filterEventsDispatch(value));
+    }
   };
 
   const onClickFilter = (key) => {
@@ -142,7 +148,6 @@ const EventsDashboard = () => {
     </BlueBackHOC>
   );
 };
-
 const TaskMainCard = styled.div`
   border-radius: 14px;
   box-shadow: ${({ theme }) => theme.shadows["level-2"]};
