@@ -7,8 +7,7 @@ import taskCommentsReducer from "./taskComments/taskComments.slice";
 import formsReducer from "./farms/farms.slice";
 import bookmarksReducer from "./bookmarks/bookmarks.slice";
 
-import { httpsClient } from "../api/client/httpsClient";
-import { setupInterceptors } from "../api/client/interceptors";
+import { httpsClient, setupInterceptors } from "../api/client/httpsClient";
 
 export const store = configureStore({
   reducer: {

@@ -18,8 +18,9 @@ export const fetchEventsDispatch = createAsyncThunk(
       const res = await fetchEventsApi(query);
       return res.data; // user object
     } catch (err) {
-      // error toast
-      toast.error("Failed to fetch Events");
+      if (err?.response?.status !== 401) {
+        toast.error("Failed to fetch Events");
+      }
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -39,11 +40,13 @@ export const createEventsDispatch = createAsyncThunk(
       // // dispatch(updateAllTaskInputs(generateAddTaskInpMetadata(vendors)));
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to create Events",
-      );
+      if (err?.response?.status !== 401) {
+        toast.error(
+          err?.response?.data?.message ||
+            err?.message ||
+            "Failed to create Events",
+        );
+      }
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -55,15 +58,16 @@ export const updateEventDispatch = createAsyncThunk(
     try {
       const res = await updateEventsApi(payload.reqPayload);
       toast.success("Updated Event successfully");
-
       payload.navigate(paths.eventsDashboard);
       return res.data;
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message ||
-          error?.message ||
-          "Failed to create Events",
-      );
+      if (error?.response?.status !== 401) {
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Failed to create Events",
+        );
+      }
       return rejectWithValue(error?.response?.data || "Not authenticated");
     }
   },
@@ -78,11 +82,13 @@ export const assignEventAction = createAsyncThunk(
       res.data.reqPayload = payload.reqPayload;
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to assign Event",
-      );
+      if (err?.response?.status !== 401) {
+        toast.error(
+          err?.response?.data?.message ||
+            err?.message ||
+            "Failed to assign Event",
+        );
+      }
       return rejectWithValue(err?.response?.data || "Something went wrong!");
     }
   },
@@ -93,15 +99,16 @@ export const deleteEventDispatch = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       await deleteEventsApi(payload);
-
       toast.success("Event deleted successfully");
       return payload;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to delete event",
-      );
+      if (err?.response?.status !== 401) {
+        toast.error(
+          err?.response?.data?.message ||
+            err?.message ||
+            "Failed to delete event",
+        );
+      }
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -113,14 +120,15 @@ export const fetchEventDetailsAction = createAsyncThunk(
     try {
       const query = `?eventUid=${payload.eventUid}`;
       const res = await fetchEventsApi(query);
-
       return res.data.details?.events[0];
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to fetch event details",
-      );
+      if (err?.response?.status !== 401) {
+        toast.error(
+          err?.response?.data?.message ||
+            err?.message ||
+            "Failed to fetch event details",
+        );
+      }
       return rejectWithValue(err?.response?.data || "Something went wrong!");
     }
   },
@@ -142,8 +150,9 @@ export const eventsFilterAction = createAsyncThunk(
       };
       return k;
     } catch (err) {
-      // error toast
-      toast.error("Failed to fetch Events");
+      if (err?.response?.status !== 401) {
+        toast.error("Failed to fetch Events");
+      }
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
