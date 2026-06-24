@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./tasks.actions";
+import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 
 const initialState = {
   eventsAndTasks: [],
   taskCountObj: {},
+  selectedTaskFilters: [...TASK_INITIAL_FILTERS],
   kpiCounts: {},
   priorityCounts: {},
   tasksLoading: false,
@@ -45,7 +47,11 @@ const initialState = {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedTaskFilters(state, action) {
+      state.selectedTaskFilters = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(actions.fetchTasksApiAction.pending, (state) => {
@@ -216,9 +222,23 @@ const tasksSlice = createSlice({
         state.acceptTaskLoading = false;
         state.deleteTaskError = action.payload || "Failed to accept task";
       });
+    builder
+      .addCase(actions.taskFilterAction.pending, (state) => {
+        state.tasksLoading = true;
+      })
+      .addCase(actions.taskFilterAction.fulfilled, (state, action) => {
+        state.eventsAndTasks = action.payload.data;
+        state.tasksLoading = false;
+
+        state.selectedTaskFilters = action.payload.selectedTaskFilters;
+      })
+      .addCase(actions.taskFilterAction.rejected, (state) => {
+        state.tasksLoading = false;
+        state.tasksError = "Error";
+      });
   },
 });
 
 export const tasksSelector = (st) => st.tasks;
-export const { clearAuthError } = tasksSlice.actions;
+export const { clearAuthError, setSelectedTaskFilters } = tasksSlice.actions;
 export default tasksSlice.reducer;

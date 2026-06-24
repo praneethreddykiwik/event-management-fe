@@ -112,3 +112,14 @@ export const tasksMetadata = [
     available: true,
   },
 ];
+
+export const TASK_INITIAL_FILTERS = [
+  { value: "not_started", selected: true },
+  { value: "assigned", selected: true },
+  { value: "in_progress", selected: true },
+  { value: "ready_for_qa", selected: true },
+  { value: "qa_in_progress", selected: true },
+  { value: "completed", selected: true },
+  { value: "cancelled", selected: true },
+  { value: "deleted", selected: false },
+];
