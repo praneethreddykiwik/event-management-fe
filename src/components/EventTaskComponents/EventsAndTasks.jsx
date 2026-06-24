@@ -23,13 +23,14 @@ import {
   isFilterSelected,
   updateFilters,
 } from "../Filters/FilterBoxes/FilterBoxes.helper";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
-  const { eventsAndTasks, taskCountObj, selectedTaskFilters } =
+  const { eventsAndTasks, taskCountObj, tasksLoading, selectedTaskFilters } =
     useSelector(tasksSelector);
   const { vendors, supervisors, qa } = useSelector(usersSelector);
 
@@ -108,11 +109,14 @@ const EventsAndTasks = ({ isQa }) => {
         isSelected={(key) =>
           isFilterSelected(key, selectedTaskFilters, TASK_INITIAL_FILTERS)
         }
+        isLoading={tasksLoading}
       />
 
       {eventsAndTasks.map((event) => (
         <EventWrapsTasks event={event} onAddTask={onAddTask}>
-          {event.tasks?.length ? (
+          {tasksLoading ? (
+            <SkeletonLoaders count={1} height={150} />
+          ) : event.tasks?.length ? (
             event.tasks.map((task) => (
               <TaskRow
                 task={mapTaskForUI(task, event)}

@@ -12,65 +12,83 @@ import {
   eventsCountChartData,
   usersChartData,
 } from "../qa.helper";
+import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
 export const QADashboard = () => {
-  const { eventsAndTasks, taskCountObj, kpiCounts, priorityCounts } =
-    useSelector(tasksSelector);
+  const {
+    eventsAndTasks,
+    taskCountObj,
+    kpiCounts,
+    priorityCounts,
+    tasksLoading,
+  } = useSelector(tasksSelector);
   const { eventManagers } = useSelector(usersSelector);
-
   return (
     <>
       <CardsRow>
-        {Object.keys(kpiCounts).map((key) => (
-          <TaskKpiCard
-            objKey={key}
-            value={kpiCounts[key]}
-            color={getStatusColor(key, kpiCounts)}
-          />
-        ))}
+        {tasksLoading ? (
+          <SkeletonLoaders count={5} height={120} width={210} type="card" />
+        ) : (
+          Object.keys(kpiCounts).map((key) => (
+            <TaskKpiCard
+              objKey={key}
+              value={kpiCounts[key]}
+              color={getStatusColor(key, kpiCounts)}
+            />
+          ))
+        )}
       </CardsRow>
-
-      <TaskProirotyChart dataObj={priorityCounts} />
+      {tasksLoading ? (
+        <SkeletonLoaders count={1} height={300} />
+      ) : (
+        <TaskProirotyChart dataObj={priorityCounts} />
+      )}
       <ChartCtn>
-        <EventsSummaryCard
-          label="Users"
-          value={eventManagers.length}
-          chart={
-            <NpmSparkLine
-              color={"rgb(66, 84, 251)"}
-              chartData={usersChartData}
+        {tasksLoading ? (
+          <SkeletonLoaders count={6} height={100} type="card" width={340} />
+        ) : (
+          <>
+            <EventsSummaryCard
+              label="Users"
+              value={eventManagers.length}
+              chart={
+                <NpmSparkLine
+                  color={"rgb(66, 84, 251)"}
+                  chartData={usersChartData}
+                />
+              }
+              inline
             />
-          }
-          inline
-        />
-        <EventsSummaryCard
-          label="Conversations"
-          value="3"
-          chart={
-            <NpmSparkLine
-              color="rgb(66, 84, 251)"
-              chartData={conversionsChartData}
+            <EventsSummaryCard
+              label="Conversations"
+              value="3"
+              chart={
+                <NpmSparkLine
+                  color="rgb(66, 84, 251)"
+                  chartData={conversionsChartData}
+                />
+              }
+              inline
             />
-          }
-          inline
-        />
-        <EventsSummaryCard
-          label="Events Count"
-          value={eventsAndTasks.length}
-          chart={
-            <NpmSparkLine
-              color="rgb(66, 84, 251)"
-              chartData={eventsCountChartData}
+            <EventsSummaryCard
+              label="Events Count"
+              value={eventsAndTasks.length}
+              chart={
+                <NpmSparkLine
+                  color="rgb(66, 84, 251)"
+                  chartData={eventsCountChartData}
+                />
+              }
+              inline
             />
-          }
-          inline
-        />
-        <EventsSummaryCard
-          label="Tasks Count"
-          value={taskCountObj.total}
-          chart={<NpmSparkLine color="rgb(66, 84, 251)" />}
-          inline
-        />
+            <EventsSummaryCard
+              label="Tasks Count"
+              value={taskCountObj.total}
+              chart={<NpmSparkLine color="rgb(66, 84, 251)" />}
+              inline
+            />
+          </>
+        )}
       </ChartCtn>
       {/* Event wise workload */}
       {/* Overdue QA Tasks */}

@@ -41,6 +41,7 @@ import {
   updateFilters,
 } from "../../../components/Filters/FilterBoxes/FilterBoxes.helper";
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
+import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const EventsDashboard = () => {
     selectedEventFilters,
     eventGridView,
     eventsStatusCounts,
+    eventsLoading,
   } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
@@ -102,7 +104,6 @@ const EventsDashboard = () => {
       <PageHeader isTitle>Events</PageHeader>
 
       <EventCards events={events} eventManagers={eventManagers} />
-
       <CreateEventButtons
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}
@@ -134,7 +135,9 @@ const EventsDashboard = () => {
         </Tasktxt2>
 
         <TaskList $gridView={eventGridView}>
-          {!events.length ? (
+          {eventsLoading ? (
+            <SkeletonLoaders height={150} />
+          ) : !events.length ? (
             <StyledParagraphSmallGray>
               No Events available
             </StyledParagraphSmallGray>
