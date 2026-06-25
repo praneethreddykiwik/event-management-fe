@@ -118,6 +118,7 @@ const AdminTaskItem = ({ event, gridView }) => {
               icon="bookmark"
               iconColor="black"
               align="right"
+              initialBookmark={event.bookmark_name ?? null}
             ></Menu>
             <Icon variant="alternate_email" />
             <RBACHOC perm="event:delete">

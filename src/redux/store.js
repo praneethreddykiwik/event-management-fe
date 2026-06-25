@@ -5,6 +5,7 @@ import eventsReducer from "./events/events.slice";
 import tasksReducer from "./tasks/tasks.slice";
 import taskCommentsReducer from "./taskComments/taskComments.slice";
 import formsReducer from "./farms/farms.slice";
+import bookmarksReducer from "./bookmarks/bookmarks.slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     tasks: tasksReducer,
     taskComments: taskCommentsReducer,
     forms: formsReducer,
+    bookmarks: bookmarksReducer,
   },
 });

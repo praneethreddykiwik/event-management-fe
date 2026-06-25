@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../Icons/Icons";
 import styled from "styled-components";
-import { Inputs } from "../../Inputs/Inputs";
+import { bookmarkEventApi, getBookmarkByEntityApi } from "../../../api/bookmark.api";
 import {
-  bookmarkEventApi,
-  getBookmarkByEntityApi,
-} from "../../../api/bookmark.api";
+  setBookmark,
+  removeBookmark,
+  bookmarksSelector,
+} from "../../../redux/bookmarks/bookmarks.slice";
+
+const BOOKMARKS = [
+  { id: 1, label: "Work" },
+  { id: 2, label: "Personal" },
+  { id: 3, label: "Urgent" },
+];
 
 export const Menu = ({
   icon,
@@ -16,44 +24,31 @@ export const Menu = ({
   title,
   align = "right",
 }) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [isLoadingBookmark, setIsLoadingBookmark] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [bookmarks, setBookmarks] = useState([
-    { id: 1, label: "Work", checked: false },
-    { id: 2, label: "Personal", checked: false },
-    { id: 3, label: "Urgent", checked: false },
-  ]);
-
-  const isBookmarked = bookmarks.some((b) => b.checked);
+  const { bookmarksData } = useSelector(bookmarksSelector);
+  const savedBookmarkName = bookmarksData?.[uid];
+  const isCached = uid in (bookmarksData ?? {});
+  const isBookmarked = !!savedBookmarkName;
 
   useEffect(() => {
+    if (!uid || !type || isCached) return;
+
     const loadBookmark = async () => {
       try {
-        setIsLoadingBookmark(true);
         const query = `?entity_id=${uid}&entity_type=${type}`;
         const res = await getBookmarkByEntityApi(query);
-        const bookmarkData = res?.data?.message;
-
-        setBookmarks((prev) =>
-          prev.map((b) => ({
-            ...b,
-            checked: bookmarkData?.bookmark_name
-              ? b.label === bookmarkData.bookmark_name
-              : false,
-          })),
-        );
-      } catch (error) {
-        console.error("Failed to load bookmark:", error);
-      } finally {
-        setIsLoadingBookmark(false);
+        const bookmarkName = res?.data?.message?.bookmark_name ?? null;
+        dispatch(setBookmark({ entity_id: uid, bookmark_name: bookmarkName }));
+      } catch (err) {
+        console.error("Failed to load bookmark:", err);
       }
     };
 
-    if (uid && type) {
-      loadBookmark();
-    }
-  }, [uid, type]);
+    loadBookmark();
+  }, [uid, type, isCached]);
 
   const handleBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -64,37 +59,33 @@ export const Menu = ({
   const toggleDropdown = () => setOpen((prev) => !prev);
 
   const handleToggleBookmark = async (id) => {
-    if (isLoadingBookmark) return;
+    if (isLoading) return;
 
-    const selectedBookmark = bookmarks.find((b) => b.id === Number(id));
+    const selectedBookmark = BOOKMARKS.find((b) => b.id === Number(id));
     if (!selectedBookmark) return;
 
-    const willBeChecked = !selectedBookmark.checked;
+    const isAlreadyChecked = savedBookmarkName === selectedBookmark.label;
+    const willBeChecked = !isAlreadyChecked;
 
-    setBookmarks((prev) =>
-      prev.map((b) => ({
-        ...b,
-        checked: b.id === Number(id) ? willBeChecked : false,
-      })),
-    );
+    if (willBeChecked) {
+      dispatch(setBookmark({ entity_id: uid, bookmark_name: selectedBookmark.label }));
+    } else {
+      dispatch(removeBookmark({ entity_id: uid }));
+      return;
+    }
 
+    setIsLoading(true);
     try {
-      const payloadObj = {
+      await bookmarkEventApi({
         entity_id: uid,
-        bookmark_name: willBeChecked ? selectedBookmark.label : null,
+        bookmark_name: selectedBookmark.label,
         entity_type: type,
-      };
-
-      await bookmarkEventApi(payloadObj);
+      });
     } catch (error) {
       console.error("Failed to save bookmark:", error);
-
-      setBookmarks((prev) =>
-        prev.map((b) => ({
-          ...b,
-          checked: b.id === Number(id) ? !willBeChecked : b.checked,
-        })),
-      );
+      dispatch(removeBookmark({ entity_id: uid }));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -115,15 +106,14 @@ export const Menu = ({
           : children}
 
         <CheckboxListWrapper>
-          {bookmarks.map((b) => (
+          {BOOKMARKS.map((b) => (
             <CheckboxItem
               key={b.id}
               onClick={() => handleToggleBookmark(b.id)}
-              $checked={b.checked}
             >
               <StyledCheckbox
                 type="checkbox"
-                checked={b.checked}
+                checked={savedBookmarkName === b.label}
                 onChange={() => handleToggleBookmark(b.id)}
               />
               <CheckboxLabel>{b.label}</CheckboxLabel>
@@ -134,7 +124,6 @@ export const Menu = ({
     </Ctn>
   );
 };
-
 
 const Ctn = styled.div`
   display: inline-block;
@@ -182,16 +171,6 @@ const CheckboxListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4px 8px;
-
-  & > * {
-    padding: 6px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #f1f3f4;
-    }
-  }
 `;
 
 const CheckboxItem = styled.div`
@@ -210,12 +189,11 @@ const CheckboxItem = styled.div`
 const StyledCheckbox = styled.input`
   width: 16px;
   height: 16px;
-  accent-color: #26C867;
+  accent-color: #26c867;
   cursor: pointer;
 `;
 
 const CheckboxLabel = styled.span`
-  display: flex;
   font-size: 13px;
   color: #3c4043;
   user-select: none;
