@@ -27,7 +27,13 @@ import { Inputs } from "../Inputs/Inputs";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
 import { Menu } from "../UI/Menu/Menu";
 
-const TaskRow = ({ task = {}, onEdit }) => {
+const TaskRow = ({
+  task = {},
+  onEdit,
+  selectedOption,
+  options,
+  onOptionToggle,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -63,7 +69,6 @@ const TaskRow = ({ task = {}, onEdit }) => {
     }
     onEdit(task);
   };
-
 
   return (
     <Ctn>
@@ -101,12 +106,14 @@ const TaskRow = ({ task = {}, onEdit }) => {
           <Icon variant="alternate_email" title="Email" />
           <Menu
             title="Save to Bookmarks"
-            uid={task.taskUid}
             icon="bookmark"
             iconColor="black"
             align="right"
             type="task"
-          ></Menu>
+            selectedOption={selectedOption}
+            options={options}
+            onOptionToggle={onOptionToggle}
+          />
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">
             <Icon variant="edit" title="Edit" onClick={handleEdit} />

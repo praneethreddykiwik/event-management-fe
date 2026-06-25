@@ -24,10 +24,15 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
-import { Inputs } from "../../../components/Inputs/Inputs";
 import { Menu } from "../../../components/UI/Menu/Menu";
 
-const AdminTaskItem = ({ event, gridView }) => {
+const AdminTaskItem = ({
+  event,
+  gridView,
+  onOptionToggle,
+  options,
+  selectedOption,
+}) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
@@ -69,7 +74,6 @@ const AdminTaskItem = ({ event, gridView }) => {
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
-
   return (
     <StyledCard showGridView={gridView}>
       <Left>
@@ -90,7 +94,6 @@ const AdminTaskItem = ({ event, gridView }) => {
             <StyledParagraphSmall left>
               {enums.EVENT_MANAGER}: <StyledBold>{event.userName}</StyledBold>
             </StyledParagraphSmall>
-
             <StyledAssignBtnAdminsUp showGridView={gridView}>
               {isAssignedToMe ? (
                 <StyledT>Assigned To Me</StyledT>
@@ -112,14 +115,14 @@ const AdminTaskItem = ({ event, gridView }) => {
           <StyledFlex2>
             <Icon variant="chat" />
             <Menu
-              title="Save to Bookmarks"
-              uid={event.uid}
-              type="event"
               icon="bookmark"
               iconColor="black"
-              align="right"
-              initialBookmark={event.bookmark_name ?? null}
-            ></Menu>
+              title="Bookmark"
+              type="event"
+              selectedOption={selectedOption}
+              options={options}
+              onOptionToggle={onOptionToggle}
+            />
             <Icon variant="alternate_email" />
             <RBACHOC perm="event:delete">
               <InlineButton
@@ -154,15 +157,11 @@ const AdminTaskItem = ({ event, gridView }) => {
 
 const StyledAssignBtnAdminsUp = styled.div`
   display: flex;
-  ${mobile`    
-   display:none;
-  `};
+  ${mobile`display: none;`}
 `;
 
 const StyledAmdinContent = styled(StyledParagraphSmall)`
-  ${mobile`
-    font-size:12px;
-  `}
+  ${mobile`font-size: 12px;`}
 `;
 
 const StyledAmdinContents = styled(StyledParagraphSmall)`
@@ -170,9 +169,7 @@ const StyledAmdinContents = styled(StyledParagraphSmall)`
   flex-direction: ${(props) => (props.showGridView ? "column" : "")};
   align-items: start;
   gap: 8px;
-  ${mobile`
-    font-size:12px;
-  `}
+  ${mobile`font-size: 12px;`}
 `;
 
 const StyledFlex2 = styled.div`
@@ -180,9 +177,7 @@ const StyledFlex2 = styled.div`
   justify-content: ${(props) => (props.showGridView ? "space-between" : "")};
   gap: ${(props) => (props.showGridView ? "10px" : "18px")};
   align-items: center;
-  ${mobile`
-     gap: 12px;
-  `}
+  ${mobile`gap: 12px;`}
 `;
 
 const StyledCard = styled(Card)`
@@ -193,7 +188,6 @@ const StyledCard = styled(Card)`
   padding-right: 15px;
   align-items: center;
   width: ${(props) => (props.showGridView ? "32%" : "")};
-
   ${mobile`
     flex-direction: column;
     gap: 10px;
@@ -216,9 +210,6 @@ const Left = styled.div`
 const StatusIcon = styled.span`
   font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
-  ${mobile`
- 
-  `}
 `;
 
 const Taskcard = styled.div`
@@ -243,17 +234,14 @@ const BadgeButton = styled.div`
   flex-basis: 30%;
   ${mobile`
     width: 100%;
-    margin-top:-20px;
+    margin-top: -20px;
   `}
 `;
 
 const GaugeWrapper = styled.div`
   display: flex;
   margin-left: 20px;
-
-  ${mobile`
-    display: none;
-  `}
+  ${mobile`display: none;`}
 `;
 
 const StyledBold = styled.span`
@@ -272,36 +260,6 @@ const StyledBtn = styled(Button)`
   color: white;
   span {
     font-size: 12px;
-  }
-`;
-
-const DropdownHeader = styled.div`
-  padding: 6px 16px;
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #70757a;
-  border-bottom: 1px solid #f1f3f4;
-  margin-bottom: 4px;
-`;
-
-const CheckboxRow = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #3c4043;
-  user-select: none;
-  white-space: nowrap;
-
-  &:hover {
-    background-color: #f1f3f4;
-  }
-  input {
-    cursor: pointer;
-    margin: 0;
   }
 `;
 

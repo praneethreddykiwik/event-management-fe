@@ -32,32 +32,85 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import {
+  getAllBookmarksByUserApi,
+  bookmarkEventApi,
+} from "../../../api/bookmark.api";
+import {
+  setAllBookmarks,
+  setBookmark,
+  removeBookmark,
+  bookmarksSelector,
+} from "../../../redux/bookmarks/bookmarks.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
-
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
+  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
 
   const { events, eventsSearchVal, selectedEventFilters } =
     useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
   const { eventGridView } = useSelector(eventsSelector);
+  const { bookmarksData, bookmarkOptions } = useSelector(bookmarksSelector);
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
-    const fetchmanagerpayload = generateFetchManagersReq(
-      authUser?.tenantId,
-      ROLES.eventManager,
+    dispatch(
+      fetchManagersAction(
+        generateFetchManagersReq(authUser?.tenantId, ROLES.eventManager),
+      ),
     );
-    dispatch(fetchManagersAction(fetchmanagerpayload));
 
     const query = `?status=${selectedEventFilters
       .filter((fl) => fl.selected)
       .map((m) => m.value)
       .join(",")}`;
     dispatch(fetchEventsDispatch({ query }));
+
+    const loadAllBookmarks = async () => {
+      try {
+        const res = await getAllBookmarksByUserApi();
+        const bookmarkList = res?.data?.message ?? [];
+        dispatch(setAllBookmarks(bookmarkList));
+      } catch (err) {
+        console.error("Failed to load bookmarks:", err);
+      }
+    };
+
+    if (authUser?.uid) {
+      loadAllBookmarks();
+    }
   }, []);
+
+  const handleToggleBookmark = async (uid, label, type) => {
+    if (isBookmarkLoading) return;
+
+    const isAlreadyChecked = bookmarksData?.[uid] === label;
+    const willBeChecked = !isAlreadyChecked;
+
+    if (willBeChecked) {
+      dispatch(setBookmark({ entity_id: uid, bookmark_name: label }));
+    } else {
+      dispatch(removeBookmark({ entity_id: uid }));
+      return;
+    }
+
+    setIsBookmarkLoading(true);
+    try {
+      await bookmarkEventApi({
+        entity_id: uid,
+        bookmark_name: label,
+        entity_type: type,
+      });
+    } catch (err) {
+      console.error("Failed to save bookmark:", err);
+      dispatch(removeBookmark({ entity_id: uid }));
+    } finally {
+      setIsBookmarkLoading(false);
+    }
+  };
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -65,49 +118,36 @@ const EventsDashboard = () => {
     navigate(`${paths.createEvent}`);
   };
 
-  const viewClickHandler = () => {
-    dispatch(setEventsGridView(!eventGridView));
-  };
-
-  const onChangeSearch = () => {
-    // add the logic
-  };
+  const onChangeSearch = () => {};
 
   return (
     <BlueBackHOC>
       <PageHeader isTitle>Events</PageHeader>
-
       <EventCards events={events} eventManagers={eventManagers} />
-
       <CreateEventButtons
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}
       />
-
       {openManagersPopup && (
         <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
       )}
-
       <FilterHeaders
         placeholder="Search Events"
         value={eventsSearchVal}
         onChangeSearch={onChangeSearch}
       />
-
       <EventsFilterCards />
-
       <TaskMainCard>
         <Tasktxt2>
           <Textwrapper>
             <StyledMediumHeading left>Events</StyledMediumHeading>
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Textwrapper>
-          <AlignBox onClick={viewClickHandler}>
+          <AlignBox onClick={() => dispatch(setEventsGridView(!eventGridView))}>
             <Icon selected={!eventGridView}>view_list</Icon>
             <Icon selected={eventGridView}>grid_view</Icon>
           </AlignBox>
         </Tasktxt2>
-
         <TaskList $gridView={eventGridView}>
           {!events.length ? (
             <StyledParagraphSmallGray>
@@ -116,8 +156,14 @@ const EventsDashboard = () => {
           ) : (
             events.map((event) => (
               <AdminTaskItem
+                key={event.uid}
                 event={mapEventForUI(event)}
                 gridView={eventGridView}
+                selectedOption={bookmarksData?.[event.uid] ?? null}
+                options={bookmarkOptions}
+                onOptionToggle={(label, type) =>
+                  handleToggleBookmark(event.uid, label, type)
+                }
               />
             ))
           )}
@@ -129,7 +175,6 @@ const EventsDashboard = () => {
 
 const TaskMainCard = styled.div`
   border-radius: 14px;
-  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
   background: ${({ theme }) => theme.colors.white};
   box-shadow:
     rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -142,25 +187,24 @@ const Tasktxt2 = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const TaskList = styled.div`
   padding: 20px;
   display: flex;
-  flex-direction: column;
   gap: 20px;
   justify-content: space-evenly;
   flex-direction: ${(props) => (props.$gridView ? "row" : "column")};
   flex-wrap: wrap;
   width: 100%;
 `;
+
 const AlignBox = styled.div`
   display: flex;
   justify-content: end;
   padding-right: 8px;
   gap: 10px;
   cursor: pointer;
-  ${mobile`
-    display:none;
-  `}
+  ${mobile`display: none;`}
 `;
 
 const Textwrapper = styled.div`

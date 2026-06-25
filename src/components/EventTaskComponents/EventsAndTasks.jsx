@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledParagraphSmallGray } from "../Styled/Typography.styled";
@@ -17,14 +17,26 @@ import { getStatusColor } from "../../utils/utils";
 import FilterCard from "../Cards/FilterCard";
 import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
+import {
+  getAllBookmarksByUserApi,
+  bookmarkEventApi,
+} from "../../api/bookmark.api";
+import {
+  setAllBookmarks,
+  setBookmark,
+  removeBookmark,
+  bookmarksSelector,
+} from "../../redux/bookmarks/bookmarks.slice";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
+  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
 
   const { authUser } = useSelector(authSelector);
   const { eventsAndTasks, taskCountObj } = useSelector(tasksSelector);
   const { vendors, supervisors, qa } = useSelector(usersSelector);
+  const { bookmarksData, bookmarkOptions } = useSelector(bookmarksSelector);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
@@ -33,11 +45,54 @@ const EventsAndTasks = ({ isQa }) => {
     } else {
       dispatch(fetchEventsAndTasksAction(query));
     }
-    // checkHere
+
     if (!vendors.length || !supervisors.length || !qa.length) {
       dispatch(fetchVendorsSupsQA());
     }
+
+    // Fetch all bookmarks for this user once on page load
+    const loadAllBookmarks = async () => {
+      try {
+        const res = await getAllBookmarksByUserApi();
+        const bookmarkList = res?.data?.message ?? [];
+        dispatch(setAllBookmarks(bookmarkList));
+      } catch (err) {
+        console.error("Failed to load bookmarks:", err);
+      }
+    };
+
+    if (authUser?.uid) {
+      loadAllBookmarks();
+    }
   }, []);
+
+  const handleToggleBookmark = async (uid, label, type) => {
+    if (isBookmarkLoading) return;
+
+    const isAlreadyChecked = bookmarksData?.[uid] === label;
+    const willBeChecked = !isAlreadyChecked;
+
+    if (willBeChecked) {
+      dispatch(setBookmark({ entity_id: uid, bookmark_name: label }));
+    } else {
+      dispatch(removeBookmark({ entity_id: uid }));
+      return;
+    }
+
+    setIsBookmarkLoading(true);
+    try {
+      await bookmarkEventApi({
+        entity_id: uid,
+        bookmark_name: label,
+        entity_type: type,
+      });
+    } catch (err) {
+      console.error("Failed to save bookmark:", err);
+      dispatch(removeBookmark({ entity_id: uid }));
+    } finally {
+      setIsBookmarkLoading(false);
+    }
+  };
 
   const onAddTask = (event) => {
     navigate(`${paths.createTask}`, {
@@ -70,10 +125,10 @@ const EventsAndTasks = ({ isQa }) => {
 
   return (
     <DashboardContainer>
-      {/* Filter cards */}
       <CardsRow>
         {Object.keys(taskCountObj).map((key) => (
           <FilterCard
+            key={key}
             objKey={key}
             value={taskCountObj[key]}
             color={getStatusColor(key, taskCountObj)}
@@ -82,12 +137,22 @@ const EventsAndTasks = ({ isQa }) => {
       </CardsRow>
 
       {eventsAndTasks.map((event) => (
-        <EventWrapsTasks event={event} onAddTask={onAddTask}>
+        <EventWrapsTasks
+          key={event.eventUid}
+          event={event}
+          onAddTask={onAddTask}
+        >
           {event.tasks?.length ? (
             event.tasks.map((task) => (
               <TaskRow
+                key={task.taskUid}
                 task={mapTaskForUI(task, event)}
                 onEdit={(tsk) => onEdit(tsk, event)}
+                selectedOption={bookmarksData?.[task.taskUid] ?? null}
+                options={bookmarkOptions}
+                onOptionToggle={(label, type) =>
+                  handleToggleBookmark(task.taskUid, label, type)
+                }
               />
             ))
           ) : (
@@ -101,9 +166,7 @@ const EventsAndTasks = ({ isQa }) => {
   );
 };
 
-const DashboardContainer = styled.div`
-  // padding: 0 16px 16px 16px;
-`;
+const DashboardContainer = styled.div``;
 
 const CardsRow = styled.div`
   display: flex;
