@@ -114,12 +114,12 @@ export const tasksMetadata = [
 ];
 
 export const TASK_INITIAL_FILTERS = [
-  { value: "not_started", selected: true },
-  { value: "assigned", selected: true },
-  { value: "in_progress", selected: true },
-  { value: "ready_for_qa", selected: true },
-  { value: "qa_in_progress", selected: true },
-  { value: "completed", selected: true },
-  { value: "cancelled", selected: true },
-  { value: "deleted", selected: false },
+  { value: "not_started", selected: true, keyMap: "notStarted" },
+  { value: "assigned", selected: true, keyMap: "assigned" },
+  { value: "in_progress", selected: true, keyMap: "inProgress" },
+  { value: "ready_for_qa", selected: true, keyMap: "readyForQa" },
+  { value: "qa_in_progress", selected: true, keyMap: "qaInProgress" },
+  { value: "completed", selected: true, keyMap: "completed" },
+  { value: "cancelled", selected: true, keyMap: "cancelled" },
+  { value: "deleted", selected: false, keyMap: "deleted" },
 ];

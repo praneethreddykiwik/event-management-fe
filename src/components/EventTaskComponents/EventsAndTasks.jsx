@@ -72,23 +72,15 @@ const EventsAndTasks = ({ isQa }) => {
     });
   };
 
-  const keyMap = {
-    notStarted: "not_started",
-    inProgress: "in_progress",
-    readyForQa: "ready_for_qa",
-    qaInProgress: "qa_in_progress",
-  };
-
   const onClickFilter = (selectedKey) => {
     if (selectedKey === "totalTaskCount") {
       totalClickHandler();
       return;
     }
 
-    const filterKey = keyMap[selectedKey] || selectedKey;
-
+    // TASK_INITIAL_FILTERS
     const arr = selectedTaskFilters.map((el) => {
-      if (el.value === filterKey) {
+      if (el.keyMap === selectedKey) {
         return {
           ...el,
           selected: !el.selected,
@@ -137,9 +129,7 @@ const EventsAndTasks = ({ isQa }) => {
       return isEveryFilterSelected();
     }
 
-    const filterKey = keyMap[key] || key;
-
-    return selectedTaskFilters.find((el) => el.value === filterKey)?.selected;
+    return selectedTaskFilters.find((el) => el.keyMap === key)?.selected;
   };
 
   return (
