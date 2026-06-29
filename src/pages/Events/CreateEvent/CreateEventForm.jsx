@@ -41,7 +41,7 @@ const CreateEventForm = ({ onCreateEvent }) => {
     let isValid = true;
     const newInputs = createEventInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
-      if (isReq && !el.value.trim()) {
+      if (isReq && !String(el.value ?? "").trim()) {
         isValid = false;
         return { ...el, error: "This field is required" };
       }
@@ -62,7 +62,11 @@ const CreateEventForm = ({ onCreateEvent }) => {
     if (!isValid) return;
 
     const reqPayload = createEventInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value.trim() };
+      return {
+        ...acu,
+        [cur.name]:
+          typeof cur.value === "string" ? cur.value.trim() : cur.value,
+      };
     }, {});
 
     const scheduledAt = modifyTimeToISO(
