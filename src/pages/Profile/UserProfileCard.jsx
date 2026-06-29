@@ -13,13 +13,22 @@ import { PROFILE_DATA } from "../../myEnum/ProfileText";
 import { ActivityData } from "./profile.helper";
 import { useNavigate } from "react-router-dom";
 import { theme } from "../../theme/theme";
+import Avatar from "../../components/Avatar/Avatar";
 
 const UserProfileCard = () => {
   const navigate = useNavigate();
   return (
     <StyleLeftCard>
       <StyleProfileImageContainer>
-        <StyleProfileImage src={Speaker1} alt="profile" />
+        
+        <Avatar
+          src={Speaker1}
+          alt="profile"
+          size="large"
+          name={PROFILE_DATA.FIRSTNAME}
+          displayInitials={true}
+        />
+
         <StyleEditIconCircle>
           <StyleSpan className="material-icons">edit</StyleSpan>
         </StyleEditIconCircle>
