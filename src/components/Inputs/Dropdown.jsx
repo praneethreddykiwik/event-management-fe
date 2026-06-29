@@ -29,7 +29,7 @@ const Dropdown = ({
           onChange(params);
         }}
         placeholder={placeholder}
-        styles={customStyles}
+        styles={customStyles(!!error)}
         isSearchable={true}
         hasError={error}
         // isClearable

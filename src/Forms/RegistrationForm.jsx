@@ -12,6 +12,7 @@ import {
   updateRegInputs,
 } from "../redux/farms/farms.slice";
 import { generateCreateUserReq } from "../models/requests/user.req.model";
+import { isValidEmail } from "../utils/utils";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -27,6 +28,13 @@ const RegistrationForm = ({ onCreateUser }) => {
       if (isReq && !el.value.trim()) {
         isValid = false;
         return { ...el, error: "This field is required" };
+      }
+      if (el.name === "email" && el.value && !isValidEmail(el.value)) {
+        isValid = false;
+        return {
+          ...el,
+          error: "Please enter a valid email address",
+        };
       }
       return { ...el, error: "" };
     });

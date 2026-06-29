@@ -41,7 +41,7 @@ const CreateEventForm = ({ onCreateEvent }) => {
     let isValid = true;
     const newInputs = createEventInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
-      if (isReq && !el.value.trim()) {
+      if (isReq && !String(el.value ?? "").trim()) {
         isValid = false;
         return { ...el, error: "This field is required" };
       }
@@ -62,7 +62,11 @@ const CreateEventForm = ({ onCreateEvent }) => {
     if (!isValid) return;
 
     const reqPayload = createEventInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value.trim() };
+      return {
+        ...acu,
+        [cur.name]:
+          typeof cur.value === "string" ? cur.value.trim() : cur.value,
+      };
     }, {});
 
     const scheduledAt = modifyTimeToISO(
@@ -98,8 +102,15 @@ const CreateEventForm = ({ onCreateEvent }) => {
     window.open(data);
   };
 
-  const clearHelperText = () => {
-    // shahid
+  const clearHelperText = (name) => {
+    console.log("name:", name);
+    dispatch(
+      updateEventInputs({
+        name,
+        value: "",
+        helperText: "my helperText",
+      }),
+    );
   };
 
   return (
@@ -172,6 +183,7 @@ const StyledFlex2 = styled.div`
   gap: 30px;
   margin-top: 20px;
   flex-grow: 1;
+  
 
   ${mobile`
     flex-direction: column;

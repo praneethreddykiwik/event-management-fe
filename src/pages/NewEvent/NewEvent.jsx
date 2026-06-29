@@ -10,10 +10,10 @@ const NewEvent = () => {
     <PageWrapper>
       <EventIntroSection />
       <AboutAndNextEventSection />
-      {/* <CardsRow>
+      <CardsRow>
         <ParticipantsSection />
         <PastEventsSection />
-      </CardsRow>  */}
+      </CardsRow> 
     </PageWrapper>
   );
 };
