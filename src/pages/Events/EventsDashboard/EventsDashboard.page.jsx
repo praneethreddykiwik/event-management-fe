@@ -70,12 +70,12 @@ const EventsDashboard = () => {
     );
     dispatch(fetchManagersAction(fetchmanagerpayload));
 
-    const query = `?status=${selectedEventFilters
+    const query = selectedEventFilters
       .filter((fl) => fl.selected)
       .map((m) => m.value)
-      .join(",")}`;
-    dispatch(fetchEventsDispatch({ query }));
-  }, []);
+      .join(",");
+    dispatch(fetchEventsDispatch({ query, searchText: eventsSearchVal }));
+  }, [eventsSearchVal]);
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -90,9 +90,6 @@ const EventsDashboard = () => {
   const onChangeSearch = (e) => {
     const value = e.target.value;
     dispatch(setEventsSearchVal(value));
-    if (value.trim()) {
-      dispatch(filterEventsDispatch(value));
-    }
   };
 
   const onClickFilter = (key) => {

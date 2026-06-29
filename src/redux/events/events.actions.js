@@ -5,35 +5,22 @@ import {
   updateEventsApi,
   assignEventApi,
   deleteEventsApi,
-  filterEventsApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
-
 import { paths } from "../../constants/paths";
 // import { updateAllTaskInputs } from "../farms/farms.slice";
-
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetchEventsApi(payload.query);
+      const searchVal = payload.searchText || "";
+      const query = `?status=${payload.query}&searchText=${searchVal}`;
+      const res = await fetchEventsApi(query);
       return res.data; // user object
     } catch (err) {
       // error toast
       toast.error("Failed to fetch Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
-    }
-  },
-);
-export const  filterEventsDispatch = createAsyncThunk(
-  "events/filterEventsDispatch",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const res = await filterEventsApi(payload);
-      return res.data;
-    } catch (err) {
-      toast.error("Failed to filter Events");
-      return rejectWithValue(err?.response?.data || "Failed to filter events");
     }
   },
 );

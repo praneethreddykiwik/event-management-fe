@@ -65,18 +65,6 @@ const eventsSlice = createSlice({
         state.eventsError = "Error";
       });
 
-    builder
-      .addCase(actions.filterEventsDispatch.pending, (state) => {
-        state.eventsLoading = true;
-      })
-      .addCase(actions.filterEventsDispatch.fulfilled, (state, action) => {
-        state.events = action.payload?.details?.events;
-        state.eventsLoading = false;
-      })
-      .addCase(actions.filterEventsDispatch.rejected, (state) => {
-        state.eventsLoading = false;
-        state.eventsError = "Failed to filter events";
-      });
 
     // Create Events.
     builder

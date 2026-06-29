@@ -30,7 +30,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
-  const { selectedEventFilters } = useSelector(eventsSelector);
+  const { selectedEventFilters, eventsSearchVal } = useSelector(eventsSelector);
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -62,7 +62,11 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
       .map((m) => m.value)
       .join(",");
 
-    dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
+    dispatch(
+      fetchEventsDispatch({
+        query
+      }),
+    );
   };
 
   const valueData = Math.floor(Math.random() * 101);
