@@ -6,7 +6,6 @@ import {
   MoreIcon,
   ParticipantsBody,
   ParticipantRow,
-  Avatar,
   ParticipantDetails,
   ParticipantName,
   ParticipantActions,
@@ -22,7 +21,7 @@ import participant5 from "../../../assets/participant5.jpg";
 import participant6 from "../../../assets/participant6.jpg";
 
 import * as enums from "../../../myEnum";
-
+import Avatar from "../../../components/Avatar/Avatar";
 const ParticipantsSection = () => {
   const participants = [
     { img: participant1, name: "Alex Johnson" },
@@ -47,7 +46,7 @@ const ParticipantsSection = () => {
       <ParticipantsBody>
         {participants.map((p, i) => (
           <ParticipantRow key={i}>
-            <Avatar src={p.img} />
+            <Avatar src={p.img} name={p.name} displayInitials={true}  />
 
             <ParticipantDetails>
               <ParticipantName>{p.name}</ParticipantName>

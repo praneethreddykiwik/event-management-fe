@@ -19,7 +19,7 @@ import {
   StyledParagraphBold,
 } from "../../components/Styled/Typography.styled";
 import { mobile } from "../../theme/media-queries";
-
+import Avatar from "../../components/Avatar/Avatar";
 const events = [
   { img: carImage1, role: "SPEAKER", name: "Sydney" },
   { img: carImg2, role: "SPEAKER", name: "Esther Howard" },
@@ -54,32 +54,29 @@ const FeaturedEvents = () => {
   };
 
   useEffect(() => {
-  if (!trackRef.current) return;
+    if (!trackRef.current) return;
 
-  const viewport = trackRef.current.parentElement;
-  const viewportWidth = viewport.offsetWidth;
+    const viewport = trackRef.current.parentElement;
+    const viewportWidth = viewport.offsetWidth;
 
-  const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768;
 
-  const sideWidth = isMobile ? 140 : SIDE_WIDTH;
-  const centerWidth = isMobile ? viewportWidth * 0.7 : CENTER_WIDTH;
+    const sideWidth = isMobile ? 140 : SIDE_WIDTH;
+    const centerWidth = isMobile ? viewportWidth * 0.7 : CENTER_WIDTH;
 
-  let offsetBeforeActive = 0;
+    let offsetBeforeActive = 0;
 
-  for (let i = 0; i < activeIndex; i++) {
-    offsetBeforeActive += i === activeIndex - 1
-      ? sideWidth
-      : sideWidth;
-  }
+    for (let i = 0; i < activeIndex; i++) {
+      offsetBeforeActive += i === activeIndex - 1 ? sideWidth : sideWidth;
+    }
 
-  const activeCardWidth = centerWidth;
+    const activeCardWidth = centerWidth;
 
-  const translateX =
-    viewportWidth / 2 -
-    (offsetBeforeActive + activeCardWidth / 2);
+    const translateX =
+      viewportWidth / 2 - (offsetBeforeActive + activeCardWidth / 2);
 
-  trackRef.current.style.transform = `translateX(${translateX}px)`;
-}, [activeIndex]);
+    trackRef.current.style.transform = `translateX(${translateX}px)`;
+  }, [activeIndex]);
 
   return (
     <Section>
@@ -88,8 +85,12 @@ const FeaturedEvents = () => {
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>
-            <button onClick={prevSlide}><span class="material-symbols-outlined">chevron_left</span></button>
-            <button onClick={nextSlide}><span class="material-symbols-outlined">chevron_right</span></button>
+            <button onClick={prevSlide}>
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button onClick={nextSlide}>
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
           </Arrows>
         </Actions>
       </Header>
@@ -100,9 +101,7 @@ const FeaturedEvents = () => {
             const isCenter = index === activeIndex;
 
             return (
-              <EventCard
-                key={index}
-                $isCenter={isCenter}>
+              <EventCard key={index} $isCenter={isCenter}>
                 <img src={event.img} alt={event.role} />
 
                 {!isCenter && <RoleLabel>{event.role}</RoleLabel>}
@@ -124,10 +123,34 @@ const FeaturedEvents = () => {
                               <HostCount>+23k</HostCount>
                             </StyledHostCount>
                             <Avatars>
-                              <img src={speaker1} alt="" />
-                              <img src={speaker2} alt="" />
-                              <img src={speaker3} alt="" />
-                              <img src={speaker4} alt="" />
+                              <Avatar
+                                src={speaker1}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker2}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker3}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker4}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
                             </Avatars>
                           </StyledHostAvatars>
                         </Hosts>
@@ -248,7 +271,6 @@ const CarouselTrack = styled.div`
   will-change: transform;
 `;
 
-
 const EventCard = styled.div`
   position: relative;
   width: ${SIDE_WIDTH}px;
@@ -256,9 +278,10 @@ const EventCard = styled.div`
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 5px;
-  transition: transform 0.35s ease, width 0.35s ease;
-  transform: ${({ $isCenter }) =>
-    $isCenter ? "scale(1)" : "scale(0.94)"};
+  transition:
+    transform 0.35s ease,
+    width 0.35s ease;
+  transform: ${({ $isCenter }) => ($isCenter ? "scale(1)" : "scale(0.94)")};
 
   img {
     width: 100%;
@@ -280,8 +303,7 @@ const EventCard = styled.div`
     width: 140px;
     height: 420px;
 
-    transform: ${({ $isCenter }) =>
-      $isCenter ? "scale(1)" : "scale(0.9)"};
+    transform: ${({ $isCenter }) => ($isCenter ? "scale(1)" : "scale(0.9)")};
 
     ${({ $isCenter }) =>
       $isCenter &&
@@ -358,26 +380,21 @@ const HostCount = styled.div`
 const Avatars = styled.div`
   position: relative;
   width: 80px;
-
-  img {
+  // border: 1px solid red;
+  > * {
     position: absolute;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid #0084ff;
-    object-fit: cover;
   }
 
-  img:nth-child(1) {
+  :nth-child(1) {
     left: 0px;
   }
-  img:nth-child(2) {
+  :nth-child(2) {
     left: 17px;
   }
-  img:nth-child(3) {
+  :nth-child(3) {
     left: 33px;
   }
-  img:nth-child(4) {
+  :nth-child(4) {
     left: 48px;
   }
 `;

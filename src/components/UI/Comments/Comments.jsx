@@ -8,7 +8,7 @@ import { Button } from "../../Buttons/Button";
 import { Inputs } from "../../Inputs/Inputs";
 import { CommonBox } from "../../Cards/Cards";
 import Skeleton from "@mui/material/Skeleton";
-import { SkeletonLoaders } from "../Spinner/SkeletonLoaders";
+import { SkeletonLoaders } from "../Loaders/SkeletonLoaders";
 import DOMPurify from "dompurify";
 import { richTextStyles } from "./extraStyles";
 
@@ -111,7 +111,7 @@ export const Comments = ({
 
         <CommentsList>
           {loading ? (
-            <SkeletonLoaders />
+            <SkeletonLoaders count={3} />
           ) : comments.length === 0 ? (
             <EmptyState>No comments yet.</EmptyState>
           ) : (

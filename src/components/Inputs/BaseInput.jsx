@@ -10,6 +10,7 @@ export const BaseInput = ({
   placeholder,
   value,
   onChange,
+  onBlur,
   disabled,
   error,
   width,
@@ -19,9 +20,11 @@ export const BaseInput = ({
   validations,
   clearHelperText,
   onClickHelperText,
+  inpRef,
 }) => {
   const layoutProps = {
     label,
+    name,
     error,
     width,
     helperText,
@@ -40,6 +43,9 @@ export const BaseInput = ({
           onChange={onChange}
           disabled={disabled}
           $hasError={!!error}
+          ref={inpRef}
+          className="base-input"
+          onBlur={onBlur}
         />
         {withButton ? (
           <Button

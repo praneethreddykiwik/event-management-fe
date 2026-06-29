@@ -98,3 +98,14 @@ export const getStatusColor = (key, taskCountObj) => {
 
   return "#000";
 };
+
+//  Regex explanation:
+//  - ^[^\s@]+      => One or more characters before @
+//  - @             => Mandatory @ symbol
+//  - [^\s@]+       => One or more characters after @
+//  - \.            => Mandatory dot
+//  - [^\s@]+       => One or more characters after the dot
+//  - $             => Nothing should come after this  
+export const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
