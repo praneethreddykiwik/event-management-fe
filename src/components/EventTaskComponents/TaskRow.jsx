@@ -112,7 +112,9 @@ const TaskRow = ({
             type="task"
             selectedOption={selectedOption}
             options={options}
-            onOptionToggle={onOptionToggle}
+            onOptionToggle={(label, itemType) =>
+              onOptionToggle(label, itemType)
+            }
           />
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">

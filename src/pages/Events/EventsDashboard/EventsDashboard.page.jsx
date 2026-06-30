@@ -73,6 +73,7 @@ const EventsDashboard = () => {
       try {
         const res = await getAllBookmarksByUserApi();
         const bookmarkList = res?.data?.message ?? [];
+        console.log(bookmarkList);
         dispatch(setAllBookmarks(bookmarkList));
       } catch (err) {
         console.error("Failed to load bookmarks:", err);
@@ -84,29 +85,36 @@ const EventsDashboard = () => {
     }
   }, []);
 
+  const getSelectedBookmarkFolder = (taskUid, type) => {
+    if (!Array.isArray(bookmarksData)) return null;
+    const match = bookmarksData.find(
+      (folder) =>
+        folder?.entity_type === type && folder?.entity_ids?.includes(taskUid),
+    );
+    return match ? match.bookmark_name : null;
+  };
+
   const handleToggleBookmark = async (uid, label, type) => {
     if (isBookmarkLoading) return;
 
-    const isAlreadyChecked = bookmarksData?.[uid] === label;
-    const willBeChecked = !isAlreadyChecked;
+    const folder = bookmarksData?.find(
+      (b) => b.bookmark_name === label && b.entity_type === type,
+    );
+    const willBeChecked = !folder?.entity_ids?.includes(uid);
+    const payload = { entity_id: uid, bookmark_name: label, entity_type: type };
 
     if (willBeChecked) {
-      dispatch(setBookmark({ entity_id: uid, bookmark_name: label }));
+      dispatch(setBookmark(payload));
     } else {
-      dispatch(removeBookmark({ entity_id: uid }));
-      return;
+      dispatch(removeBookmark(payload));
     }
 
     setIsBookmarkLoading(true);
     try {
-      await bookmarkEventApi({
-        entity_id: uid,
-        bookmark_name: label,
-        entity_type: type,
-      });
+      await bookmarkEventApi(payload);
     } catch (err) {
       console.error("Failed to save bookmark:", err);
-      dispatch(removeBookmark({ entity_id: uid }));
+      dispatch(willBeChecked ? removeBookmark(payload) : setBookmark(payload));
     } finally {
       setIsBookmarkLoading(false);
     }
@@ -159,7 +167,7 @@ const EventsDashboard = () => {
                 key={event.uid}
                 event={mapEventForUI(event)}
                 gridView={eventGridView}
-                selectedOption={bookmarksData?.[event.uid] ?? null}
+                selectedOption={getSelectedBookmarkFolder(event.uid, "event")}
                 options={bookmarkOptions}
                 onOptionToggle={(label, type) =>
                   handleToggleBookmark(event.uid, label, type)

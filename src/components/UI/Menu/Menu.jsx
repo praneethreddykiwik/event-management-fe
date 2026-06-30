@@ -27,7 +27,7 @@ export const Menu = ({
       <IconBtn onClick={() => setOpen((prev) => !prev)} type="button">
         <Icon
           variant={icon}
-          sx={{ color: isActive ? "#D4AF37" : iconColor }}
+          style={{ color: isActive ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
 
@@ -38,19 +38,22 @@ export const Menu = ({
 
         {options.length > 0 && (
           <CheckboxListWrapper>
-            {options.map((opt) => (
-              <CheckboxItem
-                key={opt.id}
-                onClick={() => onOptionToggle?.(opt.label, type)}
-              >
-                <StyledCheckbox
-                  type="checkbox"
-                  checked={selectedOption === opt.label}
-                  onChange={() => onOptionToggle?.(opt.label, type)}
-                />
-                <CheckboxLabel>{opt.label}</CheckboxLabel>
-              </CheckboxItem>
-            ))}
+            {options.map((opt) => {
+              const isChecked = selectedOption === opt.label;
+              return (
+                <CheckboxItem
+                  key={opt.id}
+                  onClick={() => onOptionToggle?.(opt.label, type)}
+                >
+                  <StyledCheckbox
+                    type="checkbox"
+                    checked={isChecked}
+                    readOnly // Handled by structural row click handler
+                  />
+                  <CheckboxLabel>{opt.label}</CheckboxLabel>
+                </CheckboxItem>
+              );
+            })}
           </CheckboxListWrapper>
         )}
       </DropdownMenu>
@@ -120,10 +123,36 @@ const CheckboxItem = styled.div`
 `;
 
 const StyledCheckbox = styled.input`
-  width: 16px;
-  height: 16px;
-  accent-color: #26c867;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #b4b8bc;
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff;
   cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    border-color: #26c867;
+  }
+
+  &:checked {
+    background-color: #26c867;
+    border-color: #26c867;
+  }
+
+  &:checked::before {
+    content: "";
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
 `;
 
 const CheckboxLabel = styled.span`
