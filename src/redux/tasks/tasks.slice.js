@@ -91,6 +91,7 @@ const tasksSlice = createSlice({
         state.taskCountObj = res.countObj;
         state.tasksLoading = false;
         state.tasksError = null;
+        state.selectedTaskFilters = action.payload.selectedTaskFilters;
       })
       .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
         state.authUser = null;
@@ -229,20 +230,6 @@ const tasksSlice = createSlice({
       .addCase(actions.deleteTaskAction.rejected, (state, action) => {
         state.acceptTaskLoading = false;
         state.deleteTaskError = action.payload || "Failed to accept task";
-      });
-    builder
-      .addCase(actions.taskFilterAction.pending, (state) => {
-        state.tasksLoading = true;
-      })
-      .addCase(actions.taskFilterAction.fulfilled, (state, action) => {
-        state.eventsAndTasks = action.payload.data;
-        state.tasksLoading = false;
-
-        state.selectedTaskFilters = action.payload.selectedTaskFilters;
-      })
-      .addCase(actions.taskFilterAction.rejected, (state) => {
-        state.tasksLoading = false;
-        state.tasksError = "Error";
       });
   },
 });
