@@ -6,6 +6,7 @@ import control_img2 from "../../assets/ControlPage_img/control_img2.jpeg";
 import control_img from "../../assets/ControlPage_img/control_img.jpeg";
 import { theme } from "../../theme/theme";
 import { StyledSemiHeading } from "../../components/Styled/Typography.styled";
+import Avatar from "../../components/Avatar/Avatar";
 
 const VenueCard = () => {
   const SIDE_IMAGES = [control_img, control_img2];
@@ -15,9 +16,13 @@ const VenueCard = () => {
       <VenueCard2>
         <VenueImg src={Conference_image} alt="Conference Hall" />
 
-        <Avatar src={Control_avtar} alt="User" />
-
         <WhiteCard>
+          <Avatar
+            name={`${enums.USER_NAME}`}
+            src={Control_avtar}
+            alt="User"
+            displayInitials={true}
+          />
           <StyledSemiHeading>{enums.USER_NAME}</StyledSemiHeading>
 
           <Icons>
@@ -66,20 +71,6 @@ const VenueImg = styled.img`
   width: 100%;
   height: 240px;
   object-fit: cover;
-`;
-
-const Avatar = styled.img`
-  width: 85px;
-  height: 85px;
-
-  object-fit: cover;
-
-  position: absolute;
-  left: 20px;
-  bottom: 30px; /* THIS makes avatar overlap */
-
-  border: 4px solid ${theme.light.colors.white};
-  background: ${theme.light.colors.white};
 `;
 
 const WhiteCard = styled.div`
