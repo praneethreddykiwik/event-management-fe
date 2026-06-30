@@ -25,7 +25,7 @@ const Venues = () => {
   const handleSelect = (venue) => {
     const dat = createEventInputs.map((el) => {
       if (el.name === "venue") {
-        return { ...el, value: venue.name, helperText: venue.map, error:null };
+        return { ...el, value: venue.name, helperText: venue.map };
       }
       return el;
     });

@@ -92,14 +92,7 @@ const AppRoutes = () => {
 
       {/* Events */}
       <Route path={paths.eventsDetails} element={<Event />} />
-      <Route
-        path={paths.createEvent}
-        element={
-          <RBACRoute perm="event:edit">
-            <CreateEdiEvent />
-          </RBACRoute>
-        }
-      />
+      <Route path={paths.createEvent} element={<CreateEdiEvent />} />
       <Route path={paths.editEvent} element={<CreateEdiEvent />} />
 
       {/* Tasks */}

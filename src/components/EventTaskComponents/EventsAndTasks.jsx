@@ -5,6 +5,7 @@ import { StyledParagraphSmallGray } from "../Styled/Typography.styled";
 import {
   fetchEventsAndTasksAction,
   fetchQaEventsAndTasksAction,
+  taskFilterAction,
 } from "../../redux/tasks/tasks.actions";
 import { authSelector } from "../../redux/auth/auth.slice";
 import { tasksSelector } from "../../redux/tasks/tasks.slice";
@@ -30,17 +31,11 @@ const EventsAndTasks = ({ isQa }) => {
   const { vendors, supervisors, qa } = useSelector(usersSelector);
 
   useEffect(() => {
+    const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
     if (isQa) {
-      const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
       dispatch(fetchQaEventsAndTasksAction(query));
     } else {
-      dispatch(
-        fetchEventsAndTasksAction({
-          assignedToUid: authUser?.uid,
-          tenantUid: authUser?.tenantUid,
-          filters: TASK_INITIAL_FILTERS,
-        }),
-      );
+      dispatch(fetchEventsAndTasksAction(query));
     }
     // checkHere
     if (!vendors.length || !supervisors.length || !qa.length) {
@@ -83,7 +78,7 @@ const EventsAndTasks = ({ isQa }) => {
       return;
     }
 
-    // Task_INITIAL_FILTERS
+    // TASK_INITIAL_FILTERS
     const arr = selectedTaskFilters.map((el) => {
       if (el.keyMap === selectedKey) {
         return {
@@ -96,7 +91,7 @@ const EventsAndTasks = ({ isQa }) => {
     });
 
     dispatch(
-      fetchEventsAndTasksAction({
+      taskFilterAction({
         assignedToUid: authUser?.uid,
         tenantUid: authUser?.tenantUid,
         filters: arr,
@@ -113,7 +108,7 @@ const EventsAndTasks = ({ isQa }) => {
     }));
 
     dispatch(
-      fetchEventsAndTasksAction({
+      taskFilterAction({
         assignedToUid: authUser?.uid,
         tenantUid: authUser?.tenantUid,
         filters: arr,

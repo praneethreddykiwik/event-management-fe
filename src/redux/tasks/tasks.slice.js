@@ -63,6 +63,7 @@ const tasksSlice = createSlice({
         state.tasksByEventsError = null;
       })
       .addCase(actions.fetchTasksApiAction.rejected, (state) => {
+        state.authUser = null;
         state.tasksByEventsLoading = false;
         state.tasksByEventsError = "Error";
       });
@@ -90,9 +91,9 @@ const tasksSlice = createSlice({
         state.taskCountObj = res.countObj;
         state.tasksLoading = false;
         state.tasksError = null;
-        state.selectedTaskFilters = action.payload.selectedTaskFilters;
       })
       .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
+        state.authUser = null;
         state.tasksLoading = false;
         state.tasksError = "Error";
       });
@@ -113,6 +114,7 @@ const tasksSlice = createSlice({
         },
       )
       .addCase(actions.fetchQaEventsAndTasksAction.rejected, (state) => {
+        state.authUser = null;
         state.tasksLoading = false;
         state.tasksError = "Error";
       });
@@ -127,6 +129,7 @@ const tasksSlice = createSlice({
         state.declineTaskError = null;
       })
       .addCase(actions.declineTasksAction.rejected, (state, action) => {
+        state.authUser = null;
         state.declineTaskLoading = false;
         state.declineTaskError = action.payload || "Failed to decline task";
       });
@@ -200,14 +203,6 @@ const tasksSlice = createSlice({
             break;
           }
         }
-
-        const taskByEvent = state.tasksByEvent?.find(
-          (task) => task.taskUid === updatedTaskUid,
-        );
-
-        if (taskByEvent) {
-          taskByEvent.taskStatus = newStatus;
-        }
       })
       .addCase(actions.updateTaskStatusAction.rejected, (state, action) => {
         state.updateTaskStatusLoading = false;
@@ -226,6 +221,20 @@ const tasksSlice = createSlice({
       .addCase(actions.deleteTaskAction.rejected, (state, action) => {
         state.acceptTaskLoading = false;
         state.deleteTaskError = action.payload || "Failed to accept task";
+      });
+    builder
+      .addCase(actions.taskFilterAction.pending, (state) => {
+        state.tasksLoading = true;
+      })
+      .addCase(actions.taskFilterAction.fulfilled, (state, action) => {
+        state.eventsAndTasks = action.payload.data;
+        state.tasksLoading = false;
+
+        state.selectedTaskFilters = action.payload.selectedTaskFilters;
+      })
+      .addCase(actions.taskFilterAction.rejected, (state) => {
+        state.tasksLoading = false;
+        state.tasksError = "Error";
       });
   },
 });

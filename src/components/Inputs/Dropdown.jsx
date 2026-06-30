@@ -29,7 +29,7 @@ const Dropdown = ({
           onChange(params);
         }}
         placeholder={placeholder}
-        styles={customStyles(!!error)}
+        styles={customStyles}
         isSearchable={true}
         // isClearable
         // components={{
@@ -42,7 +42,7 @@ const Dropdown = ({
   );
 };
 
-const customStyles = (error) => ({
+const customStyles = {
   control: (base) => ({
     ...base,
     borderRadius: "25px",
@@ -50,13 +50,12 @@ const customStyles = (error) => ({
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
-    border: error ? `1px solid ${theme.light.colors.warning}` : "1px solid #e0e0e0",
+    border: "1px solid #e0e0e0", // checkHere
     "&:focus-within": {
-      border: error
-        ? `1px solid ${theme.light.colors.warning} `
-        : `1px solid ${theme.light.colors.grayDisabled}`,
+      border: `1px solid ${theme.light.colors.grayDisabled}`,
       boxShadow: "none",
     },
+    // backgroundColor: "red",
   }),
 
   dropdownIndicator: (base) => ({
@@ -118,6 +117,6 @@ const customStyles = (error) => ({
       backgroundColor: "#e0deffff",
     },
   }),
-});
+};
 
 export default Dropdown;

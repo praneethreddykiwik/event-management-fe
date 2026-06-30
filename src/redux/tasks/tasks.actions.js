@@ -47,26 +47,8 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
   "tasks/fetchEventsAndTasksAction",
   async (payload, { rejectWithValue }) => {
     try {
-      const selectedFilters =
-        payload.filters?.filter((fl) => fl.selected) || [];
-
-      const query = selectedFilters.length
-        ? `assignedToUid=${payload.assignedToUid}&tenantUid=${payload.tenantUid}&status=${selectedFilters
-            .map((m) => m.value)
-            .join(",")}`
-        : `assignedToUid=${payload.assignedToUid}&tenantUid=${payload.tenantUid}`;
-
-      const res = await fetchEventsAndTasksApi(query);
-
-      const k = {
-        details: {
-          data: res.data.details?.data,
-          countObj: res.data.details?.countObj,
-        },
-        selectedTaskFilters: payload.filters,
-      };
-
-      return k;
+      const res = await fetchEventsAndTasksApi(payload);
+      return res.data;
     } catch (err) {
       toast.error(
         err?.response?.data?.message ||
@@ -191,6 +173,34 @@ export const deleteTaskAction = createAsyncThunk(
     } catch (err) {
       toast.error(err?.response?.data?.message || "Failed to delete Task");
       return rejectWithValue(err?.response?.data || "Error");
+    }
+  },
+);
+
+export const taskFilterAction = createAsyncThunk(
+  "tasks/taskFilterAction",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const selectedFilters = payload.filters.filter((fl) => fl.selected);
+
+      const query = selectedFilters.length
+        ? `assignedToUid=${payload.assignedToUid}&tenantUid=${payload.tenantUid}&status=${selectedFilters
+            .map((m) => m.value)
+            .join(",")}`
+        : `assignedToUid=${payload.assignedToUid}&tenantUid=${payload.tenantUid}`;
+
+      const res = await fetchEventsAndTasksApi(query);
+
+      const k = {
+        data: res.data.details?.data,
+        countObj: res.data.details?.countObj,
+        selectedTaskFilters: payload.filters,
+      };
+
+      return k;
+    } catch (err) {
+      toast.error("Failed to fetch Tasks");
+      return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
 );

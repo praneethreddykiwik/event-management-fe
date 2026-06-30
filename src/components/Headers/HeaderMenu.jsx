@@ -40,12 +40,7 @@ export const HeaderMenu = ({ menuOpen }) => {
       ddArr: [
         { icon: "event", label: "Upcoming Events", path: "/" },
         { icon: "event_note", label: "Current Events", path: "/" },
-        {
-          icon: "add_ad",
-          label: "Create Event",
-          path: paths.createEvent,
-          perm: "event:edit",
-        },
+        { icon: "add_ad", label: "Create Event", path: "/events/create-event" },
       ],
     },
     market: {

@@ -39,7 +39,7 @@ const StyledTopBox = styled.div`
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   margin-bottom: 24px;
-  height: 300px;
+  height: 50%;
   padding: 14px 24px;
   border-radius: 10px;
   border: ${({ theme }) => theme.borders["border-gray"]};
@@ -50,15 +50,13 @@ const StyledBottomBox = styled.div`
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadows["level-1"]};
   border-radius: 10px;
-  height: 300px;
+  height: 50%;
   padding: 14px 24px;
   border: ${({ theme }) => theme.borders["border-gray"]};
-  overflow-y: auto;
 `;
 
 const StyledParagraph2 = styled(StyledParagraph)`
-  max-width: 100%;
-  text-align: justify;
+  max-width: "60%";
 `;
 
 const StyledEvenInfoCard = styled.div`

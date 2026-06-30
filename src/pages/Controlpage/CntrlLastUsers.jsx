@@ -5,11 +5,8 @@ import Avt2 from "../../assets/ControlPage_img/Avt2.jpeg";
 import Avt3 from "../../assets/ControlPage_img/Avt3.jpeg";
 import doorimg from "../../assets/ControlPage_img/doorimg.jpeg";
 import { theme } from "../../theme/theme";
-import {
-  StyledParagraphSmallGray,
-  StyledParagraphBold,
-} from "../../components/Styled/Typography.styled";
-import Avatar from "../../components/Avatar/Avatar";
+import {StyledParagraphSmallGray, StyledParagraphBold } from "../../components/Styled/Typography.styled";
+
 const LastUsersBox = () => {
   return (
     <LastUsersBox2>
@@ -17,21 +14,9 @@ const LastUsersBox = () => {
         <StyledParagraphBold>{enums.LAST_HEAD}</StyledParagraphBold>
 
         <AvatarGroup>
-          <Avatar
-            src={Avt1}
-            size="small"
-            borderColor={theme.light.colors.white}
-          />
-          <Avatar
-            src={Avt2}
-            size="small"
-            borderColor={theme.light.colors.white}
-          />
-          <Avatar
-            src={Avt3}
-            size="small"
-            borderColor={theme.light.colors.white}
-          />
+          <Avtimg src={Avt1} />
+          <Avtimg src={Avt2} />
+          <Avtimg src={Avt3} />
         </AvatarGroup>
       </LastHeader>
 
@@ -66,25 +51,14 @@ const LastHeader = styled.div`
 
 const AvatarGroup = styled.div`
   display: flex;
-  position: relative;
-  width: 80px;
-  
-  > * {
-    position: absolute;
-  }
+`;
 
-  :nth-child(1) {
-    left: 0px;
-  }
-  :nth-child(2) {
-    left: 17px;
-  }
-  :nth-child(3) {
-    left: 33px;
-  }
-  :nth-child(4) {
-    left: 48px;
-  }
+const Avtimg = styled.img`
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-left: -8px;
+  border: 2px solid ${theme.light.colors.white};
 `;
 
 const UserActivity = styled.div`
