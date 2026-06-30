@@ -7,7 +7,7 @@ import {
   StyledParagraph,
   StyledParagraphSmallVisible,
 } from "../../components/Styled/Typography.styled";
-
+import Avatar from "../../components/Avatar/Avatar";
 const LastBox = () => {
   return (
     <HeaderWrapper>
@@ -25,7 +25,11 @@ const LastBox = () => {
 
         <RightSection>
           <ProfileBox>
-            <ProfileImg src={Control_avtar} />
+            <Avatar
+              src={Control_avtar}
+              name={enums.HENRY}
+              displayInitials={true}
+            />
             <ProfileInfo>
               <StyledParagraph className="name">{enums.HENRY}</StyledParagraph>
               <StyledParagraphSmallVisible className="role">
@@ -111,16 +115,11 @@ const ProfileBox = styled.div`
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 `;
 
-const ProfileImg = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 40%;
-`;
-
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 14px;
+  line-height: 10px;
+  
 
   .name {
     font-size: 14px;

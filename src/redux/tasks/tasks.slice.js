@@ -203,6 +203,14 @@ const tasksSlice = createSlice({
             break;
           }
         }
+
+        const taskByEvent = state.tasksByEvent?.find(
+          (task) => task.taskUid === updatedTaskUid,
+        );
+
+        if (taskByEvent) {
+          taskByEvent.taskStatus = newStatus;
+        }
       })
       .addCase(actions.updateTaskStatusAction.rejected, (state, action) => {
         state.updateTaskStatusLoading = false;

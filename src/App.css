@@ -29,7 +29,7 @@ body {
 /* Base toast */
 .Toastify__toast {
   border-radius: 50px !important;
-  padding: 14px 18px !important;
+  padding: 14px 40px 14px 18px !important;
   font-size: 14px;
   font-weight: 500;
   background: #0f172a !important;
