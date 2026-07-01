@@ -27,7 +27,7 @@ export const Menu = ({
       <IconBtn onClick={() => setOpen((prev) => !prev)} type="button">
         <Icon
           variant={icon}
-          style={{ color: isActive ? "#D4AF37" : iconColor }}
+          sx={{ color: isActive ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
 
