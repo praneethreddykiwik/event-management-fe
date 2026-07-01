@@ -30,12 +30,9 @@ export const Menu = ({
           sx={{ color: isActive ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
-
       <DropdownMenu $open={open} $align={align}>
         {title && <MenuHeader>{title}</MenuHeader>}
-
         {typeof children === "function" ? children(() => setOpen(false)) : children}
-
         {options.length > 0 && (
           <CheckboxListWrapper>
             {options.map((opt) => {
@@ -48,7 +45,7 @@ export const Menu = ({
                   <StyledCheckbox
                     type="checkbox"
                     checked={isChecked}
-                    readOnly // Handled by structural row click handler
+                    readOnly
                   />
                   <CheckboxLabel>{opt.label}</CheckboxLabel>
                 </CheckboxItem>
