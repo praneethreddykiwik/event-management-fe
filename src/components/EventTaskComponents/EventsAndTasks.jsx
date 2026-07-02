@@ -53,7 +53,7 @@ const EventsAndTasks = ({ isQa }) => {
     const loadAllBookmarks = async () => {
       try {
         const res = await getAllBookmarksByUserApi();
-        const bookmarkList = res?.data?.message ?? [];
+        const bookmarkList = res?.data?.details ?? [];
         dispatch(setAllBookmarks(bookmarkList));
       } catch (err) {
         console.error("Failed to load bookmarks:", err);

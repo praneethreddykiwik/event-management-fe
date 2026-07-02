@@ -72,7 +72,7 @@ const EventsDashboard = () => {
     const loadAllBookmarks = async () => {
       try {
         const res = await getAllBookmarksByUserApi();
-        const bookmarkList = res?.data?.message ?? [];
+        const bookmarkList = res?.data?.details ?? [];
         console.log(bookmarkList);
         dispatch(setAllBookmarks(bookmarkList));
       } catch (err) {
