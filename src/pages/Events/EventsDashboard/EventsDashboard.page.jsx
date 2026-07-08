@@ -33,11 +33,11 @@ import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
 import {
-  getAllBookmarksByUserApi,
+  // getAllBookmarksByUserApi,
   bookmarkEventApi,
 } from "../../../api/bookmark.api";
 import {
-  setAllBookmarks,
+  // setAllBookmarks,
   setBookmark,
   removeBookmark,
   bookmarksSelector,
@@ -53,7 +53,8 @@ const EventsDashboard = () => {
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
   const { eventGridView } = useSelector(eventsSelector);
-  const { bookmarksData, bookmarkOptions } = useSelector(bookmarksSelector);
+  const { bookmarksData /* bookmarkOptions */ } =
+    useSelector(bookmarksSelector);
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
@@ -69,20 +70,20 @@ const EventsDashboard = () => {
       .join(",")}`;
     dispatch(fetchEventsDispatch({ query }));
 
-    const loadAllBookmarks = async () => {
-      try {
-        const res = await getAllBookmarksByUserApi();
-        const bookmarkList = res?.data?.details ?? [];
-        console.log(bookmarkList);
-        dispatch(setAllBookmarks(bookmarkList));
-      } catch (err) {
-        console.error("Failed to load bookmarks:", err);
-      }
-    };
+    // const loadAllBookmarks = async () => {
+    //   try {
+    //     const res = await getAllBookmarksByUserApi();
+    //     const bookmarkList = res?.data?.details ?? [];
+    //     console.log(bookmarkList);
+    //     dispatch(setAllBookmarks(bookmarkList));
+    //   } catch (err) {
+    //     console.error("Failed to load bookmarks:", err);
+    //   }
+    // };
 
-    if (authUser?.uid) {
-      loadAllBookmarks();
-    }
+    // if (authUser?.uid) {
+    //   loadAllBookmarks();
+    // }
   }, []);
 
   const getSelectedBookmarkFolder = (taskUid, type) => {
@@ -168,7 +169,7 @@ const EventsDashboard = () => {
                 event={mapEventForUI(event)}
                 gridView={eventGridView}
                 selectedOption={getSelectedBookmarkFolder(event.uid, "event")}
-                options={bookmarkOptions}
+                // options={bookmarkOptions}
                 onOptionToggle={(label, type) =>
                   handleToggleBookmark(event.uid, label, type)
                 }

@@ -25,18 +25,21 @@ import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
 import { Menu } from "../../../components/UI/Menu/Menu";
+import { bookmarksSelector } from "../../../redux/bookmarks/bookmarks.slice";
 
 const AdminTaskItem = ({
   event,
   gridView,
   onOptionToggle,
-  options,
-  selectedOption,
+  // options,
+  // selectedOption,
 }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
   const { selectedEventFilters } = useSelector(eventsSelector);
+  const { bookmarksData, bookmarkOptions, eventBookmarks } =
+    useSelector(bookmarksSelector);
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -113,23 +116,26 @@ const AdminTaskItem = ({
             <Badge type={event.type}>{event.statusLabel}</Badge>
           </StyledFlex2>
           <StyledFlex2>
-            <Icon variant="chat" />
+            <Icon variant="chat" title="Comment" />
             <Menu
               icon="bookmark"
               iconColor="black"
               title="Bookmark"
               type="event"
-              selectedOption={selectedOption}
-              options={options}
+              // selectedOption={selectedOption}
+              // options={bookmarkOptions}
+              bookmarks={eventBookmarks}
+              bookmarkOptions={bookmarkOptions}
               onOptionToggle={onOptionToggle}
             />
-            <Icon variant="alternate_email" />
+            <Icon variant="alternate_email" title="Email" />
             <RBACHOC perm="event:delete">
               <InlineButton
                 type="delete"
                 icon="delete"
                 onClick={onClickDelete}
                 showGridView={gridView}
+                title="Delete"
               >
                 Delete Event
               </InlineButton>

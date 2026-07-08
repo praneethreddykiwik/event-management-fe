@@ -1,6 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "../../Icons/Icons";
+import {
+  StyledParagraph,
+  StyledParagraphSmallGray,
+} from "../../Styled/Typography.styled";
+import { Inputs } from "../../Inputs/Inputs";
 
 export const Menu = ({
   icon,
@@ -9,9 +14,11 @@ export const Menu = ({
   title,
   align = "right",
   type,
-  selectedOption = null,   
-  options = [],            
-  onOptionToggle,          
+  selectedOption = null,
+  // options = [],
+  onOptionToggle,
+  bookmarks,
+  bookmarkOptions,
 }) => {
   const [open, setOpen] = useState(false);
   const isActive = !!selectedOption;
@@ -22,37 +29,53 @@ export const Menu = ({
     }
   };
 
+  console.log("abdul bookmarks", bookmarks);
+
+  const checkBoxes = {
+    type: "checkbox-group",
+    name: "bookmarks",
+    placeholder: "Bookmarks",
+    list: bookmarkOptions,
+    validations: ["required"],
+  };
+  console.log("abdul bookmarkOptions", bookmarkOptions);
+
   return (
-    <Ctn tabIndex={-1} onBlur={handleBlur}>
+    <Ctn tabIndex={-1} onBlur={handleBlur} title={title}>
       <IconBtn onClick={() => setOpen((prev) => !prev)} type="button">
-        <Icon
-          variant={icon}
-          sx={{ color: isActive ? "#D4AF37" : iconColor }}
-        />
+        <Icon variant={icon} sx={{ color: isActive ? "#D4AF37" : iconColor }} />
       </IconBtn>
       <DropdownMenu $open={open} $align={align}>
         {title && <MenuHeader>{title}</MenuHeader>}
-        {typeof children === "function" ? children(() => setOpen(false)) : children}
-        {options.length > 0 && (
+
+        {typeof children === "function"
+          ? children(() => setOpen(false))
+          : children}
+
+        {bookmarks.length > 0 ? (
           <CheckboxListWrapper>
-            {options.map((opt) => {
-              const isChecked = selectedOption === opt.label;
+            {bookmarks.map((bookmark) => {
+              const isChecked = selectedOption === bookmark;
+              // debugger;
               return (
                 <CheckboxItem
-                  key={opt.id}
-                  onClick={() => onOptionToggle?.(opt.label, type)}
+                  key={bookmark.bookmark_name}
+                  onClick={() => onOptionToggle?.(bookmark, type)}
                 >
-                  <StyledCheckbox
-                    type="checkbox"
-                    checked={isChecked}
-                    readOnly
-                  />
-                  <CheckboxLabel>{opt.label}</CheckboxLabel>
+                  <StyledCheckbox type="checkbox" checked={true} readOnly />
+                  <CheckboxLabel>{bookmark.bookmark_name}</CheckboxLabel>
                 </CheckboxItem>
               );
             })}
+            <Inputs {...checkBoxes} />
+            <Inputs
+              name="new-bookmark"
+              placeholder="Add bookmark"
+              type="text"
+              small
+            />
           </CheckboxListWrapper>
-        )}
+        ) : null}
       </DropdownMenu>
     </Ctn>
   );
@@ -89,12 +112,12 @@ const DropdownMenu = styled.div`
   margin-top: 4px;
 `;
 
-const MenuHeader = styled.div`
+const MenuHeader = styled(StyledParagraphSmallGray)`
   padding: 6px 16px;
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #70757a;
+  // font-size: 11px;
+  // font-weight: bold;
+  // text-transform: uppercase;
+  // color: #70757a;
   border-bottom: 1px solid #f1f3f4;
   margin-bottom: 4px;
   white-space: nowrap;
