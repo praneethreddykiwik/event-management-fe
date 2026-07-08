@@ -38,7 +38,7 @@ const EventsAndTasks = ({ isQa }) => {
         fetchEventsAndTasksAction({
           assignedToUid: authUser?.uid,
           tenantUid: authUser?.tenantUid,
-          filters: TASK_INITIAL_FILTERS,
+          filters: selectedTaskFilters,
         }),
       );
     }
