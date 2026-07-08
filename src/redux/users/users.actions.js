@@ -8,6 +8,7 @@ import {
 } from "../../api/users.api";
 import { ROLES } from "../../constants/roles";
 import { toast } from "react-toastify";
+import { showErrorToast } from "../../utils/toast.utils";
 import { updateAllRegInputs } from "../farms/farms.slice";
 import { generateRegInputsAccordingToRole } from "../farms/metadata/reg.metadata";
 
@@ -26,14 +27,7 @@ export const fetchManagersAction = createAsyncThunk(
 
       return res?.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to fetch managers",
-        );
-      }
-
+      showErrorToast(err, "Failed to fetch managers");
       return rejectWithValue(err?.response?.data || "Failed to fetch managers");
     }
   },
@@ -49,13 +43,7 @@ export const fetchAllUsersAction = createAsyncThunk(
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to fetch Users",
-        );
-      }
+      showErrorToast(err, "Failed to fetch Users");
       return rejectWithValue(err?.response?.data || "Fetch users failed");
     }
   },
@@ -71,13 +59,7 @@ export const fetchVendorsAction = createAsyncThunk(
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to fetch Vendors",
-        );
-      }
+      showErrorToast(err, "Failed to fetch Vendors");
       return rejectWithValue(err?.response?.data || "Failed to fetch Vendors");
     }
   },
@@ -93,13 +75,7 @@ export const fetchSupervisorsAction = createAsyncThunk(
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to fetch Supervisors",
-        );
-      }
+      showErrorToast(err, "Failed to fetch Supervisors");
       return rejectWithValue(
         err?.response?.data || "Failed to fetch Supervisors",
       );
@@ -138,13 +114,7 @@ export const fetchVendorsSupsQA = createAsyncThunk(
       return res;
     } catch (err) {
       console.log(err);
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to fetch Supervisors and Vendors",
-        );
-      }
+      showErrorToast(err, "Failed to fetch Supervisors and Vendors");
       return rejectWithValue(
         err?.response?.data || "Failed to fetch Supervisors and Vendors",
       );
@@ -170,11 +140,7 @@ export const registrationAction = createAsyncThunk(
       }
       return res.data; // user object (or any success response)
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message || err?.message || "Registration failed",
-        );
-      }
+      showErrorToast(err, "Registration failed");
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
   },
@@ -190,13 +156,7 @@ export const deleteUserAction = createAsyncThunk(
       toast.success("user deleted successfully");
       return res.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to delete user",
-        );
-      }
+      showErrorToast(err, "Failed to delete user");
       return rejectWithValue(err?.response?.data || "Failed to delete user");
     }
   },
@@ -211,13 +171,7 @@ export const updateUserAction = createAsyncThunk(
       toast.success("Users updated successfully");
       return res.data;
     } catch (err) {
-      if (err?.response?.status !== 401) {
-        toast.error(
-          err?.response?.data?.message ||
-            err?.message ||
-            "Failed to update user",
-        );
-      }
+      showErrorToast(err, "Failed to update user");
       return rejectWithValue(err?.response?.data || "Failed to update user");
     }
   },
