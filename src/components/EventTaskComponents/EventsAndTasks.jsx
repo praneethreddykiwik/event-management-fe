@@ -17,21 +17,30 @@ import { getStatusColor } from "../../utils/utils";
 import FilterCard from "../Cards/FilterCard";
 import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
+import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
+import { FilterHeaders } from "../Headers/FilterHeaders";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
-  const { eventsAndTasks, taskCountObj } = useSelector(tasksSelector);
+  const { eventsAndTasks, taskCountObj, selectedTaskFilters } =
+    useSelector(tasksSelector);
   const { vendors, supervisors, qa } = useSelector(usersSelector);
 
   useEffect(() => {
-    const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
     if (isQa) {
+      const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
       dispatch(fetchQaEventsAndTasksAction(query));
     } else {
-      dispatch(fetchEventsAndTasksAction(query));
+      dispatch(
+        fetchEventsAndTasksAction({
+          assignedToUid: authUser?.uid,
+          tenantUid: authUser?.tenantUid,
+          filters: selectedTaskFilters,
+        }),
+      );
     }
     // checkHere
     if (!vendors.length || !supervisors.length || !qa.length) {
@@ -68,8 +77,69 @@ const EventsAndTasks = ({ isQa }) => {
     });
   };
 
+  const onClickFilter = (selectedKey) => {
+    if (selectedKey === "totalTaskCount") {
+      totalClickHandler();
+      return;
+    }
+
+    // TASK_INITIAL_FILTERS
+    const arr = selectedTaskFilters.map((el) => {
+      if (el.keyMap === selectedKey) {
+        return {
+          ...el,
+          selected: !el.selected,
+        };
+      }
+
+      return el;
+    });
+
+    dispatch(
+      fetchEventsAndTasksAction({
+        assignedToUid: authUser?.uid,
+        tenantUid: authUser?.tenantUid,
+        filters: arr,
+      }),
+    );
+  };
+
+  const totalClickHandler = () => {
+    const isEverySelected = isEveryFilterSelected();
+
+    const arr = selectedTaskFilters.map((el) => ({
+      ...el,
+      selected: !isEverySelected,
+    }));
+
+    dispatch(
+      fetchEventsAndTasksAction({
+        assignedToUid: authUser?.uid,
+        tenantUid: authUser?.tenantUid,
+        filters: arr,
+      }),
+    );
+  };
+
+  const isEveryFilterSelected = () => {
+    return TASK_INITIAL_FILTERS.every((es) => {
+      const record = selectedTaskFilters.find((sf) => sf.value === es.value);
+
+      return record?.selected;
+    });
+  };
+
+  const isFilterSelected = (key) => {
+    if (key === "totalTaskCount") {
+      return isEveryFilterSelected();
+    }
+
+    return selectedTaskFilters.find((el) => el.keyMap === key)?.selected;
+  };
+
   return (
     <DashboardContainer>
+      <FilterHeaders />
       {/* Filter cards */}
       <CardsRow>
         {Object.keys(taskCountObj).map((key) => (
@@ -77,6 +147,8 @@ const EventsAndTasks = ({ isQa }) => {
             objKey={key}
             value={taskCountObj[key]}
             color={getStatusColor(key, taskCountObj)}
+            onClick={() => onClickFilter(key)}
+            selected={isFilterSelected(key)}
           />
         ))}
       </CardsRow>
