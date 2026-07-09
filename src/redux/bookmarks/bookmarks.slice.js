@@ -5,7 +5,7 @@ const initialState = {
   bookmarksData: [],
   bookmarkOptions: [],
   eventBookmarks: [],
-  taskBookamrks: [],
+  taskBookmarks: [],
 };
 
 const bookmarksSlice = createSlice({
@@ -13,93 +13,42 @@ const bookmarksSlice = createSlice({
   initialState,
   reducers: {
     setAllBookmarks(state, action) {
-      state.bookmarksData = action.payload ?? [];
+      const payload = action.payload ?? [];
+      state.bookmarksData = payload;
 
-      const mappedOptions = action.payload.map((el) => el.bookmark_name);
-      const newOptions = [...mappedOptions, ...PREDEFINED_BOOKMARKS].filter(
-        (fl, i, arr) => {
-          return arr.findIndex((fi) => fi === fl) === i;
-        },
+      const mappedNames = payload.map((el) => el.bookmark_name);
+      state.bookmarkOptions = [...mappedNames, ...PREDEFINED_BOOKMARKS].filter(
+        (name, i, arr) => arr.indexOf(name) === i,
       );
-      state.bookmarkOptions = newOptions;
 
-      // PREDEFINED_BOOKMARKS
-
-      const fromBackend = [
-        {
-          bookmark_name: "Work",
-          entity_type: "event",
-          entity_ids: ["e9ed88f7-48c1-49b0-83cd-a7aff79e2091"],
-        },
-        {
-          bookmark_name: "Work",
-          entity_type: "task",
-          entity_ids: [
-            "4b33f588-1dc1-4bbb-8c79-53cd1edf08f8",
-            "fbad4b04-3d88-4202-a1d6-bf503aa174ed",
-            "6cfdcc93-e805-4baf-b2ea-0fe734443842",
-          ],
-        },
-
-        {
-          bookmark_name: "Personal",
-          entity_type: "event",
-          entity_ids: [
-            "4b33f588-1dc1-4bbb-8c79-53cd1edf08f8",
-            "fbad4b04-3d88-4202-a1d6-bf503aa174ed",
-            "6cfdcc93-e805-4baf-b2ea-0fe734443842",
-          ],
-        },
-        {
-          bookmark_name: "Personal",
-          entity_type: "task",
-          entity_ids: ["fe3450ad-7272-4e5f-9fca-6c16beacc333"],
-        },
-      ];
-      // const mappedOptions = action.payload.map((el) => el.bookmark_name);
-      const k = [...action.payload, ...PREDEFINED_BOOKMARKS].filter(
-        (fl, i, arr) => {
-          return (
-            arr.findIndex((fi) => fi.bookmark_name === fl.bookmark_name) === i
-          );
-        },
+      const existingKeys = new Set(
+        payload.map((b) => `${b.bookmark_name}::${b.entity_type}`),
       );
-      state.eventBookmarks = k.filter((fl) => fl.entity_type === "event");
-      state.taskBookamrks = k.filter((fl) => fl.entity_type === "task");
-      debugger;
 
-      const dbData = {
-        Work: {
-          task: [
-            "4b33f588-1dc1-4bbb-8c79-53cd1edf08f8",
-            "fbad4b04-3d88-4202-a1d6-bf503aa174ed",
-            "6cfdcc93-e805-4baf-b2ea-0fe734443842",
-          ],
-          event: [
-            "7c224733-430e-4539-ae36-8fda90cbf9c9",
-            "786501b4-11a1-4005-9328-4bfd0c95fe53",
-            "83b573bf-9b8f-4e2f-8533-8008c6706f37",
-          ],
-        },
-        Personal: {
-          task: ["fe3450ad-7272-4e5f-9fca-6c16beacc333"],
-          event: [
-            "4f4a44ae-caae-470c-bea8-1ee1cdcbff0a",
-            "7c224733-430e-4539-ae36-8fda90cbf9c9",
-            "55e7e593-7127-4afb-a479-27a9d8687787",
-          ],
-        },
-      };
-      // const k = Object.keys(dbData).
+      const placeholders = [];
+      PREDEFINED_BOOKMARKS.forEach((name) => {
+        ["event", "task"].forEach((type) => {
+          const key = `${name}::${type}`;
+          if (!existingKeys.has(key)) {
+            placeholders.push({
+              bookmark_name: name,
+              entity_type: type,
+              entity_ids: [],
+            });
+          }
+        });
+      });
+
+      const allFolders = [...payload, ...placeholders];
+      state.eventBookmarks = allFolders.filter((f) => f.entity_type === "event");
+      state.taskBookmarks = allFolders.filter((f) => f.entity_type === "task");
     },
 
     setBookmark(state, action) {
       const { entity_id, bookmark_name, entity_type } = action.payload;
-      debugger;
 
       const folder = state.bookmarksData.find(
-        (b) =>
-          b.bookmark_name === bookmark_name && b.entity_type === entity_type,
+        (b) => b.bookmark_name === bookmark_name && b.entity_type === entity_type,
       );
 
       if (folder) {
@@ -120,8 +69,7 @@ const bookmarksSlice = createSlice({
       const { entity_id, bookmark_name, entity_type } = action.payload;
 
       const folder = state.bookmarksData.find(
-        (b) =>
-          b.bookmark_name === bookmark_name && b.entity_type === entity_type,
+        (b) => b.bookmark_name === bookmark_name && b.entity_type === entity_type,
       );
 
       if (folder?.entity_ids) {
@@ -131,7 +79,6 @@ const bookmarksSlice = createSlice({
   },
 });
 
-export const bookmarksSelector = (st) => st.bookmarks;
-export const { setAllBookmarks, setBookmark, removeBookmark } =
-  bookmarksSlice.actions;
+export const bookmarksSelector = (state) => state.bookmarks;
+export const { setAllBookmarks, setBookmark, removeBookmark } = bookmarksSlice.actions;
 export default bookmarksSlice.reducer;

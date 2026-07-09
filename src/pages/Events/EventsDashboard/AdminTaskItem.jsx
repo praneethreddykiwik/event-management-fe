@@ -24,22 +24,20 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
-import { Menu } from "../../../components/UI/Menu/Menu";
+import { Bookmark } from "../../../components/UI/Menu/Bookmark";
 import { bookmarksSelector } from "../../../redux/bookmarks/bookmarks.slice";
+import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
 
-const AdminTaskItem = ({
-  event,
-  gridView,
-  onOptionToggle,
-  // options,
-  // selectedOption,
-}) => {
+const AdminTaskItem = ({ event, gridView }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
   const { selectedEventFilters } = useSelector(eventsSelector);
-  const { bookmarksData, bookmarkOptions, eventBookmarks } =
-    useSelector(bookmarksSelector);
+  const { eventBookmarks } = useSelector(bookmarksSelector);
+
+  const handleToggleBookmark = (folderName, type, entityId) => {
+    dispatch(toggleBookmarkAction({ entityId, folderName, type }));
+  };
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -73,6 +71,8 @@ const AdminTaskItem = ({
 
     dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
   };
+
+  const handleCreateFolder = () => {};
 
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
@@ -117,16 +117,15 @@ const AdminTaskItem = ({
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" title="Comment" />
-            <Menu
+            <Bookmark
               icon="bookmark"
               iconColor="black"
               title="Bookmark"
               type="event"
-              // selectedOption={selectedOption}
-              // options={bookmarkOptions}
+              entityId={event.uid}
               bookmarks={eventBookmarks}
-              bookmarkOptions={bookmarkOptions}
-              onOptionToggle={onOptionToggle}
+              onToggle={handleToggleBookmark}
+              onCreateFolder={handleCreateFolder}
             />
             <Icon variant="alternate_email" title="Email" />
             <RBACHOC perm="event:delete">

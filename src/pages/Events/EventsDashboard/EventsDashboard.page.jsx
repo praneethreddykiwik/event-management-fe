@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
@@ -32,29 +33,16 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
-import {
-  // getAllBookmarksByUserApi,
-  bookmarkEventApi,
-} from "../../../api/bookmark.api";
-import {
-  // setAllBookmarks,
-  setBookmark,
-  removeBookmark,
-  bookmarksSelector,
-} from "../../../redux/bookmarks/bookmarks.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
-  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
 
   const { events, eventsSearchVal, selectedEventFilters } =
     useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
   const { eventGridView } = useSelector(eventsSelector);
-  const { bookmarksData /* bookmarkOptions */ } =
-    useSelector(bookmarksSelector);
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
@@ -69,57 +57,7 @@ const EventsDashboard = () => {
       .map((m) => m.value)
       .join(",")}`;
     dispatch(fetchEventsDispatch({ query }));
-
-    // const loadAllBookmarks = async () => {
-    //   try {
-    //     const res = await getAllBookmarksByUserApi();
-    //     const bookmarkList = res?.data?.details ?? [];
-    //     console.log(bookmarkList);
-    //     dispatch(setAllBookmarks(bookmarkList));
-    //   } catch (err) {
-    //     console.error("Failed to load bookmarks:", err);
-    //   }
-    // };
-
-    // if (authUser?.uid) {
-    //   loadAllBookmarks();
-    // }
   }, []);
-
-  const getSelectedBookmarkFolder = (taskUid, type) => {
-    if (!Array.isArray(bookmarksData)) return null;
-    const match = bookmarksData.find(
-      (folder) =>
-        folder?.entity_type === type && folder?.entity_ids?.includes(taskUid),
-    );
-    return match ? match.bookmark_name : null;
-  };
-
-  const handleToggleBookmark = async (uid, label, type) => {
-    if (isBookmarkLoading) return;
-
-    const folder = bookmarksData?.find(
-      (b) => b.bookmark_name === label && b.entity_type === type,
-    );
-    const willBeChecked = !folder?.entity_ids?.includes(uid);
-    const payload = { entity_id: uid, bookmark_name: label, entity_type: type };
-
-    if (willBeChecked) {
-      dispatch(setBookmark(payload));
-    } else {
-      dispatch(removeBookmark(payload));
-    }
-
-    setIsBookmarkLoading(true);
-    try {
-      await bookmarkEventApi(payload);
-    } catch (err) {
-      console.error("Failed to save bookmark:", err);
-      dispatch(willBeChecked ? removeBookmark(payload) : setBookmark(payload));
-    } finally {
-      setIsBookmarkLoading(false);
-    }
-  };
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -168,11 +106,6 @@ const EventsDashboard = () => {
                 key={event.uid}
                 event={mapEventForUI(event)}
                 gridView={eventGridView}
-                selectedOption={getSelectedBookmarkFolder(event.uid, "event")}
-                // options={bookmarkOptions}
-                onOptionToggle={(label, type) =>
-                  handleToggleBookmark(event.uid, label, type)
-                }
               />
             ))
           )}

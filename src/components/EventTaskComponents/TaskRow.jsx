@@ -23,21 +23,21 @@ import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
-import { Inputs } from "../Inputs/Inputs";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
-import { Menu } from "../UI/Menu/Menu";
+import { Bookmark } from "../UI/Menu/Bookmark";
+import { bookmarksSelector } from "../../redux/bookmarks/bookmarks.slice";
+import { toggleBookmarkAction } from "../../redux/bookmarks/bookmarks.actions";
 
-const TaskRow = ({
-  task = {},
-  onEdit,
-  selectedOption,
-  options,
-  onOptionToggle,
-}) => {
+const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { authUser } = useSelector(authSelector);
+  const { taskBookmarks } = useSelector(bookmarksSelector);
+
+  const handleToggleBookmark = (folderName, type, entityId) => {
+    dispatch(toggleBookmarkAction({ entityId, folderName, type }));
+  };
 
   const viewDetailsHandler = () => {
     const eventUid = searchParams.get("eventUid");
@@ -69,6 +69,8 @@ const TaskRow = ({
     }
     onEdit(task);
   };
+
+  const handleCreateFolder = () => {};
 
   return (
     <Ctn>
@@ -104,17 +106,15 @@ const TaskRow = ({
         <StyledFlex2>
           <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
           <Icon variant="alternate_email" title="Email" />
-          <Menu
+          <Bookmark
             title="Save to Bookmarks"
             icon="bookmark"
             iconColor="black"
-            align="right"
             type="task"
-            selectedOption={selectedOption}
-            options={options}
-            onOptionToggle={(label, itemType) =>
-              onOptionToggle(label, itemType)
-            }
+            entityId={task.taskUid}
+            bookmarks={taskBookmarks}
+            onToggle={handleToggleBookmark}
+            onCreateFolder={handleCreateFolder}
           />
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">

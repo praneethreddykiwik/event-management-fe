@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledParagraphSmallGray } from "../Styled/Typography.styled";
@@ -17,26 +17,14 @@ import { getStatusColor } from "../../utils/utils";
 import FilterCard from "../Cards/FilterCard";
 import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
-import {
-  getAllBookmarksByUserApi,
-  bookmarkEventApi,
-} from "../../api/bookmark.api";
-import {
-  setAllBookmarks,
-  setBookmark,
-  removeBookmark,
-  bookmarksSelector,
-} from "../../redux/bookmarks/bookmarks.slice";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
-  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
 
   const { authUser } = useSelector(authSelector);
   const { eventsAndTasks, taskCountObj } = useSelector(tasksSelector);
   const { vendors, supervisors, qa } = useSelector(usersSelector);
-  const { bookmarksData, bookmarkOptions } = useSelector(bookmarksSelector);
 
   useEffect(() => {
     const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
@@ -49,56 +37,7 @@ const EventsAndTasks = ({ isQa }) => {
     if (!vendors.length || !supervisors.length || !qa.length) {
       dispatch(fetchVendorsSupsQA());
     }
-
-    const loadAllBookmarks = async () => {
-      try {
-        const res = await getAllBookmarksByUserApi();
-        const bookmarkList = res?.data?.details ?? [];
-        dispatch(setAllBookmarks(bookmarkList));
-      } catch (err) {
-        console.error("Failed to load bookmarks:", err);
-      }
-    };
-
-    if (authUser?.uid) {
-      loadAllBookmarks();
-    }
   }, []);
-
-  const getSelectedBookmarkFolder = (taskUid, type) => {
-    if (!Array.isArray(bookmarksData)) return null;
-    const match = bookmarksData.find(
-      (folder) =>
-        folder?.entity_type === type && folder?.entity_ids?.includes(taskUid),
-    );
-    return match ? match.bookmark_name : null;
-  };
-
-  const handleToggleBookmark = async (uid, label, type) => {
-    if (isBookmarkLoading) return;
-
-    const folder = bookmarksData?.find(
-      (b) => b.bookmark_name === label && b.entity_type === type,
-    );
-    const willBeChecked = !folder?.entity_ids?.includes(uid);
-    const payload = { entity_id: uid, bookmark_name: label, entity_type: type };
-
-    if (willBeChecked) {
-      dispatch(setBookmark(payload));
-    } else {
-      dispatch(removeBookmark(payload));
-    }
-
-    setIsBookmarkLoading(true);
-    try {
-      await bookmarkEventApi(payload);
-    } catch (err) {
-      console.error("Failed to save bookmark:", err);
-      dispatch(willBeChecked ? removeBookmark(payload) : setBookmark(payload));
-    } finally {
-      setIsBookmarkLoading(false);
-    }
-  };
 
   const onAddTask = (event) => {
     navigate(`${paths.createTask}`, {
@@ -154,11 +93,6 @@ const EventsAndTasks = ({ isQa }) => {
                 key={task.taskUid}
                 task={mapTaskForUI(task, event)}
                 onEdit={(tsk) => onEdit(tsk, event)}
-                selectedOption={getSelectedBookmarkFolder(task.taskUid, "task")}
-                options={bookmarkOptions}
-                onOptionToggle={(label, type) =>
-                  handleToggleBookmark(task.taskUid, label, type)
-                }
               />
             ))
           ) : (
