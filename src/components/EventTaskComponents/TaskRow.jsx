@@ -16,6 +16,7 @@ import { InlineButton } from "../Buttons/InlineButton/InlineButton";
 import {
   deleteTaskAction,
   fetchTasksApiAction,
+  fetchEventsAndTasksAction,
 } from "../../redux/tasks/tasks.actions";
 
 import { authSelector } from "../../redux/auth/auth.slice";
@@ -40,8 +41,13 @@ const TaskRow = ({ task = {}, onEdit }) => {
   const onDelete = () => {
     const callBack = () => {
       const eventUid = searchParams.get("eventUid");
-      const query = `eventUid=${eventUid}`;
-      dispatch(fetchTasksApiAction({ query }));
+      if (eventUid) {
+        const query = `eventUid=${eventUid}`;
+        dispatch(fetchTasksApiAction({ query }));
+      } else {
+        const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
+        dispatch(fetchEventsAndTasksAction(query));
+      }
     };
 
     const onDeletePayload = {
