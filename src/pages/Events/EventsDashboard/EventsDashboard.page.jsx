@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
@@ -45,6 +45,7 @@ import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 import { EventContainer } from "./EventContainer";
 
+import { debounceFun } from "../../../utils/debouncer";
 const EventsDashboard = () => {
   const dispatch = useDispatch();
 
@@ -62,20 +63,31 @@ const EventsDashboard = () => {
   const { authUser } = useSelector(authSelector);
 
   const navigate = useNavigateWithQuery();
+  const [localSearchVal, setLocalSearchVal] = useState(eventsSearchVal);
 
   useEffect(() => {
-    const fetchmanagerpayload = generateFetchManagersReq(
-      authUser?.tenantId,
-      ROLES.eventManager,
-    );
-    dispatch(fetchManagersAction(fetchmanagerpayload));
+    if (authUser?.tenantId) {
+      const fetchmanagerpayload = generateFetchManagersReq(
+        authUser.tenantId,
+        ROLES.eventManager,
+      );
+      dispatch(fetchManagersAction(fetchmanagerpayload));
+    }
+  }, [dispatch, authUser?.tenantId]);
 
-    const query = selectedEventFilters
-      .filter((fl) => fl.selected)
-      .map((m) => m.value)
-      .join(",");
-    dispatch(fetchEventsDispatch({ query, searchText: eventsSearchVal }));
-  }, [eventsSearchVal]);
+  const query = selectedEventFilters
+    .filter((fl) => fl.selected)
+    .map((m) => m.value)
+    .join(",");
+
+  useEffect(() => {
+    dispatch(
+      fetchEventsDispatch({
+        query,
+        searchText: eventsSearchVal,
+      }),
+    );
+  }, [dispatch, eventsSearchVal, query]);
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -87,9 +99,14 @@ const EventsDashboard = () => {
     dispatch(setEventsGridView(!eventGridView));
   };
 
+  const debouncedDispatchSearch = useMemo(
+    () => debounceFun((val) => dispatch(setEventsSearchVal(val)), 1000),
+    [dispatch],
+  );
   const onChangeSearch = (e) => {
     const value = e.target.value;
-    dispatch(setEventsSearchVal(value));
+    setLocalSearchVal(value);
+    debouncedDispatchSearch(value);
   };
 
   const onClickFilter = (key) => {
@@ -114,7 +131,7 @@ const EventsDashboard = () => {
 
       <FilterHeaders
         placeholder="Search Events"
-        value={eventsSearchVal}
+        value={localSearchVal}
         onChangeSearch={onChangeSearch}
       />
 
