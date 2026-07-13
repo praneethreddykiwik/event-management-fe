@@ -26,17 +26,14 @@ export const QADashboard = () => {
   return (
     <>
       <CardsRow>
-        {tasksLoading ? (
-          <SkeletonLoaders count={5} height={120} width={210} type="card" />
-        ) : (
-          Object.keys(kpiCounts).map((key) => (
-            <TaskKpiCard
-              objKey={key}
-              value={kpiCounts[key]}
-              color={getStatusColor(key, kpiCounts)}
-            />
-          ))
-        )}
+        {Object.keys(kpiCounts).map((key) => (
+          <TaskKpiCard
+            objKey={key}
+            loading={tasksLoading}
+            value={kpiCounts[key]}
+            color={getStatusColor(key, kpiCounts)}
+          />
+        ))}
       </CardsRow>
       {tasksLoading ? (
         <SkeletonLoaders count={1} height={300} />

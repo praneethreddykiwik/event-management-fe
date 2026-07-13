@@ -25,8 +25,12 @@ import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
 import { Inputs } from "../Inputs/Inputs";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
-const TaskRow = ({ task = {}, onEdit }) => {
+const TaskRow = ({ loading, task = {}, onEdit }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

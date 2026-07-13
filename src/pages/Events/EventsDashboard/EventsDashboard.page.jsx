@@ -133,18 +133,21 @@ const EventsDashboard = () => {
             <Icon selected={eventGridView}>grid_view</Icon>
           </AlignBox>
         </Tasktxt2>
-
+        {/* refactor code */}
         <TaskList $gridView={eventGridView}>
-          {eventsLoading ? (
-            <SkeletonLoaders height={150} />
-          ) : !events.length ? (
-            <StyledParagraphSmallGray>
-              No Events available
-            </StyledParagraphSmallGray>
+          {!events.length ? (
+            eventsLoading ? (
+              <AdminTaskItem loading />
+            ) : (
+              <StyledParagraphSmallGray>
+                No Events available
+              </StyledParagraphSmallGray>
+            )
           ) : (
             events.map((event) => (
               <AdminTaskItem
                 event={mapEventForUI(event)}
+                loading={eventsLoading}
                 gridView={eventGridView}
               />
             ))

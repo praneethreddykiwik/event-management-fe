@@ -114,12 +114,11 @@ const EventsAndTasks = ({ isQa }) => {
 
       {eventsAndTasks.map((event) => (
         <EventWrapsTasks event={event} onAddTask={onAddTask}>
-          {tasksLoading ? (
-            <SkeletonLoaders count={1} height={150} />
-          ) : event.tasks?.length ? (
+          {event.tasks?.length ? (
             event.tasks.map((task) => (
               <TaskRow
                 task={mapTaskForUI(task, event)}
+                loading={tasksLoading}
                 onEdit={(tsk) => onEdit(tsk, event)}
               />
             ))

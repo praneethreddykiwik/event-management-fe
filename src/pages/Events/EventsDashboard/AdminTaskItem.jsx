@@ -25,7 +25,10 @@ import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
 
-const AdminTaskItem = ({ event, gridView }) => {
+const AdminTaskItem = ({ event, gridView, loading }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);

@@ -6,8 +6,12 @@ import {
 } from "../../components/Styled/Typography.styled";
 import { Icon } from "../../components/Icons/Icons";
 import { ROLES_OBJ } from "../../constants/roles";
+import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
 
-const UserManagementItem = ({ data, onEdit, onDelete }) => {
+const UserManagementItem = ({ data, onEdit, onDelete, loading }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={90} />;
+  }
   return (
     <StyledCard>
       <Left>

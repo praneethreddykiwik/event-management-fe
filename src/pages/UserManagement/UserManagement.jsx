@@ -92,12 +92,11 @@ const UserManagement = () => {
         </AlignBox>
 
         <UsersCtn $gridView={userMgtGridView}>
-          {allUsersLoading ? (
-            <SkeletonLoaders count={3} height={90} />
-          ) : filteredUsers?.length ? (
+        {filteredUsers?.length ? (
             filteredUsers.map((user) => (
               <UserManagementItem
                 key={user.uid}
+                loading={allUsersLoading}
                 data={user}
                 onEdit={() => onEdit(user)}
                 onDelete={() => {

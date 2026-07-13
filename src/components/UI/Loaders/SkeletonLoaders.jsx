@@ -36,7 +36,7 @@ const LoaderCtn = styled.div`
   display: flex;
   gap: 16px;
   padding: 16px 0;
-  width: 100%;
+  width: ${({ type }) => (type === "card" ? "fit-content" : "100%")};
 
   flex-direction: ${({ type }) => (type === "card" ? "row" : "column")};
 
