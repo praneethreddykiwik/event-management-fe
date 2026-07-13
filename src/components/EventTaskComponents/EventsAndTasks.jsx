@@ -14,11 +14,15 @@ import { paths } from "../../constants/paths";
 import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { getStatusColor } from "../../utils/utils";
-import FilterCard from "../Cards/FilterCard";
 import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 import { FilterHeaders } from "../Headers/FilterHeaders";
+import FilterBoxes from "../Filters/FilterBoxes/FilterBoxes";
+import {
+  isFilterSelected,
+  updateFilters,
+} from "../Filters/FilterBoxes/FilterBoxes.helper";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
@@ -77,81 +81,44 @@ const EventsAndTasks = ({ isQa }) => {
     });
   };
 
-  const onClickFilter = (selectedKey) => {
-    if (selectedKey === "totalTaskCount") {
-      totalClickHandler();
-      return;
-    }
-
-    // TASK_INITIAL_FILTERS
-    const arr = selectedTaskFilters.map((el) => {
-      if (el.keyMap === selectedKey) {
-        return {
-          ...el,
-          selected: !el.selected,
-        };
-      }
-
-      return el;
-    });
+  const onClickFilter = (key) => {
+    const updated = updateFilters(
+      key,
+      selectedTaskFilters,
+      "totalTaskCount",
+      TASK_INITIAL_FILTERS,
+      "keyMap",
+      "keyMap",
+    );
 
     dispatch(
       fetchEventsAndTasksAction({
         assignedToUid: authUser?.uid,
         tenantUid: authUser?.tenantUid,
-        filters: arr,
+        filters: updated,
       }),
     );
-  };
-
-  const totalClickHandler = () => {
-    const isEverySelected = isEveryFilterSelected();
-
-    const arr = selectedTaskFilters.map((el) => ({
-      ...el,
-      selected: !isEverySelected,
-    }));
-
-    dispatch(
-      fetchEventsAndTasksAction({
-        assignedToUid: authUser?.uid,
-        tenantUid: authUser?.tenantUid,
-        filters: arr,
-      }),
-    );
-  };
-
-  const isEveryFilterSelected = () => {
-    return TASK_INITIAL_FILTERS.every((es) => {
-      const record = selectedTaskFilters.find((sf) => sf.value === es.value);
-
-      return record?.selected;
-    });
-  };
-
-  const isFilterSelected = (key) => {
-    if (key === "totalTaskCount") {
-      return isEveryFilterSelected();
-    }
-
-    return selectedTaskFilters.find((el) => el.keyMap === key)?.selected;
   };
 
   return (
     <DashboardContainer>
       <FilterHeaders />
       {/* Filter cards */}
-      <CardsRow>
-        {Object.keys(taskCountObj).map((key) => (
-          <FilterCard
-            objKey={key}
-            value={taskCountObj[key]}
-            color={getStatusColor(key, taskCountObj)}
-            onClick={() => onClickFilter(key)}
-            selected={isFilterSelected(key)}
-          />
-        ))}
-      </CardsRow>
+      <FilterBoxes
+        countObj={taskCountObj}
+        getColor={(key) => getStatusColor(key, taskCountObj)}
+        onCardClick={onClickFilter}
+        isSelected={(key) =>
+          isFilterSelected(
+            key,
+            selectedTaskFilters,
+            "totalTaskCount",
+            TASK_INITIAL_FILTERS,
+            "keyMap",
+            "keyMap",
+          )
+        }
+      />
 
       {eventsAndTasks.map((event) => (
         <EventWrapsTasks event={event} onAddTask={onAddTask}>
@@ -175,13 +142,6 @@ const EventsAndTasks = ({ isQa }) => {
 
 const DashboardContainer = styled.div`
   // padding: 0 16px 16px 16px;
-`;
-
-const CardsRow = styled.div`
-  display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
 `;
 
 export default EventsAndTasks;
