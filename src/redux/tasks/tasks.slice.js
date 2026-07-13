@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./tasks.actions";
+import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 
 const initialState = {
   eventsAndTasks: [],
   taskCountObj: {},
+  selectedTaskFilters: [...TASK_INITIAL_FILTERS],
   kpiCounts: {},
   priorityCounts: {},
   tasksLoading: false,
@@ -45,7 +47,11 @@ const initialState = {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedTaskFilters(state, action) {
+      state.selectedTaskFilters = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(actions.fetchTasksApiAction.pending, (state) => {
@@ -85,6 +91,7 @@ const tasksSlice = createSlice({
         state.taskCountObj = res.countObj;
         state.tasksLoading = false;
         state.tasksError = null;
+        state.selectedTaskFilters = action.payload.selectedTaskFilters;
       })
       .addCase(actions.fetchEventsAndTasksAction.rejected, (state) => {
         state.authUser = null;
@@ -228,5 +235,5 @@ const tasksSlice = createSlice({
 });
 
 export const tasksSelector = (st) => st.tasks;
-export const { clearAuthError } = tasksSlice.actions;
+export const { clearAuthError, setSelectedTaskFilters } = tasksSlice.actions;
 export default tasksSlice.reducer;

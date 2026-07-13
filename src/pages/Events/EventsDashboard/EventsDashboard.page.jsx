@@ -75,9 +75,6 @@ const EventsDashboard = () => {
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}
       />
-      {openManagersPopup && (
-        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
-      )}
       <FilterHeaders
         placeholder="Search Events"
         value={eventsSearchVal}
@@ -111,6 +108,10 @@ const EventsDashboard = () => {
           )}
         </TaskList>
       </TaskMainCard>
+
+      {openManagersPopup && (
+        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+      )}
     </BlueBackHOC>
   );
 };
