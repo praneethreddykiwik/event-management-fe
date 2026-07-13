@@ -24,8 +24,13 @@ import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
-import { Bookmark } from "../UI/Menu/Bookmark";
-import { bookmarksSelector } from "../../redux/bookmarks/bookmarks.slice";
+import { Bookmark } from "../UI/Bookmark/Bookmark";
+import {
+  bookmarksSelector,
+  getFolderNames,
+  getSelectedFolderNames,
+  getChangedFolder,
+} from "../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../redux/bookmarks/bookmarks.actions";
 
 const TaskRow = ({ task = {}, onEdit }) => {
@@ -35,8 +40,32 @@ const TaskRow = ({ task = {}, onEdit }) => {
   const { authUser } = useSelector(authSelector);
   const { taskBookmarks } = useSelector(bookmarksSelector);
 
-  const handleToggleBookmark = (folderName, type, entityId) => {
-    dispatch(toggleBookmarkAction({ entityId, folderName, type }));
+  const folderNames = getFolderNames(taskBookmarks, "task");
+  const selectedFolders = getSelectedFolderNames(
+    taskBookmarks,
+    "task",
+    task.taskUid,
+  );
+  const isBookmarked = selectedFolders.length > 0;
+
+  const handleToggleBookmark = (folderName) => {
+    dispatch(
+      toggleBookmarkAction({
+        entityId: task.taskUid,
+        folderName,
+        type: "task",
+      }),
+    );
+  };
+
+  const handleCheckboxChange = (event) => {
+    const newSelectedFolders = event.target.value;
+    const changedFolder = getChangedFolder(selectedFolders, newSelectedFolders);
+    handleToggleBookmark(changedFolder);
+  };
+
+  const handleAddFolder = (folderName) => {
+    handleToggleBookmark(folderName);
   };
 
   const viewDetailsHandler = () => {
@@ -69,8 +98,6 @@ const TaskRow = ({ task = {}, onEdit }) => {
     }
     onEdit(task);
   };
-
-  const handleCreateFolder = () => {};
 
   return (
     <Ctn>
@@ -107,14 +134,14 @@ const TaskRow = ({ task = {}, onEdit }) => {
           <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
           <Icon variant="alternate_email" title="Email" />
           <Bookmark
-            title="Save to Bookmarks"
+            title="Bookmark"
             icon="bookmark"
             iconColor="black"
-            type="task"
-            entityId={task.taskUid}
-            bookmarks={taskBookmarks}
-            onToggle={handleToggleBookmark}
-            onCreateFolder={handleCreateFolder}
+            folderNames={folderNames}
+            selectedFolders={selectedFolders}
+            isBookmarked={isBookmarked}
+            onCheckboxChange={handleCheckboxChange}
+            onAddFolder={handleAddFolder}
           />
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">

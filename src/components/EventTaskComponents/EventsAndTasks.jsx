@@ -37,6 +37,7 @@ const EventsAndTasks = ({ isQa }) => {
     if (!vendors.length || !supervisors.length || !qa.length) {
       dispatch(fetchVendorsSupsQA());
     }
+
   }, []);
 
   const onAddTask = (event) => {

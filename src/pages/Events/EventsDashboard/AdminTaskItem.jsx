@@ -24,8 +24,13 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
-import { Bookmark } from "../../../components/UI/Menu/Bookmark";
-import { bookmarksSelector } from "../../../redux/bookmarks/bookmarks.slice";
+import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
+import {
+  bookmarksSelector,
+  getFolderNames,
+  getSelectedFolderNames,
+  getChangedFolder,
+} from "../../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
 
 const AdminTaskItem = ({ event, gridView }) => {
@@ -35,8 +40,32 @@ const AdminTaskItem = ({ event, gridView }) => {
   const { selectedEventFilters } = useSelector(eventsSelector);
   const { eventBookmarks } = useSelector(bookmarksSelector);
 
-  const handleToggleBookmark = (folderName, type, entityId) => {
-    dispatch(toggleBookmarkAction({ entityId, folderName, type }));
+  const folderNames = getFolderNames(eventBookmarks, "event");
+  const selectedFolders = getSelectedFolderNames(
+    eventBookmarks,
+    "event",
+    event.uid,
+  );
+  const isBookmarked = selectedFolders.length > 0;
+
+  const handleToggleBookmark = (folderName) => {
+    dispatch(
+      toggleBookmarkAction({
+        entityId: event.uid,
+        folderName,
+        type: "event",
+      }),
+    );
+  };
+
+  const handleCheckboxChange = (checkboxEvent) => {
+    const newSelectedFolders = checkboxEvent.target.value;
+    const changedFolder = getChangedFolder(selectedFolders, newSelectedFolders);
+    handleToggleBookmark(changedFolder);
+  };
+
+  const handleAddFolder = (folderName) => {
+    handleToggleBookmark(folderName);
   };
 
   const onClickViewDetails = () => {
@@ -71,8 +100,6 @@ const AdminTaskItem = ({ event, gridView }) => {
 
     dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
   };
-
-  const handleCreateFolder = () => {};
 
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
@@ -121,11 +148,11 @@ const AdminTaskItem = ({ event, gridView }) => {
               icon="bookmark"
               iconColor="black"
               title="Bookmark"
-              type="event"
-              entityId={event.uid}
-              bookmarks={eventBookmarks}
-              onToggle={handleToggleBookmark}
-              onCreateFolder={handleCreateFolder}
+              folderNames={folderNames}
+              selectedFolders={selectedFolders}
+              isBookmarked={isBookmarked}
+              onCheckboxChange={handleCheckboxChange}
+              onAddFolder={handleAddFolder}
             />
             <Icon variant="alternate_email" title="Email" />
             <RBACHOC perm="event:delete">

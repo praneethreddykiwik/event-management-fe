@@ -33,6 +33,7 @@ export const initializeAllApis = createAsyncThunk(
     const bookmarkAPI = getAllBookmarksByUserApi();
     // add all the required api calls here
     // const fetchManagers = fetchAllUsersAction();
+    // FetchUsers API is required here
     const [bookmarkRes] = await Promise.all([bookmarkAPI]);
     dispatch(setAllBookmarks(bookmarkRes?.data?.details));
   },

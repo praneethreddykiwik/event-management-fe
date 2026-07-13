@@ -28,6 +28,7 @@ export const toggleBookmarkAction = createAsyncThunk(
       await bookmarkEventApi(payload);
     } catch (err) {
       console.error("Failed to save bookmark:", err);
+      // Undo the UI change since saving failed
       if (willBeAdded) {
         dispatch(removeBookmark(payload));
       } else {

@@ -7,24 +7,14 @@ export const Bookmark = ({
   icon = "bookmark",
   iconColor = "black",
   title = "Save to Bookmarks",
-  type,
-  entityId,
-  bookmarks = [],
-  onToggle,
-  onCreateFolder,
+  folderNames = [],
+  selectedFolders = [],
+  isBookmarked = false,
+  onCheckboxChange,
+  onAddFolder,
 }) => {
   const [open, setOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
-
-  const foldersForThisType = bookmarks.filter((b) => b.entity_type === type);
-
-  const folderNames = foldersForThisType.map((b) => b.bookmark_name);
-
-  const selectedFolders = foldersForThisType
-    .filter((b) => b.entity_ids?.includes(entityId))
-    .map((b) => b.bookmark_name);
-
-  const isBookmarked = selectedFolders.length > 0;
 
   const closeMenu = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -32,24 +22,11 @@ export const Bookmark = ({
     }
   };
 
-  const handleCheckboxChange = (event) => {
-    const newSelectedFolders = event.target.value;
-
-    const folderWasAdded = newSelectedFolders.length > selectedFolders.length;
-
-    const changedFolder = folderWasAdded
-      ? newSelectedFolders.find((f) => !selectedFolders.includes(f))
-      : selectedFolders.find((f) => !newSelectedFolders.includes(f));
-
-    onToggle(changedFolder, type, entityId);
-  };
-
   const handleAddFolder = () => {
     const folderName = newFolderName.trim();
     if (!folderName) return;
 
-    onCreateFolder(folderName);
-    onToggle(folderName, type, entityId);
+    onAddFolder(folderName);
     setNewFolderName("");
   };
 
@@ -58,6 +35,7 @@ export const Bookmark = ({
       <IconBtn type="button" onClick={() => setOpen(!open)}>
         <Icon
           variant={icon}
+          title="Bookmark"
           sx={{ color: isBookmarked ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
@@ -71,7 +49,7 @@ export const Bookmark = ({
             name="bookmarkFolders"
             list={folderNames}
             value={selectedFolders}
-            onChange={handleCheckboxChange}
+            onChange={onCheckboxChange}
           />
         )}
 
