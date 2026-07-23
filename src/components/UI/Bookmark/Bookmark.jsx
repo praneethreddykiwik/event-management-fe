@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "../../Icons/Icons";
 import { Inputs } from "../../Inputs/Inputs";
@@ -15,11 +15,7 @@ export const Bookmark = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
-  const [optimisticBookmarked, setOptimisticBookmarked] = useState(isBookmarked);
-
-  useEffect(() => {
-    setOptimisticBookmarked(isBookmarked);
-  }, [isBookmarked]);
+  const [pendingFolders, setPendingFolders] = useState(null);
 
   const closeMenu = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -27,16 +23,24 @@ export const Bookmark = ({
     }
   };
 
-  const handleToggleBookmark = async () => {
-    const nextState = !optimisticBookmarked;
-    setOptimisticBookmarked(nextState);
+  const handleDropdownToggle = () => {
+    setOpen(!open);
+  };
 
-    try {
-      await onCheckboxChange?.(nextState);
-    } catch (error) {
-      setOptimisticBookmarked(!nextState);
-      console.log(error);
-    }
+  const handleFolderCheckboxChange = (event) => {
+    const updatedSelection = event.target.value;
+    
+    setPendingFolders(updatedSelection);
+
+    setTimeout(async () => {
+      try {
+        await onCheckboxChange?.(event);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setPendingFolders(null);
+      }
+    }, 0);
   };
 
   const handleAddFolder = () => {
@@ -46,13 +50,16 @@ export const Bookmark = ({
     setNewFolderName("");
   };
 
+  const currentSelected = pendingFolders ?? selectedFolders;
+  const currentBookmarked = pendingFolders ? currentSelected.length > 0 : isBookmarked;
+
   return (
     <Ctn tabIndex={-1} onBlur={closeMenu}>
-      <IconBtn type="button" onClick={handleToggleBookmark}>
+      <IconBtn type="button" onClick={handleDropdownToggle}>
         <Icon
           variant={icon}
           title="Bookmark"
-          sx={{ color: optimisticBookmarked ? "#D4AF37" : iconColor }}
+          sx={{ color: currentBookmarked ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
       <DropdownMenu $open={open}>
@@ -62,8 +69,8 @@ export const Bookmark = ({
             type="checkbox-group"
             name="bookmarkFolders"
             list={folderNames}
-            value={selectedFolders}
-            onChange={onCheckboxChange}
+            value={currentSelected}
+            onChange={handleFolderCheckboxChange}
           />
         )}
         <AddFolderRow>
