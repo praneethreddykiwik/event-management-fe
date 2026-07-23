@@ -67,7 +67,7 @@ export const QADashboard = () => {
         />
         <EventsSummaryCard
           label="Tasks Count"
-          value={taskCountObj.totalTaskCount}
+          value={taskCountObj.total}
           chart={<NpmSparkLine color="rgb(66, 84, 251)" />}
           inline
         />
