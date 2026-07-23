@@ -23,13 +23,8 @@ export const Bookmark = ({
     }
   };
 
-  const handleDropdownToggle = () => {
-    setOpen(!open);
-  };
-
   const handleFolderCheckboxChange = (event) => {
     const updatedSelection = event.target.value;
-    
     setPendingFolders(updatedSelection);
 
     setTimeout(async () => {
@@ -55,7 +50,7 @@ export const Bookmark = ({
 
   return (
     <Ctn tabIndex={-1} onBlur={closeMenu}>
-      <IconBtn type="button" onClick={handleDropdownToggle}>
+      <IconBtn type="button" onClick={() => setOpen(!open)}>
         <Icon
           variant={icon}
           title="Bookmark"
