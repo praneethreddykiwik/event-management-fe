@@ -5,6 +5,7 @@ import {
 } from "../Styled/Typography.styled";
 import { Card } from "../Cards/Cards";
 import { mobile } from "../../theme/media-queries";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const EventsSummaryCard = ({ value, label, type, chart, inline, loading }) => {
   if (loading) {

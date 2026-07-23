@@ -12,29 +12,27 @@ export const EventCards = ({ events, eventManagers }) => {
 
   return (
     <CardsRow>
-      <>
-        <StyledFlex>
-          <EventsSummaryCard
-            label="Total Events"
-            loading={eventsLoading}
-            value={events.length}
-          />
-          <EventsSummaryCard
-            label="Event Managers"
-            loading={eventsLoading}
-            value={eventManagers.length}
-            chart={<ManagerStatusChart percent={87} />}
-          />
-          <EventsSummaryCard
-            label="Completion Rate"
-            value="87%"
-            loading={eventsLoading}
-            chart={<NpmSparkLine />}
-            inline
-          />
-        </StyledFlex>
-        <ProgressChart />
-      </>
+      <StyledFlex>
+        <EventsSummaryCard
+          label="Total Events"
+          loading={eventsLoading}
+          value={events.length}
+        />
+        <EventsSummaryCard
+          label="Event Managers"
+          loading={eventsLoading}
+          value={eventManagers.length}
+          chart={<ManagerStatusChart percent={87} />}
+        />
+        <EventsSummaryCard
+          label="Completion Rate"
+          value="87%"
+          loading={eventsLoading}
+          chart={<NpmSparkLine />}
+          inline
+        />
+      </StyledFlex>
+      <ProgressChart />
     </CardsRow>
   );
 };

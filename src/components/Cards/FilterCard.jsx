@@ -9,7 +9,7 @@ import { mobile } from "../../theme/media-queries";
 import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const FilterCard = ({ objKey, value, color, onClick, selected, loading }) => {
-  if (loading === true) {
+  if (loading) {
     return <SkeletonLoaders count={1} height={90} width={360} type="card" />;
   }
   return (

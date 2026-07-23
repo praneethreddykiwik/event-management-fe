@@ -23,6 +23,7 @@ export const QADashboard = () => {
     tasksLoading,
   } = useSelector(tasksSelector);
   const { eventManagers } = useSelector(usersSelector);
+
   return (
     <>
       <CardsRow>
