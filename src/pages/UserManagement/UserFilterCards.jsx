@@ -8,9 +8,12 @@ import {
   updateFilters,
 } from "../../components/Filters/FilterBoxes/FilterBoxes.helper";
 import FilterBoxes from "../../components/Filters/FilterBoxes/FilterBoxes";
+import FilterCard from "../../components/Cards/FilterCard";
+import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
 
 export const UserFilterCards = () => {
-  const { roleCounts, selectedRoleFilters } = useSelector(usersSelector);
+  const { roleCounts, selectedRoleFilters, allUsersLoading } =
+    useSelector(usersSelector);
   const dispatch = useDispatch();
 
   const handleClick = (key) => {
@@ -25,6 +28,7 @@ export const UserFilterCards = () => {
       getColor={() => "#000000"}
       onCardClick={handleClick}
       isSelected={(key) => isFilterSelected(key, selectedRoleFilters, null)}
+      isLoading={allUsersLoading}
     />
   );
 };

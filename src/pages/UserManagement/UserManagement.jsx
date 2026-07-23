@@ -27,12 +27,13 @@ import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
 import { Icon } from "../../components/Icons/Icons";
+import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
 
-  const { allUsers, selectedRoleFilters, userMgtGridView } =
+  const { allUsers, selectedRoleFilters, userMgtGridView, allUsersLoading } =
     useSelector(usersSelector);
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -91,10 +92,11 @@ const UserManagement = () => {
         </AlignBox>
 
         <UsersCtn $gridView={userMgtGridView}>
-          {filteredUsers?.length ? (
+        {filteredUsers?.length ? (
             filteredUsers.map((user) => (
               <UserManagementItem
                 key={user.uid}
+                loading={allUsersLoading}
                 data={user}
                 onEdit={() => onEdit(user)}
                 onDelete={() => {

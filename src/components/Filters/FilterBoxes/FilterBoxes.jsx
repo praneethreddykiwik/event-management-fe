@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import FilterCard from "../../Cards/FilterCard";
+import { SkeletonLoaders } from "../../UI/Loaders/SkeletonLoaders";
 
-const FilterBoxes = ({ countObj, getColor, onCardClick, isSelected }) => {
+const FilterBoxes = ({
+  countObj,
+  getColor,
+  onCardClick,
+  isSelected,
+  isLoading,
+}) => {
+  if (isLoading) {
+    return <SkeletonLoaders count={6} height={90} type="card" width={360} />;
+  }
+
   return (
     <CardsRow>
       {Object.keys(countObj).map((key) => (

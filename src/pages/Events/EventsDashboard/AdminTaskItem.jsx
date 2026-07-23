@@ -24,8 +24,9 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
+import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
-const AdminTaskItem = ({ event, gridView }) => {
+const AdminTaskItem = ({ event = {}, gridView, loading }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
@@ -66,6 +67,10 @@ const AdminTaskItem = ({ event, gridView }) => {
 
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
+
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
 
   return (
     <StyledCard showGridView={gridView}>

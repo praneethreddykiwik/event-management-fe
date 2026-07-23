@@ -5,18 +5,23 @@ import {
 } from "../Styled/Typography.styled";
 import { Card } from "../Cards/Cards";
 import { mobile } from "../../theme/media-queries";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
-const EventsSummaryCard = ({ value, label, type, chart, inline }) => (
-  <Ctn $inline={inline} className="events-summary-card">
-    <TextBox $inline={inline}>
-      <StyledValue type={type}>{value || 0}</StyledValue>
-      <StyledLabel>{label}</StyledLabel>
-    </TextBox>
+const EventsSummaryCard = ({ value, label, type, chart, inline, loading }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={120} width={340} type="card" />;
+  }
+  return (
+    <Ctn $inline={inline} className="events-summary-card">
+      <TextBox $inline={inline}>
+        <StyledValue type={type}>{value || 0}</StyledValue>
+        <StyledLabel>{label}</StyledLabel>
+      </TextBox>
 
-    {chart ? <ChartWrap $inline={inline}>{chart}</ChartWrap> : null}
-  </Ctn>
-);
-
+      {chart ? <ChartWrap $inline={inline}>{chart}</ChartWrap> : null}
+    </Ctn>
+  );
+};
 const Ctn = styled(Card)`
   flex-grow: 1;
   display: flex;
