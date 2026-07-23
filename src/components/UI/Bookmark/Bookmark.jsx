@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Icon } from "../../Icons/Icons";
 import { Inputs } from "../../Inputs/Inputs";
@@ -15,6 +15,11 @@ export const Bookmark = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
+  const [optimisticBookmarked, setOptimisticBookmarked] = useState(isBookmarked);
+
+  useEffect(() => {
+    setOptimisticBookmarked(isBookmarked);
+  }, [isBookmarked]);
 
   const closeMenu = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -22,27 +27,36 @@ export const Bookmark = ({
     }
   };
 
+  const handleToggleBookmark = async () => {
+    const nextState = !optimisticBookmarked;
+    setOptimisticBookmarked(nextState);
+
+    try {
+      await onCheckboxChange?.(nextState);
+    } catch (error) {
+      setOptimisticBookmarked(!nextState);
+      console.log(error);
+    }
+  };
+
   const handleAddFolder = () => {
     const folderName = newFolderName.trim();
     if (!folderName) return;
-
     onAddFolder(folderName);
     setNewFolderName("");
   };
 
   return (
     <Ctn tabIndex={-1} onBlur={closeMenu}>
-      <IconBtn type="button" onClick={() => setOpen(!open)}>
+      <IconBtn type="button" onClick={handleToggleBookmark}>
         <Icon
           variant={icon}
           title="Bookmark"
-          sx={{ color: isBookmarked ? "#D4AF37" : iconColor }}
+          sx={{ color: optimisticBookmarked ? "#D4AF37" : iconColor }}
         />
       </IconBtn>
-
       <DropdownMenu $open={open}>
         <MenuHeader>{title}</MenuHeader>
-
         {folderNames.length > 0 && (
           <Inputs
             type="checkbox-group"
@@ -52,7 +66,6 @@ export const Bookmark = ({
             onChange={onCheckboxChange}
           />
         )}
-
         <AddFolderRow>
           <Inputs
             type="text"
@@ -75,14 +88,12 @@ const Ctn = styled.div`
   display: inline-block;
   position: relative;
 `;
-
 const IconBtn = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 4px;
 `;
-
 const DropdownMenu = styled.div`
   display: ${({ $open }) => ($open ? "flex" : "none")};
   flex-direction: column;
@@ -99,7 +110,6 @@ const DropdownMenu = styled.div`
   gap: 8px;
   z-index: 50;
 `;
-
 const MenuHeader = styled.div`
   font-size: 11px;
   font-weight: bold;
@@ -108,12 +118,10 @@ const MenuHeader = styled.div`
   border-bottom: 1px solid #f1f3f4;
   padding-bottom: 6px;
 `;
-
 const AddFolderRow = styled.div`
   display: flex;
   gap: 6px;
 `;
-
 const AddButton = styled.button`
   background: #26c867;
   color: white;
