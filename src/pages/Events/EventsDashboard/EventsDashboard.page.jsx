@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
-import { fetchEventsDispatch } from "../../../redux/events/events.actions";
+import {
+  eventsFilterAction,
+  fetchEventsDispatch,
+} from "../../../redux/events/events.actions";
 import {
   eventsSelector,
   setEventsGridView,
@@ -27,22 +30,33 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
 import { PageHeader } from "../../../components/Headers/PageHeader";
-import { EventsFilterCards } from "./EventsFilterCards";
 import { generateFetchManagersReq } from "../../../models/requests/user.req.model";
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
+import { getStatusColor } from "../../../utils/utils";
+import {
+  isFilterSelected,
+  updateFilters,
+} from "../../../components/Filters/FilterBoxes/FilterBoxes.helper";
+import { INITIAL_FILTERS } from "../../../constants/events.constants";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
 
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
 
-  const { events, eventsSearchVal, selectedEventFilters } =
-    useSelector(eventsSelector);
+  const {
+    events,
+    eventsSearchVal,
+    selectedEventFilters,
+    eventGridView,
+    eventsStatusCounts,
+  } = useSelector(eventsSelector);
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
-  const { eventGridView } = useSelector(eventsSelector);
+
   const navigate = useNavigateWithQuery();
 
   useEffect(() => {
@@ -73,6 +87,16 @@ const EventsDashboard = () => {
     // add the logic
   };
 
+  const onClickFilter = (key) => {
+    const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
+
+    dispatch(eventsFilterAction(updated));
+  };
+
+  const isSelected = (key) => {
+    return isFilterSelected(key, selectedEventFilters, INITIAL_FILTERS);
+  };
+
   return (
     <BlueBackHOC>
       <PageHeader isTitle>Events</PageHeader>
@@ -90,7 +114,12 @@ const EventsDashboard = () => {
         onChangeSearch={onChangeSearch}
       />
 
-      <EventsFilterCards />
+      <FilterBoxes
+        countObj={eventsStatusCounts}
+        getColor={(key) => getStatusColor(key, eventsStatusCounts)}
+        onCardClick={onClickFilter}
+        isSelected={isSelected}
+      />
 
       <TaskMainCard>
         <Tasktxt2>

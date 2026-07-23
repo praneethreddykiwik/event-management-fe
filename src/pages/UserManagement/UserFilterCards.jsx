@@ -14,13 +14,7 @@ export const UserFilterCards = () => {
   const dispatch = useDispatch();
 
   const handleClick = (key) => {
-    const updated = updateFilters(
-      key,
-      selectedRoleFilters,
-      "total",
-      null,
-      "value",
-    );
+    const updated = updateFilters(key, selectedRoleFilters, null);
 
     dispatch(usersFilterAction(updated));
   };
@@ -30,9 +24,7 @@ export const UserFilterCards = () => {
       countObj={roleCounts}
       getColor={() => "#000000"}
       onCardClick={handleClick}
-      isSelected={(key) =>
-        isFilterSelected(key, selectedRoleFilters, "total", null, "value")
-      }
+      isSelected={(key) => isFilterSelected(key, selectedRoleFilters, null)}
     />
   );
 };

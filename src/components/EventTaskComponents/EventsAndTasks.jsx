@@ -85,10 +85,7 @@ const EventsAndTasks = ({ isQa }) => {
     const updated = updateFilters(
       key,
       selectedTaskFilters,
-      "totalTaskCount",
       TASK_INITIAL_FILTERS,
-      "keyMap",
-      "keyMap",
     );
 
     dispatch(
@@ -109,14 +106,7 @@ const EventsAndTasks = ({ isQa }) => {
         getColor={(key) => getStatusColor(key, taskCountObj)}
         onCardClick={onClickFilter}
         isSelected={(key) =>
-          isFilterSelected(
-            key,
-            selectedTaskFilters,
-            "totalTaskCount",
-            TASK_INITIAL_FILTERS,
-            "keyMap",
-            "keyMap",
-          )
+          isFilterSelected(key, selectedTaskFilters, TASK_INITIAL_FILTERS)
         }
       />
 

@@ -168,13 +168,13 @@ export const EVENT_STATUSES = [
 ];
 
 export const INITIAL_FILTERS = [
-  { value: "pending", selected: true },
-  { value: "assigned", selected: true },
-  { value: "accepted", selected: true },
-  { value: "ready", selected: true },
-  { value: "in_progress", selected: true },
-  { value: "completed", selected: true },
-  { value: "declined", selected: true },
-  { value: "cancelled", selected: true },
-  { value: "deleted", selected: false },
+  { value: "pending", selected: true, keyMap: "pending" },
+  { value: "assigned", selected: true, keyMap: "assigned" },
+  { value: "accepted", selected: true, keyMap: "accepted" },
+  { value: "ready", selected: true, keyMap: "ready" },
+  { value: "in_progress", selected: true, keyMap: "in_progress" },
+  { value: "completed", selected: true, keyMap: "completed" },
+  { value: "declined", selected: true, keyMap: "declined" },
+  { value: "cancelled", selected: true, keyMap: "cancelled" },
+  { value: "deleted", selected: false, keyMap: "deleted" },
 ];

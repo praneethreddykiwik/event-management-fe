@@ -1,13 +1,8 @@
-export const isEveryFilterSelected = (
-  selectedFilters,
-  initialFilters,
-  filterKey = "value",
-  initialFilterKey = "value",
-) => {
+export const isEveryFilterSelected = (selectedFilters, initialFilters) => {
   if (initialFilters?.length) {
     return initialFilters.every((item) => {
       const record = selectedFilters.find(
-        (filter) => filter[filterKey] === item[initialFilterKey],
+        (filter) => filter.keyMap === item.keyMap,
       );
 
       return record?.selected;
@@ -17,42 +12,23 @@ export const isEveryFilterSelected = (
   return selectedFilters.every((filter) => filter.selected);
 };
 
-export const isFilterSelected = (
-  key,
-  selectedFilters,
-  totalKey,
-  initialFilters,
-  filterKey = "value",
-  initialFilterKey = "value",
-) => {
-  if (key === totalKey) {
-    return isEveryFilterSelected(
-      selectedFilters,
-      initialFilters,
-      filterKey,
-      initialFilterKey,
-    );
+export const isFilterSelected = (key, selectedFilters, initialFilters) => {
+  if (key === "total") {
+    return isEveryFilterSelected(selectedFilters, initialFilters);
   }
 
-  return selectedFilters.find(
-    (filter) => filter[filterKey] === key,
-  )?.selected;
+  return selectedFilters.find((filter) => filter.keyMap === key)?.selected;
 };
 
-export const updateFilters = (
-  key,
-  selectedFilters,
-  totalKey,
-  initialFilters,
-  filterKey = "value",
-  initialFilterKey = "value",
-) => {
-  if (key === totalKey) {
+export const updateFilters = (key, selectedFilters, initialFilters) => {
+  const filterKey = "keyMap";
+
+  if (key === "total") {
     const allSelected = isEveryFilterSelected(
       selectedFilters,
       initialFilters,
       filterKey,
-      initialFilterKey,
+      filterKey,
     );
 
     return selectedFilters.map((filter) => ({
