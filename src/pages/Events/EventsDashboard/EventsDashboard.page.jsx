@@ -12,7 +12,6 @@ import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
 import {
-  eventsFilterAction,
   fetchEventsDispatch,
   filterEventsDispatch,
 } from "../../../redux/events/events.actions";
@@ -44,6 +43,7 @@ import {
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 import { EventContainer } from "./EventContainer";
+import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
 import { debounceFun } from "../../../utils/debouncer";
 const EventsDashboard = () => {
@@ -112,7 +112,7 @@ const EventsDashboard = () => {
   const onClickFilter = (key) => {
     const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
 
-    dispatch(eventsFilterAction(updated));
+    dispatch(setSelectedEventFilters(updated));
   };
 
   const isSelected = (key) => {
