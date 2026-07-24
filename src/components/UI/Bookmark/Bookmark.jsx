@@ -46,17 +46,19 @@ export const Bookmark = ({
   };
 
   const currentSelected = pendingFolders ?? selectedFolders;
-  const currentBookmarked = pendingFolders ? currentSelected.length > 0 : isBookmarked;
+  const currentBookmarked = pendingFolders
+    ? currentSelected.length > 0
+    : isBookmarked;
 
   return (
     <Ctn tabIndex={-1} onBlur={closeMenu}>
-      <IconBtn type="button" onClick={() => setOpen(!open)}>
-        <Icon
-          variant={icon}
-          title="Bookmark"
-          sx={{ color: currentBookmarked ? "#D4AF37" : iconColor }}
-        />
-      </IconBtn>
+        <IconBtn type="button" onClick={() => setOpen(!open)}>
+          <Icon
+            variant={icon}
+            title="Bookmark"
+            sx={{ color: currentBookmarked ? "#D4AF37" : iconColor }}
+          />
+        </IconBtn>
       <DropdownMenu $open={open}>
         <MenuHeader>{title}</MenuHeader>
         {folderNames.length > 0 && (
@@ -72,7 +74,7 @@ export const Bookmark = ({
           <Inputs
             type="text"
             name="newFolderName"
-            placeholder="New folder name"
+            placeholder="Add a Bookmark"
             value={newFolderName}
             onChange={(e) => setNewFolderName(e.target.value)}
             small
@@ -128,7 +130,7 @@ const AddButton = styled.button`
   background: #26c867;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 140px;
   padding: 6px 10px;
   font-size: 12px;
   cursor: pointer;

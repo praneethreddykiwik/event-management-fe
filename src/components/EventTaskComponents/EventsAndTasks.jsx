@@ -19,6 +19,7 @@ import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 import { FilterHeaders } from "../Headers/FilterHeaders";
+import { fetchBookmarksByTypeAction } from "../../redux/bookmarks/bookmarks.actions";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ const EventsAndTasks = ({ isQa }) => {
     if (!vendors.length || !supervisors.length || !qa.length) {
       dispatch(fetchVendorsSupsQA());
     }
+
+    dispatch(fetchBookmarksByTypeAction("task"));
 
   }, []);
 

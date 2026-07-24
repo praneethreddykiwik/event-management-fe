@@ -33,6 +33,7 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import { fetchBookmarksByTypeAction } from "../../../redux/bookmarks/bookmarks.actions";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -57,6 +58,8 @@ const EventsDashboard = () => {
       .map((m) => m.value)
       .join(",")}`;
     dispatch(fetchEventsDispatch({ query }));
+
+    dispatch(fetchBookmarksByTypeAction("event"));
   }, []);
 
   const onCreateEvent = () => {
@@ -75,6 +78,9 @@ const EventsDashboard = () => {
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}
       />
+      {openManagersPopup && (
+        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+      )}
       <FilterHeaders
         placeholder="Search Events"
         value={eventsSearchVal}
@@ -108,10 +114,6 @@ const EventsDashboard = () => {
           )}
         </TaskList>
       </TaskMainCard>
-
-      {openManagersPopup && (
-        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
-      )}
     </BlueBackHOC>
   );
 };

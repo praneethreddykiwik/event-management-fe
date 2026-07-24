@@ -24,7 +24,6 @@ import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
-import { Bookmark } from "../UI/Bookmark/Bookmark";
 import {
   bookmarksSelector,
   getFolderNames,
@@ -32,6 +31,7 @@ import {
   getChangedFolder,
 } from "../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../redux/bookmarks/bookmarks.actions";
+import { Bookmark } from "../UI/Bookmark/Bookmark";
 
 const TaskRow = ({ task = {}, onEdit }) => {
   const dispatch = useDispatch();
@@ -40,12 +40,8 @@ const TaskRow = ({ task = {}, onEdit }) => {
   const { authUser } = useSelector(authSelector);
   const { taskBookmarks } = useSelector(bookmarksSelector);
 
-  const folderNames = getFolderNames(taskBookmarks, "task");
-  const selectedFolders = getSelectedFolderNames(
-    taskBookmarks,
-    "task",
-    task.taskUid,
-  );
+  const folderNames = getFolderNames(taskBookmarks);
+  const selectedFolders = getSelectedFolderNames(taskBookmarks, task.taskUid);
   const isBookmarked = selectedFolders.length > 0;
 
   const handleToggleBookmark = (folderName) => {
@@ -53,7 +49,7 @@ const TaskRow = ({ task = {}, onEdit }) => {
       toggleBookmarkAction({
         entityId: task.taskUid,
         folderName,
-        type: "task",
+        entityType: "task",
       }),
     );
   };

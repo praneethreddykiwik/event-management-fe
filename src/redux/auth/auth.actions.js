@@ -3,8 +3,6 @@ import { loginApi, logoutApi, meApi } from "../../api/auth.api";
 import { toast } from "react-toastify";
 import { paths } from "../../constants/paths";
 import { ROLES_OBJ } from "../../constants/roles";
-import { getAllBookmarksByUserApi } from "../../api/bookmark.api";
-import { setAllBookmarks } from "../bookmarks/bookmarks.slice";
 
 // Runs on app load/refresh to check if session cookie is valid
 export const bootstrapAuthAction = createAsyncThunk(
@@ -27,15 +25,15 @@ export const bootstrapAuthAction = createAsyncThunk(
   },
 );
 
+// const bookmarkAPI = getAllBookmarksByUserApi();
+// const [bookmarkRes] = await Promise.all([bookmarkAPI]);
+// dispatch(setAllBookmarks(bookmarkRes?.data?.details));
 export const initializeAllApis = createAsyncThunk(
   "auth/initialize",
-  async (payload, { dispatch }) => {
-    const bookmarkAPI = getAllBookmarksByUserApi();
+  async () => {
     // add all the required api calls here
     // const fetchManagers = fetchAllUsersAction();
     // FetchUsers API is required here
-    const [bookmarkRes] = await Promise.all([bookmarkAPI]);
-    dispatch(setAllBookmarks(bookmarkRes?.data?.details));
   },
 );
 

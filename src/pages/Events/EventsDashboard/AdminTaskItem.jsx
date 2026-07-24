@@ -24,7 +24,6 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
-import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
 import {
   bookmarksSelector,
   getFolderNames,
@@ -32,6 +31,7 @@ import {
   getChangedFolder,
 } from "../../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
+import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
 
 const AdminTaskItem = ({ event, gridView }) => {
   const navigate = useNavigateWithQuery();
@@ -40,12 +40,8 @@ const AdminTaskItem = ({ event, gridView }) => {
   const { selectedEventFilters } = useSelector(eventsSelector);
   const { eventBookmarks } = useSelector(bookmarksSelector);
 
-  const folderNames = getFolderNames(eventBookmarks, "event");
-  const selectedFolders = getSelectedFolderNames(
-    eventBookmarks,
-    "event",
-    event.uid,
-  );
+  const folderNames = getFolderNames(eventBookmarks);
+  const selectedFolders = getSelectedFolderNames(eventBookmarks, event.uid);
   const isBookmarked = selectedFolders.length > 0;
 
   const handleToggleBookmark = (folderName) => {
@@ -53,7 +49,7 @@ const AdminTaskItem = ({ event, gridView }) => {
       toggleBookmarkAction({
         entityId: event.uid,
         folderName,
-        type: "event",
+        entityType: "event",
       }),
     );
   };
@@ -144,7 +140,7 @@ const AdminTaskItem = ({ event, gridView }) => {
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" title="Comment" />
-            <Bookmark
+            <Bookmark 
               icon="bookmark"
               iconColor="black"
               title="Bookmark"
