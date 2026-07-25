@@ -18,7 +18,7 @@ import {
 import {
   eventsSelector,
   setEventsGridView,
-  setEventsSearchVal,
+  setSearchFilter,
 } from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { usersSelector } from "../../../redux/users/users.slice";
@@ -34,6 +34,7 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import { debounce } from "../../../utils/debouncer";
 import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
 import { getStatusColor } from "../../../utils/utils";
 import {
@@ -53,17 +54,18 @@ const EventsDashboard = () => {
 
   const {
     events,
-    eventsSearchVal,
+    searchFilter,
     selectedEventFilters,
     eventGridView,
     eventsStatusCounts,
     eventsLoading,
   } = useSelector(eventsSelector);
+
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
 
   const navigate = useNavigateWithQuery();
-  const [localSearchVal, setLocalSearchVal] = useState(eventsSearchVal);
+  // const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     if (authUser?.tenantId) {
@@ -75,19 +77,22 @@ const EventsDashboard = () => {
     }
   }, [dispatch, authUser?.tenantId]);
 
-  const query = selectedEventFilters
-    .filter((fl) => fl.selected)
-    .map((m) => m.value)
-    .join(",");
-
   useEffect(() => {
+    const query = selectedEventFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    fetchEvents(query, searchFilter);
+  }, []);
+
+  const fetchEvents = (query, searchFilterArg) => {
     dispatch(
       fetchEventsDispatch({
         query,
-        searchText: eventsSearchVal,
+        searchText: searchFilterArg,
       }),
     );
-  }, [dispatch, eventsSearchVal, query]);
+  };
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -99,20 +104,31 @@ const EventsDashboard = () => {
     dispatch(setEventsGridView(!eventGridView));
   };
 
-  const debouncedDispatchSearch = useMemo(
-    () => debounceFun((val) => dispatch(setEventsSearchVal(val)), 1000),
+  const debounceFetchEventsFn = useMemo(
+    () => debounce(fetchEvents, 2000),
     [dispatch],
   );
+
   const onChangeSearch = (e) => {
     const value = e.target.value;
-    setLocalSearchVal(value);
-    debouncedDispatchSearch(value);
+    dispatch(setSearchFilter(value));
+
+    const query = selectedEventFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    debounceFetchEventsFn(query, value);
   };
 
   const onClickFilter = (key) => {
     const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
-
     dispatch(setSelectedEventFilters(updated));
+
+    const query = updated
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    fetchEvents(query, searchFilter);
   };
 
   const isSelected = (key) => {
@@ -131,8 +147,8 @@ const EventsDashboard = () => {
 
       <FilterHeaders
         placeholder="Search Events"
-        value={localSearchVal}
-        onChangeSearch={onChangeSearch}
+        value={searchFilter}
+        onChange={onChangeSearch}
       />
 
       <FilterBoxes

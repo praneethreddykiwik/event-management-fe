@@ -26,11 +26,11 @@ import { generateAssignEventReq } from "../../../models/requests/event.req.model
 import { RBACHOC } from "../../../RBAC/RBAC";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
-const AdminTaskItem = ({ event = {}, gridView, loading }) => {
+const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
-  const { selectedEventFilters, eventsSearchVal } = useSelector(eventsSelector);
+  const { selectedEventFilters } = useSelector(eventsSelector);
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -64,7 +64,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
 
     dispatch(
       fetchEventsDispatch({
-        query
+        query,
       }),
     );
   };
@@ -77,7 +77,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
   }
 
   return (
-    <StyledCard showGridView={gridView}>
+    <StyledCard showGridView={gridView} ref={ref}>
       <Left>
         <StatusIcon type={event.type} className="material-symbols-outlined">
           {event.statusIcon}

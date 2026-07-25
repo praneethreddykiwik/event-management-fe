@@ -25,7 +25,7 @@ const initialState = {
   eventGridView: false,
 
   // search field
-  eventsSearchVal: "",
+  searchFilter: "",
 };
 
 const eventsSlice = createSlice({
@@ -44,8 +44,8 @@ const eventsSlice = createSlice({
     setEventsGridView: (state, action) => {
       state.eventGridView = action.payload;
     },
-    setEventsSearchVal: (state, action) => {
-      state.eventsSearchVal = action.payload;
+    setSearchFilter: (state, action) => {
+      state.searchFilter = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -64,7 +64,6 @@ const eventsSlice = createSlice({
         state.eventsLoading = false;
         state.eventsError = "Error";
       });
-
 
     // Create Events.
     builder
@@ -158,6 +157,6 @@ export const {
   setEventDetails,
   setSelectedEventFilters,
   setEventsGridView,
-  setEventsSearchVal,
+  setSearchFilter,
 } = eventsSlice.actions;
 export default eventsSlice.reducer;
