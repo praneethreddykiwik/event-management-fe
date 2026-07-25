@@ -11,10 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
-import {
-  fetchEventsDispatch,
-  filterEventsDispatch,
-} from "../../../redux/events/events.actions";
+import { fetchEventsDispatch } from "../../../redux/events/events.actions";
 import {
   eventsSelector,
   setEventsGridView,
@@ -46,7 +43,6 @@ import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders"
 import { EventContainer } from "./EventContainer";
 import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
-import { debounceFun } from "../../../utils/debouncer";
 const EventsDashboard = () => {
   const dispatch = useDispatch();
 
