@@ -73,8 +73,13 @@ const CreateEventForm = ({ onCreateEvent }) => {
       reqPayload.eventDate,
       reqPayload.eventTime,
     );
+    const endingAt=modifyTimeToISO(
+      reqPayload.eventEndDate,
+      reqPayload.eventEndTime,
+    )
     reqPayload.tenantUid = tenantUid;
-    reqPayload.scheduledAt = scheduledAt;
+    reqPayload.scheduledAt = scheduledAt
+    reqPayload.endingAt = endingAt;
 
     if (isEditMode) {
       reqPayload.eventUid = eventDetails.uid;

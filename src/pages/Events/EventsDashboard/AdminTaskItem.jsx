@@ -84,6 +84,9 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
           <StyledAmdinContent>
             Scheduled At: {formatDateTime(event.scheduledAt)}
           </StyledAmdinContent>
+          <StyledAmdinContent>
+            {event.endingAt && `Ending At: ${formatDateTime(event.endingAt)}`}
+          </StyledAmdinContent>
           <StyledParagraphSmall left>
             {enums.EVENT_VENUE}:{" "}
             {event.venue?.charAt(0).toUpperCase() + event.venue?.slice(1)}
