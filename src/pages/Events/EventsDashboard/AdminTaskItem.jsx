@@ -26,7 +26,7 @@ import { generateAssignEventReq } from "../../../models/requests/event.req.model
 import { RBACHOC } from "../../../RBAC/RBAC";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
-const AdminTaskItem = ({ event = {}, gridView, loading }) => {
+const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
@@ -62,7 +62,11 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
       .map((m) => m.value)
       .join(",");
 
-    dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
+    dispatch(
+      fetchEventsDispatch({
+        query,
+      }),
+    );
   };
 
   const valueData = Math.floor(Math.random() * 101);
@@ -73,7 +77,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading }) => {
   }
 
   return (
-    <StyledCard showGridView={gridView}>
+    <StyledCard showGridView={gridView} ref={ref}>
       <Left>
         <StatusIcon type={event.type} className="material-symbols-outlined">
           {event.statusIcon}

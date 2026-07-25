@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
@@ -11,13 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchManagersAction } from "../../../redux/users/users.actions";
 import { ROLES } from "../../../constants/roles";
 import ManagersPopupModal from "./AdminPopupModal/ManagersPopupModal";
-import {
-  eventsFilterAction,
-  fetchEventsDispatch,
-} from "../../../redux/events/events.actions";
+import { fetchEventsDispatch } from "../../../redux/events/events.actions";
 import {
   eventsSelector,
   setEventsGridView,
+  setSearchFilter,
 } from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
 import { usersSelector } from "../../../redux/users/users.slice";
@@ -33,6 +31,7 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import { debounce } from "../../../utils/debouncer";
 import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
 import { getStatusColor } from "../../../utils/utils";
 import {
@@ -42,6 +41,7 @@ import {
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 import { EventContainer } from "./EventContainer";
+import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
@@ -50,30 +50,45 @@ const EventsDashboard = () => {
 
   const {
     events,
-    eventsSearchVal,
+    searchFilter,
     selectedEventFilters,
     eventGridView,
     eventsStatusCounts,
     eventsLoading,
   } = useSelector(eventsSelector);
+
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
 
   const navigate = useNavigateWithQuery();
+  // const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
-    const fetchmanagerpayload = generateFetchManagersReq(
-      authUser?.tenantId,
-      ROLES.eventManager,
-    );
-    dispatch(fetchManagersAction(fetchmanagerpayload));
+    if (authUser?.tenantId) {
+      const fetchmanagerpayload = generateFetchManagersReq(
+        authUser.tenantId,
+        ROLES.eventManager,
+      );
+      dispatch(fetchManagersAction(fetchmanagerpayload));
+    }
+  }, [dispatch, authUser?.tenantId]);
 
-    const query = `?status=${selectedEventFilters
+  useEffect(() => {
+    const query = selectedEventFilters
       .filter((fl) => fl.selected)
       .map((m) => m.value)
-      .join(",")}`;
-    dispatch(fetchEventsDispatch({ query }));
+      .join(",");
+    fetchEvents(query, searchFilter);
   }, []);
+
+  const fetchEvents = (query, searchFilterArg) => {
+    dispatch(
+      fetchEventsDispatch({
+        query,
+        searchText: searchFilterArg,
+      }),
+    );
+  };
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -85,14 +100,31 @@ const EventsDashboard = () => {
     dispatch(setEventsGridView(!eventGridView));
   };
 
-  const onChangeSearch = () => {
-    // add the logic
+  const debounceFetchEventsFn = useMemo(
+    () => debounce(fetchEvents, 2000),
+    [dispatch],
+  );
+
+  const onChangeSearch = (e) => {
+    const value = e.target.value;
+    dispatch(setSearchFilter(value));
+
+    const query = selectedEventFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    debounceFetchEventsFn(query, value);
   };
 
   const onClickFilter = (key) => {
     const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
+    dispatch(setSelectedEventFilters(updated));
 
-    dispatch(eventsFilterAction(updated));
+    const query = updated
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    fetchEvents(query, searchFilter);
   };
 
   const isSelected = (key) => {
@@ -111,8 +143,8 @@ const EventsDashboard = () => {
 
       <FilterHeaders
         placeholder="Search Events"
-        value={eventsSearchVal}
-        onChangeSearch={onChangeSearch}
+        value={searchFilter}
+        onChange={onChangeSearch}
       />
 
       <FilterBoxes
@@ -142,7 +174,6 @@ const EventsDashboard = () => {
     </BlueBackHOC>
   );
 };
-
 const TaskMainCard = styled.div`
   border-radius: 14px;
   box-shadow: ${({ theme }) => theme.shadows["level-2"]};

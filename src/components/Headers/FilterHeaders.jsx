@@ -10,7 +10,7 @@ export const FilterHeaders = ({
   subHeading = "Click to select below filters",
   placeholder = "Search",
   value,
-  onChangeSearch,
+  onChange,
 }) => {
   return (
     <Tasktxt>
@@ -21,10 +21,11 @@ export const FilterHeaders = ({
 
       <Inputs
         type="inline-input"
+        name="filter-header-search-filter"
         placeholder={placeholder}
         icon="search"
         value={value}
-        onchange={onChangeSearch}
+        onChange={onChange}
       />
     </Tasktxt>
   );
