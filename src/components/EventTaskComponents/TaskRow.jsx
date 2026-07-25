@@ -32,8 +32,12 @@ import {
 } from "../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../redux/bookmarks/bookmarks.actions";
 import { Bookmark } from "../UI/Bookmark/Bookmark";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
-const TaskRow = ({ task = {}, onEdit }) => {
+const TaskRow = ({ loading, task = {}, onEdit }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

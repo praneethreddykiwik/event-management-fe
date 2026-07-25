@@ -16,3 +16,6 @@ export const updateEventsApi = (payload) =>
 
 export const assignEventApi = (payload) =>
   httpsClient.post("/events/assign-event", payload);
+
+// export const filterEventsApi = (payload) =>
+//   httpsClient.get(`/events/filter?searchText=${payload}`);

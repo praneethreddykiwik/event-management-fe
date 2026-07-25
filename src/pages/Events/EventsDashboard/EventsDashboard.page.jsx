@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
@@ -16,9 +17,9 @@ import { fetchEventsDispatch } from "../../../redux/events/events.actions";
 import {
   eventsSelector,
   setEventsGridView,
+  setSearchFilter,
 } from "../../../redux/events/events.slice";
 import { BlueBackHOC } from "../../../HOC/BlueBackHOC";
-import { mapEventForUI } from "../../../helpers/Dashboard.helper";
 import { usersSelector } from "../../../redux/users/users.slice";
 import { paths } from "../../../constants/paths";
 import { EventCards } from "./EventCards/EventCards";
@@ -28,39 +29,69 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { updateAllEventInputs } from "../../../redux/farms/farms.slice";
 import { generateNewEventsInputs } from "../../../redux/farms/metadata/event.metadata";
 import { PageHeader } from "../../../components/Headers/PageHeader";
-import { EventsFilterCards } from "./EventsFilterCards";
 import { generateFetchManagersReq } from "../../../models/requests/user.req.model";
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
 import { fetchBookmarksByTypeAction } from "../../../redux/bookmarks/bookmarks.actions";
+import { debounce } from "../../../utils/debouncer";
+import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
+import { getStatusColor } from "../../../utils/utils";
+import {
+  isFilterSelected,
+  updateFilters,
+} from "../../../components/Filters/FilterBoxes/FilterBoxes.helper";
+import { INITIAL_FILTERS } from "../../../constants/events.constants";
+import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
+import { EventContainer } from "./EventContainer";
+import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
 
-  const { events, eventsSearchVal, selectedEventFilters } =
-    useSelector(eventsSelector);
+  const {
+    events,
+    searchFilter,
+    selectedEventFilters,
+    eventGridView,
+    eventsStatusCounts,
+    eventsLoading,
+  } = useSelector(eventsSelector);
+
   const { eventManagers } = useSelector(usersSelector);
   const { authUser } = useSelector(authSelector);
-  const { eventGridView } = useSelector(eventsSelector);
+
   const navigate = useNavigateWithQuery();
+  // const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
-    dispatch(
-      fetchManagersAction(
-        generateFetchManagersReq(authUser?.tenantId, ROLES.eventManager),
-      ),
-    );
+    if (authUser?.tenantId) {
+      const fetchmanagerpayload = generateFetchManagersReq(
+        authUser.tenantId,
+        ROLES.eventManager,
+      );
+      dispatch(fetchManagersAction(fetchmanagerpayload));
+      dispatch(fetchBookmarksByTypeAction("event"));
+    }
+  }, [dispatch, authUser?.tenantId]);
 
-    const query = `?status=${selectedEventFilters
+  useEffect(() => {
+    const query = selectedEventFilters
       .filter((fl) => fl.selected)
       .map((m) => m.value)
-      .join(",")}`;
-    dispatch(fetchEventsDispatch({ query }));
-
-    dispatch(fetchBookmarksByTypeAction("event"));
+      .join(",");
+    fetchEvents(query, searchFilter);
   }, []);
+
+  const fetchEvents = (query, searchFilterArg) => {
+    dispatch(
+      fetchEventsDispatch({
+        query,
+        searchText: searchFilterArg,
+      }),
+    );
+  };
 
   const onCreateEvent = () => {
     const createEventInputs = generateNewEventsInputs(eventManagers);
@@ -68,7 +99,40 @@ const EventsDashboard = () => {
     navigate(`${paths.createEvent}`);
   };
 
-  const onChangeSearch = () => {};
+  const viewClickHandler = () => {
+    dispatch(setEventsGridView(!eventGridView));
+  };
+
+  const debounceFetchEventsFn = useMemo(
+    () => debounce(fetchEvents, 2000),
+    [dispatch],
+  );
+
+  const onChangeSearch = (e) => {
+    const value = e.target.value;
+    dispatch(setSearchFilter(value));
+
+    const query = selectedEventFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    debounceFetchEventsFn(query, value);
+  };
+
+  const onClickFilter = (key) => {
+    const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
+    dispatch(setSelectedEventFilters(updated));
+
+    const query = updated
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    fetchEvents(query, searchFilter);
+  };
+
+  const isSelected = (key) => {
+    return isFilterSelected(key, selectedEventFilters, INITIAL_FILTERS);
+  };
 
   return (
     <BlueBackHOC>
@@ -83,10 +147,17 @@ const EventsDashboard = () => {
       )}
       <FilterHeaders
         placeholder="Search Events"
-        value={eventsSearchVal}
-        onChangeSearch={onChangeSearch}
+        value={searchFilter}
+        onChange={onChangeSearch}
       />
-      <EventsFilterCards />
+
+      <FilterBoxes
+        countObj={eventsStatusCounts}
+        getColor={(key) => getStatusColor(key, eventsStatusCounts)}
+        onCardClick={onClickFilter}
+        isSelected={isSelected}
+      />
+
       <TaskMainCard>
         <Tasktxt2>
           <Textwrapper>
@@ -98,26 +169,11 @@ const EventsDashboard = () => {
             <Icon selected={eventGridView}>grid_view</Icon>
           </AlignBox>
         </Tasktxt2>
-        <TaskList $gridView={eventGridView}>
-          {!events.length ? (
-            <StyledParagraphSmallGray>
-              No Events available
-            </StyledParagraphSmallGray>
-          ) : (
-            events.map((event) => (
-              <AdminTaskItem
-                key={event.uid}
-                event={mapEventForUI(event)}
-                gridView={eventGridView}
-              />
-            ))
-          )}
-        </TaskList>
+        <EventContainer />
       </TaskMainCard>
     </BlueBackHOC>
   );
 };
-
 const TaskMainCard = styled.div`
   border-radius: 14px;
   background: ${({ theme }) => theme.colors.white};
@@ -131,16 +187,6 @@ const Tasktxt2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const TaskList = styled.div`
-  padding: 20px;
-  display: flex;
-  gap: 20px;
-  justify-content: space-evenly;
-  flex-direction: ${(props) => (props.$gridView ? "row" : "column")};
-  flex-wrap: wrap;
-  width: 100%;
 `;
 
 const AlignBox = styled.div`

@@ -66,10 +66,10 @@ export const camelToWords = (str = "") => {
 };
 
 export const getStatusColor = (key, taskCountObj) => {
-  const total = taskCountObj.totalTaskCount || taskCountObj.total || 0;
+  const total = taskCountObj.total || taskCountObj.total || 0;
   const count = taskCountObj[key] || 0;
 
-  if (key === "totalTaskCount") return "#000";
+  if (key === "total") return "#000";
 
   if (total === 0) return "#000";
 
@@ -105,7 +105,7 @@ export const getStatusColor = (key, taskCountObj) => {
 //  - [^\s@]+       => One or more characters after @
 //  - \.            => Mandatory dot
 //  - [^\s@]+       => One or more characters after the dot
-//  - $             => Nothing should come after this  
+//  - $             => Nothing should come after this
 export const isValidEmail = (email) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };

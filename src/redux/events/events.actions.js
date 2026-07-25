@@ -7,15 +7,15 @@ import {
   deleteEventsApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
-
 import { paths } from "../../constants/paths";
 // import { updateAllTaskInputs } from "../farms/farms.slice";
-
 export const fetchEventsDispatch = createAsyncThunk(
   "auth/fetchEventsDispatch",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetchEventsApi(payload.query);
+      const searchVal = payload.searchText || "";
+      const query = `?status=${payload.query}&searchText=${searchVal}`;
+      const res = await fetchEventsApi(query);
       return res.data; // user object
     } catch (err) {
       // error toast
@@ -24,7 +24,6 @@ export const fetchEventsDispatch = createAsyncThunk(
     }
   },
 );
-
 export const createEventsDispatch = createAsyncThunk(
   "events/createEventsDispatch",
   async (payload, { rejectWithValue, dispatch, getState }) => {

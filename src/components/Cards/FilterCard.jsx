@@ -6,14 +6,19 @@ import {
 import { Card } from "./Cards";
 import { camelToWords } from "../../utils/utils";
 import { mobile } from "../../theme/media-queries";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
-const FilterCard = ({ objKey, value, color, onClick, selected }) => (
-  <StyledCard onClick={onClick} $selected={selected}>
-    <StyledValue color={color}>{value}</StyledValue>
-    <StyledLabel>{camelToWords(objKey)}</StyledLabel>
-  </StyledCard>
-);
-
+const FilterCard = ({ objKey, value, color, onClick, selected, loading }) => {
+  if (loading) {
+    return <SkeletonLoaders count={1} height={90} width={360} type="card" />;
+  }
+  return (
+    <StyledCard onClick={onClick} $selected={selected}>
+      <StyledValue color={color}>{value}</StyledValue>
+      <StyledLabel>{camelToWords(objKey)}</StyledLabel>
+    </StyledCard>
+  );
+};
 const StyledValue = styled(StyledMediumHeading)`
   text-align: left;
   margin: 0;

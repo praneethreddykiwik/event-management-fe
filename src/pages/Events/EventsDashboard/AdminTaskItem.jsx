@@ -32,8 +32,9 @@ import {
 } from "../../../redux/bookmarks/bookmarks.slice";
 import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
 import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
+import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
-const AdminTaskItem = ({ event, gridView }) => {
+const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
@@ -94,14 +95,22 @@ const AdminTaskItem = ({ event, gridView }) => {
       .map((m) => m.value)
       .join(",");
 
-    dispatch(fetchEventsDispatch({ query: `?status=${query}` }));
+    dispatch(
+      fetchEventsDispatch({
+        query,
+      }),
+    );
   };
 
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
+
   return (
-    <StyledCard showGridView={gridView}>
+    <StyledCard showGridView={gridView} ref={ref}>
       <Left>
         <StatusIcon type={event.type} className="material-symbols-outlined">
           {event.statusIcon}
@@ -111,6 +120,9 @@ const AdminTaskItem = ({ event, gridView }) => {
           <EventName>{event.eventName}</EventName>
           <StyledAmdinContent>
             Scheduled At: {formatDateTime(event.scheduledAt)}
+          </StyledAmdinContent>
+          <StyledAmdinContent>
+            {event.endingAt && `Ending At: ${formatDateTime(event.endingAt)}`}
           </StyledAmdinContent>
           <StyledParagraphSmall left>
             {enums.EVENT_VENUE}:{" "}

@@ -14,19 +14,24 @@ import { paths } from "../../constants/paths";
 import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
 import { usersSelector } from "../../redux/users/users.slice";
 import { getStatusColor } from "../../utils/utils";
-import FilterCard from "../Cards/FilterCard";
 import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 import { FilterHeaders } from "../Headers/FilterHeaders";
 import { fetchBookmarksByTypeAction } from "../../redux/bookmarks/bookmarks.actions";
+import FilterBoxes from "../Filters/FilterBoxes/FilterBoxes";
+import {
+  isFilterSelected,
+  updateFilters,
+} from "../Filters/FilterBoxes/FilterBoxes.helper";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
   const navigate = useNavigateWithQuery();
 
   const { authUser } = useSelector(authSelector);
-  const { eventsAndTasks, taskCountObj, selectedTaskFilters } =
+  const { eventsAndTasks, taskCountObj, tasksLoading, selectedTaskFilters } =
     useSelector(tasksSelector);
   const { vendors, supervisors, qa } = useSelector(usersSelector);
 
@@ -81,82 +86,35 @@ const EventsAndTasks = ({ isQa }) => {
     });
   };
 
-  const onClickFilter = (selectedKey) => {
-    if (selectedKey === "totalTaskCount") {
-      totalClickHandler();
-      return;
-    }
-
-    // TASK_INITIAL_FILTERS
-    const arr = selectedTaskFilters.map((el) => {
-      if (el.keyMap === selectedKey) {
-        return {
-          ...el,
-          selected: !el.selected,
-        };
-      }
-
-      return el;
-    });
+  const onClickFilter = (key) => {
+    const updated = updateFilters(
+      key,
+      selectedTaskFilters,
+      TASK_INITIAL_FILTERS,
+    );
 
     dispatch(
       fetchEventsAndTasksAction({
         assignedToUid: authUser?.uid,
         tenantUid: authUser?.tenantUid,
-        filters: arr,
+        filters: updated,
       }),
     );
-  };
-
-  const totalClickHandler = () => {
-    const isEverySelected = isEveryFilterSelected();
-
-    const arr = selectedTaskFilters.map((el) => ({
-      ...el,
-      selected: !isEverySelected,
-    }));
-
-    dispatch(
-      fetchEventsAndTasksAction({
-        assignedToUid: authUser?.uid,
-        tenantUid: authUser?.tenantUid,
-        filters: arr,
-      }),
-    );
-  };
-
-  const isEveryFilterSelected = () => {
-    return TASK_INITIAL_FILTERS.every((es) => {
-      const record = selectedTaskFilters.find((sf) => sf.value === es.value);
-
-      return record?.selected;
-    });
-  };
-
-  const isFilterSelected = (key) => {
-    if (key === "totalTaskCount") {
-      return isEveryFilterSelected();
-    }
-
-    return selectedTaskFilters.find((el) => el.keyMap === key)?.selected;
   };
 
   return (
     <DashboardContainer>
       <FilterHeaders />
       {/* Filter cards */}
-      <CardsRow>
-        {Object.keys(taskCountObj).map((key) => (
-          <FilterCard
-            key={key}
-            objKey={key}
-            value={taskCountObj[key]}
-            color={getStatusColor(key, taskCountObj)}
-            onClick={() => onClickFilter(key)}
-            selected={isFilterSelected(key)}
-          />
-        ))}
-      </CardsRow>
+      <FilterBoxes
+        countObj={taskCountObj}
+        getColor={(key) => getStatusColor(key, taskCountObj)}
+        onCardClick={onClickFilter}
+        isSelected={(key) =>
+          isFilterSelected(key, selectedTaskFilters, TASK_INITIAL_FILTERS)
+        }
+        isLoading={tasksLoading}
+      />
 
       {eventsAndTasks.map((event) => (
         <EventWrapsTasks
@@ -169,6 +127,7 @@ const EventsAndTasks = ({ isQa }) => {
               <TaskRow
                 key={task.taskUid}
                 task={mapTaskForUI(task, event)}
+                loading={tasksLoading}
                 onEdit={(tsk) => onEdit(tsk, event)}
               />
             ))
@@ -184,12 +143,5 @@ const EventsAndTasks = ({ isQa }) => {
 };
 
 const DashboardContainer = styled.div``;
-
-const CardsRow = styled.div`
-  display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-`;
 
 export default EventsAndTasks;

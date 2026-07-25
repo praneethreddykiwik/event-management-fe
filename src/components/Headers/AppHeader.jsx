@@ -69,16 +69,14 @@ const AppHeader = () => {
               <StyledParagraph>{authUser.firstName}</StyledParagraph>
               <StyledRole>{camelToWords(authUser.role)}</StyledRole>
             </StyledName>
-          
-              <Avatar
-                name={`${authUser.firstName} ${authUser.lastName}`}
-                openCondition={true}
-                displayInitials={true}
-                items={userProfileMeta}
-                onClick={onClickMenu}
-              />
-              {console.log(authUser)}
-            
+
+            <Avatar
+              name={`${authUser.firstName} ${authUser.lastName}`}
+              openCondition={true}
+              displayInitials={true}
+              items={userProfileMeta}
+              onClick={onClickMenu}
+            />
           </>
         )}
       </RightBox>
@@ -107,7 +105,6 @@ const RightBox = styled.div`
   align-items: center;
   gap: 22px;
 `;
-
 
 const StyledName = styled.div`
   position: relative;

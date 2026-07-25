@@ -4,20 +4,30 @@ import EventsSummaryCard from "../../../../components/EventTaskComponents/Events
 import ManagerStatusChart from "./ManagerStatusCharts/ManagerStatusChart";
 import { mobile } from "../../../../theme/media-queries";
 import { NpmSparkLine } from "../../../../components/Charts/SparkLine";
+import { eventsSelector } from "../../../../redux/events/events.slice";
+import { useSelector } from "react-redux";
 
 export const EventCards = ({ events, eventManagers }) => {
+  const { eventsLoading } = useSelector(eventsSelector);
+
   return (
     <CardsRow>
       <StyledFlex>
-        <EventsSummaryCard label="Total Events" value={events.length} />
+        <EventsSummaryCard
+          label="Total Events"
+          loading={eventsLoading}
+          value={events.length}
+        />
         <EventsSummaryCard
           label="Event Managers"
+          loading={eventsLoading}
           value={eventManagers.length}
           chart={<ManagerStatusChart percent={87} />}
         />
         <EventsSummaryCard
           label="Completion Rate"
           value="87%"
+          loading={eventsLoading}
           chart={<NpmSparkLine />}
           inline
         />
