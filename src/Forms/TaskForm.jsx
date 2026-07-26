@@ -50,7 +50,7 @@ const TaskForm = ({ onCreateTask }) => {
     const state = createTaskInputs.map((el) => {
       const inp = { ...el };
 
-      if (name === "assineeType" && inp.name === "assignedToUid") {
+      if (name === "assigneeType" && inp.name === "assignedToUid") {
         const isSupervisorSelected = value === "Assign to Supervisor";
         inp.options = generateUserOptions(
           isSupervisorSelected ? supervisors : vendors,

@@ -138,9 +138,10 @@ export const generateEditTaskInputs = (vendorsOrSuprvs, qa, data, role) => {
 
     const mapper = { qaAssignedTo: "qaAssignedToUid" };
     const valueName = mapper[el] || el;
-    const output = { ...input, value: data[valueName] };
+    let value = data[valueName] || input.value;
+    const output = { ...input, value};
     if (el === "assignedToUid" || el === "qaAssignedTo") {
-      const opts = el.name === "assignedToUid" ? vendorsOrSuprvs : qa;
+      const opts = el === "assignedToUid" ? vendorsOrSuprvs : qa;
       output.options = generateUserOptions(opts);
     }
     if (el === "qaAssignedTo") {
