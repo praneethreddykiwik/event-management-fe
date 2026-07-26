@@ -12,6 +12,7 @@ export const InlineButton = ({
   type,
   icon,
   showGridView,
+  title,
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
@@ -55,7 +56,7 @@ export const InlineButton = ({
   const iconColor = iconColors[type] || "black";
 
   return (
-    <Ctn ref={containerRef}>
+    <Ctn ref={containerRef} title={title}>
       {/* <IconBtn onClick={() => setOpen((k) => !k)}> */}
       <IconBtn onClick={onFirstClick}>
         <Icon variant={icon} sx={{ color: iconColor }} />

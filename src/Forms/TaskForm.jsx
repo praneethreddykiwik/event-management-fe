@@ -17,6 +17,7 @@ const TaskForm = ({ onCreateTask }) => {
   const { createTaskInputs } = useSelector(formsSelector);
   const { vendors, supervisors } = useSelector(usersSelector);
 
+
   const validateFields = () => {
     let isValid = true;
 

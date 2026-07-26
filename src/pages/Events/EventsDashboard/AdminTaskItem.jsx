@@ -24,6 +24,14 @@ import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import { generateAssignEventReq } from "../../../models/requests/event.req.model";
 import { RBACHOC } from "../../../RBAC/RBAC";
+import {
+  bookmarksSelector,
+  getFolderNames,
+  getSelectedFolderNames,
+  getChangedFolder,
+} from "../../../redux/bookmarks/bookmarks.slice";
+import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
+import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 
 const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
@@ -31,6 +39,31 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(authSelector);
   const { selectedEventFilters } = useSelector(eventsSelector);
+  const { eventBookmarks } = useSelector(bookmarksSelector);
+
+  const folderNames = getFolderNames(eventBookmarks);
+  const selectedFolders = getSelectedFolderNames(eventBookmarks, event.uid);
+  const isBookmarked = selectedFolders.length > 0;
+
+  const handleToggleBookmark = (folderName) => {
+    dispatch(
+      toggleBookmarkAction({
+        entityId: event.uid,
+        folderName,
+        entityType: "event",
+      }),
+    );
+  };
+
+  const handleCheckboxChange = (checkboxEvent) => {
+    const newSelectedFolders = checkboxEvent.target.value;
+    const changedFolder = getChangedFolder(selectedFolders, newSelectedFolders);
+    handleToggleBookmark(changedFolder);
+  };
+
+  const handleAddFolder = (folderName) => {
+    handleToggleBookmark(folderName);
+  };
 
   const onClickViewDetails = () => {
     navigate(`${paths.eventsDetails}?eventUid=${event.uid}`);
@@ -99,7 +132,6 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
             <StyledParagraphSmall left>
               {enums.EVENT_MANAGER}: <StyledBold>{event.userName}</StyledBold>
             </StyledParagraphSmall>
-
             <StyledAssignBtnAdminsUp showGridView={gridView}>
               {isAssignedToMe ? (
                 <StyledT>Assigned To Me</StyledT>
@@ -119,15 +151,25 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
             <Badge type={event.type}>{event.statusLabel}</Badge>
           </StyledFlex2>
           <StyledFlex2>
-            <Icon variant="chat" />
-
-            <Icon variant="alternate_email" />
+            <Icon variant="chat" title="Comment" />
+            <Bookmark 
+              icon="bookmark"
+              iconColor="black"
+              title="Bookmark"
+              folderNames={folderNames}
+              selectedFolders={selectedFolders}
+              isBookmarked={isBookmarked}
+              onCheckboxChange={handleCheckboxChange}
+              onAddFolder={handleAddFolder}
+            />
+            <Icon variant="alternate_email" title="Email" />
             <RBACHOC perm="event:delete">
               <InlineButton
                 type="delete"
                 icon="delete"
                 onClick={onClickDelete}
                 showGridView={gridView}
+                title="Delete"
               >
                 Delete Event
               </InlineButton>
@@ -155,15 +197,11 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
 
 const StyledAssignBtnAdminsUp = styled.div`
   display: flex;
-  ${mobile`    
-   display:none;
-  `};
+  ${mobile`display: none;`}
 `;
 
 const StyledAmdinContent = styled(StyledParagraphSmall)`
-  ${mobile`
-    font-size:12px;
-  `}
+  ${mobile`font-size: 12px;`}
 `;
 
 const StyledAmdinContents = styled(StyledParagraphSmall)`
@@ -171,9 +209,7 @@ const StyledAmdinContents = styled(StyledParagraphSmall)`
   flex-direction: ${(props) => (props.showGridView ? "column" : "")};
   align-items: start;
   gap: 8px;
-  ${mobile`
-    font-size:12px;
-  `}
+  ${mobile`font-size: 12px;`}
 `;
 
 const StyledFlex2 = styled.div`
@@ -181,9 +217,7 @@ const StyledFlex2 = styled.div`
   justify-content: ${(props) => (props.showGridView ? "space-between" : "")};
   gap: ${(props) => (props.showGridView ? "10px" : "18px")};
   align-items: center;
-  ${mobile`
-     gap: 12px;
-  `}
+  ${mobile`gap: 12px;`}
 `;
 
 const StyledCard = styled(Card)`
@@ -194,7 +228,6 @@ const StyledCard = styled(Card)`
   padding-right: 15px;
   align-items: center;
   width: ${(props) => (props.showGridView ? "32%" : "")};
-
   ${mobile`
     flex-direction: column;
     gap: 10px;
@@ -217,9 +250,6 @@ const Left = styled.div`
 const StatusIcon = styled.span`
   font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
   color: ${({ theme, type }) => theme.badgeColors[`badge-${type}-primary`]};
-  ${mobile`
- 
-  `}
 `;
 
 const Taskcard = styled.div`
@@ -244,17 +274,14 @@ const BadgeButton = styled.div`
   flex-basis: 30%;
   ${mobile`
     width: 100%;
-    margin-top:-20px;
+    margin-top: -20px;
   `}
 `;
 
 const GaugeWrapper = styled.div`
   display: flex;
   margin-left: 20px;
-
-  ${mobile`
-    display: none;
-  `}
+  ${mobile`display: none;`}
 `;
 
 const StyledBold = styled.span`

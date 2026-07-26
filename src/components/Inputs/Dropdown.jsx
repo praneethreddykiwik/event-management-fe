@@ -29,8 +29,9 @@ const Dropdown = ({
           onChange(params);
         }}
         placeholder={placeholder}
-        styles={customStyles(!!error)}
+        styles={customStyles}
         isSearchable={true}
+        hasError={error}
         // isClearable
         // components={{
         //   // IndicatorSeparator: () => null,
@@ -42,55 +43,56 @@ const Dropdown = ({
   );
 };
 
-const customStyles = (error) => ({
-  control: (base) => ({
+const customStyles = {
+  control: (base, state) => ({
     ...base,
     borderRadius: "25px",
     paddingLeft: "12px",
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
-    border: error ? `1px solid ${theme.light.colors.warning}` : "1px solid #e0e0e0",
+    backgroundColor: "white",
+    border: state.selectProps.hasError
+      ? "1px solid #e53935"
+      : "1px solid #e3e3e3",
+    boxShadow: "none",
+    "&:hover": {
+      borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
+    },
     "&:focus-within": {
-      border: error
-        ? `1px solid ${theme.light.colors.warning} `
-        : `1px solid ${theme.light.colors.grayDisabled}`,
+      border: state.selectProps.hasError
+        ? "1px solid #e53935"
+        : "1px solid #e3e3e3",
       boxShadow: "none",
     },
   }),
-
   dropdownIndicator: (base) => ({
     ...base,
     color: "#66666",
     padding: 8,
   }),
-
   valueContainer: (base) => ({
     ...base,
     padding: "0 8px",
   }),
-
   placeholder: (base) => ({
     ...base,
     fontSize: "14px",
-    color: "red",
-    // color: "#bdbdbd",
+    color: "#bdbdbd",
   }),
-
   singleValue: (base) => ({
     ...base,
     fontSize: "14px",
     color: "#000000",
   }),
-
   menu: (base) => ({
     ...base,
     borderRadius: "22px",
     backgroundColor: "#e6e6e6",
     padding: "0 8px",
     textAlign: "left",
+    zIndex: 9999,
   }),
-
   option: (base, state) => ({
     ...base,
     padding: "8px 20px",
@@ -98,13 +100,11 @@ const customStyles = (error) => ({
     margin: "4px 0",
     fontSize: "14px",
     cursor: "pointer",
-
     backgroundColor: state.isSelected
       ? theme.light.colors.primary
       : state.isFocused
         ? "#f6fff1ff"
         : "transparent",
-
     color: state.isSelected
       ? "#fff"
       : state.isFocused
@@ -112,12 +112,10 @@ const customStyles = (error) => ({
         : state.isDisabled
           ? "#b5b5b5"
           : "#000000",
-
     "&:active": {
-      // not working
       backgroundColor: "#e0deffff",
     },
   }),
-});
+};
 
 export default Dropdown;

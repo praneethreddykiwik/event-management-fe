@@ -36,7 +36,7 @@ import {
 
 export const CreateAndEditTask = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const   location = useLocation();
 
   const { authUser } = useSelector(authSelector);
   const { createTaskInputs } = useSelector(formsSelector);

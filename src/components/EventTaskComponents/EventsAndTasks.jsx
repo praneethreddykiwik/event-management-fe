@@ -18,6 +18,7 @@ import TaskRow from "./TaskRow";
 import { EventWrapsTasks } from "./EventWrapsTasks";
 import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 import { FilterHeaders } from "../Headers/FilterHeaders";
+import { fetchBookmarksByTypeAction } from "../../redux/bookmarks/bookmarks.actions";
 import FilterBoxes from "../Filters/FilterBoxes/FilterBoxes";
 import {
   isFilterSelected,
@@ -47,10 +48,13 @@ const EventsAndTasks = ({ isQa }) => {
         }),
       );
     }
-    // checkHere
+
     if (!vendors.length || !supervisors.length || !qa.length) {
       dispatch(fetchVendorsSupsQA());
     }
+
+    dispatch(fetchBookmarksByTypeAction("task"));
+
   }, []);
 
   const onAddTask = (event) => {
@@ -113,10 +117,15 @@ const EventsAndTasks = ({ isQa }) => {
       />
 
       {eventsAndTasks.map((event) => (
-        <EventWrapsTasks event={event} onAddTask={onAddTask}>
+        <EventWrapsTasks
+          key={event.eventUid}
+          event={event}
+          onAddTask={onAddTask}
+        >
           {event.tasks?.length ? (
             event.tasks.map((task) => (
               <TaskRow
+                key={task.taskUid}
                 task={mapTaskForUI(task, event)}
                 loading={tasksLoading}
                 onEdit={(tsk) => onEdit(tsk, event)}
@@ -133,8 +142,6 @@ const EventsAndTasks = ({ isQa }) => {
   );
 };
 
-const DashboardContainer = styled.div`
-  // padding: 0 16px 16px 16px;
-`;
+const DashboardContainer = styled.div``;
 
 export default EventsAndTasks;

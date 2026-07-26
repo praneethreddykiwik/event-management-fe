@@ -1,4 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
+import { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import AdminTaskItem from "./AdminTaskItem";
 import {
@@ -31,6 +32,7 @@ import { generateFetchManagersReq } from "../../../models/requests/user.req.mode
 import { Icon } from "../../../components/Icons/Icons";
 import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
+import { fetchBookmarksByTypeAction } from "../../../redux/bookmarks/bookmarks.actions";
 import { debounce } from "../../../utils/debouncer";
 import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
 import { getStatusColor } from "../../../utils/utils";
@@ -45,7 +47,6 @@ import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
 const EventsDashboard = () => {
   const dispatch = useDispatch();
-
   const [openManagersPopup, setOpenManagersPopup] = useState(false);
 
   const {
@@ -70,6 +71,7 @@ const EventsDashboard = () => {
         ROLES.eventManager,
       );
       dispatch(fetchManagersAction(fetchmanagerpayload));
+      dispatch(fetchBookmarksByTypeAction("event"));
     }
   }, [dispatch, authUser?.tenantId]);
 
@@ -134,13 +136,14 @@ const EventsDashboard = () => {
   return (
     <BlueBackHOC>
       <PageHeader isTitle>Events</PageHeader>
-
       <EventCards events={events} eventManagers={eventManagers} />
       <CreateEventButtons
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}
       />
-
+      {openManagersPopup && (
+        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
+      )}
       <FilterHeaders
         placeholder="Search Events"
         value={searchFilter}
@@ -160,23 +163,18 @@ const EventsDashboard = () => {
             <StyledMediumHeading left>Events</StyledMediumHeading>
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Textwrapper>
-          <AlignBox onClick={viewClickHandler}>
+          <AlignBox onClick={() => dispatch(setEventsGridView(!eventGridView))}>
             <Icon selected={!eventGridView}>view_list</Icon>
             <Icon selected={eventGridView}>grid_view</Icon>
           </AlignBox>
         </Tasktxt2>
         <EventContainer />
       </TaskMainCard>
-
-      {openManagersPopup && (
-        <ManagersPopupModal onClose={() => setOpenManagersPopup(false)} />
-      )}
     </BlueBackHOC>
   );
 };
 const TaskMainCard = styled.div`
   border-radius: 14px;
-  box-shadow: ${({ theme }) => theme.shadows["level-2"]};
   background: ${({ theme }) => theme.colors.white};
   box-shadow:
     rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
@@ -196,9 +194,7 @@ const AlignBox = styled.div`
   padding-right: 8px;
   gap: 10px;
   cursor: pointer;
-  ${mobile`
-    display:none;
-  `}
+  ${mobile`display: none;`}
 `;
 
 const Textwrapper = styled.div`

@@ -7,7 +7,7 @@ import { ROLES_OBJ } from "../../constants/roles";
 // Runs on app load/refresh to check if session cookie is valid
 export const bootstrapAuthAction = createAsyncThunk(
   "auth/bootstrapAuthAction",
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, dispatch }) => {
     const navigate = payload?.navigate;
     try {
       const res = await meApi();
@@ -16,11 +16,24 @@ export const bootstrapAuthAction = createAsyncThunk(
         const role = res.data?.details?.role;
         navigate(ROLES_OBJ[role]?.routePath || paths.home);
       }
+      dispatch(initializeAllApis());
 
       return res.data.details; // user object
     } catch (err) {
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
+  },
+);
+
+// const bookmarkAPI = getAllBookmarksByUserApi();
+// const [bookmarkRes] = await Promise.all([bookmarkAPI]);
+// dispatch(setAllBookmarks(bookmarkRes?.data?.details));
+export const initializeAllApis = createAsyncThunk(
+  "auth/initialize",
+  async () => {
+    // add all the required api calls here
+    // const fetchManagers = fetchAllUsersAction();
+    // FetchUsers API is required here
   },
 );
 
@@ -34,7 +47,7 @@ export const loginAction = createAsyncThunk(
       toast.success("Login successful");
       return res.data;
     } catch (err) {
-      console.log("error here :", err)
+      console.log("error here :", err);
       toast.error("Login failed");
       return rejectWithValue(err?.response?.data || "Login failed");
     }

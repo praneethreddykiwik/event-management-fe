@@ -23,8 +23,15 @@ import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
 import { RBACHOC } from "../../RBAC/RBAC";
-import { Inputs } from "../Inputs/Inputs";
 import { EditTaskStatus } from "../TaskComponents/EditTaskStatus";
+import {
+  bookmarksSelector,
+  getFolderNames,
+  getSelectedFolderNames,
+  getChangedFolder,
+} from "../../redux/bookmarks/bookmarks.slice";
+import { toggleBookmarkAction } from "../../redux/bookmarks/bookmarks.actions";
+import { Bookmark } from "../UI/Bookmark/Bookmark";
 import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const TaskRow = ({ loading, task = {}, onEdit }) => {
@@ -35,6 +42,31 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { authUser } = useSelector(authSelector);
+  const { taskBookmarks } = useSelector(bookmarksSelector);
+
+  const folderNames = getFolderNames(taskBookmarks);
+  const selectedFolders = getSelectedFolderNames(taskBookmarks, task.taskUid);
+  const isBookmarked = selectedFolders.length > 0;
+
+  const handleToggleBookmark = (folderName) => {
+    dispatch(
+      toggleBookmarkAction({
+        entityId: task.taskUid,
+        folderName,
+        entityType: "task",
+      }),
+    );
+  };
+
+  const handleCheckboxChange = (event) => {
+    const newSelectedFolders = event.target.value;
+    const changedFolder = getChangedFolder(selectedFolders, newSelectedFolders);
+    handleToggleBookmark(changedFolder);
+  };
+
+  const handleAddFolder = (folderName) => {
+    handleToggleBookmark(folderName);
+  };
 
   const viewDetailsHandler = () => {
     const eventUid = searchParams.get("eventUid");
@@ -64,7 +96,6 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
       toast.error("This task is deleted. So you can't edit this task.");
       return;
     }
-
     onEdit(task);
   };
 
@@ -102,6 +133,16 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
         <StyledFlex2>
           <Badge type={task.type}>{task.taskStatusForBadge}</Badge>
           <Icon variant="alternate_email" title="Email" />
+          <Bookmark
+            title="Bookmark"
+            icon="bookmark"
+            iconColor="black"
+            folderNames={folderNames}
+            selectedFolders={selectedFolders}
+            isBookmarked={isBookmarked}
+            onCheckboxChange={handleCheckboxChange}
+            onAddFolder={handleAddFolder}
+          />
           <Icon variant="chat" title="Chat" />
           <RBACHOC perm="event:edit">
             <Icon variant="edit" title="Edit" onClick={handleEdit} />
