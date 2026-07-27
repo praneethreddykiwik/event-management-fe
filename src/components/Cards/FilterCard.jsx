@@ -26,26 +26,31 @@ const StyledValue = styled(StyledMediumHeading)`
 `;
 
 const StyledCard = styled(Card)`
-  flex-basis: calc(33.3% - 11px);
   cursor: pointer;
-
+  padding: 10px 14px;
   background: ${({ $selected }) => ($selected ? "#e9f8e5" : "")};
+
+  flex-basis: calc(20% - 20px);
+  // flex-basis: calc(33.3% - 11px);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
   ${mobile`
-    flex-grow: 1;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  `};
+    // flex-grow: 1;
+    // flex: 1;
+    // gap: 10px;
+    flex-basis: calc(50% - 10px);
+  `}
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows["level-15"]};
+  }
 `;
 
 const StyledLabel = styled(StyledParagraphSmall)`
   text-align: left;
-  margin-top: 16px;
-
-  ${mobile`
-      margin-top: 0px;
-  `}
+  margin-top: 0px;
 `;
 
 export default FilterCard;

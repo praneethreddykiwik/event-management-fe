@@ -68,6 +68,8 @@ const typography = {
 const colors = {
   primary: "#26C867",
   primaryLight: "#f3fff4",
+  primaryLight2: "#26c86745",
+
   white: "#fff",
   black: "#000",
 
@@ -123,6 +125,8 @@ const shadows = {
     "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
   "level-3":
     "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
+
+  "level-15": "#f3fff4 0px 2px 8px 0px",
 };
 
 const borders = {

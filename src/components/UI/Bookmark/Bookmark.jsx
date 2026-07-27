@@ -52,13 +52,13 @@ export const Bookmark = ({
 
   return (
     <Ctn tabIndex={-1} onBlur={closeMenu}>
-        <IconBtn type="button" onClick={() => setOpen(!open)}>
-          <Icon
-            variant={icon}
-            title="Bookmark"
-            sx={{ color: currentBookmarked ? "#D4AF37" : iconColor }}
-          />
-        </IconBtn>
+      <IconBtn type="button" onClick={() => setOpen(!open)}>
+        <Icon
+          variant={icon}
+          title="Bookmark"
+          sx={{ color: currentBookmarked ? "#D4AF37" : iconColor }}
+        />
+      </IconBtn>
       <DropdownMenu $open={open}>
         <MenuHeader>{title}</MenuHeader>
         {folderNames.length > 0 && (
@@ -97,6 +97,7 @@ const IconBtn = styled.button`
   border: none;
   cursor: pointer;
   padding: 4px;
+  height: 20px;
 `;
 const DropdownMenu = styled.div`
   display: ${({ $open }) => ($open ? "flex" : "none")};

@@ -152,8 +152,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
           </StyledFlex2>
           <StyledFlex2>
             <Icon variant="chat" title="Comment" />
-            <Bookmark 
-              icon="bookmark"
+            <Bookmark
               iconColor="black"
               title="Bookmark"
               folderNames={folderNames}

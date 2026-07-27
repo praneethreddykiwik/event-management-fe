@@ -35,9 +35,6 @@ import { Bookmark } from "../UI/Bookmark/Bookmark";
 import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const TaskRow = ({ loading, task = {}, onEdit }) => {
-  if (loading) {
-    return <SkeletonLoaders count={1} height={150} />;
-  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -139,7 +136,6 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
           <Icon variant="alternate_email" title="Email" />
           <Bookmark
             title="Bookmark"
-            icon="bookmark"
             iconColor="black"
             folderNames={folderNames}
             selectedFolders={selectedFolders}
