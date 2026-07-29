@@ -33,6 +33,7 @@ import { generateDeleteTaskReq } from "../../../models/requests/task.req.model";
 import { authSelector } from "../../../redux/auth/auth.slice";
 import { EditTaskStatus } from "../../../components/TaskComponents/EditTaskStatus";
 import { TaskComments } from "./TaskComments";
+import { toast } from "react-toastify";
 
 export const TaskDetails = () => {
   const dispatch = useDispatch();
@@ -85,12 +86,19 @@ export const TaskDetails = () => {
   };
 
   const onEdit = () => {
+    if (task.taskStatus === "deleted") {
+      toast.error("This task is deleted. So you can't edit this task.");
+      return;
+    }
     navigate(`${paths.createTask}`, {
       state: generateEditPayload(task),
     });
   };
 
   const onDelete = () => {
+    if (task.taskStatus === "deleted") {
+      return;
+    }
     const callBack = () => {
       const eventUid = searchParams.get("eventUid");
 
@@ -148,7 +156,12 @@ export const TaskDetails = () => {
             </Button>
           </RBACHOC>
           <RBACHOC perm="event:edit">
-            <Button onClick={onDelete} icon="delete" type="delete">
+            <Button
+              onClick={onDelete}
+              icon="delete"
+              type="delete"
+              disabled={task.taskStatus === "deleted"}
+            >
               Delete
             </Button>
           </RBACHOC>

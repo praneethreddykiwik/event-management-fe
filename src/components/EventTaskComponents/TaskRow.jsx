@@ -153,6 +153,7 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
               icon="delete"
               onClick={onDelete}
               title="Delete"
+              disabled={task.taskStatus === "deleted"}
             >
               Delete Task
             </InlineButton>
