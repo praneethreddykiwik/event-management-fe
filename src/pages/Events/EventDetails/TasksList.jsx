@@ -8,6 +8,7 @@ import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
 import { StyledSemiHeading } from "../../../components/Styled/Typography.styled";
 import { eventsSelector } from "../../../redux/events/events.slice";
 import TaskRow from "../../../components/EventTaskComponents/TaskRow";
+import { toast } from "react-toastify";
 
 export const TasksList = () => {
   const navigate = useNavigateWithQuery();
@@ -16,6 +17,9 @@ export const TasksList = () => {
   const { eventDetails: event } = useSelector(eventsSelector);
 
   const createTaskHandler = () => {
+    toast.warning(
+      "This event has already been deleted. Please review carefully before attempting to create a task.",
+    );
     navigate(`${paths.createTask}`, {
       state: {
         eventUid: event.uid,
