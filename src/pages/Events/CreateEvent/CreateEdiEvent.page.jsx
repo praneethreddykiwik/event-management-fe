@@ -65,17 +65,15 @@ const CreateEdiEvent = () => {
   // };
 
   const refreshOnCreateMode = () => {
-    if (!createEventInputs.length) {
-      if (!eventManagers.length) {
-        const callback = (eventManagersRes) => {
-          const createEventInputs = generateNewEventsInputs(eventManagersRes);
-          dispatch(updateAllEventInputs(createEventInputs));
-        };
-        dispatch(fetchManagersAction({ callback }));
-      } else {
-        const createEventInputs = generateNewEventsInputs(eventManagers);
+    if (!eventManagers.length) {
+      const callback = (eventManagersRes) => {
+        const createEventInputs = generateNewEventsInputs(eventManagersRes);
         dispatch(updateAllEventInputs(createEventInputs));
-      }
+      };
+      dispatch(fetchManagersAction({ callback }));
+    } else {
+      const createEventInputs = generateNewEventsInputs(eventManagers);
+      dispatch(updateAllEventInputs(createEventInputs));
     }
   };
 
