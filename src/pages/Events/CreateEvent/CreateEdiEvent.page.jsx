@@ -92,9 +92,10 @@ const CreateEdiEvent = () => {
           ...inp,
           value: event[inp.name] || inp.value,
           helperText: inp.helperText,
+          error: "",
         };
       }
-      return { ...inp, value: event[inp.name] || inp.value };
+      return { ...inp, value: event[inp.name] || inp.value, error: "" };
     });
     dispatch(updateAllEventInputs(k));
     toast.success("Selected event details are added in the input fields");
