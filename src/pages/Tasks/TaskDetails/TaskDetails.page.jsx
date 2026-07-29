@@ -156,11 +156,14 @@ export const TaskDetails = () => {
             </Button>
           </RBACHOC>
           <RBACHOC perm="event:edit">
-            {task.taskStatus !== "deleted" && (
-              <Button onClick={onDelete} icon="delete" type="delete">
-                Delete
-              </Button>
-            )}
+            <Button
+              onClick={onDelete}
+              icon="delete"
+              type="delete"
+              disabled={task.taskStatus === "deleted"}
+            >
+              Delete
+            </Button>
           </RBACHOC>
         </ActionRow>
         <TaskComments taskUid={taskUid} />
