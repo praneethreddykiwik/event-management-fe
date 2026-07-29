@@ -58,7 +58,9 @@ const customStyles = (error) => ({
       borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
     },
     backgroundColor: state.isDisabled ? "#dedede" : "#fff",
-    border: error ? `1px solid ${theme.light.colors.warning}` : "1px solid #e0e0e0",
+    border: error
+      ? `1px solid ${theme.light.colors.warning}`
+      : "1px solid #e0e0e0",
     "&:focus-within": {
       border: state.selectProps.hasError
         ? "1px solid #e53935"
@@ -116,6 +118,6 @@ const customStyles = (error) => ({
       backgroundColor: "#e0deffff",
     },
   }),
-};
+});
 
 export default Dropdown;
