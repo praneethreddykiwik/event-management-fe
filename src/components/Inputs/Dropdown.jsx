@@ -45,7 +45,7 @@ const Dropdown = ({
   );
 };
 
-const customStyles = (error) => ({
+const customStyles = {
   control: (base, state) => ({
     ...base,
     borderRadius: "25px",
@@ -58,7 +58,7 @@ const customStyles = (error) => ({
       borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
     },
     backgroundColor: state.isDisabled ? "#dedede" : "#fff",
-    border: error
+    border: state.selectProps.hasError
       ? `1px solid ${theme.light.colors.warning}`
       : "1px solid #e0e0e0",
     "&:focus-within": {
@@ -118,6 +118,6 @@ const customStyles = (error) => ({
       backgroundColor: "#e0deffff",
     },
   }),
-});
+};
 
 export default Dropdown;
