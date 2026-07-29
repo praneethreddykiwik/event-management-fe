@@ -6,6 +6,7 @@ import { Button } from "../Buttons/Button";
 import styled from "styled-components";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { updateTaskStatusAction } from "../../redux/tasks/tasks.actions";
+import { toast } from "react-toastify";
 
 export const EditTaskStatus = ({ task }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,10 @@ export const EditTaskStatus = ({ task }) => {
   const { authUser } = useSelector(authSelector);
 
   const handleEditStatus = (e) => {
+    if (task.taskStatus === "deleted") {
+      toast.error("This task is deleted. So you can't edit this task.");
+      return;
+    }
     const payload = {
       reqPayload: {
         tenantUid: authUser?.tenantUid,
@@ -29,6 +34,7 @@ export const EditTaskStatus = ({ task }) => {
       type="dropdown"
       name="taskStatus"
       value={task?.taskStatus}
+      disabled={task.taskStatus === "deleted"}
       placeholder="TaskStatus"
       options={generateTaskStatusOptions(authUser.role)}
       onChange={handleEditStatus}
