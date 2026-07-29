@@ -61,7 +61,10 @@ export const logoutAction = createAsyncThunk(
       await logoutApi();
       return true;
     } catch (err) {
-      toast.error("Logout Failed!");
+      if (err?.response?.status !== 401) {
+        toast.error("Logout Failed!");
+      }
+
       return rejectWithValue(err?.response?.data || "Logout failed");
     }
   },

@@ -7,6 +7,8 @@ import {
   deleteEventsApi,
 } from "../../api/events.api";
 import { toast } from "react-toastify";
+import { showErrorToast } from "../../utils/toast.utils";
+
 import { paths } from "../../constants/paths";
 // import { updateAllTaskInputs } from "../farms/farms.slice";
 export const fetchEventsDispatch = createAsyncThunk(
@@ -18,8 +20,7 @@ export const fetchEventsDispatch = createAsyncThunk(
       const res = await fetchEventsApi(query);
       return res.data; // user object
     } catch (err) {
-      // error toast
-      toast.error("Failed to fetch Events");
+      showErrorToast(err, "Failed to fetch Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -39,11 +40,7 @@ export const createEventsDispatch = createAsyncThunk(
       // // dispatch(updateAllTaskInputs(generateAddTaskInpMetadata(vendors)));
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to create Events",
-      );
+      showErrorToast(err, "Failed to create Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -55,15 +52,10 @@ export const updateEventDispatch = createAsyncThunk(
     try {
       const res = await updateEventsApi(payload.reqPayload);
       toast.success("Updated Event successfully");
-
       payload.navigate(paths.eventsDashboard);
       return res.data;
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message ||
-          error?.message ||
-          "Failed to create Events",
-      );
+      showErrorToast(error, "Failed to update Events");
       return rejectWithValue(error?.response?.data || "Not authenticated");
     }
   },
@@ -78,11 +70,7 @@ export const assignEventAction = createAsyncThunk(
       res.data.reqPayload = payload.reqPayload;
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to assign Event",
-      );
+      showErrorToast(err, "Failed to assign Event");
       return rejectWithValue(err?.response?.data || "Something went wrong!");
     }
   },
@@ -93,15 +81,10 @@ export const deleteEventDispatch = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       await deleteEventsApi(payload);
-
       toast.success("Event deleted successfully");
       return payload;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to delete event",
-      );
+      showErrorToast(err, "Failed to delete event");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
@@ -113,14 +96,9 @@ export const fetchEventDetailsAction = createAsyncThunk(
     try {
       const query = `?eventUid=${payload.eventUid}`;
       const res = await fetchEventsApi(query);
-
       return res.data.details?.events[0];
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to fetch event details",
-      );
+      showErrorToast(err, "Failed to fetch event details");
       return rejectWithValue(err?.response?.data || "Something went wrong!");
     }
   },
@@ -142,8 +120,7 @@ export const eventsFilterAction = createAsyncThunk(
       };
       return k;
     } catch (err) {
-      // error toast
-      toast.error("Failed to fetch Events");
+      showErrorToast(err, "Failed to fetch Events");
       return rejectWithValue(err?.response?.data || "Not authenticated");
     }
   },
