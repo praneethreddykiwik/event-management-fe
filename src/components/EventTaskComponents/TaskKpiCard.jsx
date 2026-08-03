@@ -17,7 +17,7 @@ export const TaskKpiCard = ({
   loading,
 }) => {
   if (loading) {
-    return <SkeletonLoaders count={1} height={90} width={360} type="card" />;
+    return <SkeletonLoaders count={1} height={100} width={200} type="card" />;
   }
   return (
     <StyledCard onClick={onClick} $selected={selected}>

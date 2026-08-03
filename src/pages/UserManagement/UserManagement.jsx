@@ -27,7 +27,6 @@ import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
 import { UserFilterCards } from "./UserFilterCards";
 import { Icon } from "../../components/Icons/Icons";
-import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();

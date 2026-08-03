@@ -106,7 +106,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
   if (loading) {
-    return <SkeletonLoaders count={1} height={150} />;
+    return <SkeletonLoaders count={1} height={140} />;
   }
 
   return (
