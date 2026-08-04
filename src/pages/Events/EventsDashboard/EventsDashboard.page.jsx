@@ -41,7 +41,6 @@ import {
   updateFilters,
 } from "../../../components/Filters/FilterBoxes/FilterBoxes.helper";
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
-import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
 import { EventContainer } from "./EventContainer";
 import { setSelectedEventFilters } from "../../../redux/events/events.slice";
 
@@ -55,7 +54,6 @@ const EventsDashboard = () => {
     selectedEventFilters,
     eventGridView,
     eventsStatusCounts,
-    eventsLoading,
   } = useSelector(eventsSelector);
 
   const { eventManagers } = useSelector(usersSelector);
@@ -163,7 +161,7 @@ const EventsDashboard = () => {
             <StyledMediumHeading left>Events</StyledMediumHeading>
             <StyledParagraphSmall left>{enums.MONITOR_EV}</StyledParagraphSmall>
           </Textwrapper>
-          <AlignBox onClick={() => dispatch(setEventsGridView(!eventGridView))}>
+          <AlignBox onClick={viewClickHandler}>
             <Icon selected={!eventGridView}>view_list</Icon>
             <Icon selected={eventGridView}>grid_view</Icon>
           </AlignBox>

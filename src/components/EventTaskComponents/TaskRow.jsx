@@ -103,7 +103,7 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   };
 
   if (loading) {
-    return <SkeletonLoaders count={1} height={150} />;
+    return <SkeletonLoaders count={1} height={140} />;
   }
 
   return (

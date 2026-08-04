@@ -43,7 +43,7 @@ export const QADashboard = () => {
       )}
       <ChartCtn>
         {tasksLoading ? (
-          <SkeletonLoaders count={6} height={100} type="card" width={340} />
+          <SkeletonLoaders count={4} height={90} width={360} />
         ) : (
           <>
             <EventsSummaryCard

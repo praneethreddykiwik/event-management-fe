@@ -10,7 +10,7 @@ const FilterBoxes = ({
   isLoading,
 }) => {
   if (isLoading) {
-    return <SkeletonLoaders count={6} height={90} type="card" width={360} />;
+    return <SkeletonLoaders count={9} height={50} type="card" width={200} />;
   }
 
   return (
