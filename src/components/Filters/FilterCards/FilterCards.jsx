@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import FilterCard from "../../Cards/FilterCard";
+import FilterCard from "./FilterCard";
 import { SkeletonLoaders } from "../../UI/Loaders/SkeletonLoaders";
 
-const FilterBoxes = ({
+const FilterCards = ({
   countObj,
   getColor,
   onCardClick,
@@ -36,4 +36,4 @@ const CardsRow = styled.div`
   flex-wrap: wrap;
 `;
 
-export default FilterBoxes;
+export default FilterCards;

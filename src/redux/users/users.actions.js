@@ -21,8 +21,8 @@ export const fetchManagersAction = createAsyncThunk(
       const query = `?tenantId=${tenantId}&role=${ROLES.eventManager}`;
       const res = await getEventManagersApi(query);
 
-      if (payload?.callback && res?.data?.details) {
-        payload.callback(res.data.details);
+      if (payload?.callback && res?.data?.details?.users) {
+        payload.callback(res.data.details.users);
       }
 
       return res?.data;
@@ -35,11 +35,9 @@ export const fetchManagersAction = createAsyncThunk(
 
 export const fetchAllUsersAction = createAsyncThunk(
   "users/fetchAllUsersAction",
-  async (_, { rejectWithValue, getState }) => {
-    const store = getState();
-    const { tenantId } = store.auth;
+  async (payload, { rejectWithValue }) => {
     try {
-      const query = `?tenantId=${tenantId}`;
+      const query = `?role=${payload.query} `;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
@@ -94,7 +92,7 @@ export const fetchVendorsSupsQA = createAsyncThunk(
       // const vendorQuery = `?tenantId=${tenantId}&role=${ROLES.vendor}`;
       // const vendorPromise = getUsersApi(vendorQuery);
 
-      const users = response.data?.details.reduce(
+      const users = response.data?.details?.users.reduce(
         (acu, cur) => {
           acu[cur.role].push(cur);
           return acu;

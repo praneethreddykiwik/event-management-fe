@@ -34,12 +34,12 @@ import { mobile } from "../../../theme/media-queries";
 import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
 import { fetchBookmarksByTypeAction } from "../../../redux/bookmarks/bookmarks.actions";
 import { debounce } from "../../../utils/debouncer";
-import FilterBoxes from "../../../components/Filters/FilterBoxes/FilterBoxes";
+import FilterCards from "../../../components/Filters/FilterCards/FilterCards";
 import { getStatusColor } from "../../../utils/utils";
 import {
   isFilterSelected,
   updateFilters,
-} from "../../../components/Filters/FilterBoxes/FilterBoxes.helper";
+} from "../../../components/Filters/FilterCards/FilterCards.helper";
 import { INITIAL_FILTERS } from "../../../constants/events.constants";
 import { EventContainer } from "./EventContainer";
 import { setSelectedEventFilters } from "../../../redux/events/events.slice";
@@ -117,7 +117,7 @@ const EventsDashboard = () => {
   };
 
   const onClickFilter = (key) => {
-    const updated = updateFilters(key, selectedEventFilters, INITIAL_FILTERS);
+    const updated = updateFilters(key, selectedEventFilters);
     dispatch(setSelectedEventFilters(updated));
 
     const query = updated
@@ -128,7 +128,7 @@ const EventsDashboard = () => {
   };
 
   const isSelected = (key) => {
-    return isFilterSelected(key, selectedEventFilters, INITIAL_FILTERS);
+    return isFilterSelected(key, selectedEventFilters);
   };
 
   return (
@@ -148,7 +148,7 @@ const EventsDashboard = () => {
         onChange={onChangeSearch}
       />
 
-      <FilterBoxes
+      <FilterCards
         countObj={eventsStatusCounts}
         getColor={(key) => getStatusColor(key, eventsStatusCounts)}
         onCardClick={onClickFilter}

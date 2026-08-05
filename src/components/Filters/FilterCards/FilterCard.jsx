@@ -2,11 +2,11 @@ import styled from "styled-components";
 import {
   StyledMediumHeading,
   StyledParagraphSmall,
-} from "../Styled/Typography.styled";
-import { Card } from "./Cards";
-import { camelToWords } from "../../utils/utils";
-import { mobile } from "../../theme/media-queries";
-import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
+} from "../../Styled/Typography.styled";
+import { Card } from "../../Cards/Cards";
+import { camelToWords } from "../../../utils/utils";
+import { mobile } from "../../../theme/media-queries";
+import { SkeletonLoaders } from "../../UI/Loaders/SkeletonLoaders";
 
 const FilterCard = ({ objKey, value, color, onClick, selected, loading }) => {
   if (loading) {

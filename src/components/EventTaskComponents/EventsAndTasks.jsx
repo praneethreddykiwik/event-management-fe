@@ -19,11 +19,11 @@ import { EventWrapsTasks } from "./EventWrapsTasks";
 import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
 import { FilterHeaders } from "../Headers/FilterHeaders";
 import { fetchBookmarksByTypeAction } from "../../redux/bookmarks/bookmarks.actions";
-import FilterBoxes from "../Filters/FilterBoxes/FilterBoxes";
+import FilterCards from "../Filters/FilterCards/FilterCards";
 import {
   isFilterSelected,
   updateFilters,
-} from "../Filters/FilterBoxes/FilterBoxes.helper";
+} from "../Filters/FilterCards/FilterCards.helper";
 import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const EventsAndTasks = ({ isQa }) => {
@@ -87,11 +87,7 @@ const EventsAndTasks = ({ isQa }) => {
   };
 
   const onClickFilter = (key) => {
-    const updated = updateFilters(
-      key,
-      selectedTaskFilters,
-      TASK_INITIAL_FILTERS,
-    );
+    const updated = updateFilters(key, selectedTaskFilters);
 
     dispatch(
       fetchEventsAndTasksAction({
@@ -102,17 +98,19 @@ const EventsAndTasks = ({ isQa }) => {
     );
   };
 
+  const isSelected = (key) => {
+    return isFilterSelected(key, selectedTaskFilters);
+  };
+
   return (
     <DashboardContainer>
       <FilterHeaders />
       {/* Filter cards */}
-      <FilterBoxes
+      <FilterCards
         countObj={taskCountObj}
         getColor={(key) => getStatusColor(key, taskCountObj)}
         onCardClick={onClickFilter}
-        isSelected={(key) =>
-          isFilterSelected(key, selectedTaskFilters, TASK_INITIAL_FILTERS)
-        }
+        isSelected={isSelected}
         isLoading={tasksLoading}
       />
 
