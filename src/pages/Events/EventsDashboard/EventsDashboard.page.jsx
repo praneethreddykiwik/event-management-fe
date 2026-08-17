@@ -134,7 +134,7 @@ const EventsDashboard = () => {
   return (
     <BlueBackHOC>
       <PageHeader isTitle>Events</PageHeader>
-      <EventCards events={events} eventManagers={eventManagers} />
+      <EventCards events={eventsStatusCounts} eventManagers={eventManagers} />
       <CreateEventButtons
         onCreateEvent={onCreateEvent}
         setOpenManagersPopup={setOpenManagersPopup}

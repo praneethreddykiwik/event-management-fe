@@ -16,7 +16,7 @@ export const EventCards = ({ events, eventManagers }) => {
         <EventsSummaryCard
           label="Total Events"
           loading={eventsLoading}
-          value={events.length}
+          value={events.total}
         />
         <EventsSummaryCard
           label="Event Managers"
