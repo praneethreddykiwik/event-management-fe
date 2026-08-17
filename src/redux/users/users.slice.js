@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./users.actions";
+import { USER_ROLE_FILTERS } from "../../constants/user.constants";
 
 const initialState = {
   eventManagersLoading: false,
@@ -30,22 +31,8 @@ const initialState = {
   allUsers: [],
   allUsersError: null,
 
-  roleCounts: {
-    total: 0,
-    admin: 0,
-    event_manager: 0,
-    vendor: 0,
-    supervisor: 0,
-    qa: 0,
-  },
-
-  selectedRoleFilters: [
-    { label: "Admin", value: "admin", selected: true },
-    { label: "Event Manager", value: "event_manager", selected: true },
-    { label: "Vendor", value: "vendor", selected: true },
-    { label: "Supervisor", value: "supervisor", selected: true },
-    { label: "QA", value: "qa", selected: true },
-  ],
+  roleCounts: {},
+  selectedRoleFilters: [...USER_ROLE_FILTERS],
 
   userMgtGridView: false,
 };
@@ -62,6 +49,9 @@ const usersSlice = createSlice({
     },
     setUserMgtGridView(state, action) {
       state.userMgtGridView = action.payload;
+    },
+    setSelectedRoleFilters(state, action) {
+      state.selectedRoleFilters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -84,27 +74,10 @@ const usersSlice = createSlice({
         state.allUsersLoading = true;
       })
       .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
-        const users = action.payload?.details || [];
-        state.allUsers = users;
+        state.allUsers = action.payload?.details?.users || [];
         state.allUsersLoading = false;
         state.allUsersError = null;
-
-        const counts = {
-          total: users.length,
-          admin: 0,
-          event_manager: 0,
-          vendor: 0,
-          supervisor: 0,
-          qa: 0,
-        };
-
-        users.forEach((user) => {
-          if (counts[user.role] !== undefined) {
-            counts[user.role]++;
-          }
-        });
-
-        state.roleCounts = counts;
+        state.roleCounts = action.payload?.details?.roleCounts || {};
       })
       .addCase(actions.fetchAllUsersAction.rejected, (state) => {
         state.allUsersError = "Something went wrong";
@@ -116,7 +89,7 @@ const usersSlice = createSlice({
         state.vendorsLoading = true;
       })
       .addCase(actions.fetchVendorsAction.fulfilled, (state, action) => {
-        state.vendors = action.payload?.details;
+        state.vendors = action.payload?.details?.users;
         state.vendorsLoading = false;
         state.vendorsError = null;
       })
@@ -130,7 +103,7 @@ const usersSlice = createSlice({
         state.supervisorsLoading = true;
       })
       .addCase(actions.fetchSupervisorsAction.fulfilled, (state, action) => {
-        state.supervisors = action.payload?.details;
+        state.supervisors = action.payload?.details?.users;
         state.supervisorsLoading = false;
         state.supervisorsError = null;
       })
@@ -205,5 +178,6 @@ export const {
   clearRegistrationSuccessMsg,
   usersFilterAction,
   setUserMgtGridView,
+  setSelectedRoleFilters,
 } = usersSlice.actions;
 export default usersSlice.reducer;

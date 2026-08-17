@@ -25,33 +25,45 @@ import {
 } from "../../redux/users/users.slice";
 import EditUserPopup2 from "./EditUserPopup2";
 import { mobile } from "../../theme/media-queries";
-import { UserFilterCards } from "./UserFilterCards";
 import { Icon } from "../../components/Icons/Icons";
+import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
+import FilterCards from "../../components/Filters/FilterCards/FilterCards";
+import {
+  isFilterSelected,
+  updateFilters,
+} from "../../components/Filters/FilterCards/FilterCards.helper";
+import { useSearchParams } from "react-router-dom";
+import { USER_ROLE_FILTERS } from "../../constants/user.constants";
 
 const UserManagement = () => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { allUsers, selectedRoleFilters, userMgtGridView, allUsersLoading } =
+  const { allUsers, userMgtGridView, allUsersLoading, roleCounts } =
     useSelector(usersSelector);
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
+  const filterCards = searchParams.get("filterCards");
+  const selectedValues = filterCards ? filterCards.split(",") : [];
+  const selectedRoleFilters = USER_ROLE_FILTERS.map((filter) => ({
+    ...filter,
+    selected:
+      filterCards === null
+        ? filter.selected
+        : selectedValues.includes(filter.value),
+  }));
+
   useEffect(() => {
-    dispatch(fetchAllUsersAction());
+    const query = selectedRoleFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+    dispatch(fetchAllUsersAction({ query }));
   }, []);
-
-  const filteredUsers = allUsers.filter((user) => {
-    const selectedRoles = selectedRoleFilters
-      ?.filter((f) => f.selected)
-      .map((f) => f.value);
-
-    if (!selectedRoles || selectedRoles.length === 0) return true;
-
-    return selectedRoles.includes(user.role);
-  });
 
   // EDIT USER
   const onEdit = (user) => {
@@ -65,13 +77,39 @@ const UserManagement = () => {
   // DELETE USER
   const onDelete = async () => {
     await dispatch(deleteUserAction({ uid: selectedUser.uid }));
-    dispatch(fetchAllUsersAction());
+    const query = selectedRoleFilters
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+
+    dispatch(fetchAllUsersAction({ query }));
     setShowDeleteConfirm(false);
     setSelectedUser(null);
   };
 
   const viewClickHandler = () => {
     dispatch(setUserMgtGridView(!userMgtGridView));
+  };
+
+  const onClickFilter = (key) => {
+    const updated = updateFilters(key, selectedRoleFilters);
+
+    const query = updated
+      .filter((fl) => fl.selected)
+      .map((m) => m.value)
+      .join(",");
+
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("filterCards", query);
+      return params;
+    });
+
+    dispatch(fetchAllUsersAction({ query }));
+  };
+
+  const isSelected = (key) => {
+    return isFilterSelected(key, selectedRoleFilters);
   };
 
   return (
@@ -83,7 +121,14 @@ const UserManagement = () => {
             Create User{" "}
           </StyledButton>
         </StyledButtonContainer>
-        <UserFilterCards />
+
+        <FilterCards
+          countObj={roleCounts}
+          getColor={() => "#000000"}
+          onCardClick={onClickFilter}
+          isSelected={isSelected}
+          isLoading={allUsersLoading}
+        />
 
         <AlignBox onClick={viewClickHandler}>
           <Icon selected={!userMgtGridView}>view_list</Icon>
@@ -91,8 +136,8 @@ const UserManagement = () => {
         </AlignBox>
 
         <UsersCtn $gridView={userMgtGridView}>
-        {filteredUsers?.length ? (
-            filteredUsers.map((user) => (
+          {allUsers?.length ? (
+            allUsers.map((user) => (
               <UserManagementItem
                 key={user.uid}
                 loading={allUsersLoading}

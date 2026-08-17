@@ -1,7 +1,7 @@
 import { httpsClient } from "./client/httpsClient";
 
-export const getUsersApi = (queryParams) => {
-  return httpsClient.get("/users" + queryParams);
+export const getUsersApi = (query) => {
+  return httpsClient.get("/users" + (query || ""));
 };
 export const getEventManagersApi = (queryParams) => {
   return httpsClient.get("/users/event-managers" + queryParams);
