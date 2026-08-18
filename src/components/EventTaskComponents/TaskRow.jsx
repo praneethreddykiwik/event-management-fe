@@ -20,6 +20,7 @@ import {
 } from "../../redux/tasks/tasks.actions";
 
 import { authSelector } from "../../redux/auth/auth.slice";
+import { tasksSelector } from "../../redux/tasks/tasks.slice";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
@@ -40,6 +41,7 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { authUser } = useSelector(authSelector);
+  const { selectedTaskFilters } = useSelector(tasksSelector);
   const { taskBookmarks } = useSelector(bookmarksSelector);
 
   const folderNames = getFolderNames(taskBookmarks);
@@ -78,8 +80,13 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
         const query = `eventUid=${eventUid}`;
         dispatch(fetchTasksApiAction({ query }));
       } else {
-        const query = `assignedToUid=${authUser?.uid}&tenantUid=${authUser?.tenantUid}`;
-        dispatch(fetchEventsAndTasksAction(query));
+        dispatch(
+          fetchEventsAndTasksAction({
+            assignedToUid: authUser?.uid,
+            tenantUid: authUser?.tenantUid,
+            filters: selectedTaskFilters,
+          }),
+        );
       }
     };
 
