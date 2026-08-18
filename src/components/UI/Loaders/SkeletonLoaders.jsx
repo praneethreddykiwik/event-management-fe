@@ -8,7 +8,7 @@ export const SkeletonLoaders = ({
   type = "list",
 }) => {
   return (
-    <LoaderCtn type={type}>
+    <LoaderCtn type={type} className="skeleton-loader">
       {Array(count)
         .fill("")
         .map(() =>
