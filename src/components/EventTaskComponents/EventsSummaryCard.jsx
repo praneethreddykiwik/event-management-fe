@@ -46,11 +46,11 @@ const StyledValue = styled(StyledMediumHeading)`
 `;
 
 const ChartWrap = styled.div`
+  flex-shrink: 0;
   ${({ $inline }) =>
     $inline &&
     `
       margin-left: 8px;
-      flex-shrink: 0;
     `}
 `;
 
