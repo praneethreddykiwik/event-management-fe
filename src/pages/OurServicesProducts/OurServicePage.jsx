@@ -11,7 +11,7 @@ import {
 
 import { SERVICES_PAGE_DATA } from "../../myEnum/OurServicesText.jsx";
 
-import { servicesData } from "../../helpers/Ourservices.helper.jsx";
+import { servicesData } from "../../helpers/OurServices.helper.jsx";
 
 const OurServices = () => {
   return (
