@@ -6,13 +6,16 @@ const initialState = {
   authUser: null,
   authStatus: "loading", // idle | loading | authenticated | unauthenticated
   authError: null,
-
-  tenantId: "",
-
   // RBAC
-  roles: ["manager"],
   permissions: [],
   isAuthReady: false,
+};
+
+const clearAuthState = (state) => {
+  state.authUser = null;
+  state.authStatus = "unauthenticated";
+  state.permissions = [];
+  state.isAuthReady = false;
 };
 
 const authSlice = createSlice({
@@ -24,6 +27,7 @@ const authSlice = createSlice({
       state.authError = null;
     },
     updateTenantId(state, action) {
+      // this will get triggered when url gets a tenantId
       state.tenantId = action.payload;
     },
   },
@@ -37,7 +41,6 @@ const authSlice = createSlice({
       .addCase(actions.bootstrapAuthAction.fulfilled, (state, action) => {
         state.authUser = action.payload;
         const role = action.payload.role;
-
         state.permissions = ROLE_PERMISSIONS[role];
         state.isAuthReady = true;
         state.authStatus = "authenticated";
@@ -50,11 +53,9 @@ const authSlice = createSlice({
     // login
     builder
       .addCase(actions.loginAction.pending, (state) => {
-        // state.authStatus = "loading";
         state.authError = null;
       })
-      .addCase(actions.loginAction.fulfilled, (state, action) => {
-        state.authUser = action.payload;
+      .addCase(actions.loginAction.fulfilled, (state) => {
         state.authStatus = "authenticated";
       })
       .addCase(actions.loginAction.rejected, (state, action) => {
@@ -63,18 +64,15 @@ const authSlice = createSlice({
         state.authError = action.payload || "Login failed";
       });
 
-    // logout
-    builder.addCase(actions.logoutAction.fulfilled, (state) => {
-      state.authUser = null;
-      state.authStatus = "unauthenticated";
-    });
+    builder
+      .addCase(actions.logoutAction.fulfilled, clearAuthState)
+      .addCase(actions.logoutAction.rejected, clearAuthState);
   },
 });
 
 export const selectPermissions = (s) => s.auth.permissions;
 export const selectIsAuthReady = (s) => s.auth.isAuthReady;
 // export const RBAC = (permissions, perm) => permissions.includes(perm);
-
 export const authSelector = (st) => st.auth;
 export const { clearAuthError, updateTenantId } = authSlice.actions;
 export default authSlice.reducer;

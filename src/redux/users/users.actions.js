@@ -1,89 +1,147 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createUserApi,
+  getEventManagersApi,
   getUsersApi,
   updateUserApi,
   userDeleteApi,
 } from "../../api/users.api";
-import { roles } from "../../constants/roles";
+import { ROLES } from "../../constants/roles";
 import { toast } from "react-toastify";
+import { showErrorToast } from "../../utils/toast.utils";
+import { updateAllRegInputs } from "../farms/farms.slice";
+import { generateRegInputsAccordingToRole } from "../farms/metadata/reg.metadata";
 
 export const fetchManagersAction = createAsyncThunk(
   "users/fetchManagersAction",
-  async (_, { rejectWithValue, getState }) => {
+  async (payload, { rejectWithValue, getState }) => {
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const query = `?tenantId=${tenantId}&role=${roles.eventManager}`;
-      const res = await getUsersApi(query);
-      return res.data;
+      const query = `?tenantId=${tenantId}&role=${ROLES.eventManager}`;
+      const res = await getEventManagersApi(query);
+
+      if (payload?.callback && res?.data?.details?.users) {
+        payload.callback(res.data.details.users);
+      }
+
+      return res?.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to fetch managers"
-      );
-      return rejectWithValue(err?.response?.data || "Login failed");
+      showErrorToast(err, "Failed to fetch managers");
+      return rejectWithValue(err?.response?.data || "Failed to fetch managers");
     }
-  }
+  },
 );
 
 export const fetchAllUsersAction = createAsyncThunk(
   "users/fetchAllUsersAction",
-  async (_, { rejectWithValue, getState }) => {
-    const store = getState();
-    const { tenantId } = store.auth;
+  async (payload, { rejectWithValue }) => {
     try {
-      const query = `?tenantId=${tenantId}`;
+      const query = `?role=${payload.query} `;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to fetch Users"
-      );
+      showErrorToast(err, "Failed to fetch Users");
       return rejectWithValue(err?.response?.data || "Fetch users failed");
     }
-  }
+  },
 );
 
 export const fetchVendorsAction = createAsyncThunk(
   "users/fetchVendorsAction",
-  // http://localhost:4000/v1/users?tenantId=tenant_001&role=vendor
   async (_, { rejectWithValue, getState }) => {
     const store = getState();
     const { tenantId } = store.auth;
     try {
-      const query = `?tenantId=${tenantId}&role=${roles.vendor}`;
+      const query = `?tenantId=${tenantId}&role=${ROLES.vendor}`;
       const res = await getUsersApi(query);
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Failed to fetch managers"
-      );
-      return rejectWithValue(err?.response?.data || "Login failed");
+      showErrorToast(err, "Failed to fetch Vendors");
+      return rejectWithValue(err?.response?.data || "Failed to fetch Vendors");
     }
-  }
+  },
+);
+
+export const fetchSupervisorsAction = createAsyncThunk(
+  "users/fetchSupervisorsAction",
+  async (_, { rejectWithValue, getState }) => {
+    const store = getState();
+    const { tenantId } = store.auth;
+    try {
+      const query = `?tenantId=${tenantId}&role=${ROLES.supervisor}`;
+      const res = await getUsersApi(query);
+      return res.data;
+    } catch (err) {
+      showErrorToast(err, "Failed to fetch Supervisors");
+      return rejectWithValue(
+        err?.response?.data || "Failed to fetch Supervisors",
+      );
+    }
+  },
+);
+
+export const fetchVendorsSupsQA = createAsyncThunk(
+  "users/fetchVendorsSupsQA",
+  async (payload, { rejectWithValue, getState }) => {
+    const store = getState();
+    const { tenantId } = store.auth;
+    try {
+      const supervisorQuery = `?tenantId=${tenantId}&role=${ROLES.supervisor},${ROLES.vendor},${ROLES.qa}`;
+      const response = await getUsersApi(supervisorQuery);
+      // const vendorQuery = `?tenantId=${tenantId}&role=${ROLES.vendor}`;
+      // const vendorPromise = getUsersApi(vendorQuery);
+
+      const users = response.data?.details?.users.reduce(
+        (acu, cur) => {
+          acu[cur.role].push(cur);
+          return acu;
+        },
+        { supervisor: [], vendor: [], qa: [] },
+      );
+
+      const res = {
+        supervisors: users.supervisor,
+        vendors: users.vendor,
+        qa: users.qa,
+      };
+
+      if (payload?.callback) {
+        payload.callback(res);
+      }
+      return res;
+    } catch (err) {
+      console.log(err);
+      showErrorToast(err, "Failed to fetch Supervisors and Vendors");
+      return rejectWithValue(
+        err?.response?.data || "Failed to fetch Supervisors and Vendors",
+      );
+    }
+  },
 );
 
 export const registrationAction = createAsyncThunk(
   "auth/registrationAction",
-  async (payload, { rejectWithValue }) => {
-    // const navigate = payload.navigate;
+  async (payload, { rejectWithValue, dispatch, getState }) => {
+    const navigate = payload.navigate;
     try {
       const res = await createUserApi(payload.reqPayload);
+
+      // clear Inputs
+      const store = getState();
+      const { role } = store.auth;
+      dispatch(updateAllRegInputs(generateRegInputsAccordingToRole(role)));
+
       toast.success("registration successful");
+      if (payload.navPath) {
+        navigate(payload.navPath);
+      }
       return res.data; // user object (or any success response)
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || err?.message || "Registration failed"
-      );
+      showErrorToast(err, "Registration failed");
       return rejectWithValue(err?.response?.data || "Registration failed");
     }
-  }
+  },
 );
 
 // shahid
@@ -96,12 +154,10 @@ export const deleteUserAction = createAsyncThunk(
       toast.success("user deleted successfully");
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || err?.message || "Failed to delete user"
-      );
-      return rejectWithValue(err?.response?.data || "Login failed");
+      showErrorToast(err, "Failed to delete user");
+      return rejectWithValue(err?.response?.data || "Failed to delete user");
     }
-  }
+  },
 );
 
 export const updateUserAction = createAsyncThunk(
@@ -113,10 +169,8 @@ export const updateUserAction = createAsyncThunk(
       toast.success("Users updated successfully");
       return res.data;
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || err?.message || "Failed to update user"
-      );
-      return rejectWithValue(err?.response?.data || "Login failed");
+      showErrorToast(err, "Failed to update user");
+      return rejectWithValue(err?.response?.data || "Failed to update user");
     }
-  }
+  },
 );

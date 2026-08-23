@@ -12,53 +12,26 @@ import speaker2 from "../../assets/FeaturedEvents-Imgs/Speaker2.jpg";
 import speaker3 from "../../assets/FeaturedEvents-Imgs/Speaker3.jpeg";
 import speaker4 from "../../assets/FeaturedEvents-Imgs/Speaker4.jpeg";
 
+import {
+  StyledParagraph,
+  StyledSemiHeading,
+  StyledParagraphGray,
+  StyledParagraphBold,
+} from "../../components/Styled/Typography.styled";
+import { mobile } from "../../theme/media-queries";
+import Avatar from "../../components/Avatar/Avatar";
 const events = [
-  {
-    img: carImage1,
-    role: "SPEAKER",
-    name: "Sydney",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImg2,
-    role: "SPEAKER",
-    name: "Esther Howard",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImage3,
-    role: "HOST",
-    name: "Mike",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImg4,
-    role: "HOST",
-    name: "Niki",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImage1,
-    role: "SPEAKER",
-    name: "Tyla",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImg2,
-    role: "GUEST",
-    name: "smithi john",
-    title: "Marketing Coordinator HNG Group",
-  },
-  {
-    img: carImg4,
-    role: "SPEAKER",
-    name: "Angelina",
-    title: "Marketing Coordinator HNG Group",
-  },
+  { img: carImage1, role: "SPEAKER", name: "Sydney" },
+  { img: carImg2, role: "SPEAKER", name: "Esther Howard" },
+  { img: carImage3, role: "HOST", name: "Mike" },
+  { img: carImg4, role: "HOST", name: "Niki" },
+  { img: carImage1, role: "SPEAKER", name: "Tyla" },
+  { img: carImg2, role: "GUEST", name: "Smithi John" },
+  { img: carImg4, role: "SPEAKER", name: "Angelina" },
 ];
 
-const SIDE_WIDTH = 150;
-const CENTER_WIDTH = 450;
+const SIDE_WIDTH = 116;
+const CENTER_WIDTH = 460;
 const GAP = 0;
 const VISIBLE_COUNT = 5;
 
@@ -83,14 +56,24 @@ const FeaturedEvents = () => {
   useEffect(() => {
     if (!trackRef.current) return;
 
-    const sideCount = Math.floor(VISIBLE_COUNT / 2);
-    const sideSpace = sideCount * SIDE_WIDTH;
+    const viewport = trackRef.current.parentElement;
+    const viewportWidth = viewport.offsetWidth;
 
-    const targetLeft = sideSpace;
+    const isMobile = window.innerWidth <= 768;
 
-    const currentLeft = activeIndex * SIDE_WIDTH;
+    const sideWidth = isMobile ? 140 : SIDE_WIDTH;
+    const centerWidth = isMobile ? viewportWidth * 0.7 : CENTER_WIDTH;
 
-    const translateX = targetLeft - currentLeft;
+    let offsetBeforeActive = 0;
+
+    for (let i = 0; i < activeIndex; i++) {
+      offsetBeforeActive += i === activeIndex - 1 ? sideWidth : sideWidth;
+    }
+
+    const activeCardWidth = centerWidth;
+
+    const translateX =
+      viewportWidth / 2 - (offsetBeforeActive + activeCardWidth / 2);
 
     trackRef.current.style.transform = `translateX(${translateX}px)`;
   }, [activeIndex]);
@@ -98,12 +81,16 @@ const FeaturedEvents = () => {
   return (
     <Section>
       <Header>
-        <h2>Featured Event Managers</h2>
+        <StyledSemiHeading left>Featured Event</StyledSemiHeading>
         <Actions>
           <ViewMore>View more</ViewMore>
           <Arrows>
-            <button onClick={prevSlide}>‹</button>
-            <button onClick={nextSlide}>›</button>
+            <button onClick={prevSlide}>
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button onClick={nextSlide}>
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
           </Arrows>
         </Actions>
       </Header>
@@ -114,13 +101,7 @@ const FeaturedEvents = () => {
             const isCenter = index === activeIndex;
 
             return (
-              <EventCard
-                key={index}
-                $isCenter={isCenter}
-                style={{
-                  transform: isCenter ? "scale(1)" : "scale(0.94)",
-                }}
-              >
+              <EventCard key={index} $isCenter={isCenter}>
                 <img src={event.img} alt={event.role} />
 
                 {!isCenter && <RoleLabel>{event.role}</RoleLabel>}
@@ -128,8 +109,8 @@ const FeaturedEvents = () => {
                 {isCenter && (
                   <>
                     <ImgText>
-                      <p>{event.title}</p>
-                      <h2>{event.name}</h2>
+                      <StyledParagraphGray>{event.title}</StyledParagraphGray>
+                      <StyledParagraph>{event.name}</StyledParagraph>
                     </ImgText>
 
                     <Overlay>
@@ -142,20 +123,44 @@ const FeaturedEvents = () => {
                               <HostCount>+23k</HostCount>
                             </StyledHostCount>
                             <Avatars>
-                              <img src={speaker1} alt="" />
-                              <img src={speaker2} alt="" />
-                              <img src={speaker3} alt="" />
-                              <img src={speaker4} alt="" />
+                              <Avatar
+                                src={speaker1}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker2}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker3}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
+                              <Avatar
+                                src={speaker4}
+                                alt=""
+                                size="small"
+                                name={""}
+                                displayInitials={""}
+                              />
                             </Avatars>
                           </StyledHostAvatars>
                         </Hosts>
 
-                        <BottomText>Winning in Today’s Economy</BottomText>
+                        <StyledParagraphBold left>
+                          Winning in Today’s Economy
+                        </StyledParagraphBold>
                       </OverlayLeft>
 
-                      <StyledSubscribeBtn>
-                        <Button>Subscribe</Button>
-                      </StyledSubscribeBtn>
+                      <Button sx={{ width: 120 }}> Subscribe</Button>
                     </Overlay>
                   </>
                 )}
@@ -187,37 +192,42 @@ const StyledHostAvatars = styled.div`
   gap: 5px;
 `;
 
-const StyledSubscribeBtn = styled.div`
-  width: 120px;
-`;
-
 const Section = styled.section`
   max-width: 1200px;
-  margin: 60px auto;
+  // margin: 0 auto;
   padding: 0 20px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
-const Header = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
 `;
 
-const Actions = styled.div`
+export const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
 `;
 
-const ViewMore = styled.span`
+export const ViewMore = styled.span`
   font-size: 15px;
   color: #007bff;
   cursor: pointer;
   font-weight: 500;
+
+  ${mobile`
+    display: none;
+  `}
 `;
 
-const Arrows = styled.div`
+export const Arrows = styled.div`
   display: flex;
   gap: 12px;
 
@@ -226,7 +236,7 @@ const Arrows = styled.div`
     height: 40px;
     border-radius: 50%;
     border: 1px solid #ddd;
-    background: white;
+    background: ${({ theme }) => theme.colors.white};
     cursor: pointer;
     font-size: 20px;
     display: grid;
@@ -245,13 +255,17 @@ const Arrows = styled.div`
 `;
 
 const CarouselViewport = styled.div`
-  width: ${SIDE_WIDTH * 4 + CENTER_WIDTH}px;
+  width: ${SIDE_WIDTH * 6 + CENTER_WIDTH}px;
   margin: 0 auto;
   overflow: hidden;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const CarouselTrack = styled.div`
   display: flex;
+  align-items: center;
   gap: ${GAP}px;
   transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
   will-change: transform;
@@ -263,8 +277,11 @@ const EventCard = styled.div`
   height: 560px;
   flex-shrink: 0;
   overflow: hidden;
-  transition: all 0.225s ease;
   border-radius: 5px;
+  transition:
+    transform 0.35s ease,
+    width 0.35s ease;
+  transform: ${({ $isCenter }) => ($isCenter ? "scale(1)" : "scale(0.94)")};
 
   img {
     width: 100%;
@@ -277,9 +294,21 @@ const EventCard = styled.div`
   ${({ $isCenter }) =>
     $isCenter &&
     `width: ${CENTER_WIDTH}px;
-    img {
-      filter: grayscale(0%) !important;
-    }
+      img {
+        filter: grayscale(0%);
+      }
+    `}
+
+  ${mobile`
+    width: 140px;
+    height: 420px;
+
+    transform: ${({ $isCenter }) => ($isCenter ? "scale(1)" : "scale(0.9)")};
+
+    ${({ $isCenter }) =>
+      $isCenter &&
+      ` width: 70vw;
+      `}
   `}
 `;
 
@@ -351,33 +380,21 @@ const HostCount = styled.div`
 const Avatars = styled.div`
   position: relative;
   width: 80px;
-
-  img {
+  // border: 1px solid red;
+  > * {
     position: absolute;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid #0084ff;
-    object-fit: cover;
   }
 
-  img:nth-child(1) {
+  :nth-child(1) {
     left: 0px;
   }
-  img:nth-child(2) {
+  :nth-child(2) {
     left: 17px;
   }
-  img:nth-child(3) {
+  :nth-child(3) {
     left: 33px;
   }
-  img:nth-child(4) {
+  :nth-child(4) {
     left: 48px;
   }
-`;
-
-const BottomText = styled.div`
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 500;
-  margin-right: auto;
 `;

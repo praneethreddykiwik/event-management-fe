@@ -1,8 +1,13 @@
+import {
+  EVENT_TYPE_OPTIONS,
+  EVENT_STATUSES,
+} from "../../../constants/events.constants";
 import { validationList } from "../../../constants/validations.constants";
+import { isoToInputDateTime } from "../../../utils/utils";
 
 const halfSize = "calc(50% - 8px)";
 
-const BASE_EVENT_METADATA = [
+export const BASE_EVENT_METADATA = [
   {
     type: "text",
     name: "eventName",
@@ -12,15 +17,19 @@ const BASE_EVENT_METADATA = [
     validations: [validationList.REQUIRED],
   },
   {
+    type: "textarea",
+    name: "comments",
+    value: "",
+    placeholder: "Provide your event details...",
+    label: "Event Description",
+    validations: [validationList.REQUIRED],
+  },
+  {
     type: "dropdown",
     name: "eventType",
     value: "",
     placeholder: "Event Type",
-    options: [
-      { value: "public", label: "Public" },
-      { value: "private", label: "Private" },
-      { value: "corporate", label: "Corporate" },
-    ],
+    options: EVENT_TYPE_OPTIONS,
     label: "Event Type",
     validations: [validationList.REQUIRED],
   },
@@ -28,7 +37,15 @@ const BASE_EVENT_METADATA = [
     type: "date",
     name: "eventDate",
     value: "",
-    label: "Event Date",
+    label: "Event-Start Date",
+    validations: [validationList.REQUIRED],
+    width: halfSize,
+  },
+  {
+    type: "date",
+    name: "eventEndDate",
+    value: "",
+    label: "Event-End Date",
     validations: [validationList.REQUIRED],
     width: halfSize,
   },
@@ -36,18 +53,19 @@ const BASE_EVENT_METADATA = [
     type: "time",
     name: "eventTime",
     value: "",
-    label: "Event Time",
+    label: "Event-Start Time",
     validations: [validationList.REQUIRED],
     width: halfSize,
   },
   {
-    type: "text",
-    name: "venue",
+    type: "time",
+    name: "eventEndTime",
     value: "",
-    placeholder: "e.g. Some Good Place",
-    label: "Venue",
+    label: "Event-End Time",
     validations: [validationList.REQUIRED],
+    width: halfSize,
   },
+
   {
     type: "number",
     name: "expectedAttendees",
@@ -58,7 +76,7 @@ const BASE_EVENT_METADATA = [
   },
   {
     type: "dropdown",
-    name: "assignedEventManager",
+    name: "assignedToUid",
     value: "",
     placeholder: "Assign Event Manager",
     options: [],
@@ -66,44 +84,76 @@ const BASE_EVENT_METADATA = [
     validations: [validationList.REQUIRED],
   },
   {
-    type: "textarea",
-    name: "eventDescription",
+    type: "dropdown",
+    name: "status",
     value: "",
-    placeholder: "Provide your event details...",
-    label: "Event Description",
+    placeholder: "Status",
+    options: EVENT_STATUSES,
+    label: "Status",
+  },
+  {
+    type: "text",
+    name: "venue",
+    value: "",
+    helperText: "my helperText",
+    placeholder: "e.g. Some Good Place",
+    label: "Venue",
     validations: [validationList.REQUIRED],
+    withButton: {
+      btnText: "Choose Location",
+      btnIcon: "location_on",
+    },
   },
 ];
 
-export const eventMetaData = (eventManagers = []) => {
+const generateEventManagersOptions = (manager) => ({
+  value: manager.uid,
+  label: `${manager.firstName} ${manager.lastName}`,
+});
+
+export const generateNewEventsInputs = (eventManagers = []) => {
   return BASE_EVENT_METADATA.map((el) => {
-    if (el.name === "assignedEventManager") {
+    if (el.name === "assignedToUid") {
       return {
         ...el,
-        options: eventManagers.map((manager) => ({
-          value: manager.uid,
-          label: `${manager.firstName} ${manager.lastName}`,
-        })),
+        options: eventManagers.map(generateEventManagersOptions),
       };
     }
+
     return { ...el, error: null };
   });
 };
 
 export const generateEventDataToEdit = (eventManagers = [], event = {}) => {
+  const scheduled = event.scheduledAt || event.scheduled_at || event.scheduled;
+  const { date: eventDate, time: eventTime } = isoToInputDateTime(
+    scheduled || "",
+  );
+
   const valueMap = {
-    eventName: event.title,
-    eventDescription: event.description,
-    eventDate: event.eventDate,
-    eventTime: event.eventTime,
-    venue: event.venue,
-    eventType: event.eventType,
-    expectedAttendees: event.expectedAttendees,
-    assignedEventManager: event.assignedEventManager,
+    ...event,
+    eventDate,
+    eventTime,
   };
 
-  return eventMetaData(eventManagers).map((el) => ({
-    ...el,
-    value: valueMap[el.name] ?? "",
-  }));
+  const km = BASE_EVENT_METADATA.map((el) => {
+    const value = valueMap[el.name] ?? "";
+
+    if (el.name === "assignedToUid") {
+      return {
+        ...el,
+        options: eventManagers.map(generateEventManagersOptions),
+        value,
+      };
+    }
+    const k = {
+      ...el,
+      value,
+    };
+    if (el.name === "venue") k.helperText = valueMap.location;
+
+    return k;
+  });
+
+  return km;
 };

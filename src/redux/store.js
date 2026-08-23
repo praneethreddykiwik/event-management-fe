@@ -3,7 +3,11 @@ import authReducer from "./auth/auth.slice";
 import usersReducer from "./users/users.slice";
 import eventsReducer from "./events/events.slice";
 import tasksReducer from "./tasks/tasks.slice";
+import taskCommentsReducer from "./taskComments/taskComments.slice";
 import formsReducer from "./farms/farms.slice";
+import bookmarksReducer from "./bookmarks/bookmarks.slice";
+
+import { httpsClient, setupInterceptors } from "../api/client/httpsClient";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +15,10 @@ export const store = configureStore({
     users: usersReducer,
     events: eventsReducer,
     tasks: tasksReducer,
+    taskComments: taskCommentsReducer,
     forms: formsReducer,
+    bookmarks: bookmarksReducer,
   },
 });
+
+setupInterceptors(httpsClient, store);

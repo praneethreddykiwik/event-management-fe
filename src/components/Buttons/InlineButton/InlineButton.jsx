@@ -1,0 +1,117 @@
+import { useEffect, useRef, useState } from "react";
+import { Icon } from "../../Icons/Icons";
+import styled from "styled-components";
+import { Button } from "../Button";
+import Backdrop from "../../UI/Backdrop/Backdrop";
+import { theme } from "../../../theme/theme";
+
+export const InlineButton = ({
+  onClick,
+  small,
+  children,
+  type,
+  icon,
+  showGridView,
+  title,
+  disabled,
+}) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!containerRef.current) return;
+
+      if (!containerRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const onClickMainButton = () => {
+    setOpen(false);
+    onClick();
+  };
+
+  const onFirstClick = () => {
+    if (disabled) return;
+    const action = !open;
+    if (action) {
+      setTimeout(() => {
+        setOpen(false);
+      }, 3000);
+    }
+    setOpen(action);
+  };
+
+  const iconColors = {
+    primary: theme.light.colors.primary, // checkHere
+    secondary: "black",
+    delete: theme.light.colors.red, // checkHere
+  };
+
+  const iconColor = iconColors[type] || "black";
+
+  return (
+    <Ctn ref={containerRef} title={title}>
+      {/* <IconBtn onClick={() => setOpen((k) => !k)}> */}
+      <IconBtn onClick={onFirstClick} disabled={disabled}>
+        <Icon variant={icon} sx={{ color: iconColor }} />
+      </IconBtn>
+
+      {/* <Backdrop></Backdrop> */}
+      <SlideArea $open={open} $gridView={showGridView}>
+        <Button
+          onClick={onClickMainButton}
+          small={small}
+          sx={{ height: "25px", padding: "0 20px" }}
+          type={type}
+          whiteText
+        >
+          {children}
+        </Button>
+      </SlideArea>
+    </Ctn>
+  );
+};
+
+const Ctn = styled.div`
+  display: inline-flex;
+  align-items: center;
+
+  position: relative;
+`;
+
+const IconBtn = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
+  max-height: 20px;
+`;
+
+const SlideArea = styled.div`
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: ${(props) => (props.$gridView ? "20px" : "")};
+  border-radius: 50px;
+  span {
+    font-size: ${(props) => (props.$gridView ? "12px" : "")};
+  }
+
+  max-width: ${({ $open }) => ($open ? "200px" : "0px")};
+  opacity: ${({ $open }) => ($open ? 1 : 0)};
+  transform: ${({ $open }) => ($open ? "translateX(0)" : "translateX(-10px)")};
+  margin-left: ${({ $open }) => ($open ? "8px" : "0px")};
+
+  transition: all 0.25s ease;
+
+  position: absolute;
+  right: 0;
+`;

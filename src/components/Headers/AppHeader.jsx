@@ -1,0 +1,136 @@
+import styled from "styled-components";
+import { useState } from "react";
+import { paths } from "../../constants/paths";
+import { Button } from "../Buttons/Button";
+import Avatar from "../Avatar/Avatar";
+
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { HeaderLogo } from "./HeaderLogo";
+import { HeaderMenu } from "./HeaderMenu";
+
+import { userProfileMeta } from "../../metadata/userProfileMetadata";
+import { logoutAction } from "../../redux/auth/auth.actions";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+
+import { mobile } from "../../theme/media-queries";
+import {
+  StyledParagraph,
+  StyledParagraphSmall,
+} from "../Styled/Typography.styled";
+import { camelToWords } from "../../utils/utils";
+
+const AppHeader = () => {
+  const navigate = useNavigateWithQuery();
+  const dispatch = useDispatch();
+
+  const { authStatus, authUser } = useSelector(authSelector);
+
+  const isLoggedIn = authStatus === "authenticated";
+  const [menuOpen] = useState(false);
+
+  const goLogin = () => navigate(paths.login);
+  const goRegister = () => navigate(paths.registration);
+
+  const onClickMenu = (item) => {
+    if (item.label === "Logout") {
+      dispatch(logoutAction());
+      return;
+    }
+
+    if (item.navigate) {
+      navigate(item.navigate);
+    }
+  };
+
+  return (
+    <Navbar>
+      <HeaderLogo />
+
+      {/* CENTER MENU */}
+      <HeaderMenu menuOpen={menuOpen} goLogin={goLogin} />
+
+      {/* RIGHT ICONS (Desktop Only) */}
+      <RightBox>
+        <Icon aria-label="Search">search</Icon>
+        <Icon aria-label="Language">language</Icon>
+
+        {!isLoggedIn ? (
+          <>
+            <Button type="secondary" onClick={goRegister}>
+              Register
+            </Button>
+            <Button onClick={goLogin}>Login</Button>
+          </>
+        ) : (
+          <>
+            <Icon aria-label="Notifications">notifications</Icon>
+            <StyledName>
+              <StyledParagraph>{authUser.firstName}</StyledParagraph>
+              <StyledRole>{camelToWords(authUser.role)}</StyledRole>
+            </StyledName>
+
+            <Avatar
+              name={`${authUser.firstName} ${authUser.lastName}`}
+              openCondition={true}
+              displayInitials={true}
+              items={userProfileMeta}
+              onClick={onClickMenu}
+            />
+          </>
+        )}
+      </RightBox>
+    </Navbar>
+  );
+};
+
+export default AppHeader;
+
+const Navbar = styled.header`
+  padding: 12px 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  ${mobile`
+    padding: 12px 20px;
+  `}
+`;
+
+const RightBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 22px;
+`;
+
+const StyledName = styled.div`
+  position: relative;
+
+  // ${mobile`
+  //   display: block;
+  // `}
+`;
+
+const StyledRole = styled(StyledParagraphSmall)`
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+`;
+
+const Icon = styled.span.attrs(() => ({
+  className: "material-symbols-outlined",
+}))`
+  font-size: 26px;
+  cursor: pointer;
+  color: #444;
+
+  &:hover {
+    color: #1ac468;
+  }
+  ${mobile`
+    display: none;
+  `}
+`;

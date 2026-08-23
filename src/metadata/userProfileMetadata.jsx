@@ -3,7 +3,7 @@ import { paths } from "../constants/paths";
 export const userProfileMeta = [
   {
     label: "Profile",
-    highlight: true,
+    // highlight: true,
     icon: "account_circle",
     navigate: paths.accountSettings,
   },
@@ -13,8 +13,28 @@ export const userProfileMeta = [
     navigate: "/accountSetting",
   },
   {
-    label: "Bookmark",
-    icon: "bookmark",
+    label: "Bookmarks",
+    icon: "bookmarks",
+  },
+  {
+    label: "About Us",
+    icon: "info",
+    navigate: paths.aboutUs,
+  },
+  {
+    label: "Why HELM",
+    icon: "star",
+    navigate: paths.whyChoose,
+  },
+  {
+    label: "Our Services",
+    icon: "handyman",
+    navigate: paths.ourServices,
+  },
+  {
+    label: "FAQ",
+    icon: "quiz",
+    navigate: paths.faq,
   },
   {
     label: "Get In Touch",
@@ -25,5 +45,6 @@ export const userProfileMeta = [
   {
     label: "Logout",
     icon: "logout",
+    highlight: true,
   },
 ];

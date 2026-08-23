@@ -11,9 +11,10 @@ export const TimeInput = ({
   error,
   width,
   type,
+  validations,
 }) => {
   return (
-    <InputLayout label={label} error={error} width={width}>
+    <InputLayout label={label} error={error} width={width} validations ={validations}>
       <InputDefault
         id={name}
         name={name}

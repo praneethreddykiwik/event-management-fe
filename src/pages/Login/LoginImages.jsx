@@ -1,16 +1,19 @@
-import styled from "styled-components";
-import leftImage1 from "../../assets/loginImgs/left1.jpg";
-import leftImage2 from "../../assets/loginImgs/left2.jpg";
-import leftImage3 from "../../assets/loginImgs/left3.jpg";
-import leftImage4 from "../../assets/loginImgs/left4.jpg";
-import middleImage1 from "../../assets/loginImgs/middle1.jpg";
-import middleImage2 from "../../assets/loginImgs/middle2.jpg";
-import middleImage3 from "../../assets/loginImgs/middle3.jpg";
-import middleImage4 from "../../assets/loginImgs/middle4.jpg";
-import rightImage1 from "../../assets/loginImgs/right1.jpg";
-import rightImage2 from "../../assets/loginImgs/right2.jpg";
-import rightImage3 from "../../assets/loginImgs/right3.jpg";
-import rightImage4 from "../../assets/loginImgs/right4.jpg";
+/** @format */
+
+import styled from 'styled-components';
+import leftImage1 from '../../assets/loginImgs/left1.jpg';
+import leftImage2 from '../../assets/loginImgs/left2.jpg';
+import leftImage3 from '../../assets/loginImgs/left3.jpg';
+import leftImage4 from '../../assets/loginImgs/left4.jpg';
+import middleImage1 from '../../assets/loginImgs/middle1.jpg';
+import middleImage2 from '../../assets/loginImgs/middle2.jpg';
+import middleImage3 from '../../assets/loginImgs/middle3.jpg';
+import middleImage4 from '../../assets/loginImgs/middle4.jpg';
+import rightImage1 from '../../assets/loginImgs/right1.jpg';
+import rightImage2 from '../../assets/loginImgs/right2.jpg';
+import rightImage3 from '../../assets/loginImgs/right3.jpg';
+import rightImage4 from '../../assets/loginImgs/right4.jpg';
+import { mobile } from '../../theme/media-queries.jsx';
 
 const LoginImages = () => {
   const leftImages = [
@@ -70,35 +73,37 @@ const ContainerRight = styled.div`
   width: 50%;
   height: 100vh;
   overflow: hidden;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 8px;
   align-items: center;
   justify-content: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
+  ${mobile`
+    display:none;
+  `}
 `;
 
 const Column1 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: -10px;
-  gap: 10px;
+  top: -8px;
+  gap: 8px;
 `;
+
 const Column2 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 50px;
-  gap: 10px;
+  top: 32px;
+  gap: 8px;
 `;
+
 const Column3 = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 50px;
-  gap: 10px;
+  bottom: 32px;
+  gap: 8px;
 `;
 
 const Img = styled.img`

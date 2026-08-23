@@ -1,43 +1,41 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const baseStyles = `
+// checkHere
+export const baseStyles = css(
+  ({ theme, $hasError }) => `
   width: 100%;
   border-radius: 30px;
   box-sizing: border-box;
   height: 40px;
   padding: 10px 20px;
   font-size: 14px;
-  border: 1px solid #e0e0e0;
   color: #000000ff;
 
+  border: 1px solid ${theme.colors.borderGray};
+  border-color: ${$hasError ? theme.colors.warning : theme.colors.borderGray};
+  &:focus {
+    border-color: ${$hasError ? theme.colors.warning : "#27c14a"};
+  }
+
   &::placeholder {
-    color: #bdbdbd;
-      font-size: 14px;
+    color: ${theme.colors.borderGray};
+    font-size: 14px;
   }
 
   &:focus {
     outline: none;
     border-color: #27c14a;
   }
-`;
+`,
+);
 
 export const InputDefault = styled.input`
   ${baseStyles};
-  border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#e0e0e0")};
-
-  &:focus {
-    border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#27c14a")};
-  }
 `;
 export const TextAreaDefault = styled.textarea`
   ${baseStyles};
   height: unset;
-  border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#e0e0e0")};
   font-family: "Roboto", serif !important;
-
-  &:focus {
-    border-color: ${({ $hasError }) => ($hasError ? "#e53935" : "#27c14a")};
-  }
 `;
 
 export const InputSelect = styled.select`
@@ -50,7 +48,6 @@ export const InputSelectOptions = styled.option`
 
 export const InputNumber = styled(InputDefault)``;
 export const InputPassword = styled(InputDefault)``;
-// export const InputSelect = styled(InputDefault)``;
 
 export const InputCheckbox = styled.input`
   border-radius: 4px;

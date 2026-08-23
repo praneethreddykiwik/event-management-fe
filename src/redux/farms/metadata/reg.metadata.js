@@ -1,6 +1,19 @@
+import { ROLES_OBJ } from "../../../constants/roles";
 import { validationList } from "../../../constants/validations.constants";
 
 const halfSize = "calc(50% - 8px)";
+
+const lowerRoleOptions = [
+  { value: "vendor", label: "Vendor" },
+  { value: "supervisor", label: "Supervisor" },
+  { value: "qa", label: "QA" },
+];
+
+const generateAdminRoleOptions = () => {
+  return Object.keys(ROLES_OBJ).map((key) => {
+    return { value: key, label: ROLES_OBJ[key].label };
+  });
+};
 
 export const registrationMetaData = [
   {
@@ -42,7 +55,7 @@ export const registrationMetaData = [
     width: halfSize,
   },
   {
-    type: "number",
+    type: "tel",
     name: "mobile",
     value: "",
     placeholder: "Enter your mobile",
@@ -55,23 +68,27 @@ export const registrationMetaData = [
     type: "dropdown",
     name: "role",
     placeholder: "Choose role",
-    options: [
-      { value: "admin", label: "Admin" },
-      { value: "event_manager", label: "Event Manager" },
-      { value: "vendor", label: "Vendor" },
-      { value: "customer", label: "Customer" },
-    ],
+    options: generateAdminRoleOptions(),
     value: "",
     label: "Role",
     error: null,
     validations: [validationList.REQUIRED],
   },
   {
-    type: "setPassword",
+    type: "password",
     name: "password",
     value: "",
     placeholder: "Password",
     label: "Password",
+    error: null,
+    validations: [validationList.REQUIRED],
+  },
+  {
+    type: "setPassword",
+    name: "confirmPassword",
+    value: "",
+    placeholder: "Confirm Password",
+    label: "Confirm Password",
     error: null,
     validations: [validationList.REQUIRED],
   },
@@ -91,16 +108,16 @@ export const generateRegDataToEdit = (user) => {
     const input = registrationMetaData.find((fn) => fn.name === el);
     return { ...input, value: user[el] };
   });
+};
 
-  // const dat = Object.keys(user)
-  //   .map((key) => {
-  //     const input = registrationMetaData.find((fn) => fn.name === key);
-  //     if (!input) return null;
-  //     return {
-  //       ...input,
-  //       value: user[key],
-  //     };
-  //   })
-  //   .filter((el) => el);
-  // return dat;
+export const generateRegInputsAccordingToRole = (role) => {
+  const isAdmin = role === "admin";
+  const options = isAdmin ? generateAdminRoleOptions() : lowerRoleOptions;
+
+  return registrationMetaData.map((el) => {
+    if (el.name === "role") {
+      return { ...el, options };
+    }
+    return el;
+  });
 };

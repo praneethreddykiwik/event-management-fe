@@ -1,3 +1,4 @@
+import { StyledParagraph, StyledParagraphSmall } from "../../components/Styled/Typography.styled";
 import { PAYMENT_PAGE } from "../../myEnum/Payment.common";
 import styled from "styled-components";
 
@@ -38,35 +39,34 @@ const Details2 = () => {
   );
 };
 
-export default Details2;
+ export default Details2;
 
-const DetailsCard = styled.div`
-  width: calc(100% - 40px);
-  background: #ffffff;
+ const DetailsCard = styled.div`
+  width: calc(100% - 32px);
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 3px;
   padding: 16px;
-  margin-top: 18px;
+  margin-top: 24px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   text-align: left;
-  padding-bottom: 15px;
+  padding-bottom: 16px;
 `;
 
 const DetailsTitle = styled.h4`
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: 600;
+  margin: 0 0 8px 0;
+  font-size: ${({ theme }) => theme.typography["heading-h3"]["font-size"]};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   color: #111827;
 `;
 
 const DashedDivider = styled.hr`
   border: none;
   border-top: 1px dashed #bdc0c4ff;
-  margin: 10px 0;
+  margin: 8px 0;
 `;
 
-const Value = styled.span`
-  font-weight: 600;
-  color: #111827;
+const Value = styled(StyledParagraph)`
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   font-size: 13px;
 `;
 
@@ -81,14 +81,15 @@ const StRow = styled.div`
   margin: 8px 0;
 `;
 
-const Stylespan = styled.span`
+const Stylespan = styled(StyledParagraphSmall)`
   color: #697991ff;
   font-size: 13px;
 `;
 
 const TotalRow = styled(StRow)`
   span:last-child {
-    font-weight: 600;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
     color: #2e1d5aff;
   }
 `;
+

@@ -1,17 +1,35 @@
 import React from "react";
+import {
+  StyledHeading,
+  StyledParagraphSmallGray,
+} from "../../components/Styled/Typography.styled";
+
+import { mobile } from "../../theme/media-queries";
 import styled from "styled-components";
 import Speaker1 from "../../assets/Profile_images/Speaker1.png";
-import { StyledOutlinedButton } from "../../components/Styled/Buttons.styled";
 import { PROFILE_DATA } from "../../myEnum/ProfileText";
+import { theme } from "../../theme/theme";
+import Avatar from "../../components/Avatar/Avatar";
+import { Button } from "../../components/Buttons/Button";
 
 const ProfileEdit = () => {
   return (
     <StyleRightForm>
-      <StyleProfileTitle>{PROFILE_DATA.PROFILE}</StyleProfileTitle>
-      <StyleProfileSubtitle>{PROFILE_DATA.EVENTS_PROFILE}</StyleProfileSubtitle>
+      <StyledHeading left>{PROFILE_DATA.PROFILE}</StyledHeading>
+      <StyledParagraphSmallGray left>
+        {PROFILE_DATA.EVENTS_PROFILE}
+      </StyledParagraphSmallGray>
 
-      <StyleProfileImageLarge src={Speaker1} alt="profile" />
-
+      
+      <StyleProfileImageContainer>
+      <Avatar
+        src={Speaker1}
+        alt="profile"
+        name={PROFILE_DATA.FIRSTNAME}
+        displayInitials={true}
+        size="xlarge"
+      />
+      </StyleProfileImageContainer>
       <StyleNameRow>
         <StyleInputBox placeholder="Wade" />
         <StyleInputBox placeholder="Warren" />
@@ -19,8 +37,13 @@ const ProfileEdit = () => {
 
       <StyleFlextable>
         <StyleDescribetext>
-          <StyleLabels>{PROFILE_DATA.EMAIL}</StyleLabels>
-          {PROFILE_DATA.EMAIL_LOG}
+          <StyledParagraphSmallGray left>
+            {PROFILE_DATA.EMAIL}
+          </StyledParagraphSmallGray>
+          <StyledParagraphSmallGray left>
+            {" "}
+            {PROFILE_DATA.EMAIL_LOG}{" "}
+          </StyledParagraphSmallGray>
         </StyleDescribetext>
 
         <StyleEmailRow>
@@ -33,11 +56,16 @@ const ProfileEdit = () => {
 
       <StylePasswordRow>
         <StyleDescribetext>
-          <StyleLabels>{PROFILE_DATA.PASSWORD}</StyleLabels>
-          {PROFILE_DATA.PASSWORD_LOG}
+          <StyledParagraphSmallGray left>
+            {PROFILE_DATA.PASSWORD}
+          </StyledParagraphSmallGray>
+          <StyledParagraphSmallGray left>
+            {" "}
+            {PROFILE_DATA.PASSWORD_LOG}
+          </StyledParagraphSmallGray>
         </StyleDescribetext>
 
-        <StyledOutlinedButton>{PROFILE_DATA.CHANGE_BTN}</StyledOutlinedButton>
+        <Button type="outlined">{PROFILE_DATA.CHANGE_BTN}</Button>
       </StylePasswordRow>
     </StyleRightForm>
   );
@@ -45,120 +73,104 @@ const ProfileEdit = () => {
 
 export default ProfileEdit;
 
-/* ====================== STYLED COMPONENTS ====================== */
-
-export const StyleRightForm = styled.div`
-  margin-top: 249px;
+const StyleRightForm = styled.div`
+  margin-top: 275px;
   flex: 1;
   text-align: left;
-  background: white;
+  background: ${theme.light.colors.white};
   padding: 20px;
-  border-radius: 1px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 1200px) {
-    margin-top: 180px;
-  }
-
-  @media (max-width: 900px) {
-    margin-top: 30px;
-    width: 100%;
-  }
+  ${mobile`
+    margin-top: 0px;
+    padding: 15px;
+  `}
+`;
+const StyleProfileImageContainer = styled.div`
+  ${mobile`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  `}
 `;
 
-export const StyleProfileTitle = styled.h2`
-  margin: 10px 30px;
-`;
-
-export const StyleProfileSubtitle = styled.p`
-  margin: 10px 30px;
-  color: #666;
-`;
-
-export const StyleProfileImageLarge = styled.img`
+const StyleProfileImageLarge = styled.img`
   width: 110px;
   height: 110px;
   margin: 10px 30px;
   border-radius: 50%;
+
+  ${mobile`
+    width: 80px;
+    height: 80px;
+    margin: 10px auto;
+    display: block;
+  `}
 `;
 
-export const StyleNameRow = styled.div`
+const StyleNameRow = styled.div`
   display: flex;
   gap: 120px;
-  margin-bottom: 20px;
   border-bottom: 1px solid #8c8c8c;
   padding: 60px 20px 20px 20px;
 
-  @media (max-width: 1200px) {
-    gap: 40px;
-  }
-
-  @media (max-width: 900px) {
+  ${mobile`
     flex-direction: column;
-    gap: 20px;
-    padding: 30px 10px;
-  }
+    gap: 15px;
+    padding: 20px 10px;
+  `}
 `;
 
-export const StyleInputBox = styled.input`
+const StyleInputBox = styled.input`
   width: 100%;
   padding: 10px 1px 10px 10px;
   border-radius: 24px;
   border: 2px solid #ccc;
 `;
 
-export const StyleFlextable = styled.label`
-  color: #8c8c8c;
+const StyleFlextable = styled.label`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid #8c8c8c;
   padding: 40px 20px;
 
-  @media (max-width: 900px) {
+  ${mobile`
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
+    gap: 10px;
+    padding: 20px 10px;
+  `}
 `;
 
-export const StyleLabels = styled.div``;
-
-export const StyleDescribetext = styled.div`
+const StyleDescribetext = styled.div`
   width: 70%;
-  color: #8c8c8c;
 
-  @media (max-width: 900px) {
+  ${mobile`
     width: 100%;
-  }
+  `}
 `;
 
-export const StylePasswordRow = styled.div`
+const StylePasswordRow = styled.div`
   display: flex;
   gap: 20px;
   padding: 40px 20px;
   border-bottom: 1px solid #a9a7a7ff;
 
-  @media (max-width: 900px) {
+  ${mobile`
     flex-direction: column;
     padding: 20px 10px;
-  }
+  `}
 `;
 
-export const StyleEmailRow = styled.div`
+const StyleEmailRow = styled.div`
   position: relative;
   width: 490px;
 
-  @media (max-width: 1200px) {
-    width: 350px;
-  }
-
-  @media (max-width: 900px) {
+  ${mobile`
     width: 100%;
-  }
+  `}
 `;
 
-export const StyleEditIconEmail = styled.span`
+const StyleEditIconEmail = styled.span`
   position: absolute;
   right: 10px;
   top: 50%;

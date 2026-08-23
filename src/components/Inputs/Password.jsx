@@ -14,57 +14,34 @@ export const Password = ({
   label,
   name,
   confirmPassword,
+  validations,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <>
-      <InputLayout label={label} error={error}>
-        <InputPassword
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder || "Password"}
-          required
-          disabled={disabled}
-          type={showPassword ? "text" : "password"}
+    <InputLayout label={label} error={error} validations={validations}>
+      <InputPassword
+        name={confirmPassword ? "confirmPassword" : name}
+        value={value}
+        onChange={onChange}
+        placeholder={confirmPassword ? "Confirm Password" : placeholder}
+        required
+        disabled={disabled}
+        type={showPassword ? "text" : "password"}
+        $hasError={!!error}
+      />
+
+      <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
+        <StyledPasswordImg
+          src={showPassword ? EyeIcon : CloseEyeIcon}
+          alt="toggle"
         />
-
-        <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? (
-            <StyledPasswordImg src={EyeIcon} alt="show" />
-          ) : (
-            <StyledPasswordImg src={CloseEyeIcon} alt="hide" />
-          )}
-        </ShowHideIcon>
-      </InputLayout>
-
-      {confirmPassword ? (
-        <InputLayout label={label} error={error}>
-          <InputPassword
-            name={name}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder || "Password"}
-            required
-            disabled={disabled}
-            type={showPassword ? "text" : "password"}
-          />
-
-          <ShowHideIcon onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <StyledPasswordImg src={EyeIcon} alt="show" />
-            ) : (
-              <StyledPasswordImg src={CloseEyeIcon} alt="hide" />
-            )}
-          </ShowHideIcon>
-        </InputLayout>
-      ) : null}
-    </>
+      </ShowHideIcon>
+    </InputLayout>
   );
 };
 
-export const ShowHideIcon = styled.span`
+const ShowHideIcon = styled.span`
   cursor: pointer;
   right: 12px;
   top: 27px;

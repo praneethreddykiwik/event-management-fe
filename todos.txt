@@ -1,0 +1,18 @@
+assingee_type from event/task creation
+Add it to db
+
+
+
+Tasks
+Assigned to me: 
+Ready for QA:
+QA in progress:
+Approved Today:
+Rejected Today:
+Pending Review:
+Due crossed Tasks: taskDueAt
+
+
+combine UsersEventsTasks and QaEventsTasks
+
+run eslint

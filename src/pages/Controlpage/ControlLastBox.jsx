@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import * as enums from "../../myEnum";
 import Control_avtar from "../../assets/ControlPage_img/control_avtar.jpeg";
-
+import { theme } from "../../theme/theme";
+import {
+  StyledParagraphBold,
+  StyledParagraph,
+  StyledParagraphSmallVisible,
+} from "../../components/Styled/Typography.styled";
+import Avatar from "../../components/Avatar/Avatar";
 const LastBox = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <LeftSection>
           <Lstspan className="material-icons">{enums.COTTAGE_ICON}</Lstspan>
-          <Header3>{enums.HEADER_CROS}</Header3>
+          <StyledParagraphBold>{enums.HEADER_CROS}</StyledParagraphBold>
         </LeftSection>
 
         <NavSection>
@@ -19,10 +25,16 @@ const LastBox = () => {
 
         <RightSection>
           <ProfileBox>
-            <ProfileImg src={Control_avtar} />
+            <Avatar
+              src={Control_avtar}
+              name={enums.HENRY}
+              displayInitials={true}
+            />
             <ProfileInfo>
-              <Ltspan className="name">{enums.HENRY}</Ltspan>
-              <Ltspan className="role">{enums.BUILD_MANAGER}</Ltspan>
+              <StyledParagraph className="name">{enums.HENRY}</StyledParagraph>
+              <StyledParagraphSmallVisible className="role">
+                {enums.BUILD_MANAGER}
+              </StyledParagraphSmallVisible>
             </ProfileInfo>
             <ArrowIcon className="material-icons">{enums.KEYBOARD}</ArrowIcon>
           </ProfileBox>
@@ -35,6 +47,7 @@ export default LastBox;
 
 const HeaderWrapper = styled.div`
   padding: 3px;
+  // background:red;
 `;
 
 const HeaderContainer = styled.div`
@@ -44,7 +57,7 @@ const HeaderContainer = styled.div`
   padding: 5px 10px;
   border-radius: 50px;
   border: 1.5px solid #b4dbe9ff;
-  background: #ffffff;
+  background: ${theme.light.colors.white};
 `;
 
 const LeftSection = styled.div`
@@ -57,12 +70,6 @@ const Lstspan = styled.span`
   font-size: 20px;
 `;
 
-const Header3 = styled.h3`
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
-`;
-
 const NavSection = styled.div`
   display: flex;
   align-items: center;
@@ -71,8 +78,11 @@ const NavSection = styled.div`
 
 const NavItem = styled.span`
   font-size: 16px;
-  font-weight: ${({ $active }) => ($active ? "600" : "400")};
-  color: ${({ $active }) => ($active ? "#000" : "#9a9a9a")};
+  font-weight: ${({ $active }) =>
+    $active
+      ? theme.light.fontWeights.semiBold
+      : theme.light.fontWeights.default};
+  color: ${({ $active }) => ($active ? theme.light.colors.black : "#9a9a9a")};
   cursor: pointer;
   position: relative;
 
@@ -105,20 +115,15 @@ const ProfileBox = styled.div`
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 `;
 
-const ProfileImg = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 40%;
-`;
-
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 14px;
+  line-height: 10px;
+  
 
   .name {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: ${theme.light.fontWeights.semiBold};
   }
 
   .role {
@@ -126,8 +131,6 @@ const ProfileInfo = styled.div`
     color: #96b3e2ff;
   }
 `;
-
-const Ltspan = styled.span``;
 
 const ArrowIcon = styled.span`
   font-size: 22px;

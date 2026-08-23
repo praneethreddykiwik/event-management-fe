@@ -23,13 +23,17 @@ const formsSlice = createSlice({
 
     // Events Inputs
     updateEventInputs(state, action) {
-      const { value, name } = action.payload;
+      const { value, name, helperText } = action.payload;
       const i = state.createEventInputs.findIndex((fi) => fi.name === name);
       state.createEventInputs[i].value = value;
+      state.createEventInputs[i].helperText = helperText ;
       state.createEventInputs[i].error = null;
     },
     updateAllEventInputs(state, action) {
       state.createEventInputs = action.payload;
+    },
+    clearTaskInputs(state) {
+      state.createEventInputs = [];
     },
 
     // Task Inputs
@@ -53,5 +57,6 @@ export const {
   updateAllEventInputs,
   updateTaskInputs,
   updateAllTaskInputs,
+  clearTaskInputs,
 } = formsSlice.actions;
 export default formsSlice.reducer;

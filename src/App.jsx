@@ -1,22 +1,24 @@
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "./components/Header/Header";
 import useTheme from "./theme/useTheme";
 import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
 import { bootstrapAuthAction } from "./redux/auth/auth.actions";
-import GlobalSpinner from "./components/Spinner/GlobalSpinner";
 import { authSelector } from "./redux/auth/auth.slice";
 import { TenantIdHOC } from "./HOC/TenantIdHOC";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/UI/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppRoutes from "./Routes";
+import { toastGlobalProps } from "./utils/toast.utils";
+import AppHeader from "./components/Headers/AppHeader";
+import GlobalSpinner from "./components/UI/Loaders/GlobalSpinner";
 
 function App() {
   const theme = useTheme();
 
   const dispatch = useDispatch();
+
   const { authStatus } = useSelector(authSelector);
 
   useEffect(() => {
@@ -30,14 +32,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <TenantIdHOC>
         <GlobalSpinner loading={isLoading}>
-          <Header />
+          <AppHeader />
           <AppRoutes />
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            closeOnClick
-          />
+          <ToastContainer {...toastGlobalProps} />
           <Footer />
         </GlobalSpinner>
       </TenantIdHOC>

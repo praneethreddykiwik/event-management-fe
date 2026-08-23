@@ -1,147 +1,67 @@
-/** @format */
-
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// import { details } from "../../Mock";
+import { useSearchParams } from "react-router-dom";
 import { BlueBackHOC } from "../../HOC/BlueBackHOC";
-import { StyledHeading } from "../../components/Styled/Typography.styled";
-import UserManagementItem from "../../pages/UserManagement/UserManagementItem";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
-import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { PageHeader } from "../../components/Headers/PageHeader";
+import { TabBody } from "../../components/UI/Tabs/OwnTabs";
+import AssignedRoles from "./AssignedUserRoles/AssignedUserRoles";
+import AssignedUserRoles from "./AssignedUserRoles/AssignedUserRoles";
+import { UserManagementDashboard } from "./UserManagementDashboard/UserManagementDashboard";
+// import UserManagement from "../UserManagement";
 
-import PopupModal from "../../components/PopupModal/PopupModal";
-import { Button } from "../../components/Buttons/Button";
+const userManagementTabs = [
+  { label: "User Management" },
+  { label: "Assigned  UserRoles" },
+  { label: "History" },
+];
 
-// redux (same pattern as your working code)
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteUserAction,
-  fetchAllUsersAction,
-} from "../../redux/users/users.actions";
-// import EditUserPoEditpup from "../../components/users/EditUserPopup";
-// import EditUserPopup from "./EditUserPopUp";
-import { updateAllRegInputs } from "../../redux/farms/farms.slice";
-import { generateRegDataToEdit } from "../../redux/farms/metadata/reg.metadata";
-import { usersSelector } from "../../redux/users/users.slice";
-import EditUserPopup2 from "./EditUserPopup2";
+const UserManagementPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-const UserManagement = () => {
-  const navigate = useNavigateWithQuery();
-  const dispatch = useDispatch();
-
-  const { allUsers } = useSelector(usersSelector);
-  console.log("Manideep", allUsers);
-
-  const [openEdit, setOpenEdit] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchAllUsersAction());
-  }, []);
-
-  // EDIT USER
-  const onEdit = (user) => {
-    setSelectedUser(user);
-    setOpenEdit(true);
-
-    const regData = generateRegDataToEdit(user);
-    dispatch(updateAllRegInputs(regData));
+  const handleTabChange = (val) => {
+    setSearchParams(
+      {
+        tab: val,
+        tenantId: searchParams.get("tenantId"),
+      },
+      { replace: true },
+    );
   };
-
-  // DELETE USER
-  const onDelete = async () => {
-    await dispatch(deleteUserAction({ uid: selectedUser.uid }));
-    setShowDeleteConfirm(false);
-    setSelectedUser(null);
-  };
+  const selectedTab = searchParams.get("tab");
 
   return (
     <BlueBackHOC>
-      <PageWrapper>
-        <StyledHeading left>User Management</StyledHeading>
-        <StyledButtonContainer right>
-          <StyledButton onClick={() => navigate("/registration")}>
-            Create User{" "}
-          </StyledButton>
-        </StyledButtonContainer>
+      <DashboardContainer>
+        <PageHeader
+          isTitle
+          tabs={userManagementTabs}
+          selectedTab={selectedTab}
+          handleTabChange={handleTabChange}
+        >
+          User Management
+        </PageHeader>
 
-        {allUsers?.length > 0 &&
-          allUsers.map((user) => (
-            <UserManagementItem
-              key={user.uid}
-              data={user}
-              onEdit={() => onEdit(user)}
-              onDelete={() => {
-                setSelectedUser(user);
-                setShowDeleteConfirm(true);
-              }}
-            />
-          ))}
+        <TabBody value={0} selectedTab={selectedTab}>
+          <UserManagementDashboard />
+        </TabBody>
 
-        {/* EDIT MODAL */}
-        {openEdit && (
-          <EditUserPopup2
-            onClose={() => setOpenEdit(false)}
-            modalDetails={{
-              title: "Edit User",
-              description: "Edit user details",
-              type: "edit",
-              userUid: selectedUser?.uid,
-            }}
-          />
-        )}
+        <TabBody value={1} selectedTab={selectedTab}>
+          <AssignedUserRoles />
+        </TabBody>
 
-        {/* DELETE CONFIRMATION */}
-        {showDeleteConfirm && (
-          <PopupModal
-            onClose={() => setShowDeleteConfirm(false)}
-            title="Delete User"
-            subtitle="Are you sure you want to delete this user?"
-            width="400px"
-          >
-            <DeletePopup>
-              <Button
-                type="secondary"
-                onClick={() => setShowDeleteConfirm(false)}
-              >
-                Cancel
-              </Button>
-
-              <Button type="danger" onClick={onDelete}>
-                Delete
-              </Button>
-            </DeletePopup>
-          </PopupModal>
-        )}
-      </PageWrapper>
+        <TabBody value={2} selectedTab={selectedTab}>
+          <UserManagementHistory />
+        </TabBody>
+      </DashboardContainer>
     </BlueBackHOC>
   );
 };
 
-export default UserManagement;
+const UserManagementHistory = () => {
+  return <div>User Management History</div>;
+};
 
-const PageWrapper = styled.div`
-  padding: 24px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+const DashboardContainer = styled.div`
+  padding: 0 16px 16px 16px;
 `;
 
-const DeletePopup = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  padding: 20px 0;
-`;
-
-const StyledButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  margin-top: -70px;
-`;
-
-export const StyledButton = styled(StyledBaseButton)`
-  width: auto;
-  color: #fff;
-`;
+export default UserManagementPage;

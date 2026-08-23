@@ -1,25 +1,25 @@
-import {
-  StyledAnchor,
-  StyledGrayLink,
-  StyledHeading,
-  StyledParagraph,
-} from "../components/Styled/Typography.styled";
-import useTenant from "../hooks/useTenant.hook";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateTenantId } from "../redux/auth/auth.slice";
 
-export const TenantIdHOC = (props) => {
-  const tenantId = useTenant();
-  if (!tenantId)
-    return (
-      <div>
-        <StyledHeading>Tenant ID is missing in url!</StyledHeading>
-        <StyledParagraph>
-          Please add the Tenant ID as shown below
-        </StyledParagraph>
-        <StyledParagraph>
-          Example: https://my-application.com
-          <StyledGrayLink>?tenantId=MyTenant</StyledGrayLink>
-        </StyledParagraph>
-      </div>
-    );
-  return <>{props.children}</>;
+export const TenantIdHOC = ({ children }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let tenantId = searchParams.get("tenantId");
+    const qparams = new URLSearchParams(window.location.search);
+    const tenantId2 = qparams.get("tenantId");
+
+    if (!tenantId && !tenantId2) {
+      tenantId = "helm";
+      const next = new URLSearchParams(searchParams);
+      next.set("tenantId", tenantId);
+      setSearchParams(next, { replace: true });
+    }
+    dispatch(updateTenantId(tenantId));
+  }, [searchParams, setSearchParams, dispatch]);
+
+  return <>{children}</>;
 };

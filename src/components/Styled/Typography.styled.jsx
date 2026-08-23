@@ -1,11 +1,11 @@
-/** @format */
-
 import styled from "styled-components";
+import { turncateStyles } from "./utils.styled";
 
 const textAlign = ({ left, right }) =>
   left ? "left" : right ? "right" : "center";
 
-const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 75);
+const marginTop = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
+const marginBottom = ({ small, medium }) => (small ? 25 : medium ? 50 : 5);
 
 // headings
 export const StyledHeadingMaxBig = styled.p`
@@ -15,7 +15,7 @@ export const StyledHeadingMaxBig = styled.p`
   // line-height: 52px;
   letter-spacing: -0.144px;
   margin: 36px 0;
-  text-align: ${({ left, right }) => textAlign({ left, right })};
+  text-align: ${textAlign};
 `;
 export const StyledHeadingBig = styled.p`
   //   color: ${({ theme, gradient }) => (gradient ? null : theme.color)};
@@ -25,7 +25,7 @@ export const StyledHeadingBig = styled.p`
   line-height: 52px;
   letter-spacing: -0.144px;
   margin: 20px 0;
-  text-align: ${({ left, right }) => textAlign({ left, right })};
+  text-align: ${textAlign};
 `;
 
 export const StyledHeading = styled.p`
@@ -50,7 +50,10 @@ export const StyledMediumHeading = styled.p`
   font-weight: 600;
   line-height: 23.4px;
   margin-top: ${marginTop}px;
+  margin-bottom: ${marginBottom}px;
   text-align: ${textAlign};
+
+  ${({ turncate }) => (turncate ? turncateStyles : ``)}
 `;
 
 // Paragraphs
@@ -67,7 +70,7 @@ export const StyledParagraph = styled.p`
 export const StyledParagraphBold = styled.p`
   color: ${({ theme }) => theme.color};
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 22.4px;
   text-align: ${textAlign};
 `;
@@ -76,7 +79,7 @@ export const StyledParagraphGray = styled.p`
   color: ${({ theme }) => theme.colors["text-gray-color"]};
   line-height: 22.4px;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: ${textAlign};
 `;
 
@@ -145,8 +148,8 @@ export const StyledGrayLink = styled.span`
   }
 `;
 
-export const StyledAnchorSmall = styled.p`
-  color: ${({ theme }) => theme.commonAnchorColor};
+export const StyledAnchorSmall = styled.a`
+  color: ${({ theme }) => theme.commonAnchorColor || "#22c55e"};
   font-size: 14px;
   font-weight: 400;
   line-height: 18.2px;
@@ -154,7 +157,8 @@ export const StyledAnchorSmall = styled.p`
   cursor: pointer;
 
   &:hover {
-    text-decoration-color: ${({ theme }) => theme.commonAnchorColor};
+    text-decoration-color: ${({ theme }) =>
+      theme.commonAnchorColor || "#22c55e"};
     text-decoration: underline;
     text-decoration-style: solid;
   }

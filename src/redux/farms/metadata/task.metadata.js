@@ -1,18 +1,14 @@
+import { TASK_STATUSES } from "../../../constants/statuses";
 import { validationList } from "../../../constants/validations.constants";
 
-const halfSize = "calc(50% - 8px)";
-
-// const req = {
-//   tenantUid: "tenant_123",
-//   eventUid: "event_456",
-//   title: "Prepare meeting agenda", //
-//   description: "Description of the task",
-//   priority: "Task priority",
-//   dueAt: "dueAt",
-//   assignedToUid: "Assigned bh whom",
-//   createdByUid: "user_123",
-//   updatedByUid: "user_123",
-// };
+// const halfSize = "calc(50% - 8px)";
+export const generateTaskStatusOptions = (role) => {
+  return Object.keys(TASK_STATUSES).map((key) => ({
+    value: key,
+    label: TASK_STATUSES[key].label,
+    isDisabled: !TASK_STATUSES[key].rolePermissions.includes(role),
+  }));
+};
 
 export const taskMetaData = [
   {
@@ -50,6 +46,16 @@ export const taskMetaData = [
     validations: [validationList.REQUIRED],
   },
   {
+    type: "dropdown",
+    name: "status",
+    value: "",
+    options: generateTaskStatusOptions(),
+    placeholder: "Task status",
+    label: "Status",
+    error: null,
+    validations: [validationList.REQUIRED],
+  },
+  {
     type: "date",
     name: "dueAt",
     value: "",
@@ -57,63 +63,100 @@ export const taskMetaData = [
     label: "Due Date",
     error: null,
     validations: [validationList.REQUIRED],
-    width: halfSize,
+    // width: halfSize,
+  },
+  // {
+  //   type: "checkbox",
+  //   name: "assineeType2",
+  //   placeholder: "Select assignee type: ",
+  //   list: ["Assign to Supervisors"],
+  //   origin: "inputForm",
+  //   error: null,
+  // },
+  {
+    type: "radio-group",
+    name: "assineeType",
+    value: "Assign to Vendor",
+    placeholder: "Choose Assignee type",
+    list: ["Assign to Vendor", "Assign to Supervisor"],
+    origin: "inputForm",
+    error: null,
   },
   {
     type: "dropdown",
     name: "assignedToUid",
     placeholder: "Assign to",
-    options: [
-      { value: "admin", label: "Admin" },
-      { value: "event_manager", label: "Event Manager" },
-      { value: "vendor", label: "Vendor" },
-      { value: "customer", label: "Customer" },
-    ],
+    options: [],
     value: "",
-    label: "Assign to Vendor",
+    label: "Assign to Vendor/Supervisors",
     error: null,
     validations: [validationList.REQUIRED],
   },
+  {
+    type: "dropdown",
+    name: "qaAssignedTo",
+    placeholder: "QA",
+    options: [],
+    value: "",
+    label: "QA",
+    error: null,
+  },
 ];
+// t.qa_assigned_to_uid AS "qaAssignedTo",
+// t.is_qa_approved AS "isQaApproved",
 
-export const generateAddEventInpMetadata = (vendors) => {
-  const dat = taskMetaData.map((el) => {
-    if (el.name === "assignedToUid") {
-      return {
-        ...el,
-        options: vendors.map((vendor) => ({
-          value: vendor.uid,
-          label: `${vendor.firstName} ${vendor.lastName}`,
-        })),
-      };
+export const generateAddTaskInputs = (vendorsOrSuprvs, qa, role) => {
+  const dat = taskMetaData.map((k) => {
+    const el = { ...k };
+    if (el.name === "assignedToUid" || el.name === "qaAssignedTo") {
+      const opts = el.name === "assignedToUid" ? vendorsOrSuprvs : qa;
+      el.options = generateUserOptions(opts);
+    }
+
+    if (el.name === "status") {
+      el.options = generateTaskStatusOptions(role);
     }
     return el;
   });
-
   return dat;
 };
 
-export const generateTaskDataToEdit = (vendors, data) => {
+export const generateEditTaskInputs = (vendorsOrSuprvs, qa, data, role) => {
   const allowedFields = [
     "title",
     "description",
     "priority",
+    "status",
     "dueAt",
+    "assineeType",
     "assignedToUid",
+    "qaAssignedTo",
   ];
 
   return allowedFields.map((el) => {
     const input = taskMetaData.find((fn) => fn.name === el);
-    if (el === "assignedToUid") {
-      return {
-        ...input,
-        value: data[el],
-        options: vendors.map((vendor) => ({
-          value: vendor.uid,
-          label: `${vendor.firstName} ${vendor.lastName}`,
-        })),
-      };
+
+    const mapper = { qaAssignedTo: "qaAssignedToUid" };
+    const valueName = mapper[el] || el;
+    let value = data[valueName] || input.value;
+    const output = { ...input, value};
+    if (el === "assignedToUid" || el === "qaAssignedTo") {
+      const opts = el === "assignedToUid" ? vendorsOrSuprvs : qa;
+      output.options = generateUserOptions(opts);
     }
-    return { ...input, value: data[el] };
+    if (el === "qaAssignedTo") {
+      output.value = data.qaAssignedToUid;
+    }
+    if (el === "status") {
+      output.options = generateTaskStatusOptions(role);
+    }
+    return output;
   });
+};
+
+export const generateUserOptions = (users) => {
+  return users.map((user) => ({
+    value: user.uid,
+    label: `${user.firstName} ${user.lastName}`,
+  }));
 };

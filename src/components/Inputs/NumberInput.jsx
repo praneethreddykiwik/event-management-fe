@@ -10,9 +10,10 @@ export const NumberInput = ({
   disabled,
   error,
   width,
+  validations,
 }) => {
   return (
-    <InputLayout label={label} error={error} width={width}>
+    <InputLayout label={label} error={error} width={width} validations= {validations} >
       <InputNumber
         id={name}
         name={name}

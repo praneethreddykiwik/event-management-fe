@@ -1,20 +1,22 @@
-import { Continue } from "../myEnum/RegistrationPage.Enum";
+import { CONTINUE } from "../myEnum/RegistrationPage.Enum";
 import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../components/Buttons/Button";
 import { useDispatch, useSelector } from "react-redux";
 import useNavigateWithQuery from "../hooks/useNavigateWithQuery";
 import { validationList } from "../constants/validations.constants";
-import {
-  formsSelector,
-  updateAllTaskInputs,
-  updateTaskInputs,
-} from "../redux/farms/farms.slice";
+import { formsSelector, updateAllTaskInputs } from "../redux/farms/farms.slice";
+import { usersSelector } from "../redux/users/users.slice";
+import { generateUserOptions } from "../redux/farms/metadata/task.metadata";
+import { mobile } from "../theme/media-queries";
+import { generateCreateTaskReq } from "../models/requests/task.req.model";
 
 const TaskForm = ({ onCreateTask }) => {
   const navigate = useNavigateWithQuery();
   const dispatch = useDispatch();
   const { createTaskInputs } = useSelector(formsSelector);
+  const { vendors, supervisors } = useSelector(usersSelector);
+
 
   const validateFields = () => {
     let isValid = true;
@@ -36,21 +38,36 @@ const TaskForm = ({ onCreateTask }) => {
     const isValid = validateFields();
     if (!isValid) return;
 
-    const reqPayload = createTaskInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
-
-    const payload = {
+    const onCreatePayload = {
       navigate,
-      reqPayload,
+      reqPayload: generateCreateTaskReq(createTaskInputs),
     };
 
-    await onCreateTask(payload);
+    await onCreateTask(onCreatePayload);
   };
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    dispatch(updateTaskInputs({ name, value }));
+    const state = createTaskInputs.map((el) => {
+      const inp = { ...el };
+
+      if (name === "assigneeType" && inp.name === "assignedToUid") {
+        const isSupervisorSelected = value === "Assign to Supervisor";
+        inp.options = generateUserOptions(
+          isSupervisorSelected ? supervisors : vendors,
+        );
+        inp.label = isSupervisorSelected
+          ? "Assign to Supervisor"
+          : "Assign to Vendor";
+      }
+
+      if (inp.name === name) {
+        return { ...inp, value, error: null };
+      }
+      return inp;
+    });
+
+    dispatch(updateAllTaskInputs(state));
   };
 
   return (
@@ -61,7 +78,7 @@ const TaskForm = ({ onCreateTask }) => {
         ))}
       </InputBox>
       <Button whiteText onClick={onSubmit}>
-        {Continue}
+        {CONTINUE}
       </Button>
     </Form>
   );
@@ -71,8 +88,13 @@ export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   gap: 16px;
+  flex-basis: 100%;
+  padding-left: 40px;
+
+  ${mobile`
+    padding-left: 0px;
+    `}
 `;
 
 export const InputBox = styled.div`

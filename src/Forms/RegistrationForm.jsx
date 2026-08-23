@@ -1,4 +1,4 @@
-import { Continue } from "../myEnum/RegistrationPage.Enum";
+import { CONTINUE } from "../myEnum/RegistrationPage.Enum";
 import { Inputs } from "../components/Inputs/Inputs";
 import styled from "styled-components";
 import { Button } from "../components/Buttons/Button";
@@ -11,7 +11,8 @@ import {
   updateAllRegInputs,
   updateRegInputs,
 } from "../redux/farms/farms.slice";
-import { registrationMetaData } from "../redux/farms/metadata/reg.metadata";
+import { generateCreateUserReq } from "../models/requests/user.req.model";
+import { isValidEmail } from "../utils/utils";
 
 const RegistrationForm = ({ onCreateUser }) => {
   const navigate = useNavigateWithQuery();
@@ -24,12 +25,36 @@ const RegistrationForm = ({ onCreateUser }) => {
 
     const newInputs = createUserInputs.map((el) => {
       const isReq = el.validations?.includes(validationList.REQUIRED);
-      if (isReq && !el.value) {
+      if (isReq && !el.value.trim()) {
         isValid = false;
         return { ...el, error: "This field is required" };
       }
+      if (el.name === "email" && el.value && !isValidEmail(el.value)) {
+        isValid = false;
+        return {
+          ...el,
+          error: "Please enter a valid email address",
+        };
+      }
       return { ...el, error: "" };
     });
+
+    // check password match if both fields exist
+    const pwdIndex = newInputs.findIndex((i) => i.name === "password");
+    const confirmIndex = newInputs.findIndex(
+      (i) => i.name === "confirmPassword",
+    );
+    if (pwdIndex !== -1 && confirmIndex !== -1) {
+      const pwd = newInputs[pwdIndex].value || "";
+      const cpwd = newInputs[confirmIndex].value || "";
+      if (pwd !== cpwd) {
+        isValid = false;
+        newInputs[confirmIndex] = {
+          ...newInputs[confirmIndex],
+          error: "Passwords do not match",
+        };
+      }
+    }
 
     dispatch(updateAllRegInputs(newInputs));
     return isValid;
@@ -38,19 +63,13 @@ const RegistrationForm = ({ onCreateUser }) => {
   const onSubmit = async () => {
     const isValid = validateFields();
     if (!isValid) return;
-
-    const reqPayload = createUserInputs.reduce((acu, cur) => {
-      return { ...acu, [cur.name]: cur.value };
-    }, {});
-
-    const payload = {
-      navigate,
-      reqPayload: { ...reqPayload, tenantId },
-    };
-
     try {
-      await onCreateUser(payload);
-      dispatch(updateAllRegInputs(registrationMetaData));
+      const onSubmitPayload = {
+        navigate,
+        reqPayload: generateCreateUserReq(createUserInputs, tenantId),
+      };
+      await onCreateUser(onSubmitPayload);
+      // dispatch(updateAllRegInputs(registrationMetaData));
     } catch (error) {
       console.error(error);
     }
@@ -70,7 +89,7 @@ const RegistrationForm = ({ onCreateUser }) => {
       </InputBox>
 
       <Button whiteText onClick={onSubmit}>
-        {Continue}
+        {CONTINUE}
       </Button>
     </Form>
   );

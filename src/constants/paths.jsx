@@ -1,23 +1,39 @@
-
-
 export const paths = {
   home: "/",
+
   login: "/login",
-  newsFeed: "/news-feed",
-  accountSettings: "/account-settings",
-  events: "/events",
+  registration: "/registration",
+
   tasks: "/tasks",
   createTask: "/tasks/create",
-  registration: "/registration",
-  twoFactorAuth: "/two-factor-auth",
+  // taskDetails: "/tasks:taskUid",
+
+  eventsDashboard: "/events-dashboard",
   eventsDetails: "/events/event-details",
   createEvent: "/events/create-event",
+  editEvent: "/events/edit-event",
+  aboutUs: "/about-us",
+  whyChoose: "/why-choose",
+  ourServices: "/our-services",
+  faq: "/faq",
 
   vendor: "/vendor",
-  customer: "/customer",
+  supervisor: "/supervisor",
+  // customer: "/customer",
+  qa: "/qa",
   userManagement: "/user/management",
-  marketPlace: "/market-place",
-  getInTouch : "/get-in-touch",
 
   venues: "/venues",
+  twoFactorAuth: "/two-factor-auth",
+  getInTouch: "/get-in-touch",
+  marketPlace: "/market-place",
+  newsFeed: "/news-feed",
+  accountSettings: "/account-settings",
+  gateway: "/gateway",
+  paymentSuccess: "/payment-success",
+  controlPage: "/control-page",
+  profile: "/profile",
+  samplePage: "/sample-page",
+  subscriptions: "/subscriptions",
+  playerCard: "/player-card",
 };

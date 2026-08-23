@@ -1,40 +1,76 @@
-/** @format */
+import { ROLES } from "./roles";
 
-export const taskStatuses = {
-  completed: {
-    badgeColor: "completed",
-    icon: "task_alt",
-    status: "Completed",
+export const TASK_STATUSES = {
+  not_started: {
+    badgeColor: "notstarted",
+    icon: "schedule",
+    status: "Not Started",
+    label: "Not Started",
+    keyCamel: "notStarted",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   assigned: {
     badgeColor: "assigned",
     icon: "assignment_ind",
     status: "Assigned",
-  },
-
-  not_started: {
-    badgeColor: "notstarted",
-    icon: "schedule",
-    status: "Not Started",
+    label: "Assigned",
+    keyCamel: "assigned",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   in_progress: {
     badgeColor: "inprogress",
     icon: "hourglass_bottom",
     status: "In Progress",
+    label: "In Progress",
+    keyCamel: "inProgress",
+    rolePermissions: Object.values(ROLES),
+  },
+
+  ready_for_qa: {
+    badgeColor: "inprogress",
+    icon: "hourglass_bottom",
+    status: "Ready For QA",
+    label: "Ready For QA",
+    keyCamel: "readyForQA",
+    rolePermissions: Object.values(ROLES),
+  },
+
+  qa_in_progress: {
+    badgeColor: "inprogress",
+    icon: "hourglass_bottom",
+    status: "QA in progress",
+    label: "QA in progress",
+    keyCamel: "QAInProgress",
+    rolePermissions: ["event_manager", "admin", "qa"],
+  },
+
+  completed: {
+    badgeColor: "completed",
+    icon: "task_alt",
+    status: "Completed",
+    label: "Completed",
+    keyCamel: "completed",
+    rolePermissions: ["event_manager", "admin", "qa"],
   },
 
   cancelled: {
     badgeColor: "cancelled",
     icon: "cancel",
     status: "Cancelled",
+    label: "Cancelled",
+    keyCamel: "cancelled",
+    rolePermissions: ["event_manager", "admin"],
   },
 
   deleted: {
     badgeColor: "deleted",
     icon: "delete",
     status: "Deleted",
+    label: "Deleted",
+    keyCamel: "deleted",
+    rolePermissions: ["event_manager", "admin"],
   },
 };
 
@@ -112,11 +148,4 @@ export const taskPriorities = {
   low: "low",
   medium: "medium",
   high: "high",
-};
-
-export const usersRoles = {
-  admin: { label: "Admin" },
-  event_manager: { label: "Event Manager" },
-  vendor: { label: "Vendor" },
-  customer: { label: "Customer" },
 };

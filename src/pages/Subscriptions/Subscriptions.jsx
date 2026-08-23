@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { StyledBaseButton } from "../../components/Styled/Buttons.styled";
+import {
+  StyledHeading,
+  StyledParagraphBold,
+  StyledParagraphSmallGray,
+  StyledParagraphGray,
+} from "../../components/Styled/Typography.styled";
 import {
   ButtonWrapper,
   Cards,
   ChoosePlan,
-  ChoosePlanTxt,
   Discount,
   Feature,
   Features,
-  Header,
   MobileCTA,
   MobileDot,
   MobileLine,
@@ -22,11 +25,11 @@ import {
   ToggleKnob,
   ToggleRow,
   ToggleSwitch,
-  Message,
   PlanDivider,
   SpanButton,
 } from "./Subscriptions.styled";
 import * as enums from "../../myEnum";
+import { Button } from "../../components/Buttons/Button";
 
 const Subscriptions = () => {
   const [yearly, setYearly] = useState(false);
@@ -68,23 +71,21 @@ const Subscriptions = () => {
   return (
     <StyledContainer>
       <ChoosePlan>
-        <Header>
-          <ChoosePlanTxt>{enums.CHOOSE_PLAN}</ChoosePlanTxt>
-          <Message>{enums.ENJOY_MESSAGE}</Message>
+        <StyledHeading>{enums.CHOOSE_PLAN}</StyledHeading>
+        <StyledParagraphGray>{enums.ENJOY_MESSAGE}</StyledParagraphGray>
 
-          <ToggleRow>
-            <SpanButton className={!yearly ? "active" : ""}>
-              {enums.MONTH}
-            </SpanButton>
-            <ToggleSwitch onClick={() => setYearly((v) => !v)}>
-              <ToggleKnob $move={yearly} />
-            </ToggleSwitch>
-            <SpanButton className={yearly ? "active" : ""}>
-              {enums.YEAR}
-            </SpanButton>
-            <Discount>{enums.DISCOUNT}</Discount>
-          </ToggleRow>
-        </Header>
+        <ToggleRow>
+          <StyledParagraphBold className={!yearly ? "active" : ""}>
+            {enums.MONTH}
+          </StyledParagraphBold>
+          <ToggleSwitch onClick={() => setYearly((v) => !v)}>
+            <ToggleKnob $move={yearly} />
+          </ToggleSwitch>
+          <StyledParagraphBold className={yearly ? "active" : ""}>
+            {enums.YEAR}
+          </StyledParagraphBold>
+          <Discount>{enums.DISCOUNT}</Discount>
+        </ToggleRow>
 
         <Cards role="radiogroup" aria-label="Pricing plans">
           {Object.entries(priceMonthly).map(([key, price]) => (
@@ -102,7 +103,9 @@ const Subscriptions = () => {
             >
               <TitleRow>
                 <MobileDot $selected={selected === key} />
-                <h3>{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
+                <StyledParagraphGray>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </StyledParagraphGray>
               </TitleRow>
 
               <Price>
@@ -112,7 +115,7 @@ const Subscriptions = () => {
 
               <PlanDivider $selected={selected === key} />
 
-              <MobileLine>{enums.mobileOneLiner}</MobileLine>
+              <MobileLine>{enums.MARKETING_LINE}</MobileLine>
 
               <Features>
                 {FEATURE_MAP[key]?.map((feature, index) => (
@@ -123,7 +126,7 @@ const Subscriptions = () => {
               </Features>
 
               <ButtonWrapper>
-                <StyledBaseButton>{enums.GET_STARTED}</StyledBaseButton>
+                <Button>{enums.GET_STARTED}</Button>
               </ButtonWrapper>
 
               <SmallText $selected={selected === key}>

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./users.actions";
+import { USER_ROLE_FILTERS } from "../../constants/user.constants";
 
 const initialState = {
   eventManagersLoading: false,
@@ -10,6 +11,14 @@ const initialState = {
   vendors: [],
   vendorsError: false,
 
+  supervisorsLoading: false,
+  supervisors: [],
+  supervisorsError: false,
+
+  qaLoading: false,
+  qa: [],
+  qaError: false,
+
   registrationError: null,
   registrationSuccess: false,
   registrationLoading: false,
@@ -17,10 +26,15 @@ const initialState = {
   updateUserError: null,
   updateUserSuccess: false,
   updateUserLoading: false,
-  
-  allUsersLoading:false,
-  allUsers:[],
-  allUsersError:null,
+
+  allUsersLoading: false,
+  allUsers: [],
+  allUsersError: null,
+
+  roleCounts: {},
+  selectedRoleFilters: [...USER_ROLE_FILTERS],
+
+  userMgtGridView: false,
 };
 
 const usersSlice = createSlice({
@@ -29,6 +43,15 @@ const usersSlice = createSlice({
   reducers: {
     clearRegistrationSuccessMsg(state) {
       state.registrationSuccess = false;
+    },
+    usersFilterAction(state, action) {
+      state.selectedRoleFilters = action.payload;
+    },
+    setUserMgtGridView(state, action) {
+      state.userMgtGridView = action.payload;
+    },
+    setSelectedRoleFilters(state, action) {
+      state.selectedRoleFilters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -51,9 +74,10 @@ const usersSlice = createSlice({
         state.allUsersLoading = true;
       })
       .addCase(actions.fetchAllUsersAction.fulfilled, (state, action) => {
-        state.allUsers = action.payload?.details;
+        state.allUsers = action.payload?.details?.users || [];
         state.allUsersLoading = false;
         state.allUsersError = null;
+        state.roleCounts = action.payload?.details?.roleCounts || {};
       })
       .addCase(actions.fetchAllUsersAction.rejected, (state) => {
         state.allUsersError = "Something went wrong";
@@ -65,13 +89,56 @@ const usersSlice = createSlice({
         state.vendorsLoading = true;
       })
       .addCase(actions.fetchVendorsAction.fulfilled, (state, action) => {
-        state.vendors = action.payload?.details;
+        state.vendors = action.payload?.details?.users;
         state.vendorsLoading = false;
         state.vendorsError = null;
       })
       .addCase(actions.fetchVendorsAction.rejected, (state) => {
         state.vendorsError = "Something went wrong";
         state.vendorsLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchSupervisorsAction.pending, (state) => {
+        state.supervisorsLoading = true;
+      })
+      .addCase(actions.fetchSupervisorsAction.fulfilled, (state, action) => {
+        state.supervisors = action.payload?.details?.users;
+        state.supervisorsLoading = false;
+        state.supervisorsError = null;
+      })
+      .addCase(actions.fetchSupervisorsAction.rejected, (state) => {
+        state.supervisorsError = "Something went wrong";
+        state.supervisorsLoading = false;
+      });
+
+    builder
+      .addCase(actions.fetchVendorsSupsQA.pending, (state) => {
+        state.supervisorsLoading = true;
+        state.vendorsLoading = true;
+        state.qaLoading = true;
+      })
+      .addCase(actions.fetchVendorsSupsQA.fulfilled, (state, action) => {
+        state.supervisors = action.payload.supervisors;
+        state.vendors = action.payload.vendors;
+        state.qa = action.payload.qa;
+
+        state.supervisorsLoading = false;
+        state.vendorsLoading = false;
+        state.qaLoading = false;
+
+        state.supervisorsError = null;
+        state.vendorsError = null;
+        state.qaError = null;
+      })
+      .addCase(actions.fetchVendorsSupsQA.rejected, (state) => {
+        state.supervisorsError = "Something went wrong";
+        state.vendorsError = "Something went wrong";
+        state.qaError = "Something went wrong";
+
+        state.supervisorsLoading = false;
+        state.vendorsLoading = false;
+        state.qaLoading = false;
       });
 
     // registration
@@ -107,5 +174,10 @@ const usersSlice = createSlice({
 });
 
 export const usersSelector = (st) => st.users;
-export const { clearRegistrationSuccessMsg } = usersSlice.actions;
+export const {
+  clearRegistrationSuccessMsg,
+  usersFilterAction,
+  setUserMgtGridView,
+  setSelectedRoleFilters,
+} = usersSlice.actions;
 export default usersSlice.reducer;

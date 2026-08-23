@@ -1,15 +1,16 @@
-/** @format */
+import { TASK_STATUSES, eventStatuses } from "../constants/statuses";
 
-import { taskStatuses, eventStatuses } from '../constants/statuses';
-
-export const mapTaskForUI = (task) => {
-  const status = taskStatuses[task.taskStatus] || taskStatuses.not_started;
+export const mapTaskForUI = (task, event) => {
+  const status = TASK_STATUSES[task.taskStatus] || TASK_STATUSES.not_started;
 
   return {
     ...task,
     type: status.badgeColor,
-    taskStatus: status.status,
+    // taskStatus: status.status,
+    taskStatusForBadge: status.status,
     taskIcon: status.icon,
+    eventName: event?.eventName,
+    taskAssignedTo: task.taskAssignedTo,
   };
 };
 

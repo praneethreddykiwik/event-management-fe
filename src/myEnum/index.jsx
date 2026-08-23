@@ -56,12 +56,13 @@ export const NO_SEARCH_INDEX = "Don’t allow search engines to index my profile
 export const AUTO_UPDATE = "Allow auto update of contents";
 
 export const DESCRIPTION_TEXT =
-  "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.";
+  "Amateurs Panic. Professionals Go for HELM.";
 export const CONTACT_US = "Contact Us";
-export const CONTACT_PHONE = "(+91) 98765 01234";
-export const EMAIL_ID = "events@email.com";
-export const LOCATION = "2118 Thornridge Cir. Syracuse, Connecticut 35624";
-export const ALL_RIGHTS_RESERVED = "2025 Events - All rights reserved";
+export const CONTACT_PHONE = "+91 8121458444";
+export const EMAIL_ID = "info@helmevents.com";
+export const LOCATION =
+  "Spacion Towers, Vittal Rao Nagar, HITEC City, Hyderabad, Telangana 500081";
+export const ALL_RIGHTS_RESERVED = "HELM Events - All rights reserved";
 export const TERMS_CONDITIONS = "Terms and Conditions";
 
 export const COMPLETED = "Completed";
@@ -165,7 +166,7 @@ export const SCAN = "Scan to activate your device and access control";
 
 export const WIFI_ICON = "wifi";
 
-export const TIME = "05 =06 AM";
+export const TIME = "05:06 AM";
 export const THERMOVALUE = "Thermostat";
 
 export const CENT_VALUE = "60°";
@@ -190,8 +191,8 @@ export const ANALYTICS = "Analytics";
 
 export const TASKOV = "Task Overview";
 export const TASKM = "Monitor and manage all assigned tasks";
-export const TASKASSIGNEE = "Assigned to: ";
-export const TASKDUE = "• Due: ";
+export const TASK_ASSIGNEE = "Assigned to: ";
+export const TASKDUE = "Due: ";
 export const MANAGE_B = "Manage";
 
 export const NEW_EVENT = "New Event";
@@ -283,21 +284,21 @@ export const BOOK_HEADING =
   "Get updated when your favorite venue is open for booking.";
 export const BOOK_PARA =
   " Join our email list to resceive updates on events near you, booking and appointment availabilty tips on great event planning, management and more.";
-export const BOOK_BTN = "Notify when available";
+export const BOOK_BTN = "Get more information";
 export const BOOK_POLICY =
   "*Please refer to our Privacy Policy for more details.";
 
 export const JOIN_HEADING_2 = "Trusted By";
 
-export const EVENTZ = "eventz";
-export const WELCOME_TEXT = "Welcome to Eventz";
-export const SIGN_UP_TXT =
-  "Sign Up now to get access to 1000+ Events, Schedule a venue for an upcoming events or get in touch with a planner.";
-export const STARTED_WITH = "Get started with";
-export const SIGN_IN_TEXT = "Sign in with";
-export const APPLE = "Continue with Apple";
-export const GOOGLE = "Continue with Google";
-export const SIGN_UP_LINE = "Or Sign Up with";
+// export const EVENTZ = "eventz";
+// export const WELCOME_TEXT = "Welcome to Eventz";
+// export const SIGN_UP_TXT =
+//   "Sign Up now to get access to 1000+ Events, Schedule a venue for an upcoming events or get in touch with a planner.";
+// export const STARTED_WITH = "Get started with";
+// export const SIGN_IN_TEXT = "Sign in with";
+// export const APPLE = "Continue with Apple";
+// export const GOOGLE = "Continue with Google";
+// export const SIGN_UP_LINE = "Or Sign Up with";
 export const SIGN_IN_EMAIL = "Or Sign in with Email";
 export const FORGOT_PASS = "Forgot Password? ";
 export const RESET = "Reset";
@@ -307,10 +308,10 @@ export const BY_USING_OUR_TERMS = "By using our app you agree to the";
 export const CONDITIONS = "Terms of Use";
 export const POLICY = "Privacy Policy";
 export const BY_USING_OUR_APPS_PP =
-  "By using our app you agree to the Terms of Use Privacy Policy";
+  "By using our app you agree to the Terms of Use and Privacy Policy";
 export const CONTINUE = "Continue";
 export const ACCOUNT = "Already have an account?";
-export const DONT_HAVE_ACCOUNT_TEXT = "Don’t have an account?";
+export const DONT_HAVE_ACCOUNT_TEXT = "New user?";
 export const SIGN_IN = "Sign in";
 
 export const WELCOME = "Welcome to Market Place.";
@@ -326,3 +327,25 @@ export const LOGO_TEXT = "eventz";
 export const NAV_HOME = "Home";
 export const NAV_EVENTS = "Events";
 export const NAV_VENUES = "Venues";
+
+export const EVENT_VENUE = "Venue";
+
+export const HERO_SECTION_DATA = {
+  HERO_HEADING: "Turn Event Chaos Into Seamless Success",
+
+  HERO_SUBHEADING:
+    "The Complete Event Management Platform Trusted by Industry Leaders — From Planning to Execution to Analytics, HELM Handles It All",
+
+  HERO_TAGLINE:
+    "Amateurs panic. Professionals go for HELM.",
+
+  HERO_DESCRIPTION:
+    "Whether you're managing your first conference or your hundredth festival, HELM is the all-in-one event management platform designed to eliminate chaos, reduce costs, and maximize your event's success. No more juggling spreadsheets, scattered emails, or disconnected tools. One powerful platform. Complete control. Professional results.",
+
+  HERO_PRIMARY_BTN:
+    "Start Your Free Trial",
+
+  HERO_SECONDARY_BTN:
+    "Watch Product Demo",
+};
+
