@@ -8,14 +8,15 @@ import { Button } from "../../components/Buttons/Button";
 import { desktop, laptop, mobile, tablet } from "../../theme/media-queries";
 import {
   STARTED_WITH,
+  SIGN_IN_TEXT,
   APPLE,
   GOOGLE,
 } from "../../myEnum/RegistrationPage.Enum";
 const GetStartedWithButtons = () => {
   return (
     <GetStartedWithButtonsWrapper>
-      <GetStarted>{enums.STARTED_WITH}</GetStarted>
-      <SignInTxtM>{enums.SIGN_IN_TEXT}</SignInTxtM>
+      <GetStarted>{STARTED_WITH}</GetStarted>
+      <SignInTxtM>{SIGN_IN_TEXT}</SignInTxtM>
       <ContinueSignIn>
         <Button type="outlined" image={apple}>
           {APPLE}

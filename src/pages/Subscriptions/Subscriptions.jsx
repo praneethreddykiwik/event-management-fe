@@ -115,7 +115,7 @@ const Subscriptions = () => {
 
               <PlanDivider $selected={selected === key} />
 
-              <MobileLine>{enums.mobileOneLiner}</MobileLine>
+              <MobileLine>{enums.MARKETING_LINE}</MobileLine>
 
               <Features>
                 {FEATURE_MAP[key]?.map((feature, index) => (
