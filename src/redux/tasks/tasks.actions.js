@@ -11,7 +11,6 @@ import {
   fetchTaskApi,
 } from "../../api/tasks.api";
 import { toast } from "react-toastify";
-import { showErrorToast } from "../../utils/toast.utils";
 import { clearTaskInputs } from "../farms/farms.slice";
 
 export const fetchTaskAction = createAsyncThunk(
@@ -21,7 +20,9 @@ export const fetchTaskAction = createAsyncThunk(
       const res = await fetchTaskApi(payload.query);
       return res.data.details[0] || {};
     } catch (err) {
-      showErrorToast(err, "Failed to load Tasks");
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to load Tasks",
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -34,7 +35,9 @@ export const fetchTasksApiAction = createAsyncThunk(
       const res = await fetchTasksApi(payload.query);
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to load Tasks");
+      toast.error(
+        err?.response?.data?.message || err?.message || "Failed to load Tasks",
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -66,7 +69,11 @@ export const fetchEventsAndTasksAction = createAsyncThunk(
 
       return k;
     } catch (err) {
-      showErrorToast(err, "Failed to load Events & Tasks");
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to load Events & Tasks",
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -78,7 +85,11 @@ export const fetchQaEventsAndTasksAction = createAsyncThunk(
       const res = await fetchQaEventsAndTasksApi(payload);
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to load Events & Tasks for Qa");
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to load Events & Tasks for Qa",
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -92,7 +103,12 @@ export const declineTasksAction = createAsyncThunk(
       toast.success("Task declined successfully");
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to decline task");
+      toast.error(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to decline task",
+      );
+      toast.error(err?.response?.data?.message || "Failed to decline task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -106,7 +122,7 @@ export const acceptTasksAction = createAsyncThunk(
       toast.success("Task accepted successfully");
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to accept task");
+      toast.error(err?.response?.data?.message || "Failed to accept task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -122,7 +138,7 @@ export const createTaskAction = createAsyncThunk(
       window.history.back();
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to create Task");
+      toast.error(err?.response?.data?.message || "Failed to create Task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -137,7 +153,7 @@ export const editTaskAction = createAsyncThunk(
       window.history.back();
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to edit Task");
+      toast.error(err?.response?.data?.message || "Failed to edit Task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -155,7 +171,9 @@ export const updateTaskStatusAction = createAsyncThunk(
       // return res.data;
       return payload.reqPayload;
     } catch (err) {
-      showErrorToast(err, "Failed to update Task Status");
+      toast.error(
+        err?.response?.data?.message || "Failed to update Task Status",
+      );
       return rejectWithValue(err?.response?.data || "Error");
     }
   },
@@ -172,7 +190,7 @@ export const deleteTaskAction = createAsyncThunk(
       toast.success("Task deleted successfully");
       return res.data;
     } catch (err) {
-      showErrorToast(err, "Failed to delete Task");
+      toast.error(err?.response?.data?.message || "Failed to delete Task");
       return rejectWithValue(err?.response?.data || "Error");
     }
   },

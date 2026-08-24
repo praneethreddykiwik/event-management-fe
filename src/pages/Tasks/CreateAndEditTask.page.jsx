@@ -105,7 +105,7 @@ export const CreateAndEditTask = () => {
   const onClickSuggestion = (selectedTask) => {
     // populate Data from task suggestion
     const k = createTaskInputs.map((inp) => {
-      return { ...inp, value: selectedTask[inp.name] || inp.value, error: "" };
+      return { ...inp, value: selectedTask[inp.name] || inp.value };
     });
     dispatch(updateAllTaskInputs(k));
     toast.success("Selected task details are added in the input fields");

@@ -33,7 +33,6 @@ import {
 import { toggleBookmarkAction } from "../../../redux/bookmarks/bookmarks.actions";
 import { Bookmark } from "../../../components/UI/Bookmark/Bookmark";
 import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
-import { RowLayout } from "../../../components/UI/Layouts/RowLayout";
 
 const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const navigate = useNavigateWithQuery();
@@ -106,8 +105,12 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
   const valueData = Math.floor(Math.random() * 101);
   const isAssignedToMe = event.assignedToUid === authUser?.uid;
 
+  if (loading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
+
   return (
-    <RowLayout showGridView={gridView} ref={ref} loading={loading}>
+    <StyledCard showGridView={gridView} ref={ref}>
       <Left>
         <StatusIcon type={event.type} className="material-symbols-outlined">
           {event.statusIcon}
@@ -187,7 +190,7 @@ const AdminTaskItem = ({ event = {}, gridView, loading, ref }) => {
           />
         </GaugeWrapper>
       )}
-    </RowLayout>
+    </StyledCard>
   );
 };
 

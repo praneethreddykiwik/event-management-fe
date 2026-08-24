@@ -65,15 +65,17 @@ const CreateEdiEvent = () => {
   // };
 
   const refreshOnCreateMode = () => {
-    if (!eventManagers.length) {
-      const callback = (eventManagersRes) => {
-        const createEventInputs = generateNewEventsInputs(eventManagersRes);
+    if (!createEventInputs.length) {
+      if (!eventManagers.length) {
+        const callback = (eventManagersRes) => {
+          const createEventInputs = generateNewEventsInputs(eventManagersRes);
+          dispatch(updateAllEventInputs(createEventInputs));
+        };
+        dispatch(fetchManagersAction({ callback }));
+      } else {
+        const createEventInputs = generateNewEventsInputs(eventManagers);
         dispatch(updateAllEventInputs(createEventInputs));
-      };
-      dispatch(fetchManagersAction({ callback }));
-    } else {
-      const createEventInputs = generateNewEventsInputs(eventManagers);
-      dispatch(updateAllEventInputs(createEventInputs));
+      }
     }
   };
 
@@ -92,10 +94,9 @@ const CreateEdiEvent = () => {
           ...inp,
           value: event[inp.name] || inp.value,
           helperText: inp.helperText,
-          error: "",
         };
       }
-      return { ...inp, value: event[inp.name] || inp.value, error: "" };
+      return { ...inp, value: event[inp.name] || inp.value };
     });
     dispatch(updateAllEventInputs(k));
     toast.success("Selected event details are added in the input fields");

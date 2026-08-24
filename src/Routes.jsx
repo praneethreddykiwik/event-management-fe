@@ -19,9 +19,9 @@ import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
 import { authSelector } from "./redux/auth/auth.slice.js";
 import Event from "./pages/Events/EventDetails/EventDetails.page.jsx";
-import EventsPage from "./pages/Events/Events.page.jsx";
+import EventsDashboard from "./pages/Events/EventsDashboard/EventsDashboard.page.jsx";
 import { MarketPlace } from "./pages/MarketPlace/MarketPlace.jsx";
-import UserManagementPage from "./pages/UserManagement/UserManagement.jsx";
+import UserManagement from "./pages/UserManagement/UserManagement.jsx";
 import CustomerDashboard from "./pages/Customers/CustomerDashboard.jsx";
 import { RBACRoute } from "./RBAC/RBACRoute.jsx";
 import TwoFactorAuthPage from "./pages/TwoFactorAuth/TwoFactorAuthPage.jsx";
@@ -85,7 +85,7 @@ const AppRoutes = () => {
         path={paths.eventsDashboard}
         element={
           <RBACRoute perm="admin:panel">
-            <EventsPage />
+            <EventsDashboard />
           </RBACRoute>
         }
       />
@@ -130,7 +130,7 @@ const AppRoutes = () => {
         path={paths.userManagement}
         element={
           <RBACRoute perm="admin:panel">
-            <UserManagementPage />
+            <UserManagement />
           </RBACRoute>
         }
       />

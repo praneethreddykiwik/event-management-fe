@@ -16,11 +16,9 @@ import { InlineButton } from "../Buttons/InlineButton/InlineButton";
 import {
   deleteTaskAction,
   fetchTasksApiAction,
-  fetchEventsAndTasksAction,
 } from "../../redux/tasks/tasks.actions";
 
 import { authSelector } from "../../redux/auth/auth.slice";
-import { tasksSelector } from "../../redux/tasks/tasks.slice";
 import { generateDeleteTaskReq } from "../../models/requests/task.req.model";
 import { paths } from "../../constants/paths";
 import { toast } from "react-toastify";
@@ -41,7 +39,6 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { authUser } = useSelector(authSelector);
-  const { selectedTaskFilters } = useSelector(tasksSelector);
   const { taskBookmarks } = useSelector(bookmarksSelector);
 
   const folderNames = getFolderNames(taskBookmarks);
@@ -76,18 +73,8 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   const onDelete = () => {
     const callBack = () => {
       const eventUid = searchParams.get("eventUid");
-      if (eventUid) {
-        const query = `eventUid=${eventUid}`;
-        dispatch(fetchTasksApiAction({ query }));
-      } else {
-        dispatch(
-          fetchEventsAndTasksAction({
-            assignedToUid: authUser?.uid,
-            tenantUid: authUser?.tenantUid,
-            filters: selectedTaskFilters,
-          }),
-        );
-      }
+      const query = `eventUid=${eventUid}`;
+      dispatch(fetchTasksApiAction({ query }));
     };
 
     const onDeletePayload = {
@@ -110,7 +97,7 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
   };
 
   if (loading) {
-    return <SkeletonLoaders count={1} height={140} />;
+    return <SkeletonLoaders count={1} height={150} />;
   }
 
   return (
@@ -166,7 +153,6 @@ const TaskRow = ({ loading, task = {}, onEdit }) => {
               icon="delete"
               onClick={onDelete}
               title="Delete"
-              disabled={task.taskStatus === "deleted"}
             >
               Delete Task
             </InlineButton>

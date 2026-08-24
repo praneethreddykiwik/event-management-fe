@@ -13,7 +13,6 @@ export const InlineButton = ({
   icon,
   showGridView,
   title,
-  disabled,
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
@@ -39,7 +38,6 @@ export const InlineButton = ({
   };
 
   const onFirstClick = () => {
-    if (disabled) return;
     const action = !open;
     if (action) {
       setTimeout(() => {
@@ -60,7 +58,7 @@ export const InlineButton = ({
   return (
     <Ctn ref={containerRef} title={title}>
       {/* <IconBtn onClick={() => setOpen((k) => !k)}> */}
-      <IconBtn onClick={onFirstClick} disabled={disabled}>
+      <IconBtn onClick={onFirstClick}>
         <Icon variant={icon} sx={{ color: iconColor }} />
       </IconBtn>
 
@@ -91,7 +89,6 @@ const IconBtn = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
   max-height: 20px;
 `;
 

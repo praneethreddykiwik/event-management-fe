@@ -1,30 +1,30 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { StyledParagraphSmallGray } from "../../../components/Styled/Typography.styled";
+import { StyledParagraphSmallGray } from "../Styled/Typography.styled";
 import {
   fetchEventsAndTasksAction,
   fetchQaEventsAndTasksAction,
-} from "../../../redux/tasks/tasks.actions";
-import { authSelector } from "../../../redux/auth/auth.slice";
-import { tasksSelector } from "../../../redux/tasks/tasks.slice";
-import { mapTaskForUI } from "../../../helpers/Dashboard.helper";
-import useNavigateWithQuery from "../../../hooks/useNavigateWithQuery";
-import { paths } from "../../../constants/paths";
-import { fetchVendorsSupsQA } from "../../../redux/users/users.actions";
-import { usersSelector } from "../../../redux/users/users.slice";
-import { getStatusColor } from "../../../utils/utils";
-import TaskRow from "../../../components/EventTaskComponents/TaskRow";
-import { EventWrapsTasks } from "../../../components/EventTaskComponents/EventWrapsTasks";
-import { TASK_INITIAL_FILTERS } from "../../../constants/tasks.constants";
-import { FilterHeaders } from "../../../components/Headers/FilterHeaders";
-import { fetchBookmarksByTypeAction } from "../../../redux/bookmarks/bookmarks.actions";
-import FilterCards from "../../../components/Filters/FilterCards/FilterCards";
+} from "../../redux/tasks/tasks.actions";
+import { authSelector } from "../../redux/auth/auth.slice";
+import { tasksSelector } from "../../redux/tasks/tasks.slice";
+import { mapTaskForUI } from "../../helpers/Dashboard.helper";
+import useNavigateWithQuery from "../../hooks/useNavigateWithQuery";
+import { paths } from "../../constants/paths";
+import { fetchVendorsSupsQA } from "../../redux/users/users.actions";
+import { usersSelector } from "../../redux/users/users.slice";
+import { getStatusColor } from "../../utils/utils";
+import TaskRow from "./TaskRow";
+import { EventWrapsTasks } from "./EventWrapsTasks";
+import { TASK_INITIAL_FILTERS } from "../../constants/tasks.constants";
+import { FilterHeaders } from "../Headers/FilterHeaders";
+import { fetchBookmarksByTypeAction } from "../../redux/bookmarks/bookmarks.actions";
+import FilterBoxes from "../Filters/FilterBoxes/FilterBoxes";
 import {
   isFilterSelected,
   updateFilters,
-} from "../../../components/Filters/FilterCards/FilterCards.helper";
-import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders";
+} from "../Filters/FilterBoxes/FilterBoxes.helper";
+import { SkeletonLoaders } from "../UI/Loaders/SkeletonLoaders";
 
 const EventsAndTasks = ({ isQa }) => {
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const EventsAndTasks = ({ isQa }) => {
     }
 
     dispatch(fetchBookmarksByTypeAction("task"));
+
   }, []);
 
   const onAddTask = (event) => {
@@ -86,7 +87,11 @@ const EventsAndTasks = ({ isQa }) => {
   };
 
   const onClickFilter = (key) => {
-    const updated = updateFilters(key, selectedTaskFilters);
+    const updated = updateFilters(
+      key,
+      selectedTaskFilters,
+      TASK_INITIAL_FILTERS,
+    );
 
     dispatch(
       fetchEventsAndTasksAction({
@@ -97,19 +102,17 @@ const EventsAndTasks = ({ isQa }) => {
     );
   };
 
-  const isSelected = (key) => {
-    return isFilterSelected(key, selectedTaskFilters);
-  };
-
   return (
     <DashboardContainer>
       <FilterHeaders />
       {/* Filter cards */}
-      <FilterCards
+      <FilterBoxes
         countObj={taskCountObj}
         getColor={(key) => getStatusColor(key, taskCountObj)}
         onCardClick={onClickFilter}
-        isSelected={isSelected}
+        isSelected={(key) =>
+          isFilterSelected(key, selectedTaskFilters, TASK_INITIAL_FILTERS)
+        }
         isLoading={tasksLoading}
       />
 

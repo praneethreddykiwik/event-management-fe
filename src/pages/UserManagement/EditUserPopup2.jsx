@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import RegistrationForm from "../../Forms/RegistrationForm";
 
-const EditUserPopup2 = ({ onClose, modalDetails, selectedRole }) => {
+const EditUserPopup2 = ({ onClose, modalDetails }) => {
   const dispatch = useDispatch();
 
   const onCreateUser = async (payload) => {
@@ -19,7 +19,7 @@ const EditUserPopup2 = ({ onClose, modalDetails, selectedRole }) => {
     } else {
       await dispatch(registrationAction(payload));
     }
-    await dispatch(fetchAllUsersAction({ query: selectedRole }));
+    await dispatch(fetchAllUsersAction());
     onClose();
   };
 
@@ -51,3 +51,5 @@ const StyledGap = styled.div`
 const StyledCMActions = styled.div`
   margin-top: 16px;
 `;
+
+

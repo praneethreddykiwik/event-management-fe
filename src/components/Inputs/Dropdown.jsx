@@ -12,7 +12,6 @@ const Dropdown = ({
   placeholder,
   error,
   validations,
-  disabled,
 }) => {
   const extractValue = useMemo(() => {
     return options.find((fn) => fn.value === value) || {};
@@ -33,7 +32,6 @@ const Dropdown = ({
         styles={customStyles}
         isSearchable={true}
         hasError={error}
-        isDisabled={disabled}
         // isClearable
         // components={{
         //   // IndicatorSeparator: () => null,
@@ -53,14 +51,14 @@ const customStyles = {
     paddingRight: "12px",
     cursor: "pointer",
     textAlign: "left",
+    backgroundColor: "white",
+    border: state.selectProps.hasError
+      ? "1px solid #e53935"
+      : "1px solid #e3e3e3",
     boxShadow: "none",
     "&:hover": {
       borderColor: state.selectProps.hasError ? "#e53935" : "#e3e3e3",
     },
-    backgroundColor: state.isDisabled ? "#dedede" : "#fff",
-    border: state.selectProps.hasError
-      ? `1px solid ${theme.light.colors.warning}`
-      : "1px solid #e0e0e0",
     "&:focus-within": {
       border: state.selectProps.hasError
         ? "1px solid #e53935"

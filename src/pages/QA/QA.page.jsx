@@ -6,7 +6,7 @@ import { QADashboard } from "./QADashboard/QADashboard";
 import { MyAssignedQATasks } from "./MyAssignedQATasks/MyAssignedQATasks";
 import { QAHistory } from "./QAHistory/QAHistory";
 import { TabBody } from "../../components/UI/Tabs/OwnTabs";
-import EventsAndTasks from "../Tasks/AssignedTasks/EventsAndTasks";
+import EventsAndTasks from "../../components/EventTaskComponents/EventsAndTasks";
 
 const qaTabs = [
   { label: "QA Dashboard" },

@@ -9,9 +9,9 @@ import { SkeletonLoaders } from "../../../components/UI/Loaders/SkeletonLoaders"
 export const EventContainer = () => {
   const { eventGridView, events, eventsLoading } = useSelector(eventsSelector);
 
-  // if (eventsLoading) {
-  //   return <SkeletonLoaders count={1} height={150} />;
-  // }
+  if (eventsLoading) {
+    return <SkeletonLoaders count={1} height={150} />;
+  }
 
   if (!events.length) {
     return (
@@ -22,11 +22,7 @@ export const EventContainer = () => {
   return (
     <TaskList $gridView={eventGridView}>
       {events.map((event) => (
-        <AdminTaskItem
-          event={mapEventForUI(event)}
-          gridView={eventGridView}
-          loading={eventsLoading}
-        />
+        <AdminTaskItem event={mapEventForUI(event)} gridView={eventGridView} />
       ))}
     </TaskList>
   );

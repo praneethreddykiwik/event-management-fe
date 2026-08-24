@@ -8,7 +8,7 @@ export const SkeletonLoaders = ({
   type = "list",
 }) => {
   return (
-    <LoaderCtn type={type} className="skeleton-loader">
+    <LoaderCtn type={type}>
       {Array(count)
         .fill("")
         .map(() =>
@@ -36,7 +36,6 @@ const LoaderCtn = styled.div`
   display: flex;
   gap: 16px;
   padding: 16px 0;
-  flex-basis: calc(20% - 20px);
   width: ${({ type }) => (type === "card" ? "fit-content" : "100%")};
 
   flex-direction: ${({ type }) => (type === "card" ? "row" : "column")};

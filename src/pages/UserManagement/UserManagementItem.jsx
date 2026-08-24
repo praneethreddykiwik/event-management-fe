@@ -10,7 +10,7 @@ import { SkeletonLoaders } from "../../components/UI/Loaders/SkeletonLoaders";
 
 const UserManagementItem = ({ data, onEdit, onDelete, loading }) => {
   if (loading) {
-    return <SkeletonLoaders count={1} height={100} />;
+    return <SkeletonLoaders count={1} height={90} />;
   }
   return (
     <StyledCard>
