@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/helm-events-api.vercel.app/:path*",
+      "destination": "https://helm-events-api.vercel.app/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

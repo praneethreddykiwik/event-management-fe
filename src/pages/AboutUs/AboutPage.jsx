@@ -10,7 +10,7 @@ import {
 } from "../../components/Styled/Typography.styled.jsx";
 
 import { ABOUT_US_DATA } from "../../myEnum/aboutsText.jsx";
-import { leadershipTeam } from "../../helpers/about.helper.jsx";
+import { leadershipTeam } from "../../helpers/About.helper.jsx";
 import Avatar from "../../components/Avatar/Avatar.jsx";
 const AboutUs = () => {
   return (
